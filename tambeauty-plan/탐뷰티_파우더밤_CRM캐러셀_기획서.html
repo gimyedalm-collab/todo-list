@@ -1,0 +1,1205 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>탐뷰티 파우더밤 · 카톡 CRM 캐러셀 기획서 (BEST)</title>
+    <style>
+      :root {
+        --v: #7b5ea7;
+        --vd: #5a3d8a;
+        --vdd: #3d2660;
+        --lav: #d5ccec;
+        --mist: #ebe6f5;
+        --cloud: #f4f1fa;
+        --ink: #2a2a2a;
+        --warm: #6b6078;
+        --cream: #faf9fc;
+        --line: #e8e4f0;
+        --red: #e74c3c;
+        --green: #27ae60;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        background: var(--cream);
+        color: var(--ink);
+        margin: 0;
+        padding: 40px 20px;
+        line-height: 1.6;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #f4f1fa, #d5ccec, #b8aad8);
+        border-radius: 20px;
+        padding: 36px 30px;
+        margin-bottom: 28px;
+        box-shadow: 0 16px 36px -16px rgba(90, 61, 138, 0.2);
+      }
+      .hero .tag {
+        display: inline-block;
+        background: rgba(42, 42, 42, 0.08);
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--warm);
+        margin-bottom: 10px;
+      }
+      .hero h1 {
+        margin: 0 0 6px;
+        font-size: 24px;
+        font-weight: 800;
+      }
+      .hero p {
+        margin: 0;
+        font-size: 13px;
+        color: var(--warm);
+      }
+      .hero .meta {
+        margin-top: 14px;
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+      }
+      .hero .meta span {
+        background: rgba(255, 255, 255, 0.6);
+        padding: 5px 10px;
+        border-radius: 7px;
+        font-size: 11px;
+        color: var(--warm);
+        border: 1px solid rgba(123, 94, 167, 0.15);
+      }
+
+      .sec {
+        background: #fff;
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 16px -8px rgba(90, 61, 138, 0.08);
+        border: 1px solid var(--line);
+      }
+      .sec h2 {
+        margin: 0 0 4px;
+        font-size: 17px;
+        color: var(--vd);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .sec h2 .num {
+        background: var(--v);
+        color: #fff;
+        width: 26px;
+        height: 26px;
+        border-radius: 7px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .sec .lead {
+        color: var(--warm);
+        font-size: 12px;
+        margin: 0 0 16px;
+      }
+
+      /* ── 전략 카드 ── */
+      .strategy {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
+        margin: 16px 0;
+      }
+      .st {
+        background: var(--cream);
+        border-radius: 10px;
+        padding: 12px 8px;
+        text-align: center;
+        border: 1px solid var(--line);
+        position: relative;
+      }
+      .st .sn {
+        font-size: 9px;
+        color: var(--v);
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        margin-bottom: 3px;
+      }
+      .st .sl {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.3;
+      }
+      .st .sd {
+        font-size: 9px;
+        color: var(--warm);
+        margin-top: 3px;
+      }
+      .st-arrow {
+        position: absolute;
+        right: -9px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--lav);
+        font-size: 14px;
+        z-index: 2;
+      }
+
+      /* ── Slide Cards ── */
+      .cards {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 12px;
+      }
+      .card {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        box-shadow: 0 8px 24px -10px rgba(90, 61, 138, 0.14);
+      }
+      .card .preview {
+        aspect-ratio: 4/3;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card-index {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: var(--ink);
+        color: #fff;
+        font-size: 9px;
+        padding: 3px 9px;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        z-index: 5;
+      }
+      .card-size {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.85);
+        color: var(--warm);
+        font-size: 8px;
+        padding: 2px 7px;
+        border-radius: 5px;
+        font-weight: 700;
+        z-index: 5;
+      }
+      .card-body {
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .card-body .role {
+        font-size: 10px;
+        color: var(--v);
+        font-weight: 700;
+        letter-spacing: 1.5px;
+      }
+      .card-body .copy {
+        font-size: 13px;
+        color: var(--ink);
+        font-weight: 500;
+        line-height: 1.5;
+        background: var(--cream);
+        padding: 9px 11px;
+        border-radius: 7px;
+        border-left: 2px solid var(--v);
+      }
+      .card-body .copy .em {
+        color: var(--vd);
+        font-weight: 700;
+      }
+      .card-body .why {
+        font-size: 12px;
+        color: var(--vd);
+        font-weight: 600;
+        background: linear-gradient(135deg, #f4f1fa, #ebe6f5);
+        padding: 10px 12px;
+        border-radius: 8px;
+        line-height: 1.5;
+      }
+      .card-body .note {
+        font-size: 11px;
+        color: var(--warm);
+        line-height: 1.5;
+      }
+      .card-body .note b {
+        color: var(--ink);
+      }
+
+      /* ── S1 공감 후킹 ── */
+      .s1 {
+        background: linear-gradient(
+          160deg,
+          #faf5f0 0%,
+          #f0e6dc 40%,
+          #e8ddd0 100%
+        );
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 24px;
+      }
+      .s1 .problem {
+        font-size: 11px;
+        color: #c0956e;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+      }
+      .s1 h3 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 900;
+        color: var(--ink);
+        letter-spacing: -1px;
+        line-height: 1.2;
+      }
+      .s1 h3 em {
+        font-style: normal;
+        color: var(--red);
+      }
+      .s1 .sub {
+        font-size: 13px;
+        color: #8a7060;
+        margin-top: 8px;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+      .s1 .answer {
+        margin-top: 16px;
+        background: var(--ink);
+        color: #fff;
+        padding: 8px 18px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        display: inline-block;
+      }
+      .s1 .answer span {
+        color: var(--lav);
+      }
+
+      /* ── S2 B&A ── */
+      .s2 {
+        background: var(--cream);
+        flex-direction: column;
+        text-align: center;
+      }
+      .s2 .top {
+        padding: 16px 20px 10px;
+      }
+      .s2 .top .eyebrow {
+        font-size: 9px;
+        color: var(--v);
+        letter-spacing: 3px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .s2 .top h3 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--ink);
+        line-height: 1.25;
+      }
+      .s2 .top h3 span {
+        color: var(--vd);
+      }
+      .s2 .top .time {
+        font-size: 11px;
+        color: var(--warm);
+        margin-top: 4px;
+        font-weight: 600;
+      }
+      .s2 .ba {
+        flex: 1;
+        display: flex;
+        border-top: 1px solid var(--line);
+      }
+      .s2 .ba-half {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        position: relative;
+      }
+      .s2 .ba-half .label {
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        padding: 4px 10px;
+        border-radius: 4px;
+        margin-bottom: 6px;
+      }
+      .s2 .ba-half .desc {
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+      .s2 .ba-half .sub-desc {
+        font-size: 10px;
+        color: var(--warm);
+      }
+      .s2 .before {
+        background: #ede8e0;
+      }
+      .s2 .before .label {
+        background: var(--red);
+        color: #fff;
+      }
+      .s2 .before .desc {
+        color: var(--red);
+      }
+      .s2 .after {
+        background: linear-gradient(135deg, var(--cloud), var(--mist));
+        border-left: 2px solid var(--ink);
+      }
+      .s2 .after .label {
+        background: var(--vd);
+        color: #fff;
+      }
+      .s2 .after .desc {
+        color: var(--vd);
+      }
+      .s2 .center-badge {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--ink);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        z-index: 4;
+        white-space: nowrap;
+      }
+
+      /* ── S3 가치 ── */
+      .s3 {
+        background: linear-gradient(160deg, var(--vdd) 0%, #2a1a45 100%);
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 24px;
+        color: #f4f1fa;
+      }
+      .s3 .eyebrow {
+        font-size: 9px;
+        letter-spacing: 3px;
+        color: var(--lav);
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .s3 h3 {
+        margin: 0;
+        font-size: 26px;
+        font-weight: 900;
+        line-height: 1.2;
+        color: #fff;
+      }
+      .s3 h3 em {
+        font-style: normal;
+        color: var(--lav);
+      }
+      .s3 .calc {
+        margin-top: 16px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        padding: 14px 20px;
+        display: inline-block;
+        text-align: left;
+      }
+      .s3 .calc-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 3px 0;
+      }
+      .s3 .calc-row .name {
+        flex: 1;
+      }
+      .s3 .calc-row .price {
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: line-through;
+      }
+      .s3 .calc-total {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        margin-top: 6px;
+        padding-top: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--lav);
+      }
+      .s3 .calc-total .total-price {
+        font-size: 20px;
+      }
+      .s3 .vs {
+        margin-top: 10px;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* ── S4 신뢰 ── */
+      .s4 {
+        background: #fff;
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px;
+      }
+      .s4 .eyebrow {
+        font-size: 9px;
+        color: var(--v);
+        letter-spacing: 3px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .s4 h3 {
+        margin: 0 0 14px;
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--ink);
+      }
+      .s4 h3 span {
+        color: var(--vd);
+      }
+      .s4 .badges {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .s4 .badge {
+        background: var(--cream);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 14px 12px;
+        flex: 1;
+        min-width: 80px;
+        text-align: center;
+      }
+      .s4 .badge .icon {
+        font-size: 22px;
+        margin-bottom: 4px;
+      }
+      .s4 .badge .title {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 2px;
+      }
+      .s4 .badge .desc {
+        font-size: 9px;
+        color: var(--warm);
+        line-height: 1.3;
+      }
+      .s4 .review {
+        margin-top: 14px;
+        background: var(--cream);
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-size: 12px;
+        color: var(--ink);
+        font-weight: 500;
+        line-height: 1.5;
+        text-align: left;
+        border-left: 3px solid var(--v);
+        font-style: italic;
+      }
+      .s4 .review .star {
+        color: #f0c040;
+        font-style: normal;
+        margin-bottom: 4px;
+        display: block;
+        font-size: 13px;
+      }
+
+      /* ── S5 전환 ── */
+      .s5 {
+        background: linear-gradient(160deg, var(--vd) 0%, var(--vdd) 100%);
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 24px;
+        color: #f4f1fa;
+      }
+      .s5 .urgency {
+        background: var(--red);
+        color: #fff;
+        padding: 5px 14px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      .s5 h3 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 900;
+        line-height: 1.2;
+        color: #fff;
+      }
+      .s5 h3 em {
+        font-style: normal;
+        color: var(--lav);
+      }
+      .s5 .price-box {
+        margin: 16px auto;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        padding: 16px 28px;
+        display: inline-block;
+      }
+      .s5 .price-box .old {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: line-through;
+        display: block;
+        margin-bottom: 4px;
+      }
+      .s5 .price-box .row {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 10px;
+      }
+      .s5 .price-box .off {
+        background: var(--red);
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 900;
+      }
+      .s5 .price-box .new {
+        font-size: 36px;
+        font-weight: 900;
+        color: #fff;
+        letter-spacing: -1px;
+      }
+      .s5 .price-box .new small {
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .s5 .cta-btn {
+        margin-top: 14px;
+        background: #fff;
+        color: var(--vd);
+        padding: 10px 28px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 800;
+        display: inline-block;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      }
+      .s5 .limit {
+        margin-top: 10px;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* ── Copybank ── */
+      .copybank {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 9px;
+      }
+      .cb {
+        background: var(--cream);
+        border-radius: 10px;
+        padding: 12px;
+        border-left: 3px solid var(--v);
+      }
+      .cb .tag {
+        font-size: 9px;
+        color: var(--v);
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .cb .text {
+        font-size: 13px;
+        color: var(--ink);
+        font-weight: 600;
+        line-height: 1.4;
+      }
+      .cb .ref {
+        font-size: 10px;
+        color: var(--warm);
+        margin-top: 4px;
+      }
+
+      /* ── Image ref ── */
+      .img-ref {
+        background: var(--cream);
+        border-radius: 10px;
+        padding: 12px 14px;
+        margin-top: 10px;
+        border: 1px solid var(--line);
+      }
+      .img-ref h4 {
+        margin: 0 0 6px;
+        font-size: 12px;
+        color: var(--v);
+      }
+      .img-ref .path {
+        font-family: 'Consolas', monospace;
+        font-size: 10px;
+        color: var(--warm);
+        background: #fff;
+        padding: 6px 8px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        word-break: break-all;
+      }
+      .img-ref ul {
+        margin: 6px 0 0;
+        padding-left: 16px;
+        font-size: 11px;
+        color: var(--warm);
+      }
+      .img-ref ul li {
+        margin-bottom: 2px;
+      }
+
+      /* ── Check ── */
+      .check {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 8px;
+      }
+      .check-item {
+        background: var(--cream);
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 12px;
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+      }
+      .check-item::before {
+        content: '\2713';
+        color: var(--v);
+        font-weight: 800;
+      }
+
+      /* ── 비교표 ── */
+      .compare {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+        font-size: 12px;
+      }
+      .compare th {
+        background: var(--v);
+        color: #fff;
+        padding: 8px 10px;
+        text-align: left;
+        font-weight: 700;
+        font-size: 11px;
+      }
+      .compare td {
+        padding: 8px 10px;
+        border-bottom: 1px solid var(--line);
+      }
+      .compare tr:nth-child(even) td {
+        background: var(--cream);
+      }
+      .compare .old {
+        color: var(--warm);
+      }
+      .compare .new {
+        color: var(--vd);
+        font-weight: 700;
+      }
+      .compare .highlight {
+        background: #f0ebfa !important;
+      }
+
+      .footer {
+        text-align: center;
+        color: var(--warm);
+        font-size: 11px;
+        margin-top: 24px;
+        padding: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- HERO -->
+      <section class="hero">
+        <span class="tag">KAKAO PLUS · CRM CAROUSEL · BEST</span>
+        <h1>파우더밤 플친 캐러셀 기획서</h1>
+        <p>소비자 전환 퍼널 기반 재설계 · 800 x 600 · 5컷 · 40% OFF</p>
+        <div class="meta">
+          <span>800 x 600 px</span>
+          <span>5컷</span>
+          <span>18,000 → 10,800원</span>
+          <span>전환 퍼널 구조</span>
+        </div>
+      </section>
+
+      <!-- 전략 -->
+      <section class="sec">
+        <h2><span class="num">0</span>캐러셀 전략 구조</h2>
+        <p class="lead">
+          사람들이 카톡 캐러셀을 넘기는 이유는 "내 얘기 같아서". 제품 설명이
+          아니라 소비자의 고민부터 시작합니다.
+        </p>
+
+        <div class="strategy">
+          <div class="st">
+            <div class="sn">1컷</div>
+            <div class="sl">공감</div>
+            <div class="sd">"나인데?" 멈추게</div>
+            <span class="st-arrow">→</span>
+          </div>
+          <div class="st">
+            <div class="sn">2컷</div>
+            <div class="sl">증거</div>
+            <div class="sd">B&A로 확인</div>
+            <span class="st-arrow">→</span>
+          </div>
+          <div class="st">
+            <div class="sn">3컷</div>
+            <div class="sl">가치</div>
+            <div class="sd">왜 이게 이득?</div>
+            <span class="st-arrow">→</span>
+          </div>
+          <div class="st">
+            <div class="sn">4컷</div>
+            <div class="sl">신뢰</div>
+            <div class="sd">안심시키기</div>
+            <span class="st-arrow">→</span>
+          </div>
+          <div class="st">
+            <div class="sn">5컷</div>
+            <div class="sl">전환</div>
+            <div class="sd">지금 사야 하는 이유</div>
+          </div>
+        </div>
+
+        <!-- 이전 vs 지금 비교 -->
+        <table class="compare">
+          <tr>
+            <th></th>
+            <th class="old">이전 버전</th>
+            <th class="new">BEST 버전</th>
+          </tr>
+          <tr>
+            <td><b>1컷</b></td>
+            <td class="old">"필터 ON, 하루종일" (브랜드 슬로건)</td>
+            <td class="new highlight">
+              "T존 기름, 3시간이면 다시?" (소비자 고민)
+            </td>
+          </tr>
+          <tr>
+            <td><b>2컷</b></td>
+            <td class="old">B&A + 보송 매트 (동일)</td>
+            <td class="new highlight">B&A + "바르고 8시간 후" (시간 증거)</td>
+          </tr>
+          <tr>
+            <td><b>3컷</b></td>
+            <td class="old">"이거 하나" 3-in-1 기능 (기능 나열)</td>
+            <td class="new highlight">
+              "3개 따로 사면 4만원" → "이거 하나 10,800원" (가성비)
+            </td>
+          </tr>
+          <tr>
+            <td><b>4컷</b></td>
+            <td class="old">HOW TO 사용법 (관심 없는 정보)</td>
+            <td class="new highlight">비건 인증 + 임상 + 리뷰 (신뢰 장치)</td>
+          </tr>
+          <tr>
+            <td><b>5컷</b></td>
+            <td class="old">"플친 40% 할인" (단순 가격)</td>
+            <td class="new highlight">
+              "오늘 자정 마감" + CTA 버튼 (긴급성 + 행동 유도)
+            </td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- 이미지 -->
+      <section class="sec">
+        <h2><span class="num">1</span>사용 이미지</h2>
+        <div class="img-ref">
+          <h4>기본 경로</h4>
+          <div class="path">
+            \\192.168.0.100\디자인팀\11_탐뷰티\11. 더 클라우드 필터 파우더 밤\
+          </div>
+          <ul>
+            <li><b>누끼/</b> — 제품 누끼 → 1컷 하단, 5컷 배경</li>
+            <li><b>연출컷/</b> — 파우더밤1.jpg, 2.jpg → 3컷 배경 오버레이</li>
+            <li><b>제형/배경/</b> — 배경_1~3.png → 4컷 신뢰 배경</li>
+            <li>
+              <b>외주/파우더 전 후/</b> — 전.mp4, 후.mp4 → <b>2컷 B&A 핵심</b>
+            </li>
+            <li><b>상세페이지/26년/국문/</b> — 상세 이미지 참고</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 캐러셀 5컷 -->
+      <section class="sec">
+        <h2><span class="num">2</span>캐러셀 5컷 BEST (800 x 600)</h2>
+        <p class="lead">
+          공감 → 증거 → 가치 → 신뢰 → 전환. 모바일에서 스크롤 멈추게 만드는
+          구조.
+        </p>
+
+        <div class="cards">
+          <!-- ═══ 1컷: 공감 ═══ -->
+          <div class="card">
+            <div class="preview s1">
+              <span class="card-index">01 / 05</span>
+              <span class="card-size">800x600</span>
+              <div class="problem">T존 고민러 주목</div>
+              <h3>T존 기름,<br />3시간이면 <em>다시?</em></h3>
+              <div class="sub">
+                기름종이 하루 5장씩 쓰는 사람,<br />이거 하나면 진짜 끝납니다.
+              </div>
+              <div class="answer">지금 <span>40% 할인</span> 중</div>
+            </div>
+            <div class="card-body">
+              <div class="role">1컷 · 공감 후킹</div>
+              <div class="copy">
+                "T존 기름, 3시간이면 <span class="em">다시?</span>"
+              </div>
+              <div class="why">
+                왜 이 카피인가: "필터 ON"은 브랜드 언어. 소비자는 "T존 기름"이
+                자기 얘기라서 멈춤. 제품명 대신 고민으로 시작해야 스크롤이
+                멈춥니다.
+              </div>
+              <div class="note">
+                <b>레이아웃:</b> 중앙 정렬. 카피 크게 + 하단에 제품 누끼 살짝
+                보이게.<br />
+                <b>배경:</b> 따뜻한 베이지/샌드톤 (피부색 연상). 보라 X → 공감
+                단계니까 부드럽게.<br />
+                <b>이미지:</b> 누끼/5.png 하단 30%만 걸치게. 주인공은 카피.
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ 2컷: 증거 ═══ -->
+          <div class="card">
+            <div class="preview s2">
+              <span
+                class="card-index"
+                style="
+                  background: #fff;
+                  color: var(--ink);
+                  border: 1px solid var(--ink);
+                "
+                >02 / 05</span
+              >
+              <span class="card-size">800x600</span>
+              <div class="top">
+                <div class="eyebrow">REAL BEFORE & AFTER</div>
+                <h3>바르고 <span>8시간 후</span>.</h3>
+                <div class="time">같은 사람, 같은 조명, 같은 각도</div>
+              </div>
+              <div class="ba" style="position: relative">
+                <div class="ba-half before">
+                  <span class="label">BEFORE</span>
+                  <div class="desc">기름 번들번들</div>
+                  <div class="sub-desc">오후 2시 T존</div>
+                </div>
+                <div class="ba-half after">
+                  <span class="label">AFTER</span>
+                  <div class="desc">여전히 보송</div>
+                  <div class="sub-desc">오후 10시 T존</div>
+                </div>
+                <div class="center-badge">8H 지속</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="role">2컷 · 증거 (B&A)</div>
+              <div class="copy">"바르고 <span class="em">8시간 후</span>."</div>
+              <div class="why">
+                왜 이 카피인가: "보송 매트"는 추상적. "8시간 후"는 구체적 증거.
+                시간을 명시하면 "진짜?" → "넘겨볼까" 로 이어집니다.
+              </div>
+              <div class="note">
+                <b>이미지:</b> 외주/파우더 전 후/ 영상 캡처. T존 클로즈업
+                필수.<br />
+                <b>핵심:</b> 이 컷의 전환력은 100% 사진 퀄리티에 달려있음.
+                기름기 차이가 선명하지 않으면 의미 없음.<br />
+                <b>대안:</b> 사진이 약하면 외주/파우더 밤 수정/ 나비존 영상에서
+                재캡처.
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ 3컷: 가치 ═══ -->
+          <div class="card">
+            <div class="preview s3">
+              <span
+                class="card-index"
+                style="background: var(--lav); color: var(--ink)"
+                >03 / 05</span
+              >
+              <span class="card-size">800x600</span>
+              <div class="eyebrow">WHY THIS?</div>
+              <h3>이 3개 따로 사면<br /><em>4만원 넘음.</em></h3>
+              <div class="calc">
+                <div class="calc-row">
+                  <span class="name">프라이머</span
+                  ><span class="price">~15,000원</span>
+                </div>
+                <div class="calc-row">
+                  <span class="name">세팅 파우더</span
+                  ><span class="price">~18,000원</span>
+                </div>
+                <div class="calc-row">
+                  <span class="name">기름종이 (월)</span
+                  ><span class="price">~5,000원</span>
+                </div>
+                <div class="calc-total">
+                  <span>이거 하나 =</span
+                  ><span class="total-price">10,800원</span>
+                </div>
+              </div>
+              <div class="vs">
+                밤인데 바르면 보송 · 건조함 없이 기름만 잡아줌
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="role">3컷 · 가치 (가성비 계산)</div>
+              <div class="copy">
+                "이 3개 따로 사면 <span class="em">4만원 넘음</span>. 이거 하나
+                = 10,800원"
+              </div>
+              <div class="why">
+                왜 이 구성인가: "3-in-1"은 기능 나열. 가격으로 환산해주면 "이거
+                진짜 이득이네" 로 바뀜. 사람은 기능보다 돈으로 비교할 때 더 빨리
+                결정합니다.
+              </div>
+              <div class="note">
+                <b>레이아웃:</b> 중앙 정렬. 카피 + 가격 비교 블록.<br />
+                <b>배경:</b> 딥 바이올렛. 연출컷 위 오버레이 가능.<br />
+                <b>포인트:</b> 10,800원이 "이 세 개를 다 대체한다"는 느낌.
+                계산기 UI 느낌으로.
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ 4컷: 신뢰 ═══ -->
+          <div class="card">
+            <div class="preview s4">
+              <span class="card-index">04 / 05</span>
+              <span class="card-size">800x600</span>
+              <div class="eyebrow">WHY TRUST?</div>
+              <h3>예민한 피부도 <span>OK.</span></h3>
+              <div class="badges">
+                <div class="badge">
+                  <div class="icon">&#127807;</div>
+                  <div class="title">비건 인증</div>
+                  <div class="desc">동물실험 NO</div>
+                </div>
+                <div class="badge">
+                  <div class="icon">&#128300;</div>
+                  <div class="title">임상 테스트</div>
+                  <div class="desc">민감 피부 완료</div>
+                </div>
+                <div class="badge">
+                  <div class="icon">&#10060;</div>
+                  <div class="title">5 ZERO</div>
+                  <div class="desc">향료 파라벤<br />알코올 무첨가</div>
+                </div>
+                <div class="badge">
+                  <div class="icon">&#128101;</div>
+                  <div class="title">남녀 공용</div>
+                  <div class="desc">젠더리스</div>
+                </div>
+              </div>
+              <div class="review">
+                <span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                "진짜 기름종이 안 쓰게 됨. 남자친구도 같이 쓰는 중" — 실사용
+                리뷰
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="role">4컷 · 신뢰</div>
+              <div class="copy">
+                "예민한 피부도 <span class="em">OK</span>. 비건 인증 · 임상 완료
+                · 5 ZERO"
+              </div>
+              <div class="why">
+                왜 이 컷인가: 이전 HOW TO(사용법)는 "아직 안 산 사람"에게 필요
+                없음. 이 단계에서 소비자는 "괜찮은 건 알겠는데 믿어도 돼?" 상태.
+                인증 뱃지 + 리뷰 한 줄이면 충분.
+              </div>
+              <div class="note">
+                <b>레이아웃:</b> 중앙 정렬. 인증 뱃지 4개 + 하단 리뷰 한 줄.<br />
+                <b>리뷰:</b> 실제 구매 리뷰에서 발췌. 없으면 시딩 인플루언서
+                후기 활용.<br />
+                <b>포인트:</b> 복잡하게 X. 뱃지 4개 + 별점 리뷰 한 줄이면 끝.
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ 5컷: 전환 ═══ -->
+          <div class="card">
+            <div class="preview s5">
+              <span
+                class="card-index"
+                style="background: var(--lav); color: var(--vd)"
+                >05 / 05</span
+              >
+              <span class="card-size">800x600</span>
+              <div class="urgency">TODAY ONLY</div>
+              <h3>여름 오기 전에<br /><em>지금이 제일 싸요.</em></h3>
+              <div class="price-box">
+                <span class="old">18,000원</span>
+                <div class="row">
+                  <span class="off">-40%</span>
+                  <span class="new">10,800<small>원</small></span>
+                </div>
+              </div>
+              <div class="cta-btn">지금 바로 구매하기</div>
+              <div class="limit">플친 전용 · 재고 소진 시 정가 복귀</div>
+            </div>
+            <div class="card-body">
+              <div class="role">5컷 · 전환 (CTA)</div>
+              <div class="copy">
+                "여름 오기 전에 <span class="em">지금이 제일 싸요</span>.
+                18,000원 → 10,800원"
+              </div>
+              <div class="why">
+                왜 이 카피인가: "플친이면 40%"는 혜택 설명. "지금이 제일 싸요"는
+                행동 유도. "여름 오기 전에"로 시즌 긴급성까지. 가격 + 이유 +
+                긴급성 3박자.
+              </div>
+              <div class="note">
+                <b>레이아웃:</b> 중앙 정렬. 긴급 뱃지 + 카피 + 가격 블록 + CTA
+                버튼.<br />
+                <b>CTA 버튼:</b> 흰색 라운드 버튼, 카톡 링크 연결 영역으로.<br />
+                <b>핵심:</b> 10,800원과 "구매하기" 버튼이 가장 크게. 나머지는 다
+                서브.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 카피 뱅크 -->
+      <section class="sec">
+        <h2><span class="num">3</span>카피 뱅크 (A/B 테스트용)</h2>
+        <div class="copybank">
+          <div class="cb">
+            <div class="tag">1컷 A (채택)</div>
+            <div class="text">"T존 기름, 3시간이면 다시?"</div>
+            <div class="ref">공감형 · 멈춤 유발</div>
+          </div>
+          <div class="cb">
+            <div class="tag">1컷 B</div>
+            <div class="text">"기름종이 하루 5장 쓰는 사람?"</div>
+            <div class="ref">공감형 · 수치 구체화</div>
+          </div>
+          <div class="cb">
+            <div class="tag">2컷 A (채택)</div>
+            <div class="text">"바르고 8시간 후."</div>
+            <div class="ref">시간 증거 · 호기심</div>
+          </div>
+          <div class="cb">
+            <div class="tag">2컷 B</div>
+            <div class="text">"아침에 바르고 퇴근까지."</div>
+            <div class="ref">직장인 공감</div>
+          </div>
+          <div class="cb">
+            <div class="tag">3컷 A (채택)</div>
+            <div class="text">"이 3개 따로 사면 4만원 넘음."</div>
+            <div class="ref">가성비 계산 · 충격</div>
+          </div>
+          <div class="cb">
+            <div class="tag">3컷 B</div>
+            <div class="text">"프라이머도 파우더도 기름종이도 이거 하나."</div>
+            <div class="ref">3-in-1 직격 (이전 버전)</div>
+          </div>
+          <div class="cb">
+            <div class="tag">5컷 A (채택)</div>
+            <div class="text">"여름 오기 전에 지금이 제일 싸요."</div>
+            <div class="ref">시즌 긴급성 + 가격</div>
+          </div>
+          <div class="cb">
+            <div class="tag">5컷 B</div>
+            <div class="text">"10,800원에 여름 베이스 끝."</div>
+            <div class="ref">가격 + 가치 조합</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 체크리스트 -->
+      <section class="sec">
+        <h2><span class="num">4</span>디자이너 체크리스트</h2>
+        <div class="check">
+          <div class="check-item">800 x 600 px 가로 5장</div>
+          <div class="check-item">
+            1컷: 따뜻한 베이지톤 (피부 연상) / 2~5컷: 브랜드 바이올렛
+          </div>
+          <div class="check-item">단 나누기 X (2컷 B&A만 좌우 분할)</div>
+          <div class="check-item">
+            모든 컷 중앙 정렬 · 카피가 주인공 (이미지는 서브)
+          </div>
+          <div class="check-item">
+            1컷: 카피 70% + 제품 누끼 하단 30% 걸치기
+          </div>
+          <div class="check-item">
+            2컷 B&A: 기름기 차이가 선명하지 않으면 다른 컷으로 대체
+          </div>
+          <div class="check-item">
+            3컷: 가격 비교 블록이 핵심. 10,800원 가장 크게
+          </div>
+          <div class="check-item">
+            4컷: 인증 뱃지 4개 + 별점 리뷰 1줄. 깔끔하게
+          </div>
+          <div class="check-item">
+            5컷: "구매하기" 버튼 영역 확보. 10,800원 + CTA가 주인공
+          </div>
+          <div class="check-item">
+            가격 표기: 18,000원(취소선) → -40% → 10,800원
+          </div>
+          <div class="check-item">
+            Pretendard 통일 · "더 클라우드 필터 파우더밤" 정식명
+          </div>
+          <div class="check-item">고해상 2x + 웹 압축(150KB 이하) 2벌</div>
+        </div>
+      </section>
+
+      <div class="footer">
+        &copy; TAM BEAUTY · 더 클라우드 필터 파우더밤 CRM 캐러셀 기획서 (BEST) ·
+        2026.04
+      </div>
+    </div>
+  </body>
+</html>
