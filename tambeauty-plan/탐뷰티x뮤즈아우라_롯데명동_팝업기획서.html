@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐뷰티 × 뮤즈아우라 — 롯데 명동 뷰티 팝업존 (2026.07)</title>
+    <style>
+      :root {
+        --pink-deep: #f25c7a;
+        --pink: #fbc4cf;
+        --pink-soft: #fde6ec;
+        --pink-pale: #fff5f8;
+        --nude: #f4d9c7;
+        --red: #d43a4a;
+        --red-soft: #ffeeef;
+        --ink: #1a1a1a;
+        --gray: #6b6b6b;
+        --gray-soft: #999999;
+        --line: #e8e2dc;
+        --bg: #fbf7f4;
+        --muse: #f18ea5;
+        --muse-soft: #ffe4eb;
+        --tam: #d43a4a;
+        --tam-soft: #ffeeef;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 64px 56px 120px;
+      }
+
+      /* Cover */
+      .cover {
+        background: linear-gradient(
+          135deg,
+          #fff5f8 0%,
+          #fbc4cf 50%,
+          #ffeeef 100%
+        );
+        color: var(--ink);
+        padding: 80px 64px;
+        border-radius: 28px;
+        margin-bottom: 80px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+      }
+      .cover::before {
+        content: '';
+        position: absolute;
+        right: -100px;
+        top: -100px;
+        width: 360px;
+        height: 360px;
+        background: radial-gradient(
+          circle,
+          rgba(241, 142, 165, 0.25) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .cover::after {
+        content: '';
+        position: absolute;
+        right: 80px;
+        bottom: -120px;
+        width: 320px;
+        height: 320px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 58, 74, 0.15) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .tag {
+        display: inline-block;
+        padding: 7px 16px;
+        background: rgba(255, 255, 255, 0.75);
+        border: 1px solid var(--line);
+        border-radius: 100px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: var(--gray);
+        letter-spacing: 1px;
+      }
+      h1.title {
+        font-size: 52px;
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -1.5px;
+        margin-bottom: 16px;
+        position: relative;
+        z-index: 2;
+      }
+      h1.title small {
+        display: block;
+        font-size: 18px;
+        font-weight: 500;
+        opacity: 0.7;
+        margin-top: 14px;
+        letter-spacing: 0;
+      }
+      .cover .meta {
+        display: flex;
+        gap: 40px;
+        margin-top: 36px;
+        position: relative;
+        z-index: 2;
+        flex-wrap: wrap;
+      }
+      .cover .meta div {
+        font-size: 12px;
+        color: var(--gray);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .cover .meta b {
+        display: block;
+        font-size: 16px;
+        font-weight: 700;
+        margin-top: 4px;
+        color: var(--ink);
+        letter-spacing: 0;
+        text-transform: none;
+      }
+
+      /* Section */
+      section {
+        margin-bottom: 96px;
+      }
+      h2 {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--pink-deep);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      h2 + .h {
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: -0.7px;
+        margin-bottom: 36px;
+        line-height: 1.25;
+      }
+
+      /* Concept hero */
+      .concept-hero {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 64px 56px;
+        text-align: center;
+      }
+      .concept-hero .quote {
+        font-size: 40px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        line-height: 1.35;
+        margin-bottom: 20px;
+      }
+      .concept-hero .quote em {
+        font-style: normal;
+        color: var(--pink-deep);
+      }
+      .concept-hero .sub {
+        color: var(--gray);
+        font-size: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .step-flow {
+        display: grid;
+        grid-template-columns: 1fr 80px 1fr;
+        gap: 16px;
+        margin-top: 48px;
+        align-items: stretch;
+      }
+      .step {
+        padding: 36px 32px;
+        border-radius: 20px;
+        text-align: left;
+      }
+      .step.muse {
+        background: var(--muse-soft);
+        border: 1px solid #f8b6c5;
+      }
+      .step.tam {
+        background: var(--tam-soft);
+        border: 1px solid #f8c4cd;
+      }
+      .step .num {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+      }
+      .step.muse .num {
+        color: var(--muse);
+      }
+      .step.tam .num {
+        color: var(--tam);
+      }
+      .step .brand {
+        font-size: 26px;
+        font-weight: 800;
+        margin: 6px 0 12px;
+        letter-spacing: -0.5px;
+      }
+      .step .role {
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .step .desc {
+        font-size: 13.5px;
+        color: #444;
+        line-height: 1.7;
+      }
+      .arrow {
+        align-self: center;
+        text-align: center;
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--pink-deep);
+      }
+
+      /* Roles */
+      .roles {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .role-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 36px 36px 32px;
+      }
+      .role-card.muse {
+        border-top: 4px solid var(--muse);
+      }
+      .role-card.tam {
+        border-top: 4px solid var(--tam);
+      }
+      .role-card .lbl {
+        font-size: 11px;
+        letter-spacing: 2px;
+        font-weight: 700;
+      }
+      .role-card.muse .lbl {
+        color: var(--muse);
+      }
+      .role-card.tam .lbl {
+        color: var(--tam);
+      }
+      .role-card h3 {
+        font-size: 28px;
+        font-weight: 800;
+        margin: 6px 0 4px;
+        letter-spacing: -0.5px;
+      }
+      .role-card .tagline {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 18px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--line);
+      }
+      .role-card p {
+        font-size: 14px;
+        color: #444;
+        line-height: 1.7;
+      }
+
+      /* Color */
+      .color-note {
+        background: linear-gradient(
+          90deg,
+          var(--muse-soft) 0%,
+          var(--pink-soft) 50%,
+          var(--tam-soft) 100%
+        );
+        border-radius: 16px;
+        padding: 24px 32px;
+        margin-bottom: 24px;
+        font-size: 15px;
+        color: #333;
+      }
+      .color-note b {
+        color: var(--ink);
+      }
+
+      .palette {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+      }
+      .color-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+      }
+      .color-swatch {
+        height: 140px;
+      }
+      .color-info {
+        padding: 16px 18px;
+      }
+      .color-info .role {
+        font-size: 10px;
+        color: var(--gray);
+        letter-spacing: 1.5px;
+        font-weight: 700;
+      }
+      .color-info .name {
+        font-size: 15px;
+        font-weight: 700;
+        margin-top: 6px;
+      }
+      .color-info .hex {
+        font-size: 12px;
+        color: var(--gray-soft);
+        font-family: 'SF Mono', Consolas, monospace;
+        margin-top: 2px;
+      }
+
+      /* Visual flow */
+      .vis-flow {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 48px;
+        display: grid;
+        grid-template-columns: 1fr 80px 1fr 80px 1fr;
+        gap: 16px;
+        align-items: center;
+      }
+      .vis-step {
+        text-align: center;
+        padding: 28px 20px;
+        border-radius: 16px;
+      }
+      .vis-step.s1 {
+        background: var(--muse-soft);
+      }
+      .vis-step.s2 {
+        background: var(--pink-soft);
+      }
+      .vis-step.s3 {
+        background: var(--tam-soft);
+      }
+      .vis-step .ico {
+        font-size: 44px;
+        margin-bottom: 12px;
+      }
+      .vis-step .ttl {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.5;
+      }
+      .vis-step .stp {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        color: var(--gray);
+        margin-bottom: 6px;
+        font-weight: 700;
+      }
+
+      /* Copy */
+      .copy-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 40px 48px;
+      }
+      .copy-card .item {
+        padding: 16px 0;
+        border-bottom: 1px dashed var(--line);
+        display: flex;
+        align-items: baseline;
+        gap: 24px;
+      }
+      .copy-card .item:last-child {
+        border-bottom: none;
+      }
+      .copy-card .item .label {
+        font-size: 11px;
+        color: var(--gray);
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        flex-shrink: 0;
+        min-width: 60px;
+      }
+      .copy-card .item .text {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .copy-card .item.main .text {
+        font-size: 24px;
+        color: var(--pink-deep);
+      }
+
+      /* Operation */
+      .ops {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+      }
+      .op {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 28px 24px;
+        text-align: center;
+      }
+      .op .icon {
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+      .op h4 {
+        font-size: 16px;
+        font-weight: 800;
+        margin-bottom: 6px;
+      }
+      .op p {
+        font-size: 13px;
+        color: var(--gray);
+        line-height: 1.6;
+      }
+
+      /* Photo zone detail */
+      .photo-zone {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 36px 40px;
+        margin-top: 20px;
+      }
+      .photo-zone h3 {
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 16px;
+      }
+      .photo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+      }
+      .photo-item {
+        text-align: center;
+        padding: 24px 16px;
+        background: var(--pink-pale);
+        border-radius: 14px;
+        border: 1px solid var(--pink);
+      }
+      .photo-item .icon {
+        font-size: 36px;
+        margin-bottom: 10px;
+        display: block;
+      }
+      .photo-item .nm {
+        font-size: 14px;
+        font-weight: 800;
+        margin-bottom: 6px;
+      }
+      .photo-item .desc {
+        font-size: 12px;
+        color: var(--gray);
+        line-height: 1.6;
+      }
+      .photo-detail {
+        margin-top: 18px;
+        font-size: 13px;
+        color: #444;
+        line-height: 1.7;
+        padding: 16px 20px;
+        background: #faf5f2;
+        border-radius: 12px;
+        border-left: 3px solid var(--pink-deep);
+      }
+      .photo-detail b {
+        color: var(--pink-deep);
+      }
+
+      /* Sets */
+      .sets {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      .set {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 28px 26px;
+        position: relative;
+      }
+      .set.main {
+        border: 2px solid var(--pink-deep);
+        box-shadow: 0 12px 32px rgba(242, 92, 122, 0.14);
+        transform: scale(1.02);
+      }
+      .set .badge {
+        position: absolute;
+        top: -12px;
+        left: 24px;
+        background: var(--pink-deep);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 5px 12px;
+        border-radius: 100px;
+        letter-spacing: 0.5px;
+      }
+      .set .tier {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        color: var(--gray);
+      }
+      .set h4 {
+        font-size: 19px;
+        font-weight: 800;
+        margin: 6px 0 4px;
+        letter-spacing: -0.3px;
+      }
+      .set .price {
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--pink-deep);
+        margin-top: 10px;
+      }
+      .set .price small {
+        font-size: 14px;
+        color: var(--gray);
+        font-weight: 500;
+      }
+      .set .org {
+        font-size: 12px;
+        color: var(--gray);
+        margin-top: 4px;
+      }
+      .set .org b {
+        text-decoration: line-through;
+      }
+      .set .save {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 700;
+        color: #fff;
+        background: var(--red);
+        padding: 2px 8px;
+        border-radius: 100px;
+        margin-left: 6px;
+        vertical-align: middle;
+        letter-spacing: 0.5px;
+      }
+      .set .compose {
+        font-size: 13px;
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px dashed var(--line);
+      }
+      .set .compose .head {
+        font-size: 10px;
+        color: var(--gray);
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .set .compose .row {
+        padding: 4px 0;
+        display: flex;
+        gap: 8px;
+        align-items: baseline;
+      }
+      .set .compose .tag-s1 {
+        font-size: 9px;
+        padding: 2px 6px;
+        border-radius: 100px;
+        background: var(--muse-soft);
+        color: var(--muse);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .set .compose .tag-s2 {
+        font-size: 9px;
+        padding: 2px 6px;
+        border-radius: 100px;
+        background: var(--tam-soft);
+        color: var(--tam);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .set .compose .item-name {
+        font-size: 13px;
+      }
+      .set .gift {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px dashed var(--line);
+        font-size: 12px;
+        color: var(--gray);
+      }
+      .set .gift b {
+        color: var(--pink-deep);
+      }
+
+      /* Next */
+      .next {
+        background: var(--pink-pale);
+        border: 1px solid var(--pink);
+        border-radius: 20px;
+        padding: 36px 40px;
+      }
+      .next h3 {
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 14px;
+      }
+      .next ol {
+        padding-left: 20px;
+      }
+      .next li {
+        padding: 4px 0;
+        font-size: 14.5px;
+        color: #2a2a2a;
+      }
+
+      footer {
+        margin-top: 100px;
+        padding-top: 32px;
+        border-top: 1px solid var(--line);
+        color: var(--gray);
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      @media (max-width: 860px) {
+        .page {
+          padding: 32px 20px;
+        }
+        .palette,
+        .roles,
+        .ops,
+        .sets,
+        .photo-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .step-flow,
+        .vis-flow {
+          grid-template-columns: 1fr;
+        }
+        .arrow {
+          transform: rotate(90deg);
+          padding: 8px 0;
+        }
+        .cover {
+          padding: 48px 32px;
+        }
+        h1.title {
+          font-size: 36px;
+        }
+        .concept-hero {
+          padding: 40px 24px;
+        }
+        .concept-hero .quote {
+          font-size: 26px;
+        }
+        .set.main {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- COVER -->
+      <header class="cover">
+        <span class="tag">2026 SUMMER POP-UP · CONCEPT DECK</span>
+        <h1 class="title">
+          탐뷰티 × 뮤즈아우라
+          <small>롯데백화점 명동본점 — 뷰티 팝업존 / 2026.07 · 1개월</small>
+        </h1>
+        <div class="meta">
+          <div>장소<b>롯데 명동본점 1F</b></div>
+          <div>기간<b>2026.07 · 1개월</b></div>
+          <div>1차 미팅 — <b>컨셉 · 키컬러 · 방향성 합의</b></div>
+        </div>
+      </header>
+
+      <!-- 1. CONCEPT -->
+      <section>
+        <h2>01. Concept</h2>
+        <div class="h">두 브랜드, 한 얼굴을 만드는 두 단계</div>
+        <div class="concept-hero">
+          <div class="quote">
+            메이크업 전,<br />필수 준비는 <em>완성된 피부</em>
+          </div>
+          <p class="sub">
+            "반반"이 아니다.
+            <b>피부를 만들고(STEP 1) → 변화를 보여주는(STEP 2) 시퀀스</b
+            >.<br />뮤즈아우라가 캔버스를 만들고, 탐뷰티가 그림을 완성한다.
+          </p>
+
+          <div class="step-flow">
+            <div class="step muse">
+              <div class="num">STEP 1 — PREP</div>
+              <div class="brand">뮤즈아우라</div>
+              <div class="role">피부를 만든다</div>
+              <div class="desc">
+                하트 패치·말차 토너·세럼이 모공·수분·결을 정돈해 메이크업이 가장
+                잘 받는 상태로 끌어올림.
+              </div>
+            </div>
+            <div class="arrow">→</div>
+            <div class="step tam">
+              <div class="num">STEP 2 — TRANSFORM</div>
+              <div class="brand">탐뷰티</div>
+              <div class="role">변화를 보여준다</div>
+              <div class="desc">
+                클라우드블러·립·이지브로우마스카라가 "전과 후"를 한눈에 보이게
+                한다. 셀카에서 즉시 차이가 나는 색조.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. BRAND ROLES -->
+      <section>
+        <h2>02. Brand Roles</h2>
+        <div class="h">두 브랜드, 명확하게 역할이 다르다</div>
+        <div class="roles">
+          <div class="role-card muse">
+            <div class="lbl">STEP 1 · SKINCARE</div>
+            <h3>뮤즈아우라</h3>
+            <div class="tagline">"피부를 만드는 브랜드"</div>
+            <p>
+              피부 상태를 업그레이드해 메이크업이 가장 잘 받는 캔버스를 만든다.
+              수분·진정·모공 — <b>보이지 않는 변화</b>로 시작점을 잡는다.
+            </p>
+          </div>
+          <div class="role-card tam">
+            <div class="lbl">STEP 2 · COLOR</div>
+            <h3>탐뷰티</h3>
+            <div class="tagline">"변화를 보여주는 브랜드"</div>
+            <p>
+              준비된 피부 위에 눈에 보이는 결과를 만든다. 블러·립·브로우 —
+              <b>1분 안의 변형</b>으로 셀카에 즉시 찍히는 차이를 만든다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. KEY COLOR -->
+      <section>
+        <h2>03. Key Color</h2>
+        <div class="h">컬러 팔레트 — 핑크 그라데이션</div>
+        <div class="color-note">
+          💡 <b>두 브랜드 메인 컬러가 모두 핑크 계열</b>로 비슷함 → 충돌이
+          아니라 <b>"같은 무드의 만남"</b>으로 풀자.<br />
+          소프트 핑크(뮤즈) → 체리 핑크(연결) → 글로시 레드(탐뷰티) 그라데이션 =
+          톤 다운에서 톤 업으로의 자연스러운 시퀀스.
+        </div>
+        <div class="palette">
+          <div class="color-card">
+            <div class="color-swatch" style="background: #fbc4cf"></div>
+            <div class="color-info">
+              <div class="role">STEP 1 · MUSE</div>
+              <div class="name">소프트 핑크</div>
+              <div class="hex">#FBC4CF</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background: #ffe4eb"></div>
+            <div class="color-info">
+              <div class="role">STEP 1 SOFT</div>
+              <div class="name">페일 핑크</div>
+              <div class="hex">#FFE4EB</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background: #f25c7a"></div>
+            <div class="color-info">
+              <div class="role">CONNECT</div>
+              <div class="name">체리 핑크</div>
+              <div class="hex">#F25C7A</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background: #d43a4a"></div>
+            <div class="color-info">
+              <div class="role">STEP 2 · TAM</div>
+              <div class="name">글로시 레드</div>
+              <div class="hex">#D43A4A</div>
+            </div>
+          </div>
+          <div class="color-card">
+            <div class="color-swatch" style="background: #f4d9c7"></div>
+            <div class="color-info">
+              <div class="role">NEUTRAL</div>
+              <div class="name">머스크 누드</div>
+              <div class="hex">#F4D9C7</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. KEY VISUAL -->
+      <section>
+        <h2>04. Key Visual</h2>
+        <div class="h">키 비주얼 — BEFORE → AFTER 시퀀스</div>
+        <div class="vis-flow">
+          <div class="vis-step s1">
+            <div class="stp">STEP 1 — PREP</div>
+            <div class="ico">🌸</div>
+            <div class="ttl">소프트 핑크<br />준비된 피부</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="vis-step s2">
+            <div class="stp">CONNECT</div>
+            <div class="ico">💗</div>
+            <div class="ttl">체리 핑크<br />완성된 캔버스</div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="vis-step s3">
+            <div class="stp">STEP 2 — TRANSFORM</div>
+            <div class="ico">💋</div>
+            <div class="ttl">글로시 레드<br />완성된 변화</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. COPY -->
+      <section>
+        <h2>05. Copy</h2>
+        <div class="h">카피 라인</div>
+        <div class="copy-card">
+          <div class="item main">
+            <div class="label">메인</div>
+            <div class="text">"메이크업 전, 필수 준비는 완성된 피부"</div>
+          </div>
+          <div class="item">
+            <div class="label">서브</div>
+            <div class="text">"피부를 만들고, 변화를 보여준다"</div>
+          </div>
+          <div class="item">
+            <div class="label">EN</div>
+            <div class="text">"PREP YOUR SKIN. SHOW YOUR CHANGE."</div>
+          </div>
+          <div class="item">
+            <div class="label">CN</div>
+            <div class="text">"先准备肌肤，再展现改变"</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. OPERATION + PHOTO ZONE -->
+      <section>
+        <h2>06. Operation</h2>
+        <div class="h">운영 방향 — 체험 + 촬영존 + 연계 구매</div>
+        <div class="ops">
+          <div class="op">
+            <div class="icon">🌸</div>
+            <h4>현장 체험</h4>
+            <p>간단한 터치업<br />패치 부착 + 색조 시연</p>
+          </div>
+          <div class="op">
+            <div class="icon">📸</div>
+            <h4>촬영존</h4>
+            <p>BEFORE / AFTER 듀얼 거울<br />샤오홍슈·인스타 자연 인증</p>
+          </div>
+          <div class="op">
+            <div class="icon">🛍️</div>
+            <h4>연계 구매</h4>
+            <p>STEP 1 + STEP 2<br />두 브랜드 동시 구매 유도</p>
+          </div>
+        </div>
+
+        <div class="photo-zone">
+          <h3>📸 촬영존 — 거울·백드롭 중심으로 가볍게</h3>
+          <div class="photo-grid">
+            <div class="photo-item">
+              <span class="icon">🪞</span>
+              <div class="nm">BEFORE 거울</div>
+              <div class="desc">
+                패치 부착 후<br />매끈한 피부 인증<br />(소프트 핑크 톤 프레임)
+              </div>
+            </div>
+            <div class="photo-item">
+              <span class="icon">🖼️</span>
+              <div class="nm">KV 백드롭</div>
+              <div class="desc">
+                "메이크업 전,<br />필수 준비는 완성된 피부"<br />대형 그래픽 월
+              </div>
+            </div>
+            <div class="photo-item">
+              <span class="icon">💄</span>
+              <div class="nm">AFTER 셀카 거울</div>
+              <div class="desc">
+                색조 시연 마무리<br />조명·반사판 1세트<br />(글로시 레드 톤
+                프레임)
+              </div>
+            </div>
+          </div>
+          <div class="photo-detail">
+            <b>운영 방식</b> — 거대한 포토존이 아니라
+            <b>고객이 원래 거치는 동선 위에 자연스럽게 거울 2개 + 백드롭 1개</b
+            >를 두는 형태. 패치 부착(BEFORE 거울) → 5분 대기 동안 백드롭 앞 인증
+            → 색조 시연 후 AFTER 거울 셀카 → 결제. 별도 줄 서기 ❌.
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. SET PROPOSAL — 3개 -->
+      <section>
+        <h2>07. Set Proposal</h2>
+        <div class="h">콜라보 세트 — 가격대별 3종 (5만 / 7만 / 10만)</div>
+        <div class="sets">
+          <div class="set">
+            <div class="tier">ENTRY · 입문가</div>
+            <h4>데일리 듀오</h4>
+            <div class="price">49,000<small>원</small></div>
+            <div class="org">
+              <b>자사몰 합 약 54,400원</b> <span class="save">-10%</span>
+            </div>
+            <div class="compose">
+              <div class="head">CONTAINS</div>
+              <div class="row">
+                <span class="tag-s1">STEP 1</span
+                ><span class="item-name">하트 패치 30매팩</span>
+              </div>
+              <div class="row">
+                <span class="tag-s2">STEP 2</span
+                ><span class="item-name">탐뷰티 립 1종</span>
+              </div>
+            </div>
+            <div class="gift">증정 — <b>헤어 부직포 1매</b> + 안내카드</div>
+          </div>
+
+          <div class="set main">
+            <div class="badge">⭐ MAIN</div>
+            <div class="tier">DAILY · 메인</div>
+            <h4>PREP & TRANSFORM</h4>
+            <div class="price">59,000<small>원</small></div>
+            <div class="org">
+              <b>자사몰 합 약 88,400원</b> <span class="save">-33%</span>
+            </div>
+            <div class="compose">
+              <div class="head">CONTAINS</div>
+              <div class="row">
+                <span class="tag-s1">STEP 1</span
+                ><span class="item-name">하트 패치 30매팩</span>
+              </div>
+              <div class="row">
+                <span class="tag-s2">STEP 2</span
+                ><span class="item-name">탐뷰티 클라우드블러</span>
+              </div>
+              <div class="row">
+                <span class="tag-s2">STEP 2</span
+                ><span class="item-name">탐뷰티 립 1종</span>
+              </div>
+            </div>
+            <div class="gift">증정 — <b>헤어 부직포 1매</b></div>
+          </div>
+
+          <div class="set">
+            <div class="tier">FULL · 풀 루틴</div>
+            <h4>PINK MUSE FULL</h4>
+            <div class="price">99,000<small>원</small></div>
+            <div class="org">
+              <b>자사몰 합 약 148,400원</b> <span class="save">-33%</span>
+            </div>
+            <div class="compose">
+              <div class="head">CONTAINS</div>
+              <div class="row">
+                <span class="tag-s1">STEP 1</span
+                ><span class="item-name">하트 패치 30매팩</span>
+              </div>
+              <div class="row">
+                <span class="tag-s1">STEP 1</span
+                ><span class="item-name">말차 토너 + 세럼 1종</span>
+              </div>
+              <div class="row">
+                <span class="tag-s2">STEP 2</span
+                ><span class="item-name">클라우드블러 + 립 + 마스카라</span>
+              </div>
+            </div>
+            <div class="gift">증정 — <b>한정 박스 + 헤어 부직포 2매</b></div>
+          </div>
+        </div>
+        <p
+          style="
+            margin-top: 18px;
+            font-size: 13px;
+            color: var(--gray);
+            text-align: center;
+          "
+        >
+          * 모든 세트는 <b>STEP 1 + STEP 2 듀오 구조</b>. 패치 30매팩은 박스
+          단위로만 운용 (분철 ❌).
+        </p>
+      </section>
+
+      <!-- 8. NEXT -->
+      <section>
+        <h2>08. Next Steps</h2>
+        <div class="h">1차 미팅에서 합의할 것</div>
+        <div class="next">
+          <h3>오늘 — 컨셉 · 키컬러 · 방향성</h3>
+          <ol>
+            <li>"메이크업 전, 필수 준비는 완성된 피부" 컨셉 — OK?</li>
+            <li>
+              STEP 1 PREP(뮤즈) → STEP 2 TRANSFORM(탐뷰티) 시퀀스 구조 — OK?
+            </li>
+            <li>
+              핑크 그라데이션 컬러 방향 — 두 브랜드 정확한 메인 컬러 코드
+              공유받기
+            </li>
+            <li>BEFORE / AFTER 듀얼 거울 + KV 백드롭 촬영존 — OK?</li>
+            <li>3만 / 6만 / 10만 가격대 세트 3종 — 구성 OK? SKU 조정 필요?</li>
+          </ol>
+          <h3 style="margin-top: 24px">2차 — 운영 디테일 별도 논의</h3>
+          <ol>
+            <li>프로모션 구조 (계단식·세트·히어로·쿠폰)</li>
+            <li>정산 비율 / 공동 비용 분담</li>
+            <li>운영 캘린더 / KPI / 인력 배치</li>
+          </ol>
+        </div>
+      </section>
+
+      <footer>
+        <div>탐뷰티 × 뮤즈아우라 / 롯데백화점 명동본점 뷰티 팝업존</div>
+        <div>
+          v1.7 · CONCEPT DECK — 2026.04.30 (촬영존 디테일 + 세트 3종 추가)
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
