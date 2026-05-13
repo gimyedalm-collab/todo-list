@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐뷰티 | 더 젤리 빔 하이라이터 — 상세페이지 기획 v1</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap");
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font-family: "Noto Sans KR", sans-serif; background: #d6d6d6; color: #333; -webkit-font-smoothing: antialiased; }
+
+      /* ═══ 플래닝 바 ═══ */
+      .p-bar { background: #0f0f1a; color: #888; padding: 10px 20px; font-size: 11px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+      .p-bar strong { color: #ffd369; }
+      .p-bar .badge { background: #ffd369; color: #0f0f1a; padding: 3px 12px; border-radius: 10px; font-size: 10px; font-weight: 700; }
+
+      /* ═══ 프레임 ═══ */
+      .frame { width: 860px; margin: 20px auto; background: #fff; overflow: hidden; box-shadow: 0 4px 40px rgba(0, 0, 0, 0.08); }
+
+      /* ═══ 마커 ═══ */
+      .mk { background: #0f0f1a; color: #ffd369; padding: 8px 18px; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; display: flex; justify-content: space-between; align-items: center; }
+      .mk .n { color: #888; font-weight: 400; font-size: 10px; }
+      .mk .tag { background: #ffd369; color: #0f0f1a; padding: 2px 8px; border-radius: 8px; font-size: 9px; margin-left: 8px; }
+      .mk .tag.diff { background: #ff8a65; color: #fff; }
+      .mk .tag.uniq { background: #ba68c8; color: #fff; }
+
+      /* ═══ 메모 ═══ */
+      .memo { padding: 12px 18px; font-size: 11px; line-height: 1.7; border-left: 3px solid #ffe082; background: #fffde7; color: #8a7a30; }
+      .memo b { color: #5d4e00; }
+      .memo.photo { border-left-color: #90caf9; background: #e3f2fd; color: #37474f; }
+      .memo.photo b { color: #1565c0; }
+      .memo.copy { border-left-color: #ce93d8; background: #f3e5f5; color: #4a148c; }
+      .memo.copy b { color: #6a1b9a; }
+      .memo.warn { border-left-color: #ef9a9a; background: #ffebee; color: #b71c1c; }
+      .memo.warn b { color: #c62828; }
+      .memo.bench { border-left-color: #80cbc4; background: #e0f2f1; color: #00474f; }
+      .memo.bench b { color: #00695c; }
+      .memo ul { margin: 6px 0 0 16px; }
+      .memo li { margin-bottom: 2px; }
+
+      /* ═══ 이미지 플레이스홀더 ═══ */
+      .img-ph { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; color: #bbb; font-size: 12px; overflow: hidden; position: relative; background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,0,0,0.015) 20px, rgba(0,0,0,0.015) 40px); }
+      .img-ph .lb { font-size: 10px; color: #c9a07a; letter-spacing: 2px; font-weight: 700; padding: 6px 14px; background: rgba(255,255,255,0.7); border-radius: 6px; backdrop-filter: blur(4px); }
+
+      /* ════════════════════════════════════════════
+       실제 상세페이지 디자인
+       ════════════════════════════════════════════ */
+
+      /* ── 히어로 ── */
+      .hero { position: relative; min-height: 760px; background: linear-gradient(170deg, #faf6ff 0%, #f3edff 25%, #ede5f7 55%, #e8dff0 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 40px 56px; overflow: hidden; }
+      .hero::before { content: ""; position: absolute; top: -120px; right: -120px; width: 540px; height: 540px; background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, transparent 70%); border-radius: 50%; }
+      .hero::after { content: ""; position: absolute; bottom: -100px; left: -100px; width: 480px; height: 480px; background: radial-gradient(circle, rgba(255,228,181,0.35) 0%, transparent 70%); border-radius: 50%; }
+      .hero .z { position: relative; z-index: 1; }
+      .hero .brand { font-size: 11px; letter-spacing: 5px; color: #c9a07a; font-weight: 700; margin-bottom: 24px; text-align: center; }
+      .hero .prod-wrap { width: 340px; height: 340px; border-radius: 50%; background: rgba(255,255,255,0.55); backdrop-filter: blur(24px); display: flex; align-items: center; justify-content: center; margin: 0 auto 36px; box-shadow: 0 24px 64px rgba(180,140,200,0.12), 0 0 0 1px rgba(255,255,255,0.4); }
+      .hero h1 { font-size: 38px; font-weight: 900; color: #2a2a2a; text-align: center; line-height: 1.4; margin-bottom: 14px; letter-spacing: -0.5px; }
+      .hero h1 em { font-style: normal; background: linear-gradient(135deg, #c98e8e, #b67ec0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      .hero .sub { font-size: 15px; color: #888; text-align: center; line-height: 1.9; margin-bottom: 32px; }
+      .hero .sub strong { color: #555; font-weight: 600; }
+      .swatch-row { display: flex; gap: 18px; justify-content: center; }
+      .sw-item { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+      .sw-item .dot { width: 44px; height: 44px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+      .sw-item span { font-size: 10px; color: #999; letter-spacing: 0.5px; font-weight: 500; }
+
+      /* ── 소셜 프루프 ── */
+      .proof { padding: 52px 50px; background: #fff; text-align: center; }
+      .proof-row { display: flex; gap: 20px; justify-content: center; margin-bottom: 28px; }
+      .proof-card { flex: 1; max-width: 220px; padding: 32px 20px; background: #faf8f5; border-radius: 20px; border: 1px solid #f0ece6; }
+      .proof-card .num { font-size: 40px; font-weight: 900; color: #222; line-height: 1; }
+      .proof-card .unit { font-size: 14px; font-weight: 700; color: #c9a07a; margin-left: 2px; }
+      .proof-card .lb { font-size: 12px; color: #999; margin-top: 10px; }
+      .hash-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+      .hash { padding: 9px 22px; border: 1px solid #ede8e0; border-radius: 24px; font-size: 13px; color: #888; background: #fdfcfa; font-weight: 500; }
+
+      /* ── 공통 섹션 ── */
+      .sec { padding: 60px 50px; }
+      .sec.alt { background: #faf8f5; }
+      .sec.dark { background: #1f1f2a; color: #fff; }
+      .sl { font-size: 11px; letter-spacing: 4px; color: #c9a07a; font-weight: 700; text-align: center; margin-bottom: 10px; }
+      .st { font-size: 28px; font-weight: 900; color: #222; text-align: center; margin-bottom: 8px; line-height: 1.45; letter-spacing: -0.3px; }
+      .sd { font-size: 14px; color: #999; text-align: center; line-height: 1.9; margin-bottom: 40px; }
+      .sec.dark .st { color: #fff; }
+      .sec.dark .sd { color: #aaa; }
+      .sec.dark .sl { color: #ffd369; }
+
+      /* ── 패러독스 ── */
+      .paradox-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+      .paradox-card { padding: 36px 24px; border-radius: 20px; background: linear-gradient(150deg, #faf6ff 0%, #f3edff 100%); border: 1px solid #ece4f4; text-align: center; }
+      .paradox-card .em { font-size: 20px; font-weight: 700; color: #b67ec0; margin-bottom: 6px; letter-spacing: -0.3px; }
+      .paradox-card .em b { color: #5e348a; }
+      .paradox-card p { font-size: 12px; color: #888; line-height: 1.7; }
+
+      /* ── 텍스처 플로우 ── */
+      .tx-flow { display: flex; gap: 0; position: relative; }
+      .tx-step { flex: 1; text-align: center; padding: 0 14px; position: relative; }
+      .tx-step .tv { width: 100%; height: 280px; border-radius: 20px; margin-bottom: 18px; background: linear-gradient(135deg, #f7f0fc, #ece1f5); }
+      .tx-step .tn { font-size: 10px; color: #c9a07a; font-weight: 700; letter-spacing: 2px; margin-bottom: 8px; }
+      .tx-step h4 { font-size: 17px; font-weight: 700; color: #333; margin-bottom: 6px; }
+      .tx-step p { font-size: 12px; color: #999; line-height: 1.7; }
+      .tx-arrow { position: absolute; top: 130px; right: -10px; width: 22px; height: 22px; z-index: 2; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.08); font-size: 12px; color: #c9a07a; }
+
+      /* ── 비교 차트 ── */
+      .compare { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr 1.4fr; gap: 1px; background: #ece4f4; border-radius: 16px; overflow: hidden; border: 1px solid #ece4f4; }
+      .compare div { background: #fff; padding: 16px 12px; text-align: center; font-size: 12px; }
+      .compare .hd { background: #faf6ff; color: #555; font-weight: 700; font-size: 11px; letter-spacing: 1px; }
+      .compare .row1 { background: #fff; color: #999; font-weight: 700; font-size: 11px; }
+      .compare .us { background: linear-gradient(150deg, #f3edff, #ede5f7); font-weight: 700; color: #5e348a; }
+      .compare .us-row { color: #b67ec0; font-weight: 700; }
+      .compare .ck { font-size: 16px; color: #c9a07a; }
+      .compare .xx { color: #ccc; font-size: 16px; }
+
+      /* ── 각도별 광채 ── */
+      .angle-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+      .angle-card { border-radius: 20px; overflow: hidden; background: #fff; border: 1px solid #ece4f4; }
+      .angle-card .img { height: 260px; }
+      .angle-card .info { padding: 18px; }
+      .angle-card .info h5 { font-size: 14px; font-weight: 700; color: #222; margin-bottom: 4px; }
+      .angle-card .info p { font-size: 11px; color: #999; line-height: 1.7; }
+      .angle-card .tag { display: inline-block; margin-top: 8px; padding: 4px 10px; background: #f3edff; color: #b67ec0; border-radius: 6px; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+
+      /* ── 빌더블 계단 ── */
+      .stair { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 16px; }
+      .stair-item { text-align: center; }
+      .stair-item .sw { height: 200px; border-radius: 16px; margin-bottom: 12px; }
+      .stair-item h5 { font-size: 14px; font-weight: 700; color: #222; }
+      .stair-item p { font-size: 11px; color: #999; margin-top: 4px; }
+
+      /* ── 컬러 ── */
+      .c-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 36px; }
+      .c-card { border-radius: 20px; overflow: hidden; border: 1px solid #f0ece6; background: #fff; }
+      .c-card .cs { height: 180px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+      .c-card .cs .cn { font-size: 56px; font-weight: 900; color: rgba(255,255,255,0.85); position: relative; z-index: 1; }
+      .c-card .cs .cb { width: 160px; height: 160px; border-radius: 50%; filter: blur(40px); opacity: 0.5; position: absolute; }
+      .c-card .cb2 { padding: 22px; }
+      .c-card .cb2 .nm { font-size: 17px; font-weight: 700; color: #222; }
+      .c-card .cb2 .en { font-size: 10px; color: #aaa; letter-spacing: 2px; margin-top: 2px; }
+      .c-card .cb2 .ds { font-size: 12px; color: #888; line-height: 1.7; margin-top: 12px; }
+      .c-card .cb2 .mood { display: inline-block; margin-top: 12px; padding: 4px 12px; background: #faf6ff; color: #b67ec0; font-size: 10px; font-weight: 700; border-radius: 6px; letter-spacing: 1px; }
+
+      /* ── 페이스맵 ── */
+      .face-wrap { display: flex; gap: 36px; align-items: center; }
+      .face-img { flex: 0 0 320px; height: 420px; border-radius: 24px; }
+      .face-list { flex: 1; }
+      .face-list .fi { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0ece6; }
+      .face-list .fi:last-child { border-bottom: none; }
+      .face-list .fi .n { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #c98e8e, #b67ec0); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+      .face-list .fi .tx { flex: 1; }
+      .face-list .fi .tx h5 { font-size: 13px; font-weight: 700; color: #222; margin-bottom: 3px; }
+      .face-list .fi .tx p { font-size: 11px; color: #999; line-height: 1.6; }
+
+      /* ── 성분 ── */
+      .ing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .ing-card { padding: 28px 24px; border-radius: 20px; background: #faf8f5; border: 1px solid #f0ece6; display: flex; gap: 18px; align-items: center; }
+      .ing-card .ic { font-size: 36px; }
+      .ing-card .tx h5 { font-size: 15px; font-weight: 800; color: #222; margin-bottom: 4px; }
+      .ing-card .tx p { font-size: 12px; color: #888; line-height: 1.7; }
+
+      /* ── 인증 ── */
+      .cert-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+      .cert-pill { padding: 14px 22px; border: 1px solid #2a2a3a; border-radius: 14px; background: rgba(255,255,255,0.04); display: flex; align-items: center; gap: 10px; }
+      .cert-pill .ic { font-size: 22px; }
+      .cert-pill .lb { font-size: 12px; font-weight: 700; color: #fff; }
+      .cert-pill .sb { font-size: 10px; color: #888; margin-top: 2px; }
+
+      /* ── 비포애프터 ── */
+      .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .ba-card { border-radius: 20px; overflow: hidden; }
+      .ba-card .img { height: 380px; }
+      .ba-card .lab { padding: 12px; text-align: center; background: #faf8f5; font-size: 12px; font-weight: 700; color: #555; letter-spacing: 2px; }
+
+      /* ── 트렌드 인용 ── */
+      .quote-block { padding: 40px 36px; background: linear-gradient(150deg, #faf6ff, #f3edff); border-radius: 20px; text-align: center; border: 1px solid #ece4f4; margin-bottom: 28px; }
+      .quote-block .q { font-size: 22px; font-weight: 700; color: #444; line-height: 1.6; font-style: italic; margin-bottom: 14px; letter-spacing: -0.3px; }
+      .quote-block .src { font-size: 11px; color: #888; letter-spacing: 2px; font-weight: 700; }
+      .ugc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+      .ugc-cell { height: 180px; border-radius: 14px; background: linear-gradient(135deg, #f7f0fc, #ece1f5); display: flex; align-items: center; justify-content: center; font-size: 10px; color: #b67ec0; font-weight: 700; letter-spacing: 1px; }
+
+      /* ── FAQ ── */
+      .faq-list { display: flex; flex-direction: column; gap: 14px; }
+      .faq-item { padding: 22px 26px; background: #faf8f5; border-radius: 16px; border: 1px solid #f0ece6; }
+      .faq-item .q { font-size: 14px; font-weight: 700; color: #222; margin-bottom: 8px; display: flex; gap: 10px; align-items: flex-start; }
+      .faq-item .q .qm { color: #c9a07a; font-weight: 900; }
+      .faq-item .a { font-size: 13px; color: #777; line-height: 1.8; padding-left: 22px; }
+
+      /* ── 번들 ── */
+      .bundle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+      .bundle-card { padding: 28px 24px; border-radius: 20px; background: #fff; border: 2px solid #ece4f4; }
+      .bundle-card.feat { border-color: #c98e8e; background: linear-gradient(150deg, #fff, #fef4ee); }
+      .bundle-card .nm { font-size: 16px; font-weight: 800; color: #222; margin-bottom: 8px; }
+      .bundle-card .tag { display: inline-block; padding: 4px 10px; background: #c98e8e; color: #fff; border-radius: 6px; font-size: 10px; font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; }
+      .bundle-card .ds { font-size: 12px; color: #888; line-height: 1.7; margin-bottom: 16px; }
+      .bundle-card .pr { display: flex; align-items: baseline; gap: 8px; }
+      .bundle-card .pr .old { font-size: 13px; color: #ccc; text-decoration: line-through; }
+      .bundle-card .pr .new { font-size: 22px; font-weight: 900; color: #c98e8e; }
+      .bundle-card .pr .off { font-size: 11px; color: #b67ec0; font-weight: 700; background: #f3edff; padding: 3px 8px; border-radius: 6px; }
+
+      /* ── 푸터 ── */
+      .ft { background: #1f1f2a; color: #888; padding: 40px 50px; text-align: center; }
+      .ft h4 { font-size: 13px; letter-spacing: 5px; color: #ffd369; font-weight: 700; margin-bottom: 14px; }
+      .ft p { font-size: 11px; line-height: 1.8; }
+
+      /* ── 무드컷 ── */
+      .mood { height: 460px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.7); position: relative; overflow: hidden; background: linear-gradient(135deg, #d4bfe6, #b8a2d4 70%, #957ab3); }
+      .mood .lb { font-size: 10px; color: #fff; letter-spacing: 3px; font-weight: 700; text-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+      .mood-ov { position: absolute; bottom: 0; left: 0; right: 0; padding: 44px 50px; background: linear-gradient(transparent, rgba(0,0,0,0.4)); }
+      .mood-ov h3 { font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 6px; text-shadow: 0 2px 12px rgba(0,0,0,0.15); letter-spacing: -0.3px; }
+      .mood-ov p { font-size: 14px; color: rgba(255,255,255,0.85); font-weight: 300; }
+    </style>
+  </head>
+  <body>
+    <div class="p-bar">
+      <span><strong>TAM BEAUTY</strong> &mdash; 더 젤리 빔 하이라이터 &mdash; 상세페이지 기획 v1 (Master)</span>
+      <span class="badge">자사몰 &middot; v1 &middot; 디자이너 가이드</span>
+    </div>
+
+    <div class="frame">
+      <!-- ══════════════════════════════════════════════ SEC 1: 히어로 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 1 &mdash; 히어로</span>
+        <span class="n">3초 안에 스크롤 멈추기 &middot; 듀얼 패러독스 첫인상 <span class="tag">필수</span></span>
+      </div>
+      <div class="hero">
+        <div class="z">
+          <div class="brand">TAM BEAUTY</div>
+          <div class="prod-wrap">
+            <div class="img-ph" style="width: 280px; height: 280px; border-radius: 50%;">
+              <div class="lb">PRODUCT &middot; 280×280</div>
+              스틱 단면 + 젤리 텍스처<br />클로즈업 컷
+            </div>
+          </div>
+          <h1>젤리인데 보송,<br /><em>보송인데 광채.</em></h1>
+          <div class="sub">
+            <strong>스킨케어가 끝나면, 광은 자라난다</strong><br />
+            구름이 피부에 내려앉는 0.3초, 더 젤리 빔 하이라이터
+          </div>
+          <div class="swatch-row">
+            <div class="sw-item"><div class="dot" style="background: #f4d8c2"></div><span>01 클라우드 베이지</span></div>
+            <div class="sw-item"><div class="dot" style="background: #f0a8b0"></div><span>02 선셋 핑크</span></div>
+            <div class="sw-item"><div class="dot" style="background: #d4bfe6"></div><span>03 머메이드 라일락</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="memo copy">
+        <b>COPY ALT:</b>
+        <ul>
+          <li>A안 (채택): "젤리인데 보송, 보송인데 광채." — 듀얼 패러독스 모트</li>
+          <li>B안: "스킨케어가 끝나면, 광은 자라난다." — 성분 케어 모트</li>
+          <li>C안: "각도가 바뀔 때마다, 새로 빛나는 피부." — 다각도 펄 모트</li>
+        </ul>
+      </div>
+      <div class="memo photo">
+        <b>PHOTO:</b> 제품 스틱 단면이 보이는 클로즈업 (젤리 텍스처 강조). 배경 라일락~크림 그라데이션. 자연광 + 디퓨저. 그림자 최소화로 플로팅 효과.
+      </div>
+      <div class="memo bench">
+        <b>BENCHMARK:</b> 경쟁사 14개 분석 결과 — 헤드라인은 단일 의성어(데이지크 "촤르르르") 또는 단일 클레임(에스쁘아 "톤페어링")이 대세. 듀얼 패러독스("크림인데 보송" 패턴)는 전 경쟁사 미사용 → 탐뷰티 전용 모트.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 1.5: 사회적 증거 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 1.5 &mdash; 사회적 증거</span>
+        <span class="n">수치 3개 + 해시태그 &middot; 초반 이탈 방지</span>
+      </div>
+      <div class="proof">
+        <div class="proof-row">
+          <div class="proof-card"><div class="num">8<span class="unit">시간</span></div><div class="lb">임상 지속력</div></div>
+          <div class="proof-card"><div class="num">0.00<span class="unit">등급</span></div><div class="lb">피부 저자극 테스트</div></div>
+          <div class="proof-card"><div class="num">3<span class="unit">컬러</span></div><div class="lb">모든 톤 매치</div></div>
+        </div>
+        <div class="hash-row">
+          <span class="hash">#젤리빔</span>
+          <span class="hash">#보송광채</span>
+          <span class="hash">#스킨케어하이라이터</span>
+          <span class="hash">#구름광</span>
+          <span class="hash">#각도별광</span>
+        </div>
+      </div>
+      <div class="memo warn">
+        <b>DATA CHECK:</b> 임상 지속력 8시간, 피부 저자극 0.00등급 → <u>실제 임상 시험 결과로 교체 필수</u>. 시험기관·시험번호 표기 (화장품 표시광고 가이드라인 준수). 수치 근거 없으면 과장 광고로 행정처분.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ 연출컷 1 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>연출컷 1 &mdash; 모델 하프바디</span>
+        <span class="n">다샤 타란 라인 활용 또는 신규 모델 &middot; 자연광</span>
+      </div>
+      <div class="mood">
+        <div class="lb">MODEL &middot; HALF BODY</div>
+        모델 촬영 필요<br />자연광 + 광대/콧대 광 강조 앵글
+        <div class="mood-ov">
+          <h3>피부가 새로 태어나는 광채</h3>
+          <p>구름이 내려앉은 듯, 자연스럽게 차오르는 젤리광</p>
+        </div>
+      </div>
+      <div class="memo photo">
+        <b>PHOTO DIRECTION:</b> 모델 반신(가슴~머리). 자연광 + 약한 역광. 광대뼈·콧대 광 잘 보이는 3/4 뷰. 컬러: 01 클라우드 베이지 (가장 대중적). 의상: 화이트~크림. 헤어: 귀 뒤로 정돈해 광대 노출.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 2: 듀얼 패러독스 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 2 &mdash; 듀얼 패러독스 컨셉</span>
+        <span class="n">3중 패러독스 = 탐뷰티 시그니처 <span class="tag uniq">탐뷰티 단독</span></span>
+      </div>
+      <div class="sec">
+        <div class="sl">WHY JELLY BEAM</div>
+        <div class="st">탐뷰티가 다시 쓰는 광채의 정의</div>
+        <div class="sd">하이라이터인데 크림 같고, 크림인데 보송하고, 광인데 자연스러운</div>
+        <div class="paradox-grid">
+          <div class="paradox-card">
+            <div class="em">크림인데 <b>보송</b></div>
+            <p>스틱이 체온에 녹아 사르르 펴지고,<br />마무리는 파우더처럼 보송하게</p>
+          </div>
+          <div class="paradox-card">
+            <div class="em">젤리인데 <b>톡톡</b></div>
+            <p>두드리면 가볍게 얹히고,<br />덧발라도 뭉치지 않는 빌더블 포뮬러</p>
+          </div>
+          <div class="paradox-card">
+            <div class="em">광인데 <b>자연스러운</b></div>
+            <p>글리터 아닌 다양한 크기의 펄로<br />피부 속에서 차오르는 듯한 광</p>
+          </div>
+        </div>
+      </div>
+      <div class="memo">
+        <b>DESIGN:</b> 카드 3개 가로 배치. 배경 라일락~화이트 그라데이션. 강조 단어(보송/톡톡/자연스러운)는 보라톤(#5e348a)로 가중치.
+      </div>
+      <div class="memo bench">
+        <b>BENCHMARK:</b> 패러독스 카피 구조는 더 클라우드 블러("크림인데 보송") DNA를 계승. 카테고리 내 경쟁사 0개 사용 → 브랜드 일관성 + 카피라이트 차별화 동시 확보.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 3: 텍스처 트리니티 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 3 &mdash; 텍스처 트리니티 (보송·사르르·톡톡)</span>
+        <span class="n">3중 의성어 시그니처 <span class="tag uniq">탐뷰티 단독</span></span>
+      </div>
+      <div class="sec alt">
+        <div class="sl">TEXTURE</div>
+        <div class="st">보송 · 사르르 · 톡톡</div>
+        <div class="sd">한 번의 사용에 세 번의 감각이 깨어납니다</div>
+        <div class="tx-flow">
+          <div class="tx-step">
+            <div class="tv img-ph"><div class="lb">GIF 1</div>스틱을 피부에 두드림<br />손가락 클로즈업</div>
+            <div class="tn">STEP 01</div>
+            <h4>톡톡</h4>
+            <p>가볍게 두드리며<br />원하는 위치에 얹기</p>
+            <div class="tx-arrow">&rarr;</div>
+          </div>
+          <div class="tx-step">
+            <div class="tv img-ph"><div class="lb">GIF 2</div>체온에 녹는<br />젤리 텍스처 클로즈업</div>
+            <div class="tn">STEP 02</div>
+            <h4>사르르</h4>
+            <p>체온에 녹아 사라지듯<br />피부에 밀착</p>
+            <div class="tx-arrow">&rarr;</div>
+          </div>
+          <div class="tx-step">
+            <div class="tv img-ph"><div class="lb">GIF 3</div>마무리 보송 컷<br />파우더리 광 표현</div>
+            <div class="tn">STEP 03</div>
+            <h4>보송</h4>
+            <p>끈적임 없이 보송하게<br />광채만 남는 마무리</p>
+          </div>
+        </div>
+      </div>
+      <div class="memo photo">
+        <b>VIDEO:</b> 3컷 GIF/숏폼 시퀀스 (각 2~3초). 손등이나 광대뼈 부위 매크로 촬영. 슬로모션 권장. 텍스처 변화가 시각적으로 명확히 보여야 함.
+      </div>
+      <div class="memo bench">
+        <b>BENCHMARK:</b> 데이지크 "촤르르르" 단일 / 에스쁘아 "챠르르" 단일. 보송+사르르+톡톡 3중 누적은 미사용 영역 → 카테고리 시그니처 선점.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 4: 제형 비교 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 4 &mdash; 제형 비교 차트</span>
+        <span class="n">젤리-스틱의 4중 우위 시각화 <span class="tag diff">차별화</span></span>
+      </div>
+      <div class="sec">
+        <div class="sl">FORMAT</div>
+        <div class="st">왜 젤리 스틱인가</div>
+        <div class="sd">파우더, 리퀴드, 크림팟이 풀지 못한 4가지 문제를 해결합니다</div>
+        <div class="compare">
+          <div class="hd">기준</div>
+          <div class="hd">파우더</div>
+          <div class="hd">리퀴드</div>
+          <div class="hd">크림팟</div>
+          <div class="hd us">젤리 스틱 (탐뷰티)</div>
+
+          <div class="row1">메이크업 위 들뜸 없음</div>
+          <div class="xx">&times;</div>
+          <div class="ck">&#10003;</div>
+          <div class="xx">&times;</div>
+          <div class="us us-row"><span class="ck">&#10003;</span></div>
+
+          <div class="row1">손에 묻지 않음 (휴대성)</div>
+          <div class="ck">&#10003;</div>
+          <div class="xx">&times;</div>
+          <div class="xx">&times;</div>
+          <div class="us us-row"><span class="ck">&#10003;</span></div>
+
+          <div class="row1">보송한 마무리감</div>
+          <div class="ck">&#10003;</div>
+          <div class="xx">&times;</div>
+          <div class="xx">&times;</div>
+          <div class="us us-row"><span class="ck">&#10003;</span></div>
+
+          <div class="row1">빌더블 (단계별 발색)</div>
+          <div class="xx">&times;</div>
+          <div class="ck">&#10003;</div>
+          <div class="xx">&times;</div>
+          <div class="us us-row"><span class="ck">&#10003;</span></div>
+        </div>
+      </div>
+      <div class="memo">
+        <b>DESIGN:</b> 5컬럼 비교 표. 우리 컬럼만 라일락 톤으로 강조. 체크/엑스 컬러는 톤다운된 베이지~연보라 (강한 빨강/초록 피할 것).
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 5: 다각도 광채 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 5 &mdash; 다각도 광채 (3패널)</span>
+        <span class="n">펄 입자 기술 시각화 <span class="tag uniq">탐뷰티 단독</span></span>
+      </div>
+      <div class="sec alt">
+        <div class="sl">MULTI-ANGLE GLOW</div>
+        <div class="st">각도가 바뀔 때마다, 새로 빛나는</div>
+        <div class="sd">다양한 크기의 펄이 모든 광원과 만나 입체적인 광채를 만듭니다</div>
+        <div class="angle-grid">
+          <div class="angle-card">
+            <div class="img img-ph" style="background: linear-gradient(135deg, #fff3e0, #ffe0b2);"><div class="lb">정면광</div></div>
+            <div class="info"><h5>정면광</h5><p>은은하게 차오르는 베이스 광</p><span class="tag">DAYLIGHT</span></div>
+          </div>
+          <div class="angle-card">
+            <div class="img img-ph" style="background: linear-gradient(135deg, #e1bee7, #ce93d8);"><div class="lb">측면광</div></div>
+            <div class="info"><h5>측면광</h5><p>광대 라인을 따라 살아나는 입체광</p><span class="tag">SIDE</span></div>
+          </div>
+          <div class="angle-card">
+            <div class="img img-ph" style="background: linear-gradient(135deg, #fff9c4, #fff59d);"><div class="lb">역광</div></div>
+            <div class="info"><h5>역광</h5><p>피부 속에서 빛이 새어 나오는 듯한 글로우</p><span class="tag">BACKLIT</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="memo photo">
+        <b>PHOTO DIRECTION:</b> 동일 모델, 동일 메이크업, 광원만 변경한 3컷. 각도와 광원이 차이를 만든다는 점을 일관된 구도로 보여야 함. 모델 무표정/정면 응시 유지.
+      </div>
+      <div class="memo bench">
+        <b>BENCHMARK:</b> 경쟁사 대부분 "각도별 광채" 텍스트로만 주장. 시각적 비교 패널을 갖춘 경쟁사 0개 → 강력한 시각 모트.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 6: 빌더블 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 6 &mdash; 빌더블 데모 (1·2·3겹)</span>
+        <span class="n">발색 강도 계단 시각화 <span class="tag diff">차별화</span></span>
+      </div>
+      <div class="sec">
+        <div class="sl">BUILDABLE</div>
+        <div class="st">원하는 만큼 쌓아 올리는 광</div>
+        <div class="sd">여러 번 덧발라도 뭉치지 않는, 빌더블 포뮬러</div>
+        <div class="stair">
+          <div class="stair-item">
+            <div class="sw img-ph" style="background: linear-gradient(135deg, #fef7f0, #fceee0);"><div class="lb">1겹</div></div>
+            <h5>Sheer</h5><p>한 번 톡톡 — 내추럴 데일리광</p>
+          </div>
+          <div class="stair-item">
+            <div class="sw img-ph" style="background: linear-gradient(135deg, #fbeadb, #f6d5ba);"><div class="lb">2겹</div></div>
+            <h5>Medium</h5><p>두 번 톡톡 — 데이트·촬영용</p>
+          </div>
+          <div class="stair-item">
+            <div class="sw img-ph" style="background: linear-gradient(135deg, #f4ddc2, #ebc497);"><div class="lb">3겹</div></div>
+            <h5>Full</h5><p>세 번 톡톡 — 파티·이브닝광</p>
+          </div>
+        </div>
+      </div>
+      <div class="memo">
+        <b>DESIGN:</b> 동일 부위 (광대 또는 손등) 발색 비교. 발색 강도가 자연스럽게 단계적으로 증가하는 그라데이션. 발색 컬러는 #01 클라우드 베이지 기준.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 7: 컬러 큐레이션 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 7 &mdash; 컬러 큐레이션 (3 Shades by Mood)</span>
+        <span class="n">컬러별 무드 스토리 + 톤 매칭 <span class="tag">필수</span></span>
+      </div>
+      <div class="sec alt">
+        <div class="sl">3 SHADES</div>
+        <div class="st">내 무드를 빛내는 3가지 광</div>
+        <div class="sd">데일리부터 파티까지, 모든 톤과 어울리는 큐레이션</div>
+        <div class="c-grid">
+          <div class="c-card">
+            <div class="cs" style="background: linear-gradient(135deg, #fdf5eb, #f4d8c2);">
+              <div class="cb" style="background: #e8b894;"></div>
+              <div class="cn">01</div>
+            </div>
+            <div class="cb2">
+              <div class="nm">클라우드 베이지</div>
+              <div class="en">CLOUD BEIGE</div>
+              <div class="ds">웜·쿨 모두 어울리는 살구빛 베이지. 데일리 광채의 기준점.</div>
+              <div class="mood">DAILY</div>
+            </div>
+          </div>
+          <div class="c-card">
+            <div class="cs" style="background: linear-gradient(135deg, #fdedef, #f0a8b0);">
+              <div class="cb" style="background: #e08e98;"></div>
+              <div class="cn">02</div>
+            </div>
+            <div class="cb2">
+              <div class="nm">선셋 핑크</div>
+              <div class="en">SUNSET PINK</div>
+              <div class="ds">노을 같은 핑크 펄. 웜톤에 어울리는 사랑스러운 광.</div>
+              <div class="mood">DATE</div>
+            </div>
+          </div>
+          <div class="c-card">
+            <div class="cs" style="background: linear-gradient(135deg, #f5edfa, #d4bfe6);">
+              <div class="cb" style="background: #b89bd4;"></div>
+              <div class="cn">03</div>
+            </div>
+            <div class="cb2">
+              <div class="nm">머메이드 라일락</div>
+              <div class="en">MERMAID LILAC</div>
+              <div class="ds">다양한 펄이 가장 화려하게 살아나는 쿨톤 라일락. 이브닝·파티용.</div>
+              <div class="mood">PARTY</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="memo copy">
+        <b>COPY ALT:</b> 컬러명 후보 (확정 전):
+        <ul>
+          <li>#01 — 클라우드 베이지 / 허니문 베이지 / 데일리 글로우</li>
+          <li>#02 — 선셋 핑크 / 코랄 글로우 / 페어리 핑크</li>
+          <li>#03 — 머메이드 라일락 / 오로라 라일락 / 미드나잇 글로우</li>
+        </ul>
+      </div>
+
+      <!-- ══════════════════════════════════════════════ 연출컷 2 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>연출컷 2 &mdash; 컬러 룩북 3컷</span>
+        <span class="n">컬러별 무드 매칭 &middot; 3가지 라이프스타일</span>
+      </div>
+      <div class="mood" style="background: linear-gradient(135deg, #fdf5eb 0%, #f0a8b0 50%, #d4bfe6 100%); color: #5e348a;">
+        <div class="lb" style="color: #5e348a; text-shadow: none;">LOOKBOOK &middot; 3 SHADES</div>
+        컬러별 모델 룩북 3컷<br />01 데일리 / 02 데이트 / 03 파티
+        <div class="mood-ov" style="background: linear-gradient(transparent, rgba(255,255,255,0.5)); color: #444;">
+          <h3 style="color: #444; text-shadow: none;">하나의 광, 세 가지 무드</h3>
+          <p style="color: #666;">컬러가 바뀌면, 분위기도 바뀝니다</p>
+        </div>
+      </div>
+      <div class="memo photo">
+        <b>PHOTO DIRECTION:</b> 동일 모델 3컷 또는 모델 3명 (다양성). 의상·헤어·메이크업 무드를 컬러에 맞춰 변주. 01 데일리 캐주얼 / 02 데이트 페미닌 / 03 파티 시크.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 8: 부위별 사용법 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 8 &mdash; 부위별 사용법 (페이스맵)</span>
+        <span class="n">7 zones + 손가락 vs 브러시 <span class="tag">필수</span></span>
+      </div>
+      <div class="sec">
+        <div class="sl">HOW TO USE</div>
+        <div class="st">광이 머무는 7곳</div>
+        <div class="sd">스틱을 직접 굴리거나 손가락으로 두드려, 원하는 곳에 광을 더하세요</div>
+        <div class="face-wrap">
+          <div class="face-img img-ph"><div class="lb">FACE MAP</div>얼굴 일러스트<br />7개 부위 화살표 표시</div>
+          <div class="face-list">
+            <div class="fi"><div class="n">1</div><div class="tx"><h5>콧대</h5><p>코끝부터 미간까지 세로로 톡톡</p></div></div>
+            <div class="fi"><div class="n">2</div><div class="tx"><h5>광대뼈</h5><p>광대 가장 높은 지점을 따라 사선으로</p></div></div>
+            <div class="fi"><div class="n">3</div><div class="tx"><h5>눈 앞머리</h5><p>눈물점 부위에 톡톡 — 또렷한 눈매</p></div></div>
+            <div class="fi"><div class="n">4</div><div class="tx"><h5>큐피드 보우</h5><p>윗입술 산 위에 살짝 — 입술이 도톰해 보임</p></div></div>
+            <div class="fi"><div class="n">5</div><div class="tx"><h5>턱 끝</h5><p>턱 정중앙에 살짝 — 갸름한 인상</p></div></div>
+            <div class="fi"><div class="n">6</div><div class="tx"><h5>미간</h5><p>이마 가운데 — 입체적인 정면 광</p></div></div>
+            <div class="fi"><div class="n">7</div><div class="tx"><h5>입꼬리</h5><p>위로 살짝 그어 — 상큼한 미소</p></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="memo">
+        <b>DESIGN:</b> 페이스맵 일러스트 (실사 모델 대신 일러스트로 클린함 유지). 7개 화살표는 라일락 톤. 손가락 vs 브러시 비교는 별도 컷으로 메모 처리 가능 (현재 텍스트로 통합).
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 9: 성분 케어 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 9 &mdash; 스킨케어 성분 케어 (4 Heroes)</span>
+        <span class="n">"하이라이터인데 스킨케어" 모트 <span class="tag uniq">탐뷰티 단독</span></span>
+      </div>
+      <div class="sec alt">
+        <div class="sl">SKINCARE IN COLOR</div>
+        <div class="st">메이크업 8시간, 스킨케어 8시간</div>
+        <div class="sd">하이라이터인데, 스킨케어 성분이 피부를 함께 케어합니다</div>
+        <div class="ing-grid">
+          <div class="ing-card">
+            <div class="ic">🌹</div>
+            <div class="tx"><h5>로사 카니나 열매 오일</h5><p>비타민C가 풍부한 야생 장미 오일 — 톤 보정과 영양 케어를 동시에</p></div>
+          </div>
+          <div class="ing-card">
+            <div class="ic">🛡️</div>
+            <div class="tx"><h5>세라마이드</h5><p>피부 장벽 핵심 성분 — 메이크업 중에도 수분 보호</p></div>
+          </div>
+          <div class="ing-card">
+            <div class="ic">🌿</div>
+            <div class="tx"><h5>알란토인</h5><p>민감해진 피부를 진정 — 자극 완화 케어</p></div>
+          </div>
+          <div class="ing-card">
+            <div class="ic">💧</div>
+            <div class="tx"><h5>히알루론산</h5><p>깊은 보습 — 들뜸 없이 매끄러운 광 유지</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="memo bench">
+        <b>BENCHMARK:</b> 경쟁 하이라이터 14개 분석 결과 — 스킨케어 성분을 별도 섹션으로 다룬 곳 0개. 에스쁘아조차 히알루론산을 본문 한 줄로만 언급. 카테고리 신영역.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 10: 임상 + 인증 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 10 &mdash; 임상 + KVCA 비건 인증</span>
+        <span class="n">국내 신뢰 모트 <span class="tag uniq">탐뷰티 단독</span></span>
+      </div>
+      <div class="sec dark">
+        <div class="sl">CERTIFIED</div>
+        <div class="st">색이 아니라, 신뢰입니다</div>
+        <div class="sd">탐뷰티가 약속하는 4가지 임상 + 인증</div>
+        <div class="cert-row">
+          <div class="cert-pill">
+            <div class="ic">🌱</div>
+            <div><div class="lb">KVCA 비건 인증</div><div class="sb">한국 비건 인증원</div></div>
+          </div>
+          <div class="cert-pill">
+            <div class="ic">✓</div>
+            <div><div class="lb">무자극 임상 시험</div><div class="sb">민감 피부 안전성 검증</div></div>
+          </div>
+          <div class="cert-pill">
+            <div class="ic">✓</div>
+            <div><div class="lb">피부 저자극 테스트</div><div class="sb">0.00 등급</div></div>
+          </div>
+          <div class="cert-pill">
+            <div class="ic">✓</div>
+            <div><div class="lb">탐뷰티 노케미컬 9무</div><div class="sb">9가지 유해 성분 무첨가</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="memo warn">
+        <b>DATA CHECK:</b> KVCA 인증서 번호, 임상 시험 기관/번호, 9무 성분 리스트 → 정확한 인증 정보로 교체. "노케미컬 9무" 표현은 화장품협회 가이드에 따라 "9가지 성분 무첨가"로 풀어쓸 것.
+      </div>
+      <div class="memo bench">
+        <b>BENCHMARK:</b> 에스쁘아·디어달리아는 Eve Vegan(유럽) 사용. KVCA(한국 비건 인증원) 사용 하이라이터 0개. 19-24 국내 타깃에 국내 인증이 더 직관적 신뢰감 제공.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 11: Before/After + 모델 룩북 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 11 &mdash; Before / After + 모델 룩북</span>
+        <span class="n">반쪽 얼굴 A/B + 라이프스타일 2컷 <span class="tag">필수</span></span>
+      </div>
+      <div class="sec">
+        <div class="sl">RESULT</div>
+        <div class="st">한 컷에 즉시 보이는 차이</div>
+        <div class="sd">젤리 빔이 닿은 곳, 광이 다시 깨어납니다</div>
+        <div class="ba-grid">
+          <div class="ba-card">
+            <div class="img img-ph" style="background: linear-gradient(135deg, #f0ece6, #ddd6cd);"><div class="lb">BEFORE</div></div>
+            <div class="lab">BEFORE</div>
+          </div>
+          <div class="ba-card">
+            <div class="img img-ph" style="background: linear-gradient(135deg, #faf6ff, #e8dff0);"><div class="lb">AFTER</div></div>
+            <div class="lab">AFTER</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════ 연출컷 3 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>연출컷 3 &mdash; 라이프스타일</span>
+        <span class="n">19-24 데일리 무드 &middot; SNS 직관적 컷</span>
+      </div>
+      <div class="mood" style="background: linear-gradient(135deg, #b8a2d4, #957ab3 70%, #6a4b88);">
+        <div class="lb">LIFESTYLE &middot; 19-24</div>
+        라이프스타일 2컷<br />출근/캠퍼스 무드 + 데이트/촬영 무드
+        <div class="mood-ov">
+          <h3>매일, 다른 광으로 살아본다는 것</h3>
+          <p>스틱 하나로 다섯 부위, 하루 종일 다른 모습</p>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 12: 트렌드 + UGC ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 12 &mdash; 트렌드 증명 + UGC</span>
+        <span class="n">에디터 풀쿼트 + 인스타·샤오홍슈 그리드 <span class="tag diff">차별화</span></span>
+      </div>
+      <div class="sec alt">
+        <div class="sl">TRENDING NOW</div>
+        <div class="st">이미 광채 메이크업의 표준</div>
+        <div class="sd">2026년 SNS가 먼저 알아본 젤리 하이라이터</div>
+        <div class="quote-block">
+          <div class="q">"SNS 때문에 떡상한 쏘핫 하이라이터, 2026년 봄 셀럽이 가장 많이 찾은 텍스처."</div>
+          <div class="src">— ALLURE KOREA &middot; 2026.04</div>
+        </div>
+        <div class="ugc-grid">
+          <div class="ugc-cell">@user01 UGC</div>
+          <div class="ugc-cell">@user02 UGC</div>
+          <div class="ugc-cell">@user03 UGC</div>
+          <div class="ugc-cell">@user04 UGC</div>
+          <div class="ugc-cell">@user05 UGC</div>
+          <div class="ugc-cell">@user06 UGC</div>
+        </div>
+      </div>
+      <div class="memo warn">
+        <b>DATA CHECK:</b> 얼루어 코리아 인용은 카테고리 트렌드 인용 (탐뷰티 직접 언급 아님). 인용 시 "젤리 하이라이터 카테고리 인용"임을 명확히. 직접 추천 받은 적 없는데 "추천" 표기는 부당광고법 위반.
+      </div>
+      <div class="memo photo">
+        <b>UGC:</b> 인스타·샤오홍슈에서 #탐뷰티 #젤리빔 태그 + DM 동의 받은 UGC만 사용. 동의서 보관 필수. 정 안 되면 인플루언서 시딩 컷으로 대체.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 13: FAQ ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 13 &mdash; FAQ (큐레이트 5개)</span>
+        <span class="n">반품률 절감 모트 <span class="tag diff">차별화</span></span>
+      </div>
+      <div class="sec">
+        <div class="sl">FAQ</div>
+        <div class="st">사기 전에 가장 많이 물어보신 5가지</div>
+        <div class="sd">광이 끈적이지 않을까, 부서지지 않을까 — 미리 답합니다</div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="q"><span class="qm">Q.</span>끈적이거나 번들거리지 않나요?</div>
+            <div class="a">젤리 텍스처가 체온에 사르르 녹은 뒤 보송하게 마무리됩니다. 마무리감은 파우더에 가깝습니다.</div>
+          </div>
+          <div class="faq-item">
+            <div class="q"><span class="qm">Q.</span>덧바르면 부서지거나 뭉치지 않나요?</div>
+            <div class="a">빌더블 포뮬러라서 여러 번 덧발라도 뭉치지 않습니다. 1~3겹까지 자연스럽게 쌓아 올릴 수 있습니다.</div>
+          </div>
+          <div class="faq-item">
+            <div class="q"><span class="qm">Q.</span>지속력은 얼마나 가나요?</div>
+            <div class="a">평균 8시간 임상 지속력 테스트를 완료했습니다. 메이크업 위에 잘 고정되어 들뜸 없이 유지됩니다.</div>
+          </div>
+          <div class="faq-item">
+            <div class="q"><span class="qm">Q.</span>민감한 피부도 쓸 수 있나요?</div>
+            <div class="a">무자극 임상 시험을 완료했고, 알란토인이 함유돼 진정 케어가 가능합니다. 다만 사용 전 패치 테스트를 권장합니다.</div>
+          </div>
+          <div class="faq-item">
+            <div class="q"><span class="qm">Q.</span>쿠션·파데 위에 발라도 호환되나요?</div>
+            <div class="a">젤리 텍스처가 메이크업 위에 가볍게 얹혀, 베이스를 망치지 않습니다. 손가락 또는 스틱을 직접 굴려 사용하세요.</div>
+          </div>
+        </div>
+      </div>
+      <div class="memo bench">
+        <b>BENCHMARK:</b> 경쟁사 14개 중 큐레이트된 FAQ를 갖춘 곳 3개 미만. 대부분 오픈 Q&A 보드에 위임. 사전 반론 차단 + 반품률 절감 효과.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ SEC 14: 번들 + 가격 ══════════════════════════════════════════════ -->
+      <div class="mk">
+        <span>SEC 14 &mdash; 번들 + 가격</span>
+        <span class="n">AOV 30~35k 타깃 <span class="tag">필수</span></span>
+      </div>
+      <div class="sec alt">
+        <div class="sl">BUNDLE</div>
+        <div class="st">함께 쓰면 완성되는 광</div>
+        <div class="sd">탐뷰티가 권하는 광채 메이크업 풀세트</div>
+        <div class="bundle-grid">
+          <div class="bundle-card feat">
+            <span class="tag">RECOMMENDED</span>
+            <div class="nm">광채 풀세트</div>
+            <div class="ds">더 젤리 빔 하이라이터 + 더 클라우드 블러 크림 블러셔.<br />광과 혈색을 동시에 완성하는 풀 키트.</div>
+            <div class="pr"><span class="old">45,000원</span><span class="new">34,000원</span><span class="off">24% OFF</span></div>
+          </div>
+          <div class="bundle-card">
+            <span class="tag" style="background: #b67ec0;">ALL DAY KIT</span>
+            <div class="nm">데일리 페이스 키트</div>
+            <div class="ds">더 젤리 빔 하이라이터 + 이지브로우마스카라.<br />아침 5분 데일리 메이크업 풀 세트.</div>
+            <div class="pr"><span class="old">40,000원</span><span class="new">31,000원</span><span class="off">22% OFF</span></div>
+          </div>
+        </div>
+        <div style="text-align: center; padding: 30px 0 0; border-top: 1px solid #f0ece6; margin-top: 12px;">
+          <div style="font-size: 12px; color: #aaa; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px;">SINGLE</div>
+          <div style="font-size: 18px; font-weight: 800; color: #222; margin-bottom: 6px;">더 젤리 빔 하이라이터 (9g)</div>
+          <div style="display: inline-flex; align-items: baseline; gap: 8px;">
+            <span style="font-size: 14px; color: #ccc; text-decoration: line-through;">25,000원</span>
+            <span style="font-size: 26px; font-weight: 900; color: #c98e8e;">20,000원</span>
+            <span style="font-size: 11px; color: #b67ec0; font-weight: 700; background: #f3edff; padding: 3px 8px; border-radius: 6px;">20% OFF</span>
+          </div>
+        </div>
+      </div>
+      <div class="memo">
+        <b>DESIGN:</b> 번들 2종 강조 → 단품 노출. 추천 번들은 보더 강조(코랄). 시기에 따라 미니 브러시/파우치 사은품 배지 추가 가능.
+      </div>
+
+      <!-- ══════════════════════════════════════════════ 푸터 ══════════════════════════════════════════════ -->
+      <div class="ft">
+        <h4>TAM BEAUTY</h4>
+        <p>탐뷰티 더 젤리 빔 하이라이터 9g &middot; 3 COLORS &middot; VEGAN &middot; KVCA CERTIFIED<br />Made in Korea &middot; 광이 자라난다, 탐뷰티</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════════════════════════ -->
+    <!--                                  기획 노트 (페이지 끝)                                       -->
+    <!-- ════════════════════════════════════════════════════════════════════════════════════ -->
+    <div class="frame" style="margin-top: 30px; padding: 36px 50px;">
+      <div style="font-size: 14px; font-weight: 800; color: #0f0f1a; letter-spacing: 1px; margin-bottom: 14px;">📋 기획 노트 &middot; 5중 모트 요약</div>
+      <div style="font-size: 12px; color: #555; line-height: 1.9;">
+        <b style="color: #b67ec0;">[탐뷰티 단독]</b> 경쟁사 14개 중 동시 보유 0개 — 본 상세페이지의 핵심 모트:<br />
+        ① 젤리-스틱 × ② 보송 패러독스 × ③ 스킨케어 성분 × ④ KVCA 비건 × ⑤ 구름 메타포<br /><br />
+        <b style="color: #c9a07a;">스크롤 우선순위:</b> 모트 모두 상위 50% 안에 배치<br />
+        SEC 2 (패러독스) → SEC 3 (텍스처 트리니티) → SEC 5 (다각도) → SEC 9 (성분) → SEC 10 (인증)<br /><br />
+        <b style="color: #c9a07a;">필수 보강:</b><br />
+        &middot; 임상 지속력 8시간 / 0.00 저자극 / KVCA 인증번호 → 실제 데이터로 교체 (광고법)<br />
+        &middot; UGC 6컷 → DM 동의 받은 컷 또는 인플루언서 시딩 컷으로 대체<br />
+        &middot; 페이스맵 일러스트 + 다각도 광채 3패널 + 텍스처 트리니티 GIF → 신규 촬영 필요<br /><br />
+        <b style="color: #c9a07a;">참고 경쟁사:</b> 클리오 프리즘/글래스앤, 에스쁘아 톤페어링/스트로빙, 데이지크, 글린트, 코이, 페이스샵, 네이밍, 디어달리아, 롬앤, 티르티르<br /><br />
+        <b style="color: #c9a07a;">버전:</b> v1 (Master) &middot; 2026-05-13 &middot; 기존 더 클라우드 블러 v3 디자인 시스템 계승
+      </div>
+    </div>
+  </body>
+</html>
