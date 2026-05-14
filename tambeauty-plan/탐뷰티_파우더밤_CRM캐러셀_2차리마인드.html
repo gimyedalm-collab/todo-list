@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>탐뷰티 파우더밤 · CRM 2차 리마인드 캐러셀</title>
+    <style>
+      :root {
+        --v: #7b5ea7;
+        --vd: #5a3d8a;
+        --vdd: #3d2660;
+        --lav: #d5ccec;
+        --mist: #ebe6f5;
+        --cloud: #f4f1fa;
+        --ink: #2a2a2a;
+        --warm: #6b6078;
+        --cream: #faf9fc;
+        --line: #e8e4f0;
+        --red: #e74c3c;
+        --green: #27ae60;
+        --gold: #f0c040;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        background: var(--cream);
+        color: var(--ink);
+        margin: 0;
+        padding: 40px 20px;
+        line-height: 1.6;
+      }
+      .wrap { max-width: 900px; margin: 0 auto; }
+
+      .hero {
+        background: linear-gradient(135deg, #f4f1fa, #d5ccec, #b8aad8);
+        border-radius: 20px;
+        padding: 36px 30px;
+        margin-bottom: 28px;
+        box-shadow: 0 16px 36px -16px rgba(90, 61, 138, 0.2);
+      }
+      .hero .tag {
+        display: inline-block;
+        background: rgba(42, 42, 42, 0.08);
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--warm);
+        margin-bottom: 10px;
+      }
+      .hero h1 { margin: 0 0 6px; font-size: 24px; font-weight: 800; }
+      .hero p { margin: 0; font-size: 13px; color: var(--warm); }
+      .hero .meta {
+        margin-top: 14px;
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+      }
+      .hero .meta span {
+        background: rgba(255, 255, 255, 0.6);
+        padding: 5px 10px;
+        border-radius: 7px;
+        font-size: 11px;
+        color: var(--warm);
+        border: 1px solid rgba(123, 94, 167, 0.15);
+      }
+
+      .sec {
+        background: #fff;
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 16px -8px rgba(90, 61, 138, 0.08);
+        border: 1px solid var(--line);
+      }
+      .sec h2 {
+        margin: 0 0 4px;
+        font-size: 17px;
+        color: var(--vd);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .sec h2 .num {
+        background: var(--v);
+        color: #fff;
+        width: 26px;
+        height: 26px;
+        border-radius: 7px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .sec .lead { color: var(--warm); font-size: 12px; margin: 0 0 16px; }
+
+      .strategy {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        margin: 16px 0;
+      }
+      .st {
+        background: var(--cream);
+        border-radius: 10px;
+        padding: 12px 8px;
+        text-align: center;
+        border: 1px solid var(--line);
+        position: relative;
+      }
+      .st .sn {
+        font-size: 9px;
+        color: var(--v);
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        margin-bottom: 3px;
+      }
+      .st .sl { font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+      .st .sd { font-size: 9px; color: var(--warm); margin-top: 3px; }
+      .st-arrow {
+        position: absolute;
+        right: -9px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--lav);
+        font-size: 14px;
+        z-index: 2;
+      }
+
+      .cards {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-top: 12px;
+      }
+      .card {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        box-shadow: 0 8px 24px -10px rgba(90, 61, 138, 0.14);
+      }
+      .card .preview {
+        aspect-ratio: 4/3;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card-index {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: var(--ink);
+        color: #fff;
+        font-size: 9px;
+        padding: 3px 9px;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        z-index: 5;
+      }
+      .card-size {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.85);
+        color: var(--warm);
+        font-size: 8px;
+        padding: 2px 7px;
+        border-radius: 5px;
+        font-weight: 700;
+        z-index: 5;
+      }
+      .card-body {
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .card-body .role {
+        font-size: 10px;
+        color: var(--v);
+        font-weight: 700;
+        letter-spacing: 1.5px;
+      }
+      .card-body .copy {
+        font-size: 13px;
+        color: var(--ink);
+        font-weight: 500;
+        line-height: 1.5;
+        background: var(--cream);
+        padding: 9px 11px;
+        border-radius: 7px;
+        border-left: 2px solid var(--v);
+      }
+      .card-body .copy .em { color: var(--vd); font-weight: 700; }
+      .card-body .why {
+        font-size: 12px;
+        color: var(--vd);
+        font-weight: 600;
+        background: linear-gradient(135deg, #f4f1fa, #ebe6f5);
+        padding: 10px 12px;
+        border-radius: 8px;
+        line-height: 1.5;
+      }
+      .card-body .note { font-size: 11px; color: var(--warm); line-height: 1.5; }
+      .card-body .note b { color: var(--ink); }
+
+      /* ── S1 콜백 (1차 1컷 톤 그대로) ── */
+      .s1 {
+        background: linear-gradient(160deg, #faf5f0 0%, #f0e6dc 40%, #e8ddd0 100%);
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 24px;
+      }
+      .s1 .problem {
+        font-size: 11px;
+        color: #c0956e;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+      }
+      .s1 h3 {
+        margin: 0;
+        font-size: 26px;
+        font-weight: 900;
+        color: var(--ink);
+        letter-spacing: -1px;
+        line-height: 1.2;
+      }
+      .s1 h3 em { font-style: normal; color: var(--vd); }
+      .s1 .sub {
+        font-size: 13px;
+        color: #8a7060;
+        margin-top: 8px;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+      .s1 .answer {
+        margin-top: 16px;
+        background: var(--ink);
+        color: #fff;
+        padding: 8px 18px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        display: inline-block;
+      }
+      .s1 .answer .star { color: var(--gold); }
+      .s1 .answer span { color: var(--lav); }
+
+      /* ── S2 리뷰 카드 (신규 컴포넌트) ── */
+      .reviews {
+        background: linear-gradient(160deg, #fff 0%, #faf9fc 100%);
+        flex-direction: column;
+        text-align: center;
+        padding: 22px 20px;
+      }
+      .reviews .eyebrow {
+        font-size: 9px;
+        color: var(--v);
+        letter-spacing: 3px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .reviews h3 {
+        margin: 0 0 14px;
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--ink);
+      }
+      .reviews h3 span { color: var(--vd); }
+      .rv-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 8px;
+        width: 100%;
+      }
+      .rv {
+        background: var(--cream);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: left;
+        border: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .rv-main {
+        background: linear-gradient(135deg, var(--cloud), var(--mist));
+        border: 1px solid var(--lav);
+        padding: 14px 14px;
+        justify-content: center;
+        gap: 5px;
+      }
+      .rv-main .rv-star { font-size: 13px; }
+      .rv-main .rv-text {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.4;
+      }
+      .rv-side {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .rv-side .rv { padding: 7px 9px; }
+      .rv-side .rv-star { font-size: 9px; }
+      .rv-side .rv-text { font-size: 10px; line-height: 1.35; }
+      .rv-star {
+        color: var(--gold);
+        font-size: 11px;
+        letter-spacing: 1px;
+        line-height: 1;
+      }
+      .rv-name {
+        font-size: 9px;
+        color: var(--warm);
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      .rv-text {
+        font-size: 11px;
+        color: var(--ink);
+        line-height: 1.4;
+        font-weight: 500;
+      }
+
+      /* ── S3 전환 (1차 5컷 톤, 강압 톤다운) ── */
+      .s5 {
+        background: linear-gradient(160deg, var(--vd) 0%, var(--vdd) 100%);
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 24px;
+        color: #f4f1fa;
+      }
+      .s5 .soft-tag {
+        background: rgba(255, 255, 255, 0.18);
+        color: #fff;
+        padding: 5px 14px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      .s5 h3 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 1.25;
+        color: #fff;
+      }
+      .s5 h3 em { font-style: normal; color: var(--lav); }
+      .s5 .price-box {
+        margin: 16px auto;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        padding: 16px 28px;
+        display: inline-block;
+      }
+      .s5 .price-box .old {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: line-through;
+        display: block;
+        margin-bottom: 4px;
+      }
+      .s5 .price-box .row {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 10px;
+      }
+      .s5 .price-box .off {
+        background: var(--red);
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 900;
+      }
+      .s5 .price-box .new {
+        font-size: 36px;
+        font-weight: 900;
+        color: #fff;
+        letter-spacing: -1px;
+      }
+      .s5 .price-box .new small { font-size: 13px; font-weight: 600; }
+      .s5 .cta-btn {
+        margin-top: 14px;
+        background: #fff;
+        color: var(--vd);
+        padding: 10px 28px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 800;
+        display: inline-block;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      }
+      .s5 .limit { margin-top: 10px; font-size: 11px; color: rgba(255, 255, 255, 0.6); }
+
+      .copybank {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 9px;
+      }
+      .cb {
+        background: var(--cream);
+        border-radius: 10px;
+        padding: 12px;
+        border-left: 3px solid var(--v);
+      }
+      .cb .tag {
+        font-size: 9px;
+        color: var(--v);
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .cb .text {
+        font-size: 13px;
+        color: var(--ink);
+        font-weight: 600;
+        line-height: 1.4;
+      }
+      .cb .ref { font-size: 10px; color: var(--warm); margin-top: 4px; }
+
+      .img-ref {
+        background: var(--cream);
+        border-radius: 10px;
+        padding: 12px 14px;
+        margin-top: 10px;
+        border: 1px solid var(--line);
+      }
+      .img-ref h4 { margin: 0 0 6px; font-size: 12px; color: var(--v); }
+      .img-ref ul {
+        margin: 6px 0 0;
+        padding-left: 16px;
+        font-size: 11px;
+        color: var(--warm);
+      }
+      .img-ref ul li { margin-bottom: 2px; }
+      .img-ref ul li b { color: var(--ink); }
+
+      .check {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 8px;
+      }
+      .check-item {
+        background: var(--cream);
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 12px;
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+      }
+      .check-item::before {
+        content: '\2713';
+        color: var(--v);
+        font-weight: 800;
+      }
+
+      .compare {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+        font-size: 12px;
+      }
+      .compare th {
+        background: var(--v);
+        color: #fff;
+        padding: 8px 10px;
+        text-align: left;
+        font-weight: 700;
+        font-size: 11px;
+      }
+      .compare td { padding: 8px 10px; border-bottom: 1px solid var(--line); }
+      .compare tr:nth-child(even) td { background: var(--cream); }
+      .compare .old { color: var(--warm); }
+      .compare .new { color: var(--vd); font-weight: 700; }
+      .compare .highlight { background: #f0ebfa !important; }
+
+      .footer {
+        text-align: center;
+        color: var(--warm);
+        font-size: 11px;
+        margin-top: 24px;
+        padding: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <section class="hero">
+        <span class="tag">KAKAO PLUS · CRM CAROUSEL · 2ND REMIND</span>
+        <h1>파우더밤 2차 리마인드 캐러셀 기획서</h1>
+        <p>1차 +1~2일 후 발송 · 사회적 증거 중심 · 3컷 압축</p>
+        <div class="meta">
+          <span>800 x 600 px</span>
+          <span>3컷 (1차 5컷에서 압축)</span>
+          <span>가격 동일 18,000 → 10,800원</span>
+          <span>리뷰 기반</span>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2><span class="num">0</span>리마인드 전략</h2>
+        <p class="lead">
+          1차에서 풀펀넬(공감→증거→가치→신뢰→전환) 한 번 깔았음. 같은 거 반복하면 무시당함. 컷수 줄이고 산 사람들 후기로 한 번 더 푸시.
+        </p>
+
+        <div class="strategy">
+          <div class="st">
+            <div class="sn">1컷</div>
+            <div class="sl">콜백</div>
+            <div class="sd">"어제 그거"</div>
+            <span class="st-arrow">→</span>
+          </div>
+          <div class="st">
+            <div class="sn">2컷</div>
+            <div class="sl">리뷰</div>
+            <div class="sd">★ 카드 4개</div>
+            <span class="st-arrow">→</span>
+          </div>
+          <div class="st">
+            <div class="sn">3컷</div>
+            <div class="sl">전환</div>
+            <div class="sd">부드러운 마감</div>
+          </div>
+        </div>
+
+        <table class="compare">
+          <tr>
+            <th></th>
+            <th class="old">1차 (5컷)</th>
+            <th class="new">2차 리마인드 (3컷)</th>
+          </tr>
+          <tr>
+            <td><b>컷수</b></td>
+            <td class="old">5컷 풀펀넬</td>
+            <td class="new highlight">3컷 압축</td>
+          </tr>
+          <tr>
+            <td><b>톤</b></td>
+            <td class="old">인지·설득</td>
+            <td class="new highlight">콜백·푸시</td>
+          </tr>
+          <tr>
+            <td><b>메인 무기</b></td>
+            <td class="old">공감 + B&A + 가성비</td>
+            <td class="new highlight">실제 리뷰 (사회적 증거)</td>
+          </tr>
+          <tr>
+            <td><b>1컷 카피</b></td>
+            <td class="old">"T존 기름, 3시간이면 다시?"</td>
+            <td class="new highlight">"어제 그 파우더밤, 다들 담아가더라고요"</td>
+          </tr>
+          <tr>
+            <td><b>마감 톤</b></td>
+            <td class="old">"오늘 자정 마감" 강압</td>
+            <td class="new highlight">"리뷰 보고 망설였다면 — 하루 연장" 명분</td>
+          </tr>
+          <tr>
+            <td><b>2컷 위계</b></td>
+            <td class="old">—</td>
+            <td class="new highlight">메인 리뷰 1 크게 + 서브 3 작게</td>
+          </tr>
+          <tr>
+            <td><b>발송 시간</b></td>
+            <td class="old">—</td>
+            <td class="new highlight">1차와 다른 시간대 (12시 / 19시)</td>
+          </tr>
+        </table>
+      </section>
+
+      <section class="sec">
+        <h2><span class="num">1</span>리뷰 소스 기준</h2>
+        <p class="lead">
+          리뷰 텍스트는 올리브영 베스트 노세범/매트 파우더(이니스프리 노세범 AC, 다슈 오일컷, 갸스비 기름종이 파우더) 후기 톤에서, 우리 제품이 실제로 갖는 효과만 골라 의역.
+        </p>
+        <div class="img-ref">
+          <h4>발췌 기준</h4>
+          <ul>
+            <li><b>O:</b> 기름잡이, 8시간 이상 지속, 보송함, 건조 없음, 남녀공용, 기름종이 대체</li>
+            <li><b>X:</b> 톤업, 화이트닝, 모공 커버, 컬러 발색, 발광 효과 — 우리 제품 범위 밖</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2><span class="num">2</span>캐러셀 3컷 (800 x 600)</h2>
+        <p class="lead">콜백 → 리뷰 → 부드러운 전환.</p>
+
+        <div class="cards">
+          <!-- 1컷 -->
+          <div class="card">
+            <div class="preview s1">
+              <span class="card-index">01 / 03</span>
+              <span class="card-size">800x600</span>
+              <div class="problem">2ND REMIND</div>
+              <h3>어제 그 파우더밤,<br /><em>다들 담아가더라고요</em></h3>
+              <div class="sub">혹시 까먹었을까봐 한 번 더 알려드림</div>
+              <div class="answer"><span class="star">★ 4.X</span> · 리뷰 <span>○○○개</span></div>
+            </div>
+            <div class="card-body">
+              <div class="role">1컷 · 콜백</div>
+              <div class="copy">
+                "어제 그 파우더밤, <span class="em">다들 담아가더라고요</span>"
+              </div>
+              <div class="why">
+                왜 이 카피인가: 1차 본 사람한테 새 캠페인이 아니라 "한 번 더 알림" 시그널. "어제"로 1차와의 연결을 만들고, "다들"로 사회적 증거를 미리 깔아둠.
+              </div>
+              <div class="note">
+                <b>레이아웃:</b> 1차 1컷과 같은 베이지/샌드톤 (연속성 핵심).<br />
+                <b>강조:</b> "다들 담아가더라고요"에 보라.<br />
+                <b>상단 박스:</b> 평점·리뷰 수 박스. 실제 수치 있으면 ○○○ 자리에 박기. 없으면 박스 제거.
+              </div>
+            </div>
+          </div>
+
+          <!-- 2컷 -->
+          <div class="card">
+            <div class="preview reviews">
+              <span class="card-index">02 / 03</span>
+              <span class="card-size">800x600</span>
+              <div class="eyebrow">REAL REVIEW</div>
+              <h3>산 사람들 <span>반응은요</span></h3>
+              <div class="rv-grid">
+                <div class="rv rv-main">
+                  <span class="rv-star">★★★★★</span>
+                  <span class="rv-name">***</span>
+                  <div class="rv-text">"바르고 퇴근까지 T존 그대로네요. 진짜 신기함"</div>
+                </div>
+                <div class="rv-side">
+                  <div class="rv">
+                    <span class="rv-star">★★★★★</span>
+                    <div class="rv-text">"건조한 파우더 안 좋아하는데 이건 안 당겨요"</div>
+                  </div>
+                  <div class="rv">
+                    <span class="rv-star">★★★★★</span>
+                    <div class="rv-text">"가방에 이거 하나면 끝"</div>
+                  </div>
+                  <div class="rv">
+                    <span class="rv-star">★★★★★</span>
+                    <div class="rv-text">"여름엔 기름종이 대신 이거"</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="role">2컷 · 리뷰 (핵심)</div>
+              <div class="copy">
+                "★★★★★ × 4 — <span class="em">산 사람들 반응</span>"
+              </div>
+              <div class="why">
+                왜 이 컷인가: 1차에선 "이게 좋아요"를 우리가 말했음. 2차는 산 사람들이 말함. 같은 말도 내가 하면 광고, 남이 하면 정보.
+              </div>
+              <div class="note">
+                <b>위계:</b> 메인 리뷰 1개 크게(왼쪽) + 서브 3개 작게(오른쪽 세로 스택). 시선 분산 막고 가장 강한 후기 먼저 박힘.<br />
+                <b>리뷰 톤 기준:</b> 우리 제품 실제 효과만(기름잡이·지속력·보송·건조 없음·휴대성·기름종이 대체). 1차 4컷 "남자친구도 같이 쓰는 중"은 중복이라 제외, 다 새 리뷰로.<br />
+                <b>레이아웃:</b> 흰 배경, 메인은 라벤더 그라데이션 강조. 별점 골드.<br />
+                <b>닉네임:</b> *** 처리. 실제 발송 시스템에서 변수로 들어가게.<br />
+                <b>상단 박스(옵션):</b> "★4.X · 리뷰 ○○○개" 또는 "어제 ○○○개 팔림" — <b>실제 수치 있을 때만 표시. 추정치/허위 박지 말 것. 데이터 없으면 박스 자체 제거.</b>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3컷 -->
+          <div class="card">
+            <div class="preview s5">
+              <span
+                class="card-index"
+                style="background: var(--lav); color: var(--vd)"
+                >03 / 03</span
+              >
+              <span class="card-size">800x600</span>
+              <div class="soft-tag">ONE MORE DAY</div>
+              <h3>리뷰 보고 망설였다면,<br /><em>오늘까지 한 번 더</em></h3>
+              <div class="price-box">
+                <span class="old">18,000원</span>
+                <div class="row">
+                  <span class="off">-40%</span>
+                  <span class="new">10,800<small>원</small></span>
+                </div>
+              </div>
+              <div class="cta-btn">구매하기</div>
+              <div class="limit">혜택 하루 연장 · 플친 전용</div>
+            </div>
+            <div class="card-body">
+              <div class="role">3컷 · 연장 명분 + 부드러운 전환</div>
+              <div class="copy">
+                "리뷰 보고 망설였다면, <span class="em">오늘까지 한 번 더</span>"
+              </div>
+              <div class="why">
+                왜 이 톤인가: 1차에서 "오늘 자정 마감" 박았으니 1~2일 후 같은 가격이면 거짓말 됨. "리뷰 보고 망설인 분들 위해 하루 더 연장" 명분으로 1차 마감을 회수. 다음 캠페인에서도 마감 멘트 살릴 수 있음.
+              </div>
+              <div class="note">
+                <b>레이아웃:</b> 1차 5컷과 같은 보라 배경 + 가격 박스 + CTA.<br />
+                <b>차이:</b> 빨간 "TODAY ONLY" 뱃지 → 반투명 흰색 "ONE MORE DAY" 라운드. 카운트다운/재고 소진 멘트 제거.<br />
+                <b>CTA:</b> "구매하기" 그대로. 1차와 동일 동선.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2><span class="num">3</span>카피 뱅크</h2>
+        <div class="copybank">
+          <div class="cb">
+            <div class="tag">1컷 A (채택)</div>
+            <div class="text">"어제 그 파우더밤, 다들 담아가더라고요"</div>
+            <div class="ref">콜백 + 사회적 증거 톤</div>
+          </div>
+          <div class="cb">
+            <div class="tag">1컷 B</div>
+            <div class="text">"혹시 어제 그거 까먹었을까봐"</div>
+            <div class="ref">부드러운 리마인드</div>
+          </div>
+          <div class="cb">
+            <div class="tag">1컷 C</div>
+            <div class="text">"어제 본 그거, 다들 한 마디씩 하더라고요"</div>
+            <div class="ref">리뷰 헤드와 연결</div>
+          </div>
+          <div class="cb">
+            <div class="tag">3컷 A (채택)</div>
+            <div class="text">"리뷰 보고 망설였다면, 오늘까지 한 번 더"</div>
+            <div class="ref">연장 명분 (1차 마감 회수)</div>
+          </div>
+          <div class="cb">
+            <div class="tag">3컷 B</div>
+            <div class="text">"혜택 하루 더 — 오늘까지 10,800원"</div>
+            <div class="ref">단순 연장</div>
+          </div>
+          <div class="cb">
+            <div class="tag">3컷 C</div>
+            <div class="text">"어제 가격 그대로, 오늘까지 한 번 더"</div>
+            <div class="ref">콜백 + 연장</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2><span class="num">4</span>디자이너 체크리스트</h2>
+        <div class="check">
+          <div class="check-item">800 x 600 px 가로 3장</div>
+          <div class="check-item">1컷: 1차 1컷 베이지 톤 그대로 (연속성)</div>
+          <div class="check-item">2컷: 메인 리뷰 1 크게 + 서브 리뷰 3 작게 (1.3fr : 1fr 좌우 분할)</div>
+          <div class="check-item">3컷: 1차 5컷 보라 톤 + "ONE MORE DAY" 뱃지로 톤다운</div>
+          <div class="check-item">리뷰 닉네임 *** 처리 또는 실제 시스템 변수</div>
+          <div class="check-item">"오늘 자정 마감" "재고 소진" 같은 강압 문구 X</div>
+          <div class="check-item">평점/판매량 박스: 실제 수치 있을 때만 표시. 없으면 박스 자체 제거</div>
+          <div class="check-item">가격 표기 1차와 동일: 18,000(취소선) → -40% → 10,800</div>
+          <div class="check-item">Pretendard 통일 · "더 클라우드 필터 파우더밤" 정식명</div>
+          <div class="check-item">고해상 2x + 웹 압축(150KB 이하) 2벌</div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2><span class="num">5</span>발송 가이드</h2>
+        <div class="check">
+          <div class="check-item">1차 +1~2일 후 발송 (너무 늦으면 기억 사라짐, 너무 빠르면 부담)</div>
+          <div class="check-item">시간대: 점심 12-13시 또는 저녁 19-20시 권장. 카톡 오픈율 피크.</div>
+          <div class="check-item">1차와 다른 시간대로 발송. 1차 12시였으면 2차 19시, 반대도 동일.</div>
+          <div class="check-item">3차 가능성: 2차 +3~5일 후 "재고 마지막" 톤으로 짧게 (1-2컷). 다만 2차 전환률 보고 결정.</div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2><span class="num">6</span>1차 대비 핵심 수정</h2>
+        <div class="check">
+          <div class="check-item">3컷 "TODAY ONLY" → "ONE MORE DAY". 1차 "오늘 자정 마감" 거짓말 안 되게 연장 명분 박기</div>
+          <div class="check-item">2컷 리뷰 4개 다 새로. 1차 4컷 "남자친구도 같이 쓰는 중"은 중복이라 제거</div>
+          <div class="check-item">2컷 메인 1 크게 + 서브 3 작게 위계. 시선 분산 막기</div>
+          <div class="check-item">평점/판매량 박스 분기 명시. 실제 수치 있을 때만 표시. 추정치/허위 X</div>
+          <div class="check-item">발송 시간대 권장 (1차와 다른 피크 시간)</div>
+        </div>
+      </section>
+
+      <div class="footer">
+        &copy; TAM BEAUTY · 더 클라우드 필터 파우더밤 CRM 2차 리마인드 캐러셀 · 2026.05
+      </div>
+    </div>
+  </body>
+</html>
