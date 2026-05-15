@@ -1,0 +1,2152 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>탐뷰티 | The Jelly Beam Highlighter — 디자이너 핸드오프 v15</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+      :root {
+        --ink: #2a1820;
+        --ink2: #5a3a48;
+        --ink3: #8a6a78;
+        --pink: #f5cdd3;
+        --pink-deep: #e8a5b0;
+        --pink-bg: #fdf2f4;
+        --cream: #fff7e6;
+        --off: #fefafb;
+        --accent: #e8a5b0;
+        --gold: #d4a574;
+        --rule: #f0dae0;
+        --line: #e8d4da;
+        --bench: #3a2d28;
+        --bench-bg: #f5f0eb;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Noto Sans KR', sans-serif;
+        background: var(--off);
+        color: var(--ink);
+        line-height: 1.7;
+        font-size: 14.5px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Meta Bar */
+      .meta-bar {
+        background: var(--ink);
+        color: #fce0e5;
+        padding: 14px 30px;
+        font-size: 11px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        letter-spacing: 1px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .meta-bar strong {
+        color: #f5e8c0;
+        font-weight: 600;
+      }
+      .meta-bar .tag {
+        background: #f5e8c0;
+        color: var(--ink);
+        padding: 3px 10px;
+        border-radius: 2px;
+        font-weight: 700;
+        font-size: 10px;
+        letter-spacing: 1.5px;
+      }
+
+      .wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 60px 44px 100px;
+      }
+
+      /* Cover */
+      .cover {
+        text-align: center;
+        padding: 40px 0 60px;
+        border-bottom: 2px solid var(--ink);
+        margin-bottom: 60px;
+      }
+      .cover .eyebrow {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        font-size: 13px;
+        color: var(--accent);
+        letter-spacing: 3px;
+        margin-bottom: 14px;
+        font-weight: 600;
+      }
+      .cover h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 44px;
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        margin-bottom: 10px;
+      }
+      .cover h1 .it {
+        font-style: italic;
+        font-weight: 400;
+      }
+      .cover .ko {
+        font-size: 18px;
+        color: var(--ink2);
+        margin-bottom: 22px;
+        font-weight: 600;
+      }
+      .cover .doc-kind {
+        display: inline-block;
+        background: var(--ink);
+        color: var(--cream);
+        padding: 8px 20px;
+        font-size: 11px;
+        letter-spacing: 3px;
+        font-weight: 600;
+      }
+
+      /* Fact Row */
+      .fact-row {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+        margin: 30px 0 0;
+      }
+      .fact-row .cell {
+        background: #fff;
+        padding: 18px 14px;
+        text-align: center;
+        border-radius: 6px;
+        border: 1px solid var(--rule);
+      }
+      .fact-row .k {
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: var(--accent);
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+      .fact-row .v {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--ink);
+        font-family: 'Playfair Display', serif;
+      }
+      .fact-row .v small {
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      section {
+        margin-bottom: 90px;
+      }
+      .sec-no {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        font-size: 13px;
+        color: var(--accent);
+        letter-spacing: 3px;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      h2 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        letter-spacing: -0.3px;
+      }
+      h2 + .lede {
+        font-size: 14px;
+        color: var(--ink2);
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--rule);
+      }
+      h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 30px 0 14px;
+      }
+      h4 {
+        font-size: 12px;
+        font-weight: 700;
+        margin: 18px 0 8px;
+        color: var(--accent);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+      p {
+        font-size: 14px;
+        margin-bottom: 10px;
+        color: var(--ink2);
+      }
+      strong,
+      b {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      code {
+        background: var(--pink-bg);
+        padding: 2px 8px;
+        border-radius: 3px;
+        font-size: 13px;
+        color: #7a2040;
+        font-family: 'Playfair Display', serif;
+        font-weight: 600;
+      }
+
+      /* Asset Library */
+      .asset-lib {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+        margin: 24px 0 14px;
+      }
+      .asset {
+        background: #fff;
+        border: 2px solid var(--ink);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .asset .thumb {
+        aspect-ratio: 4/5;
+        position: relative;
+        overflow: hidden;
+      }
+      .asset .cap {
+        padding: 10px 12px;
+        font-size: 11px;
+        border-top: 1px solid var(--rule);
+      }
+      .asset .cap .code {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        color: var(--accent);
+        font-size: 13px;
+        letter-spacing: 1px;
+      }
+      .asset .cap .name {
+        display: block;
+        color: var(--ink);
+        font-weight: 600;
+        margin: 3px 0;
+        font-size: 12px;
+      }
+      .asset .cap .use {
+        color: var(--ink2);
+        font-size: 10.5px;
+        line-height: 1.5;
+      }
+
+      /* Asset Thumbnails — CSS 목업 */
+      .thumb-hero {
+        background: linear-gradient(
+          135deg,
+          #fdf2f4 0%,
+          #f5cdd3 60%,
+          #e8a5b0 100%
+        );
+        position: relative;
+      }
+      .thumb-hero::before {
+        content: '';
+        position: absolute;
+        right: 15%;
+        top: 20%;
+        width: 35%;
+        height: 55%;
+        background: radial-gradient(
+          ellipse at 50% 40%,
+          #fce8ea 0%,
+          #e8b5bc 60%,
+          #d4909a 100%
+        );
+        border-radius: 45% 45% 42% 42%;
+      }
+      .thumb-hero::after {
+        content: '';
+        position: absolute;
+        left: 12%;
+        top: 35%;
+        width: 40%;
+        height: 8%;
+        background: var(--ink);
+        border-radius: 2px;
+        opacity: 0.15;
+      }
+
+      .thumb-cheek {
+        background: #f3dccc;
+        position: relative;
+      }
+      .thumb-cheek::before {
+        content: '';
+        position: absolute;
+        top: 30%;
+        left: 25%;
+        width: 50%;
+        height: 40%;
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          #f5cdd3 0%,
+          #f3dccc 70%
+        );
+        border-radius: 50%;
+      }
+
+      .thumb-beam {
+        background: linear-gradient(180deg, #fdf2f4 0%, #fff 50%, #fdf2f4 100%);
+        position: relative;
+      }
+      .thumb-beam::before {
+        content: '';
+        position: absolute;
+        top: 20%;
+        left: 10%;
+        width: 80%;
+        height: 60%;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--pink) 0px,
+          var(--pink) 8px,
+          transparent 8px,
+          transparent 12px
+        );
+        border-radius: 4px;
+        opacity: 0.6;
+      }
+
+      .thumb-ba {
+        background: #f3dccc;
+        position: relative;
+      }
+      .thumb-ba::before {
+        content: '';
+        position: absolute;
+        top: 20%;
+        left: 8%;
+        width: 38%;
+        height: 60%;
+        background: #eedacf;
+        border-radius: 40%;
+      }
+      .thumb-ba::after {
+        content: '';
+        position: absolute;
+        top: 20%;
+        right: 8%;
+        width: 38%;
+        height: 60%;
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          #f5cdd3 30%,
+          #eedacf 70%
+        );
+        border-radius: 40%;
+      }
+
+      .thumb-color {
+        background: linear-gradient(
+          90deg,
+          #f0e8e0 0%,
+          #f5cdd3 50%,
+          #d4a574 100%
+        );
+        position: relative;
+      }
+      .thumb-color::before,
+      .thumb-color::after {
+        content: '';
+        position: absolute;
+        width: 26%;
+        height: 26%;
+        border-radius: 50%;
+        top: 37%;
+      }
+      .thumb-color::before {
+        left: 12%;
+        background: #f0e8e0;
+        border: 2px solid #e0d0c8;
+      }
+      .thumb-color::after {
+        right: 12%;
+        background: #d4a574;
+        border: 2px solid #c49564;
+      }
+
+      .thumb-tone {
+        background: var(--pink-bg);
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 3px;
+        padding: 12%;
+      }
+      .thumb-tone::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--pink-deep);
+      }
+      .thumb-tone::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 1px;
+        height: 100%;
+        background: var(--pink-deep);
+      }
+
+      .thumb-howto {
+        background: #f3dccc;
+        position: relative;
+      }
+      .thumb-howto::before {
+        content: '';
+        position: absolute;
+        top: 35%;
+        left: 30%;
+        width: 40%;
+        height: 12%;
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          #f5cdd3 0%,
+          transparent 70%
+        );
+      }
+      .thumb-howto::after {
+        content: '';
+        position: absolute;
+        top: 22%;
+        left: 42%;
+        width: 16%;
+        height: 30%;
+        background: var(--pink-deep);
+        border-radius: 50% 50% 8px 8px;
+        opacity: 0.6;
+      }
+
+      .thumb-time {
+        background: linear-gradient(
+          90deg,
+          #f3dccc 0%,
+          #f3dccc 33%,
+          #f0ddd0 33%,
+          #f0ddd0 66%,
+          #ede0d4 66%
+        );
+        position: relative;
+      }
+      .thumb-time::before {
+        content: "0' → 30' → OUT";
+        position: absolute;
+        bottom: 12%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 9px;
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        color: var(--ink3);
+        white-space: nowrap;
+        letter-spacing: 2px;
+      }
+
+      .thumb-close {
+        background: linear-gradient(
+          135deg,
+          #fdf2f4 0%,
+          #f5cdd3 50%,
+          #e8a5b0 100%
+        );
+        position: relative;
+      }
+      .thumb-close::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        height: 50%;
+        background: radial-gradient(
+          ellipse at 50% 40%,
+          #fce8ea 0%,
+          #d4909a 100%
+        );
+        border-radius: 45%;
+        opacity: 0.7;
+      }
+
+      /* 3-Column Section Card */
+      .sec-block {
+        background: #fff;
+        border-radius: 8px;
+        margin-bottom: 24px;
+        border: 1px solid var(--rule);
+        overflow: hidden;
+      }
+      .sec-head {
+        background: var(--ink);
+        color: var(--off);
+        padding: 16px 26px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .sec-head .left {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+      }
+      .sec-head .no {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        color: #f5e8c0;
+        font-size: 15px;
+        letter-spacing: 2px;
+        font-weight: 600;
+      }
+      .sec-head .title {
+        font-size: 19px;
+        font-weight: 600;
+      }
+      .sec-head .purpose {
+        font-size: 11px;
+        color: #f0c8d0;
+        letter-spacing: 1px;
+      }
+
+      .sec-body {
+        display: grid;
+        grid-template-columns: 220px 1fr 280px;
+        gap: 0;
+      }
+      .sec-shot {
+        background: var(--pink-bg);
+        padding: 18px;
+        border-right: 1px solid var(--rule);
+      }
+      .shot-slot {
+        aspect-ratio: 4/5;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 2px dashed var(--pink-deep);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      .shot-slot.has-asset {
+        border-style: solid;
+        padding: 0;
+        position: relative;
+      }
+      .shot-slot.has-asset .badge {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        background: var(--accent);
+        color: #fff;
+        font-size: 9px;
+        padding: 3px 7px;
+        border-radius: 10px;
+        font-family: 'Playfair Display', serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+        z-index: 10;
+      }
+      .shot-slot .mock {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      .shot-info {
+        font-size: 11px;
+        color: var(--ink2);
+        line-height: 1.5;
+      }
+      .shot-info b {
+        color: var(--ink);
+        font-size: 11.5px;
+      }
+
+      .sec-info {
+        padding: 20px 24px;
+      }
+      .sec-info .copy-quote {
+        background: var(--pink-bg);
+        padding: 12px 16px;
+        border-left: 3px solid var(--accent);
+        margin: 8px 0 14px;
+        border-radius: 0 4px 4px 0;
+      }
+      .sec-info .copy-quote .main {
+        font-size: 20px;
+        color: var(--ink);
+        font-weight: 600;
+        display: block;
+        margin-bottom: 3px;
+        line-height: 1.3;
+      }
+      .sec-info .copy-quote .sub {
+        font-size: 13.5px;
+        color: var(--ink2);
+        font-weight: 500;
+      }
+      .sec-info ul {
+        margin: 6px 0 14px 18px;
+      }
+      .sec-info li {
+        font-size: 12.5px;
+        color: var(--ink2);
+        margin-bottom: 3px;
+      }
+      .sec-info li b {
+        color: var(--ink);
+      }
+
+      /* Benchmark Panel */
+      .sec-bench {
+        background: var(--bench-bg);
+        border-left: 1px solid var(--rule);
+        padding: 18px 20px;
+      }
+      .sec-bench .bh {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        color: var(--bench);
+        font-size: 10px;
+        letter-spacing: 2px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .sec-bench .bh::before {
+        content: '';
+        width: 20px;
+        height: 1px;
+        background: var(--bench);
+      }
+      .sec-bench .brand {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 2px;
+      }
+      .sec-bench .camp {
+        font-size: 11px;
+        color: var(--ink2);
+        margin-bottom: 12px;
+        font-style: italic;
+      }
+      .sec-bench .ref-quote {
+        background: #fff;
+        padding: 10px 12px;
+        border-left: 2px solid var(--bench);
+        font-size: 12px;
+        color: var(--ink);
+        margin: 8px 0 12px;
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        line-height: 1.5;
+        border-radius: 0 3px 3px 0;
+      }
+      .sec-bench h6 {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin: 10px 0 4px;
+      }
+      .sec-bench h6.take {
+        color: #2d5a24;
+      }
+      .sec-bench h6.leave {
+        color: #a04054;
+      }
+      .sec-bench ul {
+        margin: 4px 0 8px 16px;
+      }
+      .sec-bench li {
+        font-size: 11px;
+        color: var(--ink2);
+        margin-bottom: 2px;
+      }
+
+      /* TOC */
+      .toc {
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .toc table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .toc td {
+        padding: 11px 18px;
+        border-bottom: 1px solid var(--rule);
+        font-size: 13px;
+      }
+      .toc tr:last-child td {
+        border-bottom: none;
+      }
+      .toc .num {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        color: var(--accent);
+        font-weight: 600;
+        width: 40px;
+      }
+      .toc .t {
+        color: var(--ink);
+        font-weight: 600;
+        width: 18%;
+      }
+      .toc .copy-col {
+        color: var(--ink);
+        font-weight: 600;
+        width: 22%;
+      }
+      .toc .desc {
+        color: var(--ink2);
+        width: 28%;
+      }
+      .toc .bench-chip {
+        display: inline-block;
+        background: var(--bench-bg);
+        color: var(--bench);
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-weight: 700;
+        margin-right: 3px;
+      }
+      .toc .asset-chip {
+        display: inline-block;
+        background: var(--pink-bg);
+        color: var(--accent);
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 10px;
+        margin-right: 3px;
+      }
+
+      /* Color Cards */
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin: 14px 0;
+      }
+      .color-card {
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .color-sw {
+        height: 80px;
+        position: relative;
+      }
+      .color-sw.c1 {
+        background: linear-gradient(135deg, #f8f2ea 0%, #e8ddd0 100%);
+      }
+      .color-sw.c2 {
+        background: linear-gradient(135deg, #fce8ec 0%, #f0b8c4 100%);
+      }
+      .color-sw.c3 {
+        background: linear-gradient(135deg, #f5e8d4 0%, #d4a574 100%);
+      }
+      .color-body {
+        padding: 14px 16px;
+      }
+      .color-body .no {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      .color-body .en {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 2px 0;
+      }
+      .color-body .kr {
+        font-size: 12px;
+        color: var(--ink2);
+      }
+      .color-body .tone {
+        font-size: 11px;
+        color: var(--accent);
+        font-weight: 600;
+        margin-top: 4px;
+      }
+      .color-body .desc {
+        font-size: 11.5px;
+        color: var(--ink2);
+        margin-top: 4px;
+        line-height: 1.5;
+      }
+
+      /* Motion */
+      .motion-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin: 20px 0;
+      }
+      .motion-card {
+        background: #fff;
+        border: 1px solid var(--rule);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .motion-preview {
+        aspect-ratio: 1;
+        position: relative;
+        overflow: hidden;
+      }
+      .motion-info {
+        padding: 14px 16px;
+      }
+      .motion-info .code {
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+      }
+      .motion-info .name {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 4px 0 8px;
+      }
+      .motion-info .desc {
+        font-size: 11.5px;
+        color: var(--ink2);
+        line-height: 1.5;
+        margin-bottom: 10px;
+      }
+      .motion-info .specs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding-top: 8px;
+        border-top: 1px dashed var(--rule);
+      }
+      .motion-info .spec {
+        background: var(--pink-bg);
+        color: var(--accent);
+        font-size: 10px;
+        padding: 2px 7px;
+        border-radius: 10px;
+        font-weight: 600;
+      }
+
+      /* Copy Deck Cards */
+      .copy-deck {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 20px;
+      }
+      .cd-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 22px 24px;
+        border-left: 4px solid var(--accent);
+      }
+      .cd-card .cd-no {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+      }
+      .cd-card .cd-main {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.3;
+        color: var(--ink);
+      }
+      .cd-card .cd-sub {
+        font-size: 13px;
+        color: var(--ink2);
+        margin-top: 6px;
+      }
+
+      /* Callout */
+      .callout {
+        background: #fff8dc;
+        border-left: 3px solid #d4a017;
+        padding: 14px 18px;
+        margin: 14px 0;
+        font-size: 13px;
+        border-radius: 0 4px 4px 0;
+      }
+      .callout b {
+        color: #8a5a00;
+      }
+
+      /* Checklist */
+      .checklist {
+        background: #fff;
+        border: 1px solid var(--rule);
+        padding: 24px 30px;
+        border-radius: 6px;
+      }
+      .checklist li {
+        font-size: 13px;
+        margin-bottom: 10px;
+        list-style: none;
+        position: relative;
+        padding-left: 28px;
+        color: var(--ink);
+      }
+      .checklist li:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 4px;
+        width: 16px;
+        height: 16px;
+        border: 2px solid var(--accent);
+        border-radius: 3px;
+      }
+
+      .motif-rule {
+        height: 1px;
+        background: var(--rule);
+        position: relative;
+        margin: 50px 0;
+      }
+      .motif-rule::after {
+        content: '✦';
+        position: absolute;
+        left: 50%;
+        top: -10px;
+        transform: translateX(-50%);
+        background: var(--off);
+        color: var(--accent);
+        padding: 0 14px;
+        font-size: 14px;
+      }
+
+      .footer-note {
+        text-align: center;
+        padding: 36px;
+        background: var(--ink);
+        color: #fce0e5;
+        font-size: 11px;
+        letter-spacing: 2px;
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+      }
+
+      /* GIF Keyframes */
+      @keyframes beam-shift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+      @keyframes color-fade {
+        0%,
+        30% {
+          background: #f0e8e0;
+        }
+        35%,
+        65% {
+          background: #f5cdd3;
+        }
+        70%,
+        100% {
+          background: #d4a574;
+        }
+      }
+      @keyframes glow-pulse {
+        0%,
+        100% {
+          opacity: 0.4;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+      }
+
+      .mp-beam {
+        background: #f3dccc;
+      }
+      .mp-beam .cheek {
+        position: absolute;
+        top: 30%;
+        left: 20%;
+        width: 60%;
+        height: 40%;
+        border-radius: 50%;
+        background: linear-gradient(90deg, #f0e8e0, #f5cdd3, #d4a574, #f0e8e0);
+        background-size: 300% 100%;
+        animation: beam-shift 4s ease-in-out infinite;
+      }
+      .mp-color {
+        background: #f3dccc;
+      }
+      .mp-color .cheek {
+        position: absolute;
+        top: 30%;
+        left: 20%;
+        width: 60%;
+        height: 40%;
+        border-radius: 50%;
+        animation: color-fade 4.5s ease-in-out infinite;
+      }
+      .mp-apply {
+        background: #f3dccc;
+      }
+      .mp-apply .dot {
+        position: absolute;
+        top: 35%;
+        left: 40%;
+        width: 20%;
+        height: 20%;
+        border-radius: 50%;
+        background: var(--pink);
+        animation: glow-pulse 2s ease-in-out infinite;
+      }
+      .mp-apply .finger {
+        position: absolute;
+        top: 18%;
+        left: 42%;
+        width: 16%;
+        height: 28%;
+        background: var(--pink-deep);
+        border-radius: 50% 50% 8px 8px;
+        opacity: 0.6;
+        animation: glow-pulse 2s ease-in-out infinite 0.3s;
+      }
+
+      /* Responsive */
+      @media (max-width: 1100px) {
+        .sec-body {
+          grid-template-columns: 1fr;
+        }
+        .sec-shot {
+          border-right: none;
+          border-bottom: 1px solid var(--rule);
+        }
+        .sec-bench {
+          border-left: none;
+          border-top: 1px solid var(--rule);
+        }
+      }
+      @media (max-width: 900px) {
+        .asset-lib {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .color-grid {
+          grid-template-columns: 1fr;
+        }
+        .motion-grid {
+          grid-template-columns: 1fr;
+        }
+        .copy-deck {
+          grid-template-columns: 1fr;
+        }
+        .fact-row {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- META BAR -->
+    <div class="meta-bar">
+      <div>
+        <strong>TAM BEAUTY</strong> · 더 젤리 빔 하이라이터 · 상세페이지
+        디자이너 핸드오프 v15
+      </div>
+      <span class="tag">PRODUCTION READY</span>
+    </div>
+
+    <div class="wrap">
+      <!-- ============ COVER ============ -->
+      <header class="cover">
+        <div class="eyebrow">TAM BEAUTY · The Jelly Beam Highlighter</div>
+        <h1><span class="it">The Jelly Beam</span> Highlighter</h1>
+        <div class="ko">탐뷰티 하이라이터</div>
+        <div class="doc-kind">DESIGNER HANDOFF v15</div>
+
+        <div class="fact-row">
+          <div class="cell">
+            <div class="k">Volume</div>
+            <div class="v">9<small>g</small></div>
+          </div>
+          <div class="cell">
+            <div class="k">Colors</div>
+            <div class="v">3</div>
+          </div>
+          <div class="cell">
+            <div class="k">Skincare</div>
+            <div class="v">7</div>
+          </div>
+          <div class="cell">
+            <div class="k">Sections</div>
+            <div class="v">10</div>
+          </div>
+          <div class="cell">
+            <div class="k">GIFs</div>
+            <div class="v">3</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ SEC 01 — ASSET LIBRARY ============ -->
+      <section>
+        <div class="sec-no">SEC 01 — ASSET LIBRARY</div>
+        <h2>촬영 에셋 가이드</h2>
+        <p class="lede">
+          전 섹션에 필요한 촬영 에셋 A~H. 모든 컷은 <b>모델 치크 중심</b>,
+          제품·패키지 단독 절대 금지.
+        </p>
+
+        <div class="asset-lib">
+          <div class="asset">
+            <div class="thumb thumb-hero"></div>
+            <div class="cap">
+              <span class="code">A</span>
+              <span class="name">HERO 풀블리드</span>
+              <span class="use"
+                >16:9 · 3/4 사이드뷰 · 자연광+역광 · 배경 페일 핑크</span
+              >
+            </div>
+          </div>
+          <div class="asset">
+            <div class="thumb thumb-cheek"></div>
+            <div class="cap">
+              <span class="code">B</span>
+              <span class="name">치크 매크로</span>
+              <span class="use"
+                >4:5 · 치크 광 클로즈업 · 결마다 다른 광 표현</span
+              >
+            </div>
+          </div>
+          <div class="asset">
+            <div class="thumb thumb-ba"></div>
+            <div class="cap">
+              <span class="code">C</span>
+              <span class="name">B/A 3단계</span>
+              <span class="use"
+                >4:5 · 바르기 전 → 1회 → 2회 · 동일 모델·광원</span
+              >
+            </div>
+          </div>
+          <div class="asset">
+            <div class="thumb thumb-color"></div>
+            <div class="cap">
+              <span class="code">D</span>
+              <span class="name">3컬러 발색</span>
+              <span class="use"
+                >4:5 · 문스톤/구미핑크/테디골드 · 치크 클로즈업</span
+              >
+            </div>
+          </div>
+          <div class="asset">
+            <div class="thumb thumb-howto"></div>
+            <div class="cap">
+              <span class="code">E</span>
+              <span class="name">사용법 시퀀스</span>
+              <span class="use"
+                >4:5 · 손가락 도포 → 스펀지 · 치크 클로즈업</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="asset-lib">
+          <div class="asset">
+            <div class="thumb thumb-tone"></div>
+            <div class="cap">
+              <span class="code">F</span>
+              <span class="name">톤 매칭</span>
+              <span class="use">4:5 · 쿨톤+웜톤 모델 · 매트릭스 위 임베드</span>
+            </div>
+          </div>
+          <div class="asset">
+            <div class="thumb thumb-time"></div>
+            <div class="cap">
+              <span class="code">G</span>
+              <span class="name">타임라인 3컷</span>
+              <span class="use">4:5 · 직후/30분/외출 후 · 동일 모델</span>
+            </div>
+          </div>
+          <div class="asset">
+            <div class="thumb thumb-close"></div>
+            <div class="cap">
+              <span class="code">H</span>
+              <span class="name">클로징 풀블리드</span>
+              <span class="use">16:9 · HERO와 같은 톤 · 다른 각도</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <b>촬영 원칙</b> — 5월 봄~초여름 자연광. 의상 화이트~크림. 메이크업
+          미니멀. 손등 스워치·제품·패키지 단독 절대 금지. 모델 손과 치크만.
+        </div>
+      </section>
+
+      <div class="motif-rule"></div>
+
+      <!-- ============ SEC 02 — PAGE MAP + COPY DECK ============ -->
+      <section>
+        <div class="sec-no">SEC 02 — PAGE MAP</div>
+        <h2>섹션 구성 + 카피 덱</h2>
+        <p class="lede">
+          10개 섹션 흐름. 카피는 데이지크·글린트·2an 톤 참조, 담백하고
+          감각적으로.
+        </p>
+
+        <div class="toc">
+          <table>
+            <tr>
+              <td class="num">01</td>
+              <td class="t">HERO</td>
+              <td class="copy-col">탐뷰티 하이라이터</td>
+              <td class="desc"><i>The Jelly Beam Highlighter</i></td>
+              <td><span class="asset-chip">A</span></td>
+            </tr>
+            <tr>
+              <td class="num">02</td>
+              <td class="t">한눈에 보기</td>
+              <td class="copy-col">한눈에 보기</td>
+              <td class="desc">광채 + 스킨케어 성분 7종</td>
+              <td><span class="asset-chip">B</span></td>
+            </tr>
+            <tr>
+              <td class="num">03</td>
+              <td class="t">WHY NOW</td>
+              <td class="copy-col">맞는 광을 못 찾았을 뿐</td>
+              <td class="desc">뭉침, 펄 날림, 건조, 톤 미스매치</td>
+              <td><span class="asset-chip">B</span></td>
+            </tr>
+            <tr>
+              <td class="num">04</td>
+              <td class="t">THE BEAM</td>
+              <td class="copy-col">맑게 스미는 일곱 가지 결</td>
+              <td class="desc">피부 위에서 결마다 다르게 빛나요</td>
+              <td>
+                <span class="asset-chip">B</span
+                ><span class="bench-chip">G1</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="num">05</td>
+              <td class="t">BEFORE / AFTER</td>
+              <td class="copy-col">바르기 전, 바른 후</td>
+              <td class="desc">같은 조건, 광채만 달라요</td>
+              <td><span class="asset-chip">C</span></td>
+            </tr>
+            <tr>
+              <td class="num">06</td>
+              <td class="t">3 COLORS</td>
+              <td class="copy-col">세 가지 빛, 세 가지 무드</td>
+              <td class="desc">문스톤, 구미핑크, 테디 골드</td>
+              <td>
+                <span class="asset-chip">D</span
+                ><span class="bench-chip">G2</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="num">07</td>
+              <td class="t">TONE MATCH</td>
+              <td class="copy-col">내 톤에 맞는 컬러</td>
+              <td class="desc">어떤 톤이든 자연스럽게</td>
+              <td><span class="asset-chip">F</span></td>
+            </tr>
+            <tr>
+              <td class="num">08</td>
+              <td class="t">HOW TO</td>
+              <td class="copy-col">톡톡, 가볍게</td>
+              <td class="desc">손가락으로 톡톡, 스펀지로 자연스럽게</td>
+              <td>
+                <span class="asset-chip">E</span
+                ><span class="bench-chip">G3</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="num">09</td>
+              <td class="t">TIMELINE</td>
+              <td class="copy-col">시간이 지나도 맑게</td>
+              <td class="desc">바른 직후, 30분 후, 외출 후까지</td>
+              <td><span class="asset-chip">G</span></td>
+            </tr>
+            <tr>
+              <td class="num">10</td>
+              <td class="t">CLOSING</td>
+              <td class="copy-col">투명하게 빛나는, 매일</td>
+              <td class="desc">더 젤리 빔 하이라이터</td>
+              <td><span class="asset-chip">H</span></td>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+      <div class="motif-rule"></div>
+
+      <!-- ============ SEC 03 — SECTION HANDOFF ============ -->
+      <section>
+        <div class="sec-no">SEC 03 — SECTION HANDOFF</div>
+        <h2>섹션별 디자인 가이드</h2>
+        <p class="lede">
+          좌측 이미지 슬롯 · 중앙 카피+레이아웃 · 우측 브랜드 벤치마크.
+        </p>
+
+        <!-- 01 HERO -->
+        <div class="sec-block">
+          <div class="sec-head">
+            <div class="left">
+              <span class="no">01</span><span class="title">HERO</span>
+            </div>
+            <span class="purpose">첫 화면 · 브랜드 톤 세팅</span>
+          </div>
+          <div class="sec-body">
+            <div class="sec-shot">
+              <div class="shot-slot has-asset">
+                <span class="badge">A</span>
+                <div class="mock thumb-hero"></div>
+              </div>
+              <div class="shot-info">
+                <b>16:9</b> · 3/4 사이드뷰 · 자연광+역광<br />배경 페일 핑크
+                <code>#fdf2f4</code>~<code>#f5cdd3</code>
+              </div>
+            </div>
+            <div class="sec-info">
+              <div class="copy-quote">
+                <span class="main">탐뷰티 하이라이터</span>
+                <span
+                  class="sub"
+                  style="font-style: italic; letter-spacing: 0.5px"
+                  >The Jelly Beam Highlighter</span
+                >
+              </div>
+              <h4>SUB COPY</h4>
+              <p>더 젤리 빔 하이라이터 · 광채 + 스킨케어 7 · 9g · 3 colors</p>
+              <h4>LAYOUT</h4>
+              <ul>
+                <li>풀블리드 우측 모델컷, 좌측 헤드라인 좌측 정렬</li>
+                <li>헤드 아래 서브 + 스워치 미니 3종 가로</li>
+                <li>데스크탑 50:50, 모바일 컷 위 텍스트 아래</li>
+              </ul>
+              <h4>FONT</h4>
+              <p>
+                <b>메인</b> Noto Sans KR 30~40px / 600 · <b>서브</b> Playfair
+                Italic 14~16px / 400
+              </p>
+            </div>
+            <div class="sec-bench">
+              <div class="bh">BENCHMARK</div>
+              <div class="brand">데이지크 럭스 글로우</div>
+              <div class="camp">럭스 글로우 하이라이터 3종</div>
+              <div class="ref-quote">
+                "자연스러운 광채로 피부를 환하게 연출합니다"
+              </div>
+              <h6 class="take">TAKE — 구조만</h6>
+              <ul>
+                <li>미니멀 헤드라인 + 풀블리드 모델</li>
+                <li>제품명 중심, 과한 수사 배제</li>
+              </ul>
+              <h6 class="leave">LEAVE</h6>
+              <ul>
+                <li>제품 패키지 클로즈업</li>
+                <li>영문 슬로건 과다 노출</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 한눈에 보기 -->
+        <div class="sec-block">
+          <div class="sec-head">
+            <div class="left">
+              <span class="no">02</span><span class="title">한눈에 보기</span>
+            </div>
+            <span class="purpose">PROMISE + INGREDIENTS</span>
+          </div>
+          <div class="sec-body">
+            <div class="sec-shot">
+              <div class="shot-slot has-asset">
+                <span class="badge">B</span>
+                <div class="mock thumb-cheek"></div>
+              </div>
+              <div class="shot-info">
+                <b>1:1</b> · 치크 매크로 사이드<br />체크리스트가 메인, 모델
+                컷은 보조
+              </div>
+            </div>
+            <div class="sec-info">
+              <div class="copy-quote">
+                <span class="main">한눈에 보기</span>
+                <span class="sub">광채 + 스킨케어 성분 7종</span>
+              </div>
+              <h4>PROMISE 5</h4>
+              <ul>
+                <li><b>맑게 스미는 일곱 가지 결</b></li>
+                <li><b>스킨케어 성분 7종 함유</b></li>
+                <li><b>세 가지 빛, 세 가지 무드</b></li>
+                <li><b>어떤 톤이든 자연스럽게</b></li>
+                <li><b>손가락·내장 스펀지 두 가지 도포</b></li>
+              </ul>
+              <h4>INGREDIENTS 7</h4>
+              <ul>
+                <li>로즈힙열매오일 · 호호바씨오일 · 살구씨오일</li>
+                <li>글리세린 · 소듐하이알루로네이트</li>
+                <li>시어버터 · 세라마이드</li>
+              </ul>
+              <div class="callout">
+                <b>표기 주의</b> — "임상 입증" "효과 보장" 표현 금지 (기능성
+                화장품 아님). 함유 사실만.
+              </div>
+            </div>
+            <div class="sec-bench">
+              <div class="bh">BENCHMARK</div>
+              <div class="brand">클리오 프리즘 하이라이터</div>
+              <div class="camp">"투명광채"</div>
+              <h6 class="take">TAKE</h6>
+              <ul>
+                <li>체크리스트 + 성분 2단 구조</li>
+                <li>키워드 한 단어 임팩트</li>
+              </ul>
+              <h6 class="leave">LEAVE</h6>
+              <ul>
+                <li>성분 인포그래픽 과다</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 WHY NOW -->
+        <div class="sec-block">
+          <div class="sec-head">
+            <div class="left">
+              <span class="no">03</span><span class="title">WHY NOW</span>
+            </div>
+            <span class="purpose">페인포인트 4종</span>
+          </div>
+          <div class="sec-body">
+            <div class="sec-shot">
+              <div class="shot-slot has-asset">
+                <span class="badge">B</span>
+                <div class="mock thumb-cheek"></div>
+              </div>
+              <div class="shot-info">
+                <b>4:5</b> · 페인포인트 4컷<br />① 떡짐 ② 펄 날림 ③ 건조 ④ 톤
+                미스매치
+              </div>
+            </div>
+            <div class="sec-info">
+              <div class="copy-quote">
+                <span class="main">맞는 광을 못 찾았을 뿐</span>
+                <span class="sub">뭉침, 펄 날림, 건조, 톤 미스매치</span>
+              </div>
+              <h4>PAIN → ANSWER</h4>
+              <ul>
+                <li><b>번들거림</b> — 광이 떡진다 → 광의 결을 도포로 조율</li>
+                <li>
+                  <b>떠도는 펄</b> — 큰 입자가 따로 보인다 → 밀키하고 은은한 광
+                </li>
+                <li><b>건조함·밀림</b> — 광 위에 가루 → 스킨케어 성분 7종</li>
+                <li>
+                  <b>톤 미스매치</b> — 컬러가 들뜬다 → 쿨·뉴트럴·웜 3 컬러
+                </li>
+              </ul>
+              <h4>LAYOUT</h4>
+              <p>2x2 그리드. 좌측 페인 / 우측 답. 사용자 인용은 그리드 아래.</p>
+            </div>
+            <div class="sec-bench">
+              <div class="bh">BENCHMARK</div>
+              <div class="brand">데이지크</div>
+              <div class="camp">럭스 글로우 하이라이터</div>
+              <div class="ref-quote">
+                "자연스러운 광채로 피부를 환하게 연출합니다"
+              </div>
+              <h6 class="take">TAKE</h6>
+              <ul>
+                <li>담백한 톤, 과장 없는 문제 제기</li>
+                <li>페인+답 구조</li>
+              </ul>
+              <h6 class="leave">LEAVE</h6>
+              <ul>
+                <li>"~했던 그날" 식 감성 과잉</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 THE BEAM -->
+        <div class="sec-block">
+          <div class="sec-head">
+            <div class="left">
+              <span class="no">04</span><span class="title">THE BEAM</span>
+            </div>
+            <span class="purpose">광의 7가지 결 · G1</span>
+          </div>
+          <div class="sec-body">
+            <div class="sec-shot">
+              <div class="shot-slot has-asset">
+                <span class="badge">B + G1</span>
+                <div class="mock mp-beam"><div class="cheek"></div></div>
+              </div>
+              <div class="shot-info">
+                <b>4:5 + GIF</b> · 치크 매크로<br />G1: 광원 좌→우 이동, 결 변화
+                표현
+              </div>
+            </div>
+            <div class="sec-info">
+              <div class="copy-quote">
+                <span class="main">맑게 스미는 일곱 가지 결</span>
+                <span class="sub">피부 위에서 결마다 다르게 빛나요</span>
+              </div>
+              <h4>SEVEN FACETS</h4>
+              <p style="display: flex; flex-wrap: wrap; gap: 6px">
+                <code>광채</code><code>반짝임</code><code>눈부신</code
+                ><code>아이시</code><code>밀키</code><code>은은한</code
+                ><code>부드러운</code>
+              </p>
+              <h4>LAYOUT</h4>
+              <p>
+                8 카드 (7결 + "한 점" 키 카드) 4열x2행. 마지막 칸 Ink 배경 강조.
+              </p>
+            </div>
+            <div class="sec-bench">
+              <div class="bh">BENCHMARK</div>
+              <div class="brand">글린트 스틱 하이라이터</div>
+              <div class="camp">"씨-스루 보습광"</div>
+              <div class="ref-quote">
+                "피부 속부터 섬세하게 차오른 듯 투명하게 빛나는"
+              </div>
+              <h6 class="take">TAKE</h6>
+              <ul>
+                <li>"투명하게 빛나는" 질감 표현</li>
+                <li>매크로 광 변화 시퀀스</li>
+              </ul>
+              <h6 class="leave">LEAVE</h6>
+              <ul>
+                <li>"도톰하게 코팅" — 탐뷰티 제형과 다름</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 BEFORE / AFTER -->
+        <div class="sec-block">
+          <div class="sec-head">
+            <div class="left">
+              <span class="no">05</span
+              ><span class="title">BEFORE / AFTER</span>
+            </div>
+            <span class="purpose">3단계 비교</span>
+          </div>
+          <div class="sec-body">
+            <div class="sec-shot">
+              <div class="shot-slot has-asset">
+                <span class="badge">C</span>
+                <div class="mock thumb-ba"></div>
+              </div>
+              <div class="shot-info">
+                <b>4:5</b> · 같은 모델·광원<br />① 바르기 전 ② 1회 바른 후 ③ 2회
+                바른 후
+              </div>
+            </div>
+            <div class="sec-info">
+              <div class="copy-quote">
+                <span class="main">바르기 전, 바른 후</span>
+                <span class="sub">같은 조건, 광채만 달라요</span>
+              </div>
+              <h4>3 STEPS</h4>
+              <ul>
+                <li><b>BEFORE</b> — 베이스 메이크업만, 광 0</li>
+                <li><b>1회 바름</b> — 자연스러운 광, 베이스 광채</li>
+                <li><b>2회 바름</b> — 또렷한 광, 포인트 광채</li>
+              </ul>
+              <div class="callout">
+                <b>표기 주의</b> — "이렇게 달라요" 직설 금지. 단계 라벨만
+                객관적으로. 사진 보정 금지.
+              </div>
+            </div>
+            <div class="sec-bench">
+              <div class="bh">BENCHMARK</div>
+              <div class="brand">글린트</div>
+              <div class="camp">B/A 3단계 구성</div>
+              <h6 class="take">TAKE</h6>
+              <ul>
+                <li>가로 3컷 시퀀스</li>
+                <li>단계 라벨 Playfair Italic</li>
+              </ul>
+              <h6 class="leave">LEAVE</h6>
+              <ul>
+                <li>효과 과장 문구</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 06 3 COLORS -->
+        <div class="sec-block">
+          <div class="sec-head">
+            <div class="left">
+              <span class="no">06</span><span class="title">3 COLORS</span>
+            </div>
+            <span class="purpose">컬러 라인업 · G2</span>
+          </div>
+          <div class="sec-body">
+            <div class="sec-shot">
+              <div class="shot-slot has-asset">
+                <span class="badge">D + G2</span>
+                <div class="mock mp-color"><div class="cheek"></div></div>
+              </div>
+              <div class="shot-info">
+                <b>4:5 + GIF</b> · 동일 치크에 3컬러 차례 발색<br />G2: 각 1초 +
+                0.5초 페이드
+              </div>
+            </div>
+            <div class="sec-info">
+              <div class="copy-quote">
+                <span class="main">세 가지 빛, 세 가지 무드</span>
+                <span class="sub">문스톤, 구미핑크, 테디 골드</span>
+              </div>
+
+              <div class="color-grid">
+                <div class="color-card">
+                  <div class="color-sw c1"></div>
+                  <div class="color-body">
+                    <div class="no">01</div>
+                    <div class="en">Moonstone</div>
+                    <div class="kr">문스톤</div>
+                    <div class="tone">쿨 &amp; 뉴트럴</div>
+                    <div class="desc">달빛처럼 눈부신 아이시 화이트</div>
+                  </div>
+                </div>
+                <div class="color-card">
+                  <div class="color-sw c2"></div>
+                  <div class="color-body">
+                    <div class="no">02</div>
+                    <div class="en">Gummy Pink</div>
+                    <div class="kr">구미핑크</div>
+                    <div class="tone">쿨 &amp; 뉴트럴</div>
+                    <div class="desc">밀키하고 은은한 핑크</div>
+                  </div>
+                </div>
+                <div class="color-card">
+                  <div class="color-sw c3"></div>
+                  <div class="color-body">
+                    <div class="no">03</div>
+                    <div class="en">Teddy Gold</div>
+                    <div class="kr">테디 골드</div>
+                    <div class="tone">웜 &amp; 뉴트럴</div>
+                    <div class="desc">부드러운 베이지 골드</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="callout">
+                <b>컬러명·설명 변경 금지</b> — 위 텍스트는 사이트 옵션 영역 원문
+                그대로.
+              </div>
+            </div>
+            <div class="sec-bench">
+              <div class="bh">BENCHMARK</div>
+              <div class="brand">2an 퓨어 글래시</div>
+              <div class="camp">15 Colors 라인업</div>
+              <div class="ref-quote">"쉘, 프로스티, 피치빔, 슈가 베일"</div>
+              <h6 class="take">TAKE</h6>
+              <ul>
+                <li>컬러명 자체가 카피</li>
+                <li>미니멀 컬러 카드 레이아웃</li>
+              </ul>
+              <h6 class="leave">LEAVE</h6>
+              <ul>
+                <li>15색 과다 나열</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 07 TONE MATCH -->
+        <div class="sec-block">
+          <div class="sec-head">
+            <div class="left">
+              <span class="no">07</span><span class="title">TONE MATCH</span>
+            </div>
+            <span class="purpose">퍼스널컬러 매칭</span>
+          </div>
+          <div class="sec-body">
+            <div class="sec-shot">
+              <div class="shot-slot has-asset">
+                <span class="badge">F</span>
+                <div class="mock thumb-tone"></div>
+              </div>
+              <div class="shot-info">
+                <b>4:5</b> · 쿨/웜 모델 치크 + 매트릭스 임베드<br />라인 아트
+                미니멀
+              </div>
+            </div>
+            <div class="sec-info">
+              <div class="copy-quote">
+                <span class="main">내 톤에 맞는 컬러</span>
+                <span class="sub">어떤 톤이든 자연스럽게</span>
+              </div>
+              <h4>TONE x COLOR</h4>
+              <ul>
+                <li>
+                  <b>01 문스톤</b> — 쿨 &amp; 뉴트럴 · 전체 톤 가능, 베이스
+                  광채로 가볍게
+                </li>
+                <li>
+                  <b>02 구미핑크</b> — 쿨 &amp; 뉴트럴 · 쿨톤 피부, 밀키한 광
+                </li>
+                <li>
+                  <b>03 테디 골드</b> — 웜 &amp; 뉴트럴 · 웜톤 피부, 부드러운
+                  베이지 골드
+                </li>
+              </ul>
+              <h4>LAYOUT</h4>
+              <p>
+                좌측 매트릭스(모델컷 임베드), 우측 표. 모바일은 위/아래 스택.
+              </p>
+            </div>
+            <div class="sec-bench">
+              <div class="bh">BENCHMARK</div>
+              <div class="brand">데이지크</div>
+              <div class="camp">퍼스널컬러 가이드</div>
+              <h6 class="take">TAKE</h6>
+              <ul>
+                <li>톤별 추천 매트릭스 구조</li>
+              </ul>
+              <h6 class="leave">LEAVE</h6>
+              <ul>
+                <li>인포그래픽 단독 (모델컷 없이)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 08 HOW TO -->
+        <div class="sec-block">
+          <div class="sec-head">
+            <div class="left">
+              <span class="no">08</span><span class="title">HOW TO</span>
+            </div>
+            <span class="purpose">사용법 + 응용 · G3</span>
+          </div>
+          <div class="sec-body">
+            <div class="sec-shot">
+              <div class="shot-slot has-asset">
+                <span class="badge">E + G3</span>
+                <div class="mock mp-apply">
+                  <div class="dot"></div>
+                  <div class="finger"></div>
+                </div>
+              </div>
+              <div class="shot-info">
+                <b>4:5 + GIF</b> · 손가락 도포 → 스펀지<br />G3: 3~5초 루프,
+                모델 손과 치크만
+              </div>
+            </div>
+            <div class="sec-info">
+              <div class="copy-quote">
+                <span class="main">톡톡, 가볍게</span>
+                <span class="sub">손가락으로 톡톡, 스펀지로 자연스럽게</span>
+              </div>
+              <h4>사이트 원문</h4>
+              <p
+                style="
+                  background: var(--pink-bg);
+                  padding: 10px 14px;
+                  border-radius: 4px;
+                  font-style: italic;
+                  font-size: 12.5px;
+                "
+              >
+                "입체감이 필요한 부위에 광채와 반짝임이 필요할 때 손가락 또는
+                내장된 스펀지를 활용하여 펴 발라 줍니다."
+              </p>
+              <h4>APPLICATOR</h4>
+              <ul>
+                <li><b>손가락</b> — 또렷한 광채</li>
+                <li><b>내장 스펀지</b> — 자연스러운 광채</li>
+              </ul>
+              <h4>TIPS</h4>
+              <ul>
+                <li>콧등에 한 점 — 코끝 입체감</li>
+                <li>눈 밑 C존 — 피부 톤 환기</li>
+                <li>입술 위 한 점 — 입술산 입체감</li>
+                <li>쇄골·어깨 — 광 포인트 강조</li>
+              </ul>
+            </div>
+            <div class="sec-bench">
+              <div class="bh">BENCHMARK</div>
+              <div class="brand">글린트</div>
+              <div class="camp">"피부에 직접 대어 펴 바르거나"</div>
+              <h6 class="take">TAKE</h6>
+              <ul>
+                <li>사용법 시퀀스 컷</li>
+                <li>어플리케이터 2종 비교</li>
+              </ul>
+              <h6 class="leave">LEAVE</h6>
+              <ul>
+                <li>일러스트 단독 설명</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 09 TIMELINE -->
+        <div class="sec-block">
+          <div class="sec-head">
+            <div class="left">
+              <span class="no">09</span><span class="title">TIMELINE</span>
+            </div>
+            <span class="purpose">시간별 광채 시퀀스</span>
+          </div>
+          <div class="sec-body">
+            <div class="sec-shot">
+              <div class="shot-slot has-asset">
+                <span class="badge">G</span>
+                <div class="mock thumb-time"></div>
+              </div>
+              <div class="shot-info">
+                <b>4:5</b> · 같은 모델·각도, 시간만 변수<br />① 직후 ② 30분 후 ③
+                외출 후
+              </div>
+            </div>
+            <div class="sec-info">
+              <div class="copy-quote">
+                <span class="main">시간이 지나도 맑게</span>
+                <span class="sub">바른 직후, 30분 후, 외출 후까지</span>
+              </div>
+              <h4>3 STEPS</h4>
+              <ul>
+                <li><b>사용 직후</b> — 또렷한 광 <code>0'</code></li>
+                <li><b>30분 후</b> — 피부에 안착 <code>30'</code></li>
+                <li><b>외출 후</b> — 자연스러운 광 <code>OUT</code></li>
+              </ul>
+              <div class="callout">
+                <b>표기 주의</b> — "8시간 지속" 같은 수치 단정 금지. 시나리오
+                표현만.
+              </div>
+            </div>
+            <div class="sec-bench">
+              <div class="bh">BENCHMARK</div>
+              <div class="brand">글린트</div>
+              <div class="camp">"씨-스루 보습광" 지속력 컷</div>
+              <h6 class="take">TAKE</h6>
+              <ul>
+                <li>시간순 3컷 시퀀스 + 타임 태그</li>
+              </ul>
+              <h6 class="leave">LEAVE</h6>
+              <ul>
+                <li>"N시간 지속" 수치 단정</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10 CLOSING -->
+        <div class="sec-block">
+          <div class="sec-head">
+            <div class="left">
+              <span class="no">10</span><span class="title">CLOSING</span>
+            </div>
+            <span class="purpose">페이지 마감</span>
+          </div>
+          <div class="sec-body">
+            <div class="sec-shot">
+              <div class="shot-slot has-asset">
+                <span class="badge">H</span>
+                <div class="mock thumb-close"></div>
+              </div>
+              <div class="shot-info">
+                <b>16:9</b> · HERO와 같은 톤<br />다른 각도 또는 다른 모델 · 5월
+                자연광
+              </div>
+            </div>
+            <div class="sec-info">
+              <div class="copy-quote">
+                <span class="main">투명하게 빛나는, 매일</span>
+                <span class="sub">더 젤리 빔 하이라이터</span>
+              </div>
+              <h4>LAYOUT</h4>
+              <p>
+                한 줄 카피 중앙 정렬. 위 여백 충분히. 아래 Cafe24 표준 CTA가
+                자연 연결. 모바일 22~24px.
+              </p>
+            </div>
+            <div class="sec-bench">
+              <div class="bh">BENCHMARK</div>
+              <div class="brand">데이지크</div>
+              <div class="camp">클로징 비주얼</div>
+              <div class="ref-quote">
+                "자연스러운 광채로 피부를 환하게 연출합니다"
+              </div>
+              <h6 class="take">TAKE</h6>
+              <ul>
+                <li>단정한 한 줄 마감</li>
+                <li>풀블리드 + 여백</li>
+              </ul>
+              <h6 class="leave">LEAVE</h6>
+              <ul>
+                <li>CTA 버튼 직접 배치 (Cafe24 영역)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="motif-rule"></div>
+
+      <!-- ============ SEC 04 — MOTION GUIDE ============ -->
+      <section>
+        <div class="sec-no">SEC 04 — MOTION GUIDE</div>
+        <h2>GIF 모션 가이드</h2>
+        <p class="lede">
+          3종 GIF. 모바일 1080x1350 기준. 3~5초 무한 루프. 자동 재생. 음성 없음.
+        </p>
+
+        <div class="motion-grid">
+          <div class="motion-card">
+            <div class="motion-preview mp-beam"><div class="cheek"></div></div>
+            <div class="motion-info">
+              <div class="code">G1</div>
+              <div class="name">BEAM SHIFT</div>
+              <div class="desc">
+                광원 각도가 좌→우로 이동하며 광 결이
+                광채→반짝임→은은→부드러운으로 변화. 고정 카메라.
+              </div>
+              <div class="specs">
+                <span class="spec">4:5</span>
+                <span class="spec">4초</span>
+                <span class="spec">24fps</span>
+                <span class="spec">SEC 04</span>
+              </div>
+            </div>
+          </div>
+          <div class="motion-card">
+            <div class="motion-preview mp-color"><div class="cheek"></div></div>
+            <div class="motion-info">
+              <div class="code">G2</div>
+              <div class="name">COLOR DRAW</div>
+              <div class="desc">
+                동일 치크 위에 문스톤 → 구미핑크 → 테디 골드 차례 발색. 각 1초 +
+                0.5초 페이드.
+              </div>
+              <div class="specs">
+                <span class="spec">4:5</span>
+                <span class="spec">4.5초</span>
+                <span class="spec">24fps</span>
+                <span class="spec">SEC 06</span>
+              </div>
+            </div>
+          </div>
+          <div class="motion-card">
+            <div class="motion-preview mp-apply">
+              <div class="dot"></div>
+              <div class="finger"></div>
+            </div>
+            <div class="motion-info">
+              <div class="code">G3</div>
+              <div class="name">APPLY</div>
+              <div class="desc">
+                손가락 톡톡 도포 → 내장 스펀지로 펴기. 모델 손과 치크만.
+              </div>
+              <div class="specs">
+                <span class="spec">4:5</span>
+                <span class="spec">3~5초</span>
+                <span class="spec">24fps</span>
+                <span class="spec">SEC 08</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="motif-rule"></div>
+
+      <!-- ============ SEC 05 — COPY DECK ============ -->
+      <section>
+        <div class="sec-no">SEC 05 — COPY DECK</div>
+        <h2>전체 카피 덱</h2>
+        <p class="lede">
+          데이지크·글린트·2an 톤 참조. 담백하고 감각적. 폰트 스펙은 각 섹션
+          참조.
+        </p>
+
+        <div class="copy-deck">
+          <div class="cd-card">
+            <div class="cd-no">01 HERO</div>
+            <div class="cd-main">탐뷰티 하이라이터</div>
+            <div
+              class="cd-sub"
+              style="font-style: italic; letter-spacing: 0.5px"
+            >
+              The Jelly Beam Highlighter
+            </div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-no">02 한눈에 보기</div>
+            <div class="cd-main">한눈에 보기</div>
+            <div class="cd-sub">광채 + 스킨케어 성분 7종</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-no">03 WHY NOW</div>
+            <div class="cd-main">맞는 광을 못 찾았을 뿐</div>
+            <div class="cd-sub">뭉침, 펄 날림, 건조, 톤 미스매치</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-no">04 THE BEAM</div>
+            <div class="cd-main">맑게 스미는 일곱 가지 결</div>
+            <div class="cd-sub">피부 위에서 결마다 다르게 빛나요</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-no">05 BEFORE / AFTER</div>
+            <div class="cd-main">바르기 전, 바른 후</div>
+            <div class="cd-sub">같은 조건, 광채만 달라요</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-no">06 3 COLORS</div>
+            <div class="cd-main">세 가지 빛, 세 가지 무드</div>
+            <div class="cd-sub">문스톤, 구미핑크, 테디 골드</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-no">07 TONE MATCH</div>
+            <div class="cd-main">내 톤에 맞는 컬러</div>
+            <div class="cd-sub">어떤 톤이든 자연스럽게</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-no">08 HOW TO</div>
+            <div class="cd-main">톡톡, 가볍게</div>
+            <div class="cd-sub">손가락으로 톡톡, 스펀지로 자연스럽게</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-no">09 TIMELINE</div>
+            <div class="cd-main">시간이 지나도 맑게</div>
+            <div class="cd-sub">바른 직후, 30분 후, 외출 후까지</div>
+          </div>
+          <div class="cd-card">
+            <div class="cd-no">10 CLOSING</div>
+            <div class="cd-main">투명하게 빛나는, 매일</div>
+            <div class="cd-sub">더 젤리 빔 하이라이터</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="motif-rule"></div>
+
+      <!-- ============ SEC 06 — WORK NOTES ============ -->
+      <section>
+        <div class="sec-no">SEC 06 — WORK NOTES</div>
+        <h2>작업 노트</h2>
+        <p class="lede">시안 진행 시 주의사항.</p>
+
+        <div class="checklist">
+          <ul>
+            <li>
+              <b>포지셔닝</b> — "광채 + 스킨케어 7" 결합 하이라이터. 차별점은 광
+              뒤에 스킨케어가 같이 가는 구조.
+            </li>
+            <li>
+              <b>카피 톤</b> — 데이지크(단정·감각) + 글린트(질감·투명) +
+              2an(컬러명 자체가 카피). 과장·수사 배제.
+            </li>
+            <li>
+              <b>타겟</b> — 광범위. 광채 입문자~숙련자, 데일리~특별한 날.
+              19~24만 좁히지 말 것.
+            </li>
+            <li>
+              <b>시즈널</b> — 2026.05 출시 = 봄~초여름. 자연광·연한 핑크·살랑한
+              무드. 무거운 가을·겨울 톤 금지.
+            </li>
+            <li>
+              <b>모바일 우선</b> — 90%+ 모바일 트래픽. 모바일 360 기준 설계 후
+              데스크탑 1240 확장.
+            </li>
+            <li>
+              <b>모델 컷 우선</b> — 손등 스워치, 성분 인포그래픽, 일러스트 단독
+              금지.
+            </li>
+            <li>
+              <b>패키지 절대 노출 금지</b> — 제품·패키지 단독컷, 카메라 정면
+              잡힌 컷 모두 금지.
+            </li>
+            <li>
+              <b>Cafe24 영역 제외</b> — 가격, CTA, 옵션, 배송/교환, 법적 표기는
+              Cafe24 처리.
+            </li>
+            <li>
+              <b>컬러 카피 변경 금지</b> — 3 컬러 한글명·영문명·톤 분류·한 줄
+              설명 원문 그대로.
+            </li>
+            <li>
+              <b>리뷰 오타 보존</b> — "밀림현상도없고", "광이나네요" 등 원문
+              그대로.
+            </li>
+            <li>
+              <b>색상 운영</b> — Gummy Pink가 페이지 톤 주도. Teddy Gold는 한
+              화면 1~2회만.
+            </li>
+            <li><b>이미지 비율</b> — 메인 4:5, HERO/CLOSING 16:9, UGC 1:1.</li>
+            <li>
+              <b>GIF 사양</b> — 3~5초 무한 루프, 자동 재생, 음성 없음. 모바일
+              1080x1350.
+            </li>
+            <li>
+              <b>표기 금지</b> — "임상 입증" "효과 보장", 별점 4.9(실제 5.0),
+              외부 매체 인용, 해시태그.
+            </li>
+            <li><b>섹션 간격</b> — 데스크탑 80~120px, 모바일 48~72px.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <!-- .wrap -->
+
+    <div class="footer-note">
+      TAM BEAUTY · The Jelly Beam Highlighter · Designer Handoff v15
+    </div>
+  </body>
+</html>
