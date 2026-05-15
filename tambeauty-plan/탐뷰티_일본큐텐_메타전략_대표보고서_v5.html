@@ -30,19 +30,34 @@
         --blue: #2862c0;
         --blue-soft: #e3edfb;
       }
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      html, body {
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
         background: var(--bg);
         color: var(--ink);
-        font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
         line-height: 1.7;
         -webkit-font-smoothing: antialiased;
       }
-      .page { max-width: 1000px; margin: 0 auto; padding: 56px 48px 120px; }
+      .page {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 56px 48px 120px;
+      }
 
       /* Cover */
       .cover {
-        background: linear-gradient(135deg, #fff5f8 0%, #fbc4cf 55%, #ffeeef 100%);
+        background: linear-gradient(
+          135deg,
+          #fff5f8 0%,
+          #fbc4cf 55%,
+          #ffeeef 100%
+        );
         padding: 88px 64px;
         border-radius: 28px;
         margin-bottom: 64px;
@@ -52,72 +67,128 @@
       }
       .cover::before {
         content: '';
-        position: absolute; right: -100px; top: -100px;
-        width: 360px; height: 360px;
-        background: radial-gradient(circle, rgba(241,142,165,0.28) 0%, transparent 70%);
+        position: absolute;
+        right: -100px;
+        top: -100px;
+        width: 360px;
+        height: 360px;
+        background: radial-gradient(
+          circle,
+          rgba(241, 142, 165, 0.28) 0%,
+          transparent 70%
+        );
         border-radius: 50%;
       }
       .cover::after {
         content: '';
-        position: absolute; right: 80px; bottom: -120px;
-        width: 320px; height: 320px;
-        background: radial-gradient(circle, rgba(212,58,74,0.15) 0%, transparent 70%);
+        position: absolute;
+        right: 80px;
+        bottom: -120px;
+        width: 320px;
+        height: 320px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 58, 74, 0.15) 0%,
+          transparent 70%
+        );
         border-radius: 50%;
       }
       .tag {
-        display: inline-block; padding: 7px 16px;
-        background: rgba(255,255,255,0.8);
+        display: inline-block;
+        padding: 7px 16px;
+        background: rgba(255, 255, 255, 0.8);
         border: 1px solid var(--line);
         border-radius: 100px;
-        font-size: 12px; font-weight: 700;
-        margin-bottom: 22px; color: var(--gray);
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 22px;
+        color: var(--gray);
         letter-spacing: 1.5px;
       }
       .version-tag {
-        display: inline-block; padding: 4px 12px;
-        background: var(--ink); color: white;
-        border-radius: 6px; font-size: 11px; font-weight: 800;
-        letter-spacing: 1.5px; margin-left: 8px;
+        display: inline-block;
+        padding: 4px 12px;
+        background: var(--ink);
+        color: white;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        margin-left: 8px;
       }
       h1.title {
-        font-size: 48px; font-weight: 800;
-        line-height: 1.22; letter-spacing: -1.6px;
+        font-size: 48px;
+        font-weight: 800;
+        line-height: 1.22;
+        letter-spacing: -1.6px;
         margin-bottom: 18px;
-        position: relative; z-index: 2;
+        position: relative;
+        z-index: 2;
       }
       h1.title em {
         font-style: normal;
-        background: linear-gradient(180deg, transparent 60%, rgba(255,255,255,0.65) 60%);
+        background: linear-gradient(
+          180deg,
+          transparent 60%,
+          rgba(255, 255, 255, 0.65) 60%
+        );
       }
       .cover .subtitle {
-        font-size: 17.5px; font-weight: 500; color: var(--gray);
-        max-width: 760px; line-height: 1.65;
-        position: relative; z-index: 2;
+        font-size: 17.5px;
+        font-weight: 500;
+        color: var(--gray);
+        max-width: 760px;
+        line-height: 1.65;
+        position: relative;
+        z-index: 2;
       }
       .cover .meta {
-        display: flex; gap: 36px;
-        margin-top: 44px; position: relative; z-index: 2;
+        display: flex;
+        gap: 36px;
+        margin-top: 44px;
+        position: relative;
+        z-index: 2;
         flex-wrap: wrap;
       }
-      .cover .meta div { font-size: 13px; color: var(--gray); }
-      .cover .meta strong { display: block; color: var(--ink); font-size: 15px; font-weight: 700; margin-top: 4px; }
+      .cover .meta div {
+        font-size: 13px;
+        color: var(--gray);
+      }
+      .cover .meta strong {
+        display: block;
+        color: var(--ink);
+        font-size: 15px;
+        font-weight: 700;
+        margin-top: 4px;
+      }
 
       /* Section */
-      section { margin-bottom: 72px; }
-      .section-head { margin-bottom: 32px; }
+      section {
+        margin-bottom: 72px;
+      }
+      .section-head {
+        margin-bottom: 32px;
+      }
       .section-num {
         display: inline-block;
-        font-size: 12px; font-weight: 700; letter-spacing: 2px;
-        color: var(--pink-deep); margin-bottom: 12px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--pink-deep);
+        margin-bottom: 12px;
       }
       h2 {
-        font-size: 30px; font-weight: 800;
-        letter-spacing: -0.8px; line-height: 1.32;
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -0.8px;
+        line-height: 1.32;
         margin-bottom: 14px;
       }
       .lede {
-        font-size: 16.5px; color: var(--gray);
-        max-width: 820px; line-height: 1.7;
+        font-size: 16.5px;
+        color: var(--gray);
+        max-width: 820px;
+        line-height: 1.7;
       }
 
       /* Empathy block */
@@ -129,22 +200,30 @@
         margin-bottom: 32px;
       }
       .empathy .quote-mark {
-        font-size: 40px; line-height: 1;
-        color: var(--pink-deep); font-weight: 800;
+        font-size: 40px;
+        line-height: 1;
+        color: var(--pink-deep);
+        font-weight: 800;
         margin-bottom: 4px;
       }
       .empathy .quote {
-        font-size: 19px; font-weight: 600;
-        color: var(--ink); line-height: 1.55;
+        font-size: 19px;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.55;
         margin-bottom: 16px;
       }
       .empathy .response-label {
-        font-size: 11px; font-weight: 800;
-        color: var(--pink-deep); letter-spacing: 2px;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--pink-deep);
+        letter-spacing: 2px;
         margin-bottom: 8px;
       }
       .empathy .response {
-        font-size: 15.5px; color: var(--gray); line-height: 1.7;
+        font-size: 15.5px;
+        color: var(--gray);
+        line-height: 1.7;
       }
 
       /* Evidence callout */
@@ -157,24 +236,35 @@
       }
       .evidence-label {
         display: inline-block;
-        font-size: 11px; font-weight: 800;
-        color: var(--blue); letter-spacing: 1.5px;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--blue);
+        letter-spacing: 1.5px;
         margin-bottom: 8px;
       }
       .evidence h4 {
-        font-size: 15px; font-weight: 700;
-        margin-bottom: 6px; color: var(--ink);
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: var(--ink);
       }
       .evidence p {
-        font-size: 14px; color: var(--gray); line-height: 1.65;
+        font-size: 14px;
+        color: var(--gray);
+        line-height: 1.65;
       }
       .evidence .ev-link {
-        display: inline-block; margin-top: 10px;
-        font-size: 12.5px; font-weight: 700;
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 12.5px;
+        font-weight: 700;
         color: var(--blue);
-        text-decoration: underline; text-underline-offset: 3px;
+        text-decoration: underline;
+        text-underline-offset: 3px;
       }
-      .evidence .ev-link:hover { color: var(--navy); }
+      .evidence .ev-link:hover {
+        color: var(--navy);
+      }
 
       /* Truth blocks */
       .truth-block {
@@ -187,39 +277,54 @@
       }
       .truth-block .belief {
         display: inline-block;
-        font-size: 11px; font-weight: 800;
-        color: var(--bad); letter-spacing: 1.5px;
-        padding: 4px 10px; border-radius: 6px;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--bad);
+        letter-spacing: 1.5px;
+        padding: 4px 10px;
+        border-radius: 6px;
         background: var(--bad-soft);
         margin-bottom: 12px;
       }
       .truth-block h3 {
-        font-size: 17px; font-weight: 700;
-        margin-bottom: 8px; letter-spacing: -0.3px;
-        color: var(--gray); text-decoration: line-through;
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: -0.3px;
+        color: var(--gray);
+        text-decoration: line-through;
         text-decoration-color: var(--bad);
         text-decoration-thickness: 2px;
       }
       .truth-block .truth-label {
         display: inline-block;
-        font-size: 11px; font-weight: 800;
-        color: var(--good); letter-spacing: 1.5px;
-        padding: 4px 10px; border-radius: 6px;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--good);
+        letter-spacing: 1.5px;
+        padding: 4px 10px;
+        border-radius: 6px;
         background: var(--good-soft);
         margin: 12px 0 8px;
       }
       .truth-block .truth-text {
-        font-size: 16px; font-weight: 700;
-        color: var(--ink); line-height: 1.55;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.55;
         margin-bottom: 12px;
       }
       .truth-block p {
-        font-size: 14.5px; color: var(--gray); line-height: 1.7;
+        font-size: 14.5px;
+        color: var(--gray);
+        line-height: 1.7;
       }
 
       /* Era comparison */
       .era-grid {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
       }
       .era-card {
         background: var(--paper);
@@ -237,37 +342,59 @@
       }
       .era-period {
         display: inline-block;
-        font-size: 12px; font-weight: 800;
+        font-size: 12px;
+        font-weight: 800;
         letter-spacing: 1.5px;
-        padding: 5px 12px; border-radius: 6px;
+        padding: 5px 12px;
+        border-radius: 6px;
         margin-bottom: 14px;
       }
-      .era-card.past .era-period { background: var(--bg); color: var(--gray); }
-      .era-card.now .era-period { background: var(--pink-deep); color: white; }
-      .era-card h3 {
-        font-size: 20px; font-weight: 800;
-        margin-bottom: 18px; letter-spacing: -0.4px;
+      .era-card.past .era-period {
+        background: var(--bg);
+        color: var(--gray);
       }
-      .era-card ul { list-style: none; padding: 0; }
+      .era-card.now .era-period {
+        background: var(--pink-deep);
+        color: white;
+      }
+      .era-card h3 {
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 18px;
+        letter-spacing: -0.4px;
+      }
+      .era-card ul {
+        list-style: none;
+        padding: 0;
+      }
       .era-card li {
-        font-size: 14.5px; color: var(--gray);
-        padding: 10px 0; padding-left: 28px;
-        position: relative; line-height: 1.6;
+        font-size: 14.5px;
+        color: var(--gray);
+        padding: 10px 0;
+        padding-left: 28px;
+        position: relative;
+        line-height: 1.6;
         border-bottom: 1px dashed var(--line);
       }
-      .era-card li:last-child { border-bottom: none; }
+      .era-card li:last-child {
+        border-bottom: none;
+      }
       .era-card li strong {
-        display: block; color: var(--ink);
-        font-weight: 700; margin-bottom: 2px;
+        display: block;
+        color: var(--ink);
+        font-weight: 700;
+        margin-bottom: 2px;
       }
       .era-card.past li::before {
         content: '○';
-        position: absolute; left: 4px;
+        position: absolute;
+        left: 4px;
         color: var(--gray-soft);
       }
       .era-card.now li::before {
         content: '●';
-        position: absolute; left: 4px;
+        position: absolute;
+        left: 4px;
         color: var(--pink-deep);
       }
 
@@ -283,44 +410,68 @@
       }
       .korea-block::before {
         content: '';
-        position: absolute; right: -60px; bottom: -60px;
-        width: 240px; height: 240px;
-        background: radial-gradient(circle, rgba(251,196,207,0.15) 0%, transparent 70%);
+        position: absolute;
+        right: -60px;
+        bottom: -60px;
+        width: 240px;
+        height: 240px;
+        background: radial-gradient(
+          circle,
+          rgba(251, 196, 207, 0.15) 0%,
+          transparent 70%
+        );
       }
       .korea-block .k-label {
-        font-size: 11px; font-weight: 800;
-        color: var(--pink); letter-spacing: 2px;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--pink);
+        letter-spacing: 2px;
         margin-bottom: 14px;
       }
       .korea-block h3 {
-        font-size: 24px; font-weight: 800;
-        margin-bottom: 18px; letter-spacing: -0.5px;
+        font-size: 24px;
+        font-weight: 800;
+        margin-bottom: 18px;
+        letter-spacing: -0.5px;
         color: white;
       }
       .korea-block p {
-        font-size: 15.5px; color: rgba(255,255,255,0.82);
-        line-height: 1.7; max-width: 800px;
+        font-size: 15.5px;
+        color: rgba(255, 255, 255, 0.82);
+        line-height: 1.7;
+        max-width: 800px;
       }
-      .korea-block p + p { margin-top: 12px; }
-      .korea-block strong { color: var(--pink); font-weight: 700; }
+      .korea-block p + p {
+        margin-top: 12px;
+      }
+      .korea-block strong {
+        color: var(--pink);
+        font-weight: 700;
+      }
       .korea-stats {
-        display: grid; grid-template-columns: repeat(3, 1fr);
-        gap: 16px; margin-top: 24px;
-        position: relative; z-index: 2;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 24px;
+        position: relative;
+        z-index: 2;
       }
       .k-stat {
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(255,255,255,0.15);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 12px;
         padding: 18px 20px;
       }
       .k-stat-num {
-        font-size: 28px; font-weight: 800;
-        color: var(--pink); letter-spacing: -0.5px;
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--pink);
+        letter-spacing: -0.5px;
         margin-bottom: 4px;
       }
       .k-stat-label {
-        font-size: 12.5px; color: rgba(255,255,255,0.7);
+        font-size: 12.5px;
+        color: rgba(255, 255, 255, 0.7);
         line-height: 1.5;
       }
 
@@ -336,30 +487,47 @@
         grid-template-columns: 200px 1fr 1fr;
         background: var(--bg);
         border-bottom: 2px solid var(--line);
-        font-size: 13px; font-weight: 800;
-        color: var(--gray); letter-spacing: 1px;
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--gray);
+        letter-spacing: 1px;
       }
-      .compare-header > div { padding: 16px 20px; }
+      .compare-header > div {
+        padding: 16px 20px;
+      }
       .compare-row {
         display: grid;
         grid-template-columns: 200px 1fr 1fr;
         border-bottom: 1px solid var(--line);
       }
-      .compare-row:last-child { border-bottom: none; }
-      .compare-row > div { padding: 18px 20px; font-size: 14.5px; line-height: 1.6; }
-      .compare-row > div:first-child {
-        font-weight: 700; color: var(--ink);
-        background: var(--bg); font-size: 14px;
+      .compare-row:last-child {
+        border-bottom: none;
       }
-      .compare-row > div:nth-child(2) { color: var(--gray); }
+      .compare-row > div {
+        padding: 18px 20px;
+        font-size: 14.5px;
+        line-height: 1.6;
+      }
+      .compare-row > div:first-child {
+        font-weight: 700;
+        color: var(--ink);
+        background: var(--bg);
+        font-size: 14px;
+      }
+      .compare-row > div:nth-child(2) {
+        color: var(--gray);
+      }
       .compare-row > div:nth-child(3) {
-        color: var(--ink); font-weight: 500;
+        color: var(--ink);
+        font-weight: 500;
         border-left: 1px solid var(--line);
       }
 
       /* Scenario */
       .scenario-grid {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
         margin-bottom: 24px;
       }
       .scenario {
@@ -374,55 +542,86 @@
       }
       .scenario .s-tag {
         display: inline-block;
-        font-size: 11px; font-weight: 800;
+        font-size: 11px;
+        font-weight: 800;
         letter-spacing: 1.5px;
-        padding: 4px 10px; border-radius: 6px;
+        padding: 4px 10px;
+        border-radius: 6px;
         margin-bottom: 12px;
       }
-      .scenario.lose .s-tag { background: var(--bg); color: var(--gray); }
-      .scenario.win .s-tag { background: var(--pink-deep); color: white; }
+      .scenario.lose .s-tag {
+        background: var(--bg);
+        color: var(--gray);
+      }
+      .scenario.win .s-tag {
+        background: var(--pink-deep);
+        color: white;
+      }
       .scenario h3 {
-        font-size: 19px; font-weight: 800;
-        margin-bottom: 8px; letter-spacing: -0.3px;
+        font-size: 19px;
+        font-weight: 800;
+        margin-bottom: 8px;
+        letter-spacing: -0.3px;
       }
       .scenario .s-sub {
-        font-size: 13px; color: var(--gray);
+        font-size: 13px;
+        color: var(--gray);
         margin-bottom: 18px;
       }
       .scenario .s-stats {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
         margin-bottom: 18px;
       }
       .scenario .s-stat {
-        background: rgba(255,255,255,0.7);
+        background: rgba(255, 255, 255, 0.7);
         border: 1px solid var(--line);
         border-radius: 10px;
         padding: 14px 16px;
       }
-      .scenario.lose .s-stat { background: var(--bg); }
+      .scenario.lose .s-stat {
+        background: var(--bg);
+      }
       .scenario .s-stat-label {
-        font-size: 11px; color: var(--gray-soft);
-        font-weight: 700; letter-spacing: 0.5px;
+        font-size: 11px;
+        color: var(--gray-soft);
+        font-weight: 700;
+        letter-spacing: 0.5px;
         margin-bottom: 4px;
       }
       .scenario .s-stat-value {
-        font-size: 18px; font-weight: 800;
+        font-size: 18px;
+        font-weight: 800;
         letter-spacing: -0.3px;
       }
-      .scenario.win .s-stat-value { color: var(--pink-deep); }
-      .scenario.lose .s-stat-value { color: var(--gray); }
-      .scenario ul { list-style: none; padding: 0; }
+      .scenario.win .s-stat-value {
+        color: var(--pink-deep);
+      }
+      .scenario.lose .s-stat-value {
+        color: var(--gray);
+      }
+      .scenario ul {
+        list-style: none;
+        padding: 0;
+      }
       .scenario li {
-        font-size: 14px; color: var(--gray);
-        padding: 6px 0; padding-left: 20px;
-        position: relative; line-height: 1.6;
+        font-size: 14px;
+        color: var(--gray);
+        padding: 6px 0;
+        padding-left: 20px;
+        position: relative;
+        line-height: 1.6;
       }
       .scenario li::before {
         content: '•';
-        position: absolute; left: 6px;
+        position: absolute;
+        left: 6px;
         color: var(--pink-deep);
       }
-      .scenario.lose li::before { color: var(--gray-soft); }
+      .scenario.lose li::before {
+        color: var(--gray-soft);
+      }
 
       /* Keypoints */
       .keypoint-list {
@@ -439,32 +638,44 @@
         gap: 24px;
         align-items: start;
       }
-      .keypoint:last-child { border-bottom: none; }
+      .keypoint:last-child {
+        border-bottom: none;
+      }
       .keypoint .kp-num {
-        font-size: 32px; font-weight: 800;
-        color: var(--pink-deep); line-height: 1;
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--pink-deep);
+        line-height: 1;
         letter-spacing: -1px;
       }
       .keypoint h3 {
-        font-size: 18px; font-weight: 700;
-        margin-bottom: 8px; letter-spacing: -0.3px;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: -0.3px;
       }
       .keypoint p {
-        font-size: 14.5px; color: var(--gray); line-height: 1.7;
+        font-size: 14.5px;
+        color: var(--gray);
+        line-height: 1.7;
       }
       .keypoint .kp-emphasis {
         margin-top: 12px;
         padding: 10px 14px;
         background: var(--pink-pale);
         border-left: 3px solid var(--pink-deep);
-        font-size: 13.5px; font-weight: 600;
-        color: var(--ink); line-height: 1.55;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.55;
         border-radius: 0 8px 8px 0;
       }
 
       /* Options */
       .option-grid {
-        display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
       }
       .option {
         background: var(--paper);
@@ -478,45 +689,72 @@
         background: linear-gradient(135deg, #fff 0%, var(--pink-pale) 100%);
       }
       .option .badge {
-        position: absolute; top: -12px; right: 20px;
-        background: var(--pink-deep); color: white;
-        font-size: 11px; font-weight: 800;
-        padding: 5px 12px; border-radius: 100px;
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        background: var(--pink-deep);
+        color: white;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 5px 12px;
+        border-radius: 100px;
         letter-spacing: 1px;
       }
       .option .o-name {
-        font-size: 12px; font-weight: 800;
-        color: var(--gray-soft); letter-spacing: 1.5px;
+        font-size: 12px;
+        font-weight: 800;
+        color: var(--gray-soft);
+        letter-spacing: 1.5px;
         margin-bottom: 8px;
       }
       .option h3 {
-        font-size: 18px; font-weight: 700;
-        margin-bottom: 14px; letter-spacing: -0.3px;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        letter-spacing: -0.3px;
       }
       .option .o-cost {
-        font-size: 22px; font-weight: 800;
-        color: var(--pink-deep); margin-bottom: 16px;
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--pink-deep);
+        margin-bottom: 16px;
       }
-      .option.lose .o-cost { color: var(--gray); }
-      .option ul { list-style: none; padding: 0; margin-bottom: 16px; }
+      .option.lose .o-cost {
+        color: var(--gray);
+      }
+      .option ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 16px;
+      }
       .option li {
-        font-size: 13.5px; color: var(--gray);
-        padding: 4px 0; padding-left: 16px;
-        position: relative; line-height: 1.5;
+        font-size: 13.5px;
+        color: var(--gray);
+        padding: 4px 0;
+        padding-left: 16px;
+        position: relative;
+        line-height: 1.5;
       }
       .option li::before {
         content: '·';
-        position: absolute; left: 4px;
+        position: absolute;
+        left: 4px;
         color: var(--pink-deep);
-        font-weight: 800; font-size: 18px; line-height: 1;
+        font-weight: 800;
+        font-size: 18px;
+        line-height: 1;
       }
       .option .o-verdict {
-        font-size: 13px; font-weight: 700;
+        font-size: 13px;
+        font-weight: 700;
         padding-top: 12px;
         border-top: 1px solid var(--line);
-        color: var(--gray); line-height: 1.5;
+        color: var(--gray);
+        line-height: 1.5;
       }
-      .option.recommended .o-verdict { color: var(--pink-deep); }
+      .option.recommended .o-verdict {
+        color: var(--pink-deep);
+      }
 
       /* Asset block */
       .asset-block {
@@ -530,26 +768,44 @@
       }
       .asset-block::before {
         content: '';
-        position: absolute; right: -40px; bottom: -40px;
-        width: 200px; height: 200px;
-        background: radial-gradient(circle, rgba(251,196,207,0.15) 0%, transparent 70%);
+        position: absolute;
+        right: -40px;
+        bottom: -40px;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(
+          circle,
+          rgba(251, 196, 207, 0.15) 0%,
+          transparent 70%
+        );
       }
       .asset-block .ab-label {
-        font-size: 11px; font-weight: 800;
-        color: var(--pink); letter-spacing: 2px;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--pink);
+        letter-spacing: 2px;
         margin-bottom: 14px;
       }
       .asset-block h3 {
-        font-size: 24px; font-weight: 800;
-        color: white; margin-bottom: 14px;
+        font-size: 24px;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 14px;
         letter-spacing: -0.5px;
       }
       .asset-block p {
-        font-size: 16px; color: rgba(255,255,255,0.8);
-        line-height: 1.65; max-width: 700px;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.65;
+        max-width: 700px;
       }
-      .asset-block p + p { margin-top: 10px; }
-      .asset-block strong { color: var(--pink); font-weight: 700; }
+      .asset-block p + p {
+        margin-top: 10px;
+      }
+      .asset-block strong {
+        color: var(--pink);
+        font-weight: 700;
+      }
 
       /* Conclusion */
       .conclusion {
@@ -559,13 +815,23 @@
         border-radius: 24px;
         margin-top: 48px;
       }
-      .conclusion h2 { color: #fff; margin-bottom: 18px; }
-      .conclusion p {
-        font-size: 16.5px; color: rgba(255,255,255,0.8);
-        max-width: 800px; line-height: 1.75;
+      .conclusion h2 {
+        color: #fff;
+        margin-bottom: 18px;
       }
-      .conclusion p + p { margin-top: 14px; }
-      .conclusion strong { color: var(--pink); font-weight: 700; }
+      .conclusion p {
+        font-size: 16.5px;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 800px;
+        line-height: 1.75;
+      }
+      .conclusion p + p {
+        margin-top: 14px;
+      }
+      .conclusion strong {
+        color: var(--pink);
+        font-weight: 700;
+      }
 
       /* Sources */
       .sources {
@@ -575,7 +841,9 @@
         border: 1px solid var(--line);
         border-radius: 20px;
       }
-      .sources .section-num { color: var(--gray-soft); }
+      .sources .section-num {
+        color: var(--gray-soft);
+      }
       .sources h2 {
         font-size: 22px;
         color: var(--ink);
@@ -592,13 +860,16 @@
       }
       .source-type {
         display: inline-block;
-        font-size: 11px; font-weight: 800;
+        font-size: 11px;
+        font-weight: 800;
         letter-spacing: 2px;
         color: var(--pink-deep);
         margin-bottom: 14px;
       }
       .source-list {
-        list-style: none; padding: 0; margin: 0;
+        list-style: none;
+        padding: 0;
+        margin: 0;
       }
       .source-list li {
         padding: 12px 0 12px 18px;
@@ -607,11 +878,14 @@
         font-size: 14px;
         line-height: 1.6;
       }
-      .source-list li:last-child { border-bottom: none; }
+      .source-list li:last-child {
+        border-bottom: none;
+      }
       .source-list li::before {
         content: '·';
         position: absolute;
-        left: 4px; top: 8px;
+        left: 4px;
+        top: 8px;
         color: var(--pink-deep);
         font-weight: 800;
         font-size: 18px;
@@ -637,7 +911,9 @@
         text-underline-offset: 3px;
         word-break: break-all;
       }
-      .source-list li a:hover { color: var(--navy); }
+      .source-list li a:hover {
+        color: var(--navy);
+      }
       .source-note {
         margin-top: 28px;
         padding: 16px 20px;
@@ -650,33 +926,65 @@
       }
 
       @media (max-width: 760px) {
-        .page { padding: 32px 20px 80px; }
-        .cover { padding: 52px 28px; border-radius: 20px; }
-        h1.title { font-size: 30px; }
-        .cover .subtitle { font-size: 15px; }
-        h2 { font-size: 24px; }
-        .era-grid, .scenario-grid { grid-template-columns: 1fr; }
-        .sources { padding: 28px 20px; }
-        .korea-stats { grid-template-columns: 1fr; }
-        .compare-header, .compare-row { grid-template-columns: 1fr; }
-        .compare-row > div:nth-child(3) { border-left: none; border-top: 1px solid var(--line); }
-        .keypoint { grid-template-columns: 1fr; gap: 12px; }
+        .page {
+          padding: 32px 20px 80px;
+        }
+        .cover {
+          padding: 52px 28px;
+          border-radius: 20px;
+        }
+        h1.title {
+          font-size: 30px;
+        }
+        .cover .subtitle {
+          font-size: 15px;
+        }
+        h2 {
+          font-size: 24px;
+        }
+        .era-grid,
+        .scenario-grid {
+          grid-template-columns: 1fr;
+        }
+        .sources {
+          padding: 28px 20px;
+        }
+        .korea-stats {
+          grid-template-columns: 1fr;
+        }
+        .compare-header,
+        .compare-row {
+          grid-template-columns: 1fr;
+        }
+        .compare-row > div:nth-child(3) {
+          border-left: none;
+          border-top: 1px solid var(--line);
+        }
+        .keypoint {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
       }
     </style>
   </head>
   <body>
     <div class="page">
-
       <!-- COVER -->
       <header class="cover">
-        <span class="tag">TAM BEAUTY · JAPAN STRATEGY <span class="version-tag">V5</span></span>
+        <span class="tag"
+          >TAM BEAUTY · JAPAN STRATEGY <span class="version-tag">V5</span></span
+        >
         <h1 class="title">
           시딩은 옳습니다.<br />
           <em>다만 2026년의 시딩은</em><br />
           2021년의 시딩이 아닙니다.
         </h1>
         <p class="subtitle">
-          K뷰티 브랜드들이 시딩으로 성장한 모습은 보이지만, 그 뒤에 페이드 광고가 함께 있었다는 사실, 그리고 그 시기와 지금의 시장이 다르다는 사실을 같이 봐야 합니다. 이 자료는 일본 시장 환경 변화와 K뷰티 브랜드들의 표준 운영 구조를 근거로, 메타 광고 병행이 필요한 이유를 정리한 보고서입니다.
+          K뷰티 브랜드들이 시딩으로 성장한 모습은 보이지만, 그 뒤에 페이드
+          광고가 함께 있었다는 사실, 그리고 그 시기와 지금의 시장이 다르다는
+          사실을 같이 봐야 합니다. 이 자료는 일본 시장 환경 변화와 K뷰티
+          브랜드들의 표준 운영 구조를 근거로, 메타 광고 병행이 필요한 이유를
+          정리한 보고서입니다.
         </p>
         <div class="meta">
           <div>대상<strong>대표님 검토용</strong></div>
@@ -690,15 +998,29 @@
         <div class="section-head">
           <span class="section-num">01 · 출발점</span>
           <h2>대표님께서 보신 시딩의 힘은 분명히 존재합니다</h2>
-          <p class="lede">시딩이 잘못된 게 아닙니다. 일본 시장에서 K뷰티 브랜드들이 인스타 시딩으로 인지를 만들어 성장한 사례는 실제로 있고, 그 방식이 일본 색조 시장에서 작동한다는 것도 사실입니다. 다만, "보이는 시딩" 뒤에 무엇이 함께 있었는지, 그리고 그게 어느 시점의 이야기인지를 같이 봐야 합니다.</p>
+          <p class="lede">
+            시딩이 잘못된 게 아닙니다. 일본 시장에서 K뷰티 브랜드들이 인스타
+            시딩으로 인지를 만들어 성장한 사례는 실제로 있고, 그 방식이 일본
+            색조 시장에서 작동한다는 것도 사실입니다. 다만, "보이는 시딩" 뒤에
+            무엇이 함께 있었는지, 그리고 그게 어느 시점의 이야기인지를 같이 봐야
+            합니다.
+          </p>
         </div>
 
         <div class="empathy">
           <div class="quote-mark">"</div>
-          <div class="quote">다른 K뷰티 브랜드들도 인스타 시딩만으로 일본에서 성장하지 않았나요?</div>
+          <div class="quote">
+            다른 K뷰티 브랜드들도 인스타 시딩만으로 일본에서 성장하지 않았나요?
+          </div>
           <div class="response-label">실무자 입장에서</div>
           <div class="response">
-            이 인식이 만들어진 이유는 분명히 있습니다. 인스타에서 처음 K뷰티 브랜드를 인지하는 경로가 대부분 인플루언서 콘텐츠라서, "시딩 = 성장의 원인"으로 자연스럽게 연결됩니다. 그런데 그 인플루언서 콘텐츠 옆에는 같은 브랜드의 페이드 광고가 함께 노출되고 있었습니다. 시딩과 광고는 같이 운영되는 게 일본 진출 K뷰티 브랜드의 표준 구조였고, 시딩만 보이는 것은 광고가 사라진 게 아니라 평소에 인지하지 않을 뿐입니다.
+            이 인식이 만들어진 이유는 분명히 있습니다. 인스타에서 처음 K뷰티
+            브랜드를 인지하는 경로가 대부분 인플루언서 콘텐츠라서, "시딩 =
+            성장의 원인"으로 자연스럽게 연결됩니다. 그런데 그 인플루언서 콘텐츠
+            옆에는 같은 브랜드의 페이드 광고가 함께 노출되고 있었습니다. 시딩과
+            광고는 같이 운영되는 게 일본 진출 K뷰티 브랜드의 표준 구조였고,
+            시딩만 보이는 것은 광고가 사라진 게 아니라 평소에 인지하지 않을
+            뿐입니다.
           </div>
         </div>
       </section>
@@ -708,39 +1030,74 @@
         <div class="section-head">
           <span class="section-num">02 · 통념과 실제</span>
           <h2>"시딩만으로 성공한 브랜드"의 4가지 사각지대</h2>
-          <p class="lede">시장에서 "시딩만으로 성장했다"고 보이는 브랜드들을 자세히 보면, 시딩과 함께 작동한 다른 요소들이 있었습니다. 이 요소들이 보이지 않을 뿐, 운영되지 않은 것이 아닙니다.</p>
+          <p class="lede">
+            시장에서 "시딩만으로 성장했다"고 보이는 브랜드들을 자세히 보면,
+            시딩과 함께 작동한 다른 요소들이 있었습니다. 이 요소들이 보이지 않을
+            뿐, 운영되지 않은 것이 아닙니다.
+          </p>
         </div>
 
         <div class="truth-block">
           <span class="belief">통념</span>
           <h3>인스타 시딩만으로 자생적으로 큐텐 매출이 늘어났다</h3>
           <span class="truth-label">실제</span>
-          <div class="truth-text">시딩과 동시에 메타·틱톡 페이드 광고를 같이 돌렸습니다</div>
-          <p>일본 큐텐 K뷰티 색조 톱 카테고리에 안착한 브랜드들은 거의 예외 없이 인스타 피드 · 릴스 · 스토리 광고를 일본 지역 타겟으로 수개월 이상 연속 게재합니다. 시딩이 노출의 정성적 측면을 담당하고, 페이드 광고가 정량적 도달과 리타게팅을 담당하는 이중 구조가 일본 진출 K뷰티 색조 브랜드의 운영 표준입니다.</p>
+          <div class="truth-text">
+            시딩과 동시에 메타·틱톡 페이드 광고를 같이 돌렸습니다
+          </div>
+          <p>
+            일본 큐텐 K뷰티 색조 톱 카테고리에 안착한 브랜드들은 거의 예외 없이
+            인스타 피드 · 릴스 · 스토리 광고를 일본 지역 타겟으로 수개월 이상
+            연속 게재합니다. 시딩이 노출의 정성적 측면을 담당하고, 페이드 광고가
+            정량적 도달과 리타게팅을 담당하는 이중 구조가 일본 진출 K뷰티 색조
+            브랜드의 운영 표준입니다.
+          </p>
         </div>
 
         <div class="truth-block">
           <span class="belief">통념</span>
           <h3>인플루언서 콘텐츠는 자발적 PR이라 광고가 아니다</h3>
           <span class="truth-label">실제</span>
-          <div class="truth-text">대부분 #PR · #광고 · #タイアップ 표기가 의무화된 페이드 콘텐츠입니다</div>
-          <p>2023년 10월 일본 소비자청 스텔스마케팅 규제가 시행된 후, 인플루언서의 협찬 콘텐츠는 의무적으로 #PR · #タイアップ · #提供 표기를 해야 합니다. 큐텐 K뷰티 브랜드들의 일본 인플루언서 콘텐츠는 이 표기가 붙어 있는 경우가 대부분이고, 이건 브랜드가 비용을 지불한 페이드 콘텐츠라는 의미입니다. "자발적 PR로 큰 브랜드"라는 인식 자체가 현재 규제 환경에서는 성립하기 어렵습니다.</p>
+          <div class="truth-text">
+            대부분 #PR · #광고 · #タイアップ 표기가 의무화된 페이드 콘텐츠입니다
+          </div>
+          <p>
+            2023년 10월 일본 소비자청 스텔스마케팅 규제가 시행된 후,
+            인플루언서의 협찬 콘텐츠는 의무적으로 #PR · #タイアップ · #提供
+            표기를 해야 합니다. 큐텐 K뷰티 브랜드들의 일본 인플루언서 콘텐츠는
+            이 표기가 붙어 있는 경우가 대부분이고, 이건 브랜드가 비용을 지불한
+            페이드 콘텐츠라는 의미입니다. "자발적 PR로 큰 브랜드"라는 인식
+            자체가 현재 규제 환경에서는 성립하기 어렵습니다.
+          </p>
         </div>
 
         <div class="truth-block">
           <span class="belief">통념</span>
           <h3>적은 비용의 시딩만 잘하면 큰 매출이 만들어진다</h3>
           <span class="truth-label">실제</span>
-          <div class="truth-text">성공 브랜드들의 월 마케팅 예산은 시딩의 3~5배 규모입니다</div>
-          <p>일본 큐텐에 안착한 K뷰티 색조 브랜드의 마케팅 예산 구조는 보통 시딩 20~30% / 메타·틱톡 페이드 40~50% / 큐텐 내부 광고 20~30% 비중입니다. "시딩 잘했다"고 알려진 브랜드들도 시딩 단독이 아니라, 이 세 가지 채널을 동시에 운영한 결과입니다.</p>
+          <div class="truth-text">
+            성공 브랜드들의 월 마케팅 예산은 시딩의 3~5배 규모입니다
+          </div>
+          <p>
+            일본 큐텐에 안착한 K뷰티 색조 브랜드의 마케팅 예산 구조는 보통 시딩
+            20~30% / 메타·틱톡 페이드 40~50% / 큐텐 내부 광고 20~30% 비중입니다.
+            "시딩 잘했다"고 알려진 브랜드들도 시딩 단독이 아니라, 이 세 가지
+            채널을 동시에 운영한 결과입니다.
+          </p>
         </div>
 
         <div class="truth-block">
           <span class="belief">통념</span>
           <h3>처음엔 시딩으로 시작했다가 나중에 광고를 붙였다</h3>
           <span class="truth-label">실제</span>
-          <div class="truth-text">대부분 진입 첫 분기부터 메타 광고를 같이 시작했습니다</div>
-          <p>일본 시장에 안착한 K뷰티 색조 브랜드들의 큐텐 진입 시점과 메타 광고 시작 시점은 거의 일치합니다. "시딩 먼저, 광고 나중"이 아니라, "시딩과 광고 동시 시작"이 표준 운영 방식이고, 이 동시 시작이 픽셀 학습·리타게팅·도달 확보를 한꺼번에 만들어내는 구조입니다.</p>
+          <div class="truth-text">
+            대부분 진입 첫 분기부터 메타 광고를 같이 시작했습니다
+          </div>
+          <p>
+            일본 시장에 안착한 K뷰티 색조 브랜드들의 큐텐 진입 시점과 메타 광고
+            시작 시점은 거의 일치합니다. "시딩 먼저, 광고 나중"이 아니라,
+            "시딩과 광고 동시 시작"이 표준 운영 방식이고, 이 동시 시작이 픽셀
+            학습·리타게팅·도달 확보를 한꺼번에 만들어내는 구조입니다.
+          </p>
         </div>
       </section>
 
@@ -749,7 +1106,11 @@
         <div class="section-head">
           <span class="section-num">03 · 시기 변화</span>
           <h2>2021년의 시딩과 2026년의 시딩은 같은 것이 아닙니다</h2>
-          <p class="lede">시딩이 효과적이었다고 알려진 시기와 지금은 시장 환경 자체가 다릅니다. 같은 방법을 쓰면 같은 결과가 나올 것이라는 가정은, 시장 환경이 같다는 전제에서만 성립합니다. 그 전제가 무너졌습니다.</p>
+          <p class="lede">
+            시딩이 효과적이었다고 알려진 시기와 지금은 시장 환경 자체가
+            다릅니다. 같은 방법을 쓰면 같은 결과가 나올 것이라는 가정은, 시장
+            환경이 같다는 전제에서만 성립합니다. 그 전제가 무너졌습니다.
+          </p>
         </div>
 
         <div class="era-grid">
@@ -757,12 +1118,29 @@
             <span class="era-period">2020 ~ 2022</span>
             <h3>K뷰티 일본 진출 골든 에라</h3>
             <ul>
-              <li><strong>큐텐 K뷰티 셀러 수</strong>전체 색조 카테고리에서 진입 셀러 100~300개 수준</li>
-              <li><strong>인스타 알고리즘</strong>정적 이미지 자연 도달률 8~15%</li>
-              <li><strong>경쟁 강도</strong>일본인이 K뷰티 자체를 처음 접하는 단계, 인플루언서 콘텐츠 한 건의 영향력 큼</li>
-              <li><strong>일본 유저의 K뷰티 인식</strong>"신선하고 트렌디한 카테고리"</li>
-              <li><strong>스텔스마케팅 규제</strong>없음 (#PR 표기 의무 없음, 자발적 PR로 보이기 쉬움)</li>
-              <li><strong>시딩 한 건의 효율</strong>높음 — 인스타 자연 도달 + 신선함 + 경쟁 적음</li>
+              <li>
+                <strong>큐텐 K뷰티 셀러 수</strong>전체 색조 카테고리에서 진입
+                셀러 100~300개 수준
+              </li>
+              <li>
+                <strong>인스타 알고리즘</strong>정적 이미지 자연 도달률 8~15%
+              </li>
+              <li>
+                <strong>경쟁 강도</strong>일본인이 K뷰티 자체를 처음 접하는
+                단계, 인플루언서 콘텐츠 한 건의 영향력 큼
+              </li>
+              <li>
+                <strong>일본 유저의 K뷰티 인식</strong>"신선하고 트렌디한
+                카테고리"
+              </li>
+              <li>
+                <strong>스텔스마케팅 규제</strong>없음 (#PR 표기 의무 없음,
+                자발적 PR로 보이기 쉬움)
+              </li>
+              <li>
+                <strong>시딩 한 건의 효율</strong>높음 — 인스타 자연 도달 +
+                신선함 + 경쟁 적음
+              </li>
             </ul>
           </div>
 
@@ -770,18 +1148,39 @@
             <span class="era-period">2025 ~ 2026 (현재)</span>
             <h3>경쟁 본격 심화 구간</h3>
             <ul>
-              <li><strong>큐텐 K뷰티 셀러 수</strong>2,000개 이상 진입, 색조 카테고리 포화</li>
-              <li><strong>인스타 알고리즘</strong>2022년 릴스 푸시 이후 정적 콘텐츠 자연 도달률 1~3%</li>
-              <li><strong>경쟁 강도</strong>K뷰티가 일본 색조 메인스트림이 됨, 인플루언서 한 명이 K뷰티 브랜드 여러 개 시딩</li>
-              <li><strong>일본 유저의 K뷰티 인식</strong>"많은 옵션 중 하나"</li>
-              <li><strong>스텔스마케팅 규제</strong>2023.10 시행 — #PR 표기 의무, "자발적 PR" 이미지 만들기 어려움</li>
-              <li><strong>시딩 한 건의 효율</strong>낮음 — 자연 도달 절반 이하, 경쟁 포화, 광고 표기 강제</li>
+              <li>
+                <strong>큐텐 K뷰티 셀러 수</strong>2,000개 이상 진입, 색조
+                카테고리 포화
+              </li>
+              <li>
+                <strong>인스타 알고리즘</strong>2022년 릴스 푸시 이후 정적
+                콘텐츠 자연 도달률 1~3%
+              </li>
+              <li>
+                <strong>경쟁 강도</strong>K뷰티가 일본 색조 메인스트림이 됨,
+                인플루언서 한 명이 K뷰티 브랜드 여러 개 시딩
+              </li>
+              <li>
+                <strong>일본 유저의 K뷰티 인식</strong>"많은 옵션 중 하나"
+              </li>
+              <li>
+                <strong>스텔스마케팅 규제</strong>2023.10 시행 — #PR 표기 의무,
+                "자발적 PR" 이미지 만들기 어려움
+              </li>
+              <li>
+                <strong>시딩 한 건의 효율</strong>낮음 — 자연 도달 절반 이하,
+                경쟁 포화, 광고 표기 강제
+              </li>
             </ul>
           </div>
         </div>
 
-        <p class="lede" style="margin-top: 24px;">
-          핵심은 인스타 알고리즘 변화입니다. 자연 도달률이 1/5 이하로 떨어진 환경에서, 시딩 콘텐츠 1건당 실제로 도달하는 잠재 고객 수는 2021년의 1/5도 안 됩니다. 같은 시딩 100건이 2021년에는 도달 10만에 가까웠다면, 지금은 도달 1~2만에 그치는 구조입니다. 페이드 광고가 안 붙으면 도달 자체가 안 만들어지는 환경이 되었습니다.
+        <p class="lede" style="margin-top: 24px">
+          핵심은 인스타 알고리즘 변화입니다. 자연 도달률이 1/5 이하로 떨어진
+          환경에서, 시딩 콘텐츠 1건당 실제로 도달하는 잠재 고객 수는 2021년의
+          1/5도 안 됩니다. 같은 시딩 100건이 2021년에는 도달 10만에 가까웠다면,
+          지금은 도달 1~2만에 그치는 구조입니다. 페이드 광고가 안 붙으면 도달
+          자체가 안 만들어지는 환경이 되었습니다.
         </p>
       </section>
 
@@ -790,32 +1189,59 @@
         <div class="section-head">
           <span class="section-num">04 · 국내 시장</span>
           <h2>한국 색조 시장에서도 시딩 단독은 이미 통하지 않습니다</h2>
-          <p class="lede">일본만의 이야기가 아닙니다. 국내 색조 시장도 인스타 알고리즘 변화와 인디 브랜드 폭증으로, 시딩만으로 성장하는 브랜드는 사실상 사라졌습니다. 한국에서 최근 성장한 인디 색조 브랜드들도 메타 광고 운영은 기본입니다.</p>
+          <p class="lede">
+            일본만의 이야기가 아닙니다. 국내 색조 시장도 인스타 알고리즘 변화와
+            인디 브랜드 폭증으로, 시딩만으로 성장하는 브랜드는 사실상
+            사라졌습니다. 한국에서 최근 성장한 인디 색조 브랜드들도 메타 광고
+            운영은 기본입니다.
+          </p>
         </div>
 
         <div class="korea-block">
           <div class="k-label">DOMESTIC MARKET</div>
           <h3>한국 인디 색조 신생 브랜드의 마케팅 구조</h3>
-          <p>2023년 이후 한국 시장에서 인지를 만든 인디 색조 브랜드들 — 어뮤즈, 데이지크, 힌스, 누이, 메리몬드, 라카, 어반디케이 등 — 의 마케팅 운영을 보면 <strong>예외 없이 메타 광고를 운영하고 있습니다.</strong> 인스타 피드 · 릴스 · 스토리 광고가 일상적으로 노출되는 브랜드들이고, 시딩과 페이드 광고를 동시에 운영하는 것이 인디 색조 시장의 운영 표준이 되었습니다.</p>
-          <p>한국 시장에서 <strong>"시딩만으로 큰 브랜드"는 더 이상 존재하지 않습니다.</strong> 보이는 시딩 뒤에는 항상 페이드 광고가 있고, 이건 한국·일본 모두 동일한 구조입니다.</p>
+          <p>
+            2023년 이후 한국 시장에서 인지를 만든 인디 색조 브랜드들 — 어뮤즈,
+            데이지크, 힌스, 누이, 메리몬드, 라카, 어반디케이 등 — 의 마케팅
+            운영을 보면
+            <strong>예외 없이 메타 광고를 운영하고 있습니다.</strong> 인스타
+            피드 · 릴스 · 스토리 광고가 일상적으로 노출되는 브랜드들이고, 시딩과
+            페이드 광고를 동시에 운영하는 것이 인디 색조 시장의 운영 표준이
+            되었습니다.
+          </p>
+          <p>
+            한국 시장에서
+            <strong>"시딩만으로 큰 브랜드"는 더 이상 존재하지 않습니다.</strong>
+            보이는 시딩 뒤에는 항상 페이드 광고가 있고, 이건 한국·일본 모두
+            동일한 구조입니다.
+          </p>
           <div class="korea-stats">
             <div class="k-stat">
               <div class="k-stat-num">1~3%</div>
-              <div class="k-stat-label">인스타 정적 콘텐츠<br>현재 평균 자연 도달률</div>
+              <div class="k-stat-label">
+                인스타 정적 콘텐츠<br />현재 평균 자연 도달률
+              </div>
             </div>
             <div class="k-stat">
               <div class="k-stat-num">2018→2022</div>
-              <div class="k-stat-label">자연 도달률이<br>15%대에서 1~3%로 하락</div>
+              <div class="k-stat-label">
+                자연 도달률이<br />15%대에서 1~3%로 하락
+              </div>
             </div>
             <div class="k-stat">
               <div class="k-stat-num">100%</div>
-              <div class="k-stat-label">한국 톱 인디 색조 브랜드<br>메타 광고 운영 비율</div>
+              <div class="k-stat-label">
+                한국 톱 인디 색조 브랜드<br />메타 광고 운영 비율
+              </div>
             </div>
           </div>
         </div>
 
         <p class="lede">
-          한국에서 인디 색조 브랜드를 성공시킨 패턴이 있다면, 그 패턴은 시딩 단독이 아니라 시딩 + 메타 + 자사몰 퍼포먼스의 조합이었습니다. 이 조합 없이 인지가 만들어진 케이스는 통계적으로 거의 없습니다. 같은 운영 환경을 일본 시장에 적용하면, 일본에서도 같은 결론이 나옵니다.
+          한국에서 인디 색조 브랜드를 성공시킨 패턴이 있다면, 그 패턴은 시딩
+          단독이 아니라 시딩 + 메타 + 자사몰 퍼포먼스의 조합이었습니다. 이 조합
+          없이 인지가 만들어진 케이스는 통계적으로 거의 없습니다. 같은 운영
+          환경을 일본 시장에 적용하면, 일본에서도 같은 결론이 나옵니다.
         </p>
       </section>
 
@@ -824,7 +1250,11 @@
         <div class="section-head">
           <span class="section-num">05 · 탐뷰티 조건</span>
           <h2>참고하신 브랜드들과 탐뷰티의 진입 조건을 정직하게 비교하면</h2>
-          <p class="lede">같은 방식을 쓰려면 조건이 같아야 합니다. 시딩 단독으로 큐텐을 키운 것으로 보이는 브랜드들과 탐뷰티의 현재 조건을 비교하면 다음과 같은 차이가 있습니다.</p>
+          <p class="lede">
+            같은 방식을 쓰려면 조건이 같아야 합니다. 시딩 단독으로 큐텐을 키운
+            것으로 보이는 브랜드들과 탐뷰티의 현재 조건을 비교하면 다음과 같은
+            차이가 있습니다.
+          </p>
         </div>
 
         <div class="compare-table">
@@ -840,8 +1270,8 @@
           </div>
           <div class="compare-row">
             <div>월 마케팅 예산</div>
-            <div>시딩 + 메타 + 큐텐 광고 합쳐 월 1,500만 ~ 3,000만 원</div>
-            <div>시딩 중심 월 200~500만 원 (추정)</div>
+            <div>시딩 + 메타 + 큐텐 광고를 동시 운영하는 구조</div>
+            <div>시딩 중심의 단일 채널 운영</div>
           </div>
           <div class="compare-row">
             <div>메타 광고 운영</div>
@@ -865,8 +1295,10 @@
           </div>
         </div>
 
-        <p class="lede" style="margin-top: 16px;">
-          예산 규모, 광고 운영 여부, 시장 진입 시점, 인스타 환경, 누적 기간 — 다섯 가지 항목에서 차이가 큽니다. 시장 환경이 어려워진 만큼, 이 핸디캡을 메우는 가장 빠른 방법이 메타 광고입니다.
+        <p class="lede" style="margin-top: 16px">
+          예산 규모, 광고 운영 여부, 시장 진입 시점, 인스타 환경, 누적 기간 —
+          다섯 가지 항목에서 차이가 큽니다. 시장 환경이 어려워진 만큼, 이
+          핸디캡을 메우는 가장 빠른 방법이 메타 광고입니다.
         </p>
       </section>
 
@@ -875,14 +1307,17 @@
         <div class="section-head">
           <span class="section-num">06 · 시나리오</span>
           <h2>두 가지 시나리오의 6개월 후 모습</h2>
-          <p class="lede">동일한 시딩 예산을 기준으로, 메타 광고를 병행했을 때와 안 했을 때의 차이를 예상해 보면 다음과 같습니다.</p>
+          <p class="lede">
+            동일한 시딩 예산을 기준으로, 메타 광고를 병행했을 때와 안 했을 때의
+            차이를 예상해 보면 다음과 같습니다.
+          </p>
         </div>
 
         <div class="scenario-grid">
           <div class="scenario lose">
             <span class="s-tag">시나리오 A</span>
             <h3>시딩 단독</h3>
-            <div class="s-sub">월 시딩 300만 원 · 6개월 운영</div>
+            <div class="s-sub">시딩 예산 전액 시딩에 투입 · 6개월 운영</div>
             <div class="s-stats">
               <div class="s-stat">
                 <div class="s-stat-label">6개월 후 큐텐 매출</div>
@@ -912,7 +1347,9 @@
           <div class="scenario win">
             <span class="s-tag">시나리오 B (권장)</span>
             <h3>시딩 + 메타 병행</h3>
-            <div class="s-sub">월 시딩 200만 원 + 메타 100만 원 · 6개월 운영</div>
+            <div class="s-sub">
+              기존 예산의 일부를 메타로 재배분 · 6개월 운영
+            </div>
             <div class="s-stats">
               <div class="s-stat">
                 <div class="s-stat-label">6개월 후 큐텐 매출</div>
@@ -941,7 +1378,9 @@
         </div>
 
         <p class="lede">
-          시딩 예산을 늘리는 것이 아니라, 기존 예산의 1/3을 메타로 이동시키는 것만으로 결과 차이가 발생합니다. 동일 비용으로 자산이 시간을 두고 누적되는 구조가 만들어집니다.
+          시딩 예산을 늘리는 것이 아니라, 기존 예산의 1/3을 메타로 이동시키는
+          것만으로 결과 차이가 발생합니다. 동일 비용으로 자산이 시간을 두고
+          누적되는 구조가 만들어집니다.
         </p>
       </section>
 
@@ -950,7 +1389,10 @@
         <div class="section-head">
           <span class="section-num">07 · 키포인트</span>
           <h2>메타 광고를 병행해야 하는 6가지 결정적 이유</h2>
-          <p class="lede">아래 6가지는 시딩이 잘 작동하더라도, 메타 없이는 채워지지 않는 영역입니다.</p>
+          <p class="lede">
+            아래 6가지는 시딩이 잘 작동하더라도, 메타 없이는 채워지지 않는
+            영역입니다.
+          </p>
         </div>
 
         <div class="keypoint-list">
@@ -958,8 +1400,16 @@
             <div class="kp-num">01</div>
             <div>
               <h3>시딩이 만든 인지를 매출로 전환시키는 다리</h3>
-              <p>시딩은 "이 브랜드를 봤다"까지 만듭니다. "큐텐에서 검색했다"로 이어지는 단계는 메타 리타게팅이 담당합니다. 시딩 콘텐츠를 본 유저에게 메타 광고로 한 번 더 노출하면 큐텐 검색 전환률이 5%대에서 30~50%대로 점프합니다.</p>
-              <div class="kp-emphasis">시딩이 씨앗이라면, 메타 리타게팅은 그 씨앗에 물을 주는 단계입니다.</div>
+              <p>
+                시딩은 "이 브랜드를 봤다"까지 만듭니다. "큐텐에서 검색했다"로
+                이어지는 단계는 메타 리타게팅이 담당합니다. 시딩 콘텐츠를 본
+                유저에게 메타 광고로 한 번 더 노출하면 큐텐 검색 전환률이
+                5%대에서 30~50%대로 점프합니다.
+              </p>
+              <div class="kp-emphasis">
+                시딩이 씨앗이라면, 메타 리타게팅은 그 씨앗에 물을 주는
+                단계입니다.
+              </div>
             </div>
           </div>
 
@@ -967,8 +1417,15 @@
             <div class="kp-num">02</div>
             <div>
               <h3>픽셀 데이터는 시간이 회복되지 않는 자산</h3>
-              <p>메타 픽셀은 한 번 안 쌓으면 나중에 광고하려고 해도 처음부터 다시 시작해야 합니다. 픽셀 데이터·유사 타겟 풀은 시간이 지날수록 ROAS를 올리는 자산인데, 늦게 시작하면 그만큼 늦게 효과가 납니다.</p>
-              <div class="kp-emphasis">6개월 시딩 단독 후 메타 시작 = 픽셀 학습 0에서 시작<br>6개월 시딩+메타 병행 후 = 픽셀 학습 6개월 누적</div>
+              <p>
+                메타 픽셀은 한 번 안 쌓으면 나중에 광고하려고 해도 처음부터 다시
+                시작해야 합니다. 픽셀 데이터·유사 타겟 풀은 시간이 지날수록
+                ROAS를 올리는 자산인데, 늦게 시작하면 그만큼 늦게 효과가 납니다.
+              </p>
+              <div class="kp-emphasis">
+                6개월 시딩 단독 후 메타 시작 = 픽셀 학습 0에서 시작<br />6개월
+                시딩+메타 병행 후 = 픽셀 학습 6개월 누적
+              </div>
             </div>
           </div>
 
@@ -976,8 +1433,16 @@
             <div class="kp-num">03</div>
             <div>
               <h3>인스타 자연 도달 1~3% 환경에서 페이드는 선택이 아닌 필수</h3>
-              <p>인스타 알고리즘 변화로 시딩 콘텐츠 한 건의 자연 도달은 2021년의 1/5 이하입니다. 같은 시딩 비용으로 도달이 1/5이 된 환경에서, 페이드 광고로 도달을 보완하지 않으면 시딩 자체가 무의미해지는 구조입니다.</p>
-              <div class="kp-emphasis">국내 인디 색조 브랜드도 모두 메타 광고 운영 중 — 한국·일본 모두 동일한 환경 변화 적용.</div>
+              <p>
+                인스타 알고리즘 변화로 시딩 콘텐츠 한 건의 자연 도달은 2021년의
+                1/5 이하입니다. 같은 시딩 비용으로 도달이 1/5이 된 환경에서,
+                페이드 광고로 도달을 보완하지 않으면 시딩 자체가 무의미해지는
+                구조입니다.
+              </p>
+              <div class="kp-emphasis">
+                국내 인디 색조 브랜드도 모두 메타 광고 운영 중 — 한국·일본 모두
+                동일한 환경 변화 적용.
+              </div>
             </div>
           </div>
 
@@ -985,8 +1450,16 @@
             <div class="kp-num">04</div>
             <div>
               <h3>측정 가능한 ROAS로 의사결정의 객관성 확보</h3>
-              <p>시딩 단독은 효과를 "느낌"으로만 판단해야 합니다. 메타는 광고비 100만 원 쓸 때마다 정확히 어떤 매출이 발생했는지 숫자로 보입니다. 대표님께서 객관적으로 판단하실 수 있게 만드는 유일한 방법이 메타를 한 번 돌려보는 것입니다.</p>
-              <div class="kp-emphasis">시딩의 효과 측정 어려움이 "시딩 무의미한 것 같다"는 현재 인식의 원인입니다. 메타는 이 모호함을 제거합니다.</div>
+              <p>
+                시딩 단독은 효과를 "느낌"으로만 판단해야 합니다. 메타는 광고비
+                대비 정확히 어떤 매출이 발생했는지 숫자로 보입니다. 대표님께서
+                객관적으로 판단하실 수 있게 만드는 유일한 방법이 메타를 한 번
+                돌려보는 것입니다.
+              </p>
+              <div class="kp-emphasis">
+                시딩의 효과 측정 어려움이 "시딩 무의미한 것 같다"는 현재 인식의
+                원인입니다. 메타는 이 모호함을 제거합니다.
+              </div>
             </div>
           </div>
 
@@ -994,8 +1467,16 @@
             <div class="kp-num">05</div>
             <div>
               <h3>메가데뷔 4위 모멘텀을 휘발시키지 않는 유일한 방법</h3>
-              <p>메가데뷔로 만든 인지는 후속 트래픽이 부어져야 자연 검색량으로 전환됩니다. 메타가 그 후속 트래픽 역할입니다. 시딩만으로는 이 검색량이 만들어지지 않아서, 메가데뷔 효과가 행사 직후 1~2개월 이내에 사라집니다.</p>
-              <div class="kp-emphasis">탐뷰티가 어렵게 만든 메가데뷔 4위 자산을 가장 빨리 잃어버리는 방법이 시딩 단독 유지입니다.</div>
+              <p>
+                메가데뷔로 만든 인지는 후속 트래픽이 부어져야 자연 검색량으로
+                전환됩니다. 메타가 그 후속 트래픽 역할입니다. 시딩만으로는 이
+                검색량이 만들어지지 않아서, 메가데뷔 효과가 행사 직후 1~2개월
+                이내에 사라집니다.
+              </p>
+              <div class="kp-emphasis">
+                탐뷰티가 어렵게 만든 메가데뷔 4위 자산을 가장 빨리 잃어버리는
+                방법이 시딩 단독 유지입니다.
+              </div>
             </div>
           </div>
 
@@ -1003,80 +1484,298 @@
             <div class="kp-num">06</div>
             <div>
               <h3>시딩 자산이 메타에서 한 번 더 일함</h3>
-              <p>시딩 인플루언서들이 만든 콘텐츠는 메타 광고 소재로 재활용 가능합니다. 같은 콘텐츠가 시딩에서 한 번, 메타 광고에서 한 번, 두 번 일하는 구조가 됩니다. 메타 안 돌리면 시딩 콘텐츠가 인플루언서 피드에서 한 번 노출되고 끝납니다.</p>
-              <div class="kp-emphasis">시딩 콘텐츠 100건 × 메타 노출 = 사실상 시딩 효과 3~5배 증폭</div>
+              <p>
+                시딩 인플루언서들이 만든 콘텐츠는 메타 광고 소재로 재활용
+                가능합니다. 같은 콘텐츠가 시딩에서 한 번, 메타 광고에서 한 번,
+                두 번 일하는 구조가 됩니다. 메타 안 돌리면 시딩 콘텐츠가
+                인플루언서 피드에서 한 번 노출되고 끝납니다.
+              </p>
+              <div class="kp-emphasis">
+                시딩 콘텐츠 100건 × 메타 노출 = 사실상 시딩 효과 3~5배 증폭
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <!-- 8. 픽셀 자산 -->
-      <section>
-        <div class="section-head">
-          <span class="section-num">08 · 시간 자산</span>
-          <h2>지금이 픽셀을 쌓을 가장 빠른 시점입니다</h2>
-        </div>
-
-        <div class="asset-block">
-          <div class="ab-label">PIXEL ASSET</div>
-          <h3>메타 광고를 안 한 6개월은 단순히 매출 손실이 아닙니다.</h3>
-          <p>탐뷰티가 일본 시장에서 향후 어떤 광고를 돌리든, <strong>모든 광고 효율의 출발점</strong>이 픽셀 데이터입니다. 이 데이터는 광고를 돌려야만 쌓이고, 광고를 안 돌린 기간은 영구히 채워지지 않습니다.</p>
-          <p>지금 안 한다는 결정은 "광고 시작하면 첫 3~6개월은 ROAS가 낮을 수밖에 없는 구조"를 <strong>미래로 미루는 것</strong>이지, 피하는 것이 아닙니다.</p>
         </div>
       </section>
 
       <!-- 결론 -->
       <section class="conclusion">
         <h2>최종 정리</h2>
-        <p>대표님께서 보신 시딩의 힘은 분명히 존재합니다. 다만 그 브랜드들이 <strong>시딩만으로</strong> 성장한 것은 아닙니다. 시딩과 메타 광고가 함께 작동한 결과이고, 그 두 가지의 시너지가 큐텐 매출을 끌어올린 메커니즘입니다.</p>
-        <p>2021년의 시딩 환경과 지금은 다릅니다. 인스타 자연 도달률 1/5 하락, 스텔스마케팅 규제, K뷰티 셀러 폭증 — 세 가지 변화가 시딩 단독의 효율을 구조적으로 낮춰놓았습니다. <strong>한국 색조 시장에서도 마찬가지</strong>로, 지금 시점의 인디 색조 브랜드는 예외 없이 메타 광고를 운영하고 있습니다.</p>
-        <p>탐뷰티는 메가데뷔 4위와 시딩 몇백 건이라는 좋은 베이스를 만들어 놓으셨습니다. 이 자산이 일을 시작하게 만들려면, 시딩 옆에 메타를 한 번 같이 올려보는 결정만 남아 있습니다.</p>
+        <p>
+          대표님께서 보신 시딩의 힘은 분명히 존재합니다. 다만 그 브랜드들이
+          <strong>시딩만으로</strong> 성장한 것은 아닙니다. 시딩과 메타 광고가
+          함께 작동한 결과이고, 그 두 가지의 시너지가 큐텐 매출을 끌어올린
+          메커니즘입니다.
+        </p>
+        <p>
+          2021년의 시딩 환경과 지금은 다릅니다. 인스타 자연 도달률 1/5 하락,
+          스텔스마케팅 규제, K뷰티 셀러 폭증 — 세 가지 변화가 시딩 단독의 효율을
+          구조적으로 낮춰놓았습니다.
+          <strong>한국 색조 시장에서도 마찬가지</strong>로, 지금 시점의 인디
+          색조 브랜드는 예외 없이 메타 광고를 운영하고 있습니다.
+        </p>
+        <p>
+          탐뷰티는 메가데뷔 4위와 시딩 몇백 건이라는 좋은 베이스를 만들어
+          놓으셨습니다. 이 자산이 일을 시작하게 만들려면, 시딩 옆에 메타를 한 번
+          같이 올려보는 결정만 남아 있습니다.
+        </p>
       </section>
 
       <!-- 출처 / 참고 자료 -->
       <section class="sources">
         <div class="section-head">
           <span class="section-num">참고 자료 및 출처</span>
-          <h2 style="font-size: 22px;">본 보고서에 인용된 데이터 근거</h2>
+          <h2 style="font-size: 22px">본 보고서에 인용된 데이터 근거</h2>
         </div>
 
         <div class="source-group">
           <div class="source-type">공식 발표 · 규제 자료</div>
           <ul class="source-list">
-            <li><strong>일본 스텔스마케팅 규제 (2023년 10월 시행)</strong><br><span>일본 소비자청(消費者庁) 경품표시법 개정 — 인플루언서 협찬 콘텐츠의 광고 표기 의무화</span><br><a href="https://www.caa.go.jp/policies/policy/representation/fair_labeling/stealth_marketing/" target="_blank" rel="noopener">caa.go.jp 공식 안내</a></li>
-            <li><strong>Meta(Instagram) 알고리즘 변경 공지</strong><br><span>2022년 릴스 중심 추천 콘텐츠 강화 — 정적 콘텐츠 자연 도달률 하락 원인</span></li>
+            <li>
+              <strong
+                >일본 소비자청 — 스텔스마케팅 규제 (2023년 10월 1일
+                시행)</strong
+              >
+              <br /><span
+                >경품표시법(景品表示法) 개정 고시 — 사업자가 비용을 지불한
+                인플루언서 콘텐츠에 #PR · #タイアップ · #提供 표기 의무화. 위반
+                시 재발방지 조치명령 + 기업명 공개, 미이행 시 2년 이하 징역 또는
+                300만 엔 이하 벌금.</span
+              >
+              <br /><a
+                href="https://www.caa.go.jp/policies/policy/representation/fair_labeling/stealth_marketing/"
+                target="_blank"
+                rel="noopener"
+                >일본 소비자청(消費者庁) 공식 안내 페이지</a
+              >
+              <br /><a
+                href="https://www.g-enews.com/article/Global-Biz/2023/10/202310010856165431e8b8a793f7_1"
+                target="_blank"
+                rel="noopener"
+                >글로벌이코노믹 — 「일본, 1일부터 스텔스 마케팅 처벌」
+                (2023.10.01)</a
+              >
+            </li>
           </ul>
         </div>
 
         <div class="source-group">
-          <div class="source-type">업계 보고서</div>
+          <div class="source-type">인스타그램 자연 도달률 데이터</div>
           <ul class="source-list">
-            <li><strong>인스타그램 자연 도달률 통계</strong><br><span>Hootsuite Social Media Trends Report, Sprout Social Index, Socialinsider Industry Benchmark 연간 보고서 — 2018년 평균 8~15% 대비 현재 1~3% 수준 컨센서스</span></li>
-            <li><strong>K-Beauty 일본 시장 동향</strong><br><span>대한화장품산업연구원(KCII) 일본 화장품 시장 분석 리포트, 코트라(KOTRA) 일본 K뷰티 진출 동향 보고서</span></li>
+            <li>
+              <strong
+                >Socialinsider — Social Media Reach Statistics (2025)</strong
+              >
+              <br /><span
+                >인스타그램 평균 도달률 3.50%, 전년 대비 12% 하락. 9,678개
+                브랜드 · 192만 건 게시물 분석 기반.</span
+              >
+              <br /><a
+                href="https://www.socialinsider.io/blog/social-media-reach/"
+                target="_blank"
+                rel="noopener"
+                >socialinsider.io/blog/social-media-reach</a
+              >
+            </li>
+            <li>
+              <strong
+                >ALM Corp — Instagram Organic Reach Decline Report
+                (2025)</strong
+              >
+              <br /><span
+                >2025년 인스타그램 오가닉 도달 전 포맷(캐러셀·정적·릴스) 30~40%
+                하락. 이미지 게시물 도달 2023년 14,800명 → 2024년 5,200명(YoY
+                -64%).</span
+              >
+              <br /><a
+                href="https://almcorp.com/blog/tiktok-brand-growth-instagram-organic-reach-decline-2025/"
+                target="_blank"
+                rel="noopener"
+                >almcorp.com — 플랫폼별 오가닉 도달 분석 리포트</a
+              >
+            </li>
+            <li>
+              <strong
+                >Social.Plus — Instagram Organic Reach Analysis (2025)</strong
+              >
+              <br /><span
+                >팔로워의 3.5%만이 일반 게시물을 확인 — 오가닉 도달이 더 이상
+                성장 전략이 아닌 이유 분석.</span
+              >
+              <br /><a
+                href="https://www.social.plus/blog/only-3-5-of-followers-see-your-instagram-posts---why-organic-reach-is-no-longer-a-growth-strategy"
+                target="_blank"
+                rel="noopener"
+                >social.plus — Only 3.5% of Followers See Your Posts</a
+              >
+            </li>
+            <li>
+              <strong>Sprout Social — Organic Reach Guide (2026)</strong>
+              <br /><span
+                >인스타그램 오가닉 도달의 구조적 하락 원인과 페이드 보완 전략
+                가이드.</span
+              >
+              <br /><a
+                href="https://sproutsocial.com/insights/organic-reach/"
+                target="_blank"
+                rel="noopener"
+                >sproutsocial.com/insights/organic-reach</a
+              >
+            </li>
           </ul>
         </div>
 
         <div class="source-group">
-          <div class="source-type">플랫폼 데이터</div>
+          <div class="source-type">K뷰티 일본 시장 · 큐텐 데이터</div>
           <ul class="source-list">
-            <li><strong>큐텐 재팬 카테고리 셀러 통계</strong><br><span>Qoo10 Japan 색조(메이크업) 카테고리 셀러 페이지 관찰치 — 2020~2022년 진입 셀러 100~300개 대비 2025년 기준 2,000개 이상</span></li>
-            <li><strong>큐텐 광고 상품별 ROAS 범위</strong><br><span>큐텐 재팬 셀러 광고(큐파워·파워랭크업·메가포트) 운영 통상 효율 범위 — 셀러 백오피스 광고 리포트 기준</span></li>
+            <li>
+              <strong
+                >Korea Times — Qoo10 Japan K-beauty 인터뷰 (2025.03)</strong
+              >
+              <br /><span
+                >eBay Japan VP 구자현 인터뷰. 메가데뷔로 136개 한국 브랜드 일본
+                진출, 평균 첫 달 매출 5,000만 원. 3년 내 100억 엔 브랜드 20개 ·
+                10억 엔 브랜드 100개 목표.</span
+              >
+              <br /><a
+                href="https://www.koreatimes.co.kr/business/companies/20250325/interview-qoo10-japan-chief-sweeps-gen-zers-with-k-beauty"
+                target="_blank"
+                rel="noopener"
+                >koreatimes.co.kr — Qoo10 Japan Chief 인터뷰</a
+              >
+            </li>
+            <li>
+              <strong>Korea Herald — K뷰티 큐텐 베스트셀러 석권 (2025)</strong>
+              <br /><span
+                >큐텐 Mega Beauty Awards 2025에서 K뷰티 브랜드가 전체 137개 수상
+                중 87% 차지.</span
+              >
+              <br /><a
+                href="https://www.koreaherald.com/article/10723199"
+                target="_blank"
+                rel="noopener"
+                >koreaherald.com — Korean brands sweep beauty bestseller
+                lists</a
+              >
+            </li>
+            <li>
+              <strong
+                >Seoul Economic Daily — K뷰티 이너뷰티 큐텐 매출 급증
+                (2026.03)</strong
+              >
+              <br /><span
+                >큐텐 재팬 K뷰티 이너뷰티 매출 전년 대비 90% 증가, 전체 K뷰티
+                제품 약 60% YoY 성장.</span
+              >
+              <br /><a
+                href="https://en.sedaily.com/news/2026/03/06/k-beauty-supplements-sales-surge-90-percent-on-japans-qoo10"
+                target="_blank"
+                rel="noopener"
+                >sedaily.com — K-Beauty Sales Surge 90%</a
+              >
+            </li>
+            <li>
+              <strong>The Investor — K뷰티 일본 화장품 수입 1위 (2025)</strong>
+              <br /><span
+                >일본 화장품 수입협회 기준 K뷰티가 전체 화장품 수입의 30% 이상
+                차지, 3년 연속 1위.</span
+              >
+              <br /><a
+                href="https://www.theinvestor.co.kr/article/10632996"
+                target="_blank"
+                rel="noopener"
+                >theinvestor.co.kr — K-beauty captures Japan's biggest beauty
+                crown</a
+              >
+            </li>
+            <li>
+              <strong>2025 메가와리 실적</strong>
+              <br /><span
+                >2025년 첫 메가와리(2.28~3.12) 총 거래액 5,000억 원(YoY +25%),
+                350만 명 소비자 참여, 45만 종 상품 거래.</span
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="source-group">
+          <div class="source-type">KOTRA · 산업 보고서</div>
+          <ul class="source-list">
+            <li>
+              <strong>KOTRA — 2025 일본 진출전략 보고서</strong>
+              <br /><span
+                >일본 시장평가, 비즈니스 환경 분석, K뷰티 포함 소비재 진출전략
+                종합 리포트.</span
+              >
+              <br /><a
+                href="https://openknowledge.kotra.or.kr/handle/2014.oak/32499"
+                target="_blank"
+                rel="noopener"
+                >KOTRA Open Access Repository — 2025 일본 진출전략</a
+              >
+            </li>
+            <li>
+              <strong>KOTRA — 2026 일본 진출전략 보고서</strong>
+              <br /><span
+                >2026년 최신 일본 시장 환경 변화 및 K뷰티 진출 동향 분석.</span
+              >
+              <br /><a
+                href="https://openknowledge.kotra.or.kr/handle/2014.oak/33728"
+                target="_blank"
+                rel="noopener"
+                >KOTRA Open Access Repository — 2026 일본 진출전략</a
+              >
+            </li>
+            <li>
+              <strong>KOTRA — 2024 일본 화장품 트렌드 리포트</strong>
+              <br /><span
+                >K뷰티가 2022년 처음 프랑스를 제치고 일본 화장품 수입 1위 등극,
+                2024년 전년 대비 약 15% 반등 성장.</span
+              >
+              <br /><a
+                href="https://dream.kotra.or.kr/kotranews/cms/news/actionKotraBoardDetail.do?SITE_NO=3&MENU_ID=180&bbsSn=243&pNttSn=214725&CONTENTS_NO=1"
+                target="_blank"
+                rel="noopener"
+                >KOTRA 해외경제정보드림 — 2024 일본 화장품 트렌드</a
+              >
+            </li>
           </ul>
         </div>
 
         <div class="source-group">
           <div class="source-type">실무 운영 벤치마크</div>
           <ul class="source-list">
-            <li><strong>시딩 · 리타게팅 전환률</strong><br><span>시딩 콘텐츠 노출 → 큐텐 검색 전환률 5~10%, 메타 리타게팅 결합 시 30~50% — 일본 K뷰티 광고 대행사 운영 평균치</span></li>
-            <li><strong>K뷰티 일본 진출 브랜드의 마케팅 예산 구조</strong><br><span>시딩 20~30% / 메타·틱톡 페이드 40~50% / 큐텐 내부 광고 20~30% — 일본 진출 K뷰티 색조 브랜드 운영 일반 패턴</span></li>
-            <li><strong>큐텐 메가와리 매출 비중</strong><br><span>큐텐 셀러 매출 분포 일반 관찰 — 메가와리 5일간 월 매출의 60~70% 발생</span></li>
-            <li><strong>국내 인디 색조 브랜드 메타 광고 운영 현황</strong><br><span>어뮤즈 · 데이지크 · 힌스 · 누이 · 라카 · 어반디케이 등 — 공개 광고 게재 기록 및 인스타그램 페이드 노출 관찰</span></li>
+            <li>
+              <strong>시딩 · 리타게팅 전환률</strong>
+              <br /><span
+                >시딩 콘텐츠 노출 → 큐텐 검색 전환률 5~10%, 메타 리타게팅 결합
+                시 30~50% — 일본 K뷰티 광고 대행사 운영 평균치</span
+              >
+            </li>
+            <li>
+              <strong>K뷰티 일본 진출 브랜드의 마케팅 예산 구조</strong>
+              <br /><span
+                >시딩 20~30% / 메타·틱톡 페이드 40~50% / 큐텐 내부 광고 20~30% —
+                일본 진출 K뷰티 색조 브랜드 운영 일반 패턴</span
+              >
+            </li>
+            <li>
+              <strong>국내 인디 색조 브랜드 메타 광고 운영 현황</strong>
+              <br /><span
+                >어뮤즈 · 데이지크 · 힌스 · 누이 · 라카 · 어반디케이 등 — Meta
+                Ad Library 공개 광고 게재 기록 및 인스타그램 페이드 노출
+                관찰</span
+              >
+            </li>
           </ul>
         </div>
 
-        <p class="source-note">위 항목 중 "실무 운영 벤치마크"는 공식 출처 단일 보고서가 존재하지 않으며, 일본 큐텐 및 K뷰티 마케팅 운영 현장의 통상 수치로 광고 대행사·셀러 운영 경험치를 종합한 값입니다. 실제 적용 시 탐뷰티 자체 캠페인 데이터로 보정 필요합니다.</p>
+        <p class="source-note">
+          "실무 운영 벤치마크" 항목은 공식 단일 보고서가 아닌, 일본 큐텐 K뷰티
+          마케팅 현장의 통상 수치를 광고 대행사·셀러 운영 경험치 기반으로 종합한
+          값입니다. 실제 적용 시 탐뷰티 자체 캠페인 데이터로 보정이 필요합니다.
+        </p>
       </section>
-
     </div>
   </body>
 </html>
