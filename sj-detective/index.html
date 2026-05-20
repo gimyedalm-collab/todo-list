@@ -973,10 +973,19 @@
         margin-top: 6px;
       }
       .footer-tagline {
-        margin: 20px 0;
+        margin: 20px 0 16px;
         font-size: 13px;
         line-height: 1.85;
         color: rgba(255, 255, 255, 0.5);
+        max-width: 380px;
+      }
+      .footer-biz {
+        font-size: 11px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.04em;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         max-width: 380px;
       }
       .footer-col h4 {
@@ -1259,7 +1268,258 @@
         color: var(--gold-light);
       }
 
+      /* === ABOUT VISUAL CERT IMG === */
+      .about-visual-cert {
+        background: linear-gradient(135deg, #1f1d18 0%, #0e0e10 100%);
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+      }
+      .about-cert-img {
+        width: 100%;
+        max-width: 360px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow:
+          0 12px 40px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(184, 153, 104, 0.3);
+        transform: rotate(-2deg);
+        transition: transform 0.4s ease;
+      }
+      .about-cert-img:hover {
+        transform: rotate(0deg) scale(1.02);
+      }
+      .about-visual-cert .about-visual-caption {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        text-align: center;
+        line-height: 1.7;
+      }
+      .about-caption-tag {
+        display: inline-block;
+        margin-right: 8px;
+        background: var(--gold);
+        color: #fff;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        padding: 3px 10px;
+      }
+      .about-visual-cert.about-visual-fallback::before,
+      .about-visual-cert.about-visual-fallback::after {
+        display: none;
+      }
+
+      /* fallback when image missing */
+      .about-visual-cert:not(:has(img[src])) {
+        /* let the default 'SJ' overlay show via about-visual fallback */
+      }
+
+      /* === CERT LIST (PEOPLE) === */
+      .cert-list-people {
+        grid-template-columns: 1fr 1fr;
+      }
+      .cert-list-people li {
+        padding: 8px 0 8px 18px;
+      }
+      .cert-list-people li strong {
+        display: block;
+        font-size: 14px;
+        color: var(--text);
+      }
+      .cert-list-people li span {
+        display: block;
+        font-size: 11px;
+        color: var(--text-mute);
+        letter-spacing: 0.05em;
+        margin-top: 2px;
+      }
+
+      /* === CREDENTIALS SECTION === */
+      .credentials {
+        background: var(--bg-soft);
+        position: relative;
+      }
+      .credentials .section-title {
+        color: var(--text);
+      }
+      .cred-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-bottom: 60px;
+      }
+      .cred-card {
+        margin: 0;
+        background: #fff;
+        border: 1px solid var(--line);
+        padding: 18px;
+        transition: all 0.3s;
+      }
+      .cred-card:hover {
+        border-color: var(--gold);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        transform: translateY(-4px);
+      }
+      .cred-img-wrap {
+        position: relative;
+        background: linear-gradient(135deg, #f1ede5, #e8e2d4);
+        overflow: hidden;
+        aspect-ratio: 1/1.2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cred-card-id .cred-img-wrap {
+        aspect-ratio: 1.6/1;
+      }
+      .cred-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: #fff;
+      }
+      .cred-img-fallback {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        color: var(--gold-deep);
+        font-family: 'Noto Serif KR', serif;
+      }
+      .cred-fallback-mark {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+      .cred-fallback-sub {
+        font-size: 14px;
+        letter-spacing: 0.15em;
+        color: var(--text-mute);
+      }
+      /* image present → hide fallback */
+      .cred-img-wrap:not(.cred-img-missing) .cred-img-fallback {
+        display: none;
+      }
+      .cred-card figcaption {
+        padding-top: 16px;
+        text-align: center;
+      }
+      .cred-card figcaption strong {
+        display: block;
+        font-family: 'Noto Serif KR', serif;
+        font-size: 15px;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .cred-card figcaption span {
+        font-size: 12px;
+        color: var(--text-mute);
+        letter-spacing: 0.04em;
+      }
+
+      /* === CREDENTIALS BUSINESS BLOCK === */
+      .cred-business {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 50px;
+        align-items: center;
+        background: #fff;
+        padding: 50px;
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--gold);
+      }
+      .cred-biz-card {
+        margin: 0;
+      }
+      .cred-biz-card .cred-img-wrap {
+        aspect-ratio: 0.72/1;
+        background: linear-gradient(135deg, #f4f1e8, #e8e2d4);
+      }
+      .cred-biz-text .cred-biz-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 14px;
+        letter-spacing: 0.3em;
+        color: var(--gold-deep);
+        margin-bottom: 12px;
+      }
+      .cred-biz-text h3 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 24px;
+      }
+      .cred-biz-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px;
+        display: grid;
+        gap: 10px;
+      }
+      .cred-biz-list li {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        align-items: baseline;
+        padding: 10px 0;
+        border-bottom: 1px dashed var(--line);
+        font-size: 14px;
+      }
+      .cred-biz-list li span {
+        color: var(--text-mute);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+      }
+      .cred-biz-list li strong {
+        color: var(--text);
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .cred-biz-note {
+        font-size: 12px !important;
+        color: var(--text-mute) !important;
+        line-height: 1.8 !important;
+        margin: 0 !important;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+      }
+
       /* === RESPONSIVE === */
+      @media (max-width: 960px) {
+        .cred-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .cred-business {
+          grid-template-columns: 1fr;
+          padding: 32px;
+          gap: 32px;
+        }
+        .cred-biz-list li {
+          grid-template-columns: 120px 1fr;
+        }
+      }
+      @media (max-width: 540px) {
+        .cred-grid {
+          grid-template-columns: 1fr;
+        }
+        .cred-business {
+          padding: 24px;
+        }
+        .cred-biz-list li {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+      }
+
+      /* === RESPONSIVE (ORIGINAL) === */
       @media (max-width: 960px) {
         nav ul,
         .header-cta .tel {
@@ -1345,6 +1605,7 @@
             <li><a href="#services">의뢰분야</a></li>
             <li><a href="#process">진행절차</a></li>
             <li><a href="#why">신뢰의 약속</a></li>
+            <li><a href="#credentials">자격증</a></li>
             <li><a href="#cases">해결사례</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
@@ -1360,13 +1621,13 @@
     <!-- ==================== HERO ==================== -->
     <section class="hero">
       <div class="container hero-inner">
-        <div class="hero-eyebrow">SJ DETECTIVE OFFICE · SINCE 2005</div>
+        <div class="hero-eyebrow">(SJ) 에스제이탐정사무소</div>
         <div class="cert-badge-row">
           <div class="cert-badge">
             <span class="cert-badge-mark">★</span>
             <div>
-              <strong>탐정사 자격증 1급 전 종목 보유</strong>
-              <small>한국직업능력연구원 등록 정식 민간자격</small>
+              <strong>대표·부소장 모두 탐정사 1급 정식 보유</strong>
+              <small>한국자격검정평가진흥원 · 등록번호 2023-003035</small>
             </div>
           </div>
         </div>
@@ -1377,8 +1638,8 @@
         </h1>
         <p class="hero-sub">
           말하지 못한 진실, 묻혀버린 흔적, 사라진 사람 ―<br />
-          <strong>20년 경력의 전문 조사관</strong>이 단 하나의 의뢰도 흘리지
-          않고 추적합니다.<br />
+          <strong>탐정사 1급 자격증을 보유한 전문 조사관</strong>이 단 하나의
+          의뢰도 흘리지 않고 추적합니다.<br />
           모든 상담은 <strong>완전한 비밀보장</strong> 아래 진행되며, 결과로만
           증명합니다.
         </p>
@@ -1404,7 +1665,7 @@
           </div>
           <div class="trust-cell trust-cell-cert">
             <div class="trust-num trust-num-cert">1<small>급</small></div>
-            <div class="trust-label">탐정사 자격증 全 종목</div>
+            <div class="trust-label">탐정사 자격증 정식 보유</div>
           </div>
           <div class="trust-cell">
             <div class="trust-num">100<small>%</small></div>
@@ -1417,22 +1678,38 @@
     <!-- ==================== ABOUT ==================== -->
     <section class="block about" id="about">
       <div class="container about-wrap">
-        <div class="about-visual"></div>
+        <div class="about-visual about-visual-cert">
+          <img
+            src="images/cert-card-kim.png"
+            alt="탐정사 1급 자격증 - 김혁진"
+            class="about-cert-img"
+            onerror="
+              this.style.display = 'none';
+              this.parentElement.classList.add('about-visual-fallback');
+            "
+          />
+          <div class="about-visual-caption">
+            <span class="about-caption-tag">CERTIFIED</span>
+            탐정사 1급 자격증 · 한국자격검정평가진흥원
+          </div>
+        </div>
         <div class="about-text">
           <div class="label">ABOUT SJ</div>
           <h2>
-            20년간 단 하나의 원칙,<br />
+            단 하나의 원칙,<br />
             <span style="color: var(--gold-deep)">"의뢰인의 진실만 본다."</span>
           </h2>
           <p>
-            SJ 탐정사무소는 2005년 개소 이래, 합법적 정보 수집과 정밀한 현장
-            조사를 통해 의뢰인이 마주한 가장 무거운 질문에 답을 찾아왔습니다.
+            (SJ)에스제이탐정사무소는
+            <strong>탐정사 1급 자격증을 정식 보유한 전문 조사관</strong>이 직접
+            운영하는 사무소입니다. 자격 없이 영업하는 일부 업체와 출발선부터
+            다릅니다.
           </p>
           <p>
-            퇴직 수사관, 디지털 포렌식 전문가, 법무 자문이 한 팀으로 움직이며,
-            의뢰 접수부터 결과 보고까지 단 한 사람의 외부 노출도 허용하지
-            않습니다. 결과보고서는 법적 증거로 활용 가능한 수준으로 정리되어
-            전달됩니다.
+            대표 <strong>김혁진</strong>과 부소장 <strong>신대현</strong>이
+            <em>둘 다 탐정사 1급</em> 자격을 보유하고 있으며, 모든 의뢰 접수와
+            보고서 인계까지 단 한 사람의 외부 노출도 허용하지 않는
+            <strong>1:1 비밀 전담</strong> 체계로 진행됩니다.
           </p>
           <p>
             우리는 사건을 해결하지 않습니다 ― 우리는
@@ -1442,21 +1719,27 @@
           <div class="cert-strip">
             <div class="cert-strip-title">
               <span class="cert-strip-mark">CERTIFIED</span>
-              탐정사 1급 자격증 全 종목 보유
+              탐정사 1급 자격증 정식 보유
             </div>
-            <ul class="cert-list">
-              <li>일반탐정사 1급</li>
-              <li>사이버탐정사 1급</li>
-              <li>기업탐정사 1급</li>
-              <li>가족탐정사 1급</li>
+            <ul class="cert-list cert-list-people">
+              <li>
+                <strong>대표 김혁진</strong>
+                <span>탐정사 1급 · 등록 2023-003035</span>
+              </li>
+              <li>
+                <strong>부소장 신대현</strong>
+                <span>탐정사 1급 · 등록 2023-003035</span>
+              </li>
             </ul>
             <p class="cert-note">
-              ※ 한국직업능력연구원 등록 정식 민간자격 · 자격검정 최상위 등급 전
-              종목 취득
+              ※ 한국자격검정평가진흥원(KLADI) 발급 정식 민간자격 · 자격기본법
+              시행령에 따라 등록된 자격증
             </p>
           </div>
           <div class="sign">
-            <div class="sign-name">소장 정SJ<small>CHIEF DETECTIVE</small></div>
+            <div class="sign-name">
+              대표 김혁진<small>CHIEF · KIM HYUKJIN</small>
+            </div>
             <div class="sign-en">SJ.</div>
           </div>
         </div>
@@ -1632,12 +1915,12 @@
         <div class="why-grid">
           <div class="why-card why-card-feature">
             <div class="why-ico">★</div>
-            <h3 class="why-title">탐정사 1급 자격증<br />전 종목 보유</h3>
+            <h3 class="why-title">대표 · 부소장<br />모두 탐정사 1급</h3>
             <p class="why-desc">
-              일반·사이버·기업·가족 ― 분야별 탐정사 자격증을 모두
-              <strong>1급(최상위)</strong>
-              으로 취득한 정식 자격 보유 사무소. 자격 미보유 업체와는 출발선이
-              다릅니다.
+              대표 김혁진·부소장 신대현
+              <strong>전원 탐정사 1급 자격증 정식 보유</strong>.
+              한국자격검정평가진흥원 발급, 자격기본법 시행령에 따라 등록된
+              자격증입니다. 자격 미보유 업체와는 출발선이 다릅니다.
             </p>
           </div>
           <div class="why-card">
@@ -1654,6 +1937,135 @@
             <p class="why-desc">
               계약서에 명시된 목표를 달성하지 못한 경우, 착수금을 제외한 잔여
               비용은 전액 환불해 드립니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CREDENTIALS ==================== -->
+    <section class="block credentials" id="credentials">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">OUR CREDENTIALS</div>
+          <h2 class="section-title">
+            <span class="gold">자격은 사진으로 증명합니다.</span>
+          </h2>
+          <p class="section-sub">
+            대표·부소장 모두 한국자격검정평가진흥원에서 발급한
+            <strong>탐정사 1급</strong> 자격증을 정식 보유하고 있습니다.<br />
+            의뢰 전 사무소 방문 시 원본을 직접 확인하실 수 있습니다.
+          </p>
+        </div>
+
+        <div class="cred-grid">
+          <figure class="cred-card cred-card-paper">
+            <div class="cred-img-wrap">
+              <img
+                src="images/cert-paper-kim.png"
+                alt="탐정사 1급 자격증 - 대표 김혁진"
+                onerror="this.parentElement.classList.add('cred-img-missing')"
+              />
+              <div class="cred-img-fallback">
+                <span class="cred-fallback-mark">자격증</span>
+                <span class="cred-fallback-sub">탐정사 1급</span>
+              </div>
+            </div>
+            <figcaption>
+              <strong>탐정사 1급 자격증</strong>
+              <span>대표 김혁진 · 등록번호 2023-003035</span>
+            </figcaption>
+          </figure>
+
+          <figure class="cred-card cred-card-paper">
+            <div class="cred-img-wrap">
+              <img
+                src="images/cert-paper-shin.png"
+                alt="탐정사 1급 자격증 - 부소장 신대현"
+                onerror="this.parentElement.classList.add('cred-img-missing')"
+              />
+              <div class="cred-img-fallback">
+                <span class="cred-fallback-mark">자격증</span>
+                <span class="cred-fallback-sub">탐정사 1급</span>
+              </div>
+            </div>
+            <figcaption>
+              <strong>탐정사 1급 자격증</strong>
+              <span>부소장 신대현 · 등록번호 2023-003035</span>
+            </figcaption>
+          </figure>
+
+          <figure class="cred-card cred-card-id">
+            <div class="cred-img-wrap">
+              <img
+                src="images/cert-card-kim.png"
+                alt="탐정사 1급 자격카드 - 대표 김혁진"
+                onerror="this.parentElement.classList.add('cred-img-missing')"
+              />
+              <div class="cred-img-fallback">
+                <span class="cred-fallback-mark">ID 카드</span>
+                <span class="cred-fallback-sub">탐정사 1급</span>
+              </div>
+            </div>
+            <figcaption>
+              <strong>자격 ID 카드</strong>
+              <span>대표 김혁진</span>
+            </figcaption>
+          </figure>
+
+          <figure class="cred-card cred-card-id">
+            <div class="cred-img-wrap">
+              <img
+                src="images/cert-card-shin.png"
+                alt="탐정사 1급 자격카드 - 부소장 신대현"
+                onerror="this.parentElement.classList.add('cred-img-missing')"
+              />
+              <div class="cred-img-fallback">
+                <span class="cred-fallback-mark">ID 카드</span>
+                <span class="cred-fallback-sub">탐정사 1급</span>
+              </div>
+            </div>
+            <figcaption>
+              <strong>자격 ID 카드</strong>
+              <span>부소장 신대현</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="cred-business">
+          <figure class="cred-biz-card">
+            <div class="cred-img-wrap">
+              <img
+                src="images/business-registration.png"
+                alt="사업자등록증"
+                onerror="this.parentElement.classList.add('cred-img-missing')"
+              />
+              <div class="cred-img-fallback">
+                <span class="cred-fallback-mark">사업자</span>
+                <span class="cred-fallback-sub">등록증</span>
+              </div>
+            </div>
+          </figure>
+          <div class="cred-biz-text">
+            <div class="cred-biz-label">BUSINESS REGISTRATION</div>
+            <h3>국세청 등록 정식 사업자</h3>
+            <ul class="cred-biz-list">
+              <li><span>상호</span><strong>(SJ)에스제이탐정사무소</strong></li>
+              <li><span>대표자</span><strong>김혁진</strong></li>
+              <li><span>사업자등록번호</span><strong>702-22-02085</strong></li>
+              <li><span>업종</span><strong>탐정 및 조사 서비스업</strong></li>
+              <li>
+                <span>사업장</span
+                ><strong
+                  >경기도 고양시 일산서구 주엽로 150, 8층 806호
+                  (자유프라자)</strong
+                >
+              </li>
+            </ul>
+            <p class="cred-biz-note">
+              ※ 국세청에 정식 등록된 탐정 및 조사 서비스업 사업자입니다.
+              세금계산서 발행 가능, 모든 거래는 합법적 회계 처리 하에
+              진행됩니다.
             </p>
           </div>
         </div>
@@ -1891,7 +2303,11 @@
             </a>
             <p class="footer-tagline">
               의심을 확신으로, 침묵을 증거로. <br />
-              2005년부터 변치 않은 단 하나의 원칙, 의뢰인의 진실만 봅니다.
+              탐정사 1급 자격 보유 · 의뢰인의 진실만 봅니다.
+            </p>
+            <p class="footer-biz">
+              (SJ)에스제이탐정사무소 · 대표 김혁진<br />
+              사업자등록번호 702-22-02085
             </p>
           </div>
           <div class="footer-col">
@@ -1919,9 +2335,10 @@
           <div class="footer-col">
             <h4>OFFICE</h4>
             <ul>
-              <li>서울특별시 강남구 (상담은 비공개 장소에서 진행)</li>
+              <li>경기도 고양시 일산서구 주엽로 150</li>
+              <li>8층 806호 (주엽동, 자유프라자)</li>
               <li>상담 가능 시간 · 24시간 / 연중무휴</li>
-              <li>대한탐정협회 정회원</li>
+              <li>한국자격검정평가진흥원 등록 정식 자격</li>
             </ul>
           </div>
         </div>
