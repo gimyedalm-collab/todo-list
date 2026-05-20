@@ -1058,6 +1058,207 @@
         color: var(--gold-light);
       }
 
+      /* === CERT BADGE (HERO) === */
+      .cert-badge-row {
+        margin: -8px 0 28px;
+      }
+      .cert-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 22px 12px 18px;
+        background: linear-gradient(
+          135deg,
+          rgba(184, 153, 104, 0.16),
+          rgba(184, 153, 104, 0.04)
+        );
+        border: 1px solid rgba(184, 153, 104, 0.45);
+        border-radius: 2px;
+      }
+      .cert-badge-mark {
+        font-size: 20px;
+        color: var(--gold-light);
+        line-height: 1;
+        text-shadow: 0 0 12px rgba(184, 153, 104, 0.5);
+      }
+      .cert-badge strong {
+        display: block;
+        color: var(--gold-light);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        line-height: 1.3;
+      }
+      .cert-badge small {
+        display: block;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        margin-top: 3px;
+      }
+
+      /* === TRUST CERT CELL === */
+      .trust-num-cert {
+        font-family: 'Noto Serif KR', serif !important;
+        font-size: 50px !important;
+        font-weight: 700 !important;
+      }
+      .trust-num-cert small {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 24px !important;
+      }
+      .trust-cell-cert {
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba(184, 153, 104, 0.06)
+        );
+        position: relative;
+      }
+      .trust-cell-cert::before {
+        content: 'CERTIFIED';
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--gold);
+        color: #fff;
+        font-size: 9px;
+        letter-spacing: 0.25em;
+        padding: 3px 10px;
+      }
+
+      /* === CERT STRIP (ABOUT) === */
+      .cert-strip {
+        margin-top: 32px;
+        padding: 24px 26px;
+        background: #fff;
+        border: 1px solid var(--gold);
+        border-left: 4px solid var(--gold);
+        position: relative;
+      }
+      .cert-strip-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+        letter-spacing: -0.01em;
+      }
+      .cert-strip-mark {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        color: #fff;
+        background: var(--gold-deep);
+        padding: 4px 10px;
+      }
+      .cert-list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px 18px;
+        margin: 0;
+        padding: 0;
+      }
+      .cert-list li {
+        font-size: 14px;
+        color: var(--text);
+        padding-left: 18px;
+        position: relative;
+      }
+      .cert-list li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--gold-deep);
+        font-weight: 700;
+      }
+      .cert-note {
+        margin-top: 14px !important;
+        padding-top: 14px;
+        border-top: 1px dashed var(--line);
+        font-size: 12px !important;
+        color: var(--text-mute) !important;
+        line-height: 1.7 !important;
+      }
+
+      /* === WHY CARD FEATURE === */
+      .why-card-feature {
+        background: linear-gradient(180deg, #fff, var(--bg-soft));
+        border-color: var(--gold) !important;
+        border-width: 2px !important;
+        position: relative;
+      }
+      .why-card-feature::before {
+        content: 'SIGNATURE';
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--gold-deep);
+        color: #fff;
+        font-size: 10px;
+        letter-spacing: 0.25em;
+        padding: 4px 14px;
+        font-weight: 600;
+      }
+      .why-card-feature .why-ico {
+        background: var(--gold);
+        color: #fff;
+        border-color: var(--gold);
+        font-size: 26px;
+      }
+
+      /* === CTA SUB TEL === */
+      .cta-tel-sub {
+        margin-top: 16px;
+        font-size: 14px;
+        letter-spacing: 0.04em;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .cta-tel-sub a {
+        color: var(--gold-light);
+        font-weight: 600;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 18px;
+        letter-spacing: 0.05em;
+        margin-left: 4px;
+      }
+      .cta-tel-sub a:hover {
+        color: #fff;
+      }
+
+      /* === TELEGRAM === */
+      .btn-telegram {
+        border-color: rgba(42, 170, 226, 0.6) !important;
+        color: #59c0ec !important;
+      }
+      .btn-telegram:hover {
+        border-color: #2aaae2 !important;
+        color: #2aaae2 !important;
+      }
+      .float-btn.telegram {
+        background: #2aaae2;
+        color: #fff;
+        font-size: 24px;
+        font-family: 'Pretendard', sans-serif;
+        font-weight: 400;
+      }
+
+      /* === FOOTER LINK STYLE === */
+      .footer-col ul li a {
+        color: rgba(255, 255, 255, 0.75);
+        transition: color 0.2s;
+      }
+      .footer-col ul li a:hover {
+        color: var(--gold-light);
+      }
+
       /* === RESPONSIVE === */
       @media (max-width: 960px) {
         nav ul,
@@ -1149,7 +1350,7 @@
           </ul>
         </nav>
         <div class="header-cta">
-          <span class="tel">1588-0000</span>
+          <span class="tel">1644-1488</span>
           <a href="#cta" class="btn-consult">무료상담</a>
           <button class="menu-toggle" aria-label="menu">≡</button>
         </div>
@@ -1160,6 +1361,15 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-eyebrow">SJ DETECTIVE OFFICE · SINCE 2005</div>
+        <div class="cert-badge-row">
+          <div class="cert-badge">
+            <span class="cert-badge-mark">★</span>
+            <div>
+              <strong>탐정사 자격증 1급 전 종목 보유</strong>
+              <small>한국직업능력연구원 등록 정식 민간자격</small>
+            </div>
+          </div>
+        </div>
         <h1>
           의심은 시간이 지날수록<br />
           <span class="accent">확신</span>이 됩니다.<br />
@@ -1174,7 +1384,7 @@
         </p>
         <div class="hero-cta-row">
           <a href="#cta" class="btn-primary">무료상담 신청 →</a>
-          <a href="tel:1588-0000" class="btn-ghost">☎ 24시간 긴급전화</a>
+          <a href="tel:1644-1488" class="btn-ghost">☎ 24시간 긴급전화</a>
         </div>
       </div>
       <div class="hero-scroll">SCROLL</div>
@@ -1192,9 +1402,9 @@
             <div class="trust-num">8,400<small>+</small></div>
             <div class="trust-label">누적 의뢰 건수</div>
           </div>
-          <div class="trust-cell">
-            <div class="trust-num">97<small>%</small></div>
-            <div class="trust-label">의뢰인 만족도</div>
+          <div class="trust-cell trust-cell-cert">
+            <div class="trust-num trust-num-cert">1<small>급</small></div>
+            <div class="trust-label">탐정사 자격증 全 종목</div>
           </div>
           <div class="trust-cell">
             <div class="trust-num">100<small>%</small></div>
@@ -1229,6 +1439,22 @@
             <strong>의뢰인의 삶이 다음 단계로 나아갈 수 있는 근거</strong>를
             만들어드립니다.
           </p>
+          <div class="cert-strip">
+            <div class="cert-strip-title">
+              <span class="cert-strip-mark">CERTIFIED</span>
+              탐정사 1급 자격증 全 종목 보유
+            </div>
+            <ul class="cert-list">
+              <li>일반탐정사 1급</li>
+              <li>사이버탐정사 1급</li>
+              <li>기업탐정사 1급</li>
+              <li>가족탐정사 1급</li>
+            </ul>
+            <p class="cert-note">
+              ※ 한국직업능력연구원 등록 정식 민간자격 · 자격검정 최상위 등급 전
+              종목 취득
+            </p>
+          </div>
           <div class="sign">
             <div class="sign-name">소장 정SJ<small>CHIEF DETECTIVE</small></div>
             <div class="sign-en">SJ.</div>
@@ -1404,12 +1630,14 @@
         </div>
 
         <div class="why-grid">
-          <div class="why-card">
-            <div class="why-ico">i</div>
-            <h3 class="why-title">법의 안쪽, 결과의 바깥쪽</h3>
+          <div class="why-card why-card-feature">
+            <div class="why-ico">★</div>
+            <h3 class="why-title">탐정사 1급 자격증<br />전 종목 보유</h3>
             <p class="why-desc">
-              탐정업법·개인정보보호법을 100% 준수하는 합법적 조사만 진행합니다.
-              법정에서 인정받을 수 있는 증거만 다룹니다.
+              일반·사이버·기업·가족 ― 분야별 탐정사 자격증을 모두
+              <strong>1급(최상위)</strong>
+              으로 취득한 정식 자격 보유 사무소. 자격 미보유 업체와는 출발선이
+              다릅니다.
             </p>
           </div>
           <div class="why-card">
@@ -1624,12 +1852,30 @@
 
         <div class="cta-tel-big">
           <small>24/7 CONFIDENTIAL HOTLINE</small>
-          <a href="tel:1588-0000">1588 — 0000</a>
+          <a href="tel:1644-1488">1644 — 1488</a>
+          <div class="cta-tel-sub">
+            긴급 직통 · <a href="tel:010-8182-6634">010.8182.6634</a>
+          </div>
         </div>
 
         <div class="cta-row">
-          <a href="#" class="btn-primary">카카오톡 1:1 비밀상담 →</a>
-          <a href="tel:1588-0000" class="btn-ghost">☎ 지금 바로 전화</a>
+          <a
+            href="https://pf.kakao.com/_SJDT2"
+            target="_blank"
+            rel="noopener"
+            class="btn-primary"
+          >
+            카카오톡 비밀상담 · ID @SJDT2 →
+          </a>
+          <a
+            href="https://t.me/sjagency2"
+            target="_blank"
+            rel="noopener"
+            class="btn-ghost btn-telegram"
+          >
+            ✈ 텔레그램 @sjagency2
+          </a>
+          <a href="tel:1644-1488" class="btn-ghost">☎ 지금 바로 전화</a>
         </div>
       </div>
     </section>
@@ -1651,10 +1897,23 @@
           <div class="footer-col">
             <h4>CONTACT</h4>
             <ul>
-              <li>대표전화 · 1588-0000</li>
-              <li>긴급문의 · 010-0000-0000</li>
-              <li>카카오톡 · @sj-detective</li>
-              <li>이메일 · contact@sj-detective.kr</li>
+              <li>대표전화 · <a href="tel:1644-1488">1644-1488</a></li>
+              <li>긴급 직통 · <a href="tel:010-8182-6634">010.8182.6634</a></li>
+              <li>
+                카카오톡 ·
+                <a
+                  href="https://pf.kakao.com/_SJDT2"
+                  target="_blank"
+                  rel="noopener"
+                  >@SJDT2</a
+                >
+              </li>
+              <li>
+                텔레그램 ·
+                <a href="https://t.me/sjagency2" target="_blank" rel="noopener"
+                  >@sjagency2</a
+                >
+              </li>
             </ul>
           </div>
           <div class="footer-col">
@@ -1679,9 +1938,24 @@
 
     <!-- ==================== FLOATING CTA ==================== -->
     <div class="float-cta">
-      <a href="tel:1588-0000" class="float-btn tel-label">1588-0000</a>
-      <a href="#" class="float-btn kakao" title="카카오톡 상담">K</a>
-      <a href="tel:1588-0000" class="float-btn tel" title="전화 상담">☎</a>
+      <a href="tel:1644-1488" class="float-btn tel-label">1644-1488</a>
+      <a
+        href="https://t.me/sjagency2"
+        target="_blank"
+        rel="noopener"
+        class="float-btn telegram"
+        title="텔레그램 @sjagency2"
+        >✈</a
+      >
+      <a
+        href="https://pf.kakao.com/_SJDT2"
+        target="_blank"
+        rel="noopener"
+        class="float-btn kakao"
+        title="카카오톡 @SJDT2"
+        >K</a
+      >
+      <a href="tel:1644-1488" class="float-btn tel" title="전화 상담">☎</a>
     </div>
 
     <script>
