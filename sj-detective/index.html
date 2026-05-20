@@ -1,0 +1,1713 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SJ 탐정사무소 — 의심을 확신으로, 침묵을 증거로</title>
+    <meta
+      name="description"
+      content="20년 경력의 SJ 탐정사무소. 외도조사·사람찾기·기업조사·사기피해 추적. 100% 비밀보장, 24시간 무료상담."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --bg-soft: #f6f3ee;
+        --bg-dark: #0e0e10;
+        --bg-darker: #050507;
+        --line: #e5e0d6;
+        --line-dark: #2a2a2e;
+        --text: #161616;
+        --text-soft: #5d5d5d;
+        --text-mute: #8a8a8a;
+        --gold: #b89968;
+        --gold-light: #d4b888;
+        --gold-deep: #8c6f43;
+        --red: #b8332a;
+        --maxw: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          'Pretendard',
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+      }
+
+      .serif {
+        font-family: 'Noto Serif KR', serif;
+        letter-spacing: -0.02em;
+      }
+      .serif-en {
+        font-family: 'Cormorant Garamond', serif;
+        letter-spacing: 0.02em;
+      }
+      .container {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* === HEADER === */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(14, 14, 16, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+      }
+      header .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 78px;
+      }
+      .logo {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        color: #fff;
+      }
+      .logo-mark {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--gold-light);
+      }
+      .logo-text {
+        font-size: 13px;
+        letter-spacing: 0.3em;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 300;
+      }
+      nav ul {
+        display: flex;
+        gap: 38px;
+        list-style: none;
+      }
+      nav ul a {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        transition: color 0.2s;
+      }
+      nav ul a:hover {
+        color: var(--gold-light);
+      }
+      .header-cta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .header-cta .tel {
+        color: var(--gold-light);
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+      .btn-consult {
+        background: var(--gold);
+        color: #fff;
+        padding: 12px 22px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        border-radius: 2px;
+        transition: background 0.2s;
+      }
+      .btn-consult:hover {
+        background: var(--gold-deep);
+      }
+      .menu-toggle {
+        display: none;
+        color: #fff;
+        font-size: 24px;
+      }
+
+      /* === HERO === */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(5, 5, 7, 0.85) 0%,
+            rgba(14, 14, 16, 0.65) 50%,
+            rgba(5, 5, 7, 0.9) 100%
+          ),
+          radial-gradient(ellipse at 30% 50%, #1a1612 0%, #050507 70%);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(184, 153, 104, 0.015) 2px,
+          rgba(184, 153, 104, 0.015) 4px
+        );
+        pointer-events: none;
+      }
+      .hero::after {
+        content: 'SJ';
+        position: absolute;
+        right: -40px;
+        bottom: -80px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 480px;
+        font-weight: 700;
+        color: rgba(184, 153, 104, 0.06);
+        line-height: 1;
+        letter-spacing: -0.05em;
+        pointer-events: none;
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        padding-top: 78px;
+        width: 100%;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 28px;
+        font-size: 13px;
+        letter-spacing: 0.3em;
+        color: var(--gold-light);
+        font-weight: 400;
+      }
+      .hero-eyebrow::before {
+        content: '';
+        width: 44px;
+        height: 1px;
+        background: var(--gold);
+      }
+      .hero h1 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(36px, 5.6vw, 72px);
+        font-weight: 700;
+        line-height: 1.25;
+        letter-spacing: -0.03em;
+        margin-bottom: 32px;
+      }
+      .hero h1 .gold {
+        color: var(--gold-light);
+      }
+      .hero h1 .accent {
+        position: relative;
+        display: inline-block;
+      }
+      .hero h1 .accent::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 4px;
+        height: 12px;
+        background: rgba(184, 50, 42, 0.35);
+        z-index: -1;
+      }
+      .hero-sub {
+        font-size: clamp(15px, 1.4vw, 18px);
+        color: rgba(255, 255, 255, 0.78);
+        line-height: 1.9;
+        max-width: 620px;
+        margin-bottom: 48px;
+        font-weight: 300;
+      }
+      .hero-sub strong {
+        color: var(--gold-light);
+        font-weight: 500;
+      }
+      .hero-cta-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .btn-primary,
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 32px;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        border-radius: 2px;
+        transition: all 0.25s ease;
+      }
+      .btn-primary {
+        background: var(--gold);
+        color: #fff;
+        box-shadow: 0 8px 24px rgba(184, 153, 104, 0.25);
+      }
+      .btn-primary:hover {
+        background: var(--gold-deep);
+        transform: translateY(-2px);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+      }
+      .btn-ghost:hover {
+        border-color: var(--gold-light);
+        color: var(--gold-light);
+      }
+      .hero-scroll {
+        position: absolute;
+        bottom: 36px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        writing-mode: vertical-rl;
+        z-index: 2;
+      }
+      .hero-scroll::after {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(
+          to bottom,
+          var(--gold) 0%,
+          transparent 100%
+        );
+        margin: 12px auto 0;
+        animation: scrollLine 2s ease-in-out infinite;
+      }
+      @keyframes scrollLine {
+        0%,
+        100% {
+          transform: scaleY(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scaleY(0.4);
+          opacity: 0.3;
+        }
+      }
+
+      /* === TRUST STRIP === */
+      .trust {
+        background: var(--bg-darker);
+        padding: 56px 0;
+        border-top: 1px solid rgba(184, 153, 104, 0.15);
+        border-bottom: 1px solid rgba(184, 153, 104, 0.15);
+        color: #fff;
+      }
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+      .trust-cell {
+        text-align: center;
+        padding: 12px 20px;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .trust-cell:last-child {
+        border-right: none;
+      }
+      .trust-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 56px;
+        font-weight: 600;
+        color: var(--gold-light);
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+      .trust-num small {
+        font-size: 22px;
+        color: rgba(255, 255, 255, 0.5);
+        margin-left: 4px;
+      }
+      .trust-label {
+        font-size: 13px;
+        letter-spacing: 0.2em;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* === SECTION COMMON === */
+      section.block {
+        padding: 130px 0;
+      }
+      .section-head {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+      .section-eyebrow {
+        display: inline-block;
+        margin-bottom: 18px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 14px;
+        letter-spacing: 0.4em;
+        color: var(--gold-deep);
+        text-transform: uppercase;
+      }
+      .section-eyebrow::before,
+      .section-eyebrow::after {
+        content: '—';
+        margin: 0 12px;
+        color: var(--gold);
+      }
+      .section-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(28px, 3.4vw, 44px);
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: -0.025em;
+        color: var(--text);
+      }
+      .section-title .gold {
+        color: var(--gold-deep);
+      }
+      .section-sub {
+        margin-top: 22px;
+        font-size: 16px;
+        color: var(--text-soft);
+        line-height: 1.85;
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* === ABOUT === */
+      .about {
+        background: var(--bg-soft);
+        position: relative;
+        overflow: hidden;
+      }
+      .about-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .about-visual {
+        position: relative;
+        aspect-ratio: 4/5;
+        background: linear-gradient(135deg, #1a1a1c, #0e0e10);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .about-visual::before {
+        content: 'SJ';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 200px;
+        font-weight: 600;
+        color: var(--gold);
+        opacity: 0.9;
+      }
+      .about-visual::after {
+        content: 'DETECTIVE OFFICE EST. 2005';
+        position: absolute;
+        bottom: 32px;
+        left: 32px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 11px;
+        letter-spacing: 0.3em;
+      }
+      .about-text .label {
+        font-family: 'Cormorant Garamond', serif;
+        color: var(--gold-deep);
+        font-size: 14px;
+        letter-spacing: 0.3em;
+        margin-bottom: 14px;
+      }
+      .about-text h2 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(26px, 2.8vw, 38px);
+        font-weight: 700;
+        line-height: 1.45;
+        letter-spacing: -0.025em;
+        margin-bottom: 28px;
+      }
+      .about-text p {
+        color: var(--text-soft);
+        font-size: 16px;
+        line-height: 1.95;
+        margin-bottom: 16px;
+      }
+      .about-text .sign {
+        margin-top: 36px;
+        padding-top: 28px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+      }
+      .about-text .sign-name {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 22px;
+        font-weight: 700;
+      }
+      .about-text .sign-name small {
+        display: block;
+        font-size: 12px;
+        color: var(--text-mute);
+        font-weight: 400;
+        letter-spacing: 0.15em;
+        margin-top: 4px;
+      }
+      .about-text .sign-en {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 32px;
+        color: var(--gold-deep);
+        font-style: italic;
+      }
+
+      /* === SERVICES === */
+      .services {
+        background: #fff;
+      }
+      .svc-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+      }
+      .svc-card {
+        background: #fff;
+        padding: 56px 40px;
+        transition: all 0.3s ease;
+        position: relative;
+        cursor: pointer;
+      }
+      .svc-card:hover {
+        background: var(--bg-dark);
+        color: #fff;
+        transform: scale(1.02);
+        z-index: 2;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+      }
+      .svc-card:hover .svc-num,
+      .svc-card:hover .svc-arrow {
+        color: var(--gold-light);
+      }
+      .svc-card:hover .svc-desc {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .svc-card:hover .svc-tags span {
+        border-color: rgba(184, 153, 104, 0.5);
+        color: var(--gold-light);
+      }
+      .svc-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 16px;
+        color: var(--gold-deep);
+        letter-spacing: 0.2em;
+        margin-bottom: 24px;
+        display: block;
+        transition: color 0.3s;
+      }
+      .svc-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        letter-spacing: -0.02em;
+        line-height: 1.4;
+      }
+      .svc-desc {
+        font-size: 14px;
+        color: var(--text-soft);
+        line-height: 1.85;
+        margin-bottom: 24px;
+        transition: color 0.3s;
+      }
+      .svc-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .svc-tags span {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        padding: 5px 11px;
+        border: 1px solid var(--line);
+        color: var(--text-mute);
+        transition: all 0.3s;
+      }
+      .svc-arrow {
+        position: absolute;
+        top: 56px;
+        right: 40px;
+        font-size: 20px;
+        color: var(--text-mute);
+        transition: all 0.3s;
+      }
+
+      /* === PROCESS === */
+      .process {
+        background: var(--bg-dark);
+        color: #fff;
+        position: relative;
+      }
+      .process::before {
+        content: 'PROCESS';
+        position: absolute;
+        top: 60px;
+        right: 40px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 180px;
+        font-weight: 700;
+        color: rgba(184, 153, 104, 0.04);
+        line-height: 1;
+        letter-spacing: -0.03em;
+        pointer-events: none;
+      }
+      .process .section-title {
+        color: #fff;
+      }
+      .process .section-eyebrow {
+        color: var(--gold-light);
+      }
+      .process .section-eyebrow::before,
+      .process .section-eyebrow::after {
+        color: var(--gold);
+      }
+      .process .section-sub {
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .proc-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        position: relative;
+        z-index: 2;
+      }
+      .proc-step {
+        position: relative;
+        padding: 36px 28px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.02);
+        transition: all 0.3s;
+      }
+      .proc-step:hover {
+        border-color: var(--gold);
+        background: rgba(184, 153, 104, 0.04);
+        transform: translateY(-6px);
+      }
+      .proc-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 64px;
+        font-weight: 600;
+        color: var(--gold);
+        line-height: 1;
+        margin-bottom: 22px;
+      }
+      .proc-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: -0.02em;
+      }
+      .proc-desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.8;
+      }
+      .proc-time {
+        display: inline-block;
+        margin-top: 18px;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        color: var(--gold-light);
+        padding-top: 14px;
+        border-top: 1px solid rgba(184, 153, 104, 0.2);
+        width: 100%;
+      }
+
+      /* === WHY === */
+      .why {
+        background: #fff;
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+      .why-card {
+        text-align: center;
+        padding: 50px 30px;
+        border: 1px solid var(--line);
+        background: #fff;
+        transition: all 0.3s;
+      }
+      .why-card:hover {
+        border-color: var(--gold);
+        box-shadow: 0 20px 50px rgba(184, 153, 104, 0.1);
+      }
+      .why-ico {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 28px;
+        border: 1px solid var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-family: 'Cormorant Garamond', serif;
+        color: var(--gold-deep);
+        font-size: 28px;
+        font-weight: 600;
+      }
+      .why-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        letter-spacing: -0.02em;
+      }
+      .why-desc {
+        color: var(--text-soft);
+        font-size: 14px;
+        line-height: 1.85;
+      }
+
+      /* === CASES === */
+      .cases {
+        background: var(--bg-soft);
+      }
+      .case-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+      .case-card {
+        background: #fff;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        transition: all 0.3s;
+      }
+      .case-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+        border-color: var(--gold);
+      }
+      .case-thumb {
+        aspect-ratio: 16/10;
+        background: linear-gradient(135deg, #1a1a1c, #0e0e10);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .case-thumb .case-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 120px;
+        font-weight: 600;
+        color: rgba(184, 153, 104, 0.4);
+        letter-spacing: -0.04em;
+      }
+      .case-thumb .case-tag {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 6px 14px;
+        background: var(--gold);
+        color: #fff;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        font-weight: 600;
+      }
+      .case-body {
+        padding: 32px 28px;
+      }
+      .case-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--text-mute);
+        letter-spacing: 0.05em;
+        margin-bottom: 14px;
+      }
+      .case-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 19px;
+        font-weight: 700;
+        line-height: 1.5;
+        letter-spacing: -0.02em;
+        margin-bottom: 14px;
+      }
+      .case-excerpt {
+        font-size: 14px;
+        color: var(--text-soft);
+        line-height: 1.8;
+      }
+      .case-result {
+        margin-top: 20px;
+        padding-top: 18px;
+        border-top: 1px dashed var(--line);
+        font-size: 13px;
+      }
+      .case-result strong {
+        color: var(--gold-deep);
+        letter-spacing: 0.05em;
+      }
+
+      /* === FAQ === */
+      .faq {
+        background: #fff;
+      }
+      .faq-list {
+        max-width: 880px;
+        margin: 0 auto;
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--line);
+      }
+      .faq-q {
+        width: 100%;
+        text-align: left;
+        padding: 32px 0;
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        transition: color 0.2s;
+      }
+      .faq-q:hover {
+        color: var(--gold-deep);
+      }
+      .faq-q .q-mark {
+        font-family: 'Cormorant Garamond', serif;
+        color: var(--gold-deep);
+        font-size: 24px;
+        margin-right: 16px;
+        font-weight: 700;
+      }
+      .faq-q .q-text {
+        flex: 1;
+      }
+      .faq-q .q-toggle {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: var(--text-soft);
+        border-radius: 50%;
+        transition: all 0.3s;
+      }
+      .faq-item.open .q-toggle {
+        background: var(--gold);
+        color: #fff;
+        border-color: var(--gold);
+        transform: rotate(45deg);
+      }
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s ease,
+          padding 0.4s ease;
+        color: var(--text-soft);
+        font-size: 15px;
+        line-height: 1.9;
+        padding: 0 0 0 44px;
+      }
+      .faq-item.open .faq-a {
+        max-height: 400px;
+        padding: 0 0 32px 44px;
+      }
+
+      /* === FINAL CTA === */
+      .cta-final {
+        background: var(--bg-darker);
+        color: #fff;
+        text-align: center;
+        padding: 120px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-final::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(184, 153, 104, 0.12) 0%,
+          transparent 70%
+        );
+      }
+      .cta-final-inner {
+        position: relative;
+        z-index: 2;
+      }
+      .cta-final .section-eyebrow {
+        color: var(--gold-light);
+      }
+      .cta-final .section-eyebrow::before,
+      .cta-final .section-eyebrow::after {
+        color: var(--gold);
+      }
+      .cta-final h2 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(28px, 4vw, 50px);
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: -0.025em;
+        margin: 18px 0 24px;
+      }
+      .cta-final h2 .gold {
+        color: var(--gold-light);
+      }
+      .cta-final p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 17px;
+        line-height: 1.85;
+        margin-bottom: 50px;
+      }
+      .cta-final .cta-row {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .cta-tel-big {
+        margin-bottom: 32px;
+      }
+      .cta-tel-big a {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(40px, 5vw, 64px);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--gold-light);
+      }
+      .cta-tel-big small {
+        display: block;
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 8px;
+        font-family: 'Pretendard', sans-serif;
+      }
+
+      /* === FOOTER === */
+      footer {
+        background: #050507;
+        color: rgba(255, 255, 255, 0.5);
+        padding: 70px 0 30px;
+        font-size: 13px;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 40px;
+        padding-bottom: 50px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 30px;
+      }
+      .footer-logo .logo-mark {
+        font-size: 36px;
+      }
+      .footer-logo .logo-text {
+        display: block;
+        margin-top: 6px;
+      }
+      .footer-tagline {
+        margin: 20px 0;
+        font-size: 13px;
+        line-height: 1.85;
+        color: rgba(255, 255, 255, 0.5);
+        max-width: 380px;
+      }
+      .footer-col h4 {
+        color: var(--gold-light);
+        font-size: 12px;
+        letter-spacing: 0.25em;
+        margin-bottom: 18px;
+        font-weight: 600;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col ul li {
+        margin-bottom: 10px;
+        line-height: 1.7;
+      }
+      .footer-col a:hover {
+        color: var(--gold-light);
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.35);
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .footer-bottom .legal {
+        line-height: 1.8;
+        max-width: 720px;
+      }
+
+      /* === FLOATING SIDE CTA === */
+      .float-cta {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 90;
+      }
+      .float-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 22px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+        transition: transform 0.2s;
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 700;
+      }
+      .float-btn:hover {
+        transform: scale(1.08);
+      }
+      .float-btn.tel {
+        background: var(--gold);
+      }
+      .float-btn.kakao {
+        background: #fee500;
+        color: #3c1e1e;
+      }
+      .float-btn.tel-label {
+        width: auto;
+        height: 60px;
+        padding: 0 22px;
+        border-radius: 30px;
+        font-size: 16px;
+        letter-spacing: 0.02em;
+        font-family: 'Cormorant Garamond', serif;
+        background: var(--bg-dark);
+        border: 1px solid var(--gold);
+        color: var(--gold-light);
+      }
+
+      /* === RESPONSIVE === */
+      @media (max-width: 960px) {
+        nav ul,
+        .header-cta .tel {
+          display: none;
+        }
+        .menu-toggle {
+          display: block;
+        }
+        section.block {
+          padding: 90px 0;
+        }
+        .about-wrap {
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+        .about-visual {
+          aspect-ratio: 16/10;
+        }
+        .svc-grid {
+          grid-template-columns: 1fr;
+        }
+        .proc-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .why-grid,
+        .case-grid {
+          grid-template-columns: 1fr;
+        }
+        .trust-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .trust-cell:nth-child(2) {
+          border-right: none;
+        }
+        .trust-cell:nth-child(1),
+        .trust-cell:nth-child(2) {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          padding-bottom: 32px;
+          margin-bottom: 16px;
+        }
+        .footer-top {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .hero::after {
+          font-size: 280px;
+          right: -60px;
+        }
+        .float-btn.tel-label {
+          display: none;
+        }
+      }
+      @media (max-width: 540px) {
+        .hero-cta-row {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .btn-primary,
+        .btn-ghost {
+          justify-content: center;
+        }
+        .header-cta .btn-consult {
+          padding: 10px 16px;
+          font-size: 12px;
+        }
+        .proc-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ==================== HEADER ==================== -->
+    <header>
+      <div class="container nav">
+        <a href="#" class="logo">
+          <span class="logo-mark">SJ</span>
+          <span class="logo-text">DETECTIVE OFFICE</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="#about">소개</a></li>
+            <li><a href="#services">의뢰분야</a></li>
+            <li><a href="#process">진행절차</a></li>
+            <li><a href="#why">신뢰의 약속</a></li>
+            <li><a href="#cases">해결사례</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <span class="tel">1588-0000</span>
+          <a href="#cta" class="btn-consult">무료상담</a>
+          <button class="menu-toggle" aria-label="menu">≡</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-eyebrow">SJ DETECTIVE OFFICE · SINCE 2005</div>
+        <h1>
+          의심은 시간이 지날수록<br />
+          <span class="accent">확신</span>이 됩니다.<br />
+          <span class="gold serif-en">SJ</span>가 그 답을 가져옵니다.
+        </h1>
+        <p class="hero-sub">
+          말하지 못한 진실, 묻혀버린 흔적, 사라진 사람 ―<br />
+          <strong>20년 경력의 전문 조사관</strong>이 단 하나의 의뢰도 흘리지
+          않고 추적합니다.<br />
+          모든 상담은 <strong>완전한 비밀보장</strong> 아래 진행되며, 결과로만
+          증명합니다.
+        </p>
+        <div class="hero-cta-row">
+          <a href="#cta" class="btn-primary">무료상담 신청 →</a>
+          <a href="tel:1588-0000" class="btn-ghost">☎ 24시간 긴급전화</a>
+        </div>
+      </div>
+      <div class="hero-scroll">SCROLL</div>
+    </section>
+
+    <!-- ==================== TRUST STRIP ==================== -->
+    <section class="trust">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-cell">
+            <div class="trust-num">20<small>년</small></div>
+            <div class="trust-label">현장 경력</div>
+          </div>
+          <div class="trust-cell">
+            <div class="trust-num">8,400<small>+</small></div>
+            <div class="trust-label">누적 의뢰 건수</div>
+          </div>
+          <div class="trust-cell">
+            <div class="trust-num">97<small>%</small></div>
+            <div class="trust-label">의뢰인 만족도</div>
+          </div>
+          <div class="trust-cell">
+            <div class="trust-num">100<small>%</small></div>
+            <div class="trust-label">비밀유지 서약</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section class="block about" id="about">
+      <div class="container about-wrap">
+        <div class="about-visual"></div>
+        <div class="about-text">
+          <div class="label">ABOUT SJ</div>
+          <h2>
+            20년간 단 하나의 원칙,<br />
+            <span style="color: var(--gold-deep)">"의뢰인의 진실만 본다."</span>
+          </h2>
+          <p>
+            SJ 탐정사무소는 2005년 개소 이래, 합법적 정보 수집과 정밀한 현장
+            조사를 통해 의뢰인이 마주한 가장 무거운 질문에 답을 찾아왔습니다.
+          </p>
+          <p>
+            퇴직 수사관, 디지털 포렌식 전문가, 법무 자문이 한 팀으로 움직이며,
+            의뢰 접수부터 결과 보고까지 단 한 사람의 외부 노출도 허용하지
+            않습니다. 결과보고서는 법적 증거로 활용 가능한 수준으로 정리되어
+            전달됩니다.
+          </p>
+          <p>
+            우리는 사건을 해결하지 않습니다 ― 우리는
+            <strong>의뢰인의 삶이 다음 단계로 나아갈 수 있는 근거</strong>를
+            만들어드립니다.
+          </p>
+          <div class="sign">
+            <div class="sign-name">소장 정SJ<small>CHIEF DETECTIVE</small></div>
+            <div class="sign-en">SJ.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SERVICES ==================== -->
+    <section class="block services" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">OUR SERVICES</div>
+          <h2 class="section-title">
+            말 못 할 사정이라면, <span class="gold">전부 맡기셔도 됩니다.</span>
+          </h2>
+          <p class="section-sub">
+            의심·실종·피해·배신 ― 어떤 상황이든 SJ는 합법의 테두리 안에서<br />
+            가장 정확한 사실관계를 가져옵니다.
+          </p>
+        </div>
+
+        <div class="svc-grid">
+          <div class="svc-card">
+            <span class="svc-num">01</span>
+            <span class="svc-arrow">→</span>
+            <h3 class="svc-title">배우자 행적 조사</h3>
+            <p class="svc-desc">
+              말 못 할 의심을 더 키우지 마세요. 일상 동선, 동행자 식별, 만남
+              장소까지 법적 증거가 될 수 있는 수준으로 기록합니다.
+            </p>
+            <div class="svc-tags">
+              <span>외도 의심</span><span>상간자 특정</span
+              ><span>이혼 증거</span>
+            </div>
+          </div>
+
+          <div class="svc-card">
+            <span class="svc-num">02</span>
+            <span class="svc-arrow">→</span>
+            <h3 class="svc-title">사람 찾기 · 소재 파악</h3>
+            <p class="svc-desc">
+              연락이 끊긴 가족, 잠적한 채무자, 오래된 첫사랑까지 ― 공공 기록과
+              현장 조사를 결합한 합법적 탐문으로 찾아냅니다.
+            </p>
+            <div class="svc-tags">
+              <span>가출인</span><span>채무자 소재</span><span>옛 지인</span>
+            </div>
+          </div>
+
+          <div class="svc-card">
+            <span class="svc-num">03</span>
+            <span class="svc-arrow">→</span>
+            <h3 class="svc-title">사기 피해 추적</h3>
+            <p class="svc-desc">
+              투자 사기, 보이스피싱, 중고거래 잠적 ― 사라진 돈의 흐름과 가해자의
+              실명·실거주지를 합법 범위 내에서 끝까지 추적합니다.
+            </p>
+            <div class="svc-tags">
+              <span>투자사기</span><span>로맨스스캠</span
+              ><span>채권회수 자료</span>
+            </div>
+          </div>
+
+          <div class="svc-card">
+            <span class="svc-num">04</span>
+            <span class="svc-arrow">→</span>
+            <h3 class="svc-title">기업 · 거래처 신용조사</h3>
+            <p class="svc-desc">
+              계약 전 상대 회사의 실체, 대표자의 평판, 재무 위험 신호를 미리
+              점검합니다. 한 번의 의뢰가 수억 원의 손실을 막습니다.
+            </p>
+            <div class="svc-tags">
+              <span>거래처 평판</span><span>산업스파이</span
+              ><span>내부 부정</span>
+            </div>
+          </div>
+
+          <div class="svc-card">
+            <span class="svc-num">05</span>
+            <span class="svc-arrow">→</span>
+            <h3 class="svc-title">자녀 · 청소년 안전</h3>
+            <p class="svc-desc">
+              학교폭력 가해자 특정, 등하굣길 미행자 확인, 이상 교우 관계 파악 ―
+              아이가 말하지 못하는 위협을 부모님 대신 확인해드립니다.
+            </p>
+            <div class="svc-tags">
+              <span>학폭 정황</span><span>스토커</span><span>가출 청소년</span>
+            </div>
+          </div>
+
+          <div class="svc-card">
+            <span class="svc-num">06</span>
+            <span class="svc-arrow">→</span>
+            <h3 class="svc-title">디지털 포렌식 · 평판조사</h3>
+            <p class="svc-desc">
+              삭제된 메시지 복원, 익명 악성 게시물 작성자 추적, 결혼·채용 전
+              신상 검증. 디지털 시대의 새로운 위협에 정확하게 대응합니다.
+            </p>
+            <div class="svc-tags">
+              <span>데이터 복원</span><span>악플 추적</span
+              ><span>결혼 전 검증</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROCESS ==================== -->
+    <section class="block process" id="process">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">HOW WE WORK</div>
+          <h2 class="section-title" style="color: #fff">
+            단순한 절차,
+            <span style="color: var(--gold-light)">철저한 보안.</span>
+          </h2>
+          <p class="section-sub">
+            접수부터 결과 보고까지 평균 7~14일, 모든 단계는 의뢰인 동의 아래
+            진행됩니다.
+          </p>
+        </div>
+
+        <div class="proc-grid">
+          <div class="proc-step">
+            <div class="proc-num">01</div>
+            <h3 class="proc-title">비밀 상담</h3>
+            <p class="proc-desc">
+              전화·카카오톡·방문 중 편한 방식으로 24시간 무료 상담. 신원 노출
+              없이 진행 가능합니다.
+            </p>
+            <div class="proc-time">평균 30분 이내</div>
+          </div>
+          <div class="proc-step">
+            <div class="proc-num">02</div>
+            <h3 class="proc-title">조사 설계 · 계약</h3>
+            <p class="proc-desc">
+              사안에 맞는 조사 범위·기간·비용을 명확히 산정한 서면 계약. 추가
+              비용 청구는 없습니다.
+            </p>
+            <div class="proc-time">1일 이내 확정</div>
+          </div>
+          <div class="proc-step">
+            <div class="proc-num">03</div>
+            <h3 class="proc-title">전담팀 투입</h3>
+            <p class="proc-desc">
+              사안에 따라 2~4인 전담팀이 현장에 투입. 진행 상황은 매일
+              의뢰인에게 직접 보고됩니다.
+            </p>
+            <div class="proc-time">7~14일 평균</div>
+          </div>
+          <div class="proc-step">
+            <div class="proc-num">04</div>
+            <h3 class="proc-title">결과 보고서 인계</h3>
+            <p class="proc-desc">
+              사진·영상·동선기록 등 증거자료를 법적 활용이 가능한 보고서 형태로
+              봉인 인계.
+            </p>
+            <div class="proc-time">조사 종료 즉시</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== WHY ==================== -->
+    <section class="block why" id="why">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">WHY SJ</div>
+          <h2 class="section-title">
+            왜 의뢰인은 <span class="gold">SJ만 다시 찾을까요?</span>
+          </h2>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-ico">i</div>
+            <h3 class="why-title">법의 안쪽, 결과의 바깥쪽</h3>
+            <p class="why-desc">
+              탐정업법·개인정보보호법을 100% 준수하는 합법적 조사만 진행합니다.
+              법정에서 인정받을 수 있는 증거만 다룹니다.
+            </p>
+          </div>
+          <div class="why-card">
+            <div class="why-ico">ii</div>
+            <h3 class="why-title">의뢰인 단 1명만 압니다</h3>
+            <p class="why-desc">
+              접수·진행·종결 모든 기록은 암호화 보관. 의뢰인의 동의 없이는 단 한
+              줄도 외부로 유출되지 않습니다.
+            </p>
+          </div>
+          <div class="why-card">
+            <div class="why-ico">iii</div>
+            <h3 class="why-title">불성과 시 100% 환불</h3>
+            <p class="why-desc">
+              계약서에 명시된 목표를 달성하지 못한 경우, 착수금을 제외한 잔여
+              비용은 전액 환불해 드립니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CASES ==================== -->
+    <section class="block cases" id="cases">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">SOLVED CASES</div>
+          <h2 class="section-title">
+            의뢰인이 다시 일상으로<br />돌아간
+            <span class="gold">실제 사례들</span>
+          </h2>
+          <p class="section-sub">
+            의뢰인 보호를 위해 식별 가능한 정보는 모두 비식별 처리되었습니다.
+          </p>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-card">
+            <div class="case-thumb">
+              <span class="case-tag">외도조사</span>
+              <span class="case-num">01</span>
+            </div>
+            <div class="case-body">
+              <div class="case-meta">
+                <span>40대 여성 의뢰인</span><span>조사 9일</span>
+              </div>
+              <h3 class="case-title">"3년간 의심해온 남편의 출장, 그 진실"</h3>
+              <p class="case-excerpt">
+                반복되는 지방 출장과 늦은 귀가. 의심은 컸지만 직접 확인할 방법이
+                없던 상황. 동선 분석과 숙박 기록 대조로 9일 만에 사실관계를
+                정리했습니다.
+              </p>
+              <div class="case-result">
+                <strong>RESULT —</strong> 위자료 청구 소송 증거 채택, 의뢰인
+                승소
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card">
+            <div class="case-thumb">
+              <span class="case-tag">사기추적</span>
+              <span class="case-num">02</span>
+            </div>
+            <div class="case-body">
+              <div class="case-meta">
+                <span>30대 남성 의뢰인</span><span>조사 14일</span>
+              </div>
+              <h3 class="case-title">
+                "2.8억 가상자산 사기, 도주범 실거주지 확보"
+              </h3>
+              <p class="case-excerpt">
+                경찰 신고만으로는 진척이 없던 케이스. 가상자산 지갑 흐름과 SNS
+                디지털 흔적을 교차 분석해 도주 중인 가해자의 실명과 거주지를
+                특정했습니다.
+              </p>
+              <div class="case-result">
+                <strong>RESULT —</strong> 경찰 수사 자료 제공, 피의자 검거 후
+                일부 변제
+              </div>
+            </div>
+          </div>
+
+          <div class="case-card">
+            <div class="case-thumb">
+              <span class="case-tag">사람찾기</span>
+              <span class="case-num">03</span>
+            </div>
+            <div class="case-body">
+              <div class="case-meta">
+                <span>60대 남성 의뢰인</span><span>조사 21일</span>
+              </div>
+              <h3 class="case-title">
+                "30년 전 헤어진 친누나, 다시 마주한 자리"
+              </h3>
+              <p class="case-excerpt">
+                과거 거주지와 단편적 기억만으로 시작한 조사. 합법적 공공기록
+                열람과 지역 탐문을 거쳐 누나의 현재 거주지와 안부를
+                확인했습니다.
+              </p>
+              <div class="case-result">
+                <strong>RESULT —</strong> 의뢰인 동의 하 상봉 주선, 30년 만의
+                재회 성사
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FAQ ==================== -->
+    <section class="block faq" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">FREQUENTLY ASKED</div>
+          <h2 class="section-title">
+            의뢰 전, <span class="gold">가장 많이 묻는 질문</span>
+          </h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-mark">Q.</span
+              ><span class="q-text">상담만 받아봐도 비용이 발생하나요?</span
+              ><span class="q-toggle">+</span>
+            </button>
+            <div class="faq-a">
+              아니요. 모든 1차 상담은 100% 무료이며, 어떠한 조건도 없습니다.
+              상담만 받고 의뢰하지 않으셔도 됩니다. 다만 상담 내용은 그 자체로
+              외부 유출 없이 영구 폐기됩니다.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-mark">Q.</span
+              ><span class="q-text">의뢰인의 신원이 노출될 위험은 없나요?</span
+              ><span class="q-toggle">+</span>
+            </button>
+            <div class="faq-a">
+              계약 단계부터 결과 보고까지 모든 기록은 사건번호로만 관리되며,
+              담당 조사관 외 누구도 의뢰인의 실명을 알 수 없습니다. 보고서 인계
+              후 모든 데이터는 의뢰인 입회 하에 폐기됩니다.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-mark">Q.</span
+              ><span class="q-text"
+                >조사 결과가 법정에서 증거로 인정되나요?</span
+              ><span class="q-toggle">+</span>
+            </button>
+            <div class="faq-a">
+              SJ의 모든 조사는 탐정업법과 개인정보보호법을 준수하는 합법적
+              방식으로만 이루어집니다. 결과 보고서는 변호사 자문을 거쳐 법정
+              제출 가능한 형식으로 정리되며, 실제 다수의 민형사 소송에서 증거로
+              채택된 이력이 있습니다.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-mark">Q.</span
+              ><span class="q-text">비용은 어느 정도로 예상해야 하나요?</span
+              ><span class="q-toggle">+</span>
+            </button>
+            <div class="faq-a">
+              사안의 난이도, 기간, 투입 인력에 따라 다르지만 기본 외도조사는 약
+              200만 원대부터 시작합니다. 정확한 견적은 상담 후 산정해드리며,
+              계약서에 명시되지 않은 추가 청구는 일절 없습니다.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-mark">Q.</span
+              ><span class="q-text">조사가 실패하면 어떻게 되나요?</span
+              ><span class="q-toggle">+</span>
+            </button>
+            <div class="faq-a">
+              계약서에 명시된 목표 결과를 확보하지 못한 경우, 착수금을 제외한
+              잔여 의뢰 비용은 100% 환불합니다. 이는 계약서 본문에 별도 조항으로
+              명시됩니다.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">
+              <span class="q-mark">Q.</span
+              ><span class="q-text">지방·해외에서도 의뢰 가능한가요?</span
+              ><span class="q-toggle">+</span>
+            </button>
+            <div class="faq-a">
+              전국 어디든 출동 가능하며, 별도의 출장비는 사안 규모에 따라 미리
+              견적에 포함됩니다. 해외 사안의 경우 현지 협력 네트워크를 통해 일부
+              국가에 한해 조사가 가능합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FINAL CTA ==================== -->
+    <section class="cta-final" id="cta">
+      <div class="container cta-final-inner">
+        <div class="section-eyebrow">CONTACT SJ</div>
+        <h2>
+          오늘의 망설임이<br /><span class="gold">내일의 후회</span>가 되지
+          않도록.
+        </h2>
+        <p>
+          한 통의 통화로, 답을 미루던 모든 질문에 마침표를 찍을 수 있습니다.<br />
+          365일 24시간, SJ는 의뢰인의 전화를 기다립니다.
+        </p>
+
+        <div class="cta-tel-big">
+          <small>24/7 CONFIDENTIAL HOTLINE</small>
+          <a href="tel:1588-0000">1588 — 0000</a>
+        </div>
+
+        <div class="cta-row">
+          <a href="#" class="btn-primary">카카오톡 1:1 비밀상담 →</a>
+          <a href="tel:1588-0000" class="btn-ghost">☎ 지금 바로 전화</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-logo">
+            <a href="#" class="logo">
+              <span class="logo-mark">SJ</span>
+              <span class="logo-text">DETECTIVE OFFICE</span>
+            </a>
+            <p class="footer-tagline">
+              의심을 확신으로, 침묵을 증거로. <br />
+              2005년부터 변치 않은 단 하나의 원칙, 의뢰인의 진실만 봅니다.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>CONTACT</h4>
+            <ul>
+              <li>대표전화 · 1588-0000</li>
+              <li>긴급문의 · 010-0000-0000</li>
+              <li>카카오톡 · @sj-detective</li>
+              <li>이메일 · contact@sj-detective.kr</li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>OFFICE</h4>
+            <ul>
+              <li>서울특별시 강남구 (상담은 비공개 장소에서 진행)</li>
+              <li>상담 가능 시간 · 24시간 / 연중무휴</li>
+              <li>대한탐정협회 정회원</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="legal">
+            © 2026 SJ Detective Office. All rights reserved. · 본 사이트의 모든
+            조사는 탐정업법 및 개인정보보호법을 준수합니다. · 의뢰 내용 및 결과
+            정보는 의뢰인 동의 없이 어떠한 경우에도 외부에 공개되지 않습니다.
+          </div>
+          <div>SJ · EST. 2005</div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ==================== FLOATING CTA ==================== -->
+    <div class="float-cta">
+      <a href="tel:1588-0000" class="float-btn tel-label">1588-0000</a>
+      <a href="#" class="float-btn kakao" title="카카오톡 상담">K</a>
+      <a href="tel:1588-0000" class="float-btn tel" title="전화 상담">☎</a>
+    </div>
+
+    <script>
+      // FAQ accordion
+      document.querySelectorAll('.faq-q').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const item = btn.parentElement;
+          const wasOpen = item.classList.contains('open');
+          document
+            .querySelectorAll('.faq-item')
+            .forEach((i) => i.classList.remove('open'));
+          if (!wasOpen) item.classList.add('open');
+        });
+      });
+
+      // Header solid on scroll
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          header.style.background = 'rgba(5,5,7,0.96)';
+        } else {
+          header.style.background = 'rgba(14,14,16,0.85)';
+        }
+      });
+
+      // Smooth scroll for in-page anchors handled by CSS scroll-behavior
+    </script>
+  </body>
+</html>
