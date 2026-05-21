@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>탐뷰티 이지브로우마스카라 — 문안 교정 시트 (디자이너 전달용)</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap');
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          'Pretendard',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Apple SD Gothic Neo',
+          sans-serif;
+        color: #2a2438;
+        background: #f5f3f8;
+        line-height: 1.7;
+        padding: 40px 20px;
+      }
+      .container {
+        max-width: 980px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 24px rgba(80, 60, 120, 0.08);
+      }
+      header {
+        background: linear-gradient(135deg, #c4b5d6 0%, #d4c5e0 100%);
+        color: #fff;
+        padding: 48px 56px;
+      }
+      header .brand {
+        font-size: 13px;
+        letter-spacing: 4px;
+        opacity: 0.9;
+        margin-bottom: 12px;
+      }
+      header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: -0.5px;
+      }
+      header .subtitle {
+        font-size: 14px;
+        opacity: 0.95;
+        font-weight: 400;
+      }
+      header .meta {
+        margin-top: 24px;
+        font-size: 12px;
+        opacity: 0.85;
+        display: flex;
+        gap: 24px;
+      }
+      header .meta span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .content {
+        padding: 48px 56px;
+      }
+
+      .priority-summary {
+        background: #faf7fd;
+        border-left: 4px solid #8b6fb5;
+        padding: 20px 24px;
+        border-radius: 8px;
+        margin-bottom: 40px;
+      }
+      .priority-summary h2 {
+        font-size: 14px;
+        font-weight: 700;
+        color: #6d4e94;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+      }
+      .priority-summary ol {
+        padding-left: 20px;
+        font-size: 14px;
+      }
+      .priority-summary li {
+        margin-bottom: 6px;
+      }
+      .priority-summary li b {
+        color: #6d4e94;
+      }
+
+      .section {
+        margin-bottom: 48px;
+      }
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        border-bottom: 2px solid #2a2438;
+        padding-bottom: 12px;
+        margin-bottom: 24px;
+      }
+      .section-head .slide-tag {
+        background: #2a2438;
+        color: #fff;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+      .section-head h2 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+      }
+      .section-head .severity {
+        margin-left: auto;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 99px;
+      }
+      .sev-critical {
+        background: #fce8e8;
+        color: #c92a2a;
+      }
+      .sev-warning {
+        background: #fff4e0;
+        color: #b46c00;
+      }
+      .sev-minor {
+        background: #e8f0fc;
+        color: #2a5fbd;
+      }
+
+      .fix-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+        font-size: 14px;
+      }
+      .fix-table th {
+        background: #f5f3f8;
+        text-align: left;
+        padding: 12px 14px;
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        color: #6d4e94;
+        border-bottom: 1px solid #e3dcec;
+      }
+      .fix-table td {
+        padding: 14px;
+        border-bottom: 1px solid #f0eaf5;
+        vertical-align: top;
+      }
+      .fix-table td.label {
+        font-weight: 600;
+        width: 18%;
+        color: #4a3f5e;
+      }
+      .fix-table td.before {
+        width: 38%;
+        color: #c92a2a;
+        background: #fdf5f5;
+        text-decoration: line-through;
+        text-decoration-color: rgba(201, 42, 42, 0.4);
+      }
+      .fix-table td.after {
+        width: 44%;
+        color: #1f7a3a;
+        background: #f3faf5;
+        font-weight: 500;
+      }
+      .fix-table .note {
+        font-size: 12px;
+        color: #6b6478;
+        margin-top: 4px;
+        font-weight: 400;
+        text-decoration: none;
+        display: block;
+      }
+
+      .color-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 8px;
+      }
+      .color-card {
+        border: 1px solid #e3dcec;
+        border-radius: 10px;
+        padding: 16px 18px;
+        background: #fff;
+      }
+      .color-card.dup {
+        border-color: #f4c5c5;
+        background: #fdf5f5;
+      }
+      .color-card.ok {
+        border-color: #c8e6d0;
+        background: #f3faf5;
+      }
+      .color-card h3 {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .color-card .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .dot-vanilla {
+        background: #e8d9b8;
+      }
+      .dot-caramel {
+        background: #b48a6b;
+      }
+      .dot-hazel {
+        background: #9a7d68;
+      }
+      .dot-mocha {
+        background: #6b4a35;
+      }
+      .dot-cacao {
+        background: #4a2f1f;
+      }
+      .dot-peony {
+        background: #c08a85;
+      }
+      .color-card .before-line {
+        font-size: 12px;
+        color: #c92a2a;
+        margin-bottom: 6px;
+        text-decoration: line-through;
+        text-decoration-color: rgba(201, 42, 42, 0.3);
+      }
+      .color-card .after-line {
+        font-size: 13px;
+        color: #1f4a2a;
+        font-weight: 500;
+        line-height: 1.55;
+      }
+      .color-card .tag {
+        display: inline-block;
+        font-size: 10px;
+        padding: 2px 7px;
+        border-radius: 99px;
+        margin-left: 6px;
+        font-weight: 700;
+      }
+      .tag-dup {
+        background: #c92a2a;
+        color: #fff;
+      }
+      .tag-ok {
+        background: #1f7a3a;
+        color: #fff;
+      }
+
+      .extra-notes {
+        background: #f9f6fd;
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin-top: 16px;
+      }
+      .extra-notes h3 {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #6d4e94;
+        letter-spacing: 0.3px;
+      }
+      .extra-notes ul {
+        padding-left: 20px;
+      }
+      .extra-notes li {
+        font-size: 13px;
+        margin-bottom: 8px;
+        color: #4a3f5e;
+      }
+      .extra-notes li b {
+        color: #2a2438;
+      }
+
+      footer {
+        background: #2a2438;
+        color: #c4b5d6;
+        padding: 24px 56px;
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      footer .legend {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+      footer .legend span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      footer .legend .swatch {
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+        display: inline-block;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+          padding: 0;
+        }
+        .container {
+          box-shadow: none;
+          border-radius: 0;
+        }
+        .section {
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand">TAM BEAUTY · COPY REVISION SHEET</div>
+        <h1>이지브로우마스카라 상세페이지 — 문안 교정 시트</h1>
+        <div class="subtitle">
+          Designer Handoff · 이미지별 Before → After 정리
+        </div>
+        <div class="meta">
+          <span>📅 2026.05.21</span>
+          <span>📋 대상: brow-mascara_1 ~ brow-mascara_8</span>
+          <span>✍️ 교정 항목 총 12건</span>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="priority-summary">
+          <h2>📌 우선순위 요약 (작업 순서 권장)</h2>
+          <ol>
+            <li>
+              <b>🔴 CRITICAL</b> — brow-mascara_7 컬러칩 설명문 중복 (6종 중
+              3종이 동일 카피 재사용) → 신규 카피 적용 필수
+            </li>
+            <li><b>🟠 WARNING</b> — 한글 오타 3건 (_1, _1, _2)</li>
+            <li>
+              <b>🟡 MINOR</b> — 메인/서브 카피 중복 정리 (_2, _4) 및 의미 모호
+              표현 (_6)
+            </li>
+          </ol>
+        </div>
+
+        <!-- ===== Section: brow-mascara_1 ===== -->
+        <div class="section">
+          <div class="section-head">
+            <span class="slide-tag">brow-mascara_1</span>
+            <h2>대표 이미지 · 메인 카피 & Key Point</h2>
+            <span class="severity sev-warning">오타 2건</span>
+          </div>
+          <table class="fix-table">
+            <thead>
+              <tr>
+                <th>위치</th>
+                <th>Before (현재)</th>
+                <th>After (수정)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label">메인 헤드라인 하단</td>
+                <td class="before">
+                  바르운 한 바르 듯<br />데일리 내추럴 브로우
+                </td>
+                <td class="after">
+                  바른 듯 안 바른 듯<br />데일리 내추럴 브로우<span class="note"
+                    >※ 오타. "바른 듯 안 바른 듯"이 의도된 표현으로 추정</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="label">Key Point 1</td>
+                <td class="before">촘촘하게 블렌딩 · 들숨으로 빗질</td>
+                <td class="after">
+                  촘촘하게 블렌딩 · 들뜸 없이 빗질<span class="note"
+                    >※ "들숨(호흡)" → "들뜸(들떠 보이는 현상)" 오타</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="label">Key Point 5 (보완 제안)</td>
+                <td class="before">
+                  안심 비건 인증 & 저자극 테스트 완료<br />식물성 펩타이드 ·
+                  콜라겐 함유
+                </td>
+                <td class="after">
+                  이브 비건 인증 & 피부 저자극 임상 완료<br />식물성 펩타이드 ·
+                  콜라겐 함유<span class="note"
+                    >※ 실제 보유 인증명/테스트명으로 교체 시 신뢰도↑ (브랜드팀
+                    확인 필요)</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ===== Section: brow-mascara_2 ===== -->
+        <div class="section">
+          <div class="section-head">
+            <span class="slide-tag">brow-mascara_2</span>
+            <h2>Feature 01 Dual Brush · 02 Applicator</h2>
+            <span class="severity sev-warning">오타 1건 + 카피 중복</span>
+          </div>
+          <table class="fix-table">
+            <thead>
+              <tr>
+                <th>위치</th>
+                <th>Before (현재)</th>
+                <th>After (수정)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label">01 Dual Brush<br />메인/서브</td>
+                <td class="before">
+                  [메인] 오늘은 빗질 한 번으로 완성<br />[서브] 매일 그리는
+                  눈썹, 오늘은 빗질 한 번으로 완성
+                </td>
+                <td class="after">
+                  [메인] 빗질 한 번으로 완성되는 데일리 브로우<br />[서브] 촘촘
+                  콤 + 사선 스키니 + 스풀리, 3 in 1 듀얼팁<span class="note"
+                    >※ 메인·서브가 거의 동일. 서브에서 듀얼팁 기능을 풀어주는
+                    방향 제안</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="label">02 Applicator<br />서브 카피</td>
+                <td class="before">
+                  15도의 옛지 각도로 손목에 힘들이지 않고<br />결 따라 빗어주면
+                  완성되는 이지 드로잉
+                </td>
+                <td class="after">
+                  15도의 엣지 각도로 손목에 힘들이지 않고<br />결 따라 빗어주면
+                  완성되는 이지 드로잉<span class="note"
+                    >※ "옛지" → "엣지" 오타</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ===== Section: brow-mascara_4 ===== -->
+        <div class="section">
+          <div class="section-head">
+            <span class="slide-tag">brow-mascara_4</span>
+            <h2>Feature 03 Cloud-light Finish · 04 Waterproof</h2>
+            <span class="severity sev-minor">카피 중복 + 표현 보완</span>
+          </div>
+          <table class="fix-table">
+            <thead>
+              <tr>
+                <th>위치</th>
+                <th>Before (현재)</th>
+                <th>After (수정)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label">03 Cloud-light Finish<br />메인/서브</td>
+                <td class="before">
+                  [메인] 실키하게 픽싱되는 포뮬러<br />[서브] 스르르 얹혀
+                  실키하게 픽싱되는 텍스처
+                </td>
+                <td class="after">
+                  [메인] 구름처럼 얹히는 클라우드 포뮬러<br />[서브] 피부에
+                  스르르 밀착, 종일 가볍게 픽싱되는 실키 텍스처<span
+                    class="note"
+                    >※ 메인·서브 표현 중복. 브랜드 키워드(Cloud)를 메인에 살리는
+                    방향</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="label">04 Waterproof<br />서브 카피</td>
+                <td class="before">
+                  오랜 시간 지속되는 스머지 워터프루프<br />워터, 땀, 유분에도
+                  번짐 없이
+                </td>
+                <td class="after">
+                  오랜 시간 지속되는 스머지 프루프 & 워터프루프<br />물 · 땀 ·
+                  유분에도 번짐 없는 8시간 롱래스팅<span class="note"
+                    >※ 스머지프루프와 워터프루프는 다른 기능이므로 병기 분리
+                    권장</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ===== Section: brow-mascara_6 ===== -->
+        <div class="section">
+          <div class="section-head">
+            <span class="slide-tag">brow-mascara_6</span>
+            <h2>Feature 05 Colorize your Brow</h2>
+            <span class="severity sev-minor">표현 모호</span>
+          </div>
+          <table class="fix-table">
+            <thead>
+              <tr>
+                <th>위치</th>
+                <th>Before (현재)</th>
+                <th>After (수정)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label">메인 카피</td>
+                <td class="before">
+                  셋업 룩을 입은 듯한 무드 톤업<br />그날의 무드에 따라 매번
+                  새로운 브로우 룩
+                </td>
+                <td class="after">
+                  살롱에서 셋팅한 듯한 무드 톤업<br />그날의 무드에 따라 매번
+                  새롭게 완성되는 브로우 룩<span class="note"
+                    >※ "셋업 룩"은 패션 용어(상하의 세트)와 혼동됨. 헤어/뷰티
+                    살롱 셋팅 뉘앙스로 교체</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ===== Section: brow-mascara_7 (CRITICAL) ===== -->
+        <div class="section">
+          <div class="section-head">
+            <span class="slide-tag">brow-mascara_7</span>
+            <h2>COLOR CHART · 6 Milks 컬러 설명</h2>
+            <span class="severity sev-critical"
+              >🔴 CRITICAL — 6종 중 3종 카피 중복</span
+            >
+          </div>
+          <p
+            style="
+              font-size: 13px;
+              color: #4a3f5e;
+              margin-bottom: 16px;
+              padding: 12px 16px;
+              background: #fdf5f5;
+              border-radius: 8px;
+              border-left: 3px solid #c92a2a;
+            "
+          >
+            <b>현재 상태:</b> NO.4 MOCHA = NO.2 CARAMEL 설명 동일 / NO.5 CACAO =
+            NO.3 HAZEL 설명 동일 / NO.6 PEONY = NO.2 CARAMEL 설명 동일.
+            <br />네이밍(Milk Color)과 톤가이드(Warm-Cool / Light-Deep) 좌표축에
+            맞춰 6종 모두 고유 카피로 재작성 필요.
+          </p>
+
+          <div class="color-grid">
+            <div class="color-card ok">
+              <h3>
+                <span class="dot dot-vanilla"></span>NO.1 VANILLA MILK<span
+                  class="tag tag-ok"
+                  >유지</span
+                >
+              </h3>
+              <div class="after-line">
+                탈색모 위로 스르르 녹아드는,<br />노란기 쏙 뺀 애쉬빛 라이트 톤
+              </div>
+            </div>
+
+            <div class="color-card ok">
+              <h3>
+                <span class="dot dot-caramel"></span>NO.2 CARAMEL MILK<span
+                  class="tag tag-ok"
+                  >유지</span
+                >
+              </h3>
+              <div class="after-line">
+                붉은기 쏙 뺀 따뜻하고 부드러운<br />인상의 소프트 브라운
+              </div>
+            </div>
+
+            <div class="color-card ok">
+              <h3>
+                <span class="dot dot-hazel"></span>NO.3 HAZEL MILK<span
+                  class="tag tag-ok"
+                  >유지</span
+                >
+              </h3>
+              <div class="after-line">
+                소프트 베이지에 애쉬 한 방울 더한<br />청초한 무드의 밀키 톤
+              </div>
+            </div>
+
+            <div class="color-card dup">
+              <h3>
+                <span class="dot dot-mocha"></span>NO.4 MOCHA MILK<span
+                  class="tag tag-dup"
+                  >교체</span
+                >
+              </h3>
+              <div class="before-line">
+                붉은기 쏙 뺀 따뜻하고 부드러운 인상의 소프트 브라운
+                <small>(#2와 중복)</small>
+              </div>
+              <div class="after-line">
+                진하게 우려낸 카페모카처럼,<br />깊이감 있게 떨어지는 웜 브라운
+              </div>
+            </div>
+
+            <div class="color-card dup">
+              <h3>
+                <span class="dot dot-cacao"></span>NO.5 CACAO MILK<span
+                  class="tag tag-dup"
+                  >교체</span
+                >
+              </h3>
+              <div class="before-line">
+                소프트 베이지에 애쉬 한 방울 더한 청초한 무드의 밀키 톤
+                <small>(#3과 중복)</small>
+              </div>
+              <div class="after-line">
+                다크초콜릿 한 스푼 녹여낸 듯,<br />또렷한 인상의 딥 브라운
+              </div>
+            </div>
+
+            <div class="color-card dup">
+              <h3>
+                <span class="dot dot-peony"></span>NO.6 PEONY MILK<span
+                  class="tag tag-dup"
+                  >교체</span
+                >
+              </h3>
+              <div class="before-line">
+                붉은기 쏙 뺀 따뜻하고 부드러운 인상의 소프트 브라운
+                <small>(#2와 중복)</small>
+              </div>
+              <div class="after-line">
+                작약빛 로지 무드를 더해,<br />부드럽게 번지는 핑크 브라운<br /><small
+                  style="color: #6b6478; font-size: 11px"
+                  >※ Peony(작약)=핑크 계열, 네이밍-컬러 일치</small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Section: brow-mascara_8 ===== -->
+        <div class="section">
+          <div class="section-head">
+            <span class="slide-tag">brow-mascara_8</span>
+            <h2>TONE GUIDE · HOW TO USE · VEGAN</h2>
+            <span class="severity sev-minor">표현 다듬기</span>
+          </div>
+          <table class="fix-table">
+            <thead>
+              <tr>
+                <th>위치</th>
+                <th>Before (현재)</th>
+                <th>After (수정)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label">HOW TO USE 헤드</td>
+                <td class="before">3 IN 1 하나로, 하루 종일 유지되는 눈썹</td>
+                <td class="after">
+                  3 IN 1 브러쉬 한 자루로,<br />하루 종일 흐트러짐 없는
+                  브로우<span class="note"
+                    >※ "3 IN 1 하나로"는 어색한 동어반복. "한 자루"로 단위어
+                    명시</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="label">STEP 02</td>
+                <td class="before">
+                  15도 스키니 브러쉬로 자연스럽게 눈썹 그리기
+                </td>
+                <td class="after">
+                  15도 사선 스키니 브러쉬로<br />결 방향 따라 자연스럽게 눈썹
+                  그리기<span class="note"
+                    >※ "15도" 단독 표기 시 의미 전달 약함. "사선" 추가
+                    권장</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td class="label">VEGAN 카피 마무리</td>
+                <td class="before">
+                  전 제품에 동일한 원칙을 적용한<br />탐뷰티의 모든 색은
+                  처음부터 비건입니다.
+                </td>
+                <td class="after">
+                  처음부터 비건. 끝까지 비건.<br />탐뷰티의 모든 컬러는 같은
+                  원칙을 따릅니다.<span class="note"
+                    >※ 임팩트 강화안 (선택). 원안 유지도 가능</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ===== 톤앤매너 가이드 ===== -->
+        <div class="extra-notes">
+          <h3>🎨 톤앤매너 가이드 (작업 시 참고)</h3>
+          <ul>
+            <li>
+              <b>영문 헤드라인 (큰 글씨):</b> 감성적 · 시적인 표현 유지 —
+              "Glides like butter, Soft like a cloud" 같은 결
+            </li>
+            <li>
+              <b>한글 메인 카피:</b> 제품 베네핏을 직관적으로 — "구름처럼
+              얹히는", "빗질 한 번으로 완성" 등 동사 중심
+            </li>
+            <li>
+              <b>한글 서브 카피:</b> 기능/성분/스펙을 구체적으로 — 메인 카피의
+              반복이 아닌 <u>새로운 정보 추가</u>가 원칙
+            </li>
+            <li>
+              <b>컬러 설명:</b> [원두/디저트 비유] + [색 인상] +
+              [톤(웜/쿨·라이트/딥)] 3단 구조 통일
+            </li>
+            <li>
+              <b>제품명 표기:</b> "이지브로우마스카라" / "The Cloud easy brow
+              mascara" — 본 명칭 외 임의 변형 금지
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <footer>
+        <div>
+          탐뷰티 · 이지브로우마스카라 상세페이지 v(차기) · 문안 교정 핸드오프
+        </div>
+        <div class="legend">
+          <span
+            ><span class="swatch" style="background: #c92a2a"></span
+            >Before</span
+          >
+          <span
+            ><span class="swatch" style="background: #1f7a3a"></span>After</span
+          >
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
