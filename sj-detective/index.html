@@ -1606,9 +1606,9 @@
         padding: 0;
         background: #0a0a0c;
       }
-      /* portrait 모드: 풀배경 SJ/EST.2005 텍스트 숨김 */
-      .about-visual-cert:has(.about-cert-portrait)::before,
-      .about-visual-cert:has(.about-cert-portrait)::after {
+      /* cert 모드: 풀배경 SJ/EST.2005 텍스트 무조건 숨김 */
+      .about-visual-cert::before,
+      .about-visual-cert::after {
         display: none !important;
         content: none !important;
       }
@@ -1986,15 +1986,7 @@
             src="images/team-kim.jpg"
             alt="SJ 탐정사무소 대표 김혁진"
             class="about-cert-img about-cert-portrait"
-            onerror="
-              this.style.display = 'none';
-              this.parentElement.classList.add('about-visual-fallback');
-            "
           />
-          <div class="about-visual-caption">
-            <span class="about-caption-tag">CHIEF</span>
-            대표 김혁진 · 탐정사 1급 자격 보유
-          </div>
         </div>
         <div class="about-text">
           <div class="label">ABOUT SJ</div>
