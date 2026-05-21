@@ -1606,6 +1606,12 @@
         padding: 0;
         background: #0a0a0c;
       }
+      /* portrait 모드: 풀배경 SJ/EST.2005 텍스트 숨김 */
+      .about-visual-cert:has(.about-cert-portrait)::before,
+      .about-visual-cert:has(.about-cert-portrait)::after {
+        display: none !important;
+        content: none !important;
+      }
       .about-visual-cert:has(.about-cert-portrait) .about-visual-caption {
         position: absolute;
         bottom: 24px;
