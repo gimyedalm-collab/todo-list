@@ -164,8 +164,45 @@
       }
       .menu-toggle {
         display: none;
-        color: #fff;
-        font-size: 24px;
+        width: 38px;
+        height: 38px;
+        position: relative;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 2px;
+        cursor: pointer;
+        padding: 0;
+      }
+      .menu-toggle span {
+        position: absolute;
+        left: 9px;
+        right: 9px;
+        height: 1.5px;
+        background: var(--gold-light);
+        transition:
+          transform 0.3s ease,
+          opacity 0.2s ease,
+          top 0.3s ease;
+      }
+      .menu-toggle span:nth-child(1) {
+        top: 12px;
+      }
+      .menu-toggle span:nth-child(2) {
+        top: 18px;
+      }
+      .menu-toggle span:nth-child(3) {
+        top: 24px;
+      }
+      body.nav-open .menu-toggle span:nth-child(1) {
+        top: 18px;
+        transform: rotate(45deg);
+      }
+      body.nav-open .menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      body.nav-open .menu-toggle span:nth-child(3) {
+        top: 18px;
+        transform: rotate(-45deg);
       }
 
       /* === HERO === */
@@ -1821,6 +1858,546 @@
         }
       }
 
+      /* ============================================
+         === MOBILE OPTIMIZATION (종합) ===
+         ============================================ */
+      @media (max-width: 960px) {
+        /* --- Mobile nav slide-in --- */
+        header nav {
+          position: fixed;
+          top: 78px;
+          left: 0;
+          right: 0;
+          background: rgba(5, 5, 7, 0.98);
+          backdrop-filter: blur(12px);
+          border-top: 1px solid rgba(184, 153, 104, 0.15);
+          border-bottom: 1px solid rgba(184, 153, 104, 0.15);
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.35s ease;
+          z-index: 99;
+        }
+        body.nav-open header nav {
+          max-height: 80vh;
+          overflow-y: auto;
+        }
+        header nav ul {
+          display: flex !important;
+          flex-direction: column;
+          gap: 0;
+          padding: 12px 24px 24px;
+        }
+        header nav ul li {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        header nav ul li:last-child {
+          border-bottom: none;
+        }
+        header nav ul a {
+          display: block;
+          padding: 16px 4px;
+          font-size: 15px;
+          letter-spacing: 0.08em;
+        }
+
+        /* --- Hero --- */
+        .hero {
+          min-height: auto;
+          padding: 110px 0 70px;
+        }
+        .hero h1 {
+          font-size: 32px !important;
+          line-height: 1.3;
+        }
+        .hero-sub {
+          font-size: 14px;
+          line-height: 1.8;
+          margin-bottom: 36px;
+        }
+        .hero-eyebrow {
+          font-size: 11px;
+          letter-spacing: 0.2em;
+          margin-bottom: 20px;
+        }
+        .hero-eyebrow::before {
+          width: 28px;
+        }
+        .cert-badge {
+          display: flex;
+          gap: 12px;
+          padding: 12px 16px;
+          align-items: flex-start;
+        }
+        .cert-badge-mark {
+          font-size: 18px;
+          margin-top: 2px;
+        }
+        .cert-badge strong {
+          font-size: 13px;
+          line-height: 1.4;
+        }
+        .cert-badge small {
+          font-size: 10px;
+          letter-spacing: 0.08em;
+        }
+        .hero::after {
+          font-size: 220px;
+          right: -50px;
+          bottom: -50px;
+        }
+        .hero-scroll {
+          display: none;
+        }
+
+        /* --- Trust strip --- */
+        .trust {
+          padding: 36px 0;
+        }
+        .trust-num {
+          font-size: 38px !important;
+        }
+        .trust-num small {
+          font-size: 16px !important;
+        }
+        .trust-num-cert {
+          font-size: 36px !important;
+        }
+        .trust-num-cert small {
+          font-size: 18px !important;
+        }
+        .trust-label {
+          font-size: 11px;
+          letter-spacing: 0.1em;
+        }
+        .trust-cell {
+          padding: 16px 8px;
+        }
+        .trust-cell-cert::before {
+          font-size: 8px;
+          padding: 2px 8px;
+          top: -8px;
+        }
+
+        /* --- Section common --- */
+        .section-head {
+          margin-bottom: 50px;
+        }
+        .section-title {
+          font-size: 24px !important;
+          line-height: 1.4;
+        }
+        .section-sub {
+          font-size: 14px;
+          line-height: 1.8;
+        }
+        .section-eyebrow {
+          font-size: 11px;
+          letter-spacing: 0.25em;
+        }
+
+        /* --- About --- */
+        .about-visual {
+          aspect-ratio: 3/4;
+          max-height: 480px;
+        }
+        .about-cert-portrait {
+          aspect-ratio: 3/4 !important;
+        }
+        .about-text h2 {
+          font-size: 22px;
+          line-height: 1.5;
+        }
+        .about-text p {
+          font-size: 14px;
+          line-height: 1.85;
+        }
+        .about-text .sign {
+          margin-top: 28px;
+          padding-top: 22px;
+        }
+        .about-text .sign-name {
+          font-size: 18px;
+        }
+        .about-text .sign-en {
+          font-size: 26px;
+        }
+        .cert-strip {
+          padding: 20px 18px;
+        }
+        .cert-strip-title {
+          font-size: 14px;
+          flex-wrap: wrap;
+        }
+        .cert-list-people {
+          grid-template-columns: 1fr !important;
+          gap: 6px 0;
+        }
+        .cert-note {
+          font-size: 11px !important;
+        }
+
+        /* --- Services --- */
+        .svc-card {
+          padding: 40px 28px;
+        }
+        .svc-title {
+          font-size: 20px;
+        }
+        .svc-desc {
+          font-size: 13px;
+        }
+        .svc-arrow {
+          top: 40px;
+          right: 28px;
+        }
+
+        /* --- Process --- */
+        .process::before {
+          font-size: 120px;
+          top: 40px;
+        }
+        .proc-step {
+          padding: 28px 22px;
+        }
+        .proc-num {
+          font-size: 48px;
+          margin-bottom: 16px;
+        }
+        .proc-title {
+          font-size: 18px;
+        }
+
+        /* --- Why --- */
+        .why-card {
+          padding: 40px 24px;
+        }
+        .why-title {
+          font-size: 20px;
+        }
+        .why-card-feature::before {
+          font-size: 9px;
+          padding: 3px 12px;
+          top: -10px;
+        }
+
+        /* --- TEAM section --- */
+        .team::before {
+          display: none;
+        }
+        .team-hero {
+          aspect-ratio: 4/3;
+          margin-bottom: 36px;
+        }
+        .team-hero img {
+          object-position: center 25%;
+        }
+        .team-hero-overlay {
+          left: 20px;
+          right: 20px;
+          bottom: 20px;
+        }
+        .team-hero-tag {
+          font-size: 10px;
+          letter-spacing: 0.2em;
+          margin-bottom: 8px;
+        }
+        .team-hero-overlay h3 {
+          font-size: 17px;
+          line-height: 1.4;
+        }
+        .team-grid {
+          gap: 18px;
+        }
+        .team-card {
+          padding: 32px 26px;
+        }
+        .team-card-num {
+          top: 22px;
+          right: 26px;
+          font-size: 14px;
+        }
+        .team-role {
+          font-size: 11px;
+        }
+        .team-name {
+          font-size: 24px;
+          padding-bottom: 18px;
+          margin-bottom: 18px;
+        }
+        .team-name small {
+          font-size: 11px;
+        }
+        .team-meta li {
+          grid-template-columns: 70px 1fr;
+          font-size: 12px;
+          padding: 5px 0;
+        }
+        .team-meta li strong {
+          font-size: 13px;
+        }
+        .team-desc {
+          font-size: 13px;
+          line-height: 1.85;
+        }
+        .team-pledge {
+          margin-top: 40px;
+          padding: 28px 22px;
+        }
+        .team-pledge-mark {
+          font-size: 56px;
+          top: -4px;
+          left: 18px;
+        }
+        .team-pledge p {
+          font-size: 14px;
+          line-height: 1.75;
+        }
+
+        /* --- CREDENTIALS --- */
+        .credentials .section-title br {
+          display: none;
+        }
+        .cred-card {
+          padding: 14px;
+        }
+        .cred-card figcaption strong {
+          font-size: 13px;
+        }
+        .cred-card figcaption span {
+          font-size: 11px;
+        }
+        .cred-business {
+          padding: 28px 22px;
+          gap: 24px;
+        }
+        .cred-biz-card .cred-img-wrap {
+          aspect-ratio: 0.85/1;
+        }
+        .cred-biz-text h3 {
+          font-size: 20px;
+          margin-bottom: 18px;
+        }
+        .cred-biz-label {
+          font-size: 12px;
+          letter-spacing: 0.2em;
+        }
+        .cred-biz-list li {
+          grid-template-columns: 100px 1fr;
+          font-size: 13px;
+          padding: 8px 0;
+        }
+        .cred-biz-list li strong {
+          font-size: 13px;
+        }
+        .cred-biz-note {
+          font-size: 11px !important;
+        }
+
+        /* --- Cases --- */
+        .case-thumb .case-num {
+          font-size: 80px;
+        }
+        .case-thumb .case-tag {
+          font-size: 10px;
+          padding: 5px 12px;
+        }
+        .case-title {
+          font-size: 17px;
+        }
+        .case-body {
+          padding: 26px 22px;
+        }
+
+        /* --- FAQ --- */
+        .faq-q {
+          padding: 22px 0;
+          font-size: 15px;
+          gap: 14px;
+        }
+        .faq-q .q-mark {
+          font-size: 20px;
+          margin-right: 8px;
+        }
+        .faq-q .q-toggle {
+          width: 26px;
+          height: 26px;
+          font-size: 14px;
+        }
+        .faq-a {
+          font-size: 14px;
+          padding-left: 32px !important;
+        }
+        .faq-item.open .faq-a {
+          padding: 0 0 24px 32px !important;
+        }
+
+        /* --- Final CTA --- */
+        .cta-final {
+          padding: 80px 0;
+        }
+        .cta-final h2 {
+          font-size: 26px !important;
+          line-height: 1.45;
+        }
+        .cta-final p {
+          font-size: 14px;
+          margin-bottom: 36px;
+        }
+        .cta-tel-big a {
+          font-size: 38px !important;
+        }
+        .cta-tel-big small {
+          font-size: 11px;
+          letter-spacing: 0.2em;
+        }
+        .cta-tel-sub {
+          font-size: 13px;
+        }
+        .cta-tel-sub a {
+          font-size: 16px;
+        }
+        .cta-final .cta-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 10px;
+        }
+        .cta-final .cta-row .btn-primary,
+        .cta-final .cta-row .btn-ghost {
+          justify-content: center;
+          padding: 16px 20px;
+          font-size: 13px;
+        }
+
+        /* --- Footer --- */
+        footer {
+          padding: 50px 0 24px;
+        }
+        .footer-top {
+          padding-bottom: 36px;
+          margin-bottom: 22px;
+        }
+        .footer-tagline {
+          font-size: 13px;
+          margin: 16px 0 14px;
+        }
+        .footer-biz {
+          font-size: 10px;
+        }
+        .footer-col h4 {
+          font-size: 11px;
+          margin-bottom: 14px;
+        }
+        .footer-col ul li {
+          font-size: 12px;
+        }
+        .footer-bottom {
+          font-size: 10px;
+          gap: 16px;
+        }
+        .footer-bottom .legal {
+          line-height: 1.9;
+        }
+
+        /* --- Floating CTA --- */
+        .float-cta {
+          right: 16px;
+          bottom: 16px;
+          gap: 8px;
+        }
+        .float-btn {
+          width: 52px;
+          height: 52px;
+          font-size: 20px;
+        }
+        .float-btn.telegram {
+          font-size: 22px;
+        }
+
+        /* --- Toast --- */
+        .toast {
+          left: 16px;
+          right: 16px;
+          bottom: 88px;
+          transform: translateY(20px);
+          padding: 14px 18px;
+        }
+        .toast.show {
+          transform: translateY(0);
+        }
+        .toast-text strong {
+          font-size: 13px;
+        }
+        .toast-text span {
+          font-size: 11px;
+        }
+
+        /* --- Touch targets minimum 44px --- */
+        .btn-consult {
+          min-height: 38px;
+        }
+        .btn-primary,
+        .btn-ghost {
+          min-height: 48px;
+        }
+      }
+
+      /* === ULTRA-NARROW PHONES === */
+      @media (max-width: 480px) {
+        header .nav {
+          height: 64px;
+        }
+        header nav {
+          top: 64px;
+        }
+        .logo-mark {
+          font-size: 26px;
+        }
+        .logo-text {
+          font-size: 10px;
+          letter-spacing: 0.2em;
+        }
+        .header-cta .btn-consult {
+          padding: 9px 14px;
+          font-size: 11px;
+        }
+        .hero {
+          padding: 96px 0 56px;
+        }
+        .hero h1 {
+          font-size: 27px !important;
+        }
+        .hero-sub br {
+          display: none;
+        }
+        section.block {
+          padding: 70px 0;
+        }
+        .container {
+          padding: 0 20px;
+        }
+        .trust-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .trust-num {
+          font-size: 32px !important;
+        }
+        .cta-tel-big a {
+          font-size: 32px !important;
+        }
+        .team-meta li {
+          grid-template-columns: 1fr;
+          gap: 2px;
+          padding: 8px 0;
+        }
+        .cred-biz-list li {
+          grid-template-columns: 1fr;
+          gap: 3px;
+        }
+        .cred-biz-list li span {
+          font-size: 11px;
+        }
+      }
+
       /* === RESPONSIVE (ORIGINAL) === */
       @media (max-width: 960px) {
         nav ul,
@@ -1916,7 +2493,13 @@
         <div class="header-cta">
           <span class="tel">1644-1488</span>
           <a href="#cta" class="btn-consult">무료상담</a>
-          <button class="menu-toggle" aria-label="menu">≡</button>
+          <button
+            class="menu-toggle"
+            aria-label="메뉴 열기"
+            onclick="toggleMobileNav(this)"
+          >
+            <span></span><span></span><span></span>
+          </button>
         </div>
       </div>
     </header>
@@ -2784,6 +3367,20 @@
       });
 
       // Smooth scroll for in-page anchors handled by CSS scroll-behavior
+
+      // Mobile nav toggle
+      function toggleMobileNav(btn) {
+        const open = document.body.classList.toggle('nav-open');
+        btn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+      }
+      // close mobile nav when link tapped
+      document.querySelectorAll('header nav a').forEach((a) => {
+        a.addEventListener('click', () => {
+          document.body.classList.remove('nav-open');
+          const btn = document.querySelector('.menu-toggle');
+          if (btn) btn.setAttribute('aria-label', '메뉴 열기');
+        });
+      });
 
       // Kakao ID clipboard copy
       function copyKakaoId(e) {
