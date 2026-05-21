@@ -1587,6 +1587,234 @@
         color: #3c1e1e !important;
       }
 
+      /* === ABOUT CERT PORTRAIT (인물 사진 모드) === */
+      .about-cert-portrait {
+        max-width: 100% !important;
+        width: 100% !important;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        border-radius: 4px;
+        transform: none !important;
+        box-shadow:
+          0 24px 60px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(184, 153, 104, 0.35);
+      }
+      .about-cert-portrait:hover {
+        transform: scale(1.01) !important;
+      }
+      .about-visual-cert:has(.about-cert-portrait) {
+        padding: 0;
+        background: #0a0a0c;
+      }
+      .about-visual-cert:has(.about-cert-portrait) .about-visual-caption {
+        position: absolute;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(5, 5, 7, 0.85);
+        backdrop-filter: blur(8px);
+        padding: 12px 22px;
+        border: 1px solid rgba(184, 153, 104, 0.4);
+        color: #fff;
+        white-space: nowrap;
+      }
+
+      /* === TEAM SECTION === */
+      .team {
+        background: #fff;
+        position: relative;
+      }
+      .team::before {
+        content: 'TEAM';
+        position: absolute;
+        top: 80px;
+        right: -10px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 200px;
+        font-weight: 700;
+        color: rgba(184, 153, 104, 0.05);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        pointer-events: none;
+      }
+      .team-hero {
+        position: relative;
+        margin-bottom: 60px;
+        overflow: hidden;
+        aspect-ratio: 16/8;
+        background: #0e0e10;
+      }
+      .team-hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 30%;
+        filter: contrast(1.05) saturate(0.95);
+      }
+      .team-hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(5, 5, 7, 0) 40%,
+          rgba(5, 5, 7, 0.85) 100%
+        );
+        pointer-events: none;
+      }
+      .team-hero-overlay {
+        position: absolute;
+        left: 50px;
+        bottom: 44px;
+        z-index: 2;
+        color: #fff;
+      }
+      .team-hero-tag {
+        display: inline-block;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 12px;
+        letter-spacing: 0.35em;
+        color: var(--gold-light);
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--gold);
+      }
+      .team-hero-overlay h3 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(20px, 2.6vw, 34px);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.3;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        position: relative;
+        z-index: 2;
+      }
+      .team-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        padding: 44px 40px;
+        position: relative;
+        transition: all 0.3s;
+      }
+      .team-card:hover {
+        border-color: var(--gold);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+        transform: translateY(-4px);
+      }
+      .team-card-num {
+        position: absolute;
+        top: 28px;
+        right: 36px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 18px;
+        color: var(--gold-deep);
+        letter-spacing: 0.2em;
+      }
+      .team-role {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        color: var(--gold-deep);
+        margin-bottom: 12px;
+      }
+      .team-name {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        margin-bottom: 22px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid var(--line);
+      }
+      .team-name small {
+        display: block;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--text-mute);
+        letter-spacing: 0.2em;
+        margin-top: 6px;
+      }
+      .team-meta {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 22px;
+        display: grid;
+        gap: 8px;
+      }
+      .team-meta li {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        align-items: baseline;
+        font-size: 13px;
+        padding: 6px 0;
+      }
+      .team-meta li span {
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        color: var(--text-mute);
+      }
+      .team-meta li strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .team-desc {
+        font-size: 14px;
+        color: var(--text-soft);
+        line-height: 1.9;
+        margin: 0;
+      }
+
+      .team-pledge {
+        margin-top: 60px;
+        padding: 40px;
+        background: var(--bg-soft);
+        border-left: 4px solid var(--gold);
+        position: relative;
+        text-align: center;
+      }
+      .team-pledge-mark {
+        position: absolute;
+        top: 4px;
+        left: 26px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 80px;
+        color: var(--gold);
+        line-height: 1;
+        opacity: 0.5;
+      }
+      .team-pledge p {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(15px, 1.6vw, 19px);
+        color: var(--text);
+        line-height: 1.8;
+        letter-spacing: -0.01em;
+        margin: 0;
+      }
+
+      @media (max-width: 960px) {
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        .team-hero {
+          aspect-ratio: 4/3;
+        }
+        .team-hero-overlay {
+          left: 24px;
+          bottom: 24px;
+        }
+        .team-pledge {
+          padding: 32px 24px;
+        }
+      }
+
       /* === RESPONSIVE (ORIGINAL) === */
       @media (max-width: 960px) {
         nav ul,
@@ -1673,6 +1901,7 @@
             <li><a href="#services">의뢰분야</a></li>
             <li><a href="#process">진행절차</a></li>
             <li><a href="#why">신뢰의 약속</a></li>
+            <li><a href="#team">팀</a></li>
             <li><a href="#credentials">자격증</a></li>
             <li><a href="#cases">해결사례</a></li>
             <li><a href="#faq">FAQ</a></li>
@@ -1694,7 +1923,7 @@
           <div class="cert-badge">
             <span class="cert-badge-mark">★</span>
             <div>
-              <strong>대표·부소장 모두 탐정사 1급 정식 보유</strong>
+              <strong>대표·총괄팀장 모두 탐정사 1급 정식 보유</strong>
               <small>한국자격검정평가진흥원 · 등록번호 2023-003035</small>
             </div>
           </div>
@@ -1748,17 +1977,17 @@
       <div class="container about-wrap">
         <div class="about-visual about-visual-cert">
           <img
-            src="images/cert-card-kim.png"
-            alt="탐정사 1급 자격증 - 김혁진"
-            class="about-cert-img"
+            src="images/team-kim.jpg"
+            alt="SJ 탐정사무소 대표 김혁진"
+            class="about-cert-img about-cert-portrait"
             onerror="
               this.style.display = 'none';
               this.parentElement.classList.add('about-visual-fallback');
             "
           />
           <div class="about-visual-caption">
-            <span class="about-caption-tag">CERTIFIED</span>
-            탐정사 1급 자격증 · 한국자격검정평가진흥원
+            <span class="about-caption-tag">CHIEF</span>
+            대표 김혁진 · 탐정사 1급 자격 보유
           </div>
         </div>
         <div class="about-text">
@@ -1774,7 +2003,7 @@
             다릅니다.
           </p>
           <p>
-            대표 <strong>김혁진</strong>과 부소장 <strong>신대현</strong>이
+            대표 <strong>김혁진</strong>과 총괄팀장 <strong>신대현</strong>이
             <em>둘 다 탐정사 1급</em> 자격을 보유하고 있으며, 모든 의뢰 접수와
             보고서 인계까지 단 한 사람의 외부 노출도 허용하지 않는
             <strong>1:1 비밀 전담</strong> 체계로 진행됩니다.
@@ -1795,7 +2024,7 @@
                 <span>탐정사 1급 · 등록 2023-003035</span>
               </li>
               <li>
-                <strong>부소장 신대현</strong>
+                <strong>총괄팀장 신대현</strong>
                 <span>탐정사 1급 · 등록 2023-003035</span>
               </li>
             </ul>
@@ -1983,9 +2212,9 @@
         <div class="why-grid">
           <div class="why-card why-card-feature">
             <div class="why-ico">★</div>
-            <h3 class="why-title">대표 · 부소장<br />모두 탐정사 1급</h3>
+            <h3 class="why-title">대표 · 총괄팀장<br />모두 탐정사 1급</h3>
             <p class="why-desc">
-              대표 김혁진·부소장 신대현
+              대표 김혁진·총괄팀장 신대현
               <strong>전원 탐정사 1급 자격증 정식 보유</strong>.
               한국자격검정평가진흥원 발급, 자격기본법 시행령에 따라 등록된
               자격증입니다. 자격 미보유 업체와는 출발선이 다릅니다.
@@ -2011,6 +2240,86 @@
       </div>
     </section>
 
+    <!-- ==================== OUR TEAM ==================== -->
+    <section class="block team" id="team">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">OUR TEAM</div>
+          <h2 class="section-title">
+            의뢰는 사람이 합니다.<br />
+            <span class="gold">사람을, 먼저 보여드립니다.</span>
+          </h2>
+          <p class="section-sub">
+            얼굴을 드러내지 못하는 업체에 인생의 가장 어려운 질문을
+            맡기시겠습니까? <br />
+            SJ는 사무소의 얼굴을 먼저 공개합니다.
+          </p>
+        </div>
+
+        <div class="team-hero">
+          <img
+            src="images/team-duo.jpg"
+            alt="SJ 탐정사무소 대표 김혁진 · 총괄팀장 신대현"
+            onerror="this.style.display = 'none'"
+          />
+          <div class="team-hero-overlay">
+            <span class="team-hero-tag">SJ DETECTIVE OFFICE</span>
+            <h3>탐정사 1급, 두 사람이 함께 합니다.</h3>
+          </div>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-card-num">01</div>
+            <div class="team-card-body">
+              <div class="team-role">CHIEF · 대표</div>
+              <h3 class="team-name">김혁진<small>KIM HYUKJIN</small></h3>
+              <ul class="team-meta">
+                <li><span>자격</span><strong>탐정사 1급 자격증</strong></li>
+                <li>
+                  <span>발급</span><strong>한국자격검정평가진흥원</strong>
+                </li>
+                <li><span>등록번호</span><strong>2023-003035</strong></li>
+              </ul>
+              <p class="team-desc">
+                의뢰 접수부터 결과 보고까지 모든 사건의 최종 책임을 직접
+                맡습니다. 의뢰인의 신상은 단 한 줄도 외부에 노출되지 않도록,
+                사건 번호 관리 체계를 직접 운영합니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-card-num">02</div>
+            <div class="team-card-body">
+              <div class="team-role">CHIEF MANAGER · 총괄팀장</div>
+              <h3 class="team-name">신대현<small>SHIN DAEHYUN</small></h3>
+              <ul class="team-meta">
+                <li><span>자격</span><strong>탐정사 1급 자격증</strong></li>
+                <li>
+                  <span>발급</span><strong>한국자격검정평가진흥원</strong>
+                </li>
+                <li><span>등록번호</span><strong>2023-003035</strong></li>
+              </ul>
+              <p class="team-desc">
+                현장 조사 전반을 총괄합니다. 동선 분석·디지털 흔적 추적·증거
+                정리까지, 보고서가 법정에서 인정받을 수 있는 수준이 되도록
+                실무의 마지막 한 줄까지 직접 점검합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-pledge">
+          <span class="team-pledge-mark">"</span>
+          <p>
+            의뢰는 사건이 아니라 <strong>사람의 인생</strong>입니다.<br />
+            우리는 그 무게를 알기에, 얼굴을 먼저 보여드립니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- ==================== CREDENTIALS ==================== -->
     <section class="block credentials" id="credentials">
       <div class="container">
@@ -2020,7 +2329,7 @@
             <span class="gold">자격은 사진으로 증명합니다.</span>
           </h2>
           <p class="section-sub">
-            대표·부소장 모두 한국자격검정평가진흥원에서 발급한
+            대표·총괄팀장 모두 한국자격검정평가진흥원에서 발급한
             <strong>탐정사 1급</strong> 자격증을 정식 보유하고 있습니다.<br />
             의뢰 전 사무소 방문 시 원본을 직접 확인하실 수 있습니다.
           </p>
@@ -2049,7 +2358,7 @@
             <div class="cred-img-wrap">
               <img
                 src="images/cert-paper-shin.png"
-                alt="탐정사 1급 자격증 - 부소장 신대현"
+                alt="탐정사 1급 자격증 - 총괄팀장 신대현"
                 onerror="this.parentElement.classList.add('cred-img-missing')"
               />
               <div class="cred-img-fallback">
@@ -2059,7 +2368,7 @@
             </div>
             <figcaption>
               <strong>탐정사 1급 자격증</strong>
-              <span>부소장 신대현 · 등록번호 2023-003035</span>
+              <span>총괄팀장 신대현 · 등록번호 2023-003035</span>
             </figcaption>
           </figure>
 
@@ -2085,7 +2394,7 @@
             <div class="cred-img-wrap">
               <img
                 src="images/cert-card-shin.png"
-                alt="탐정사 1급 자격카드 - 부소장 신대현"
+                alt="탐정사 1급 자격카드 - 총괄팀장 신대현"
                 onerror="this.parentElement.classList.add('cred-img-missing')"
               />
               <div class="cred-img-fallback">
@@ -2095,7 +2404,7 @@
             </div>
             <figcaption>
               <strong>자격 ID 카드</strong>
-              <span>부소장 신대현</span>
+              <span>총괄팀장 신대현</span>
             </figcaption>
           </figure>
         </div>
