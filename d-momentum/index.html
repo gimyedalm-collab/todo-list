@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400;1,9..144,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -47,12 +47,14 @@
         --hairline: #d12d2d;
 
         --font-display:
-          'Geist', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+          'Pretendard Variable', 'Pretendard', -apple-system,
+          BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
         --font-sans:
-          'Pretendard', 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+          'Pretendard Variable', 'Pretendard', -apple-system,
+          BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
         --font-serif: 'Fraunces', 'Times New Roman', serif;
         --font-mono:
-          'Geist Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+          'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
         --pad-x: clamp(20px, 4vw, 80px);
         --pad-y: clamp(80px, 10vw, 140px);
@@ -76,7 +78,16 @@
         letter-spacing: -0.005em;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
-        font-feature-settings: 'ss01', 'cv11', 'kern';
+        font-feature-settings: 'kern', 'ss03';
+        word-break: keep-all;
+        line-break: strict;
+      }
+      /* Korean mode: disable italic on <em> (Fraunces has no Korean glyphs, falls back to ugly synthetic oblique) */
+      [data-lang='kr'] em {
+        font-style: normal !important;
+        font-family: inherit !important;
+        color: var(--hairline);
+        font-weight: 600;
       }
       a {
         color: inherit;
@@ -317,10 +328,12 @@
       .hero-title {
         font-family: var(--font-display);
         font-weight: 500;
-        font-size: clamp(56px, 9vw, 160px);
-        line-height: 0.92;
-        letter-spacing: -0.045em;
+        font-size: clamp(44px, 7.5vw, 128px);
+        line-height: 0.95;
+        letter-spacing: -0.035em;
         color: var(--ink);
+        word-break: keep-all;
+        overflow-wrap: break-word;
       }
       .hero-title em {
         font-family: var(--font-serif);
@@ -436,10 +449,12 @@
       .section-title {
         font-family: var(--font-display);
         font-weight: 500;
-        font-size: clamp(40px, 5.5vw, 88px);
-        line-height: 0.98;
-        letter-spacing: -0.035em;
+        font-size: clamp(34px, 4.5vw, 72px);
+        line-height: 1.02;
+        letter-spacing: -0.025em;
         color: var(--ink);
+        word-break: keep-all;
+        overflow-wrap: break-word;
       }
       .section-title em {
         font-family: var(--font-serif);
@@ -503,10 +518,12 @@
       .roster-name {
         font-family: var(--font-display);
         font-weight: 500;
-        font-size: clamp(64px, 9vw, 144px);
-        line-height: 0.88;
-        letter-spacing: -0.045em;
+        font-size: clamp(52px, 7vw, 112px);
+        line-height: 0.92;
+        letter-spacing: -0.035em;
         margin-bottom: 28px;
+        word-break: keep-all;
+        overflow-wrap: break-word;
       }
       .roster-name em {
         font-family: var(--font-serif);
@@ -1490,10 +1507,12 @@
       .dm-footer-mark {
         font-family: var(--font-display);
         font-weight: 500;
-        font-size: clamp(80px, 14vw, 240px);
-        line-height: 0.88;
-        letter-spacing: -0.05em;
+        font-size: clamp(60px, 11vw, 180px);
+        line-height: 0.92;
+        letter-spacing: -0.04em;
         margin-bottom: 56px;
+        word-break: keep-all;
+        overflow-wrap: break-word;
       }
       .dm-footer-mark em {
         font-family: var(--font-serif);
