@@ -16,39 +16,31 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --bg: #000000;
+        --bg: #000;
         --bg-2: #0a0a0a;
-        --fg: #ffffff;
+        --bg-3: #15110b;
+        --fg: #fff;
         --fg-dim: rgba(255, 255, 255, 0.55);
         --fg-mute: rgba(255, 255, 255, 0.32);
         --line: rgba(255, 255, 255, 0.14);
-        --line-soft: rgba(255, 255, 255, 0.08);
+        --line-soft: rgba(255, 255, 255, 0.06);
         --accent: #bfa66b;
-
+        --accent-2: #e8d4a3;
+        --red: #ff3b3b;
         --font-sans:
           'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
         --font-serif: 'Cormorant Garamond', 'Pretendard', serif;
         --font-mono:
           'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-
-        --type-mega: clamp(72px, 12vw, 200px);
-        --type-h1: clamp(48px, 7vw, 96px);
-        --type-h2: clamp(32px, 4vw, 56px);
-        --type-h3: clamp(20px, 2vw, 28px);
-        --type-body: 15px;
-        --type-small: 12px;
-        --type-tiny: 11px;
-
-        --pad-x: clamp(20px, 4vw, 64px);
-        --pad-y: clamp(60px, 10vw, 140px);
-        --header-h: 88px;
+        --pad-x: clamp(20px, 4vw, 72px);
+        --pad-y: clamp(80px, 12vw, 180px);
+        --header-h: 84px;
       }
-
       * {
         box-sizing: border-box;
         margin: 0;
@@ -61,7 +53,7 @@
         background: var(--bg);
         color: var(--fg);
         font-family: var(--font-sans);
-        font-size: var(--type-body);
+        font-size: 15px;
         line-height: 1.5;
         letter-spacing: -0.005em;
         -webkit-font-smoothing: antialiased;
@@ -89,12 +81,35 @@
         font-family: var(--font-mono);
       }
 
-      /* Show only the active language */
+      /* Lang toggle */
       [data-lang='kr'] .en {
         display: none !important;
       }
       [data-lang='en'] .kr {
         display: none !important;
+      }
+
+      /* Film grain overlay — gives whole site a textured cinematic feel */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 200;
+        opacity: 0.05;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.6'/></svg>");
+        mix-blend-mode: overlay;
+      }
+      /* Scroll progress bar */
+      .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        width: 0;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        z-index: 201;
+        transition: width 0.15s ease;
       }
 
       /* ─── HEADER ─── */
@@ -114,15 +129,14 @@
           rgba(0, 0, 0, 0.85),
           rgba(0, 0, 0, 0)
         );
-        transition:
-          background 0.4s ease,
-          border-color 0.3s ease;
+        transition: all 0.4s ease;
         border-bottom: 1px solid transparent;
       }
       .dm-header.scrolled {
         background: rgba(0, 0, 0, 0.92);
         backdrop-filter: blur(20px);
         border-bottom-color: var(--line-soft);
+        height: 68px;
       }
       .dm-logo {
         display: inline-flex;
@@ -140,6 +154,10 @@
         display: grid;
         place-items: center;
         font-size: 18px;
+        transition: transform 0.6s ease;
+      }
+      .dm-logo:hover .mark {
+        transform: rotate(360deg);
       }
       .dm-nav {
         display: flex;
@@ -147,15 +165,30 @@
         justify-self: center;
       }
       .dm-nav a {
-        font-size: var(--type-small);
+        font-size: 11px;
         letter-spacing: 3px;
         text-transform: uppercase;
         color: var(--fg-dim);
-        transition: color 0.25s ease;
         padding: 6px 0;
+        position: relative;
+        transition: color 0.25s ease;
+      }
+      .dm-nav a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 1px;
+        background: var(--accent);
+        transition: all 0.3s ease;
       }
       .dm-nav a:hover {
         color: var(--fg);
+      }
+      .dm-nav a:hover::after {
+        width: 100%;
+        left: 0;
       }
       .dm-tools {
         justify-self: end;
@@ -167,7 +200,7 @@
         display: flex;
         gap: 4px;
         font-family: var(--font-mono);
-        font-size: var(--type-tiny);
+        font-size: 11px;
       }
       .dm-lang button {
         padding: 6px 10px;
@@ -175,10 +208,14 @@
         color: var(--fg-mute);
         border: 1px solid transparent;
         border-radius: 2px;
+        transition: all 0.25s;
       }
       .dm-lang button.active {
         color: var(--fg);
         border-color: var(--line);
+      }
+      .dm-lang button:hover {
+        color: var(--fg);
       }
       @media (max-width: 860px) {
         .dm-nav {
@@ -187,142 +224,239 @@
       }
 
       /* ─── HERO ─── */
-      .hero-wrap {
+      .hero {
         min-height: 100vh;
         position: relative;
-        display: grid;
-        grid-template-columns: 1fr;
-        align-items: end;
-        padding: calc(var(--header-h) + 60px) var(--pad-x) 80px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: var(--header-h) 0 0;
       }
       .hero-bg {
         position: absolute;
         inset: 0;
         z-index: 0;
-        overflow: hidden;
         background: #000;
       }
       .hero-bg .slide {
         position: absolute;
         inset: 0;
         opacity: 0;
-        transition: opacity 1.6s ease;
         background-size: cover;
         background-position: center;
+        transition:
+          opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 10s ease-out;
+        transform: scale(1.1);
       }
       .hero-bg .slide.active {
         opacity: 1;
+        transform: scale(1);
       }
       .hero-bg::after {
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.35) 0%,
-          rgba(0, 0, 0, 0.55) 60%,
-          rgba(0, 0, 0, 0.85) 100%
-        );
+        background:
+          radial-gradient(
+            ellipse at 20% 60%,
+            rgba(0, 0, 0, 0.3) 0%,
+            transparent 60%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(0, 0, 0, 0.55) 50%,
+            rgba(0, 0, 0, 0.92) 100%
+          );
       }
       .hero-content {
         position: relative;
         z-index: 2;
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 40px;
-        align-items: end;
+        padding: 0 var(--pad-x) 80px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+      /* Top-left meta bar (REC indicator + slide counter) */
+      .hero-meta {
+        position: absolute;
+        top: calc(var(--header-h) + 24px);
+        left: var(--pad-x);
+        right: var(--pad-x);
+        z-index: 3;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: var(--fg-mute);
+      }
+      .rec {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .rec .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--red);
+        box-shadow: 0 0 12px var(--red);
+        animation: pulse 1.4s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+      .hero-counter {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        font-size: 11px;
+      }
+      .hero-counter .cur {
+        color: var(--accent);
+        font-size: 13px;
+      }
+      /* Vertical side label */
+      .hero-side {
+        position: absolute;
+        top: 50%;
+        left: 24px;
+        transform: translateY(-50%) rotate(-90deg);
+        transform-origin: left center;
+        z-index: 3;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 6px;
+        color: var(--fg-mute);
+        text-transform: uppercase;
+      }
+      @media (max-width: 900px) {
+        .hero-side {
+          display: none;
+        }
       }
       .hero-eyebrow {
         font-family: var(--font-mono);
-        font-size: var(--type-tiny);
-        letter-spacing: 4px;
+        font-size: 11px;
+        letter-spacing: 5px;
         color: var(--accent);
         text-transform: uppercase;
-        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .hero-eyebrow::before {
+        content: '';
+        width: 36px;
+        height: 1px;
+        background: var(--accent);
       }
       .hero-title {
         font-family: var(--font-serif);
         font-weight: 300;
-        font-size: var(--type-h1);
-        line-height: 0.98;
-        letter-spacing: -0.02em;
+        font-size: clamp(60px, 11vw, 180px);
+        line-height: 0.92;
+        letter-spacing: -0.03em;
         white-space: pre-line;
-        max-width: 900px;
+        margin: 0;
       }
       .hero-title em {
         font-style: italic;
         color: var(--accent);
+        font-weight: 400;
+      }
+      .hero-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 40px;
+        border-top: 1px solid var(--line-soft);
+        padding-top: 28px;
+        margin-top: 8px;
       }
       .hero-sub {
-        margin-top: 28px;
         color: var(--fg-dim);
         font-size: 15px;
-        max-width: 540px;
+        max-width: 520px;
         line-height: 1.7;
       }
       .hero-controls {
         display: flex;
-        gap: 12px;
-        align-items: center;
-        font-family: var(--font-mono);
-        font-size: var(--type-tiny);
-        color: var(--fg-mute);
+        gap: 10px;
+        flex-shrink: 0;
       }
       .hero-controls button {
-        width: 44px;
-        height: 44px;
+        width: 52px;
+        height: 52px;
         border: 1px solid var(--line);
         border-radius: 50%;
         display: grid;
         place-items: center;
-        transition: all 0.25s ease;
+        transition: all 0.3s ease;
       }
       .hero-controls button:hover {
-        border-color: var(--fg);
-        color: var(--fg);
-      }
-      .hero-dots {
-        position: absolute;
-        left: var(--pad-x);
-        bottom: 40px;
-        z-index: 3;
-        display: flex;
-        gap: 8px;
-      }
-      .hero-dots button {
-        width: 36px;
-        height: 2px;
-        background: var(--line);
-        border: 0;
-        transition: background 0.3s ease;
-      }
-      .hero-dots button.active {
+        border-color: var(--accent);
         background: var(--accent);
+        color: var(--bg);
+        transform: scale(1.1);
+      }
+      @media (max-width: 760px) {
+        .hero-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+        }
       }
 
-      /* ─── MARQUEE ─── */
-      .marquee {
+      /* ─── DUAL MARQUEE ─── */
+      .marquee-wrap {
         border-top: 1px solid var(--line-soft);
         border-bottom: 1px solid var(--line-soft);
-        padding: 20px 0;
         overflow: hidden;
+        background: #000;
+      }
+      .marquee {
+        padding: 18px 0;
+        overflow: hidden;
+      }
+      .marquee:first-child {
+        border-bottom: 1px solid var(--line-soft);
       }
       .marquee-track {
         display: flex;
-        gap: 60px;
+        gap: 48px;
         white-space: nowrap;
-        animation: scroll 40s linear infinite;
         font-family: var(--font-serif);
         font-style: italic;
         font-size: 22px;
         color: var(--fg-dim);
       }
+      .marquee-track.left {
+        animation: scrollL 50s linear infinite;
+      }
+      .marquee-track.right {
+        animation: scrollR 60s linear infinite;
+      }
+      .marquee-track span {
+        display: inline-flex;
+        align-items: center;
+        gap: 48px;
+      }
       .marquee-track span::after {
         content: '✦';
-        margin-left: 60px;
         color: var(--accent);
+        font-style: normal;
       }
-      @keyframes scroll {
+      @keyframes scrollL {
         from {
           transform: translateX(0);
         }
@@ -330,39 +464,84 @@
           transform: translateX(-50%);
         }
       }
+      @keyframes scrollR {
+        from {
+          transform: translateX(-50%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
 
-      /* ─── SECTION ─── */
+      /* ─── SECTION BASE ─── */
       .section {
         padding: var(--pad-y) var(--pad-x);
+        position: relative;
       }
       .section-eyebrow {
         font-family: var(--font-mono);
-        font-size: var(--type-tiny);
+        font-size: 11px;
         letter-spacing: 4px;
         color: var(--accent);
         text-transform: uppercase;
         margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .section-eyebrow::before {
+        content: '';
+        width: 36px;
+        height: 1px;
+        background: var(--accent);
       }
       .section-title {
         font-family: var(--font-serif);
         font-weight: 300;
-        font-size: var(--type-h2);
-        line-height: 1.1;
-        letter-spacing: -0.01em;
+        font-size: clamp(40px, 6vw, 88px);
+        line-height: 1.02;
+        letter-spacing: -0.02em;
         white-space: pre-line;
-        margin-bottom: 48px;
+        margin-bottom: 60px;
       }
       .section-title em {
         font-style: italic;
         color: var(--accent);
+        font-weight: 400;
+      }
+
+      /* ─── MEGA WORDMARK (parallax) ─── */
+      .megamark {
+        position: absolute;
+        left: 0;
+        right: 0;
+        font-family: var(--font-serif);
+        font-weight: 300;
+        font-size: clamp(120px, 22vw, 360px);
+        line-height: 0.85;
+        letter-spacing: -0.05em;
+        color: rgba(255, 255, 255, 0.025);
+        text-align: center;
+        pointer-events: none;
+        overflow: hidden;
+        white-space: nowrap;
+        user-select: none;
+        z-index: 0;
       }
 
       /* ─── ABOUT ─── */
+      #about {
+        background: var(--bg);
+        position: relative;
+        overflow: hidden;
+      }
       .about-grid {
         display: grid;
         grid-template-columns: 1fr 1.1fr;
         gap: 80px;
         align-items: end;
+        position: relative;
+        z-index: 1;
       }
       .about-text p {
         color: var(--fg-dim);
@@ -373,11 +552,22 @@
       .about-quote {
         font-family: var(--font-serif);
         font-style: italic;
-        font-size: clamp(28px, 3.5vw, 44px);
+        font-size: clamp(28px, 3.5vw, 46px);
         line-height: 1.25;
         color: var(--fg);
         margin: 32px 0;
         max-width: 720px;
+        position: relative;
+        padding-left: 32px;
+      }
+      .about-quote::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+        background: linear-gradient(180deg, var(--accent), transparent);
       }
       .about-meta {
         display: grid;
@@ -389,154 +579,359 @@
       }
       .about-meta .num {
         font-family: var(--font-serif);
-        font-size: 40px;
+        font-size: 42px;
         color: var(--accent);
         display: block;
+        line-height: 1;
       }
       .about-meta .label {
         font-family: var(--font-mono);
-        font-size: var(--type-tiny);
+        font-size: 11px;
         letter-spacing: 2px;
         color: var(--fg-mute);
         text-transform: uppercase;
-        margin-top: 4px;
+        margin-top: 6px;
       }
       @media (max-width: 900px) {
         .about-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+      }
+
+      /* ─── ARTIST UNIVERSE (huge full-bleed) ─── */
+      #artist {
+        background: var(--bg-2);
+        border-top: 1px solid var(--line-soft);
+        border-bottom: 1px solid var(--line-soft);
+        position: relative;
+        overflow: hidden;
+      }
+      /* Massive name overlay behind portrait */
+      .artist-hero {
+        position: relative;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: end;
+        margin: calc(-1 * var(--pad-y)) calc(-1 * var(--pad-x)) 0;
+        overflow: hidden;
+      }
+      .artist-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-size: cover;
+        background-position: center top;
+        transition: transform 8s ease;
+      }
+      .artist-bg::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(10, 10, 10, 0.6) 60%,
+            rgba(10, 10, 10, 1) 100%
+          ),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, transparent 60%);
+      }
+      .artist-name-mega {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 38%;
+        z-index: 1;
+        font-family: var(--font-serif);
+        font-weight: 300;
+        font-size: clamp(80px, 16vw, 260px);
+        line-height: 0.85;
+        letter-spacing: -0.04em;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.92);
+        pointer-events: none;
+        white-space: nowrap;
+        user-select: none;
+        text-shadow: 0 8px 60px rgba(0, 0, 0, 0.5);
+      }
+      .artist-meta-row {
+        position: relative;
+        z-index: 2;
+        padding: 0 var(--pad-x) 60px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        border-top: 1px solid var(--line);
+        padding-top: 28px;
+      }
+      .artist-meta-row .stat .num {
+        font-family: var(--font-serif);
+        font-size: clamp(28px, 3vw, 42px);
+        color: var(--fg);
+        display: block;
+        line-height: 1;
+      }
+      .artist-meta-row .stat .label {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--fg-mute);
+        text-transform: uppercase;
+        margin-top: 6px;
+      }
+      @media (max-width: 760px) {
+        .artist-meta-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .artist-name-mega {
+          bottom: 50%;
+          font-size: 18vw;
+        }
+      }
+
+      /* Tab nav (sticky) */
+      .artist-tabs {
+        position: sticky;
+        top: var(--header-h);
+        z-index: 50;
+        background: rgba(10, 10, 10, 0.92);
+        backdrop-filter: blur(20px);
+        border-top: 1px solid var(--line-soft);
+        border-bottom: 1px solid var(--line-soft);
+        margin: 80px calc(-1 * var(--pad-x)) 60px;
+        padding: 0 var(--pad-x);
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .artist-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .artist-tabs button {
+        padding: 24px 28px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: var(--fg-mute);
+        text-transform: uppercase;
+        border-bottom: 2px solid transparent;
+        transition: all 0.25s ease;
+        white-space: nowrap;
+        position: relative;
+      }
+      .artist-tabs button:hover {
+        color: var(--fg-dim);
+      }
+      .artist-tabs button.active {
+        color: var(--fg);
+        border-bottom-color: var(--accent);
+      }
+      .artist-tabs button .idx {
+        color: var(--accent);
+        margin-right: 8px;
+        font-size: 9px;
+        opacity: 0.7;
+      }
+      .tab-pane {
+        display: none;
+        animation: fadeUp 0.6s ease both;
+      }
+      .tab-pane.active {
+        display: block;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* PROFILE tab */
+      .profile-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 60px;
+        align-items: start;
+      }
+      .profile-portrait {
+        aspect-ratio: 4/5;
+        overflow: hidden;
+        position: relative;
+        background: #000;
+      }
+      .profile-portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 6s ease;
+        filter: grayscale(8%);
+      }
+      .profile-portrait:hover img {
+        transform: scale(1.05);
+      }
+      .profile-portrait::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        width: 80px;
+        height: 80px;
+        border-top: 1px solid var(--accent);
+        border-left: 1px solid var(--accent);
+        z-index: 2;
+      }
+      .profile-portrait::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        right: -1px;
+        width: 80px;
+        height: 80px;
+        border-bottom: 1px solid var(--accent);
+        border-right: 1px solid var(--accent);
+        z-index: 2;
+      }
+      .profile-name {
+        font-family: var(--font-serif);
+        font-weight: 300;
+        font-size: clamp(48px, 5.5vw, 86px);
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        margin-bottom: 24px;
+      }
+      .profile-name em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .profile-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 28px;
+      }
+      .profile-tags span {
+        padding: 6px 14px;
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--fg-dim);
+        text-transform: uppercase;
+      }
+      .profile-bio {
+        color: var(--fg-dim);
+        font-size: 16px;
+        line-height: 1.85;
+        margin-bottom: 32px;
+      }
+      .profile-info {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 14px 24px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+        font-size: 14px;
+      }
+      .profile-info dt {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--fg-mute);
+        text-transform: uppercase;
+        padding-top: 2px;
+      }
+      .profile-info dd {
+        color: var(--fg);
+      }
+      @media (max-width: 900px) {
+        .profile-grid {
           grid-template-columns: 1fr;
           gap: 40px;
         }
       }
 
-      /* ─── ARTIST ─── */
-      .artist {
-        background: var(--bg-2);
-        border-top: 1px solid var(--line-soft);
-        border-bottom: 1px solid var(--line-soft);
-      }
-      .artist-hero {
-        display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        gap: 60px;
-        align-items: end;
-        margin-bottom: 80px;
-      }
-      .artist-portrait {
-        aspect-ratio: 4/5;
-        overflow: hidden;
-        position: relative;
-        background: var(--bg);
-      }
-      .artist-portrait img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: grayscale(8%);
-        transition: transform 6s ease;
-      }
-      .artist-portrait:hover img {
-        transform: scale(1.04);
-      }
-      .artist-eyebrow {
-        font-family: var(--font-mono);
-        font-size: var(--type-tiny);
-        letter-spacing: 4px;
-        color: var(--accent);
-        text-transform: uppercase;
-        margin-bottom: 24px;
-      }
-      .artist-name {
-        font-family: var(--font-serif);
-        font-weight: 300;
-        font-size: clamp(64px, 9vw, 130px);
-        line-height: 0.95;
-        letter-spacing: -0.02em;
-        margin-bottom: 28px;
-      }
-      .artist-bio {
-        color: var(--fg-dim);
-        font-size: 16px;
-        line-height: 1.8;
-        max-width: 560px;
-        margin-bottom: 36px;
-      }
-      .artist-stats {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
-        padding-top: 28px;
-        border-top: 1px solid var(--line);
-      }
-      .artist-stats .stat .num {
-        font-family: var(--font-serif);
-        font-size: 32px;
-        color: var(--fg);
-        display: block;
-      }
-      .artist-stats .stat .label {
-        font-family: var(--font-mono);
-        font-size: var(--type-tiny);
-        letter-spacing: 2px;
-        color: var(--fg-mute);
-        margin-top: 4px;
-        text-transform: uppercase;
-      }
-      @media (max-width: 900px) {
-        .artist-hero {
-          grid-template-columns: 1fr;
-        }
-        .artist-stats {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      /* ─── SNS CARDS ─── */
+      /* SNS row inside profile */
       .sns-row {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 16px;
-        margin-bottom: 80px;
+        margin-top: 48px;
       }
       .sns-card {
         border: 1px solid var(--line);
-        padding: 32px;
-        transition: all 0.3s ease;
+        padding: 28px;
+        transition: all 0.35s ease;
         position: relative;
+        overflow: hidden;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
+      }
+      .sns-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(191, 166, 107, 0.15) 0%,
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      .sns-card:hover::before {
+        opacity: 1;
       }
       .sns-card:hover {
         border-color: var(--accent);
-        transform: translateY(-4px);
+        transform: translateY(-6px);
       }
       .sns-card .platform {
         font-family: var(--font-mono);
-        font-size: var(--type-tiny);
+        font-size: 11px;
         letter-spacing: 3px;
         color: var(--accent);
         text-transform: uppercase;
+        position: relative;
+        z-index: 1;
       }
       .sns-card .followers {
         font-family: var(--font-serif);
-        font-size: 56px;
+        font-size: 64px;
         line-height: 1;
-        margin: 8px 0;
+        margin: 6px 0;
+        background: linear-gradient(135deg, var(--fg) 0%, var(--accent-2) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        position: relative;
+        z-index: 1;
       }
       .sns-card .handle {
         font-family: var(--font-mono);
         font-size: 13px;
         color: var(--fg-dim);
+        position: relative;
+        z-index: 1;
       }
       .sns-card .arrow {
         position: absolute;
-        top: 28px;
-        right: 28px;
+        top: 24px;
+        right: 24px;
         color: var(--fg-mute);
-        transition: color 0.25s;
+        transition: all 0.25s;
+        z-index: 1;
       }
       .sns-card:hover .arrow {
         color: var(--accent);
+        transform: translate(4px, -4px);
       }
       @media (max-width: 720px) {
         .sns-row {
@@ -544,85 +939,159 @@
         }
       }
 
-      /* ─── CAREER TABS ─── */
-      .tabs {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 32px;
-        border-bottom: 1px solid var(--line);
-      }
-      .tabs button {
-        padding: 16px 24px;
-        font-family: var(--font-mono);
-        font-size: var(--type-tiny);
-        letter-spacing: 3px;
-        color: var(--fg-mute);
-        text-transform: uppercase;
-        border-bottom: 1px solid transparent;
-        margin-bottom: -1px;
-        transition: all 0.25s ease;
-      }
-      .tabs button:hover {
-        color: var(--fg-dim);
-      }
-      .tabs button.active {
-        color: var(--fg);
-        border-bottom-color: var(--accent);
-      }
-      .tab-pane {
-        display: none;
-      }
-      .tab-pane.active {
-        display: block;
-      }
-      .career-list {
+      /* TIMELINE (filmography / campaigns / press) */
+      .timeline {
         display: flex;
         flex-direction: column;
+        position: relative;
       }
-      .career-item {
+      .timeline::before {
+        content: '';
+        position: absolute;
+        left: 106px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(180deg, var(--accent) 0%, var(--line) 100%);
+      }
+      .tl-item {
         display: grid;
-        grid-template-columns: 120px 1fr auto;
-        gap: 32px;
-        padding: 24px 0;
+        grid-template-columns: 90px 32px 1fr auto;
+        gap: 24px;
+        padding: 28px 0;
         border-bottom: 1px solid var(--line-soft);
-        align-items: baseline;
+        align-items: start;
+        position: relative;
+        transition: padding-left 0.3s ease;
       }
-      .career-item:last-child {
+      .tl-item:hover {
+        padding-left: 12px;
+      }
+      .tl-item:last-child {
         border-bottom: 0;
       }
-      .career-item .date {
+      .tl-date {
         font-family: var(--font-mono);
-        font-size: var(--type-tiny);
+        font-size: 11px;
         letter-spacing: 2px;
         color: var(--accent);
+        padding-top: 6px;
       }
-      .career-item .title {
+      .tl-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--bg-2);
+        border: 1px solid var(--accent);
+        justify-self: center;
+        margin-top: 6px;
+        position: relative;
+        z-index: 1;
+        transition: all 0.3s ease;
+      }
+      .tl-item:hover .tl-dot {
+        background: var(--accent);
+        box-shadow: 0 0 16px var(--accent);
+      }
+      .tl-body .tl-title {
         font-family: var(--font-serif);
-        font-size: 22px;
+        font-size: 24px;
+        line-height: 1.25;
         margin-bottom: 6px;
       }
-      .career-item .desc {
+      .tl-body .tl-desc {
         color: var(--fg-dim);
         font-size: 14px;
+        line-height: 1.7;
       }
-      .career-item .tag {
+      .tl-tag {
         font-family: var(--font-mono);
-        font-size: var(--type-tiny);
+        font-size: 10px;
         letter-spacing: 2px;
         color: var(--fg-mute);
         text-transform: uppercase;
+        padding: 6px 12px;
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        align-self: start;
+        margin-top: 4px;
       }
-      @media (max-width: 720px) {
-        .career-item {
-          grid-template-columns: 1fr;
-          gap: 8px;
+      @media (max-width: 760px) {
+        .timeline::before {
+          left: 18px;
         }
-        .career-item .tag {
+        .tl-item {
+          grid-template-columns: 32px 1fr;
+          gap: 16px;
+        }
+        .tl-date {
+          grid-column: 2;
+          padding-top: 0;
+          margin-bottom: 4px;
+        }
+        .tl-tag {
+          grid-column: 2;
           justify-self: start;
         }
       }
 
-      /* ─── EVENTS (Upcoming) ─── */
+      /* AWARDS card grid */
+      .awards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .award-card {
+        border: 1px solid var(--line);
+        padding: 36px 28px;
+        transition: all 0.35s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .award-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+      }
+      .award-card .rank {
+        font-family: var(--font-serif);
+        font-size: 80px;
+        line-height: 1;
+        background: linear-gradient(
+          135deg,
+          var(--accent) 0%,
+          var(--accent-2) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 12px;
+      }
+      .award-card .award-title {
+        font-family: var(--font-serif);
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+      .award-card .award-desc {
+        color: var(--fg-dim);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+      .award-card .award-year {
+        position: absolute;
+        top: 24px;
+        right: 28px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--fg-mute);
+      }
+      @media (max-width: 900px) {
+        .awards {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* SCHEDULE cards */
       .events {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -630,11 +1099,10 @@
       }
       .event-card {
         border: 1px solid var(--line);
-        padding: 0;
-        transition: all 0.4s ease;
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        transition: all 0.4s ease;
       }
       .event-card:hover {
         border-color: var(--accent);
@@ -653,7 +1121,20 @@
         transition: transform 1.2s ease;
       }
       .event-card:hover .event-img img {
-        transform: scale(1.06);
+        transform: scale(1.08);
+      }
+      .event-img .badge {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        z-index: 2;
+        background: var(--accent);
+        color: var(--bg);
+        padding: 6px 12px;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
       }
       .event-body {
         padding: 28px;
@@ -663,7 +1144,7 @@
       }
       .event-date {
         font-family: var(--font-mono);
-        font-size: var(--type-tiny);
+        font-size: 11px;
         letter-spacing: 3px;
         color: var(--accent);
         text-transform: uppercase;
@@ -688,11 +1169,17 @@
       }
 
       /* ─── CONTACT ─── */
+      #contact {
+        position: relative;
+        overflow: hidden;
+      }
       .contact-grid {
         display: grid;
         grid-template-columns: 1.2fr 1fr;
         gap: 80px;
         align-items: start;
+        position: relative;
+        z-index: 1;
       }
       .contact-blocks {
         display: grid;
@@ -701,7 +1188,7 @@
       }
       .contact-block .label {
         font-family: var(--font-mono);
-        font-size: var(--type-tiny);
+        font-size: 11px;
         letter-spacing: 3px;
         color: var(--accent);
         text-transform: uppercase;
@@ -731,17 +1218,25 @@
       .dm-footer {
         background: var(--bg-2);
         border-top: 1px solid var(--line-soft);
-        padding: 80px var(--pad-x) 32px;
+        padding: 100px var(--pad-x) 40px;
+        position: relative;
+        overflow: hidden;
       }
       .dm-footer-bigmark {
         font-family: var(--font-serif);
         font-weight: 300;
-        font-size: var(--type-mega);
-        line-height: 0.9;
+        font-size: clamp(80px, 16vw, 260px);
+        line-height: 0.85;
         letter-spacing: -0.04em;
-        color: var(--fg);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(191, 166, 107, 0.4) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
         margin-bottom: 60px;
-        opacity: 0.9;
       }
       .dm-footer-cols {
         display: grid;
@@ -752,7 +1247,7 @@
       }
       .dm-footer-col h4 {
         font-family: var(--font-mono);
-        font-size: var(--type-tiny);
+        font-size: 11px;
         letter-spacing: 3px;
         color: var(--accent);
         text-transform: uppercase;
@@ -765,6 +1260,7 @@
         font-size: 13px;
         color: var(--fg-dim);
         margin-bottom: 8px;
+        transition: color 0.25s;
       }
       .dm-footer-col a:hover {
         color: var(--fg);
@@ -776,7 +1272,7 @@
         display: flex;
         justify-content: space-between;
         font-family: var(--font-mono);
-        font-size: var(--type-tiny);
+        font-size: 10px;
         color: var(--fg-mute);
         letter-spacing: 1.5px;
       }
@@ -786,12 +1282,17 @@
         }
       }
 
-      /* ─── PLACEHOLDER (image missing) ─── */
+      /* ─── PLACEHOLDER ─── */
       .placeholder img {
         display: none;
       }
       .placeholder {
-        background: radial-gradient(ellipse at center, #1a1611 0%, #050505 80%);
+        background: radial-gradient(
+          ellipse at 30% 40%,
+          #2a2218 0%,
+          #0a0805 60%,
+          #000 100%
+        );
         position: relative;
         overflow: hidden;
       }
@@ -799,12 +1300,27 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-          135deg,
-          transparent 0%,
-          rgba(191, 166, 107, 0.06) 50%,
-          transparent 100%
-        );
+        background:
+          linear-gradient(
+            135deg,
+            transparent 0%,
+            rgba(191, 166, 107, 0.08) 50%,
+            transparent 100%
+          ),
+          radial-gradient(
+            circle at 70% 30%,
+            rgba(191, 166, 107, 0.12) 0%,
+            transparent 50%
+          );
+        animation: shimmer 8s ease-in-out infinite alternate;
+      }
+      @keyframes shimmer {
+        0% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
       }
       .placeholder::after {
         content: 'D';
@@ -814,21 +1330,36 @@
         place-items: center;
         font-family: var(--font-serif);
         font-weight: 300;
-        font-size: 160px;
-        color: rgba(191, 166, 107, 0.18);
+        font-size: 180px;
+        color: rgba(191, 166, 107, 0.22);
       }
       .event-img.placeholder::after {
         font-size: 72px;
       }
-      .artist-portrait.placeholder::after {
-        font-size: 220px;
+      .profile-portrait.placeholder::after {
+        font-size: 240px;
+      }
+      /* Hero & artist-bg get special treatment when image missing */
+      .hero-bg.no-image::after {
+        background:
+          radial-gradient(
+            ellipse at 20% 60%,
+            rgba(191, 166, 107, 0.2) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 40%,
+            rgba(191, 166, 107, 0.08) 0%,
+            transparent 50%
+          ),
+          linear-gradient(180deg, #0a0805 0%, #000 100%);
       }
 
-      /* fade-up reveal */
+      /* Reveal */
       .reveal {
         opacity: 0;
-        transform: translateY(30px);
-        transition: all 1s ease;
+        transform: translateY(40px);
+        transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .reveal.in {
         opacity: 1;
@@ -837,6 +1368,8 @@
     </style>
   </head>
   <body>
+    <div class="progress" id="progress"></div>
+
     <!-- HEADER -->
     <header class="dm-header" id="header">
       <a href="#" class="dm-logo"
@@ -848,9 +1381,6 @@
         >
         <a href="#artist"
           ><span class="kr">아티스트</span><span class="en">Artist</span></a
-        >
-        <a href="#upcoming"
-          ><span class="kr">모멘트</span><span class="en">Moments</span></a
         >
         <a href="#contact"
           ><span class="kr">문의</span><span class="en">Contact</span></a
@@ -865,7 +1395,7 @@
     </header>
 
     <!-- HERO -->
-    <section class="hero-wrap">
+    <section class="hero">
       <div class="hero-bg" id="heroBg">
         <div class="slide active" data-slide="0"></div>
         <div class="slide" data-slide="1"></div>
@@ -873,15 +1403,25 @@
         <div class="slide" data-slide="3"></div>
       </div>
 
+      <div class="hero-meta">
+        <div class="rec">
+          <span class="dot"></span>
+          <span>REC · D MOMENTUM ENT.</span>
+        </div>
+        <div class="hero-counter">
+          <span class="cur" id="counterCur">01</span>
+          <span>/</span>
+          <span id="counterTotal">04</span>
+        </div>
+      </div>
+      <div class="hero-side">D MOMENTUM — Where Art Meets Momentum</div>
+
       <div class="hero-content">
-        <div>
-          <div class="hero-eyebrow" id="heroEyebrow">
-            D MOMENTUM — ENTERTAINMENT
-          </div>
-          <h1 class="hero-title" id="heroTitle">
-            <span class="kr">우리는&#10;<em>모멘텀</em>을 만든다</span>
-            <span class="en">We Build&#10;<em>Momentum</em></span>
-          </h1>
+        <div class="hero-eyebrow" id="heroEyebrow">
+          D MOMENTUM — ENTERTAINMENT
+        </div>
+        <h1 class="hero-title" id="heroTitle"></h1>
+        <div class="hero-bottom">
           <p class="hero-sub" id="heroSub">
             <span class="kr"
               >디모멘텀은 모델·아티스트의 글로벌 모멘텀을 설계합니다. 광고,
@@ -894,57 +1434,69 @@
               can carry.</span
             >
           </p>
+          <div class="hero-controls">
+            <button id="heroPrev" aria-label="Prev">
+              <svg width="36" height="14" viewBox="0 0 36 14">
+                <path
+                  d="M7 1L1 7L7 13"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  fill="none"
+                />
+                <path d="M1 7H36" stroke="currentColor" stroke-width="1.2" />
+              </svg>
+            </button>
+            <button id="heroNext" aria-label="Next">
+              <svg width="36" height="14" viewBox="0 0 36 14">
+                <path
+                  d="M29 1L35 7L29 13"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  fill="none"
+                />
+                <path d="M0 7H35" stroke="currentColor" stroke-width="1.2" />
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="hero-controls">
-          <button id="heroPrev" aria-label="Prev">
-            <svg width="36" height="14" viewBox="0 0 36 14">
-              <path
-                d="M7 1L1 7L7 13"
-                stroke="currentColor"
-                stroke-width="1.2"
-                fill="none"
-              />
-              <path d="M1 7H36" stroke="currentColor" stroke-width="1.2" />
-            </svg>
-          </button>
-          <button id="heroNext" aria-label="Next">
-            <svg width="36" height="14" viewBox="0 0 36 14">
-              <path
-                d="M29 1L35 7L29 13"
-                stroke="currentColor"
-                stroke-width="1.2"
-                fill="none"
-              />
-              <path d="M0 7H35" stroke="currentColor" stroke-width="1.2" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="hero-dots" id="heroDots">
-        <button class="active" data-go="0"></button>
-        <button data-go="1"></button>
-        <button data-go="2"></button>
-        <button data-go="3"></button>
       </div>
     </section>
 
-    <!-- MARQUEE -->
-    <div class="marquee">
-      <div class="marquee-track">
-        <span>Talent · Brand · Content</span>
-        <span>Advertising · Campaign · Licensing</span>
-        <span>Broadcast · Film · Digital</span>
-        <span>From Korea, to the World</span>
-        <span>Talent · Brand · Content</span>
-        <span>Advertising · Campaign · Licensing</span>
-        <span>Broadcast · Film · Digital</span>
-        <span>From Korea, to the World</span>
+    <!-- DUAL MARQUEE -->
+    <div class="marquee-wrap">
+      <div class="marquee">
+        <div class="marquee-track left">
+          <span>Talent</span><span>Brand</span><span>Content</span>
+          <span>Advertising</span><span>Campaign</span><span>Licensing</span>
+          <span>Broadcast</span><span>Film</span><span>Digital</span>
+          <span>From Korea, to the World</span>
+          <span>Talent</span><span>Brand</span><span>Content</span>
+          <span>Advertising</span><span>Campaign</span><span>Licensing</span>
+          <span>Broadcast</span><span>Film</span><span>Digital</span>
+          <span>From Korea, to the World</span>
+        </div>
+      </div>
+      <div class="marquee">
+        <div class="marquee-track right">
+          <span>VOGUE × D MOMENTUM</span>
+          <span>TAM BEAUTY 2026 SS</span>
+          <span>SUDDEN ATTACK × DASHA</span>
+          <span>TC Candler #2 Global</span>
+          <span>22M+ Total Reach</span>
+          <span>VOGUE × D MOMENTUM</span>
+          <span>TAM BEAUTY 2026 SS</span>
+          <span>SUDDEN ATTACK × DASHA</span>
+          <span>TC Candler #2 Global</span>
+          <span>22M+ Total Reach</span>
+        </div>
       </div>
     </div>
 
     <!-- ABOUT -->
     <section id="about" class="section">
+      <div class="megamark" style="top: 50%; transform: translateY(-50%)">
+        MOMENTUM
+      </div>
       <div class="section-eyebrow">About D Momentum</div>
       <h2 class="section-title">
         <span class="kr">예술과 <em>모멘텀</em>이&#10;만나는 곳</span>
@@ -1004,436 +1556,552 @@
       </div>
     </section>
 
-    <!-- ARTIST -->
-    <section id="artist" class="artist section">
+    <!-- ARTIST UNIVERSE -->
+    <section id="artist" class="section">
+      <!-- Hero block with massive name -->
       <div class="artist-hero">
-        <div class="artist-portrait">
-          <img
-            src="images/artist-main.jpg"
-            alt="Dasha Taran"
-            onerror="this.parentElement.classList.add('placeholder')"
-          />
+        <div class="artist-bg" id="artistBg"></div>
+        <div class="artist-name-mega">DASHA TARAN</div>
+        <div class="artist-meta-row">
+          <div class="stat">
+            <span class="num">D MOMENTUM<br />ARTIST · 001</span>
+          </div>
+          <div class="stat">
+            <span class="num">22M+</span><span class="label">Total Reach</span>
+          </div>
+          <div class="stat">
+            <span class="num">#2</span><span class="label">100 Faces</span>
+          </div>
+          <div class="stat">
+            <span class="num">3yrs</span><span class="label">Brand Face</span>
+          </div>
         </div>
-        <div>
-          <div class="artist-eyebrow">D MOMENTUM ARTIST · 001</div>
-          <h2 class="artist-name serif">
-            <span class="kr">다샤 타란</span>
-            <span class="en">DASHA TARAN</span>
-          </h2>
-          <p class="artist-bio">
-            <span class="kr"
-              >러시아 출신, 서울 베이스. 인스타그램 600만, 틱톡 1,400만, 유튜브
-              200만 팔로워. TC Candler 선정 '세계에서 가장 아름다운 얼굴' 글로벌
-              2위.</span
-            >
-            <span class="en"
-              >Russian-born, Seoul-based. 6M on Instagram, 14M on TikTok, 2M on
-              YouTube. Ranked #2 on TC Candler's "100 Most Beautiful
-              Faces."</span
-            >
-          </p>
-          <div class="artist-stats">
-            <div class="stat">
-              <span class="num">1999.10.12</span><span class="label">Born</span>
+      </div>
+
+      <!-- Sticky tab nav -->
+      <div class="artist-tabs" role="tablist">
+        <button class="tab-btn active" data-tab="profile">
+          <span class="idx">01</span>Profile
+        </button>
+        <button class="tab-btn" data-tab="filmography">
+          <span class="idx">02</span>Filmography
+        </button>
+        <button class="tab-btn" data-tab="campaigns">
+          <span class="idx">03</span>Campaigns
+        </button>
+        <button class="tab-btn" data-tab="press">
+          <span class="idx">04</span>Press & Awards
+        </button>
+        <button class="tab-btn" data-tab="schedule">
+          <span class="idx">05</span>Schedule
+        </button>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="tab-pane active" data-tab="profile">
+        <div class="profile-grid">
+          <div class="profile-portrait">
+            <img
+              src="images/artist-main.jpg"
+              alt="Dasha Taran"
+              onerror="this.parentElement.classList.add('placeholder')"
+            />
+          </div>
+          <div>
+            <div class="section-eyebrow" style="margin-bottom: 8px">
+              D MOMENTUM ARTIST · 001
             </div>
-            <div class="stat">
-              <span class="num">22M+</span
-              ><span class="label">Total Reach</span>
+            <h2 class="profile-name">
+              <span class="kr">다샤 <em>타란</em></span>
+              <span class="en">Dasha <em>Taran</em></span>
+            </h2>
+            <div class="profile-tags">
+              <span>Model</span><span>Host</span><span>Brand Face</span
+              ><span>Global</span>
             </div>
-            <div class="stat">
-              <span class="num">#2</span><span class="label">100 Faces</span>
-            </div>
-            <div class="stat">
-              <span class="num">3yrs</span><span class="label">Brand Face</span>
+            <p class="profile-bio">
+              <span class="kr"
+                >러시아 출신, 서울 베이스. 인스타그램 600만, 틱톡 1,400만,
+                유튜브 200만 — 총 도달 2,200만의 글로벌 인플루언서. TC Candler
+                '세계에서 가장 아름다운 얼굴' 글로벌 2위에 선정되며
+                K-뷰티·K-패션과 글로벌 시장을 잇는 가장 영향력 있는 페이스로
+                자리매김했습니다.</span
+              >
+              <span class="en"
+                >Russian-born, Seoul-based. 6M on Instagram, 14M on TikTok, 2M
+                on YouTube — a 22M-strong global influencer. Ranked #2 on TC
+                Candler's "100 Most Beautiful Faces," now the most influential
+                face bridging K-beauty, K-fashion, and the global stage.</span
+              >
+            </p>
+            <dl class="profile-info">
+              <dt>Born</dt>
+              <dd>1999. 10. 12 · Russia</dd>
+              <dt>Based</dt>
+              <dd>Seoul · Korea</dd>
+              <dt>Languages</dt>
+              <dd>Korean · English · Russian</dd>
+              <dt>Specialty</dt>
+              <dd>
+                <span class="kr">광고 · 방송 · 디지털 콘텐츠</span
+                ><span class="en">Advertising · Broadcast · Digital</span>
+              </dd>
+              <dt>Agency</dt>
+              <dd>D MOMENTUM ENT.</dd>
+            </dl>
+
+            <div class="sns-row">
+              <a
+                class="sns-card"
+                href="https://instagram.com/taaarannn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="platform">Instagram</div>
+                <div class="followers serif">6M</div>
+                <div class="handle">@taaarannn</div>
+                <svg class="arrow" width="22" height="22" viewBox="0 0 22 22">
+                  <path
+                    d="M5 17L17 5M17 5H7M17 5V15"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    fill="none"
+                  />
+                </svg>
+              </a>
+              <a
+                class="sns-card"
+                href="https://tiktok.com/@tarankaaa"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="platform">TikTok</div>
+                <div class="followers serif">14M</div>
+                <div class="handle">@tarankaaa</div>
+                <svg class="arrow" width="22" height="22" viewBox="0 0 22 22">
+                  <path
+                    d="M5 17L17 5M17 5H7M17 5V15"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    fill="none"
+                  />
+                </svg>
+              </a>
+              <a
+                class="sns-card"
+                href="https://www.youtube.com/@DashaTaranbaby"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div class="platform">YouTube</div>
+                <div class="followers serif">2M</div>
+                <div class="handle">@DashaTaranbaby</div>
+                <svg class="arrow" width="22" height="22" viewBox="0 0 22 22">
+                  <path
+                    d="M5 17L17 5M17 5H7M17 5V15"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    fill="none"
+                  />
+                </svg>
+              </a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SNS -->
-      <div class="section-eyebrow">Social — Follow Dasha</div>
-      <h3 class="section-title" style="margin-bottom: 32px">
-        <span class="kr"><em>1억의</em> 시선</span>
-        <span class="en"><em>100M</em> Eyes On</span>
-      </h3>
-      <div class="sns-row">
-        <a
-          class="sns-card"
-          href="https://instagram.com/taaarannn"
-          target="_blank"
-          rel="noopener noreferrer"
+      <!-- FILMOGRAPHY -->
+      <div class="tab-pane" data-tab="filmography">
+        <h3
+          class="section-title"
+          style="font-size: clamp(32px, 4vw, 56px); margin-bottom: 32px"
         >
-          <div class="platform">Instagram</div>
-          <div class="followers serif">6M</div>
-          <div class="handle">@taaarannn</div>
-          <svg class="arrow" width="22" height="22" viewBox="0 0 22 22">
-            <path
-              d="M5 17L17 5M17 5H7M17 5V15"
-              stroke="currentColor"
-              stroke-width="1.4"
-              fill="none"
-            />
-          </svg>
-        </a>
-        <a
-          class="sns-card"
-          href="https://tiktok.com/@tarankaaa"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div class="platform">TikTok</div>
-          <div class="followers serif">14M</div>
-          <div class="handle">@tarankaaa</div>
-          <svg class="arrow" width="22" height="22" viewBox="0 0 22 22">
-            <path
-              d="M5 17L17 5M17 5H7M17 5V15"
-              stroke="currentColor"
-              stroke-width="1.4"
-              fill="none"
-            />
-          </svg>
-        </a>
-        <a
-          class="sns-card"
-          href="https://www.youtube.com/@DashaTaranbaby"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div class="platform">YouTube</div>
-          <div class="followers serif">2M</div>
-          <div class="handle">@DashaTaranbaby</div>
-          <svg class="arrow" width="22" height="22" viewBox="0 0 22 22">
-            <path
-              d="M5 17L17 5M17 5H7M17 5V15"
-              stroke="currentColor"
-              stroke-width="1.4"
-              fill="none"
-            />
-          </svg>
-        </a>
-      </div>
-
-      <!-- CAREER TABS -->
-      <div class="section-eyebrow">Career Timeline</div>
-      <h3 class="section-title" style="margin-bottom: 24px">
-        <span class="kr"><em>그녀의</em>&#10;다음 챕터</span>
-        <span class="en"><em>Her</em>&#10;Next Chapter</span>
-      </h3>
-      <div class="tabs" role="tablist">
-        <button class="tab-btn active" data-tab="broadcast">Broadcast</button>
-        <button class="tab-btn" data-tab="campaign">Campaign</button>
-        <button class="tab-btn" data-tab="press">Press</button>
-      </div>
-
-      <div class="tab-pane active" data-tab="broadcast">
-        <div class="career-list">
-          <div class="career-item">
-            <div class="date">2026.01.25</div>
-            <div>
-              <div class="title">
+          <span class="kr"><em>Filmography</em>&#10;방송 출연 이력</span>
+          <span class="en"><em>Filmography</em>&#10;Broadcast Appearances</span>
+        </h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">2026.01.25</div>
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <div class="tl-title">
                 <span class="kr">KBS Joy '리뷰it 2' — 메인 MC 합류</span>
                 <span class="en"
                   >KBS Joy 'Review IT 2' — Joining as Main Host</span
                 >
               </div>
-              <div class="desc">
+              <div class="tl-desc">
                 <span class="kr">1~3화 메인 MC. 매주 화요일 밤 10시 방송.</span>
                 <span class="en"
                   >Main host for ep. 1–3. Every Tue 10 PM KST.</span
                 >
               </div>
             </div>
-            <div class="tag">Broadcast</div>
+            <div class="tl-tag">MC · Host</div>
           </div>
-          <div class="career-item">
-            <div class="date">2025.05.04</div>
-            <div>
-              <div class="title">
+          <div class="tl-item">
+            <div class="tl-date">2025.05.04</div>
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <div class="tl-title">
                 <span class="kr"
                   >SBS '신발벗고 돌싱포맨' — 배드민턴 게스트</span
                 >
                 <span class="en">SBS 'Dolsing 4men' — Badminton Episode</span>
               </div>
-              <div class="desc">
+              <div class="tl-desc">
                 <span class="kr">2025. 05. 04 방송 편 게스트 출연</span>
                 <span class="en">Aired May 4, 2025 — Guest appearance</span>
               </div>
             </div>
-            <div class="tag">Broadcast</div>
+            <div class="tl-tag">Guest</div>
           </div>
-          <div class="career-item">
-            <div class="date">2024.10.30</div>
-            <div>
-              <div class="title">
+          <div class="tl-item">
+            <div class="tl-date">2024.10.30</div>
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <div class="tl-title">
                 <span class="kr">'노빠꾸 탁재훈' 173화 게스트</span>
                 <span class="en">'No-Bbaku Tak Jae-hoon' Ep. 173 Guest</span>
               </div>
-              <div class="desc">
+              <div class="tl-desc">
                 <span class="kr">게스트 출연 — 2024.10.30 편</span>
-                <span class="en">Knowing Bros spin-off, ep. 3</span>
+                <span class="en">Knowing Bros spin-off, ep. 173</span>
               </div>
             </div>
-            <div class="tag">Broadcast</div>
+            <div class="tl-tag">Guest</div>
           </div>
-          <div class="career-item">
-            <div class="date">2024.02.05</div>
-            <div>
-              <div class="title">
+          <div class="tl-item">
+            <div class="tl-date">2024.02.05</div>
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <div class="tl-title">
                 <span class="kr">JTBC '아는외고' 게스트</span>
                 <span class="en">JTBC 'Aneun-oego' — Guest</span>
               </div>
-              <div class="desc">
+              <div class="tl-desc">
                 <span class="kr">게스트 출연 — 2024.02.05 편</span>
                 <span class="en">Guest, Feb 5 2024</span>
               </div>
             </div>
-            <div class="tag">Broadcast</div>
+            <div class="tl-tag">Guest</div>
           </div>
-          <div class="career-item">
-            <div class="date">2023</div>
-            <div>
-              <div class="title">
+          <div class="tl-item">
+            <div class="tl-date">2023</div>
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <div class="tl-title">
                 <span class="kr">KBS '무엇이든 물어보살'</span>
                 <span class="en">KBS 'Ask Us Anything Bosal'</span>
               </div>
-              <div class="desc">
-                <span class="kr">'이주승의 위시리스트' / '낭만의 외노자'</span>
+              <div class="tl-desc">
+                <span class="kr"
+                  >'이주승의 위시리스트' / '낭만의 외노자' 출연</span
+                >
                 <span class="en"
                   >'Lee Joo-seung's Wishlist' / 'The Romantic Foreign
                   Worker'</span
                 >
               </div>
             </div>
-            <div class="tag">Broadcast</div>
+            <div class="tl-tag">Guest</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2023</div>
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <div class="tl-title">
+                <span class="kr">MBN '괜찮아U'</span>
+                <span class="en">MBN 'Gwenchana-U'</span>
+              </div>
+              <div class="tl-desc">
+                <span class="kr">고정 출연</span>
+                <span class="en">Recurring appearance</span>
+              </div>
+            </div>
+            <div class="tl-tag">Cast</div>
           </div>
         </div>
       </div>
 
-      <div class="tab-pane" data-tab="campaign">
-        <div class="career-list">
-          <div class="career-item">
-            <div class="date">2025.10</div>
-            <div>
-              <div class="title">
+      <!-- CAMPAIGNS -->
+      <div class="tab-pane" data-tab="campaigns">
+        <h3
+          class="section-title"
+          style="font-size: clamp(32px, 4vw, 56px); margin-bottom: 32px"
+        >
+          <span class="kr"><em>Campaigns</em>&#10;브랜드 캠페인</span>
+          <span class="en"><em>Campaigns</em>&#10;Brand Work</span>
+        </h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">2025.10</div>
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <div class="tl-title">
                 <span class="kr">TAM BEAUTY — 브랜드 런칭 & 글로벌 모델</span>
                 <span class="en">TAM BEAUTY — Brand Launch & Global Model</span>
               </div>
-              <div class="desc">
-                <span class="kr">런칭 캠페인부터 25SS 메인 비주얼까지</span>
-                <span class="en">From launch campaign to SS25 main visual</span>
-              </div>
-            </div>
-            <div class="tag">Campaign</div>
-          </div>
-          <div class="career-item">
-            <div class="date">2025.09</div>
-            <div>
-              <div class="title">
-                <span class="kr">SUDDEN ATTACK × DASHA — 글로벌 출시</span>
-                <span class="en">SUDDEN ATTACK × DASHA — Global Release</span>
-              </div>
-              <div class="desc">
+              <div class="tl-desc">
                 <span class="kr"
-                  >다샤타란 캐릭터 글로벌 서버 동시 출시. 전용 스킨·보이스팩
-                  포함.</span
+                  >런칭 캠페인부터 26SS 메인 비주얼까지 — Holiday Edition 글로벌
+                  동시 출시</span
                 >
                 <span class="en"
-                  >Character released globally with exclusive skin & voice
-                  pack.</span
+                  >From launch campaign to SS26 main visual — Holiday Edition
+                  released worldwide</span
                 >
               </div>
             </div>
-            <div class="tag">Licensing</div>
+            <div class="tl-tag">Global</div>
           </div>
-          <div class="career-item">
-            <div class="date">2025.05</div>
-            <div>
-              <div class="title">
+          <div class="tl-item">
+            <div class="tl-date">2025.09</div>
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <div class="tl-title">
+                <span class="kr"
+                  >SUDDEN ATTACK × DASHA — 글로벌 캐릭터 출시</span
+                >
+                <span class="en"
+                  >SUDDEN ATTACK × DASHA — Global Character Release</span
+                >
+              </div>
+              <div class="tl-desc">
+                <span class="kr"
+                  >Nexon Games — 다샤타란 캐릭터 글로벌 서버 동시 출시. 전용
+                  스킨·보이스팩 포함.</span
+                >
+                <span class="en"
+                  >Nexon Games — Character launched on global servers with
+                  exclusive skin & voice pack.</span
+                >
+              </div>
+            </div>
+            <div class="tl-tag">Licensing</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2025.05</div>
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <div class="tl-title">
                 <span class="kr">아스테라시스 '리프테라2' 모델</span>
                 <span class="en">Asterasys — 'Lifterra II' Model</span>
               </div>
-              <div class="desc">
-                <span class="kr">메디컬 디바이스 글로벌 마케팅</span>
-                <span class="en">Medical device global campaign</span>
+              <div class="tl-desc">
+                <span class="kr">메디컬 디바이스 글로벌 마케팅 캠페인</span>
+                <span class="en">Medical device global marketing campaign</span>
               </div>
             </div>
-            <div class="tag">Campaign</div>
+            <div class="tl-tag">Medical</div>
           </div>
-          <div class="career-item">
-            <div class="date">2025.03</div>
-            <div>
-              <div class="title">
-                <span class="kr">미니쉬 치과 — 전속 모델</span>
-                <span class="en">Minish Dental — Exclusive Model</span>
+          <div class="tl-item">
+            <div class="tl-date">2025.03</div>
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <div class="tl-title">
+                <span class="kr">미니쉬 치과 — 전속 모델 (3년 연속)</span>
+                <span class="en"
+                  >Minish Dental — Exclusive Model (3rd Year)</span
+                >
               </div>
-              <div class="desc">
-                <span class="kr">3년 연속 브랜드 페이스</span>
+              <div class="tl-desc">
+                <span class="kr"
+                  >3년 연속 브랜드 페이스 — 국내·해외 환자 마케팅 전반</span
+                >
                 <span class="en">Brand face for three consecutive years</span>
               </div>
             </div>
-            <div class="tag">Campaign</div>
+            <div class="tl-tag">Exclusive</div>
           </div>
         </div>
       </div>
 
+      <!-- PRESS & AWARDS -->
       <div class="tab-pane" data-tab="press">
-        <div class="career-list">
-          <div class="career-item">
-            <div class="date">2025.11</div>
-            <div>
-              <div class="title">
+        <h3
+          class="section-title"
+          style="font-size: clamp(32px, 4vw, 56px); margin-bottom: 32px"
+        >
+          <span class="kr"><em>Press</em> & Awards</span>
+          <span class="en"><em>Press</em> & Awards</span>
+        </h3>
+
+        <div class="awards" style="margin-bottom: 60px">
+          <div class="award-card">
+            <div class="award-year">2024</div>
+            <div class="rank serif">#2</div>
+            <div class="award-title">100 Most Beautiful Faces</div>
+            <div class="award-desc">
+              <span class="kr"
+                >TC Candler 선정 '세계에서 가장 아름다운 얼굴' 글로벌 2위</span
+              >
+              <span class="en"
+                >Ranked #2 on TC Candler's "100 Most Beautiful Faces."</span
+              >
+            </div>
+          </div>
+          <div class="award-card">
+            <div class="award-year">2025.11</div>
+            <div class="rank serif">9p</div>
+            <div class="award-title">VOGUE KOREA November Issue</div>
+            <div class="award-desc">
+              <span class="kr"
+                >Vogue Korea와 함께한 9페이지 단독 인터뷰 & 화보</span
+              >
+              <span class="en"
+                >9-page exclusive editorial & interview with Vogue Korea</span
+              >
+            </div>
+          </div>
+          <div class="award-card">
+            <div class="award-year">2025</div>
+            <div class="rank serif">22M</div>
+            <div class="award-title">Total Global Reach</div>
+            <div class="award-desc">
+              <span class="kr"
+                >Instagram 6M · TikTok 14M · YouTube 2M — 단일 인플루언서 기준
+                톱티어</span
+              >
+              <span class="en"
+                >Instagram 6M · TikTok 14M · YouTube 2M — top-tier solo
+                influencer</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">2025.11</div>
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <div class="tl-title">
                 <span class="kr">VOGUE KOREA 11월호 단독 화보</span>
                 <span class="en">VOGUE KOREA — November Solo Editorial</span>
               </div>
-              <div class="desc">
-                <span class="kr"
-                  >Vogue Korea와 함께한 9페이지 단독 인터뷰 & 화보</span
-                >
-                <span class="en"
-                  >9-page exclusive interview & editorial with Vogue Korea</span
-                >
+              <div class="tl-desc">
+                <span class="kr">9페이지 단독 인터뷰 & 화보</span>
+                <span class="en">9-page exclusive interview & editorial</span>
               </div>
             </div>
-            <div class="tag">Press</div>
+            <div class="tl-tag">Editorial</div>
           </div>
-          <div class="career-item">
-            <div class="date">2025</div>
-            <div>
-              <div class="title">
+          <div class="tl-item">
+            <div class="tl-date">2025</div>
+            <div class="tl-dot"></div>
+            <div class="tl-body">
+              <div class="tl-title">
                 <span class="kr">VOGUE × D MOMENTUM — 2025 가을 인터뷰</span>
                 <span class="en">VOGUE × D MOMENTUM — Fall 2025 Feature</span>
               </div>
-              <div class="desc">
+              <div class="tl-desc">
                 <span class="kr">D MOMENTUM 합류 후 첫 단독 인터뷰</span>
                 <span class="en"
                   >First solo interview since joining D MOMENTUM</span
                 >
               </div>
             </div>
-            <div class="tag">Press</div>
-          </div>
-          <div class="career-item">
-            <div class="date">2024</div>
-            <div>
-              <div class="title">
-                <span class="kr"
-                  >TC Candler — '100 Most Beautiful Faces' 글로벌 2위</span
-                >
-                <span class="en"
-                  >TC Candler — '100 Most Beautiful Faces' #2 Global</span
-                >
-              </div>
-              <div class="desc">
-                <span class="kr"
-                  >TC Candler 선정 세계에서 가장 아름다운 얼굴 2위</span
-                >
-                <span class="en"
-                  >Ranked #2 on TC Candler's '100 Most Beautiful Faces.'</span
-                >
-              </div>
-            </div>
-            <div class="tag">Press</div>
+            <div class="tl-tag">Interview</div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- UPCOMING -->
-    <section id="upcoming" class="section">
-      <div class="section-eyebrow">Upcoming Moments</div>
-      <h2 class="section-title">
-        <span class="kr"><em>다가오는</em>&#10;모멘트</span>
-        <span class="en"><em>Upcoming</em>&#10;Moments</span>
-      </h2>
-      <p
-        style="
-          color: var(--fg-dim);
-          max-width: 600px;
-          margin-top: -32px;
-          margin-bottom: 48px;
-        "
-      >
-        <span class="kr"
-          >글로벌 팬미팅, 신규 광고 캠페인, 컨텐츠 콜라보 — 다음 모멘트를 미리
-          만나보세요.</span
+      <!-- SCHEDULE -->
+      <div class="tab-pane" data-tab="schedule">
+        <h3
+          class="section-title"
+          style="font-size: clamp(32px, 4vw, 56px); margin-bottom: 24px"
         >
-        <span class="en"
-          >Global fan meetings, new campaigns, and content collaborations —
-          preview the next moment.</span
-        >
-      </p>
-
-      <div class="events">
-        <article class="event-card">
-          <div class="event-img">
-            <img
-              src="images/event-1.jpg"
-              alt="Fan Meeting"
-              onerror="this.parentElement.classList.add('placeholder')"
-            />
-          </div>
-          <div class="event-body">
-            <div class="event-date">DEC 10, 2025</div>
-            <h3 class="event-title">
-              DASHA TARAN&#10;1ST FAN MEETING IN SEOUL
-            </h3>
-            <p class="event-desc">
-              <span class="kr"
-                >디모멘텀 데뷔 후 첫 글로벌 단독 팬미팅. 티켓 오픈 12월
-                1일.</span
-              >
-              <span class="en"
-                >Her first global solo fan meeting since debut. Tickets open Dec
-                1.</span
-              >
-            </p>
-          </div>
-        </article>
-        <article class="event-card">
-          <div class="event-img">
-            <img
-              src="images/event-2.jpg"
-              alt="TAM BEAUTY"
-              onerror="this.parentElement.classList.add('placeholder')"
-            />
-          </div>
-          <div class="event-body">
-            <div class="event-date">2025 HOLIDAY</div>
-            <h3 class="event-title">TAM BEAUTY&#10;HOLIDAY EDITION</h3>
-            <p class="event-desc">
-              <span class="kr">탐뷰티 홀리데이 캡슐 — 글로벌 동시 출시</span>
-              <span class="en"
-                >Tam Beauty holiday capsule — released worldwide.</span
-              >
-            </p>
-          </div>
-        </article>
-        <article class="event-card">
-          <div class="event-img">
-            <img
-              src="images/event-3.jpg"
-              alt="Sudden Attack"
-              onerror="this.parentElement.classList.add('placeholder')"
-            />
-          </div>
-          <div class="event-body">
-            <div class="event-date">2025.09.12</div>
-            <h3 class="event-title">SUDDEN ATTACK&#10;Dasha Character</h3>
-            <p class="event-desc">
-              <span class="kr"
-                >Nexon Games — 첫 글로벌 캐릭터 라이선스 케이스</span
-              >
-              <span class="en"
-                >Nexon Games — first global character license case.</span
-              >
-            </p>
-          </div>
-        </article>
+          <span class="kr"><em>Schedule</em>&#10;다가오는 모멘트</span>
+          <span class="en"><em>Schedule</em>&#10;Upcoming Moments</span>
+        </h3>
+        <p style="color: var(--fg-dim); max-width: 600px; margin-bottom: 48px">
+          <span class="kr"
+            >글로벌 팬미팅, 신규 광고 캠페인, 컨텐츠 콜라보 — 다음 모멘트를 미리
+            만나보세요.</span
+          >
+          <span class="en"
+            >Global fan meetings, new campaigns, and content collaborations —
+            preview the next moment.</span
+          >
+        </p>
+        <div class="events">
+          <article class="event-card">
+            <div class="event-img">
+              <span class="badge">Live</span>
+              <img
+                src="images/event-1.jpg"
+                alt="Fan Meeting"
+                onerror="this.parentElement.classList.add('placeholder')"
+              />
+            </div>
+            <div class="event-body">
+              <div class="event-date">DEC 10, 2025</div>
+              <h3 class="event-title">
+                DASHA TARAN&#10;1ST FAN MEETING&#10;IN SEOUL
+              </h3>
+              <p class="event-desc">
+                <span class="kr"
+                  >D MOMENTUM 데뷔 후 첫 글로벌 단독 팬미팅. 티켓 오픈 12월
+                  1일.</span
+                >
+                <span class="en"
+                  >Her first global solo fan meeting since debut. Tickets open
+                  Dec 1.</span
+                >
+              </p>
+            </div>
+          </article>
+          <article class="event-card">
+            <div class="event-img">
+              <span class="badge">Holiday</span>
+              <img
+                src="images/event-2.jpg"
+                alt="TAM BEAUTY"
+                onerror="this.parentElement.classList.add('placeholder')"
+              />
+            </div>
+            <div class="event-body">
+              <div class="event-date">2025 HOLIDAY</div>
+              <h3 class="event-title">TAM BEAUTY&#10;HOLIDAY EDITION</h3>
+              <p class="event-desc">
+                <span class="kr">탐뷰티 홀리데이 캡슐 — 글로벌 동시 출시</span>
+                <span class="en"
+                  >Tam Beauty holiday capsule — released worldwide.</span
+                >
+              </p>
+            </div>
+          </article>
+          <article class="event-card">
+            <div class="event-img">
+              <span class="badge">Global</span>
+              <img
+                src="images/event-3.jpg"
+                alt="Sudden Attack"
+                onerror="this.parentElement.classList.add('placeholder')"
+              />
+            </div>
+            <div class="event-body">
+              <div class="event-date">2025.09.12</div>
+              <h3 class="event-title">SUDDEN ATTACK&#10;DASHA CHARACTER</h3>
+              <p class="event-desc">
+                <span class="kr"
+                  >Nexon Games — 첫 글로벌 캐릭터 라이선스 케이스</span
+                >
+                <span class="en"
+                  >Nexon Games — first global character license case.</span
+                >
+              </p>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="section">
+      <div class="megamark" style="bottom: 8%">CONTACT</div>
       <div class="section-eyebrow">Contact</div>
       <h2 class="section-title">
         <span class="kr"><em>함께 만들고 싶은</em>&#10;모멘트가 있다면.</span>
@@ -1530,9 +2198,6 @@
           <a href="#artist"
             ><span class="kr">아티스트</span><span class="en">Artist</span></a
           >
-          <a href="#upcoming"
-            ><span class="kr">모멘트</span><span class="en">Moments</span></a
-          >
           <a href="#contact"
             ><span class="kr">문의</span><span class="en">Contact</span></a
           >
@@ -1545,7 +2210,7 @@
     </footer>
 
     <script>
-      // ─── HERO SLIDER ───
+      // ─── DATA ───
       const slides = [
         'images/hero-1.jpg',
         'images/hero-2.jpg',
@@ -1557,13 +2222,13 @@
           '우리는\n<em>모멘텀</em>을 만든다',
           '그녀의\n<em>다음 챕터</em>',
           'DASHA TARAN\n<em>2026 SS</em>',
-          '서든어택\n<em>다샤타란 캐릭터</em>',
+          '서든어택\n<em>다샤타란</em> 캐릭터',
         ],
         en: [
           'We Build\n<em>Momentum</em>',
           'Her\n<em>Next Chapter</em>',
           'DASHA TARAN\n<em>2026 SS</em>',
-          'SUDDEN ATTACK\n<em>Dasha Character</em>',
+          'SUDDEN ATTACK\n<em>Dasha</em> Character',
         ],
       };
       const eyebrows = [
@@ -1572,49 +2237,69 @@
         'CAMPAIGN — TAM BEAUTY 2026',
         'LICENSING — NEXON × DASHA',
       ];
+
+      // ─── HERO SLIDER ───
       const slideEls = document.querySelectorAll('#heroBg .slide');
-      const dotEls = document.querySelectorAll('#heroDots button');
       const titleEl = document.getElementById('heroTitle');
       const eyebrowEl = document.getElementById('heroEyebrow');
-      let current = 0;
-      let timer;
+      const counterCur = document.getElementById('counterCur');
+      const counterTotal = document.getElementById('counterTotal');
+      const heroBg = document.getElementById('heroBg');
+      let current = 0,
+        timer,
+        loadedCount = 0,
+        totalLoaded = 0;
+      counterTotal.textContent = String(slides.length).padStart(2, '0');
 
-      // Try loading hero images, set as background if available; otherwise leave dark
-      slideEls.forEach((el, i) => {
+      slides.forEach((src, i) => {
         const img = new Image();
         img.onload = () => {
-          el.style.backgroundImage = `url(${slides[i]})`;
+          slideEls[i].style.backgroundImage = `url(${src})`;
+          totalLoaded++;
         };
         img.onerror = () => {
-          el.style.background = `radial-gradient(ellipse at ${30 + i * 15}% 40%, #2a2218 0%, #050505 75%)`;
+          slideEls[i].style.background =
+            `radial-gradient(ellipse at ${20 + i * 20}% ${40 + i * 10}%, rgba(191,166,107,.25) 0%, transparent 50%),
+         radial-gradient(ellipse at ${80 - i * 10}% ${60 - i * 5}%, rgba(191,166,107,.08) 0%, transparent 50%),
+         linear-gradient(180deg, #0a0805 0%, #000 100%)`;
         };
-        img.src = slides[i];
+        img.src = src;
       });
 
       function renderTitle() {
         const lang = document.documentElement.getAttribute('data-lang') || 'kr';
-        const t = titles[lang][current].replace(/\n/g, '<br>');
-        titleEl.innerHTML = t;
+        titleEl.innerHTML = titles[lang][current].replace(/\n/g, '<br>');
         eyebrowEl.textContent = eyebrows[current];
+        counterCur.textContent = String(current + 1).padStart(2, '0');
       }
       function goTo(i) {
         current = (i + slides.length) % slides.length;
         slideEls.forEach((el) => el.classList.remove('active'));
-        dotEls.forEach((el) => el.classList.remove('active'));
         slideEls[current].classList.add('active');
-        dotEls[current].classList.add('active');
         renderTitle();
         resetTimer();
       }
       function resetTimer() {
         clearInterval(timer);
-        timer = setInterval(() => goTo(current + 1), 6000);
+        timer = setInterval(() => goTo(current + 1), 6500);
       }
       document.getElementById('heroPrev').onclick = () => goTo(current - 1);
       document.getElementById('heroNext').onclick = () => goTo(current + 1);
-      dotEls.forEach((d) => (d.onclick = () => goTo(parseInt(d.dataset.go))));
       resetTimer();
       renderTitle();
+
+      // ─── ARTIST BG (uses artist-main as the cinematic bg) ───
+      const artistBg = document.getElementById('artistBg');
+      const aimg = new Image();
+      aimg.onload = () => {
+        artistBg.style.backgroundImage = `url(images/artist-main.jpg)`;
+      };
+      aimg.onerror = () => {
+        artistBg.style.background = `radial-gradient(ellipse at 30% 30%, rgba(191,166,107,.18) 0%, transparent 50%),
+       radial-gradient(ellipse at 75% 70%, rgba(191,166,107,.1) 0%, transparent 50%),
+       linear-gradient(180deg, #15110b 0%, #050505 100%)`;
+      };
+      aimg.src = 'images/artist-main.jpg';
 
       // ─── LANGUAGE TOGGLE ───
       document.querySelectorAll('[data-set-lang]').forEach((btn) => {
@@ -1632,18 +2317,25 @@
         };
       });
 
-      // ─── HEADER SCROLL ───
+      // ─── HEADER SCROLL + PROGRESS ───
       const header = document.getElementById('header');
-      window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', window.scrollY > 60);
-      });
+      const progress = document.getElementById('progress');
+      window.addEventListener(
+        'scroll',
+        () => {
+          header.classList.toggle('scrolled', window.scrollY > 60);
+          const h = document.documentElement.scrollHeight - window.innerHeight;
+          progress.style.width = (window.scrollY / h) * 100 + '%';
+        },
+        { passive: true },
+      );
 
-      // ─── CAREER TABS ───
-      document.querySelectorAll('.tab-btn').forEach((btn) => {
+      // ─── ARTIST TABS ───
+      document.querySelectorAll('.artist-tabs .tab-btn').forEach((btn) => {
         btn.onclick = () => {
           const t = btn.dataset.tab;
           document
-            .querySelectorAll('.tab-btn')
+            .querySelectorAll('.artist-tabs .tab-btn')
             .forEach((b) => b.classList.toggle('active', b.dataset.tab === t));
           document
             .querySelectorAll('.tab-pane')
@@ -1651,18 +2343,58 @@
         };
       });
 
-      // ─── REVEAL ON SCROLL ───
+      // ─── MEGAMARK PARALLAX ───
+      const marks = document.querySelectorAll('.megamark');
+      window.addEventListener(
+        'scroll',
+        () => {
+          marks.forEach((m) => {
+            const r = m.getBoundingClientRect();
+            const v = (r.top + r.height / 2 - window.innerHeight / 2) * 0.12;
+            m.style.transform = `translateY(calc(-50% + ${v}px))`;
+          });
+        },
+        { passive: true },
+      );
+
+      // ─── COUNTER ANIMATION (about-meta + artist-meta numbers that are pure digits) ───
+      function animateCount(el, target, suffix = '') {
+        const dur = 1600;
+        const start = performance.now();
+        function tick(now) {
+          const p = Math.min(1, (now - start) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      // ─── REVEAL + counters ───
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
-            if (e.isIntersecting) e.target.classList.add('in');
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              // animate any [data-count] inside
+              e.target.querySelectorAll('[data-count]').forEach((el) => {
+                if (!el.dataset.done) {
+                  el.dataset.done = '1';
+                  animateCount(
+                    el,
+                    parseInt(el.dataset.count),
+                    el.dataset.suffix || '',
+                  );
+                }
+              });
+            }
           });
         },
         { threshold: 0.12 },
       );
       document
         .querySelectorAll(
-          '.section, .marquee, .artist-portrait, .sns-card, .event-card',
+          '.section, .marquee-wrap, .profile-portrait, .sns-card, .event-card, .award-card, .tl-item',
         )
         .forEach((el) => {
           el.classList.add('reveal');
