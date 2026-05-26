@@ -21,24 +21,30 @@
     />
     <style>
       /* ============================================================
-     D MOMENTUM v5 — Editorial-grade Talent Agency System
-     Methodology (research-driven):
-       • IMG/DNA/Society — pure mono, sans-display, roster-first
-       • Magazine B / Fantastic Man — typographic hierarchy IS design
-       • Geist (Vercel '24) — modern grotesque pairs with Pretendard
-       • Fraunces italic — single signature italic moment, used 1x
-       • Crimson hairline — color only as 1px detail (never text/fill)
-       • Photography is the only true color
-     ============================================================ */
+     D MOMENTUM v6 — Composed from global top 10 agency research
+     ============================================================
+     Section blueprint:
+       N° 01 ROSTER      ← IMG (categorized)
+       N° 02 CAMPAIGNS   ← DNA/IMG (full-bleed + brand credit)
+       N° 03 NUMBERS     ← Whalar (stats credibility)
+       N° 04 SERVICES    ← KARLA OTTO (capabilities pillars)
+       N° 05 PARTNERS    ← Whalar (logo wall)
+       N° 06 AS SEEN IN  ← IMG "Covers" / Premier social proof
+       N° 07 GET CAST    ← Wilhelmina/Next (dual CTA)
+       N° 08 ABOUT       ← KARLA OTTO manifesto + quote
+       N° 09 CONTACT     ← territory + 4 channels
+  ============================================================ */
+
       :root {
-        --bg: #fafaf7; /* warm-tinted white, not sterile */
+        --bg: #fafaf7;
         --bg-2: #f1efe9;
-        --ink: #0a0a0a; /* warmer than pure black */
+        --bg-3: #e8e5dc;
+        --ink: #0a0a0a;
         --ink-2: #2a2a2a;
         --mute: #6e6e6e;
         --line: rgba(10, 10, 10, 0.1);
         --line-soft: rgba(10, 10, 10, 0.05);
-        --hairline: #d12d2d; /* 1px detail only — never fills, never text */
+        --hairline: #d12d2d;
 
         --font-display:
           'Geist', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -49,7 +55,7 @@
           'Geist Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
 
         --pad-x: clamp(20px, 4vw, 80px);
-        --pad-y: clamp(80px, 10vw, 160px);
+        --pad-y: clamp(80px, 10vw, 140px);
         --header-h: 72px;
       }
 
@@ -88,7 +94,6 @@
         max-width: 100%;
       }
 
-      /* Lang */
       [data-lang='kr'] .en {
         display: none !important;
       }
@@ -112,7 +117,6 @@
         backdrop-filter: blur(18px) saturate(1.1);
         border-bottom: 1px solid var(--line-soft);
       }
-      /* Wordmark — distinctive treatment: "Dm." with Fraunces italic D */
       .dm-logo {
         display: inline-flex;
         align-items: baseline;
@@ -174,7 +178,7 @@
         display: flex;
         gap: 0;
         font-family: var(--font-mono);
-        font-size: 10px;
+        font-size: 11px;
         font-weight: 500;
       }
       .dm-lang button {
@@ -204,8 +208,41 @@
       .dm-socials a:hover {
         color: var(--hairline);
       }
-      @media (max-width: 760px) {
+      /* Cast CTA in header */
+      .dm-cta {
+        margin-left: 4px;
+        padding: 8px 16px;
+        background: var(--ink);
+        color: var(--bg);
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .dm-cta:hover {
+        background: var(--hairline);
+      }
+      .dm-cta svg {
+        transition: transform 0.2s;
+      }
+      .dm-cta:hover svg {
+        transform: translateX(3px);
+      }
+      @media (max-width: 860px) {
         .dm-nav {
+          display: none;
+        }
+        .dm-cta {
+          display: none;
+        }
+      }
+      @media (max-width: 600px) {
+        .dm-socials {
           display: none;
         }
       }
@@ -241,12 +278,11 @@
         inset: 0;
         background: linear-gradient(
           180deg,
-          transparent 60%,
-          rgba(0, 0, 0, 0.5) 100%
+          transparent 55%,
+          rgba(0, 0, 0, 0.55) 100%
         );
         pointer-events: none;
       }
-      /* IMG-style credit caption */
       .hero-caption {
         position: absolute;
         left: 24px;
@@ -256,12 +292,13 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
+        gap: 24px;
         color: #fff;
         font-family: var(--font-mono);
-        font-size: 11px;
+        font-size: 12px;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
       }
       .hero-caption em {
         font-style: normal;
@@ -269,7 +306,6 @@
         padding-bottom: 1px;
       }
 
-      /* Bottom title bar */
       .hero-bar {
         display: grid;
         grid-template-columns: 1fr auto;
@@ -291,7 +327,6 @@
         font-style: italic;
         font-weight: 400;
         letter-spacing: -0.02em;
-        color: var(--ink);
       }
       .hero-meta {
         display: flex;
@@ -341,7 +376,7 @@
         animation: tick 60s linear infinite;
         font-family: var(--font-mono);
         font-size: 11px;
-        font-weight: 400;
+        font-weight: 500;
         color: var(--ink-2);
         letter-spacing: 0.08em;
         text-transform: uppercase;
@@ -354,7 +389,6 @@
       .ticker-track span::after {
         content: '✦';
         color: var(--hairline);
-        font-style: normal;
       }
       @keyframes tick {
         from {
@@ -374,14 +408,13 @@
         grid-template-columns: 1fr 2fr;
         gap: 48px;
         align-items: end;
-        margin-bottom: 64px;
+        margin-bottom: 56px;
         padding-bottom: 28px;
         border-bottom: 1px solid var(--line);
       }
-      /* The single signature red detail — a 1px crimson hairline under section num */
       .section-num {
         font-family: var(--font-mono);
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 500;
         letter-spacing: 0.08em;
         color: var(--mute);
@@ -423,15 +456,13 @@
       /* ─── ROSTER ─── */
       .roster-grid {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 0;
+        gap: 80px;
       }
       .roster-card {
         display: grid;
         grid-template-columns: 5fr 7fr;
         gap: 48px;
         align-items: end;
-        padding-top: 16px;
       }
       .roster-image {
         aspect-ratio: 4/5;
@@ -449,11 +480,11 @@
         transform: scale(1.04);
       }
       .roster-info {
-        padding: 32px 0 24px;
+        padding: 24px 0;
       }
       .roster-num {
         font-family: var(--font-mono);
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 500;
         color: var(--mute);
         letter-spacing: 0.08em;
@@ -472,23 +503,21 @@
       .roster-name {
         font-family: var(--font-display);
         font-weight: 500;
-        font-size: clamp(64px, 9.5vw, 160px);
+        font-size: clamp(64px, 9vw, 144px);
         line-height: 0.88;
         letter-spacing: -0.045em;
         margin-bottom: 28px;
-        color: var(--ink);
       }
       .roster-name em {
         font-family: var(--font-serif);
         font-style: italic;
         font-weight: 400;
-        letter-spacing: -0.025em;
       }
       .roster-tags {
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
-        margin-bottom: 28px;
+        margin-bottom: 24px;
       }
       .roster-tags span {
         font-family: var(--font-mono);
@@ -513,7 +542,7 @@
         align-items: center;
         gap: 12px;
         font-family: var(--font-mono);
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 500;
         letter-spacing: 0.08em;
         text-transform: uppercase;
@@ -545,7 +574,7 @@
         align-items: baseline;
         padding: 22px 0;
         font-family: var(--font-mono);
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 500;
         color: var(--mute);
         letter-spacing: 0.08em;
@@ -566,11 +595,10 @@
         margin-right: 8px;
         transform: translateY(-1px);
       }
-
       .tabs {
         display: flex;
         gap: 0;
-        margin-top: 56px;
+        margin-top: 48px;
         border-bottom: 1px solid var(--line);
         overflow-x: auto;
         scrollbar-width: none;
@@ -672,7 +700,7 @@
         color: var(--ink);
       }
 
-      /* SNS — bold numeric typography (Geist 500 + Fraunces italic for unit) */
+      /* SNS */
       .sns-row {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -931,7 +959,426 @@
         }
       }
 
-      /* ABOUT */
+      /* ─── N° 02 CAMPAIGNS — full-bleed grid ─── */
+      .campaigns-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .campaign {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 5/6;
+        background: var(--bg-2);
+        transition: transform 0.4s ease;
+      }
+      .campaign img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1.4s cubic-bezier(0.2, 0, 0.2, 1);
+      }
+      .campaign:hover img {
+        transform: scale(1.05);
+      }
+      .campaign::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 50%,
+          rgba(0, 0, 0, 0.65) 100%
+        );
+      }
+      .campaign-caption {
+        position: absolute;
+        left: 28px;
+        right: 28px;
+        bottom: 24px;
+        z-index: 2;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .campaign-caption .num {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        opacity: 0.8;
+        text-transform: uppercase;
+      }
+      .campaign-caption .name {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(28px, 3vw, 44px);
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+      }
+      .campaign-caption .name em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+      }
+      .campaign-caption .credit {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        opacity: 0.85;
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
+      @media (max-width: 760px) {
+        .campaigns-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ─── N° 03 NUMBERS — stats row ─── */
+      .numbers {
+        background: var(--bg-2);
+      }
+      .numbers-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .num-cell {
+        padding: 48px 32px;
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: background 0.25s ease;
+      }
+      .num-cell:last-child {
+        border-right: 0;
+      }
+      .num-cell:hover {
+        background: rgba(10, 10, 10, 0.02);
+      }
+      .num-cell .label {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: var(--mute);
+        text-transform: uppercase;
+      }
+      .num-cell .big {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(48px, 6vw, 88px);
+        line-height: 0.92;
+        letter-spacing: -0.05em;
+        color: var(--ink);
+      }
+      .num-cell .big em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+      }
+      .num-cell .note {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--mute);
+        letter-spacing: 0.04em;
+        margin-top: 4px;
+      }
+      @media (max-width: 900px) {
+        .numbers-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .num-cell:nth-child(2) {
+          border-right: 0;
+        }
+        .num-cell:nth-child(1),
+        .num-cell:nth-child(2) {
+          border-bottom: 1px solid var(--line);
+        }
+      }
+
+      /* ─── N° 04 SERVICES — 4 pillars ─── */
+      .pillars {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .pillar {
+        padding: 40px 32px;
+        border-right: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        transition: background 0.25s ease;
+      }
+      .pillar:last-child {
+        border-right: 0;
+      }
+      .pillar:hover {
+        background: rgba(10, 10, 10, 0.02);
+      }
+      .pillar .p-num {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: var(--hairline);
+        text-transform: uppercase;
+      }
+      .pillar .p-title {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(28px, 2.8vw, 38px);
+        line-height: 1;
+        letter-spacing: -0.025em;
+      }
+      .pillar .p-title em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+      }
+      .pillar .p-body {
+        color: var(--ink-2);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      .pillar .p-list {
+        margin-top: 8px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        list-style: none;
+      }
+      .pillar .p-list li {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        color: var(--mute);
+        padding: 6px 0;
+      }
+      @media (max-width: 900px) {
+        .pillars {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .pillar:nth-child(2) {
+          border-right: 0;
+        }
+        .pillar:nth-child(1),
+        .pillar:nth-child(2) {
+          border-bottom: 1px solid var(--line);
+        }
+      }
+      @media (max-width: 560px) {
+        .pillars {
+          grid-template-columns: 1fr;
+        }
+        .pillar {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .pillar:last-child {
+          border-bottom: 0;
+        }
+      }
+
+      /* ─── N° 05 PARTNERS — brand logo wall ─── */
+      .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .partner {
+        padding: 48px 24px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 140px;
+        transition: background 0.25s ease;
+      }
+      .partner:nth-child(4n) {
+        border-right: 0;
+      }
+      .partner:nth-last-child(-n + 4) {
+        border-bottom: 0;
+      }
+      .partner:hover {
+        background: rgba(10, 10, 10, 0.02);
+      }
+      .partner .name {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(18px, 1.8vw, 24px);
+        letter-spacing: 0.04em;
+        color: var(--ink);
+        text-transform: uppercase;
+      }
+      .partner .cat {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: var(--mute);
+        text-transform: uppercase;
+        margin-top: 8px;
+      }
+      @media (max-width: 900px) {
+        .partners-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .partner:nth-child(4n) {
+          border-right: 1px solid var(--line);
+        }
+        .partner:nth-child(2n) {
+          border-right: 0;
+        }
+        .partner:nth-last-child(-n + 4) {
+          border-bottom: 1px solid var(--line);
+        }
+        .partner:nth-last-child(-n + 2) {
+          border-bottom: 0;
+        }
+      }
+
+      /* ─── N° 06 AS SEEN IN — media strip ─── */
+      .press-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .press-item {
+        flex: 1 1 0;
+        min-width: 180px;
+        padding: 40px 24px;
+        text-align: center;
+        border-right: 1px solid var(--line);
+        transition: background 0.25s ease;
+      }
+      .press-item:last-child {
+        border-right: 0;
+      }
+      .press-item:hover {
+        background: rgba(10, 10, 10, 0.02);
+      }
+      .press-item .name {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: clamp(22px, 2.4vw, 32px);
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      .press-item .issue {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: var(--mute);
+        text-transform: uppercase;
+        margin-top: 6px;
+      }
+
+      /* ─── N° 07 GET CAST — dual CTA banner ─── */
+      .dual-cta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border-top: 1px solid var(--line);
+      }
+      .cta-block {
+        padding: clamp(48px, 6vw, 80px) clamp(32px, 4vw, 56px);
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        transition: background 0.3s ease;
+        border-right: 1px solid var(--line);
+        min-height: 360px;
+        justify-content: space-between;
+      }
+      .cta-block:last-child {
+        border-right: 0;
+        background: var(--ink);
+        color: var(--bg);
+      }
+      .cta-block:hover {
+        background: var(--bg-3);
+      }
+      .cta-block:last-child:hover {
+        background: #1a1a1a;
+      }
+      .cta-block .cta-num {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: var(--hairline);
+        text-transform: uppercase;
+      }
+      .cta-block .cta-title {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(36px, 4.5vw, 64px);
+        line-height: 0.95;
+        letter-spacing: -0.035em;
+      }
+      .cta-block .cta-title em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+      }
+      .cta-block .cta-desc {
+        font-size: 15px;
+        line-height: 1.7;
+        color: var(--ink-2);
+        max-width: 380px;
+      }
+      .cta-block:last-child .cta-desc {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .cta-block .cta-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding-bottom: 4px;
+        border-bottom: 1px solid var(--hairline);
+        transition: gap 0.25s ease;
+        align-self: flex-start;
+      }
+      .cta-block .cta-link:hover {
+        gap: 20px;
+      }
+      @media (max-width: 760px) {
+        .dual-cta {
+          grid-template-columns: 1fr;
+        }
+        .cta-block {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          min-height: auto;
+        }
+      }
+
+      /* ─── ABOUT ─── */
       .about-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -944,6 +1391,14 @@
         line-height: 1.85;
         margin-bottom: 20px;
       }
+      .manifesto {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: clamp(28px, 3vw, 44px);
+        line-height: 1.25;
+        color: var(--ink);
+      }
       .about-stats {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -955,7 +1410,7 @@
       .about-stats .num {
         font-family: var(--font-display);
         font-weight: 500;
-        font-size: 40px;
+        font-size: 36px;
         color: var(--ink);
         line-height: 1;
         letter-spacing: -0.04em;
@@ -981,7 +1436,7 @@
         }
       }
 
-      /* CONTACT */
+      /* ─── CONTACT ─── */
       .contact-grid {
         display: grid;
         grid-template-columns: 1.2fr 1fr;
@@ -1026,7 +1481,7 @@
         }
       }
 
-      /* FOOTER */
+      /* ─── FOOTER ─── */
       .dm-footer {
         background: var(--ink);
         color: var(--bg);
@@ -1127,12 +1582,12 @@
       .hero-stage.placeholder::before {
         font-size: clamp(22px, 3vw, 40px);
       }
-      .event-img.placeholder::before {
+      .event-img.placeholder::before,
+      .campaign.placeholder::before {
         font-size: 13px;
         letter-spacing: 0.15em;
       }
 
-      /* Reveal */
       .reveal {
         opacity: 0;
         transform: translateY(20px);
@@ -1147,12 +1602,18 @@
   <body>
     <!-- HEADER -->
     <header class="dm-header">
-      <a href="#" class="dm-logo">
-        <span class="d">D</span>m<span class="dot">.</span>
-      </a>
+      <a href="#" class="dm-logo"
+        ><span class="d">D</span>m<span class="dot">.</span></a
+      >
       <nav class="dm-nav">
         <a href="#roster"
           ><span class="kr">로스터</span><span class="en">Roster</span></a
+        >
+        <a href="#campaigns"
+          ><span class="kr">캠페인</span><span class="en">Campaigns</span></a
+        >
+        <a href="#services"
+          ><span class="kr">서비스</span><span class="en">Services</span></a
         >
         <a href="#about"
           ><span class="kr">소개</span><span class="en">About</span></a
@@ -1217,6 +1678,16 @@
             </svg>
           </a>
         </div>
+        <a href="#get-cast" class="dm-cta">
+          <span class="kr">캐스팅</span><span class="en">Cast Talent</span>
+          <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
+            <path
+              d="M1 7h12M8 2l5 5-5 5"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+          </svg>
+        </a>
       </div>
     </header>
 
@@ -1281,7 +1752,7 @@
       </div>
     </div>
 
-    <!-- ROSTER -->
+    <!-- ============ N° 01 ROSTER ============ -->
     <section id="roster" class="section">
       <div class="section-head">
         <div class="section-num">
@@ -1293,7 +1764,6 @@
           <span class="en">The artists we&#10;<em>represent.</em></span>
         </h2>
       </div>
-
       <div class="roster-grid">
         <div class="roster-card">
           <div class="roster-image">
@@ -1327,7 +1797,7 @@
             </p>
             <a href="#artist-dasha" class="roster-cta">
               <span class="kr">아티스트 상세 보기</span
-              ><span class="en">View profile</span>
+              ><span class="en">View full profile</span>
               <svg width="14" height="10" viewBox="0 0 14 10">
                 <path
                   d="M0 5h12M8 1l4 4-4 4"
@@ -1342,8 +1812,12 @@
       </div>
     </section>
 
-    <!-- ARTIST DETAIL -->
-    <section id="artist-dasha" class="artist-section section">
+    <!-- ARTIST DETAIL (Dasha) -->
+    <section
+      id="artist-dasha"
+      class="artist-section section"
+      style="padding-top: 0"
+    >
       <div class="artist-id-strip">
         <div><b>DASHA TARAN</b> · D MOMENTUM ARTIST 001</div>
         <div class="live">
@@ -1427,7 +1901,6 @@
                 2.</span
               >
             </p>
-
             <div class="sns-row">
               <a
                 class="sns-card"
@@ -1755,8 +2228,7 @@
                 <span class="kr"
                   >D Momentum 데뷔 후 첫 글로벌 단독 팬미팅. 티켓 오픈 12월
                   1일.</span
-                >
-                <span class="en"
+                ><span class="en"
                   >Her first global solo fan meeting since debut. Tickets open
                   Dec 1.</span
                 >
@@ -1776,8 +2248,8 @@
               <div class="event-date">2025 HOLIDAY</div>
               <h3 class="event-title">TAM BEAUTY&#10;Holiday Edition</h3>
               <p class="event-desc">
-                <span class="kr">탐뷰티 홀리데이 캡슐 — 글로벌 동시 출시</span>
-                <span class="en"
+                <span class="kr">탐뷰티 홀리데이 캡슐 — 글로벌 동시 출시</span
+                ><span class="en"
                   >Tam Beauty holiday capsule — released worldwide.</span
                 >
               </p>
@@ -1798,8 +2270,7 @@
               <p class="event-desc">
                 <span class="kr"
                   >Nexon Games — 첫 글로벌 캐릭터 라이선스 케이스</span
-                >
-                <span class="en"
+                ><span class="en"
                   >Nexon Games — first global character license case.</span
                 >
               </p>
@@ -1809,11 +2280,425 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="section" style="background: var(--bg-2)">
+    <!-- ============ N° 02 CAMPAIGNS (DNA/IMG signature) ============ -->
+    <section id="campaigns" class="section" style="background: var(--bg-2)">
       <div class="section-head">
         <div class="section-num">
           N° 02 —
+          <b><span class="kr">캠페인</span><span class="en">Campaigns</span></b>
+        </div>
+        <h2 class="section-title">
+          <span class="kr">최근 <em>작업물</em>.</span>
+          <span class="en">Selected <em>recent</em> work.</span>
+        </h2>
+      </div>
+      <div class="campaigns-grid">
+        <div class="campaign">
+          <img
+            src="images/campaign-1.jpg"
+            alt="TAM BEAUTY SS26"
+            onerror="this.parentElement.classList.add('placeholder')"
+          />
+          <div class="campaign-caption">
+            <div class="num">001 · Beauty · Global</div>
+            <div class="name">TAM BEAUTY <em>SS26</em></div>
+            <div class="credit">Dasha Taran · Main Visual · 2025</div>
+          </div>
+        </div>
+        <div class="campaign">
+          <img
+            src="images/campaign-2.jpg"
+            alt="Sudden Attack"
+            onerror="this.parentElement.classList.add('placeholder')"
+          />
+          <div class="campaign-caption">
+            <div class="num">002 · Gaming · Licensing</div>
+            <div class="name">SUDDEN ATTACK <em>× Dasha</em></div>
+            <div class="credit">Nexon Games · Character License · 2025</div>
+          </div>
+        </div>
+        <div class="campaign">
+          <img
+            src="images/campaign-3.jpg"
+            alt="Asterasys Lifterra"
+            onerror="this.parentElement.classList.add('placeholder')"
+          />
+          <div class="campaign-caption">
+            <div class="num">003 · Medical · Global</div>
+            <div class="name">Asterasys <em>Lifterra II</em></div>
+            <div class="credit">Dasha Taran · Brand Model · 2025</div>
+          </div>
+        </div>
+        <div class="campaign">
+          <img
+            src="images/campaign-4.jpg"
+            alt="Minish Dental"
+            onerror="this.parentElement.classList.add('placeholder')"
+          />
+          <div class="campaign-caption">
+            <div class="num">004 · Healthcare · Exclusive</div>
+            <div class="name">Minish <em>Dental</em></div>
+            <div class="credit">Dasha Taran · Exclusive Face · 3rd Year</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ N° 03 IN NUMBERS (Whalar pattern) ============ -->
+    <section class="numbers section" style="padding-left: 0; padding-right: 0">
+      <div style="padding: 0 var(--pad-x) 56px">
+        <div
+          class="section-head"
+          style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
+        >
+          <div class="section-num">
+            N° 03 —
+            <b
+              ><span class="kr">숫자로</span
+              ><span class="en">In Numbers</span></b
+            >
+          </div>
+          <h2 class="section-title">
+            <span class="kr">데이터로 <em>증명되는</em>&#10;도달력.</span>
+            <span class="en">Reach <em>proven</em>&#10;in numbers.</span>
+          </h2>
+        </div>
+      </div>
+      <div class="numbers-grid">
+        <div class="num-cell">
+          <div class="label">
+            <span class="kr">총 도달</span><span class="en">Total Reach</span>
+          </div>
+          <div class="big">22<em>m</em>+</div>
+          <div class="note">IG · TikTok · YouTube</div>
+        </div>
+        <div class="num-cell">
+          <div class="label">
+            <span class="kr">글로벌 순위</span
+            ><span class="en">Global Rank</span>
+          </div>
+          <div class="big">N°<em>2</em></div>
+          <div class="note">TC Candler · 100 Faces · 2024</div>
+        </div>
+        <div class="num-cell">
+          <div class="label">
+            <span class="kr">진행 캠페인</span
+            ><span class="en">Active Campaigns</span>
+          </div>
+          <div class="big">12+</div>
+          <div class="note">
+            <span class="kr">광고 · 라이선스 · 콘텐츠</span
+            ><span class="en">Advertising · Licensing · Content</span>
+          </div>
+        </div>
+        <div class="num-cell">
+          <div class="label">
+            <span class="kr">브랜드 재계약</span
+            ><span class="en">Brand Renewal</span>
+          </div>
+          <div class="big">100<em>%</em></div>
+          <div class="note">
+            <span class="kr">전속 모델 기준</span
+            ><span class="en">Exclusive contracts</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ N° 04 SERVICES (KARLA OTTO pillars) ============ -->
+    <section
+      id="services"
+      class="section"
+      style="padding-left: 0; padding-right: 0"
+    >
+      <div style="padding: 0 var(--pad-x) 56px">
+        <div
+          class="section-head"
+          style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
+        >
+          <div class="section-num">
+            N° 04 —
+            <b
+              ><span class="kr">서비스</span><span class="en">Services</span></b
+            >
+          </div>
+          <h2 class="section-title">
+            <span class="kr">우리가 <em>설계하는</em>&#10;네 가지 축.</span>
+            <span class="en">The four <em>pillars</em>&#10;we engineer.</span>
+          </h2>
+        </div>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="p-num">01 — Talent</div>
+          <div class="p-title"><em>Casting</em> & Representation</div>
+          <div class="p-body">
+            <span class="kr"
+              >신예 발굴부터 전속 매니지먼트, 글로벌 시장 진입 전략까지 — 한
+              명의 아티스트를 전 세계가 주목하는 페이스로 키웁니다.</span
+            ><span class="en"
+              >Scouting, exclusive management, and global market strategy —
+              building one artist into a face the world watches.</span
+            >
+          </div>
+          <ul class="p-list">
+            <li>· Exclusive Representation</li>
+            <li>· Career Architecture</li>
+            <li>· Global Market Entry</li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <div class="p-num">02 — Brand</div>
+          <div class="p-title"><em>Partnership</em> & Licensing</div>
+          <div class="p-body">
+            <span class="kr"
+              >광고 캠페인, 브랜드 콜라보, 캐릭터 라이선스 — 단발 협업이 아닌
+              장기 자산이 되는 파트너십을 설계합니다.</span
+            ><span class="en"
+              >Advertising, brand collaboration, character licensing —
+              partnerships built as long-term assets, not one-off deals.</span
+            >
+          </div>
+          <ul class="p-list">
+            <li>· Campaign Partnership</li>
+            <li>· Character Licensing</li>
+            <li>· Brand Ambassador</li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <div class="p-num">03 — Content</div>
+          <div class="p-title"><em>Production</em> & Direction</div>
+          <div class="p-body">
+            <span class="kr"
+              >에디토리얼 화보, 영상 광고, SNS 콘텐츠 — 아티스트의 결과 시장의
+              톤이 동시에 살아나는 비주얼을 직접 디렉팅합니다.</span
+            ><span class="en"
+              >Editorial, video commercials, social content — directing visuals
+              where the artist's identity and the market's tone come alive
+              together.</span
+            >
+          </div>
+          <ul class="p-list">
+            <li>· Editorial Direction</li>
+            <li>· Video Production</li>
+            <li>· Social Content</li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <div class="p-num">04 — Global</div>
+          <div class="p-title"><em>Overseas</em> Expansion</div>
+          <div class="p-body">
+            <span class="kr"
+              >한국·CIS·아시아·북미 — 시장별로 최적화된 GTM 전략으로 한 명의
+              아티스트가 동시에 여러 시장에서 모멘텀을 만듭니다.</span
+            ><span class="en"
+              >Korea, CIS, Asia, North America — market-optimized GTM strategies
+              so one artist builds momentum across regions in parallel.</span
+            >
+          </div>
+          <ul class="p-list">
+            <li>· Multi-Market Activation</li>
+            <li>· Localization Strategy</li>
+            <li>· Tour & Event Operations</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ N° 05 PARTNERS (Whalar logo wall) ============ -->
+    <section
+      id="partners"
+      class="section"
+      style="padding-left: 0; padding-right: 0; background: var(--bg-2)"
+    >
+      <div style="padding: 0 var(--pad-x) 56px">
+        <div
+          class="section-head"
+          style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
+        >
+          <div class="section-num">
+            N° 05 —
+            <b
+              ><span class="kr">파트너</span><span class="en">Partners</span></b
+            >
+          </div>
+          <h2 class="section-title">
+            <span class="kr">함께한 <em>브랜드</em>.</span>
+            <span class="en">Brands we've <em>worked with.</em></span>
+          </h2>
+        </div>
+      </div>
+      <div class="partners-grid">
+        <div class="partner">
+          <div class="name">TAM BEAUTY</div>
+          <div class="cat">Beauty · Global</div>
+        </div>
+        <div class="partner">
+          <div class="name">NEXON</div>
+          <div class="cat">Gaming · Licensing</div>
+        </div>
+        <div class="partner">
+          <div class="name">ASTERASYS</div>
+          <div class="cat">Medical · Device</div>
+        </div>
+        <div class="partner">
+          <div class="name">MINISH</div>
+          <div class="cat">Dental · Exclusive</div>
+        </div>
+        <div class="partner">
+          <div class="name">KBS Joy</div>
+          <div class="cat">Broadcast</div>
+        </div>
+        <div class="partner">
+          <div class="name">SBS</div>
+          <div class="cat">Broadcast</div>
+        </div>
+        <div class="partner">
+          <div class="name">JTBC</div>
+          <div class="cat">Broadcast</div>
+        </div>
+        <div class="partner">
+          <div class="name">MBN</div>
+          <div class="cat">Broadcast</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ N° 06 AS SEEN IN (IMG "Covers" pattern) ============ -->
+    <section class="section" style="padding-left: 0; padding-right: 0">
+      <div style="padding: 0 var(--pad-x) 56px">
+        <div
+          class="section-head"
+          style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
+        >
+          <div class="section-num">
+            N° 06 —
+            <b
+              ><span class="kr">미디어</span
+              ><span class="en">As Seen In</span></b
+            >
+          </div>
+          <h2 class="section-title">
+            <span class="kr">실린 <em>매체</em>.</span>
+            <span class="en">Featured <em>editorial</em>.</span>
+          </h2>
+        </div>
+      </div>
+      <div class="press-strip">
+        <div class="press-item">
+          <div class="name">VOGUE</div>
+          <div class="issue">Korea · Nov 2025</div>
+        </div>
+        <div class="press-item">
+          <div class="name">TC Candler</div>
+          <div class="issue">100 Faces · #2 · 2024</div>
+        </div>
+        <div class="press-item">
+          <div class="name">ELLE</div>
+          <div class="issue">Korea · Coming Soon</div>
+        </div>
+        <div class="press-item">
+          <div class="name">Harper's</div>
+          <div class="issue">Bazaar · TBA</div>
+        </div>
+        <div class="press-item">
+          <div class="name">Cosmopolitan</div>
+          <div class="issue">TBA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ N° 07 GET CAST (dual CTA) ============ -->
+    <section
+      id="get-cast"
+      class="section"
+      style="padding-left: 0; padding-right: 0"
+    >
+      <div style="padding: 0 var(--pad-x) 56px">
+        <div
+          class="section-head"
+          style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
+        >
+          <div class="section-num">
+            N° 07 —
+            <b
+              ><span class="kr">시작하기</span
+              ><span class="en">Get Started</span></b
+            >
+          </div>
+          <h2 class="section-title">
+            <span class="kr"><em>두 가지</em> 시작.</span>
+            <span class="en">Two ways&#10;to <em>begin.</em></span>
+          </h2>
+        </div>
+      </div>
+      <div class="dual-cta">
+        <div class="cta-block">
+          <div>
+            <div class="cta-num">For Brands</div>
+            <h3 class="cta-title" style="margin-top: 14px">
+              <em>Cast</em> Talent.
+            </h3>
+          </div>
+          <p class="cta-desc">
+            <span class="kr"
+              >캠페인·캐스팅 문의. 다샤 타란 및 D Momentum 로스터 전속 모델
+              부킹.</span
+            >
+            <span class="en"
+              >Campaign & casting inquiries. Booking for Dasha Taran and D
+              Momentum exclusive roster.</span
+            >
+          </p>
+          <a href="mailto:casting@dmomentum.co" class="cta-link">
+            casting@dmomentum.co
+            <svg width="14" height="10" viewBox="0 0 14 10">
+              <path
+                d="M0 5h12M8 1l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.4"
+                fill="none"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="cta-block">
+          <div>
+            <div class="cta-num">For Talent</div>
+            <h3 class="cta-title" style="margin-top: 14px">
+              <em>Get</em> Scouted.
+            </h3>
+          </div>
+          <p class="cta-desc">
+            <span class="kr"
+              >D Momentum과 함께할 차세대 모델·인플루언서 발굴. 포트폴리오와 SNS
+              링크를 보내주세요.</span
+            >
+            <span class="en"
+              >Discovering the next generation of models and influencers. Send
+              your portfolio and social links.</span
+            >
+          </p>
+          <a href="mailto:scout@dmomentum.co" class="cta-link">
+            scout@dmomentum.co
+            <svg width="14" height="10" viewBox="0 0 14 10">
+              <path
+                d="M0 5h12M8 1l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.4"
+                fill="none"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ N° 08 ABOUT ============ -->
+    <section id="about" class="section" style="background: var(--bg-2)">
+      <div class="section-head">
+        <div class="section-num">
+          N° 08 —
           <b><span class="kr">소개</span><span class="en">About</span></b>
         </div>
         <h2 class="section-title">
@@ -1823,34 +2708,39 @@
       </div>
       <div class="about-grid">
         <div class="about-text">
-          <p>
+          <p class="manifesto">
             <span class="kr"
-              >D Momentum은 2024년 서울에서 시작된 글로벌 탤런트 매니지먼트
-              에이전시입니다. 우리는 캘린더를 관리하지 않습니다 — 우리는
-              아티스트의 영향력이 가장 정밀한 방향으로 가속화되는
-              모멘텀(추진력)을 설계합니다.</span
+              >"우리는 캘린더를 관리하지 않습니다.&#10;아티스트의 영향력을
+              가속화합니다."</span
             >
             <span class="en"
-              >D Momentum is a global talent management agency founded in Seoul
-              in 2024. We don't manage calendars — we engineer the momentum that
-              accelerates an artist's influence in the most precise
-              direction.</span
-            >
-          </p>
-          <p>
-            <span class="kr"
-              >광고·방송·디지털 콘텐츠·라이선싱·해외 사업 전 영역을 아우르는
-              부티크 에이전시로서, 소수의 정예 아티스트에게 글로벌 무대를 향한
-              통합 전략을 제공합니다.</span
-            >
-            <span class="en"
-              >A boutique agency operating across advertising, broadcast,
-              digital, licensing, and overseas business — providing select
-              artists with an integrated strategy toward the global stage.</span
+              >"We don't manage calendars.&#10;We accelerate influence."</span
             >
           </p>
         </div>
         <div>
+          <p
+            style="
+              color: var(--ink-2);
+              font-size: 16px;
+              line-height: 1.85;
+              margin-bottom: 20px;
+            "
+          >
+            <span class="kr"
+              >D Momentum은 2024년 서울에서 시작된 글로벌 탤런트 매니지먼트
+              에이전시입니다. 광고·방송·디지털 콘텐츠·라이선싱·해외 사업 전
+              영역을 아우르는 부티크 에이전시로서, 소수의 정예 아티스트에게
+              글로벌 무대를 향한 통합 전략을 제공합니다.</span
+            >
+            <span class="en"
+              >D Momentum is a global talent management agency founded in Seoul
+              in 2024. A boutique agency operating across advertising,
+              broadcast, digital, licensing, and overseas business — providing
+              select artists with an integrated strategy toward the global
+              stage.</span
+            >
+          </p>
           <div class="about-stats">
             <div>
               <div class="num">2024</div>
@@ -1869,11 +2759,11 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- ============ N° 09 CONTACT ============ -->
     <section id="contact" class="section">
       <div class="section-head">
         <div class="section-num">
-          N° 03 —
+          N° 09 —
           <b><span class="kr">문의</span><span class="en">Contact</span></b>
         </div>
         <h2 class="section-title">
@@ -1898,22 +2788,31 @@
             <a href="mailto:press@dmomentum.co">press@dmomentum.co</a>
           </div>
           <div class="contact-block">
-            <div class="label">Address</div>
+            <div class="label">Scouting</div>
+            <a href="mailto:scout@dmomentum.co">scout@dmomentum.co</a>
+          </div>
+          <div class="contact-block">
+            <div class="label">Seoul HQ</div>
             <div class="value">
               <span class="kr">서울특별시 강남구</span
               ><span class="en">Gangnam-gu, Seoul</span>
             </div>
           </div>
+          <div class="contact-block">
+            <div class="label">Territory</div>
+            <div class="value">Korea · Global</div>
+          </div>
         </div>
         <div>
           <p style="color: var(--ink-2); line-height: 1.85; font-size: 16px">
             <span class="kr"
-              >캐스팅, 광고 협업, 라이선싱, 미디어 문의는 위 연락처로
-              보내주세요. 영업일 기준 48시간 이내에 회신드립니다.</span
+              >캐스팅, 광고 협업, 라이선싱, 미디어, 그리고 신예 발굴 문의는 위
+              채널로 보내주세요. 영업일 기준 48시간 이내에 회신드립니다.</span
             >
             <span class="en"
-              >For casting, advertising, licensing, and media inquiries, please
-              use the contacts above. We respond within 48 business hours.</span
+              >For casting, advertising, licensing, media, and talent scouting
+              inquiries, please use the channels above. We respond within 48
+              business hours.</span
             >
           </p>
         </div>
@@ -1940,6 +2839,7 @@
           <a href="mailto:biz@dmomentum.co">biz@dmomentum.co</a>
           <a href="mailto:casting@dmomentum.co">casting@dmomentum.co</a>
           <a href="mailto:press@dmomentum.co">press@dmomentum.co</a>
+          <a href="mailto:scout@dmomentum.co">scout@dmomentum.co</a>
         </div>
         <div class="dm-footer-col">
           <h4>Roster</h4>
@@ -1967,11 +2867,17 @@
           <a href="#roster"
             ><span class="kr">로스터</span><span class="en">Roster</span></a
           >
+          <a href="#campaigns"
+            ><span class="kr">캠페인</span><span class="en">Campaigns</span></a
+          >
+          <a href="#services"
+            ><span class="kr">서비스</span><span class="en">Services</span></a
+          >
+          <a href="#get-cast"
+            ><span class="kr">캐스팅</span><span class="en">Get Cast</span></a
+          >
           <a href="#about"
             ><span class="kr">소개</span><span class="en">About</span></a
-          >
-          <a href="#contact"
-            ><span class="kr">문의</span><span class="en">Contact</span></a
           >
         </div>
       </div>
@@ -2019,7 +2925,7 @@
       );
       document
         .querySelectorAll(
-          '.section, .roster-card, .tl-item, .award, .event-card, .sns-card, .ticker',
+          '.section, .roster-card, .tl-item, .award, .event-card, .sns-card, .campaign, .num-cell, .pillar, .partner, .press-item, .cta-block, .ticker',
         )
         .forEach((el) => {
           el.classList.add('reveal');
