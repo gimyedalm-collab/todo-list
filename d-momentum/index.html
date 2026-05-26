@@ -16,39 +16,41 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400;1,9..144,500&display=swap"
       rel="stylesheet"
     />
     <style>
       /* ============================================================
-     D MOMENTUM v4 — Editorial Light System
-     Methodology: IMG Models (roster-first, full-bleed editorial)
-                + DNA Models (mono + single red accent, restraint)
-                + Luxury Fashion (whitespace as luxury, photo as hero)
+     D MOMENTUM v5 — Editorial-grade Talent Agency System
+     Methodology (research-driven):
+       • IMG/DNA/Society — pure mono, sans-display, roster-first
+       • Magazine B / Fantastic Man — typographic hierarchy IS design
+       • Geist (Vercel '24) — modern grotesque pairs with Pretendard
+       • Fraunces italic — single signature italic moment, used 1x
+       • Crimson hairline — color only as 1px detail (never text/fill)
+       • Photography is the only true color
      ============================================================ */
       :root {
-        /* Color — warm off-white + ink + ONE red accent */
-        --bg: #faf8f3;
-        --bg-2: #f1ede4;
-        --ink: #111111;
+        --bg: #fafaf7; /* warm-tinted white, not sterile */
+        --bg-2: #f1efe9;
+        --ink: #0a0a0a; /* warmer than pure black */
         --ink-2: #2a2a2a;
-        --mute: #767472;
-        --line: rgba(17, 17, 17, 0.1);
-        --line-soft: rgba(17, 17, 17, 0.05);
-        --accent: #c1272d; /* DNA Models red — fashion-mag confidence */
-        --accent-ink: #8a1c20;
+        --mute: #6e6e6e;
+        --line: rgba(10, 10, 10, 0.1);
+        --line-soft: rgba(10, 10, 10, 0.05);
+        --hairline: #d12d2d; /* 1px detail only — never fills, never text */
 
-        /* Typography — Fraunces (variable serif) + Pretendard */
+        --font-display:
+          'Geist', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
         --font-sans:
-          'Pretendard', -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
-          sans-serif;
+          'Pretendard', 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
         --font-serif: 'Fraunces', 'Times New Roman', serif;
         --font-mono:
-          'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+          'Geist Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
 
         --pad-x: clamp(20px, 4vw, 80px);
         --pad-y: clamp(80px, 10vw, 160px);
-        --header-h: 76px;
+        --header-h: 72px;
       }
 
       * {
@@ -68,6 +70,7 @@
         letter-spacing: -0.005em;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
+        font-feature-settings: 'ss01', 'cv11', 'kern';
       }
       a {
         color: inherit;
@@ -93,7 +96,7 @@
         display: none !important;
       }
 
-      /* ─── HEADER (minimal, ticker-like) ─── */
+      /* ─── HEADER ─── */
       .dm-header {
         position: fixed;
         top: 0;
@@ -105,42 +108,48 @@
         grid-template-columns: 1fr auto 1fr;
         align-items: center;
         padding: 0 var(--pad-x);
-        background: rgba(250, 248, 243, 0.85);
-        backdrop-filter: blur(20px) saturate(1.2);
+        background: rgba(250, 250, 247, 0.88);
+        backdrop-filter: blur(18px) saturate(1.1);
         border-bottom: 1px solid var(--line-soft);
-        transition: all 0.3s ease;
       }
+      /* Wordmark — distinctive treatment: "Dm." with Fraunces italic D */
       .dm-logo {
         display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-family: var(--font-serif);
-        font-size: 20px;
-        font-weight: 400;
-        letter-spacing: 1px;
-      }
-      .dm-logo .mark {
-        font-family: var(--font-serif);
-        font-size: 28px;
-        font-style: italic;
-        color: var(--accent);
-        line-height: 1;
+        align-items: baseline;
+        gap: 1px;
+        font-family: var(--font-display);
         font-weight: 500;
+        font-size: 22px;
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+      .dm-logo .d {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 1;
+        margin-right: 4px;
+        transform: translateY(2px);
+      }
+      .dm-logo .dot {
+        color: var(--hairline);
       }
       .dm-nav {
         display: flex;
-        gap: 32px;
+        gap: 28px;
         justify-self: center;
       }
       .dm-nav a {
         font-family: var(--font-mono);
         font-size: 11px;
-        letter-spacing: 1.5px;
+        font-weight: 400;
+        letter-spacing: 0.04em;
         text-transform: uppercase;
         color: var(--ink-2);
         transition: color 0.2s;
-        position: relative;
         padding: 6px 0;
+        position: relative;
       }
       .dm-nav a::after {
         content: '';
@@ -149,7 +158,7 @@
         bottom: 0;
         width: 0;
         height: 1px;
-        background: var(--accent);
+        background: var(--hairline);
         transition: width 0.3s ease;
       }
       .dm-nav a:hover::after {
@@ -159,42 +168,41 @@
         justify-self: end;
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 14px;
       }
       .dm-lang {
         display: flex;
-        gap: 2px;
+        gap: 0;
         font-family: var(--font-mono);
         font-size: 10px;
+        font-weight: 500;
       }
       .dm-lang button {
-        padding: 6px 10px;
-        letter-spacing: 1.5px;
+        padding: 6px 8px;
         color: var(--mute);
         transition: color 0.2s;
+        letter-spacing: 0.08em;
       }
-      .dm-lang button.active {
-        color: var(--ink);
-      }
+      .dm-lang button.active,
       .dm-lang button:hover {
         color: var(--ink);
       }
       .dm-socials {
         display: flex;
-        gap: 6px;
+        gap: 4px;
         padding-left: 14px;
         border-left: 1px solid var(--line);
       }
       .dm-socials a {
-        width: 30px;
-        height: 30px;
+        width: 28px;
+        height: 28px;
         display: grid;
         place-items: center;
         color: var(--ink-2);
         transition: color 0.2s;
       }
       .dm-socials a:hover {
-        color: var(--accent);
+        color: var(--hairline);
       }
       @media (max-width: 760px) {
         .dm-nav {
@@ -202,7 +210,7 @@
         }
       }
 
-      /* ─── HERO — Single editorial image, IMG-style ─── */
+      /* ─── HERO ─── */
       .hero {
         min-height: 100vh;
         position: relative;
@@ -213,8 +221,8 @@
       .hero-stage {
         position: relative;
         overflow: hidden;
-        margin: 24px var(--pad-x) 0;
-        aspect-ratio: 16/8.5;
+        margin: 16px var(--pad-x) 0;
+        aspect-ratio: 16/8;
         background: var(--bg-2);
       }
       .hero-stage img {
@@ -222,37 +230,10 @@
         height: 100%;
         object-fit: cover;
         object-position: center 30%;
-        transition: transform 12s ease-out;
+        transition: transform 16s ease-out;
       }
       .hero-stage:hover img {
         transform: scale(1.04);
-      }
-      /* Caption overlay bottom-left, IMG-style */
-      .hero-caption {
-        position: absolute;
-        left: 32px;
-        bottom: 28px;
-        right: 32px;
-        color: #fff;
-        z-index: 2;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        gap: 24px;
-        text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
-      }
-      .hero-caption .credit {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        opacity: 0.95;
-      }
-      .hero-caption .credit em {
-        color: #fff;
-        font-style: normal;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-        padding-bottom: 2px;
       }
       .hero-stage::after {
         content: '';
@@ -260,43 +241,72 @@
         inset: 0;
         background: linear-gradient(
           180deg,
-          transparent 50%,
-          rgba(0, 0, 0, 0.45) 100%
+          transparent 60%,
+          rgba(0, 0, 0, 0.5) 100%
         );
         pointer-events: none;
       }
-      /* Bottom title bar — under the stage */
+      /* IMG-style credit caption */
+      .hero-caption {
+        position: absolute;
+        left: 24px;
+        right: 24px;
+        bottom: 22px;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        color: #fff;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+      }
+      .hero-caption em {
+        font-style: normal;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        padding-bottom: 1px;
+      }
+
+      /* Bottom title bar */
       .hero-bar {
         display: grid;
         grid-template-columns: 1fr auto;
         align-items: end;
-        gap: 40px;
-        padding: 28px var(--pad-x) 32px;
+        gap: 48px;
+        padding: 32px var(--pad-x) 36px;
         border-bottom: 1px solid var(--line);
       }
       .hero-title {
-        font-family: var(--font-serif);
-        font-weight: 400;
-        font-size: clamp(48px, 7vw, 112px);
-        line-height: 0.94;
-        letter-spacing: -0.02em;
-        font-variation-settings: 'opsz' 144;
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(56px, 9vw, 160px);
+        line-height: 0.92;
+        letter-spacing: -0.045em;
+        color: var(--ink);
       }
       .hero-title em {
+        font-family: var(--font-serif);
         font-style: italic;
-        color: var(--accent);
         font-weight: 400;
+        letter-spacing: -0.02em;
+        color: var(--ink);
       }
       .hero-meta {
         display: flex;
-        gap: 32px;
-        align-items: baseline;
+        gap: 36px;
         font-family: var(--font-mono);
         font-size: 11px;
         color: var(--mute);
-        letter-spacing: 1.5px;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
         white-space: nowrap;
+      }
+      .hero-meta div {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
       }
       .hero-meta b {
         color: var(--ink);
@@ -305,40 +315,46 @@
       @media (max-width: 760px) {
         .hero-stage {
           aspect-ratio: 4/5;
-          margin: 16px 16px 0;
+          margin: 12px 16px 0;
         }
         .hero-bar {
           grid-template-columns: 1fr;
           gap: 16px;
-          padding: 20px 16px 24px;
+          padding: 24px 16px 28px;
+        }
+        .hero-meta {
+          gap: 20px;
+          flex-wrap: wrap;
         }
       }
 
-      /* ─── TICKER (single, thin, magazine-style) ─── */
+      /* ─── TICKER ─── */
       .ticker {
         border-bottom: 1px solid var(--line);
         overflow: hidden;
-        padding: 14px 0;
+        padding: 12px 0;
       }
       .ticker-track {
         display: flex;
-        gap: 56px;
+        gap: 48px;
         white-space: nowrap;
         animation: tick 60s linear infinite;
         font-family: var(--font-mono);
         font-size: 11px;
+        font-weight: 400;
         color: var(--ink-2);
-        letter-spacing: 2px;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
       }
       .ticker-track span {
         display: inline-flex;
         align-items: center;
-        gap: 56px;
+        gap: 48px;
       }
       .ticker-track span::after {
-        content: '— ';
-        color: var(--accent);
+        content: '✦';
+        color: var(--hairline);
+        font-style: normal;
       }
       @keyframes tick {
         from {
@@ -359,31 +375,42 @@
         gap: 48px;
         align-items: end;
         margin-bottom: 64px;
-        padding-bottom: 24px;
+        padding-bottom: 28px;
         border-bottom: 1px solid var(--line);
       }
+      /* The single signature red detail — a 1px crimson hairline under section num */
       .section-num {
         font-family: var(--font-mono);
         font-size: 11px;
-        letter-spacing: 2px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
         color: var(--mute);
         text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .section-num::before {
+        content: '';
+        width: 24px;
+        height: 1px;
+        background: var(--hairline);
       }
       .section-num b {
-        color: var(--accent);
+        color: var(--ink);
         font-weight: 500;
       }
       .section-title {
-        font-family: var(--font-serif);
-        font-weight: 400;
-        font-size: clamp(36px, 4.5vw, 64px);
-        line-height: 1.02;
-        letter-spacing: -0.015em;
-        font-variation-settings: 'opsz' 144;
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(40px, 5.5vw, 88px);
+        line-height: 0.98;
+        letter-spacing: -0.035em;
+        color: var(--ink);
       }
       .section-title em {
+        font-family: var(--font-serif);
         font-style: italic;
-        color: var(--accent);
         font-weight: 400;
       }
       @media (max-width: 760px) {
@@ -393,25 +420,18 @@
         }
       }
 
-      /* ─── ROSTER — IMG-style talent grid (the homepage protagonist) ─── */
+      /* ─── ROSTER ─── */
       .roster-grid {
         display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 24px;
+        grid-template-columns: 1fr;
+        gap: 0;
       }
       .roster-card {
-        grid-column: span 12;
         display: grid;
         grid-template-columns: 5fr 7fr;
-        gap: 32px;
+        gap: 48px;
         align-items: end;
-        border-top: 1px solid var(--line);
-        padding-top: 32px;
-        transition: padding-top 0.3s ease;
-      }
-      .roster-card:first-of-type {
-        border-top: 0;
-        padding-top: 0;
+        padding-top: 16px;
       }
       .roster-image {
         aspect-ratio: 4/5;
@@ -423,46 +443,60 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 1.6s cubic-bezier(0.2, 0, 0.2, 1);
+        transition: transform 1.8s cubic-bezier(0.2, 0, 0.2, 1);
       }
       .roster-card:hover .roster-image img {
-        transform: scale(1.05);
+        transform: scale(1.04);
       }
       .roster-info {
-        padding: 24px 0;
+        padding: 32px 0 24px;
       }
       .roster-num {
         font-family: var(--font-mono);
         font-size: 11px;
+        font-weight: 500;
         color: var(--mute);
-        letter-spacing: 2px;
-        margin-bottom: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .roster-num::before {
+        content: '';
+        width: 24px;
+        height: 1px;
+        background: var(--hairline);
       }
       .roster-name {
-        font-family: var(--font-serif);
-        font-weight: 400;
-        font-size: clamp(56px, 8vw, 128px);
-        line-height: 0.9;
-        letter-spacing: -0.025em;
-        margin-bottom: 24px;
-        font-variation-settings: 'opsz' 144;
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(64px, 9.5vw, 160px);
+        line-height: 0.88;
+        letter-spacing: -0.045em;
+        margin-bottom: 28px;
+        color: var(--ink);
       }
       .roster-name em {
+        font-family: var(--font-serif);
         font-style: italic;
-        color: var(--accent);
+        font-weight: 400;
+        letter-spacing: -0.025em;
       }
       .roster-tags {
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
-        margin-bottom: 24px;
+        margin-bottom: 28px;
       }
       .roster-tags span {
         font-family: var(--font-mono);
         font-size: 10px;
-        letter-spacing: 2px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        padding: 6px 12px;
+        padding: 7px 14px;
         border: 1px solid var(--line);
         border-radius: 99px;
         color: var(--ink-2);
@@ -471,7 +505,7 @@
         color: var(--ink-2);
         font-size: 16px;
         line-height: 1.7;
-        max-width: 560px;
+        max-width: 580px;
         margin-bottom: 32px;
       }
       .roster-cta {
@@ -480,24 +514,28 @@
         gap: 12px;
         font-family: var(--font-mono);
         font-size: 11px;
-        letter-spacing: 2px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: var(--accent);
+        color: var(--ink);
         padding-bottom: 4px;
-        border-bottom: 1px solid var(--accent);
+        border-bottom: 1px solid var(--hairline);
         transition: gap 0.25s ease;
       }
       .roster-cta:hover {
-        gap: 18px;
+        gap: 20px;
       }
       @media (max-width: 760px) {
         .roster-card {
           grid-template-columns: 1fr;
           gap: 20px;
         }
+        .roster-info {
+          padding-top: 0;
+        }
       }
 
-      /* ─── ARTIST DETAIL — Tabbed module, scoped per artist ─── */
+      /* ─── ARTIST DETAIL ─── */
       .artist-section {
         border-top: 1px solid var(--line);
       }
@@ -505,11 +543,12 @@
         display: flex;
         justify-content: space-between;
         align-items: baseline;
-        padding: 24px 0;
+        padding: 22px 0;
         font-family: var(--font-mono);
         font-size: 11px;
+        font-weight: 500;
         color: var(--mute);
-        letter-spacing: 2px;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         border-bottom: 1px solid var(--line);
       }
@@ -518,15 +557,20 @@
         font-weight: 500;
       }
       .artist-id-strip .live::before {
-        content: '●';
-        color: var(--accent);
-        margin-right: 6px;
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--hairline);
+        margin-right: 8px;
+        transform: translateY(-1px);
       }
-      /* Tabs */
+
       .tabs {
         display: flex;
         gap: 0;
-        margin-top: 48px;
+        margin-top: 56px;
         border-bottom: 1px solid var(--line);
         overflow-x: auto;
         scrollbar-width: none;
@@ -535,13 +579,14 @@
         display: none;
       }
       .tab-btn {
-        padding: 18px 24px 16px;
+        padding: 18px 26px 16px;
         font-family: var(--font-mono);
         font-size: 11px;
-        letter-spacing: 2px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--mute);
-        border-bottom: 2px solid transparent;
+        border-bottom: 1px solid transparent;
         margin-bottom: -1px;
         transition: all 0.2s;
         white-space: nowrap;
@@ -554,15 +599,22 @@
       }
       .tab-btn.active {
         color: var(--ink);
-        border-bottom-color: var(--accent);
+        border-bottom-color: var(--hairline);
       }
       .tab-btn .idx {
-        color: var(--accent);
+        font-family: var(--font-serif);
+        font-style: italic;
+        color: var(--mute);
         margin-right: 8px;
+        font-weight: 400;
+        font-size: 12px;
+      }
+      .tab-btn.active .idx {
+        color: var(--hairline);
       }
       .tab-pane {
         display: none;
-        padding: 48px 0;
+        padding: 56px 0;
         animation: fadeUp 0.5s ease;
       }
       .tab-pane.active {
@@ -579,35 +631,25 @@
         }
       }
 
-      /* PROFILE tab — bio + info table + SNS */
+      /* PROFILE */
       .profile-grid {
         display: grid;
         grid-template-columns: 1fr 1.4fr;
         gap: 64px;
       }
-      .profile-bio {
-        font-family: var(--font-serif);
-        font-weight: 400;
-        font-size: clamp(20px, 1.8vw, 26px);
-        line-height: 1.4;
-        color: var(--ink);
-        margin-bottom: 32px;
-        font-style: italic;
-      }
       .profile-quote {
         font-family: var(--font-serif);
+        font-style: italic;
         font-weight: 400;
-        font-size: clamp(28px, 3vw, 44px);
-        line-height: 1.2;
+        font-size: clamp(24px, 2.4vw, 34px);
+        line-height: 1.35;
         color: var(--ink);
-        margin-bottom: 48px;
-        padding-left: 24px;
-        border-left: 2px solid var(--accent);
+        margin-bottom: 40px;
       }
       .profile-info {
         display: grid;
         grid-template-columns: 140px 1fr;
-        gap: 16px 24px;
+        gap: 14px 24px;
         padding: 24px 0;
         border-top: 1px solid var(--line);
         font-size: 14px;
@@ -615,47 +657,65 @@
       .profile-info dt {
         font-family: var(--font-mono);
         font-size: 11px;
-        letter-spacing: 1.5px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
         color: var(--mute);
         text-transform: uppercase;
-        padding-top: 4px;
+        padding-top: 3px;
       }
       .profile-info dd {
         color: var(--ink);
       }
+      .profile-info dd em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        color: var(--ink);
+      }
+
+      /* SNS — bold numeric typography (Geist 500 + Fraunces italic for unit) */
       .sns-row {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
+        gap: 14px;
         margin-top: 32px;
       }
       .sns-card {
         border: 1px solid var(--line);
         padding: 24px;
         transition: all 0.25s ease;
+        position: relative;
         display: flex;
         flex-direction: column;
         gap: 4px;
-        position: relative;
+        background: #fff;
       }
       .sns-card:hover {
-        border-color: var(--accent);
-        background: rgba(193, 39, 45, 0.02);
+        border-color: var(--ink);
       }
       .sns-card .platform {
         font-family: var(--font-mono);
         font-size: 10px;
-        letter-spacing: 2px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
         color: var(--mute);
         text-transform: uppercase;
       }
       .sns-card .followers {
-        font-family: var(--font-serif);
-        font-weight: 400;
-        font-size: 48px;
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 52px;
         line-height: 1;
         margin: 4px 0;
         color: var(--ink);
+        letter-spacing: -0.04em;
+      }
+      .sns-card .followers em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 36px;
+        color: var(--mute);
+        margin-left: 2px;
       }
       .sns-card .handle {
         font-family: var(--font-mono);
@@ -670,7 +730,7 @@
         transition: all 0.2s;
       }
       .sns-card:hover .arrow {
-        color: var(--accent);
+        color: var(--ink);
         transform: translate(3px, -3px);
       }
       @media (max-width: 760px) {
@@ -683,7 +743,7 @@
         }
       }
 
-      /* TIMELINE — clean editorial list */
+      /* TIMELINE */
       .timeline {
         display: flex;
         flex-direction: column;
@@ -692,10 +752,10 @@
         display: grid;
         grid-template-columns: 100px 1fr auto;
         gap: 32px;
-        padding: 24px 0;
+        padding: 26px 0;
         border-bottom: 1px solid var(--line);
         align-items: baseline;
-        transition: padding 0.2s ease;
+        transition: padding 0.25s ease;
       }
       .tl-item:hover {
         padding-left: 12px;
@@ -706,16 +766,17 @@
       .tl-date {
         font-family: var(--font-mono);
         font-size: 11px;
-        letter-spacing: 1.5px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
         color: var(--mute);
       }
       .tl-title {
-        font-family: var(--font-serif);
-        font-weight: 400;
+        font-family: var(--font-display);
+        font-weight: 500;
         font-size: 22px;
         line-height: 1.3;
         margin-bottom: 4px;
-        font-variation-settings: 'opsz' 144;
+        letter-spacing: -0.015em;
       }
       .tl-desc {
         color: var(--ink-2);
@@ -725,8 +786,9 @@
       .tl-tag {
         font-family: var(--font-mono);
         font-size: 10px;
+        font-weight: 500;
         color: var(--mute);
-        letter-spacing: 1.5px;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         white-space: nowrap;
       }
@@ -737,44 +799,53 @@
         }
       }
 
-      /* AWARDS row */
+      /* AWARDS */
       .awards {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
+        gap: 16px;
       }
       .award {
         padding: 32px 24px;
         border: 1px solid var(--line);
-        background: var(--bg-2);
+        background: #fff;
+      }
+      .award-year {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: var(--mute);
+        text-transform: uppercase;
+        margin-bottom: 20px;
       }
       .award .big {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 72px;
+        line-height: 0.9;
+        color: var(--ink);
+        letter-spacing: -0.05em;
+        margin-bottom: 14px;
+      }
+      .award .big em {
         font-family: var(--font-serif);
+        font-style: italic;
         font-weight: 400;
-        font-size: 64px;
-        line-height: 1;
-        color: var(--accent);
-        margin-bottom: 12px;
-        font-variation-settings: 'opsz' 144;
+        color: var(--hairline);
       }
       .award .award-title {
-        font-family: var(--font-serif);
-        font-size: 22px;
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 18px;
         margin-bottom: 8px;
         line-height: 1.3;
+        letter-spacing: -0.01em;
       }
       .award .award-desc {
         color: var(--ink-2);
         font-size: 13px;
         line-height: 1.65;
-      }
-      .award .award-year {
-        font-family: var(--font-mono);
-        font-size: 10px;
-        letter-spacing: 1.5px;
-        color: var(--mute);
-        text-transform: uppercase;
-        margin-bottom: 16px;
       }
       @media (max-width: 760px) {
         .awards {
@@ -782,7 +853,7 @@
         }
       }
 
-      /* SCHEDULE cards */
+      /* SCHEDULE */
       .events {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -797,7 +868,7 @@
         background: #fff;
       }
       .event-card:hover {
-        border-color: var(--accent);
+        border-color: var(--ink);
       }
       .event-img {
         aspect-ratio: 4/3;
@@ -812,17 +883,18 @@
         transition: transform 1.2s ease;
       }
       .event-card:hover .event-img img {
-        transform: scale(1.06);
+        transform: scale(1.05);
       }
       .event-img .tag {
         position: absolute;
-        top: 14px;
-        left: 14px;
-        background: var(--accent);
-        color: #fff;
+        top: 12px;
+        left: 12px;
+        background: var(--ink);
+        color: var(--bg);
         font-family: var(--font-mono);
         font-size: 10px;
-        letter-spacing: 2px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         padding: 5px 10px;
       }
@@ -833,17 +905,20 @@
       .event-date {
         font-family: var(--font-mono);
         font-size: 11px;
-        letter-spacing: 2px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
         color: var(--mute);
         text-transform: uppercase;
         margin-bottom: 10px;
       }
       .event-title {
-        font-family: var(--font-serif);
-        font-size: 24px;
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 22px;
         line-height: 1.2;
         margin-bottom: 10px;
         white-space: pre-line;
+        letter-spacing: -0.02em;
       }
       .event-desc {
         color: var(--ink-2);
@@ -856,7 +931,7 @@
         }
       }
 
-      /* ─── ABOUT ─── */
+      /* ABOUT */
       .about-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -878,16 +953,23 @@
         border-top: 1px solid var(--line);
       }
       .about-stats .num {
-        font-family: var(--font-serif);
-        font-size: 36px;
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 40px;
         color: var(--ink);
         line-height: 1;
-        font-variation-settings: 'opsz' 144;
+        letter-spacing: -0.04em;
+      }
+      .about-stats .num em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
       }
       .about-stats .label {
         font-family: var(--font-mono);
         font-size: 10px;
-        letter-spacing: 2px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
         color: var(--mute);
         text-transform: uppercase;
         margin-top: 6px;
@@ -899,7 +981,7 @@
         }
       }
 
-      /* ─── CONTACT ─── */
+      /* CONTACT */
       .contact-grid {
         display: grid;
         grid-template-columns: 1.2fr 1fr;
@@ -914,22 +996,25 @@
       .contact-block .label {
         font-family: var(--font-mono);
         font-size: 11px;
-        letter-spacing: 2px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
         color: var(--mute);
         text-transform: uppercase;
         margin-bottom: 8px;
       }
       .contact-block a,
       .contact-block .value {
-        font-family: var(--font-serif);
-        font-size: 22px;
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 20px;
         color: var(--ink);
         line-height: 1.3;
+        letter-spacing: -0.02em;
         border-bottom: 1px solid transparent;
         transition: border-color 0.2s;
       }
       .contact-block a:hover {
-        border-bottom-color: var(--accent);
+        border-bottom-color: var(--hairline);
       }
       @media (max-width: 760px) {
         .contact-grid {
@@ -941,24 +1026,27 @@
         }
       }
 
-      /* ─── FOOTER ─── */
+      /* FOOTER */
       .dm-footer {
         background: var(--ink);
-        color: #fff;
-        padding: 80px var(--pad-x) 32px;
+        color: var(--bg);
+        padding: 96px var(--pad-x) 32px;
       }
       .dm-footer-mark {
-        font-family: var(--font-serif);
-        font-weight: 400;
-        font-size: clamp(60px, 12vw, 200px);
-        line-height: 0.9;
-        letter-spacing: -0.03em;
-        font-variation-settings: 'opsz' 144;
-        margin-bottom: 48px;
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(80px, 14vw, 240px);
+        line-height: 0.88;
+        letter-spacing: -0.05em;
+        margin-bottom: 56px;
       }
       .dm-footer-mark em {
+        font-family: var(--font-serif);
         font-style: italic;
-        color: var(--accent);
+        font-weight: 400;
+      }
+      .dm-footer-mark .dot {
+        color: var(--hairline);
       }
       .dm-footer-cols {
         display: grid;
@@ -970,11 +1058,20 @@
       .dm-footer-col h4 {
         font-family: var(--font-mono);
         font-size: 11px;
-        letter-spacing: 2px;
-        color: var(--accent);
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.5);
         text-transform: uppercase;
         margin-bottom: 14px;
-        font-weight: 400;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .dm-footer-col h4::before {
+        content: '';
+        width: 16px;
+        height: 1px;
+        background: var(--hairline);
       }
       .dm-footer-col a,
       .dm-footer-col p {
@@ -997,8 +1094,8 @@
         flex-wrap: wrap;
         font-family: var(--font-mono);
         font-size: 10px;
-        color: rgba(255, 255, 255, 0.5);
-        letter-spacing: 1.5px;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 0.05em;
       }
       @media (max-width: 760px) {
         .dm-footer-cols {
@@ -1006,12 +1103,12 @@
         }
       }
 
-      /* ─── PLACEHOLDER — light, refined ─── */
+      /* PLACEHOLDER */
       .placeholder img {
         display: none;
       }
       .placeholder {
-        background: linear-gradient(135deg, #f1ede4 0%, #e3dccd 100%);
+        background: linear-gradient(135deg, #f1efe9 0%, #ddd9cf 100%);
         position: relative;
         overflow: hidden;
       }
@@ -1021,24 +1118,24 @@
         inset: 0;
         display: grid;
         place-items: center;
-        font-family: var(--font-serif);
-        font-style: italic;
-        font-size: clamp(16px, 2vw, 24px);
-        letter-spacing: 6px;
-        color: rgba(17, 17, 17, 0.18);
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(14px, 1.8vw, 22px);
+        letter-spacing: 0.12em;
+        color: rgba(10, 10, 10, 0.18);
       }
       .hero-stage.placeholder::before {
-        font-size: clamp(24px, 3vw, 40px);
+        font-size: clamp(22px, 3vw, 40px);
       }
       .event-img.placeholder::before {
         font-size: 13px;
-        letter-spacing: 3px;
+        letter-spacing: 0.15em;
       }
 
       /* Reveal */
       .reveal {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(20px);
         transition: all 0.9s cubic-bezier(0.2, 0, 0.2, 1);
       }
       .reveal.in {
@@ -1049,8 +1146,10 @@
   </head>
   <body>
     <!-- HEADER -->
-    <header class="dm-header" id="header">
-      <a href="#" class="dm-logo"><span class="mark">D</span>D MOMENTUM</a>
+    <header class="dm-header">
+      <a href="#" class="dm-logo">
+        <span class="d">D</span>m<span class="dot">.</span>
+      </a>
       <nav class="dm-nav">
         <a href="#roster"
           ><span class="kr">로스터</span><span class="en">Roster</span></a
@@ -1121,20 +1220,20 @@
       </div>
     </header>
 
-    <!-- HERO — Single editorial image with bottom caption + title bar -->
+    <!-- HERO -->
     <section class="hero">
-      <div class="hero-stage" id="heroStage">
+      <div class="hero-stage">
         <img
           src="images/hero-1.jpg"
           alt="Featured campaign"
           onerror="this.parentElement.classList.add('placeholder')"
         />
         <div class="hero-caption">
-          <div class="credit">
+          <div>
             <em>Dasha Taran</em> · <span class="kr">탐뷰티 SS26 캠페인</span
             ><span class="en">TAM BEAUTY SS26 Campaign</span>
           </div>
-          <div class="credit">
+          <div>
             <span class="kr">현재 진행 중</span
             ><span class="en">In Production</span>
           </div>
@@ -1142,23 +1241,21 @@
       </div>
       <div class="hero-bar">
         <h1 class="hero-title">
-          <span class="kr"><em>탤런트</em>가 곧 모멘텀.</span>
+          <span class="kr">탤런트<em>가</em> 곧 모멘텀.</span>
           <span class="en">Talent <em>is</em> momentum.</span>
         </h1>
         <div class="hero-meta">
           <div>
             <span class="kr">에이전시</span><span class="en">Agency</span
-            ><br /><b>D MOMENTUM</b>
+            ><b>D Momentum</b>
           </div>
           <div>
-            <span class="kr">설립</span><span class="en">Founded</span><br /><b
-              >2024 · Seoul</b
-            >
+            <span class="kr">설립</span><span class="en">Est.</span
+            ><b>2024 · Seoul</b>
           </div>
           <div>
-            <span class="kr">로스터</span><span class="en">Roster</span><br /><b
-              >001 / 001</b
-            >
+            <span class="kr">로스터</span><span class="en">Roster</span
+            ><b>001 / 001</b>
           </div>
         </div>
       </div>
@@ -1184,7 +1281,7 @@
       </div>
     </div>
 
-    <!-- ROSTER (the homepage protagonist, IMG-style) -->
+    <!-- ROSTER -->
     <section id="roster" class="section">
       <div class="section-head">
         <div class="section-num">
@@ -1192,13 +1289,12 @@
           <b><span class="kr">로스터</span><span class="en">Roster</span></b>
         </div>
         <h2 class="section-title">
-          <span class="kr">D MOMENTUM이 함께하는&#10;<em>아티스트</em>.</span>
+          <span class="kr">D Momentum이 함께하는&#10;<em>아티스트</em>.</span>
           <span class="en">The artists we&#10;<em>represent.</em></span>
         </h2>
       </div>
 
       <div class="roster-grid">
-        <!-- DASHA TARAN -->
         <div class="roster-card">
           <div class="roster-image">
             <img
@@ -1246,7 +1342,7 @@
       </div>
     </section>
 
-    <!-- ARTIST DETAIL — Dasha Taran -->
+    <!-- ARTIST DETAIL -->
     <section id="artist-dasha" class="artist-section section">
       <div class="artist-id-strip">
         <div><b>DASHA TARAN</b> · D MOMENTUM ARTIST 001</div>
@@ -1273,11 +1369,10 @@
         </button>
       </div>
 
-      <!-- PROFILE -->
       <div class="tab-pane active" data-tab="profile">
         <div class="profile-grid">
           <div>
-            <p class="profile-bio">
+            <p class="profile-quote">
               <span class="kr"
                 >"한 명의 아티스트가 만들어내는 세계는 생각보다 넓다."</span
               >
@@ -1301,12 +1396,12 @@
                 ><span class="en">Advertising · Broadcast · Digital</span>
               </dd>
               <dt>Agency</dt>
-              <dd>D MOMENTUM ENT.</dd>
+              <dd>D Momentum Ent.</dd>
               <dt>
                 <span class="kr">대표 수상</span
                 ><span class="en">Recognition</span>
               </dt>
-              <dd>TC Candler "100 Most Beautiful Faces" #2 (2024)</dd>
+              <dd>TC Candler <em>"100 Most Beautiful Faces"</em> #2 (2024)</dd>
             </dl>
           </div>
           <div>
@@ -1341,7 +1436,7 @@
                 rel="noopener noreferrer"
               >
                 <div class="platform">Instagram</div>
-                <div class="followers">6M</div>
+                <div class="followers">6<em>m</em></div>
                 <div class="handle">@taaarannn</div>
                 <svg class="arrow" width="18" height="18" viewBox="0 0 22 22">
                   <path
@@ -1359,7 +1454,7 @@
                 rel="noopener noreferrer"
               >
                 <div class="platform">TikTok</div>
-                <div class="followers">14M</div>
+                <div class="followers">14<em>m</em></div>
                 <div class="handle">@tarankaaa</div>
                 <svg class="arrow" width="18" height="18" viewBox="0 0 22 22">
                   <path
@@ -1377,7 +1472,7 @@
                 rel="noopener noreferrer"
               >
                 <div class="platform">YouTube</div>
-                <div class="followers">2M</div>
+                <div class="followers">2<em>m</em></div>
                 <div class="handle">@DashaTaranbaby</div>
                 <svg class="arrow" width="18" height="18" viewBox="0 0 22 22">
                   <path
@@ -1393,7 +1488,6 @@
         </div>
       </div>
 
-      <!-- FILMOGRAPHY -->
       <div class="tab-pane" data-tab="filmography">
         <div class="timeline">
           <div class="tl-item">
@@ -1489,7 +1583,6 @@
         </div>
       </div>
 
-      <!-- CAMPAIGNS -->
       <div class="tab-pane" data-tab="campaigns">
         <div class="timeline">
           <div class="tl-item">
@@ -1571,12 +1664,11 @@
         </div>
       </div>
 
-      <!-- PRESS & AWARDS -->
       <div class="tab-pane" data-tab="press">
         <div class="awards" style="margin-bottom: 48px">
           <div class="award">
             <div class="award-year">2024</div>
-            <div class="big">#2</div>
+            <div class="big">N°<em>2</em></div>
             <div class="award-title">100 Most Beautiful Faces</div>
             <div class="award-desc">
               <span class="kr"
@@ -1588,8 +1680,8 @@
           </div>
           <div class="award">
             <div class="award-year">2025.11</div>
-            <div class="big">9p</div>
-            <div class="award-title">VOGUE KOREA November</div>
+            <div class="big">9<em>p</em></div>
+            <div class="award-title">VOGUE KOREA — November</div>
             <div class="award-desc">
               <span class="kr">9페이지 단독 인터뷰 &amp; 화보</span
               ><span class="en"
@@ -1599,7 +1691,7 @@
           </div>
           <div class="award">
             <div class="award-year">2025</div>
-            <div class="big">22M</div>
+            <div class="big">22<em>m</em></div>
             <div class="award-title">Total Global Reach</div>
             <div class="award-desc">
               <span class="kr">Instagram 6M · TikTok 14M · YouTube 2M</span
@@ -1643,7 +1735,6 @@
         </div>
       </div>
 
-      <!-- SCHEDULE -->
       <div class="tab-pane" data-tab="schedule">
         <div class="events">
           <article class="event-card">
@@ -1658,11 +1749,11 @@
             <div class="event-body">
               <div class="event-date">DEC 10, 2025</div>
               <h3 class="event-title">
-                DASHA TARAN&#10;1ST FAN MEETING&#10;IN SEOUL
+                Dasha Taran&#10;1st Fan Meeting&#10;in Seoul
               </h3>
               <p class="event-desc">
                 <span class="kr"
-                  >D MOMENTUM 데뷔 후 첫 글로벌 단독 팬미팅. 티켓 오픈 12월
+                  >D Momentum 데뷔 후 첫 글로벌 단독 팬미팅. 티켓 오픈 12월
                   1일.</span
                 >
                 <span class="en"
@@ -1683,7 +1774,7 @@
             </div>
             <div class="event-body">
               <div class="event-date">2025 HOLIDAY</div>
-              <h3 class="event-title">TAM BEAUTY&#10;HOLIDAY EDITION</h3>
+              <h3 class="event-title">TAM BEAUTY&#10;Holiday Edition</h3>
               <p class="event-desc">
                 <span class="kr">탐뷰티 홀리데이 캡슐 — 글로벌 동시 출시</span>
                 <span class="en"
@@ -1703,7 +1794,7 @@
             </div>
             <div class="event-body">
               <div class="event-date">2025.09.12</div>
-              <h3 class="event-title">SUDDEN ATTACK&#10;DASHA CHARACTER</h3>
+              <h3 class="event-title">Sudden Attack&#10;Dasha Character</h3>
               <p class="event-desc">
                 <span class="kr"
                   >Nexon Games — 첫 글로벌 캐릭터 라이선스 케이스</span
@@ -1734,13 +1825,13 @@
         <div class="about-text">
           <p>
             <span class="kr"
-              >D MOMENTUM은 2024년 서울에서 시작된 글로벌 탤런트 매니지먼트
+              >D Momentum은 2024년 서울에서 시작된 글로벌 탤런트 매니지먼트
               에이전시입니다. 우리는 캘린더를 관리하지 않습니다 — 우리는
               아티스트의 영향력이 가장 정밀한 방향으로 가속화되는
               모멘텀(추진력)을 설계합니다.</span
             >
             <span class="en"
-              >D MOMENTUM is a global talent management agency founded in Seoul
+              >D Momentum is a global talent management agency founded in Seoul
               in 2024. We don't manage calendars — we engineer the momentum that
               accelerates an artist's influence in the most precise
               direction.</span
@@ -1829,13 +1920,15 @@
       </div>
     </section>
 
-    <!-- FOOTER (dark, brand-closing moment) -->
+    <!-- FOOTER -->
     <footer class="dm-footer">
-      <div class="dm-footer-mark">D <em>momentum</em></div>
+      <div class="dm-footer-mark">
+        <em>D</em>momentum<span class="dot">.</span>
+      </div>
       <div class="dm-footer-cols">
         <div class="dm-footer-col">
           <h4>Company</h4>
-          <p>D MOMENTUM ENT.</p>
+          <p>D Momentum Ent.</p>
           <p>
             <span class="kr">서울특별시 강남구</span
             ><span class="en">Gangnam-gu, Seoul, Korea</span>
@@ -1883,13 +1976,13 @@
         </div>
       </div>
       <div class="dm-footer-bottom">
-        <div>© 2026 D MOMENTUM ENT. — All rights reserved.</div>
+        <div>© 2026 D Momentum Ent. — All rights reserved.</div>
         <div>Talent is momentum.</div>
       </div>
     </footer>
 
     <script>
-      // ─── LANGUAGE TOGGLE ───
+      // LANG
       document.querySelectorAll('[data-set-lang]').forEach((btn) => {
         btn.onclick = () => {
           const lang = btn.dataset.setLang;
@@ -1903,8 +1996,7 @@
             .forEach((b) => b.classList.toggle('active', b === btn));
         };
       });
-
-      // ─── TABS ───
+      // TABS
       document.querySelectorAll('.tab-btn').forEach((btn) => {
         btn.onclick = () => {
           const t = btn.dataset.tab;
@@ -1916,8 +2008,7 @@
             .forEach((p) => p.classList.toggle('active', p.dataset.tab === t));
         };
       });
-
-      // ─── REVEAL ON SCROLL ───
+      // REVEAL
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
