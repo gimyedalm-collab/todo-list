@@ -1,0 +1,903 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D momentum — Global Creative House by Dasha Taran</title>
+    <meta
+      name="description"
+      content="D momentum is the global creative house founded by Dasha Taran — bridging Eastern Europe and Asia through beauty, fashion, and culture."
+    />
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --bg: #f7f5f1;
+        --ink: #1a1a1a;
+        --mute: #8a8a8a;
+        --line: #e5e1d8;
+        --accent: #bfa66b;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          'Inter',
+          'Pretendard',
+          -apple-system,
+          sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.6;
+        font-weight: 300;
+        overflow-x: hidden;
+      }
+      .serif {
+        font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+        font-weight: 400;
+      }
+      .container {
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+
+      /* ===== NAV ===== */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 22px 0;
+        backdrop-filter: blur(18px);
+        background: rgba(247, 245, 241, 0.78);
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s ease;
+      }
+      nav.scrolled {
+        border-bottom-color: var(--line);
+        padding: 16px 0;
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo-mark {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .logo-mark .mono {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px;
+      }
+      .logo-mark .word {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px;
+        letter-spacing: 2px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 36px;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--ink);
+        font-size: 13px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        position: relative;
+        padding: 4px 0;
+      }
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--ink);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+      }
+      .nav-cta {
+        padding: 10px 22px;
+        border: 1px solid var(--ink);
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        background: var(--ink);
+        color: var(--bg);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .nav-cta:hover {
+        background: transparent;
+        color: var(--ink);
+      }
+      @media (max-width: 860px) {
+        .nav-links {
+          display: none;
+        }
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        padding: 140px 0 80px;
+      }
+      .hero-text .eyebrow {
+        font-size: 12px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 28px;
+      }
+      .hero-text h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(48px, 7vw, 96px);
+        line-height: 1.05;
+        font-weight: 300;
+        margin-bottom: 32px;
+        letter-spacing: -1px;
+      }
+      .hero-text h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .hero-text p.lead {
+        font-size: 17px;
+        color: #4a4a4a;
+        max-width: 480px;
+        margin-bottom: 40px;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        padding: 16px 32px;
+        font-size: 13px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+      .btn-dark {
+        background: var(--ink);
+        color: var(--bg);
+      }
+      .btn-dark:hover {
+        background: var(--accent);
+      }
+      .btn-line {
+        border: 1px solid var(--ink);
+        color: var(--ink);
+      }
+      .btn-line:hover {
+        background: var(--ink);
+        color: var(--bg);
+      }
+      .hero-image {
+        position: relative;
+        aspect-ratio: 3/4;
+        overflow: hidden;
+      }
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(20%) contrast(1.02);
+        transition: transform 8s ease;
+      }
+      .hero-image:hover img {
+        transform: scale(1.05);
+      }
+      .hero-image::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: 80px;
+        height: 80px;
+        border-top: 1px solid var(--accent);
+        border-left: 1px solid var(--accent);
+        z-index: 2;
+      }
+      .hero-image::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        width: 80px;
+        height: 80px;
+        border-bottom: 1px solid var(--accent);
+        border-right: 1px solid var(--accent);
+        z-index: 2;
+      }
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding-top: 110px;
+        }
+        .hero-image {
+          aspect-ratio: 4/5;
+          max-height: 70vh;
+        }
+      }
+
+      /* ===== MARQUEE ===== */
+      .marquee {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 24px 0;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.3);
+      }
+      .marquee-track {
+        display: flex;
+        gap: 60px;
+        white-space: nowrap;
+        animation: scroll 35s linear infinite;
+      }
+      .marquee-track span {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 20px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--mute);
+      }
+      .marquee-track span::after {
+        content: '✦';
+        margin-left: 60px;
+        color: var(--accent);
+      }
+      @keyframes scroll {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ===== ABOUT ===== */
+      .section {
+        padding: 140px 0;
+      }
+      .section-head {
+        margin-bottom: 80px;
+        max-width: 720px;
+      }
+      .section-head .eyebrow {
+        font-size: 12px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 20px;
+      }
+      .section-head h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(36px, 5vw, 64px);
+        font-weight: 300;
+        line-height: 1.1;
+        letter-spacing: -0.5px;
+      }
+      .section-head h2 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .about {
+        background: #ffffff;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .about-img {
+        aspect-ratio: 4/5;
+        overflow: hidden;
+      }
+      .about-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(15%);
+      }
+      .about-text p {
+        font-size: 17px;
+        color: #333;
+        margin-bottom: 24px;
+        line-height: 1.8;
+      }
+      .about-text .quote {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 28px;
+        font-style: italic;
+        line-height: 1.4;
+        color: var(--ink);
+        padding-left: 24px;
+        border-left: 2px solid var(--accent);
+        margin: 36px 0;
+      }
+      .about-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 48px;
+        padding-top: 48px;
+        border-top: 1px solid var(--line);
+      }
+      .stat .num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 42px;
+        color: var(--accent);
+        display: block;
+      }
+      .stat .label {
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--mute);
+        margin-top: 6px;
+      }
+      @media (max-width: 900px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+      }
+
+      /* ===== SERVICES ===== */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+      }
+      .service-card {
+        background: #fff;
+        padding: 48px 36px;
+        border: 1px solid var(--line);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.4s ease;
+      }
+      .service-card:hover::before {
+        width: 100%;
+      }
+      .service-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+      }
+      .service-card .num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 16px;
+        color: var(--accent);
+        margin-bottom: 24px;
+        letter-spacing: 2px;
+      }
+      .service-card h3 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 30px;
+        font-weight: 400;
+        margin-bottom: 16px;
+      }
+      .service-card p {
+        color: #555;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+      @media (max-width: 900px) {
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ===== GALLERY ===== */
+      .gallery {
+        background: var(--ink);
+        color: var(--bg);
+      }
+      .gallery .section-head h2 {
+        color: var(--bg);
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 16px;
+        min-height: 700px;
+      }
+      .gallery-item {
+        overflow: hidden;
+        position: relative;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1.2s ease;
+        filter: grayscale(10%);
+      }
+      .gallery-item:hover img {
+        transform: scale(1.08);
+      }
+      .gallery-item:nth-child(1) {
+        grid-column: span 5;
+        grid-row: span 2;
+      }
+      .gallery-item:nth-child(2) {
+        grid-column: span 4;
+      }
+      .gallery-item:nth-child(3) {
+        grid-column: span 3;
+        grid-row: span 2;
+      }
+      .gallery-item:nth-child(4) {
+        grid-column: span 4;
+      }
+      @media (max-width: 900px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+          min-height: auto;
+        }
+        .gallery-item,
+        .gallery-item:nth-child(n) {
+          grid-column: span 1;
+          grid-row: span 1;
+          aspect-ratio: 3/4;
+        }
+      }
+
+      /* ===== PRESS ===== */
+      .press {
+        background: var(--bg);
+      }
+      .press-logos {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 24px;
+        padding: 48px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .press-logos div {
+        text-align: center;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 22px;
+        letter-spacing: 4px;
+        color: var(--mute);
+        text-transform: uppercase;
+        padding: 12px;
+        transition: color 0.3s ease;
+      }
+      .press-logos div:hover {
+        color: var(--ink);
+      }
+      @media (max-width: 700px) {
+        .press-logos {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* ===== CONTACT ===== */
+      .contact {
+        background: var(--ink);
+        color: var(--bg);
+        padding: 160px 0;
+      }
+      .contact-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .contact h2 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(40px, 6vw, 80px);
+        font-weight: 300;
+        line-height: 1.05;
+        margin-bottom: 32px;
+      }
+      .contact h2 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .contact p {
+        color: #aaa;
+        font-size: 17px;
+        margin-bottom: 40px;
+        max-width: 480px;
+      }
+      .contact-info {
+        font-size: 15px;
+        color: #ccc;
+      }
+      .contact-info .label {
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+        display: block;
+      }
+      .contact-info .row {
+        margin-bottom: 28px;
+      }
+      .contact-info a {
+        color: var(--bg);
+        text-decoration: none;
+        border-bottom: 1px solid #444;
+        transition: border-color 0.3s;
+      }
+      .contact-info a:hover {
+        border-color: var(--accent);
+      }
+      @media (max-width: 900px) {
+        .contact-inner {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: #0f0f0f;
+        color: #888;
+        padding: 48px 0;
+        border-top: 1px solid #222;
+      }
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        letter-spacing: 1px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-inner .socials {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-inner .socials a {
+        color: #888;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: color 0.3s;
+      }
+      .footer-inner .socials a:hover {
+        color: var(--accent);
+      }
+
+      /* ===== ANIMATIONS ===== */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 1s ease,
+          transform 1s ease;
+      }
+      .fade-up.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="nav">
+      <div class="container nav-inner">
+        <a href="#" class="logo-mark">
+          <span class="mono">D</span>
+          <span class="word">D momentum</span>
+        </a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#work">Work</a>
+          <a href="#press">Press</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a href="#contact" class="nav-cta">Get in touch</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero container">
+      <div class="hero-text">
+        <div class="eyebrow">Global Creative House — est. 2026</div>
+        <h1>Beauty<br />has a new <em>momentum</em>.</h1>
+        <p class="lead">
+          D momentum은 글로벌 인플루언서 Dasha Taran이 설립한 크리에이티브
+          하우스입니다. 동유럽 감성과 아시아 뷰티의 경계를 허무는 브랜드 컨설팅,
+          캠페인, 그리고 라이프스타일 콘텐츠를 만듭니다.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-dark">Work with us</a>
+          <a href="#about" class="btn btn-line">Our story</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1521577352947-9bb58764b69a?auto=format&fit=crop&w=900&q=80"
+          alt="Editorial portrait"
+        />
+      </div>
+    </header>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>Brand Consulting</span>
+        <span>Influencer Campaign</span>
+        <span>Beauty Direction</span>
+        <span>Fashion Editorial</span>
+        <span>Global Partnership</span>
+        <span>Content Production</span>
+        <span>Brand Consulting</span>
+        <span>Influencer Campaign</span>
+        <span>Beauty Direction</span>
+        <span>Fashion Editorial</span>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="about section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">About</div>
+          <h2>
+            A bridge between <em>cultures</em>,<br />built on creative
+            intuition.
+          </h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-img">
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80"
+              alt="Dasha Taran"
+            />
+          </div>
+          <div class="about-text">
+            <p>
+              Dasha Taran은 1,500만 명 이상의 글로벌 팔로워와 함께
+              동유럽·CIS·아시아를 잇는 가장 영향력 있는 인플루언서 중 한
+              명입니다. 그녀가 이끄는 D momentum은 단순한 협업을 넘어, 브랜드의
+              본질을 새로운 시장에 자연스럽게 녹여내는 창작 파트너십을
+              지향합니다.
+            </p>
+            <div class="quote">
+              "We don't sell faces. We translate stories — from one culture to
+              another."
+              <br />— Dasha Taran, Founder
+            </div>
+            <p>
+              K-뷰티, 럭셔리 패션, 라이프스타일 브랜드와 협업하며 캠페인
+              디렉션부터 비주얼 프로덕션, 글로벌 마켓 진출 전략까지 통합
+              솔루션을 제공합니다.
+            </p>
+            <div class="about-stats">
+              <div class="stat">
+                <span class="num">15M+</span
+                ><span class="label">Followers</span>
+              </div>
+              <div class="stat">
+                <span class="num">120+</span
+                ><span class="label">Campaigns</span>
+              </div>
+              <div class="stat">
+                <span class="num">30+</span><span class="label">Countries</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">Services</div>
+          <h2>What <em>we do</em>.</h2>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="num">— 01</div>
+            <h3>Brand Direction</h3>
+            <p>
+              브랜드 아이덴티티, 비주얼 톤, 글로벌 시장 진입 전략을 함께
+              설계합니다. 뷰티·패션·라이프스타일 전반에 걸친 풀스택 컨설팅.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="num">— 02</div>
+            <h3>Influencer Campaign</h3>
+            <p>
+              Dasha Taran을 비롯한 글로벌 크리에이터 네트워크를 활용한 캠페인
+              기획·제작·성과 분석. 단발 콘텐츠가 아닌 장기 파트너십 모델.
+            </p>
+          </div>
+          <div class="service-card">
+            <div class="num">— 03</div>
+            <h3>Creative Production</h3>
+            <p>
+              에디토리얼 화보, 룩북, 영상 광고, SNS 콘텐츠. 동유럽과 아시아 양쪽
+              시장에서 통하는 비주얼을 직접 디렉팅합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="work" class="gallery section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow" style="color: var(--accent)">Selected Work</div>
+          <h2>Moments captured,<br /><em>stories told.</em></h2>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=1200&q=80"
+              alt="Editorial 1"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80"
+              alt="Editorial 2"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80"
+              alt="Editorial 3"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=800&q=80"
+              alt="Editorial 4"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRESS -->
+    <section id="press" class="press section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">As Seen In</div>
+          <h2>Featured in <em>global media</em>.</h2>
+        </div>
+        <div class="press-logos">
+          <div>VOGUE</div>
+          <div>ELLE</div>
+          <div>HARPER'S</div>
+          <div>NUMERO</div>
+          <div>MARIE CLAIRE</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <div class="container contact-inner">
+        <div>
+          <h2>
+            Let's create <em>something<br />that moves.</em>
+          </h2>
+          <p>
+            브랜드 협업, 캠페인, 미디어 문의는 아래 연락처로 보내주세요. 영업일
+            기준 48시간 내 회신드립니다.
+          </p>
+          <a
+            href="mailto:hello@dmomentum.com"
+            class="btn btn-dark"
+            style="background: var(--accent); color: var(--ink)"
+            >hello@dmomentum.com</a
+          >
+        </div>
+        <div class="contact-info">
+          <div class="row">
+            <span class="label">General</span>
+            <a href="mailto:hello@dmomentum.com">hello@dmomentum.com</a>
+          </div>
+          <div class="row">
+            <span class="label">Partnership</span>
+            <a href="mailto:partners@dmomentum.com">partners@dmomentum.com</a>
+          </div>
+          <div class="row">
+            <span class="label">Press</span>
+            <a href="mailto:press@dmomentum.com">press@dmomentum.com</a>
+          </div>
+          <div class="row">
+            <span class="label">Studios</span>
+            Seoul · Moscow · Dubai
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>© 2026 D momentum. All rights reserved.</div>
+        <div class="socials">
+          <a href="#" target="_blank">Instagram</a>
+          <a href="#" target="_blank">YouTube</a>
+          <a href="#" target="_blank">TikTok</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Navbar scroll
+      const nav = document.getElementById('nav');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+      });
+
+      // Fade-up on scroll
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add('in');
+          });
+        },
+        { threshold: 0.15 },
+      );
+      document
+        .querySelectorAll(
+          '.section-head, .service-card, .about-img, .about-text, .hero-text, .hero-image, .gallery-item',
+        )
+        .forEach((el) => {
+          el.classList.add('fade-up');
+          io.observe(el);
+        });
+    </script>
+  </body>
+</html>
