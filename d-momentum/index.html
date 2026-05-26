@@ -1,308 +1,321 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-lang="kr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>D momentum — Global Creative House by Dasha Taran</title>
+    <title>D MOMENTUM — ENTERTAINMENT</title>
     <meta
       name="description"
-      content="D momentum is the global creative house founded by Dasha Taran — bridging Eastern Europe and Asia through beauty, fashion, and culture."
+      content="D MOMENTUM is a global entertainment company. We accelerate an artist's influence in the most precise direction — Talent, Brand, Content."
     />
     <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
     <style>
+      :root {
+        --bg: #000000;
+        --bg-2: #0a0a0a;
+        --fg: #ffffff;
+        --fg-dim: rgba(255, 255, 255, 0.55);
+        --fg-mute: rgba(255, 255, 255, 0.32);
+        --line: rgba(255, 255, 255, 0.14);
+        --line-soft: rgba(255, 255, 255, 0.08);
+        --accent: #bfa66b;
+
+        --font-sans:
+          'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+        --font-serif: 'Cormorant Garamond', 'Pretendard', serif;
+        --font-mono:
+          'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+        --type-mega: clamp(72px, 12vw, 200px);
+        --type-h1: clamp(48px, 7vw, 96px);
+        --type-h2: clamp(32px, 4vw, 56px);
+        --type-h3: clamp(20px, 2vw, 28px);
+        --type-body: 15px;
+        --type-small: 12px;
+        --type-tiny: 11px;
+
+        --pad-x: clamp(20px, 4vw, 64px);
+        --pad-y: clamp(60px, 10vw, 140px);
+        --header-h: 88px;
+      }
+
       * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
-      }
-      :root {
-        --bg: #f7f5f1;
-        --ink: #1a1a1a;
-        --mute: #8a8a8a;
-        --line: #e5e1d8;
-        --accent: #bfa66b;
       }
       html {
         scroll-behavior: smooth;
       }
       body {
-        font-family:
-          'Inter',
-          'Pretendard',
-          -apple-system,
-          sans-serif;
-        color: var(--ink);
         background: var(--bg);
-        line-height: 1.6;
-        font-weight: 300;
+        color: var(--fg);
+        font-family: var(--font-sans);
+        font-size: var(--type-body);
+        line-height: 1.5;
+        letter-spacing: -0.005em;
+        -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
       }
-      .serif {
-        font-family: 'Cormorant Garamond', 'Times New Roman', serif;
-        font-weight: 400;
+      a {
+        color: inherit;
+        text-decoration: none;
       }
-      .container {
-        max-width: 1320px;
-        margin: 0 auto;
-        padding: 0 32px;
+      button {
+        background: none;
+        border: 0;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      .serif {
+        font-family: var(--font-serif);
+      }
+      .mono {
+        font-family: var(--font-mono);
       }
 
-      /* ===== NAV ===== */
-      nav {
+      /* Show only the active language */
+      [data-lang='kr'] .en {
+        display: none !important;
+      }
+      [data-lang='en'] .kr {
+        display: none !important;
+      }
+
+      /* ─── HEADER ─── */
+      .dm-header {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         z-index: 100;
-        padding: 22px 0;
-        backdrop-filter: blur(18px);
-        background: rgba(247, 245, 241, 0.78);
-        border-bottom: 1px solid transparent;
-        transition: all 0.3s ease;
-      }
-      nav.scrolled {
-        border-bottom-color: var(--line);
-        padding: 16px 0;
-      }
-      .nav-inner {
-        display: flex;
+        height: var(--header-h);
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
-        justify-content: space-between;
+        padding: 0 var(--pad-x);
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.85),
+          rgba(0, 0, 0, 0)
+        );
+        transition:
+          background 0.4s ease,
+          border-color 0.3s ease;
+        border-bottom: 1px solid transparent;
       }
-      .logo-mark {
+      .dm-header.scrolled {
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(20px);
+        border-bottom-color: var(--line-soft);
+      }
+      .dm-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-serif);
+        font-size: 22px;
+        letter-spacing: 4px;
+      }
+      .dm-logo .mark {
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--fg);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+      }
+      .dm-nav {
+        display: flex;
+        gap: 36px;
+        justify-self: center;
+      }
+      .dm-nav a {
+        font-size: var(--type-small);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--fg-dim);
+        transition: color 0.25s ease;
+        padding: 6px 0;
+      }
+      .dm-nav a:hover {
+        color: var(--fg);
+      }
+      .dm-tools {
+        justify-self: end;
         display: flex;
         align-items: center;
         gap: 12px;
-        text-decoration: none;
-        color: var(--ink);
       }
-      .logo-mark .mono {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        border: 1px solid var(--ink);
+      .dm-lang {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 22px;
+        gap: 4px;
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
       }
-      .logo-mark .word {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 22px;
-        letter-spacing: 2px;
-      }
-      .nav-links {
-        display: flex;
-        gap: 36px;
-      }
-      .nav-links a {
-        text-decoration: none;
-        color: var(--ink);
-        font-size: 13px;
+      .dm-lang button {
+        padding: 6px 10px;
         letter-spacing: 1.5px;
-        text-transform: uppercase;
-        position: relative;
-        padding: 4px 0;
+        color: var(--fg-mute);
+        border: 1px solid transparent;
+        border-radius: 2px;
       }
-      .nav-links a::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: var(--ink);
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
-      }
-      .nav-links a:hover::after {
-        transform: scaleX(1);
-      }
-      .nav-cta {
-        padding: 10px 22px;
-        border: 1px solid var(--ink);
-        font-size: 12px;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        background: var(--ink);
-        color: var(--bg);
-        text-decoration: none;
-        transition: all 0.3s ease;
-      }
-      .nav-cta:hover {
-        background: transparent;
-        color: var(--ink);
+      .dm-lang button.active {
+        color: var(--fg);
+        border-color: var(--line);
       }
       @media (max-width: 860px) {
-        .nav-links {
+        .dm-nav {
           display: none;
         }
       }
 
-      /* ===== HERO ===== */
-      .hero {
+      /* ─── HERO ─── */
+      .hero-wrap {
         min-height: 100vh;
+        position: relative;
         display: grid;
-        grid-template-columns: 1.1fr 1fr;
-        gap: 60px;
-        align-items: center;
-        padding: 140px 0 80px;
+        grid-template-columns: 1fr;
+        align-items: end;
+        padding: calc(var(--header-h) + 60px) var(--pad-x) 80px;
       }
-      .hero-text .eyebrow {
-        font-size: 12px;
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        background: #000;
+      }
+      .hero-bg .slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 1.6s ease;
+        background-size: cover;
+        background-position: center;
+      }
+      .hero-bg .slide.active {
+        opacity: 1;
+      }
+      .hero-bg::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.35) 0%,
+          rgba(0, 0, 0, 0.55) 60%,
+          rgba(0, 0, 0, 0.85) 100%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 40px;
+        align-items: end;
+      }
+      .hero-eyebrow {
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
         letter-spacing: 4px;
-        text-transform: uppercase;
         color: var(--accent);
-        margin-bottom: 28px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
       }
-      .hero-text h1 {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: clamp(48px, 7vw, 96px);
-        line-height: 1.05;
+      .hero-title {
+        font-family: var(--font-serif);
         font-weight: 300;
-        margin-bottom: 32px;
-        letter-spacing: -1px;
+        font-size: var(--type-h1);
+        line-height: 0.98;
+        letter-spacing: -0.02em;
+        white-space: pre-line;
+        max-width: 900px;
       }
-      .hero-text h1 em {
+      .hero-title em {
         font-style: italic;
         color: var(--accent);
       }
-      .hero-text p.lead {
-        font-size: 17px;
-        color: #4a4a4a;
-        max-width: 480px;
-        margin-bottom: 40px;
+      .hero-sub {
+        margin-top: 28px;
+        color: var(--fg-dim);
+        font-size: 15px;
+        max-width: 540px;
+        line-height: 1.7;
       }
-      .hero-actions {
+      .hero-controls {
         display: flex;
-        gap: 16px;
-        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
+        color: var(--fg-mute);
       }
-      .btn {
-        padding: 16px 32px;
-        font-size: 13px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        display: inline-block;
+      .hero-controls button {
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        transition: all 0.25s ease;
       }
-      .btn-dark {
-        background: var(--ink);
-        color: var(--bg);
+      .hero-controls button:hover {
+        border-color: var(--fg);
+        color: var(--fg);
       }
-      .btn-dark:hover {
+      .hero-dots {
+        position: absolute;
+        left: var(--pad-x);
+        bottom: 40px;
+        z-index: 3;
+        display: flex;
+        gap: 8px;
+      }
+      .hero-dots button {
+        width: 36px;
+        height: 2px;
+        background: var(--line);
+        border: 0;
+        transition: background 0.3s ease;
+      }
+      .hero-dots button.active {
         background: var(--accent);
       }
-      .btn-line {
-        border: 1px solid var(--ink);
-        color: var(--ink);
-      }
-      .btn-line:hover {
-        background: var(--ink);
-        color: var(--bg);
-      }
-      .hero-image {
-        position: relative;
-        aspect-ratio: 3/4;
-        overflow: hidden;
-      }
-      .hero-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: grayscale(20%) contrast(1.02);
-        transition: transform 8s ease;
-      }
-      .hero-image:hover img {
-        transform: scale(1.05);
-      }
-      /* Elegant placeholder when image file missing */
-      .placeholder img {
-        display: none;
-      }
-      .placeholder {
-        background: linear-gradient(
-          135deg,
-          #d9d2c2 0%,
-          #b8a988 50%,
-          #6b5d44 100%
-        );
-        position: relative;
-      }
-      .placeholder::after {
-        content: 'D';
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 140px;
-        color: rgba(255, 255, 255, 0.35);
-        font-weight: 300;
-      }
-      .gallery-item.placeholder::after {
-        font-size: 80px;
-      }
-      .hero-image::before {
-        content: '';
-        position: absolute;
-        top: -20px;
-        left: -20px;
-        width: 80px;
-        height: 80px;
-        border-top: 1px solid var(--accent);
-        border-left: 1px solid var(--accent);
-        z-index: 2;
-      }
-      .hero-image::after {
-        content: '';
-        position: absolute;
-        bottom: -20px;
-        right: -20px;
-        width: 80px;
-        height: 80px;
-        border-bottom: 1px solid var(--accent);
-        border-right: 1px solid var(--accent);
-        z-index: 2;
-      }
-      @media (max-width: 900px) {
-        .hero {
-          grid-template-columns: 1fr;
-          padding-top: 110px;
-        }
-        .hero-image {
-          aspect-ratio: 4/5;
-          max-height: 70vh;
-        }
-      }
 
-      /* ===== MARQUEE ===== */
+      /* ─── MARQUEE ─── */
       .marquee {
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        padding: 24px 0;
+        border-top: 1px solid var(--line-soft);
+        border-bottom: 1px solid var(--line-soft);
+        padding: 20px 0;
         overflow: hidden;
-        background: rgba(255, 255, 255, 0.3);
       }
       .marquee-track {
         display: flex;
         gap: 60px;
         white-space: nowrap;
-        animation: scroll 35s linear infinite;
-      }
-      .marquee-track span {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 20px;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        color: var(--mute);
+        animation: scroll 40s linear infinite;
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 22px;
+        color: var(--fg-dim);
       }
       .marquee-track span::after {
         content: '✦';
@@ -318,618 +331,1341 @@
         }
       }
 
-      /* ===== ABOUT ===== */
+      /* ─── SECTION ─── */
       .section {
-        padding: 140px 0;
+        padding: var(--pad-y) var(--pad-x);
       }
-      .section-head {
-        margin-bottom: 80px;
-        max-width: 720px;
-      }
-      .section-head .eyebrow {
-        font-size: 12px;
+      .section-eyebrow {
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
         letter-spacing: 4px;
-        text-transform: uppercase;
         color: var(--accent);
-        margin-bottom: 20px;
+        text-transform: uppercase;
+        margin-bottom: 16px;
       }
-      .section-head h2 {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: clamp(36px, 5vw, 64px);
+      .section-title {
+        font-family: var(--font-serif);
         font-weight: 300;
+        font-size: var(--type-h2);
         line-height: 1.1;
-        letter-spacing: -0.5px;
+        letter-spacing: -0.01em;
+        white-space: pre-line;
+        margin-bottom: 48px;
       }
-      .section-head h2 em {
+      .section-title em {
         font-style: italic;
         color: var(--accent);
       }
-      .about {
-        background: #ffffff;
-      }
+
+      /* ─── ABOUT ─── */
       .about-grid {
         display: grid;
-        grid-template-columns: 1fr 1.2fr;
+        grid-template-columns: 1fr 1.1fr;
         gap: 80px;
-        align-items: center;
-      }
-      .about-img {
-        aspect-ratio: 4/5;
-        overflow: hidden;
-      }
-      .about-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: grayscale(15%);
+        align-items: end;
       }
       .about-text p {
-        font-size: 17px;
-        color: #333;
-        margin-bottom: 24px;
-        line-height: 1.8;
+        color: var(--fg-dim);
+        font-size: 16px;
+        line-height: 1.85;
+        margin-bottom: 20px;
       }
-      .about-text .quote {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 28px;
+      .about-quote {
+        font-family: var(--font-serif);
         font-style: italic;
-        line-height: 1.4;
-        color: var(--ink);
-        padding-left: 24px;
-        border-left: 2px solid var(--accent);
-        margin: 36px 0;
+        font-size: clamp(28px, 3.5vw, 44px);
+        line-height: 1.25;
+        color: var(--fg);
+        margin: 32px 0;
+        max-width: 720px;
       }
-      .about-stats {
+      .about-meta {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 24px;
         margin-top: 48px;
-        padding-top: 48px;
+        padding-top: 32px;
         border-top: 1px solid var(--line);
       }
-      .stat .num {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 42px;
+      .about-meta .num {
+        font-family: var(--font-serif);
+        font-size: 40px;
         color: var(--accent);
         display: block;
       }
-      .stat .label {
-        font-size: 11px;
+      .about-meta .label {
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
         letter-spacing: 2px;
+        color: var(--fg-mute);
         text-transform: uppercase;
-        color: var(--mute);
-        margin-top: 6px;
+        margin-top: 4px;
       }
       @media (max-width: 900px) {
         .about-grid {
           grid-template-columns: 1fr;
-          gap: 48px;
+          gap: 40px;
         }
       }
 
-      /* ===== SERVICES ===== */
-      .services-grid {
+      /* ─── ARTIST ─── */
+      .artist {
+        background: var(--bg-2);
+        border-top: 1px solid var(--line-soft);
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .artist-hero {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 32px;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 60px;
+        align-items: end;
+        margin-bottom: 80px;
       }
-      .service-card {
-        background: #fff;
-        padding: 48px 36px;
-        border: 1px solid var(--line);
-        transition: all 0.4s ease;
-        position: relative;
+      .artist-portrait {
+        aspect-ratio: 4/5;
         overflow: hidden;
+        position: relative;
+        background: var(--bg);
       }
-      .service-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--accent);
-        transition: width 0.4s ease;
-      }
-      .service-card:hover::before {
+      .artist-portrait img {
         width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(8%);
+        transition: transform 6s ease;
       }
-      .service-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+      .artist-portrait:hover img {
+        transform: scale(1.04);
       }
-      .service-card .num {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 16px;
+      .artist-eyebrow {
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
+        letter-spacing: 4px;
         color: var(--accent);
+        text-transform: uppercase;
         margin-bottom: 24px;
+      }
+      .artist-name {
+        font-family: var(--font-serif);
+        font-weight: 300;
+        font-size: clamp(64px, 9vw, 130px);
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        margin-bottom: 28px;
+      }
+      .artist-bio {
+        color: var(--fg-dim);
+        font-size: 16px;
+        line-height: 1.8;
+        max-width: 560px;
+        margin-bottom: 36px;
+      }
+      .artist-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        padding-top: 28px;
+        border-top: 1px solid var(--line);
+      }
+      .artist-stats .stat .num {
+        font-family: var(--font-serif);
+        font-size: 32px;
+        color: var(--fg);
+        display: block;
+      }
+      .artist-stats .stat .label {
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
         letter-spacing: 2px;
-      }
-      .service-card h3 {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 30px;
-        font-weight: 400;
-        margin-bottom: 16px;
-      }
-      .service-card p {
-        color: #555;
-        font-size: 15px;
-        line-height: 1.7;
+        color: var(--fg-mute);
+        margin-top: 4px;
+        text-transform: uppercase;
       }
       @media (max-width: 900px) {
-        .services-grid {
+        .artist-hero {
+          grid-template-columns: 1fr;
+        }
+        .artist-stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* ─── SNS CARDS ─── */
+      .sns-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-bottom: 80px;
+      }
+      .sns-card {
+        border: 1px solid var(--line);
+        padding: 32px;
+        transition: all 0.3s ease;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .sns-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+      }
+      .sns-card .platform {
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
+        letter-spacing: 3px;
+        color: var(--accent);
+        text-transform: uppercase;
+      }
+      .sns-card .followers {
+        font-family: var(--font-serif);
+        font-size: 56px;
+        line-height: 1;
+        margin: 8px 0;
+      }
+      .sns-card .handle {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: var(--fg-dim);
+      }
+      .sns-card .arrow {
+        position: absolute;
+        top: 28px;
+        right: 28px;
+        color: var(--fg-mute);
+        transition: color 0.25s;
+      }
+      .sns-card:hover .arrow {
+        color: var(--accent);
+      }
+      @media (max-width: 720px) {
+        .sns-row {
           grid-template-columns: 1fr;
         }
       }
 
-      /* ===== GALLERY ===== */
-      .gallery {
-        background: var(--ink);
-        color: var(--bg);
+      /* ─── CAREER TABS ─── */
+      .tabs {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 32px;
+        border-bottom: 1px solid var(--line);
       }
-      .gallery .section-head h2 {
-        color: var(--bg);
+      .tabs button {
+        padding: 16px 24px;
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
+        letter-spacing: 3px;
+        color: var(--fg-mute);
+        text-transform: uppercase;
+        border-bottom: 1px solid transparent;
+        margin-bottom: -1px;
+        transition: all 0.25s ease;
       }
-      .gallery-grid {
+      .tabs button:hover {
+        color: var(--fg-dim);
+      }
+      .tabs button.active {
+        color: var(--fg);
+        border-bottom-color: var(--accent);
+      }
+      .tab-pane {
+        display: none;
+      }
+      .tab-pane.active {
+        display: block;
+      }
+      .career-list {
+        display: flex;
+        flex-direction: column;
+      }
+      .career-item {
         display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 16px;
-        min-height: 700px;
+        grid-template-columns: 120px 1fr auto;
+        gap: 32px;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--line-soft);
+        align-items: baseline;
       }
-      .gallery-item {
+      .career-item:last-child {
+        border-bottom: 0;
+      }
+      .career-item .date {
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
+        letter-spacing: 2px;
+        color: var(--accent);
+      }
+      .career-item .title {
+        font-family: var(--font-serif);
+        font-size: 22px;
+        margin-bottom: 6px;
+      }
+      .career-item .desc {
+        color: var(--fg-dim);
+        font-size: 14px;
+      }
+      .career-item .tag {
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
+        letter-spacing: 2px;
+        color: var(--fg-mute);
+        text-transform: uppercase;
+      }
+      @media (max-width: 720px) {
+        .career-item {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .career-item .tag {
+          justify-self: start;
+        }
+      }
+
+      /* ─── EVENTS (Upcoming) ─── */
+      .events {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .event-card {
+        border: 1px solid var(--line);
+        padding: 0;
+        transition: all 0.4s ease;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .event-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-6px);
+      }
+      .event-img {
+        aspect-ratio: 16/10;
+        overflow: hidden;
+        background: var(--bg-2);
         position: relative;
       }
-      .gallery-item img {
+      .event-img img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 1.2s ease;
-        filter: grayscale(10%);
       }
-      .gallery-item:hover img {
-        transform: scale(1.08);
+      .event-card:hover .event-img img {
+        transform: scale(1.06);
       }
-      .gallery-item:nth-child(1) {
-        grid-column: span 5;
-        grid-row: span 2;
+      .event-body {
+        padding: 28px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
       }
-      .gallery-item:nth-child(2) {
-        grid-column: span 4;
+      .event-date {
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
+        letter-spacing: 3px;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 12px;
       }
-      .gallery-item:nth-child(3) {
-        grid-column: span 3;
-        grid-row: span 2;
+      .event-title {
+        font-family: var(--font-serif);
+        font-size: 26px;
+        line-height: 1.2;
+        margin-bottom: 12px;
+        white-space: pre-line;
       }
-      .gallery-item:nth-child(4) {
-        grid-column: span 4;
+      .event-desc {
+        color: var(--fg-dim);
+        font-size: 14px;
+        line-height: 1.7;
       }
       @media (max-width: 900px) {
-        .gallery-grid {
-          grid-template-columns: repeat(2, 1fr);
-          min-height: auto;
-        }
-        .gallery-item,
-        .gallery-item:nth-child(n) {
-          grid-column: span 1;
-          grid-row: span 1;
-          aspect-ratio: 3/4;
+        .events {
+          grid-template-columns: 1fr;
         }
       }
 
-      /* ===== PRESS ===== */
-      .press {
-        background: var(--bg);
-      }
-      .press-logos {
+      /* ─── CONTACT ─── */
+      .contact-grid {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 24px;
-        padding: 48px 0;
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
+        grid-template-columns: 1.2fr 1fr;
+        gap: 80px;
+        align-items: start;
       }
-      .press-logos div {
-        text-align: center;
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 22px;
-        letter-spacing: 4px;
-        color: var(--mute);
-        text-transform: uppercase;
-        padding: 12px;
-        transition: color 0.3s ease;
-      }
-      .press-logos div:hover {
-        color: var(--ink);
-      }
-      @media (max-width: 700px) {
-        .press-logos {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-
-      /* ===== CONTACT ===== */
-      .contact {
-        background: var(--ink);
-        color: var(--bg);
-        padding: 160px 0;
-      }
-      .contact-inner {
+      .contact-blocks {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        align-items: center;
+        gap: 32px;
       }
-      .contact h2 {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: clamp(40px, 6vw, 80px);
-        font-weight: 300;
-        line-height: 1.05;
-        margin-bottom: 32px;
-      }
-      .contact h2 em {
-        font-style: italic;
-        color: var(--accent);
-      }
-      .contact p {
-        color: #aaa;
-        font-size: 17px;
-        margin-bottom: 40px;
-        max-width: 480px;
-      }
-      .contact-info {
-        font-size: 15px;
-        color: #ccc;
-      }
-      .contact-info .label {
-        font-size: 11px;
+      .contact-block .label {
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
         letter-spacing: 3px;
-        text-transform: uppercase;
         color: var(--accent);
-        margin-bottom: 8px;
-        display: block;
+        text-transform: uppercase;
+        margin-bottom: 10px;
       }
-      .contact-info .row {
-        margin-bottom: 28px;
+      .contact-block a,
+      .contact-block .value {
+        font-family: var(--font-serif);
+        font-size: 22px;
+        color: var(--fg);
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.25s;
       }
-      .contact-info a {
-        color: var(--bg);
-        text-decoration: none;
-        border-bottom: 1px solid #444;
-        transition: border-color 0.3s;
-      }
-      .contact-info a:hover {
-        border-color: var(--accent);
+      .contact-block a:hover {
+        border-bottom-color: var(--accent);
       }
       @media (max-width: 900px) {
-        .contact-inner {
+        .contact-grid {
           grid-template-columns: 1fr;
-          gap: 48px;
+        }
+        .contact-blocks {
+          grid-template-columns: 1fr;
         }
       }
 
-      /* ===== FOOTER ===== */
-      footer {
-        background: #0f0f0f;
-        color: #888;
-        padding: 48px 0;
-        border-top: 1px solid #222;
+      /* ─── FOOTER ─── */
+      .dm-footer {
+        background: var(--bg-2);
+        border-top: 1px solid var(--line-soft);
+        padding: 80px var(--pad-x) 32px;
       }
-      .footer-inner {
+      .dm-footer-bigmark {
+        font-family: var(--font-serif);
+        font-weight: 300;
+        font-size: var(--type-mega);
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        color: var(--fg);
+        margin-bottom: 60px;
+        opacity: 0.9;
+      }
+      .dm-footer-cols {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        padding-top: 40px;
+        border-top: 1px solid var(--line-soft);
+      }
+      .dm-footer-col h4 {
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
+        letter-spacing: 3px;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        font-weight: 400;
+      }
+      .dm-footer-col a,
+      .dm-footer-col p {
+        display: block;
+        font-size: 13px;
+        color: var(--fg-dim);
+        margin-bottom: 8px;
+      }
+      .dm-footer-col a:hover {
+        color: var(--fg);
+      }
+      .dm-footer-bottom {
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line-soft);
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        font-size: 12px;
-        letter-spacing: 1px;
-        flex-wrap: wrap;
-        gap: 16px;
+        font-family: var(--font-mono);
+        font-size: var(--type-tiny);
+        color: var(--fg-mute);
+        letter-spacing: 1.5px;
       }
-      .footer-inner .socials {
-        display: flex;
-        gap: 24px;
-      }
-      .footer-inner .socials a {
-        color: #888;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        transition: color 0.3s;
-      }
-      .footer-inner .socials a:hover {
-        color: var(--accent);
+      @media (max-width: 720px) {
+        .dm-footer-cols {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
-      /* ===== ANIMATIONS ===== */
-      .fade-up {
-        opacity: 0;
-        transform: translateY(40px);
-        transition:
-          opacity 1s ease,
-          transform 1s ease;
+      /* ─── PLACEHOLDER (image missing) ─── */
+      .placeholder img {
+        display: none;
       }
-      .fade-up.in {
+      .placeholder {
+        background: radial-gradient(ellipse at center, #1a1611 0%, #050505 80%);
+        position: relative;
+        overflow: hidden;
+      }
+      .placeholder::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          transparent 0%,
+          rgba(191, 166, 107, 0.06) 50%,
+          transparent 100%
+        );
+      }
+      .placeholder::after {
+        content: 'D';
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        font-family: var(--font-serif);
+        font-weight: 300;
+        font-size: 160px;
+        color: rgba(191, 166, 107, 0.18);
+      }
+      .event-img.placeholder::after {
+        font-size: 72px;
+      }
+      .artist-portrait.placeholder::after {
+        font-size: 220px;
+      }
+
+      /* fade-up reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s ease;
+      }
+      .reveal.in {
         opacity: 1;
         transform: translateY(0);
       }
     </style>
   </head>
   <body>
-    <nav id="nav">
-      <div class="container nav-inner">
-        <a href="#" class="logo-mark">
-          <span class="mono">D</span>
-          <span class="word">D momentum</span>
-        </a>
-        <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#work">Work</a>
-          <a href="#press">Press</a>
-          <a href="#contact">Contact</a>
+    <!-- HEADER -->
+    <header class="dm-header" id="header">
+      <a href="#" class="dm-logo"
+        ><span class="mark serif">D</span> D MOMENTUM</a
+      >
+      <nav class="dm-nav">
+        <a href="#about"
+          ><span class="kr">소개</span><span class="en">About</span></a
+        >
+        <a href="#artist"
+          ><span class="kr">아티스트</span><span class="en">Artist</span></a
+        >
+        <a href="#upcoming"
+          ><span class="kr">모멘트</span><span class="en">Moments</span></a
+        >
+        <a href="#contact"
+          ><span class="kr">문의</span><span class="en">Contact</span></a
+        >
+      </nav>
+      <div class="dm-tools">
+        <div class="dm-lang">
+          <button data-set-lang="kr" class="active">KR</button>
+          <button data-set-lang="en">EN</button>
         </div>
-        <a href="#contact" class="nav-cta">Get in touch</a>
-      </div>
-    </nav>
-
-    <!-- HERO -->
-    <header class="hero container">
-      <div class="hero-text">
-        <div class="eyebrow">Global Creative House — est. 2026</div>
-        <h1>Beauty<br />has a new <em>momentum</em>.</h1>
-        <p class="lead">
-          D momentum은 글로벌 인플루언서 Dasha Taran이 설립한 크리에이티브
-          하우스입니다. 동유럽 감성과 아시아 뷰티의 경계를 허무는 브랜드 컨설팅,
-          캠페인, 그리고 라이프스타일 콘텐츠를 만듭니다.
-        </p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-dark">Work with us</a>
-          <a href="#about" class="btn btn-line">Our story</a>
-        </div>
-      </div>
-      <div class="hero-image">
-        <img
-          src="images/hero.jpg"
-          alt="Dasha Taran — Hero"
-          onerror="this.parentElement.classList.add('placeholder')"
-        />
       </div>
     </header>
+
+    <!-- HERO -->
+    <section class="hero-wrap">
+      <div class="hero-bg" id="heroBg">
+        <div class="slide active" data-slide="0"></div>
+        <div class="slide" data-slide="1"></div>
+        <div class="slide" data-slide="2"></div>
+        <div class="slide" data-slide="3"></div>
+      </div>
+
+      <div class="hero-content">
+        <div>
+          <div class="hero-eyebrow" id="heroEyebrow">
+            D MOMENTUM — ENTERTAINMENT
+          </div>
+          <h1 class="hero-title" id="heroTitle">
+            <span class="kr">우리는&#10;<em>모멘텀</em>을 만든다</span>
+            <span class="en">We Build&#10;<em>Momentum</em></span>
+          </h1>
+          <p class="hero-sub" id="heroSub">
+            <span class="kr"
+              >디모멘텀은 모델·아티스트의 글로벌 모멘텀을 설계합니다. 광고,
+              콘텐츠, 라이선스 — 한 명의 아티스트가 가진 모든 가능성을
+              실현합니다.</span
+            >
+            <span class="en"
+              >D Momentum designs the global momentum of models and artists —
+              advertising, content, licensing, and every possibility one talent
+              can carry.</span
+            >
+          </p>
+        </div>
+        <div class="hero-controls">
+          <button id="heroPrev" aria-label="Prev">
+            <svg width="36" height="14" viewBox="0 0 36 14">
+              <path
+                d="M7 1L1 7L7 13"
+                stroke="currentColor"
+                stroke-width="1.2"
+                fill="none"
+              />
+              <path d="M1 7H36" stroke="currentColor" stroke-width="1.2" />
+            </svg>
+          </button>
+          <button id="heroNext" aria-label="Next">
+            <svg width="36" height="14" viewBox="0 0 36 14">
+              <path
+                d="M29 1L35 7L29 13"
+                stroke="currentColor"
+                stroke-width="1.2"
+                fill="none"
+              />
+              <path d="M0 7H35" stroke="currentColor" stroke-width="1.2" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-dots" id="heroDots">
+        <button class="active" data-go="0"></button>
+        <button data-go="1"></button>
+        <button data-go="2"></button>
+        <button data-go="3"></button>
+      </div>
+    </section>
 
     <!-- MARQUEE -->
     <div class="marquee">
       <div class="marquee-track">
-        <span>Brand Consulting</span>
-        <span>Influencer Campaign</span>
-        <span>Beauty Direction</span>
-        <span>Fashion Editorial</span>
-        <span>Global Partnership</span>
-        <span>Content Production</span>
-        <span>Brand Consulting</span>
-        <span>Influencer Campaign</span>
-        <span>Beauty Direction</span>
-        <span>Fashion Editorial</span>
+        <span>Talent · Brand · Content</span>
+        <span>Advertising · Campaign · Licensing</span>
+        <span>Broadcast · Film · Digital</span>
+        <span>From Korea, to the World</span>
+        <span>Talent · Brand · Content</span>
+        <span>Advertising · Campaign · Licensing</span>
+        <span>Broadcast · Film · Digital</span>
+        <span>From Korea, to the World</span>
       </div>
     </div>
 
     <!-- ABOUT -->
-    <section id="about" class="about section">
-      <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">About</div>
-          <h2>
-            A bridge between <em>cultures</em>,<br />built on creative
-            intuition.
+    <section id="about" class="section">
+      <div class="section-eyebrow">About D Momentum</div>
+      <h2 class="section-title">
+        <span class="kr">예술과 <em>모멘텀</em>이&#10;만나는 곳</span>
+        <span class="en">Where art meets&#10;<em>momentum</em></span>
+      </h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            <span class="kr"
+              >D MOMENTUM은 2024년 설립된 글로벌 엔터테인먼트 컴퍼니입니다.
+              단순한 매니지먼트가 아니라, 아티스트의 영향력을 가장 정밀한
+              방향으로 가속화합니다.</span
+            >
+            <span class="en"
+              >D MOMENTUM is a global entertainment company founded in 2024.
+              We're not just management — we accelerate an artist's influence in
+              the most precise direction.</span
+            >
+          </p>
+          <p>
+            <span class="kr"
+              >광고·방송·디지털 콘텐츠·라이선싱·해외 사업 전 영역을 아우르며,
+              글로벌 시장을 향한 모멘텀(추진력)을 설계하는 부티크
+              에이전시입니다.</span
+            >
+            <span class="en"
+              >Operating across advertising, broadcast, digital content,
+              licensing, and overseas business, we are a boutique agency
+              engineering momentum toward the global stage.</span
+            >
+          </p>
+        </div>
+        <div>
+          <div class="about-quote">
+            <span class="kr"
+              >"한 명의 아티스트가 만들어내는&#10;세계는 생각보다 넓다."</span
+            >
+            <span class="en"
+              >"The world a single artist can create&#10;is wider than we
+              imagine."</span
+            >
+          </div>
+          <div class="about-meta">
+            <div>
+              <span class="num serif">2024</span
+              ><span class="label">Founded</span>
+            </div>
+            <div>
+              <span class="num serif">Seoul</span><span class="label">HQ</span>
+            </div>
+            <div>
+              <span class="num serif">Global</span
+              ><span class="label">Reach</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTIST -->
+    <section id="artist" class="artist section">
+      <div class="artist-hero">
+        <div class="artist-portrait">
+          <img
+            src="images/artist-main.jpg"
+            alt="Dasha Taran"
+            onerror="this.parentElement.classList.add('placeholder')"
+          />
+        </div>
+        <div>
+          <div class="artist-eyebrow">D MOMENTUM ARTIST · 001</div>
+          <h2 class="artist-name serif">
+            <span class="kr">다샤 타란</span>
+            <span class="en">DASHA TARAN</span>
           </h2>
-        </div>
-        <div class="about-grid">
-          <div class="about-img">
-            <img
-              src="images/about.jpg"
-              alt="Dasha Taran — Portrait"
-              onerror="this.parentElement.classList.add('placeholder')"
-            />
-          </div>
-          <div class="about-text">
-            <p>
-              Dasha Taran은 1,500만 명 이상의 글로벌 팔로워와 함께
-              동유럽·CIS·아시아를 잇는 가장 영향력 있는 인플루언서 중 한
-              명입니다. 그녀가 이끄는 D momentum은 단순한 협업을 넘어, 브랜드의
-              본질을 새로운 시장에 자연스럽게 녹여내는 창작 파트너십을
-              지향합니다.
-            </p>
-            <div class="quote">
-              "We don't sell faces. We translate stories — from one culture to
-              another."
-              <br />— Dasha Taran, Founder
+          <p class="artist-bio">
+            <span class="kr"
+              >러시아 출신, 서울 베이스. 인스타그램 600만, 틱톡 1,400만, 유튜브
+              200만 팔로워. TC Candler 선정 '세계에서 가장 아름다운 얼굴' 글로벌
+              2위.</span
+            >
+            <span class="en"
+              >Russian-born, Seoul-based. 6M on Instagram, 14M on TikTok, 2M on
+              YouTube. Ranked #2 on TC Candler's "100 Most Beautiful
+              Faces."</span
+            >
+          </p>
+          <div class="artist-stats">
+            <div class="stat">
+              <span class="num">1999.10.12</span><span class="label">Born</span>
             </div>
-            <p>
-              K-뷰티, 럭셔리 패션, 라이프스타일 브랜드와 협업하며 캠페인
-              디렉션부터 비주얼 프로덕션, 글로벌 마켓 진출 전략까지 통합
-              솔루션을 제공합니다.
-            </p>
-            <div class="about-stats">
-              <div class="stat">
-                <span class="num">15M+</span
-                ><span class="label">Followers</span>
-              </div>
-              <div class="stat">
-                <span class="num">120+</span
-                ><span class="label">Campaigns</span>
-              </div>
-              <div class="stat">
-                <span class="num">30+</span><span class="label">Countries</span>
-              </div>
+            <div class="stat">
+              <span class="num">22M+</span
+              ><span class="label">Total Reach</span>
+            </div>
+            <div class="stat">
+              <span class="num">#2</span><span class="label">100 Faces</span>
+            </div>
+            <div class="stat">
+              <span class="num">3yrs</span><span class="label">Brand Face</span>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- SERVICES -->
-    <section id="services" class="section">
-      <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">Services</div>
-          <h2>What <em>we do</em>.</h2>
+      <!-- SNS -->
+      <div class="section-eyebrow">Social — Follow Dasha</div>
+      <h3 class="section-title" style="margin-bottom: 32px">
+        <span class="kr"><em>1억의</em> 시선</span>
+        <span class="en"><em>100M</em> Eyes On</span>
+      </h3>
+      <div class="sns-row">
+        <a
+          class="sns-card"
+          href="https://instagram.com/taaarannn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="platform">Instagram</div>
+          <div class="followers serif">6M</div>
+          <div class="handle">@taaarannn</div>
+          <svg class="arrow" width="22" height="22" viewBox="0 0 22 22">
+            <path
+              d="M5 17L17 5M17 5H7M17 5V15"
+              stroke="currentColor"
+              stroke-width="1.4"
+              fill="none"
+            />
+          </svg>
+        </a>
+        <a
+          class="sns-card"
+          href="https://tiktok.com/@tarankaaa"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="platform">TikTok</div>
+          <div class="followers serif">14M</div>
+          <div class="handle">@tarankaaa</div>
+          <svg class="arrow" width="22" height="22" viewBox="0 0 22 22">
+            <path
+              d="M5 17L17 5M17 5H7M17 5V15"
+              stroke="currentColor"
+              stroke-width="1.4"
+              fill="none"
+            />
+          </svg>
+        </a>
+        <a
+          class="sns-card"
+          href="https://www.youtube.com/@DashaTaranbaby"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div class="platform">YouTube</div>
+          <div class="followers serif">2M</div>
+          <div class="handle">@DashaTaranbaby</div>
+          <svg class="arrow" width="22" height="22" viewBox="0 0 22 22">
+            <path
+              d="M5 17L17 5M17 5H7M17 5V15"
+              stroke="currentColor"
+              stroke-width="1.4"
+              fill="none"
+            />
+          </svg>
+        </a>
+      </div>
+
+      <!-- CAREER TABS -->
+      <div class="section-eyebrow">Career Timeline</div>
+      <h3 class="section-title" style="margin-bottom: 24px">
+        <span class="kr"><em>그녀의</em>&#10;다음 챕터</span>
+        <span class="en"><em>Her</em>&#10;Next Chapter</span>
+      </h3>
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="broadcast">Broadcast</button>
+        <button class="tab-btn" data-tab="campaign">Campaign</button>
+        <button class="tab-btn" data-tab="press">Press</button>
+      </div>
+
+      <div class="tab-pane active" data-tab="broadcast">
+        <div class="career-list">
+          <div class="career-item">
+            <div class="date">2026.01.25</div>
+            <div>
+              <div class="title">
+                <span class="kr">KBS Joy '리뷰it 2' — 메인 MC 합류</span>
+                <span class="en"
+                  >KBS Joy 'Review IT 2' — Joining as Main Host</span
+                >
+              </div>
+              <div class="desc">
+                <span class="kr">1~3화 메인 MC. 매주 화요일 밤 10시 방송.</span>
+                <span class="en"
+                  >Main host for ep. 1–3. Every Tue 10 PM KST.</span
+                >
+              </div>
+            </div>
+            <div class="tag">Broadcast</div>
+          </div>
+          <div class="career-item">
+            <div class="date">2025.05.04</div>
+            <div>
+              <div class="title">
+                <span class="kr"
+                  >SBS '신발벗고 돌싱포맨' — 배드민턴 게스트</span
+                >
+                <span class="en">SBS 'Dolsing 4men' — Badminton Episode</span>
+              </div>
+              <div class="desc">
+                <span class="kr">2025. 05. 04 방송 편 게스트 출연</span>
+                <span class="en">Aired May 4, 2025 — Guest appearance</span>
+              </div>
+            </div>
+            <div class="tag">Broadcast</div>
+          </div>
+          <div class="career-item">
+            <div class="date">2024.10.30</div>
+            <div>
+              <div class="title">
+                <span class="kr">'노빠꾸 탁재훈' 173화 게스트</span>
+                <span class="en">'No-Bbaku Tak Jae-hoon' Ep. 173 Guest</span>
+              </div>
+              <div class="desc">
+                <span class="kr">게스트 출연 — 2024.10.30 편</span>
+                <span class="en">Knowing Bros spin-off, ep. 3</span>
+              </div>
+            </div>
+            <div class="tag">Broadcast</div>
+          </div>
+          <div class="career-item">
+            <div class="date">2024.02.05</div>
+            <div>
+              <div class="title">
+                <span class="kr">JTBC '아는외고' 게스트</span>
+                <span class="en">JTBC 'Aneun-oego' — Guest</span>
+              </div>
+              <div class="desc">
+                <span class="kr">게스트 출연 — 2024.02.05 편</span>
+                <span class="en">Guest, Feb 5 2024</span>
+              </div>
+            </div>
+            <div class="tag">Broadcast</div>
+          </div>
+          <div class="career-item">
+            <div class="date">2023</div>
+            <div>
+              <div class="title">
+                <span class="kr">KBS '무엇이든 물어보살'</span>
+                <span class="en">KBS 'Ask Us Anything Bosal'</span>
+              </div>
+              <div class="desc">
+                <span class="kr">'이주승의 위시리스트' / '낭만의 외노자'</span>
+                <span class="en"
+                  >'Lee Joo-seung's Wishlist' / 'The Romantic Foreign
+                  Worker'</span
+                >
+              </div>
+            </div>
+            <div class="tag">Broadcast</div>
+          </div>
         </div>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="num">— 01</div>
-            <h3>Brand Direction</h3>
-            <p>
-              브랜드 아이덴티티, 비주얼 톤, 글로벌 시장 진입 전략을 함께
-              설계합니다. 뷰티·패션·라이프스타일 전반에 걸친 풀스택 컨설팅.
-            </p>
+      </div>
+
+      <div class="tab-pane" data-tab="campaign">
+        <div class="career-list">
+          <div class="career-item">
+            <div class="date">2025.10</div>
+            <div>
+              <div class="title">
+                <span class="kr">TAM BEAUTY — 브랜드 런칭 & 글로벌 모델</span>
+                <span class="en">TAM BEAUTY — Brand Launch & Global Model</span>
+              </div>
+              <div class="desc">
+                <span class="kr">런칭 캠페인부터 25SS 메인 비주얼까지</span>
+                <span class="en">From launch campaign to SS25 main visual</span>
+              </div>
+            </div>
+            <div class="tag">Campaign</div>
           </div>
-          <div class="service-card">
-            <div class="num">— 02</div>
-            <h3>Influencer Campaign</h3>
-            <p>
-              Dasha Taran을 비롯한 글로벌 크리에이터 네트워크를 활용한 캠페인
-              기획·제작·성과 분석. 단발 콘텐츠가 아닌 장기 파트너십 모델.
-            </p>
+          <div class="career-item">
+            <div class="date">2025.09</div>
+            <div>
+              <div class="title">
+                <span class="kr">SUDDEN ATTACK × DASHA — 글로벌 출시</span>
+                <span class="en">SUDDEN ATTACK × DASHA — Global Release</span>
+              </div>
+              <div class="desc">
+                <span class="kr"
+                  >다샤타란 캐릭터 글로벌 서버 동시 출시. 전용 스킨·보이스팩
+                  포함.</span
+                >
+                <span class="en"
+                  >Character released globally with exclusive skin & voice
+                  pack.</span
+                >
+              </div>
+            </div>
+            <div class="tag">Licensing</div>
           </div>
-          <div class="service-card">
-            <div class="num">— 03</div>
-            <h3>Creative Production</h3>
-            <p>
-              에디토리얼 화보, 룩북, 영상 광고, SNS 콘텐츠. 동유럽과 아시아 양쪽
-              시장에서 통하는 비주얼을 직접 디렉팅합니다.
-            </p>
+          <div class="career-item">
+            <div class="date">2025.05</div>
+            <div>
+              <div class="title">
+                <span class="kr">아스테라시스 '리프테라2' 모델</span>
+                <span class="en">Asterasys — 'Lifterra II' Model</span>
+              </div>
+              <div class="desc">
+                <span class="kr">메디컬 디바이스 글로벌 마케팅</span>
+                <span class="en">Medical device global campaign</span>
+              </div>
+            </div>
+            <div class="tag">Campaign</div>
+          </div>
+          <div class="career-item">
+            <div class="date">2025.03</div>
+            <div>
+              <div class="title">
+                <span class="kr">미니쉬 치과 — 전속 모델</span>
+                <span class="en">Minish Dental — Exclusive Model</span>
+              </div>
+              <div class="desc">
+                <span class="kr">3년 연속 브랜드 페이스</span>
+                <span class="en">Brand face for three consecutive years</span>
+              </div>
+            </div>
+            <div class="tag">Campaign</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" data-tab="press">
+        <div class="career-list">
+          <div class="career-item">
+            <div class="date">2025.11</div>
+            <div>
+              <div class="title">
+                <span class="kr">VOGUE KOREA 11월호 단독 화보</span>
+                <span class="en">VOGUE KOREA — November Solo Editorial</span>
+              </div>
+              <div class="desc">
+                <span class="kr"
+                  >Vogue Korea와 함께한 9페이지 단독 인터뷰 & 화보</span
+                >
+                <span class="en"
+                  >9-page exclusive interview & editorial with Vogue Korea</span
+                >
+              </div>
+            </div>
+            <div class="tag">Press</div>
+          </div>
+          <div class="career-item">
+            <div class="date">2025</div>
+            <div>
+              <div class="title">
+                <span class="kr">VOGUE × D MOMENTUM — 2025 가을 인터뷰</span>
+                <span class="en">VOGUE × D MOMENTUM — Fall 2025 Feature</span>
+              </div>
+              <div class="desc">
+                <span class="kr">D MOMENTUM 합류 후 첫 단독 인터뷰</span>
+                <span class="en"
+                  >First solo interview since joining D MOMENTUM</span
+                >
+              </div>
+            </div>
+            <div class="tag">Press</div>
+          </div>
+          <div class="career-item">
+            <div class="date">2024</div>
+            <div>
+              <div class="title">
+                <span class="kr"
+                  >TC Candler — '100 Most Beautiful Faces' 글로벌 2위</span
+                >
+                <span class="en"
+                  >TC Candler — '100 Most Beautiful Faces' #2 Global</span
+                >
+              </div>
+              <div class="desc">
+                <span class="kr"
+                  >TC Candler 선정 세계에서 가장 아름다운 얼굴 2위</span
+                >
+                <span class="en"
+                  >Ranked #2 on TC Candler's '100 Most Beautiful Faces.'</span
+                >
+              </div>
+            </div>
+            <div class="tag">Press</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- GALLERY -->
-    <section id="work" class="gallery section">
-      <div class="container">
-        <div class="section-head">
-          <div class="eyebrow" style="color: var(--accent)">Selected Work</div>
-          <h2>Moments captured,<br /><em>stories told.</em></h2>
-        </div>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img
-              src="images/gallery-1.jpg"
-              alt="Dasha — Work 1"
-              onerror="this.parentElement.classList.add('placeholder')"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="images/gallery-2.jpg"
-              alt="Dasha — Work 2"
-              onerror="this.parentElement.classList.add('placeholder')"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="images/gallery-3.jpg"
-              alt="Dasha — Work 3"
-              onerror="this.parentElement.classList.add('placeholder')"
-            />
-          </div>
-          <div class="gallery-item">
-            <img
-              src="images/gallery-4.jpg"
-              alt="Dasha — Work 4"
-              onerror="this.parentElement.classList.add('placeholder')"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- UPCOMING -->
+    <section id="upcoming" class="section">
+      <div class="section-eyebrow">Upcoming Moments</div>
+      <h2 class="section-title">
+        <span class="kr"><em>다가오는</em>&#10;모멘트</span>
+        <span class="en"><em>Upcoming</em>&#10;Moments</span>
+      </h2>
+      <p
+        style="
+          color: var(--fg-dim);
+          max-width: 600px;
+          margin-top: -32px;
+          margin-bottom: 48px;
+        "
+      >
+        <span class="kr"
+          >글로벌 팬미팅, 신규 광고 캠페인, 컨텐츠 콜라보 — 다음 모멘트를 미리
+          만나보세요.</span
+        >
+        <span class="en"
+          >Global fan meetings, new campaigns, and content collaborations —
+          preview the next moment.</span
+        >
+      </p>
 
-    <!-- PRESS -->
-    <section id="press" class="press section">
-      <div class="container">
-        <div class="section-head">
-          <div class="eyebrow">As Seen In</div>
-          <h2>Featured in <em>global media</em>.</h2>
-        </div>
-        <div class="press-logos">
-          <div>VOGUE</div>
-          <div>ELLE</div>
-          <div>HARPER'S</div>
-          <div>NUMERO</div>
-          <div>MARIE CLAIRE</div>
-        </div>
+      <div class="events">
+        <article class="event-card">
+          <div class="event-img">
+            <img
+              src="images/event-1.jpg"
+              alt="Fan Meeting"
+              onerror="this.parentElement.classList.add('placeholder')"
+            />
+          </div>
+          <div class="event-body">
+            <div class="event-date">DEC 10, 2025</div>
+            <h3 class="event-title">
+              DASHA TARAN&#10;1ST FAN MEETING IN SEOUL
+            </h3>
+            <p class="event-desc">
+              <span class="kr"
+                >디모멘텀 데뷔 후 첫 글로벌 단독 팬미팅. 티켓 오픈 12월
+                1일.</span
+              >
+              <span class="en"
+                >Her first global solo fan meeting since debut. Tickets open Dec
+                1.</span
+              >
+            </p>
+          </div>
+        </article>
+        <article class="event-card">
+          <div class="event-img">
+            <img
+              src="images/event-2.jpg"
+              alt="TAM BEAUTY"
+              onerror="this.parentElement.classList.add('placeholder')"
+            />
+          </div>
+          <div class="event-body">
+            <div class="event-date">2025 HOLIDAY</div>
+            <h3 class="event-title">TAM BEAUTY&#10;HOLIDAY EDITION</h3>
+            <p class="event-desc">
+              <span class="kr">탐뷰티 홀리데이 캡슐 — 글로벌 동시 출시</span>
+              <span class="en"
+                >Tam Beauty holiday capsule — released worldwide.</span
+              >
+            </p>
+          </div>
+        </article>
+        <article class="event-card">
+          <div class="event-img">
+            <img
+              src="images/event-3.jpg"
+              alt="Sudden Attack"
+              onerror="this.parentElement.classList.add('placeholder')"
+            />
+          </div>
+          <div class="event-body">
+            <div class="event-date">2025.09.12</div>
+            <h3 class="event-title">SUDDEN ATTACK&#10;Dasha Character</h3>
+            <p class="event-desc">
+              <span class="kr"
+                >Nexon Games — 첫 글로벌 캐릭터 라이선스 케이스</span
+              >
+              <span class="en"
+                >Nexon Games — first global character license case.</span
+              >
+            </p>
+          </div>
+        </article>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="contact">
-      <div class="container contact-inner">
-        <div>
-          <h2>
-            Let's create <em>something<br />that moves.</em>
-          </h2>
-          <p>
-            브랜드 협업, 캠페인, 미디어 문의는 아래 연락처로 보내주세요. 영업일
-            기준 48시간 내 회신드립니다.
-          </p>
-          <a
-            href="mailto:hello@dmomentum.com"
-            class="btn btn-dark"
-            style="background: var(--accent); color: var(--ink)"
-            >hello@dmomentum.com</a
-          >
+    <section id="contact" class="section">
+      <div class="section-eyebrow">Contact</div>
+      <h2 class="section-title">
+        <span class="kr"><em>함께 만들고 싶은</em>&#10;모멘트가 있다면.</span>
+        <span class="en"
+          >If there's a moment&#10;<em>you'd build with us.</em></span
+        >
+      </h2>
+      <div class="contact-grid">
+        <div class="contact-blocks">
+          <div class="contact-block">
+            <div class="label">Business</div>
+            <a class="serif" href="mailto:biz@dmomentum.co">biz@dmomentum.co</a>
+          </div>
+          <div class="contact-block">
+            <div class="label">Casting</div>
+            <a class="serif" href="mailto:casting@dmomentum.co"
+              >casting@dmomentum.co</a
+            >
+          </div>
+          <div class="contact-block">
+            <div class="label">Press</div>
+            <a class="serif" href="mailto:press@dmomentum.co"
+              >press@dmomentum.co</a
+            >
+          </div>
+          <div class="contact-block">
+            <div class="label">Address</div>
+            <div class="value serif">
+              <span class="kr">서울특별시 강남구</span>
+              <span class="en">Gangnam-gu, Seoul</span>
+            </div>
+          </div>
         </div>
-        <div class="contact-info">
-          <div class="row">
-            <span class="label">General</span>
-            <a href="mailto:hello@dmomentum.com">hello@dmomentum.com</a>
-          </div>
-          <div class="row">
-            <span class="label">Partnership</span>
-            <a href="mailto:partners@dmomentum.com">partners@dmomentum.com</a>
-          </div>
-          <div class="row">
-            <span class="label">Press</span>
-            <a href="mailto:press@dmomentum.com">press@dmomentum.com</a>
-          </div>
-          <div class="row">
-            <span class="label">Studios</span>
-            Seoul · Moscow · Dubai
-          </div>
+        <div>
+          <p style="color: var(--fg-dim); line-height: 1.8; font-size: 16px">
+            <span class="kr"
+              >캐스팅, 광고 협업, 라이선싱, 미디어 문의는 위 연락처로
+              보내주세요. 영업일 기준 48시간 이내에 회신드립니다.</span
+            >
+            <span class="en"
+              >For casting, advertising, licensing, and media inquiries, please
+              use the contacts above. We respond within 48 business hours.</span
+            >
+          </p>
         </div>
       </div>
     </section>
 
-    <footer>
-      <div class="container footer-inner">
-        <div>© 2026 D momentum. All rights reserved.</div>
-        <div class="socials">
-          <a href="#" target="_blank">Instagram</a>
-          <a href="#" target="_blank">YouTube</a>
-          <a href="#" target="_blank">TikTok</a>
+    <!-- FOOTER -->
+    <footer class="dm-footer">
+      <div class="dm-footer-bigmark serif">D MOMENTUM</div>
+      <div class="dm-footer-cols">
+        <div class="dm-footer-col">
+          <h4>Company</h4>
+          <p>D MOMENTUM ENT.</p>
+          <p>
+            <span class="kr">서울특별시 강남구</span
+            ><span class="en">Gangnam-gu, Seoul, Korea</span>
+          </p>
+          <p>Business Reg. — 000-00-00000</p>
         </div>
+        <div class="dm-footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:biz@dmomentum.co">biz@dmomentum.co</a>
+          <a href="mailto:casting@dmomentum.co">casting@dmomentum.co</a>
+          <a href="mailto:press@dmomentum.co">press@dmomentum.co</a>
+        </div>
+        <div class="dm-footer-col">
+          <h4>Artist</h4>
+          <a
+            href="https://instagram.com/taaarannn"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Dasha · Instagram</a
+          >
+          <a
+            href="https://tiktok.com/@tarankaaa"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Dasha · TikTok</a
+          >
+          <a
+            href="https://www.youtube.com/@DashaTaranbaby"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Dasha · YouTube</a
+          >
+        </div>
+        <div class="dm-footer-col">
+          <h4>Site</h4>
+          <a href="#about"
+            ><span class="kr">소개</span><span class="en">About</span></a
+          >
+          <a href="#artist"
+            ><span class="kr">아티스트</span><span class="en">Artist</span></a
+          >
+          <a href="#upcoming"
+            ><span class="kr">모멘트</span><span class="en">Moments</span></a
+          >
+          <a href="#contact"
+            ><span class="kr">문의</span><span class="en">Contact</span></a
+          >
+        </div>
+      </div>
+      <div class="dm-footer-bottom">
+        <div>© 2026 D MOMENTUM ENT. All rights reserved.</div>
+        <div>Where art meets momentum.</div>
       </div>
     </footer>
 
     <script>
-      // Navbar scroll
-      const nav = document.getElementById('nav');
-      window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 40);
+      // ─── HERO SLIDER ───
+      const slides = [
+        'images/hero-1.jpg',
+        'images/hero-2.jpg',
+        'images/hero-3.jpg',
+        'images/hero-4.jpg',
+      ];
+      const titles = {
+        kr: [
+          '우리는\n<em>모멘텀</em>을 만든다',
+          '그녀의\n<em>다음 챕터</em>',
+          'DASHA TARAN\n<em>2026 SS</em>',
+          '서든어택\n<em>다샤타란 캐릭터</em>',
+        ],
+        en: [
+          'We Build\n<em>Momentum</em>',
+          'Her\n<em>Next Chapter</em>',
+          'DASHA TARAN\n<em>2026 SS</em>',
+          'SUDDEN ATTACK\n<em>Dasha Character</em>',
+        ],
+      };
+      const eyebrows = [
+        'D MOMENTUM — ENTERTAINMENT',
+        'D MOMENTUM ARTIST · 001',
+        'CAMPAIGN — TAM BEAUTY 2026',
+        'LICENSING — NEXON × DASHA',
+      ];
+      const slideEls = document.querySelectorAll('#heroBg .slide');
+      const dotEls = document.querySelectorAll('#heroDots button');
+      const titleEl = document.getElementById('heroTitle');
+      const eyebrowEl = document.getElementById('heroEyebrow');
+      let current = 0;
+      let timer;
+
+      // Try loading hero images, set as background if available; otherwise leave dark
+      slideEls.forEach((el, i) => {
+        const img = new Image();
+        img.onload = () => {
+          el.style.backgroundImage = `url(${slides[i]})`;
+        };
+        img.onerror = () => {
+          el.style.background = `radial-gradient(ellipse at ${30 + i * 15}% 40%, #2a2218 0%, #050505 75%)`;
+        };
+        img.src = slides[i];
       });
 
-      // Fade-up on scroll
+      function renderTitle() {
+        const lang = document.documentElement.getAttribute('data-lang') || 'kr';
+        const t = titles[lang][current].replace(/\n/g, '<br>');
+        titleEl.innerHTML = t;
+        eyebrowEl.textContent = eyebrows[current];
+      }
+      function goTo(i) {
+        current = (i + slides.length) % slides.length;
+        slideEls.forEach((el) => el.classList.remove('active'));
+        dotEls.forEach((el) => el.classList.remove('active'));
+        slideEls[current].classList.add('active');
+        dotEls[current].classList.add('active');
+        renderTitle();
+        resetTimer();
+      }
+      function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), 6000);
+      }
+      document.getElementById('heroPrev').onclick = () => goTo(current - 1);
+      document.getElementById('heroNext').onclick = () => goTo(current + 1);
+      dotEls.forEach((d) => (d.onclick = () => goTo(parseInt(d.dataset.go))));
+      resetTimer();
+      renderTitle();
+
+      // ─── LANGUAGE TOGGLE ───
+      document.querySelectorAll('[data-set-lang]').forEach((btn) => {
+        btn.onclick = () => {
+          const lang = btn.dataset.setLang;
+          document.documentElement.setAttribute('data-lang', lang);
+          document.documentElement.setAttribute(
+            'lang',
+            lang === 'kr' ? 'ko' : 'en',
+          );
+          document
+            .querySelectorAll('[data-set-lang]')
+            .forEach((b) => b.classList.toggle('active', b === btn));
+          renderTitle();
+        };
+      });
+
+      // ─── HEADER SCROLL ───
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 60);
+      });
+
+      // ─── CAREER TABS ───
+      document.querySelectorAll('.tab-btn').forEach((btn) => {
+        btn.onclick = () => {
+          const t = btn.dataset.tab;
+          document
+            .querySelectorAll('.tab-btn')
+            .forEach((b) => b.classList.toggle('active', b.dataset.tab === t));
+          document
+            .querySelectorAll('.tab-pane')
+            .forEach((p) => p.classList.toggle('active', p.dataset.tab === t));
+        };
+      });
+
+      // ─── REVEAL ON SCROLL ───
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
             if (e.isIntersecting) e.target.classList.add('in');
           });
         },
-        { threshold: 0.15 },
+        { threshold: 0.12 },
       );
       document
         .querySelectorAll(
-          '.section-head, .service-card, .about-img, .about-text, .hero-text, .hero-image, .gallery-item',
+          '.section, .marquee, .artist-portrait, .sns-card, .event-card',
         )
         .forEach((el) => {
-          el.classList.add('fade-up');
+          el.classList.add('reveal');
           io.observe(el);
         });
     </script>
