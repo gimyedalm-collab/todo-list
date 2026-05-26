@@ -222,6 +222,34 @@
       .hero-image:hover img {
         transform: scale(1.05);
       }
+      /* Elegant placeholder when image file missing */
+      .placeholder img {
+        display: none;
+      }
+      .placeholder {
+        background: linear-gradient(
+          135deg,
+          #d9d2c2 0%,
+          #b8a988 50%,
+          #6b5d44 100%
+        );
+        position: relative;
+      }
+      .placeholder::after {
+        content: 'D';
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 140px;
+        color: rgba(255, 255, 255, 0.35);
+        font-weight: 300;
+      }
+      .gallery-item.placeholder::after {
+        font-size: 80px;
+      }
       .hero-image::before {
         content: '';
         position: absolute;
@@ -660,8 +688,9 @@
       </div>
       <div class="hero-image">
         <img
-          src="https://images.unsplash.com/photo-1521577352947-9bb58764b69a?auto=format&fit=crop&w=900&q=80"
-          alt="Editorial portrait"
+          src="images/hero.jpg"
+          alt="Dasha Taran — Hero"
+          onerror="this.parentElement.classList.add('placeholder')"
         />
       </div>
     </header>
@@ -695,8 +724,9 @@
         <div class="about-grid">
           <div class="about-img">
             <img
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80"
-              alt="Dasha Taran"
+              src="images/about.jpg"
+              alt="Dasha Taran — Portrait"
+              onerror="this.parentElement.classList.add('placeholder')"
             />
           </div>
           <div class="about-text">
@@ -781,26 +811,30 @@
         <div class="gallery-grid">
           <div class="gallery-item">
             <img
-              src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=1200&q=80"
-              alt="Editorial 1"
+              src="images/gallery-1.jpg"
+              alt="Dasha — Work 1"
+              onerror="this.parentElement.classList.add('placeholder')"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80"
-              alt="Editorial 2"
+              src="images/gallery-2.jpg"
+              alt="Dasha — Work 2"
+              onerror="this.parentElement.classList.add('placeholder')"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80"
-              alt="Editorial 3"
+              src="images/gallery-3.jpg"
+              alt="Dasha — Work 3"
+              onerror="this.parentElement.classList.add('placeholder')"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=800&q=80"
-              alt="Editorial 4"
+              src="images/gallery-4.jpg"
+              alt="Dasha — Work 4"
+              onerror="this.parentElement.classList.add('placeholder')"
             />
           </div>
         </div>
