@@ -1,0 +1,1131 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐뷰티 × 롯데 팝업 — 3평 부스 3D 뷰어 (인터랙티브)</title>
+    <style>
+      :root {
+        --pink-pale: #fff5f8;
+        --pink-soft: #fde6ec;
+        --pink: #fbc4cf;
+        --cherry: #e85d70;
+        --red: #d43a4a;
+        --red-deep: #b02838;
+        --ink: #1a1a1a;
+        --bg: #f5efe9;
+        --panel-bg: rgba(255, 255, 255, 0.85);
+        --panel-border: rgba(0, 0, 0, 0.08);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--panel-border);
+        z-index: 10;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .brand .logo {
+        font-size: 14px;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        color: var(--red);
+      }
+      .brand .divider {
+        width: 1px;
+        height: 16px;
+        background: var(--panel-border);
+      }
+      .brand .title {
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--ink);
+        text-transform: uppercase;
+      }
+      .meta {
+        font-size: 11.5px;
+        color: #888;
+        font-family: 'SF Mono', Consolas, monospace;
+      }
+      .meta b {
+        color: var(--red);
+      }
+
+      #container {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      #container canvas {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+        cursor: grab;
+      }
+      #container canvas:active {
+        cursor: grabbing;
+      }
+
+      .panel {
+        position: absolute;
+        background: var(--panel-bg);
+        backdrop-filter: blur(14px);
+        border: 1px solid var(--panel-border);
+        border-radius: 14px;
+        padding: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        z-index: 5;
+      }
+      .panel-title {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        color: #888;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        padding-left: 4px;
+      }
+
+      .panel.views {
+        top: 20px;
+        right: 20px;
+        width: 130px;
+      }
+      .panel.views button {
+        display: block;
+        width: 100%;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink);
+        cursor: pointer;
+        text-align: left;
+        margin-bottom: 2px;
+        font-family: inherit;
+        transition: all 0.15s ease;
+      }
+      .panel.views button:hover {
+        background: rgba(212, 58, 74, 0.08);
+        border-color: rgba(212, 58, 74, 0.15);
+      }
+      .panel.views button.active {
+        background: var(--red);
+        color: #fff;
+      }
+      .panel.views button .kbd {
+        float: right;
+        font-size: 10.5px;
+        opacity: 0.5;
+        font-family: 'SF Mono', Consolas, monospace;
+        margin-top: 2px;
+      }
+      .panel.views button.active .kbd {
+        opacity: 0.7;
+      }
+
+      .panel.options {
+        top: 20px;
+        left: 20px;
+        width: 200px;
+      }
+      .panel.options label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 4px;
+        font-size: 13px;
+        color: var(--ink);
+        cursor: pointer;
+        border-radius: 6px;
+        user-select: none;
+      }
+      .panel.options label:hover {
+        background: rgba(0, 0, 0, 0.03);
+      }
+      .panel.options input[type='checkbox'] {
+        width: 16px;
+        height: 16px;
+        accent-color: var(--red);
+        cursor: pointer;
+      }
+      .panel.options .sep {
+        height: 1px;
+        background: var(--panel-border);
+        margin: 8px 0;
+      }
+      .panel.options button {
+        display: block;
+        width: 100%;
+        background: #fff;
+        border: 1px solid var(--panel-border);
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink);
+        cursor: pointer;
+        margin-bottom: 4px;
+        font-family: inherit;
+        transition: all 0.15s ease;
+      }
+      .panel.options button:hover {
+        background: var(--red);
+        color: #fff;
+        border-color: var(--red);
+      }
+
+      .panel.legend {
+        bottom: 20px;
+        left: 20px;
+        width: 200px;
+      }
+      .panel.legend .item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 2px;
+        font-size: 12px;
+        color: var(--ink);
+      }
+      .panel.legend .item i {
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        flex-shrink: 0;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      .panel.info {
+        bottom: 20px;
+        right: 20px;
+        max-width: 280px;
+        padding: 14px 16px;
+      }
+      .panel.info h3 {
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 4px;
+        color: var(--ink);
+      }
+      .panel.info p {
+        font-size: 11.5px;
+        color: #666;
+        line-height: 1.55;
+      }
+
+      .hint {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 11px;
+        color: #888;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(8px);
+        padding: 6px 14px;
+        border-radius: 100px;
+        white-space: nowrap;
+        z-index: 4;
+      }
+      .hint kbd {
+        font-family: 'SF Mono', Consolas, monospace;
+        background: rgba(0, 0, 0, 0.08);
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-size: 10.5px;
+        color: var(--ink);
+      }
+
+      .loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 100;
+      }
+      .loader .dot {
+        width: 12px;
+        height: 12px;
+        background: var(--red);
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 4px;
+        animation: pulse 1.4s infinite;
+      }
+      .loader .dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .loader .dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .loader p {
+        margin-top: 16px;
+        font-size: 13px;
+        color: #666;
+        font-weight: 600;
+      }
+      @keyframes pulse {
+        0%,
+        80%,
+        100% {
+          transform: scale(0.7);
+          opacity: 0.4;
+        }
+        40% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .loader.hidden {
+        display: none;
+      }
+
+      @media (max-width: 760px) {
+        .panel.views,
+        .panel.options,
+        .panel.legend,
+        .panel.info {
+          padding: 10px;
+        }
+        .panel.views {
+          top: 70px;
+          right: 12px;
+          width: 110px;
+        }
+        .panel.options {
+          top: 70px;
+          left: 12px;
+          width: 170px;
+        }
+        .panel.legend {
+          bottom: 60px;
+          left: 12px;
+          width: 170px;
+        }
+        .panel.info {
+          display: none;
+        }
+        .hint {
+          font-size: 10px;
+          padding: 5px 12px;
+        }
+        header {
+          padding: 0 14px;
+          height: 50px;
+        }
+        #container {
+          top: 50px;
+        }
+        .meta {
+          display: none;
+        }
+      }
+    </style>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <span class="logo">TAM BEAUTY</span>
+        <span class="divider"></span>
+        <span class="title">3D BOOTH VIEWER · v1</span>
+      </div>
+      <div class="meta">3.6 × 2.8 × 2.4 m · <b>롯데 7월 팝업</b></div>
+    </header>
+
+    <main id="container">
+      <div class="loader" id="loader">
+        <span class="dot"></span><span class="dot"></span
+        ><span class="dot"></span>
+        <p>3D 부스 로딩 중...</p>
+      </div>
+
+      <div class="panel views">
+        <div class="panel-title">VIEW</div>
+        <button data-view="iso" class="active">
+          아이소<span class="kbd">1</span>
+        </button>
+        <button data-view="front">정면<span class="kbd">2</span></button>
+        <button data-view="right">우측<span class="kbd">3</span></button>
+        <button data-view="pov">1인칭<span class="kbd">4</span></button>
+        <button data-view="top">탑뷰<span class="kbd">5</span></button>
+      </div>
+
+      <div class="panel options">
+        <div class="panel-title">OPTIONS</div>
+        <label><input type="checkbox" id="autoRotate" /> 자동 회전</label>
+        <label
+          ><input type="checkbox" id="warmLight" checked /> 따뜻한 조명</label
+        >
+        <label><input type="checkbox" id="showWalls" checked /> 벽 표시</label>
+        <label><input type="checkbox" id="showCeiling" /> 천장 표시</label>
+        <div class="sep"></div>
+        <button id="screenshot">📸 화면 캡처</button>
+        <button id="resetCam">↻ 카메라 초기화</button>
+      </div>
+
+      <div class="panel legend">
+        <div class="panel-title">LEGEND</div>
+        <div class="item">
+          <i style="background: linear-gradient(180deg, #fff5f8, #fbc4cf)"></i
+          >좌 · 클라우드존
+        </div>
+        <div class="item">
+          <i style="background: linear-gradient(180deg, #fde6ec, #f18ea5)"></i
+          >중 · 셀카존
+        </div>
+        <div class="item">
+          <i style="background: linear-gradient(180deg, #e85d70, #b02838)"></i
+          >우 · 체리존
+        </div>
+        <div class="item">
+          <i style="background: radial-gradient(circle, #fff, #fbc4cf)"></i>솜털
+          클라우드 오브제
+        </div>
+        <div class="item">
+          <i style="background: #d43a4a"></i>탐뷰티 시그니처 레드
+        </div>
+        <div class="item">
+          <i style="background: #ededed"></i>미러 (반사 표면)
+        </div>
+      </div>
+
+      <div class="panel info" id="infoPanel">
+        <h3 id="infoTitle">아이소메트릭 뷰</h3>
+        <p id="infoDesc">
+          우상단 45° 시점에서 부스 전체를 한 번에. 마우스로 자유롭게 회전·줌
+          가능.
+        </p>
+      </div>
+
+      <div class="hint">
+        <kbd>드래그</kbd> 회전 · <kbd>휠</kbd> 줌 · <kbd>우클릭</kbd> 이동 ·
+        <kbd>1-5</kbd> 뷰 단축키
+      </div>
+    </main>
+
+    <script type="module">
+      import * as THREE from 'three';
+      import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+      // ============ Scene ============
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xf5efe9);
+      scene.fog = new THREE.Fog(0xf5efe9, 12, 25);
+
+      const container = document.getElementById('container');
+      const W = () => container.clientWidth;
+      const H = () => container.clientHeight;
+
+      // ============ Camera ============
+      const camera = new THREE.PerspectiveCamera(45, W() / H(), 0.1, 100);
+      camera.position.set(5.5, 4.0, 5.5);
+
+      // ============ Renderer ============
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setSize(W(), H());
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.0;
+      container.appendChild(renderer.domElement);
+
+      // ============ Controls ============
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.target.set(1.8, 1.0, 1.4);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.07;
+      controls.maxDistance = 14;
+      controls.minDistance = 1.5;
+      controls.maxPolarAngle = Math.PI / 2 - 0.02;
+      controls.autoRotateSpeed = 0.8;
+
+      // ============ Lighting ============
+      const ambient = new THREE.AmbientLight(0xffffff, 0.45);
+      scene.add(ambient);
+
+      const hemi = new THREE.HemisphereLight(0xfde6ec, 0xf4d9c7, 0.55);
+      hemi.position.set(0, 5, 0);
+      scene.add(hemi);
+
+      // Main key light (sun-like)
+      const keyLight = new THREE.DirectionalLight(0xfff0e6, 0.7);
+      keyLight.position.set(4, 6, 3);
+      keyLight.castShadow = true;
+      keyLight.shadow.mapSize.width = 2048;
+      keyLight.shadow.mapSize.height = 2048;
+      keyLight.shadow.camera.left = -4;
+      keyLight.shadow.camera.right = 4;
+      keyLight.shadow.camera.top = 4;
+      keyLight.shadow.camera.bottom = -4;
+      keyLight.shadow.bias = -0.001;
+      scene.add(keyLight);
+
+      // Booth spotlights (warm) — 6 track spotlights
+      const spotGroup = new THREE.Group();
+      const spotPositions = [
+        [0.6, 2.35, 0.5],
+        [0.6, 2.35, 1.5],
+        [1.71, 2.35, 0.6],
+        [1.71, 2.35, 1.7],
+        [2.9, 2.35, 0.5],
+        [2.9, 2.35, 1.6],
+      ];
+      spotPositions.forEach(([x, y, z]) => {
+        const spot = new THREE.SpotLight(
+          0xffd9b3,
+          0.8,
+          4.5,
+          Math.PI / 4.5,
+          0.4,
+          1.4,
+        );
+        spot.position.set(x, y, z);
+        spot.target.position.set(x, 0, z);
+        spotGroup.add(spot);
+        spotGroup.add(spot.target);
+      });
+      scene.add(spotGroup);
+
+      // Lip wall backlight (cherry)
+      const cherryGlow = new THREE.PointLight(0xff7a8a, 0.6, 2.5);
+      cherryGlow.position.set(2.9, 1.4, 2.4);
+      scene.add(cherryGlow);
+
+      // Cloud zone soft fill
+      const cloudFill = new THREE.PointLight(0xfde6ec, 0.4, 2.5);
+      cloudFill.position.set(0.6, 1.8, 1.4);
+      scene.add(cloudFill);
+
+      // ============ Helpers ============
+      function makeBox(x, y, z, w, h, d, color, opts = {}) {
+        const mat = new THREE.MeshStandardMaterial({
+          color: color,
+          roughness: opts.roughness ?? 0.65,
+          metalness: opts.metalness ?? 0.0,
+          transparent: opts.transparent ?? false,
+          opacity: opts.opacity ?? 1.0,
+          side: opts.side ?? THREE.FrontSide,
+          emissive: opts.emissive ?? 0x000000,
+          emissiveIntensity: opts.emissiveIntensity ?? 0,
+        });
+        const geom = new THREE.BoxGeometry(w, h, d);
+        const mesh = new THREE.Mesh(geom, mat);
+        mesh.position.set(x, y, z);
+        mesh.castShadow = opts.shadow !== false;
+        mesh.receiveShadow = opts.receive !== false;
+        scene.add(mesh);
+        return mesh;
+      }
+
+      function makeCircle(x, y, z, r, color, opts = {}) {
+        const mat = new THREE.MeshStandardMaterial({
+          color: color,
+          roughness: opts.roughness ?? 0.85,
+          transparent: opts.transparent ?? false,
+          opacity: opts.opacity ?? 1.0,
+        });
+        const geom = new THREE.CircleGeometry(r, 48);
+        const mesh = new THREE.Mesh(geom, mat);
+        mesh.rotation.x = -Math.PI / 2;
+        mesh.position.set(x, y, z);
+        mesh.receiveShadow = true;
+        scene.add(mesh);
+        return mesh;
+      }
+
+      // ============ Floor (3 zones) ============
+      // Outer base floor (cream)
+      const baseFloor = new THREE.Mesh(
+        new THREE.PlaneGeometry(20, 20),
+        new THREE.MeshStandardMaterial({ color: 0xe8e0d4, roughness: 0.9 }),
+      );
+      baseFloor.rotation.x = -Math.PI / 2;
+      baseFloor.position.y = -0.01;
+      baseFloor.receiveShadow = true;
+      scene.add(baseFloor);
+
+      // Cloud zone floor (left, x: 0~1.26)
+      makeBox(0.63, 0.005, 1.4, 1.26, 0.01, 2.8, 0xfde6ec, { shadow: false });
+      // Selfie zone floor (center, x: 1.26~2.16)
+      makeBox(1.71, 0.005, 1.4, 0.9, 0.01, 2.8, 0xfbc4cf, { shadow: false });
+      // Cherry zone floor (right, x: 2.16~3.6)
+      makeBox(2.88, 0.005, 1.4, 1.44, 0.01, 2.8, 0xf18ea5, { shadow: false });
+
+      // ============ Walls ============
+      const wallGroup = new THREE.Group();
+
+      // Back wall (z=2.8): gradient via vertex colors
+      const backGeom = new THREE.PlaneGeometry(3.6, 2.4, 30, 1);
+      const backMat = new THREE.MeshStandardMaterial({
+        vertexColors: true,
+        side: THREE.DoubleSide,
+        roughness: 0.85,
+      });
+      // Apply gradient colors per vertex
+      const backColors = new Float32Array(
+        backGeom.attributes.position.count * 3,
+      );
+      for (let i = 0; i < backGeom.attributes.position.count; i++) {
+        const x = backGeom.attributes.position.getX(i);
+        const t = (x + 1.8) / 3.6; // 0~1 across width
+        let r, g, b;
+        if (t < 0.35) {
+          // soft pink to pink
+          const u = t / 0.35;
+          r = 1.0;
+          g = 0.965 - u * 0.06;
+          b = 0.973 - u * 0.16;
+        } else if (t < 0.65) {
+          // pink to cherry
+          const u = (t - 0.35) / 0.3;
+          r = 1.0 - u * 0.06;
+          g = 0.91 - u * 0.36;
+          b = 0.81 - u * 0.16;
+        } else {
+          // cherry to deep red
+          const u = (t - 0.65) / 0.35;
+          r = 0.94 - u * 0.25;
+          g = 0.56 - u * 0.4;
+          b = 0.65 - u * 0.43;
+        }
+        backColors[i * 3] = r;
+        backColors[i * 3 + 1] = g;
+        backColors[i * 3 + 2] = b;
+      }
+      backGeom.setAttribute('color', new THREE.BufferAttribute(backColors, 3));
+      const backWall = new THREE.Mesh(backGeom, backMat);
+      backWall.position.set(1.8, 1.2, 2.8);
+      backWall.receiveShadow = true;
+      wallGroup.add(backWall);
+
+      // Left wall (x=0)
+      const leftWall = new THREE.Mesh(
+        new THREE.PlaneGeometry(2.8, 2.4),
+        new THREE.MeshStandardMaterial({
+          color: 0xfff5f8,
+          side: THREE.DoubleSide,
+          roughness: 0.9,
+        }),
+      );
+      leftWall.rotation.y = Math.PI / 2;
+      leftWall.position.set(0, 1.2, 1.4);
+      leftWall.receiveShadow = true;
+      wallGroup.add(leftWall);
+
+      // Right wall (x=3.6) — slightly opaque so we can see in
+      const rightWall = new THREE.Mesh(
+        new THREE.PlaneGeometry(2.8, 2.4),
+        new THREE.MeshStandardMaterial({
+          color: 0xffe4ea,
+          side: THREE.DoubleSide,
+          roughness: 0.9,
+          transparent: true,
+          opacity: 0.4,
+        }),
+      );
+      rightWall.rotation.y = -Math.PI / 2;
+      rightWall.position.set(3.6, 1.2, 1.4);
+      rightWall.receiveShadow = true;
+      wallGroup.add(rightWall);
+
+      // Header sign top
+      const header = new THREE.Mesh(
+        new THREE.BoxGeometry(3.6, 0.32, 0.04),
+        new THREE.MeshStandardMaterial({ color: 0xd43a4a, roughness: 0.5 }),
+      );
+      header.position.set(1.8, 2.55, 0.0);
+      wallGroup.add(header);
+
+      scene.add(wallGroup);
+
+      // Ceiling (optional)
+      const ceiling = new THREE.Mesh(
+        new THREE.PlaneGeometry(3.6, 2.8),
+        new THREE.MeshStandardMaterial({
+          color: 0xfaf6f1,
+          side: THREE.DoubleSide,
+          roughness: 0.95,
+        }),
+      );
+      ceiling.rotation.x = Math.PI / 2;
+      ceiling.position.set(1.8, 2.4, 1.4);
+      ceiling.visible = false;
+      scene.add(ceiling);
+
+      // ============ LEFT ZONE: Cloud ============
+
+      // Cloud blur pedestal (80×40 base, 80 tall)
+      makeBox(0.63, 0.4, 1.2, 0.8, 0.8, 0.4, 0xffffff, { roughness: 0.55 });
+
+      // Pedestal accent stripe
+      makeBox(0.63, 0.05, 1.2, 0.82, 0.05, 0.42, 0xfde6ec, { roughness: 0.7 });
+
+      // Product on pedestal (cloud blur tube)
+      const productMat = new THREE.MeshStandardMaterial({
+        color: 0xd43a4a,
+        roughness: 0.35,
+        metalness: 0.15,
+      });
+      const product = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.04, 0.04, 0.18, 24),
+        productMat,
+      );
+      product.position.set(0.63, 0.89, 1.2);
+      product.castShadow = true;
+      scene.add(product);
+      // Product cap
+      const cap = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.042, 0.042, 0.04, 24),
+        new THREE.MeshStandardMaterial({ color: 0xfde6ec, roughness: 0.4 }),
+      );
+      cap.position.set(0.63, 1.0, 1.2);
+      cap.castShadow = true;
+      scene.add(cap);
+
+      // Cloud objet (hanging) — composite spheres
+      const cloudGroup = new THREE.Group();
+      const cloudMat = new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        roughness: 0.95,
+        emissive: 0xfde6ec,
+        emissiveIntensity: 0.08,
+      });
+      [
+        [0, 0, 0, 0.34],
+        [-0.18, -0.05, 0.05, 0.22],
+        [0.16, 0.02, -0.04, 0.24],
+        [-0.05, 0.08, 0.14, 0.18],
+        [0.04, -0.1, -0.1, 0.2],
+        [-0.1, 0.06, -0.13, 0.16],
+      ].forEach(([dx, dy, dz, r]) => {
+        const s = new THREE.Mesh(new THREE.SphereGeometry(r, 24, 16), cloudMat);
+        s.position.set(dx, dy, dz);
+        s.castShadow = true;
+        cloudGroup.add(s);
+      });
+      // Add a tiny pink tint sphere
+      const pinkSphere = new THREE.Mesh(
+        new THREE.SphereGeometry(0.15, 24, 16),
+        new THREE.MeshStandardMaterial({
+          color: 0xfbc4cf,
+          roughness: 0.92,
+          transparent: true,
+          opacity: 0.7,
+        }),
+      );
+      pinkSphere.position.set(-0.08, -0.12, 0.05);
+      cloudGroup.add(pinkSphere);
+
+      cloudGroup.position.set(0.63, 1.78, 1.4);
+      scene.add(cloudGroup);
+
+      // Cable from ceiling
+      const cable = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.005, 0.005, 0.6, 8),
+        new THREE.MeshStandardMaterial({ color: 0xaaaaaa }),
+      );
+      cable.position.set(0.63, 2.1, 1.4);
+      scene.add(cable);
+
+      // Demo mirror table (small)
+      makeBox(0.55, 0.025, 2.4, 0.7, 0.05, 0.18, 0xeeeeee, { roughness: 0.6 });
+      // Demo mirror itself
+      const demoMirror = new THREE.Mesh(
+        new THREE.BoxGeometry(0.55, 0.5, 0.03),
+        new THREE.MeshStandardMaterial({
+          color: 0xc0d0d8,
+          roughness: 0.05,
+          metalness: 0.95,
+          envMapIntensity: 1.5,
+        }),
+      );
+      demoMirror.position.set(0.55, 0.3, 2.44);
+      demoMirror.castShadow = true;
+      scene.add(demoMirror);
+      // Mirror frame
+      makeBox(0.55, 0.3, 2.46, 0.6, 0.55, 0.04, 0xffffff, { roughness: 0.5 });
+
+      // Small cloud decorations on pedestal corners
+      [
+        [0.3, 0.82, 1.1],
+        [0.96, 0.82, 1.3],
+      ].forEach(([x, y, z]) => {
+        const s = new THREE.Mesh(
+          new THREE.SphereGeometry(0.08, 16, 12),
+          new THREE.MeshStandardMaterial({ color: 0xfde6ec, roughness: 0.95 }),
+        );
+        s.position.set(x, y, z);
+        s.castShadow = true;
+        scene.add(s);
+      });
+
+      // ============ CENTER ZONE: Selfie ============
+
+      // Full body mirror frame
+      makeBox(1.71, 1.22, 2.77, 0.66, 2.04, 0.04, 0xf5e6ea, { roughness: 0.5 });
+      // Mirror surface (reflective)
+      const fullMirror = new THREE.Mesh(
+        new THREE.BoxGeometry(0.6, 2.0, 0.02),
+        new THREE.MeshStandardMaterial({
+          color: 0xd8e0e6,
+          roughness: 0.05,
+          metalness: 0.95,
+        }),
+      );
+      fullMirror.position.set(1.71, 1.22, 2.755);
+      fullMirror.castShadow = true;
+      scene.add(fullMirror);
+
+      // Logo backdrop above mirror
+      makeBox(1.71, 2.34, 2.77, 0.72, 0.18, 0.04, 0xd43a4a, { roughness: 0.4 });
+      // Logo text (front face as emissive plane)
+      const logoPlane = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.6, 0.1),
+        new THREE.MeshBasicMaterial({
+          color: 0xffffff,
+          side: THREE.DoubleSide,
+        }),
+      );
+      logoPlane.position.set(1.71, 2.34, 2.755);
+      scene.add(logoPlane);
+
+      // Selfie floor mark (pink rug, circle)
+      makeCircle(1.71, 0.015, 1.55, 0.42, 0xfbc4cf, { roughness: 0.95 });
+      makeCircle(1.71, 0.018, 1.55, 0.38, 0xffe4ea, { roughness: 0.95 });
+      makeCircle(1.71, 0.021, 1.55, 0.16, 0xf18ea5, { roughness: 0.92 });
+
+      // ============ RIGHT ZONE: Cherry ============
+
+      // Lip color wall frame
+      makeBox(2.91, 1.4, 2.76, 1.12, 1.22, 0.06, 0xffffff, { roughness: 0.45 });
+      // Inner lip wall back panel
+      makeBox(2.91, 1.4, 2.76, 1.05, 1.15, 0.05, 0xfde6ec, { roughness: 0.5 });
+
+      // 12 lip swatches (4×3 grid)
+      const swatchColors = [
+        0xc0394a, 0xd43a4a, 0xe85d70, 0xf18ea5, 0xa8294a, 0xb02838, 0xcc4d5a,
+        0xdd7585, 0x8e1f3a, 0xa3344a, 0xbc5060, 0xd57a8a,
+      ];
+      const swCols = 4,
+        swRows = 3;
+      const swWallW = 1.0,
+        swWallH = 1.1;
+      const swW = (swWallW / swCols) * 0.82;
+      const swH = (swWallH / swRows) * 0.7;
+      for (let r = 0; r < swRows; r++) {
+        for (let c = 0; c < swCols; c++) {
+          const idx = r * swCols + c;
+          const xOff = -swWallW / 2 + swW / 2 + c * (swWallW / swCols);
+          const yOff = swWallH / 2 - swH / 2 - r * (swWallH / swRows);
+          const swatch = makeBox(
+            2.91 + xOff,
+            1.4 + yOff,
+            2.74,
+            swW,
+            swH,
+            0.04,
+            swatchColors[idx],
+            { roughness: 0.3, metalness: 0.1 },
+          );
+        }
+      }
+
+      // Swatch tray
+      makeBox(3.05, 0.43, 1.85, 1.2, 0.85, 0.4, 0xffffff, { roughness: 0.55 });
+      // Mirror top of tray
+      const trayMirror = new THREE.Mesh(
+        new THREE.BoxGeometry(1.1, 0.02, 0.35),
+        new THREE.MeshStandardMaterial({
+          color: 0xe0e6ea,
+          roughness: 0.1,
+          metalness: 0.85,
+        }),
+      );
+      trayMirror.position.set(3.05, 0.87, 1.85);
+      trayMirror.castShadow = true;
+      scene.add(trayMirror);
+
+      // BEST TOP3 pedestal
+      makeBox(3.2, 0.4, 0.78, 1.0, 0.8, 0.46, 0xd43a4a, { roughness: 0.45 });
+      // Gold trim
+      makeBox(3.2, 0.795, 0.78, 1.02, 0.02, 0.48, 0xe8c89a, {
+        roughness: 0.3,
+        metalness: 0.5,
+      });
+      // 3 lipsticks on top
+      [
+        [2.85, 0xa3344a],
+        [3.2, 0xd43a4a],
+        [3.55, 0xf18ea5],
+      ].forEach(([x, c]) => {
+        const tube = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.038, 0.038, 0.18, 24),
+          new THREE.MeshStandardMaterial({
+            color: c,
+            roughness: 0.35,
+            metalness: 0.2,
+          }),
+        );
+        tube.position.set(x, 0.91, 0.78);
+        tube.castShadow = true;
+        scene.add(tube);
+        const cap = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.04, 0.04, 0.05, 24),
+          new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.4 }),
+        );
+        cap.position.set(x, 1.03, 0.78);
+        cap.castShadow = true;
+        scene.add(cap);
+      });
+
+      // ============ Ambient props ============
+      // Header sign text (TAM BEAUTY) using canvas texture
+      const canvas = document.createElement('canvas');
+      canvas.width = 1024;
+      canvas.height = 128;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#d43a4a';
+      ctx.fillRect(0, 0, 1024, 128);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 56px Pretendard, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('TAM BEAUTY  ·  Cloud to Cherry', 512, 64);
+      const tex = new THREE.CanvasTexture(canvas);
+      const signFront = new THREE.Mesh(
+        new THREE.PlaneGeometry(3.5, 0.3),
+        new THREE.MeshBasicMaterial({ map: tex, side: THREE.DoubleSide }),
+      );
+      signFront.position.set(1.8, 2.55, 0.025);
+      scene.add(signFront);
+
+      // Logo text on backdrop
+      const canvas2 = document.createElement('canvas');
+      canvas2.width = 512;
+      canvas2.height = 96;
+      const ctx2 = canvas2.getContext('2d');
+      ctx2.fillStyle = '#d43a4a';
+      ctx2.fillRect(0, 0, 512, 96);
+      ctx2.fillStyle = '#ffffff';
+      ctx2.font = 'bold 48px Pretendard, sans-serif';
+      ctx2.textAlign = 'center';
+      ctx2.textBaseline = 'middle';
+      ctx2.fillText('TAM BEAUTY', 256, 48);
+      const tex2 = new THREE.CanvasTexture(canvas2);
+      const logoSign = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.7, 0.16),
+        new THREE.MeshBasicMaterial({ map: tex2, side: THREE.DoubleSide }),
+      );
+      logoSign.position.set(1.71, 2.34, 2.752);
+      scene.add(logoSign);
+
+      // Subtle ground glow under booth
+      const glow = new THREE.Mesh(
+        new THREE.CircleGeometry(3.5, 32),
+        new THREE.MeshBasicMaterial({
+          color: 0xfbc4cf,
+          transparent: true,
+          opacity: 0.18,
+          side: THREE.DoubleSide,
+        }),
+      );
+      glow.rotation.x = -Math.PI / 2;
+      glow.position.set(1.8, -0.005, 1.4);
+      scene.add(glow);
+
+      // ============ View Presets ============
+      const VIEWS = {
+        iso: {
+          pos: [5.5, 4.0, 5.5],
+          look: [1.8, 1.0, 1.4],
+          title: '아이소메트릭 뷰',
+          desc: '우상단 45° 시점에서 부스 전체를 한 번에. 마우스로 자유롭게 회전·줌 가능.',
+        },
+        front: {
+          pos: [1.8, 1.65, -3.2],
+          look: [1.8, 1.2, 1.4],
+          title: '정면 뷰',
+          desc: '통로에서 부스를 정면으로 바라본 뷰. 헤더 사인과 3존 그라데이션이 한눈에.',
+        },
+        right: {
+          pos: [6.8, 1.7, 1.4],
+          look: [2.9, 1.2, 1.4],
+          title: '우측 비스듬 뷰',
+          desc: '체리존 립 컬러월과 스와치 트레이를 강조. 백화점 통로 우측에서 본 시점.',
+        },
+        pov: {
+          pos: [1.71, 1.65, 1.6],
+          look: [0.6, 1.0, 1.4],
+          title: '1인칭 인테리어 뷰',
+          desc: '셀카존 한가운데서 클라우드존 방향을 본 1인칭 시점. 고객 체험 분위기.',
+        },
+        top: {
+          pos: [1.8, 7.5, 1.4],
+          look: [1.8, 0, 1.4],
+          title: '탑 뷰 (평면도)',
+          desc: '바로 위에서 본 시점. 평면 구조와 3존 분할이 명확히 보임.',
+        },
+      };
+
+      let animateTimeout = null;
+      function animateCameraTo(viewKey, dur = 900) {
+        const v = VIEWS[viewKey];
+        if (!v) return;
+        const startPos = camera.position.clone();
+        const startLook = controls.target.clone();
+        const endPos = new THREE.Vector3(...v.pos);
+        const endLook = new THREE.Vector3(...v.look);
+        const startTime = performance.now();
+
+        document.getElementById('infoTitle').textContent = v.title;
+        document.getElementById('infoDesc').textContent = v.desc;
+
+        if (animateTimeout) cancelAnimationFrame(animateTimeout);
+
+        function tick() {
+          const t = Math.min((performance.now() - startTime) / dur, 1);
+          const e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+          camera.position.lerpVectors(startPos, endPos, e);
+          controls.target.lerpVectors(startLook, endLook, e);
+          controls.update();
+          if (t < 1) {
+            animateTimeout = requestAnimationFrame(tick);
+          }
+        }
+        tick();
+      }
+
+      // View buttons
+      document.querySelectorAll('.panel.views button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document
+            .querySelectorAll('.panel.views button')
+            .forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          animateCameraTo(btn.dataset.view);
+        });
+      });
+
+      // Keyboard shortcuts
+      const viewKeys = { 1: 'iso', 2: 'front', 3: 'right', 4: 'pov', 5: 'top' };
+      window.addEventListener('keydown', (e) => {
+        if (viewKeys[e.key]) {
+          const v = viewKeys[e.key];
+          document.querySelectorAll('.panel.views button').forEach((b) => {
+            b.classList.toggle('active', b.dataset.view === v);
+          });
+          animateCameraTo(v);
+        }
+      });
+
+      // ============ Options ============
+      document.getElementById('autoRotate').addEventListener('change', (e) => {
+        controls.autoRotate = e.target.checked;
+      });
+      document.getElementById('warmLight').addEventListener('change', (e) => {
+        spotGroup.visible = e.target.checked;
+        if (e.target.checked) {
+          ambient.intensity = 0.45;
+          renderer.toneMappingExposure = 1.0;
+        } else {
+          ambient.intensity = 0.85;
+          renderer.toneMappingExposure = 1.15;
+        }
+      });
+      document.getElementById('showWalls').addEventListener('change', (e) => {
+        wallGroup.visible = e.target.checked;
+      });
+      document.getElementById('showCeiling').addEventListener('change', (e) => {
+        ceiling.visible = e.target.checked;
+      });
+
+      // Screenshot
+      document.getElementById('screenshot').addEventListener('click', () => {
+        renderer.render(scene, camera);
+        const url = renderer.domElement.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `tambeauty-booth-3d-${Date.now()}.png`;
+        a.click();
+      });
+
+      // Reset camera
+      document.getElementById('resetCam').addEventListener('click', () => {
+        document.querySelectorAll('.panel.views button').forEach((b) => {
+          b.classList.toggle('active', b.dataset.view === 'iso');
+        });
+        animateCameraTo('iso');
+      });
+
+      // ============ Resize ============
+      function onResize() {
+        camera.aspect = W() / H();
+        camera.updateProjectionMatrix();
+        renderer.setSize(W(), H());
+      }
+      window.addEventListener('resize', onResize);
+
+      // ============ Animation Loop ============
+      function loop() {
+        requestAnimationFrame(loop);
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      loop();
+
+      // Hide loader
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 400);
+    </script>
+  </body>
+</html>
