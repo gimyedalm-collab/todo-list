@@ -1,0 +1,1444 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐뷰티 × 롯데 팝업 — K-뷰티 배치 레퍼런스 스터디 v1</title>
+    <style>
+      :root {
+        --pale: #ffebf1;
+        --case: #fcc5d2;
+        --pink: #f5a0b5;
+        --rose: #b06880;
+        --rose-deep: #8a4d63;
+        --rose-darker: #5d3344;
+        --gold: #e8c8a0;
+        --gold-deep: #c89868;
+        --ink: #1a1a1a;
+        --ink-soft: #3a3a3a;
+        --gray: #6b6b6b;
+        --gray-soft: #999;
+        --line: #ead8dd;
+        --bg: #fdf5f7;
+        --cream: #fff8f3;
+        --green: #2d9d6f;
+        --red: #c44b6e;
+        --amber: #c78200;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 56px 48px 120px;
+      }
+
+      .cover {
+        background: linear-gradient(135deg, #fff5f8 0%, #fcc5d2 100%);
+        padding: 70px 56px;
+        border-radius: 28px;
+        margin-bottom: 56px;
+        border: 1px solid var(--line);
+      }
+      .cover .tag {
+        display: inline-block;
+        background: #fff;
+        padding: 5px 14px;
+        border-radius: 100px;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--rose-deep);
+        margin-bottom: 18px;
+        border: 1px solid var(--case);
+      }
+      .cover h1 {
+        font-size: 46px;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        margin-bottom: 14px;
+      }
+      .cover h1 em {
+        font-style: italic;
+        font-family: Georgia, serif;
+        color: var(--rose-deep);
+      }
+      .cover .sub {
+        font-size: 16px;
+        color: var(--ink-soft);
+        line-height: 1.65;
+        max-width: 720px;
+      }
+
+      section {
+        margin-bottom: 72px;
+      }
+      .num {
+        font-size: 11.5px;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        color: var(--rose);
+        margin-bottom: 10px;
+        display: block;
+        padding-left: 18px;
+        position: relative;
+      }
+      .num::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 12px;
+        height: 1px;
+        background: var(--rose);
+      }
+      h2 {
+        font-size: 32px;
+        font-weight: 900;
+        letter-spacing: -0.025em;
+        margin-bottom: 10px;
+      }
+      .h {
+        font-size: 14.5px;
+        color: var(--gray);
+        margin-bottom: 28px;
+        line-height: 1.6;
+      }
+
+      /* Score table (솔직 평가) */
+      .score-table {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 32px 36px;
+      }
+      .score-table h3 {
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 16px;
+      }
+      .score-table .total {
+        font-size: 32px;
+        font-weight: 900;
+        color: var(--rose-deep);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+      }
+      .score-table .total .lbl {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gray);
+      }
+      .score-table .total b {
+        font-size: 48px;
+      }
+      .score-table .total .max {
+        font-size: 18px;
+        color: var(--gray-soft);
+      }
+      .score-list {
+        display: grid;
+        gap: 12px;
+      }
+      .score-row {
+        display: grid;
+        grid-template-columns: 1fr 80px;
+        gap: 16px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+        align-items: center;
+      }
+      .score-row:last-child {
+        border-bottom: none;
+      }
+      .score-row .lbl-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .score-row .lbl-desc {
+        font-size: 12.5px;
+        color: var(--gray);
+        margin-top: 3px;
+        line-height: 1.5;
+      }
+      .score-bar {
+        height: 8px;
+        background: var(--pale);
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+      }
+      .score-bar .fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--case), var(--rose));
+        border-radius: 4px;
+      }
+      .score-row .pts {
+        text-align: right;
+        font-weight: 800;
+        color: var(--rose-deep);
+        font-family: 'SF Mono', Consolas, monospace;
+        font-size: 15px;
+      }
+
+      /* 10 brand cases */
+      .cases {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 16px;
+      }
+      .case {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .case .head {
+        padding: 18px 22px 14px;
+        background: linear-gradient(135deg, var(--pale) 0%, var(--cream) 100%);
+        border-bottom: 1px solid var(--line);
+      }
+      .case .brand-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 6px;
+      }
+      .case .name {
+        font-size: 18px;
+        font-weight: 900;
+        color: var(--ink);
+      }
+      .case .ranking {
+        font-size: 10px;
+        font-weight: 800;
+        background: var(--rose-deep);
+        color: #fff;
+        padding: 3px 8px;
+        border-radius: 100px;
+        letter-spacing: 0.1em;
+      }
+      .case .tagline {
+        font-size: 12px;
+        color: var(--rose);
+        font-style: italic;
+        font-family: Georgia, serif;
+      }
+      .case .body {
+        padding: 18px 22px;
+      }
+      .case .body .field {
+        margin-bottom: 12px;
+      }
+      .case .body .lbl {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        color: var(--rose);
+        text-transform: uppercase;
+        margin-bottom: 3px;
+      }
+      .case .body p {
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        line-height: 1.55;
+      }
+      .case .body p b {
+        color: var(--ink);
+      }
+      .case .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 8px;
+      }
+      .case .tag {
+        font-size: 10px;
+        padding: 3px 7px;
+        border-radius: 100px;
+        background: var(--cream);
+        color: var(--rose-deep);
+        border: 1px solid var(--line);
+      }
+      .case .verdict {
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--line);
+        font-size: 11.5px;
+        color: var(--rose-deep);
+        line-height: 1.5;
+      }
+      .case .verdict b {
+        color: var(--rose-darker);
+      }
+
+      /* Pattern grid */
+      .patterns {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 14px;
+      }
+      .pattern {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 24px 24px;
+      }
+      .pattern .id {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        color: var(--rose);
+        margin-bottom: 6px;
+      }
+      .pattern h3 {
+        font-size: 17px;
+        font-weight: 900;
+        margin-bottom: 6px;
+      }
+      .pattern .en {
+        font-size: 12px;
+        color: var(--gray-soft);
+        font-family: Georgia, serif;
+        font-style: italic;
+        margin-bottom: 10px;
+      }
+      .pattern .diagram {
+        background: var(--cream);
+        border: 1px dashed var(--line);
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 12px;
+        font-family: 'SF Mono', Consolas, monospace;
+        line-height: 1.4;
+      }
+      .pattern .who {
+        font-size: 11px;
+        color: var(--rose);
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .pattern p {
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        line-height: 1.6;
+      }
+      .pattern .pros-cons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px dashed var(--line);
+      }
+      .pattern .pros-cons div {
+        font-size: 11px;
+        line-height: 1.5;
+      }
+      .pattern .pros {
+        color: var(--green);
+      }
+      .pattern .cons {
+        color: var(--red);
+      }
+      .pattern .pros b,
+      .pattern .cons b {
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      /* Our verdict */
+      .verdict-box {
+        background: linear-gradient(135deg, var(--pale) 0%, var(--case) 100%);
+        border-radius: 24px;
+        padding: 40px 44px;
+      }
+      .verdict-box h3 {
+        font-size: 24px;
+        font-weight: 900;
+        margin-bottom: 8px;
+      }
+      .verdict-box h3 em {
+        font-style: italic;
+        font-family: Georgia, serif;
+        color: var(--rose-deep);
+      }
+      .verdict-box .summary {
+        font-size: 15px;
+        color: var(--ink-soft);
+        line-height: 1.7;
+        margin-bottom: 24px;
+      }
+      .verdict-box .summary b {
+        color: var(--rose-darker);
+      }
+
+      .verdict-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      @media (max-width: 760px) {
+        .verdict-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .verdict-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 20px 22px;
+      }
+      .verdict-card .lbl {
+        font-size: 10.5px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+        padding: 3px 9px;
+        border-radius: 100px;
+        display: inline-block;
+      }
+      .verdict-card.ok .lbl {
+        background: #d9f0e6;
+        color: var(--green);
+      }
+      .verdict-card.warn .lbl {
+        background: #fff4d6;
+        color: var(--amber);
+      }
+      .verdict-card h4 {
+        font-size: 15px;
+        font-weight: 800;
+        margin-bottom: 6px;
+      }
+      .verdict-card ul {
+        list-style: none;
+        font-size: 12.5px;
+        line-height: 1.7;
+        color: var(--ink-soft);
+      }
+      .verdict-card ul li {
+        padding-left: 16px;
+        position: relative;
+      }
+      .verdict-card.ok ul li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--green);
+        font-weight: 800;
+      }
+      .verdict-card.warn ul li::before {
+        content: '!';
+        position: absolute;
+        left: 4px;
+        color: var(--amber);
+        font-weight: 800;
+      }
+
+      /* Options A/B/C */
+      .options {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      @media (max-width: 760px) {
+        .options {
+          grid-template-columns: 1fr;
+        }
+      }
+      .option {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 28px 26px;
+        position: relative;
+      }
+      .option.recommend {
+        border: 2px solid var(--rose-deep);
+        background: linear-gradient(135deg, #fff 0%, var(--pale) 100%);
+      }
+      .option.recommend::after {
+        content: 'RECOMMEND ★';
+        position: absolute;
+        top: -10px;
+        right: 16px;
+        background: var(--rose-deep);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 800;
+        padding: 4px 12px;
+        border-radius: 100px;
+        letter-spacing: 0.1em;
+      }
+      .option .id {
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        color: var(--rose);
+        margin-bottom: 6px;
+      }
+      .option h3 {
+        font-size: 19px;
+        font-weight: 900;
+        margin-bottom: 4px;
+      }
+      .option .name-en {
+        font-size: 12.5px;
+        color: var(--rose-deep);
+        font-style: italic;
+        font-family: Georgia, serif;
+        margin-bottom: 14px;
+      }
+      .option .diagram {
+        background: var(--cream);
+        border: 1px dashed var(--line);
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 14px;
+        font-family: 'SF Mono', Consolas, monospace;
+        line-height: 1.5;
+      }
+      .option .change {
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        line-height: 1.65;
+        margin-bottom: 12px;
+      }
+      .option .change b {
+        color: var(--rose-darker);
+      }
+      .option .stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        font-size: 11px;
+        color: var(--gray);
+        border-top: 1px dashed var(--line);
+        padding-top: 10px;
+      }
+      .option .stats b {
+        color: var(--rose-deep);
+        font-size: 13px;
+      }
+
+      /* Conclusion */
+      .conclusion {
+        background: var(--rose-darker);
+        color: #fff;
+        border-radius: 24px;
+        padding: 48px 48px;
+        text-align: center;
+      }
+      .conclusion h3 {
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        margin-bottom: 14px;
+      }
+      .conclusion h3 em {
+        font-style: italic;
+        font-family: Georgia, serif;
+        color: var(--case);
+      }
+      .conclusion p {
+        font-size: 16px;
+        line-height: 1.75;
+        opacity: 0.92;
+        max-width: 720px;
+        margin: 0 auto 24px;
+      }
+      .conclusion p b {
+        color: var(--case);
+      }
+      .conclusion .actions {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .conclusion .action {
+        background: rgba(255, 255, 255, 0.18);
+        padding: 12px 24px;
+        border-radius: 100px;
+        font-size: 13.5px;
+        font-weight: 700;
+        backdrop-filter: blur(8px);
+      }
+
+      .foot {
+        margin-top: 56px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font-size: 11.5px;
+        color: var(--gray-soft);
+        text-align: center;
+      }
+
+      @media (max-width: 760px) {
+        .page {
+          padding: 36px 22px 80px;
+        }
+        .cover {
+          padding: 48px 28px;
+        }
+        .cover h1 {
+          font-size: 32px;
+        }
+        .verdict-box {
+          padding: 32px 28px;
+        }
+        .conclusion {
+          padding: 36px 28px;
+        }
+        .conclusion h3 {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- Cover -->
+      <div class="cover">
+        <span class="tag">REFERENCE STUDY · v1 · 2026.05.27</span>
+        <h1>K-뷰티 작은 부스 팝업<br /><em>10개 브랜드 배치 스터디</em></h1>
+        <p class="sub">
+          dasique 1개 레퍼런스 의존에서 벗어나 — 10개 K-뷰티 브랜드의 작은 부스
+          팝업 케이스를 분석하고 5가지 배치 패턴으로 분류, 우리 탐뷰티 부스 v8
+          배치가 정말 최선인지 검증하고 더 나은 옵션을 제안하는 문서.
+        </p>
+      </div>
+
+      <!-- 01 솔직 평가 -->
+      <section>
+        <span class="num">01 · HONEST SCORE</span>
+        <h2>v8, 팀장 보여주기 — 100점 만점</h2>
+        <div class="h">
+          8개 평가 기준 · 솔직 점수 · 어디가 약하고 어디가 강한가
+        </div>
+
+        <div class="score-table">
+          <h3>v8 종합 점수</h3>
+          <div class="total">
+            <span class="lbl">SCORE</span>
+            <b>82</b><span class="max">/ 100</span>
+            <span style="margin-left: auto; font-size: 13px; color: var(--gray)"
+              >— 거의 OK, 한 끗 더 필요</span
+            >
+          </div>
+
+          <div class="score-list">
+            <div class="score-row">
+              <div>
+                <div class="lbl-name">
+                  ① 컨셉 명확성 — K-CLOUD BEAUTY가 한눈에 들어오나
+                </div>
+                <div class="lbl-desc">
+                  헤더·백패널·카운터·미션·해시태그 모두 통일된 메시지
+                </div>
+                <div class="score-bar" style="margin-top: 8px">
+                  <div class="fill" style="width: 95%"></div>
+                </div>
+              </div>
+              <div class="pts">95</div>
+            </div>
+            <div class="score-row">
+              <div>
+                <div class="lbl-name">
+                  ② 컨셉 깊이 — 슬로건 너머의 스토리·세계관·체험
+                </div>
+                <div class="lbl-desc">
+                  SEOUL CLOUD SUMMER 컬렉션 + Cloud Passport + 4스텝 미션
+                </div>
+                <div class="score-bar" style="margin-top: 8px">
+                  <div class="fill" style="width: 88%"></div>
+                </div>
+              </div>
+              <div class="pts">88</div>
+            </div>
+            <div class="score-row">
+              <div>
+                <div class="lbl-name">③ 타깃 적합도 — 중국 관광객 직격하나</div>
+                <div class="lbl-desc">
+                  韩国正品 · 云朵彩妆 · 首尔 키워드 명시, 한·중·일 카피
+                </div>
+                <div class="score-bar" style="margin-top: 8px">
+                  <div class="fill" style="width: 90%"></div>
+                </div>
+              </div>
+              <div class="pts">90</div>
+            </div>
+            <div class="score-row">
+              <div>
+                <div class="lbl-name">
+                  ④ 시각적 임팩트 — 0.5초 안에 시선 잡나
+                </div>
+                <div class="lbl-desc">
+                  미러 백패널·LED·네온·골드·핑크 그라데이션 조합
+                </div>
+                <div class="score-bar" style="margin-top: 8px">
+                  <div class="fill" style="width: 85%"></div>
+                </div>
+              </div>
+              <div class="pts">85</div>
+            </div>
+            <div class="score-row">
+              <div>
+                <div class="lbl-name">⑤ 배치 검증 — 진짜 5섹션이 최선인가</div>
+                <div class="lbl-desc">
+                  ⚠️ dasique 1개만 참고 · 다른 브랜드 배치 스터디 안 됨
+                </div>
+                <div class="score-bar" style="margin-top: 8px">
+                  <div class="fill" style="width: 65%"></div>
+                </div>
+              </div>
+              <div class="pts">65</div>
+            </div>
+            <div class="score-row">
+              <div>
+                <div class="lbl-name">
+                  ⑥ 렌더링 사실성 — photorealistic 수준
+                </div>
+                <div class="lbl-desc">
+                  ⚠️ Three.js 인터랙티브 시뮬레이션 · 게임 그래픽 수준
+                </div>
+                <div class="score-bar" style="margin-top: 8px">
+                  <div class="fill" style="width: 60%"></div>
+                </div>
+              </div>
+              <div class="pts">60</div>
+            </div>
+            <div class="score-row">
+              <div>
+                <div class="lbl-name">⑦ 모델·이미지 자산 — 실제 사진</div>
+                <div class="lbl-desc">
+                  ⚠️ "[ HERO MODEL ]" placeholder · 실 모델컷 필요
+                </div>
+                <div class="score-bar" style="margin-top: 8px">
+                  <div class="fill" style="width: 70%"></div>
+                </div>
+              </div>
+              <div class="pts">70</div>
+            </div>
+            <div class="score-row">
+              <div>
+                <div class="lbl-name">⑧ 실행 가능성 — 백화점·집기·예산</div>
+                <div class="lbl-desc">
+                  백화점 실측·시공 가이드 대기 중 (변동 가능)
+                </div>
+                <div class="score-bar" style="margin-top: 8px">
+                  <div class="fill" style="width: 75%"></div>
+                </div>
+              </div>
+              <div class="pts">75</div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="
+            margin-top: 20px;
+            background: #fff8e1;
+            border-left: 4px solid var(--amber);
+            padding: 16px 22px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            color: var(--ink-soft);
+            line-height: 1.65;
+          "
+        >
+          💡 <b style="color: var(--amber)">결론</b> · v8은 <b>거의 OK</b>지만 ⑤
+          <b>배치 검증</b> (65점)이 가장 약함. 이 문서로 ⑤를 80점대로 끌어올리면
+          종합 86점대. ⑥·⑦은 외부 디자이너·AI 의뢰 영역.
+        </div>
+      </section>
+
+      <!-- 02 10개 브랜드 케이스 -->
+      <section>
+        <span class="num">02 · 10 BRAND CASES</span>
+        <h2>K-뷰티 작은 부스 팝업 10개 케이스</h2>
+        <div class="h">
+          국내·해외 K-뷰티 브랜드 중 백화점/올영/팝업 사례 10개 분석
+        </div>
+
+        <div class="cases">
+          <!-- 1 dasique -->
+          <div class="case">
+            <div class="head">
+              <div class="brand-row">
+                <div class="name">dasique 데이지크</div>
+                <div class="ranking">#1 참고</div>
+              </div>
+              <div class="tagline">— 색조 · 핑크·체리 무드 —</div>
+            </div>
+            <div class="body">
+              <div class="field">
+                <div class="lbl">배치 구조</div>
+                <p>
+                  큰 백월 그래픽 + 중앙 <b>원형 아크릴 단상</b>(BEST + 막대
+                  구체) + 좌(Mini 박스) + 우(정규 진열대)
+                </p>
+              </div>
+              <div class="field">
+                <div class="lbl">핵심 디테일</div>
+                <p>
+                  모델 사진·제품 클로즈업 백월 / 일본어 카피 / 핑크 그라데이션 /
+                  막대 오브제
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag">Center-Hero</span>
+                <span class="tag">백월 그래픽</span>
+                <span class="tag">3존</span>
+              </div>
+              <div class="verdict">
+                <b>차용 OK</b> · 원형 단상 + 백월 그래픽 + 3존 분할 (우리 ②③④
+                차용 완료)
+              </div>
+            </div>
+          </div>
+
+          <!-- 2 rom&nd -->
+          <div class="case">
+            <div class="head">
+              <div class="brand-row">
+                <div class="name">롬앤 rom&nd</div>
+                <div class="ranking">#2</div>
+              </div>
+              <div class="tagline">— 색조 · 캐릭터 콜라보 강점 —</div>
+            </div>
+            <div class="body">
+              <div class="field">
+                <div class="lbl">배치 구조</div>
+                <p>
+                  <b>캐릭터 굿즈 박스</b> 코너 + 컬러 라인업 격자(20-30개 동시)
+                  + 작은 인증샷 코너
+                </p>
+              </div>
+              <div class="field">
+                <div class="lbl">핵심 디테일</div>
+                <p>
+                  포켓몬/스누피/짱구 콜라보 굿즈 / 핑크·옐로 / 컬러 라인업 시각
+                  임팩트
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag">Modular Grid</span>
+                <span class="tag">캐릭터 굿즈</span>
+                <span class="tag">컬러 격자</span>
+              </div>
+              <div class="verdict">
+                <b>차용 일부</b> · 컬러 격자 진열 (우리 립 미니박스에 차용) ·
+                캐릭터 IP 없음 → 미해당
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 3CE -->
+          <div class="case">
+            <div class="head">
+              <div class="brand-row">
+                <div class="name">3CE</div>
+                <div class="ranking">#3</div>
+              </div>
+              <div class="tagline">— 색조 · 다크 럭셔리 —</div>
+            </div>
+            <div class="body">
+              <div class="field">
+                <div class="lbl">배치 구조</div>
+                <p>
+                  다크 톤 미러 큐브 + <b>골드 트림</b> + 한정 박스 중앙 + 비대칭
+                  강조
+                </p>
+              </div>
+              <div class="field">
+                <div class="lbl">핵심 디테일</div>
+                <p>
+                  블랙·딥레드·골드 / 미러 백패널 / 럭셔리 미니멀 / 한 가지 라인
+                  집중
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag">Asymmetric</span>
+                <span class="tag">미러+골드</span>
+                <span class="tag">다크 럭셔리</span>
+              </div>
+              <div class="verdict">
+                <b>차용 OK</b> · 미러 백패널 + 골드 트림 (우리 v6+에서 차용)
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 CLIO -->
+          <div class="case">
+            <div class="head">
+              <div class="brand-row">
+                <div class="name">클리오 CLIO</div>
+                <div class="ranking">#4</div>
+              </div>
+              <div class="tagline">— 색조 · 백화점 1F 카운터 —</div>
+            </div>
+            <div class="body">
+              <div class="field">
+                <div class="lbl">배치 구조</div>
+                <p>
+                  <b>미러 트레이</b> + 깔끔한 그래픽 백월 + 컬러 칩
+                  진열(립·아이) + 카운터 형식
+                </p>
+              </div>
+              <div class="field">
+                <div class="lbl">핵심 디테일</div>
+                <p>
+                  화이트·블랙·골드 / 미러 트레이 스와치 / 컬러 칩 일목요연 /
+                  카운터형
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag">Linear Flow</span>
+                <span class="tag">미러 트레이</span>
+                <span class="tag">카운터형</span>
+              </div>
+              <div class="verdict">
+                <b>차용 OK</b> · 카운터형 + 미러 트레이 + 컬러 칩 진열 모두 차용
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 HERA -->
+          <div class="case">
+            <div class="head">
+              <div class="brand-row">
+                <div class="name">헤라 HERA</div>
+                <div class="ranking">#5</div>
+              </div>
+              <div class="tagline">— 럭셔리 · LG생활건강 —</div>
+            </div>
+            <div class="body">
+              <div class="field">
+                <div class="lbl">배치 구조</div>
+                <p>
+                  <b>LED 백라이트 큐브</b> + 골드 메탈 + 럭셔리 미니멀 + 단상
+                  다층
+                </p>
+              </div>
+              <div class="field">
+                <div class="lbl">핵심 디테일</div>
+                <p>
+                  실버·블랙·골드 / LED 백라이트 / 다층 단상 / 정제된 카피
+                  (감성적·서정적)
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag">Vertical Stack</span>
+                <span class="tag">LED 백라이트</span>
+                <span class="tag">럭셔리</span>
+              </div>
+              <div class="verdict">
+                <b>차용 OK</b> · LED 스트립 + 골드 메탈 + 다층 단상 (우리
+                v5+에서 차용)
+              </div>
+            </div>
+          </div>
+
+          <!-- 6 LANEIGE -->
+          <div class="case">
+            <div class="head">
+              <div class="brand-row">
+                <div class="name">라네즈 LANEIGE</div>
+                <div class="ranking">#6</div>
+              </div>
+              <div class="tagline">— 스킨케어 · 워터 테마 —</div>
+            </div>
+            <div class="body">
+              <div class="field">
+                <div class="lbl">배치 구조</div>
+                <p>
+                  <b>미니어처·작은 박스 진열</b> + 워터 모티프 백월 + 슬리핑
+                  마스크 시즌 컬렉션
+                </p>
+              </div>
+              <div class="field">
+                <div class="lbl">핵심 디테일</div>
+                <p>
+                  블루·민트 / 미니어처 다량 + 정규 사이즈 / 슬리핑 컬렉션 매번
+                  한정
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag">Vertical Stack</span>
+                <span class="tag">미니어처</span>
+                <span class="tag">시즌 컬렉션</span>
+              </div>
+              <div class="verdict">
+                <b>차용 일부</b> · 시즌 컬렉션 컨셉 (우리 SEOUL CLOUD SUMMER로
+                차용) · 미니어처는 양산 X
+              </div>
+            </div>
+          </div>
+
+          <!-- 7 ETUDE -->
+          <div class="case">
+            <div class="head">
+              <div class="brand-row">
+                <div class="name">에뛰드 ETUDE</div>
+                <div class="ranking">#7</div>
+              </div>
+              <div class="tagline">— 색조 · 핑크·키치 —</div>
+            </div>
+            <div class="body">
+              <div class="field">
+                <div class="lbl">배치 구조</div>
+                <p>
+                  <b>아기자기 박스</b> 다층 + 리본·러프 데코 + 캐릭터 굿즈
+                  (피카츄·테디베어)
+                </p>
+              </div>
+              <div class="field">
+                <div class="lbl">핵심 디테일</div>
+                <p>
+                  핑크·파스텔 / 리본·러프 데코 / 캐릭터 콜라보 / 미니 굿즈 풍부
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag">Modular Grid</span>
+                <span class="tag">패브릭 러프</span>
+                <span class="tag">아기자기</span>
+              </div>
+              <div class="verdict">
+                <b>차용 OK</b> · 패브릭 러너 (우리 v5+에서 차용) · 컬러 톤 일부
+                차용
+              </div>
+            </div>
+          </div>
+
+          <!-- 8 PERIPERA -->
+          <div class="case">
+            <div class="head">
+              <div class="brand-row">
+                <div class="name">페리페라 peripera</div>
+                <div class="ranking">#8</div>
+              </div>
+              <div class="tagline">— 색조 · 비비드 컬러 —</div>
+            </div>
+            <div class="body">
+              <div class="field">
+                <div class="lbl">배치 구조</div>
+                <p>
+                  컬러풀 큐브 + <b>셀카 미러</b> + 인증샷 코너 강화 + Z세대 친화
+                  비비드
+                </p>
+              </div>
+              <div class="field">
+                <div class="lbl">핵심 디테일</div>
+                <p>
+                  레드·핑크·옐로·블루 / 큰 셀카 미러 / Tik-Tok·인스타 친화 /
+                  비비드 임팩트
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag">Modular Grid</span>
+                <span class="tag">셀카존</span>
+                <span class="tag">비비드</span>
+              </div>
+              <div class="verdict">
+                <b>차용 일부</b> · 셀카존 (미러 백패널) · 컬러 톤은 우리
+                케이스톤과 안 맞음
+              </div>
+            </div>
+          </div>
+
+          <!-- 9 AMUSE -->
+          <div class="case">
+            <div class="head">
+              <div class="brand-row">
+                <div class="name">어뮤즈 AMUSE</div>
+                <div class="ranking">#9</div>
+              </div>
+              <div class="tagline">— 색조·스킨케어 · 비건·자연 —</div>
+            </div>
+            <div class="body">
+              <div class="field">
+                <div class="lbl">배치 구조</div>
+                <p>
+                  <b>우드/라탄 단상</b> + 자연 식물 데코 + 자연 톤
+                  (베이지·올리브) + 비건 강조
+                </p>
+              </div>
+              <div class="field">
+                <div class="lbl">핵심 디테일</div>
+                <p>
+                  베이지·올리브·우드 / 식물 다량 / 비건·친환경 메시지 / 자연
+                  텍스처
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag">Linear Flow</span>
+                <span class="tag">자연·식물</span>
+                <span class="tag">우드</span>
+              </div>
+              <div class="verdict">
+                <b>차용 일부</b> · 식물 (우리 v5+에서 차용) · 자연 톤은 우리
+                핑크와 안 맞음
+              </div>
+            </div>
+          </div>
+
+          <!-- 10 TIRTIR -->
+          <div class="case">
+            <div class="head">
+              <div class="brand-row">
+                <div class="name">티르티르 TIRTIR</div>
+                <div class="ranking">#10</div>
+              </div>
+              <div class="tagline">— 스킨케어·색조 · 미디어 큐브 —</div>
+            </div>
+            <div class="body">
+              <div class="field">
+                <div class="lbl">배치 구조</div>
+                <p>
+                  <b>LED 미디어 큐브</b> + 영상 디스플레이 + 깔끔 큐브 진열 +
+                  화이트+핑크
+                </p>
+              </div>
+              <div class="field">
+                <div class="lbl">핵심 디테일</div>
+                <p>
+                  화이트·핑크·LED / 영상 콘텐츠 (인플루언서) / 모던 미니멀 /
+                  미디어 임팩트
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag">Vertical Stack</span>
+                <span class="tag">LED 미디어</span>
+                <span class="tag">모던</span>
+              </div>
+              <div class="verdict">
+                <b>차용 일부</b> · LED-lit 아크릴 큐브 (우리 v6+에서 차용) ·
+                영상 디스플레이는 예산 부담
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 5가지 배치 패턴 -->
+      <section>
+        <span class="num">03 · 5 LAYOUT PATTERNS</span>
+        <h2>5가지 배치 패턴 분류</h2>
+        <div class="h">
+          10개 케이스에서 추출한 작은 부스 팝업 핵심 배치 패턴
+        </div>
+
+        <div class="patterns">
+          <div class="pattern">
+            <div class="id">PATTERN A</div>
+            <h3>Center-Hero</h3>
+            <div class="en">— 중앙 하나에 집중 —</div>
+            <div class="diagram">
+              □ ━ ◯ ━ □<br />
+              <span style="font-size: 14px; color: var(--rose-deep)"
+                >↑ 중앙 BEST</span
+              >
+            </div>
+            <div class="who">dasique · 3CE · 클리오</div>
+            <p>
+              중앙에 메인 1-2개를 압도적으로 배치, 좌·우는 보조. 시선이 한 곳에
+              모임.
+            </p>
+            <div class="pros-cons">
+              <div class="pros"><b>장점</b>임팩트 명확</div>
+              <div class="cons"><b>단점</b>SKU 다양성 ↓</div>
+            </div>
+          </div>
+
+          <div class="pattern">
+            <div class="id">PATTERN B</div>
+            <h3>Linear Flow</h3>
+            <div class="en">— 좌→우 흐름 —</div>
+            <div class="diagram">
+              □ → □ → □ → □<br />
+              <span style="font-size: 14px; color: var(--rose-deep)"
+                >BASE → COLOR → FINISH</span
+              >
+            </div>
+            <div class="who">롬앤 · 헤라 · 어뮤즈</div>
+            <p>
+              왼쪽부터 오른쪽으로 카테고리 흐름. 스킨케어→컬러→마무리 식 시퀀스
+              자연스러움.
+            </p>
+            <div class="pros-cons">
+              <div class="pros"><b>장점</b>스토리 흐름</div>
+              <div class="cons"><b>단점</b>중앙 임팩트 ↓</div>
+            </div>
+          </div>
+
+          <div class="pattern">
+            <div class="id">PATTERN C</div>
+            <h3>Modular Grid</h3>
+            <div class="en">— 균등 격자 —</div>
+            <div class="diagram">
+              □ □ □ □<br />
+              □ □ □ □<br />
+              <span style="font-size: 14px; color: var(--rose-deep)"
+                >동일 사이즈</span
+              >
+            </div>
+            <div class="who">롬앤 · 어뮤즈 · 페리페라</div>
+            <p>
+              같은 사이즈 박스가 격자로. 모든 SKU 동등하게 보임. 굿즈·컬러풀
+              라인업에 강함.
+            </p>
+            <div class="pros-cons">
+              <div class="pros"><b>장점</b>SKU 다양성</div>
+              <div class="cons"><b>단점</b>임팩트 ↓·평면적</div>
+            </div>
+          </div>
+
+          <div class="pattern">
+            <div class="id">PATTERN D</div>
+            <h3>Asymmetric</h3>
+            <div class="en">— 비대칭 —</div>
+            <div class="diagram">
+              □□□ ▔ ◯<br />
+              <span style="font-size: 14px; color: var(--rose-deep)"
+                >한쪽 강조</span
+              >
+            </div>
+            <div class="who">3CE · YSL · Charlotte Tilbury</div>
+            <p>
+              한쪽은 진열대, 다른 쪽은 시각적 강조(미러·꽃·캔들). 럭셔리 무드.
+            </p>
+            <div class="pros-cons">
+              <div class="pros"><b>장점</b>럭셔리 무드</div>
+              <div class="cons"><b>단점</b>SKU 진열 공간 ↓</div>
+            </div>
+          </div>
+
+          <div class="pattern">
+            <div class="id">PATTERN E</div>
+            <h3>Vertical Stack</h3>
+            <div class="en">— 세로 다층 —</div>
+            <div class="diagram">
+              ▔▔▔<br />
+              ━━━<br />
+              □□□<br />
+              <span style="font-size: 14px; color: var(--rose-deep)"
+                >상단 / 중단 / 하단</span
+              >
+            </div>
+            <div class="who">라네즈 · 티르티르 · 헤라</div>
+            <p>
+              좁은 폭에서 세로로 쌓음. 헤더 → 중간 디스플레이 → 하단 진열. 우리
+              카운터형과 닮음.
+            </p>
+            <div class="pros-cons">
+              <div class="pros"><b>장점</b>좁은 공간 효율</div>
+              <div class="cons"><b>단점</b>시선 위·아래 분산</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 우리 v8 검증 -->
+      <section>
+        <span class="num">04 · OUR LAYOUT VERDICT</span>
+        <h2>v8 배치 검증 결과</h2>
+        <div class="h">
+          10개 케이스 + 5패턴에 비추어 — 우리 v8은 어디 강하고 어디 약한가
+        </div>
+
+        <div class="verdict-box">
+          <h3>
+            v8 = <em>Center-Hero + Linear Flow + Vertical Stack</em> 3중
+            하이브리드
+          </h3>
+          <p class="summary">
+            우리는 단일 패턴이 아니라 <b>세 패턴을 동시에 차용</b>한 하이브리드.
+            ③ 중앙 BEST 원형 단상(Center-Hero) + ①→②→③→④→⑤ 좌→우 흐름(Linear
+            Flow) + 헤더·디스플레이·진열·바닥 세로 적층(Vertical Stack). <br />→
+            결론: <b>K-뷰티 작은 부스 팝업 베스트 프랙티스에 부합</b>. 단,
+            5섹션이 약간 빡빡하다는 점이 약점.
+          </p>
+
+          <div class="verdict-grid">
+            <div class="verdict-card ok">
+              <span class="lbl">✓ KEEP</span>
+              <h4>v8에서 잘 한 것 (유지)</h4>
+              <ul>
+                <li>중앙 ③ BEST 원형 단상 = Center-Hero ★</li>
+                <li>좌→우 카테고리 흐름 = Linear Flow ★</li>
+                <li>헤더+컬렉션 띠+디스플레이 = Vertical Stack ★</li>
+                <li>미러 백패널 (3CE식) — 럭셔리 무드</li>
+                <li>LED 스트립 (헤라식) — 시그니처 빛</li>
+                <li>패브릭 러너 (에뛰드식) — 텍스처</li>
+                <li>식물·꽃 (어뮤즈식 절제 1개씩)</li>
+                <li>한·중·일 카피 풀라인 — 타깃 직격</li>
+              </ul>
+            </div>
+
+            <div class="verdict-card warn">
+              <span class="lbl">! REVISIT</span>
+              <h4>v8에서 재검토할 것</h4>
+              <ul>
+                <li>5섹션 = 너무 많음. 시선 분산 가능 (4섹션으로?)</li>
+                <li>좌측 ①+② 두 단상 너무 좁게 붙음</li>
+                <li>우측 ④+⑤ 마찬가지 빡빡</li>
+                <li>
+                  굿즈 3종(Cloud Passport·Edition Box·Mirror Card)이 카운터 위
+                  흩어져 있어 한 군데 보고 싶을 수 있음
+                </li>
+                <li>미션 사인 비스듬 배치 → 정면에서 시선 빼앗김 가능</li>
+                <li>해시태그 네온 4개 = 시각 정보 과다 (2개로?)</li>
+                <li>
+                  막대 오브제 없는데 컬렉션 띠·골드 트림으로 보완 — OK인지 확인
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 더 나은 옵션 -->
+      <section>
+        <span class="num">05 · 3 BETTER OPTIONS</span>
+        <h2>더 나은 배치 옵션 3안</h2>
+        <div class="h">v8 유지 vs 4섹션 통합 vs Asymmetric 강화 — 비교</div>
+
+        <div class="options">
+          <div class="option">
+            <div class="id">OPTION A</div>
+            <h3>v8 유지 + 디테일 정리</h3>
+            <div class="name-en">— Keep & Polish —</div>
+            <div class="diagram">
+              ① ② ③ ④ ⑤<br />
+              <span style="font-size: 13px; color: var(--rose-deep)"
+                >5섹션 그대로</span
+              >
+            </div>
+            <p class="change">
+              <b>변경</b> · 굿즈 3종을 우측 한 군데로 집중 · 해시태그 네온 4→2 ·
+              미션 사인 정면 배치
+            </p>
+            <div class="stats">
+              <div>제작 변경<br /><b>최소</b></div>
+              <div>예산 추가<br /><b>₩0</b></div>
+            </div>
+          </div>
+
+          <div class="option recommend">
+            <div class="id">OPTION B</div>
+            <h3>4섹션 통합 + Hero 강화</h3>
+            <div class="name-en">— Hero+Flow Hybrid —</div>
+            <div class="diagram">
+              ① · ★ · ② · ③<br />
+              <span style="font-size: 13px; color: var(--rose-deep)"
+                >BASE · BEST · LIP · BROW</span
+              >
+            </div>
+            <p class="change">
+              <b>변경</b> · ① BASE + ② CLOUD 통합 → "BASE" 한 섹션 · ③ BEST 단상
+              더 크게 · ④ LIP 단상 더 크게 · ⑤ BROW 작게 유지. 굿즈 3종을 ④ LIP
+              단상 옆으로 통합
+            </p>
+            <div class="stats">
+              <div>제작 변경<br /><b>중간</b></div>
+              <div>임팩트<br /><b>↑↑</b></div>
+            </div>
+          </div>
+
+          <div class="option">
+            <div class="id">OPTION C</div>
+            <h3>Asymmetric · 럭셔리 강조</h3>
+            <div class="name-en">— Asymmetric Lux —</div>
+            <div class="diagram">
+              ✿ · ★★★ · ◯<br />
+              <span style="font-size: 13px; color: var(--rose-deep)"
+                >꽃 · 모든 SKU · 손거울</span
+              >
+            </div>
+            <p class="change">
+              <b>변경</b> · 좌측은 꽃·캔들·디퓨저 같은 무드 데코만, 모든 SKU
+              진열은 중앙 큰 단상 1개에 집중, 우측은 작은 손거울·미션 사인
+            </p>
+            <div class="stats">
+              <div>제작 변경<br /><b>큼</b></div>
+              <div>럭셔리감<br /><b>↑↑</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="
+            margin-top: 24px;
+            background: var(--cream);
+            border-left: 4px solid var(--rose-deep);
+            padding: 18px 24px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            color: var(--ink-soft);
+            line-height: 1.65;
+          "
+        >
+          ⭐
+          <b style="color: var(--rose-darker)"
+            >권장: OPTION B (4섹션 통합 + Hero 강화)</b
+          >
+          · 5섹션 빡빡함을 4섹션으로 풀고, 중앙 BEST 임팩트를 더 강하게.
+          dasique의 Center-Hero + 헤라의 Vertical Stack + 클리오의 Linear Flow
+          장점만 통합. 제작 변경은 중간 수준이지만 시각적 임팩트는 v8보다
+          +15-20% 예상.
+        </div>
+      </section>
+
+      <!-- 06 Conclusion -->
+      <section>
+        <span class="num">06 · CONCLUSION</span>
+        <h2>그래서 우리는?</h2>
+        <div class="h">팀장 보여줄 때 어떻게 할 것인가</div>
+
+        <div class="conclusion">
+          <h3>v8 그대로 보여줘도 <em>82점</em>은 받을 수 있다</h3>
+          <p>
+            v8은 K-뷰티 작은 부스 베스트 프랙티스를 <b>3중 하이브리드</b>로
+            차용한 완성도 높은 시안. 팀장이 "이거 뭐 기준으로 만든 거야?" 물으면
+            <b>이 스터디 문서를 같이 보여주면 됨</b>. <br /><br />
+            더 끌어올리고 싶으면 <b>OPTION B (4섹션 통합)</b>로 v9 만들기. 변경
+            폭은 중간이지만 임팩트는 ↑.
+          </p>
+          <div class="actions">
+            <div class="action">📑 컨셉 기획서 + 컨셉 빌드 같이 첨부</div>
+            <div class="action">🎮 3D 뷰어 v8 인터랙티브 시연</div>
+            <div class="action">🔍 이 스터디 문서로 근거 보완</div>
+            <div class="action">⭐ OPTION B 권고 (v9 검토)</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="foot">
+        탐뷰티 × 롯데백화점 7월 합동 팝업 · K-뷰티 배치 레퍼런스 스터디 v1 ·
+        2026.05.27<br />
+        10 brand cases · 5 layout patterns · v8 verdict · 3 options
+      </div>
+    </div>
+  </body>
+</html>
