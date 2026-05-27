@@ -1,0 +1,1974 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐뷰티 × 롯데 팝업 — 3D 뷰어 v12 (드래그 앤 드롭)</title>
+    <style>
+      :root {
+        --pale: #ffebf1;
+        --case: #fcc5d2;
+        --pink: #f5a0b5;
+        --lilac-pale: #ece0f0;
+        --lilac: #d8c5e5;
+        --lavender: #c5b3d8;
+        --yellow-pale: #fff8d6;
+        --yellow: #f5e89a;
+        --yellow-deep: #d4c060;
+        --peach: #ffd4be;
+        --gold: #e8c8a0;
+        --gold-deep: #c89868;
+        --rose: #b06880;
+        --rose-deep: #8a4d63;
+        --rose-darker: #5d3344;
+        --ink: #1a1a1a;
+        --bg: #fdf5f7;
+        --panel-bg: rgba(255, 255, 255, 0.92);
+        --panel-border: rgba(0, 0, 0, 0.08);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--panel-border);
+        z-index: 10;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .brand .logo {
+        font-size: 14px;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        color: var(--rose);
+      }
+      .brand .divider {
+        width: 1px;
+        height: 16px;
+        background: var(--panel-border);
+      }
+      .brand .title {
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--ink);
+        text-transform: uppercase;
+      }
+      .brand .ver {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        background: linear-gradient(
+          90deg,
+          var(--rose-deep),
+          var(--lavender),
+          var(--yellow-deep)
+        );
+        color: #fff;
+        padding: 3px 8px;
+        border-radius: 100px;
+      }
+      .meta {
+        font-size: 11.5px;
+        color: #888;
+        font-family: 'SF Mono', Consolas, monospace;
+      }
+      .meta b {
+        color: var(--rose-deep);
+      }
+
+      #container {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      #container canvas {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+        cursor: grab;
+      }
+      #container canvas:active {
+        cursor: grabbing;
+      }
+
+      /* Drag-and-drop overlay (global) */
+      .drag-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(176, 104, 128, 0.92);
+        backdrop-filter: blur(10px);
+        z-index: 999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+      }
+      .drag-overlay.active {
+        display: flex;
+        pointer-events: auto;
+      }
+      .drag-overlay .msg {
+        background: #fff;
+        padding: 40px 56px;
+        border-radius: 24px;
+        text-align: center;
+        max-width: 600px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      .drag-overlay .msg .ico {
+        font-size: 56px;
+        margin-bottom: 16px;
+      }
+      .drag-overlay .msg h2 {
+        font-size: 26px;
+        font-weight: 900;
+        margin-bottom: 10px;
+        color: var(--rose-deep);
+      }
+      .drag-overlay .msg p {
+        font-size: 14px;
+        color: var(--ink-soft);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .drag-overlay .slot-info {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .drag-overlay .slot-info > div {
+        padding: 12px 8px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: 700;
+        text-align: center;
+      }
+      .drag-overlay .slot-info .pink {
+        background: var(--case);
+        color: var(--rose-deep);
+      }
+      .drag-overlay .slot-info .lilac {
+        background: var(--lilac);
+        color: var(--rose-darker);
+      }
+      .drag-overlay .slot-info .yellow {
+        background: var(--yellow);
+        color: var(--yellow-deep);
+      }
+
+      .panel {
+        position: absolute;
+        background: var(--panel-bg);
+        backdrop-filter: blur(14px);
+        border: 1px solid var(--panel-border);
+        border-radius: 14px;
+        padding: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        z-index: 5;
+      }
+      .panel-title {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        color: #888;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        padding-left: 4px;
+      }
+
+      .panel.views {
+        top: 20px;
+        right: 20px;
+        width: 144px;
+      }
+      .panel.views button {
+        display: block;
+        width: 100%;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink);
+        cursor: pointer;
+        text-align: left;
+        margin-bottom: 2px;
+        font-family: inherit;
+      }
+      .panel.views button:hover {
+        background: rgba(176, 104, 128, 0.12);
+      }
+      .panel.views button.active {
+        background: var(--rose-deep);
+        color: #fff;
+      }
+      .panel.views button .kbd {
+        float: right;
+        font-size: 10.5px;
+        opacity: 0.5;
+        font-family: 'SF Mono', Consolas, monospace;
+        margin-top: 2px;
+      }
+
+      /* Upload panel (좌측 상단 - NEW v12) */
+      .panel.upload {
+        top: 20px;
+        left: 20px;
+        width: 280px;
+      }
+      .panel.upload h4 {
+        font-size: 12px;
+        font-weight: 800;
+        color: var(--rose-deep);
+        margin-bottom: 10px;
+      }
+      .panel.upload .hint-text {
+        font-size: 11px;
+        color: #888;
+        line-height: 1.55;
+        margin-bottom: 12px;
+        padding: 10px;
+        background: var(--pale);
+        border-radius: 8px;
+        border-left: 3px solid var(--rose);
+      }
+      .panel.upload .hint-text b {
+        color: var(--rose-deep);
+      }
+      .slots {
+        display: grid;
+        gap: 8px;
+      }
+      .slot {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border: 2px dashed var(--panel-border);
+        border-radius: 10px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+        background: #fff;
+      }
+      .slot:hover {
+        border-color: var(--rose-deep);
+        background: var(--pale);
+      }
+      .slot.has-image {
+        border-style: solid;
+        border-color: #2d9d6f;
+        background: #d9f0e6;
+      }
+      .slot.dragover {
+        border-color: var(--rose-deep);
+        background: var(--case);
+        transform: scale(1.03);
+      }
+      .slot .thumb {
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        background: var(--pale);
+        flex-shrink: 0;
+        background-size: cover;
+        background-position: center;
+        border: 1px solid var(--panel-border);
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .slot .info {
+        flex: 1;
+        min-width: 0;
+      }
+      .slot .lbl {
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 2px;
+      }
+      .slot .status {
+        font-size: 10.5px;
+        color: #888;
+      }
+      .slot.has-image .status {
+        color: #1f7a52;
+        font-weight: 700;
+      }
+      .slot .clear {
+        background: transparent;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        color: #999;
+        padding: 2px 6px;
+        display: none;
+      }
+      .slot.has-image .clear {
+        display: block;
+      }
+      .slot .clear:hover {
+        color: var(--rose-deep);
+      }
+      .upload-actions {
+        display: flex;
+        gap: 6px;
+        margin-top: 10px;
+      }
+      .upload-actions button {
+        flex: 1;
+        padding: 8px 10px;
+        font-size: 11.5px;
+        font-weight: 700;
+        border-radius: 8px;
+        border: 1px solid var(--panel-border);
+        background: #fff;
+        cursor: pointer;
+        font-family: inherit;
+      }
+      .upload-actions button:hover {
+        background: var(--rose-deep);
+        color: #fff;
+        border-color: var(--rose-deep);
+      }
+
+      .panel.options {
+        top: 320px;
+        left: 20px;
+        width: 200px;
+        max-height: calc(100vh - 380px);
+        overflow-y: auto;
+      }
+      .panel.options label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 4px;
+        font-size: 12.5px;
+        color: var(--ink);
+        cursor: pointer;
+        border-radius: 6px;
+        user-select: none;
+      }
+      .panel.options label:hover {
+        background: rgba(0, 0, 0, 0.03);
+      }
+      .panel.options input {
+        width: 14px;
+        height: 14px;
+        accent-color: var(--rose-deep);
+        cursor: pointer;
+      }
+      .panel.options .sep {
+        height: 1px;
+        background: var(--panel-border);
+        margin: 8px 0;
+      }
+      .panel.options .sub {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        color: var(--rose);
+        margin-top: 6px;
+        margin-bottom: 4px;
+        padding-left: 4px;
+      }
+      .panel.options button {
+        display: block;
+        width: 100%;
+        background: #fff;
+        border: 1px solid var(--panel-border);
+        border-radius: 8px;
+        padding: 7px 10px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ink);
+        cursor: pointer;
+        margin-bottom: 4px;
+        font-family: inherit;
+      }
+      .panel.options button:hover {
+        background: var(--rose-deep);
+        color: #fff;
+        border-color: var(--rose-deep);
+      }
+
+      .panel.info {
+        bottom: 20px;
+        right: 20px;
+        max-width: 280px;
+        padding: 14px 16px;
+      }
+      .panel.info h3 {
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 4px;
+        color: var(--ink);
+      }
+      .panel.info p {
+        font-size: 11.5px;
+        color: #666;
+        line-height: 1.55;
+      }
+      .panel.info .skulist {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px dashed var(--panel-border);
+        font-size: 10.5px;
+        color: #666;
+        line-height: 1.5;
+      }
+      .panel.info .skulist b {
+        color: var(--rose-deep);
+      }
+
+      .hint {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 11px;
+        color: #888;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(8px);
+        padding: 6px 14px;
+        border-radius: 100px;
+        white-space: nowrap;
+        z-index: 4;
+      }
+      .hint kbd {
+        font-family: 'SF Mono', Consolas, monospace;
+        background: rgba(0, 0, 0, 0.08);
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-size: 10.5px;
+        color: var(--ink);
+      }
+
+      .loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 100;
+      }
+      .loader .dot {
+        width: 12px;
+        height: 12px;
+        background: var(--rose-deep);
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 4px;
+        animation: pulse 1.4s infinite;
+      }
+      .loader .dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .loader .dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .loader p {
+        margin-top: 16px;
+        font-size: 13px;
+        color: #666;
+        font-weight: 600;
+      }
+      @keyframes pulse {
+        0%,
+        80%,
+        100% {
+          transform: scale(0.7);
+          opacity: 0.4;
+        }
+        40% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .loader.hidden {
+        display: none;
+      }
+
+      @media (max-width: 760px) {
+        .panel.upload {
+          top: 70px;
+          left: 12px;
+          width: 200px;
+        }
+        .panel.options {
+          top: auto;
+          bottom: 12px;
+          left: 12px;
+          max-height: 30vh;
+        }
+        .panel.views {
+          top: 70px;
+          right: 12px;
+          width: 110px;
+        }
+        .panel.info {
+          display: none;
+        }
+        .hint {
+          font-size: 10px;
+          padding: 5px 12px;
+        }
+      }
+    </style>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <span class="logo">TAM BEAUTY</span>
+        <span class="divider"></span>
+        <span class="title">3D BOOTH VIEWER</span>
+        <span class="ver">v12 · 드래그 앤 드롭</span>
+      </div>
+      <div class="meta"><b>채팅 이미지를 끌어다 떨어뜨리면 즉시 적용</b></div>
+    </header>
+
+    <main id="container">
+      <div class="loader" id="loader">
+        <span class="dot"></span><span class="dot"></span
+        ><span class="dot"></span>
+        <p>3D 부스 로딩 중...</p>
+      </div>
+
+      <!-- Drag overlay (전체 화면 드롭존) -->
+      <div class="drag-overlay" id="dragOverlay">
+        <div class="msg">
+          <div class="ico">📷</div>
+          <h2>이미지를 떨어뜨리세요</h2>
+          <p>
+            현재 무드에 맞는 슬롯에 자동 적용됩니다.<br />또는 좌측 상단 슬롯에
+            정확히 떨어뜨리면 해당 무드로 저장.
+          </p>
+          <div class="slot-info">
+            <div class="pink">PINK 무드</div>
+            <div class="lilac">LILAC 무드</div>
+            <div class="yellow">YELLOW 무드</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload panel -->
+      <div class="panel upload">
+        <div class="panel-title">📷 이미지 업로드 (드래그&드롭)</div>
+        <div class="hint-text">
+          <b>채팅 이미지를 마우스로 끌어와</b> 아래 슬롯에 떨어뜨리세요.<br />
+          또는 슬롯 클릭으로 파일 선택. 자동 저장됨 ✨
+        </div>
+        <div class="slots">
+          <div class="slot" data-mood="pink" id="slot-pink">
+            <div class="thumb">🌸</div>
+            <div class="info">
+              <div class="lbl">Pink 무드</div>
+              <div class="status">대기 중 — 드래그 또는 클릭</div>
+            </div>
+            <button class="clear" data-mood="pink" title="삭제">×</button>
+          </div>
+          <div class="slot" data-mood="lilac" id="slot-lilac">
+            <div class="thumb">💜</div>
+            <div class="info">
+              <div class="lbl">Lilac 무드</div>
+              <div class="status">대기 중</div>
+            </div>
+            <button class="clear" data-mood="lilac" title="삭제">×</button>
+          </div>
+          <div class="slot" data-mood="yellow" id="slot-yellow">
+            <div class="thumb">⭐</div>
+            <div class="info">
+              <div class="lbl">Yellow Y2K 무드</div>
+              <div class="status">대기 중</div>
+            </div>
+            <button class="clear" data-mood="yellow" title="삭제">×</button>
+          </div>
+        </div>
+        <input
+          type="file"
+          id="fileInput"
+          accept="image/*"
+          style="display: none"
+        />
+        <div class="upload-actions">
+          <button id="clearAll">전체 삭제</button>
+          <button id="howTo">사용법 보기</button>
+        </div>
+      </div>
+
+      <div class="panel views">
+        <div class="panel-title">VIEW</div>
+        <button data-view="front" class="active">
+          정면<span class="kbd">1</span>
+        </button>
+        <button data-view="leftAngle">좌측<span class="kbd">2</span></button>
+        <button data-view="rightAngle">우측<span class="kbd">3</span></button>
+        <button data-view="best">BEST<span class="kbd">4</span></button>
+        <button data-view="top">탑뷰<span class="kbd">5</span></button>
+        <button data-view="hero">히어로<span class="kbd">6</span></button>
+        <button data-view="modelSpot">
+          모델 액자<span class="kbd">7</span>
+        </button>
+      </div>
+
+      <div class="panel options">
+        <div class="panel-title">OPTIONS</div>
+        <div class="sub">현재 무드</div>
+        <label
+          ><input type="radio" name="mood" value="pink" checked /> 핑크</label
+        >
+        <label><input type="radio" name="mood" value="lilac" /> 라일락</label>
+        <label
+          ><input type="radio" name="mood" value="yellow" /> 옐로우 Y2K</label
+        >
+        <div class="sep"></div>
+        <div class="sub">표시</div>
+        <label><input type="checkbox" id="autoRotate" /> 자동 회전</label>
+        <label
+          ><input type="checkbox" id="warmLight" checked /> 따뜻한 조명</label
+        >
+        <label
+          ><input type="checkbox" id="showMirrorWall" checked /> 미러
+          백패널</label
+        >
+        <label
+          ><input type="checkbox" id="showBackPanel" checked /> 백패널
+          모델</label
+        >
+        <label
+          ><input type="checkbox" id="showSideFrames" checked /> 사이드
+          액자</label
+        >
+        <label><input type="checkbox" id="showHeader" checked /> 헤더</label>
+        <label
+          ><input type="checkbox" id="showY2K" checked /> Y2K 액세서리</label
+        >
+        <label><input type="checkbox" id="showMission" checked /> 미션</label>
+        <div class="sep"></div>
+        <button id="screenshot">📸 화면 캡처</button>
+        <button id="resetCam">↻ 카메라 초기화</button>
+      </div>
+
+      <div class="panel info" id="infoPanel">
+        <h3 id="infoTitle">정면 뷰 · v12</h3>
+        <p id="infoDesc">
+          채팅 이미지를 끌어다 드롭하면 4곳에 즉시 적용 + 브라우저에 저장
+          (새로고침해도 유지).
+        </p>
+      </div>
+
+      <div class="hint">
+        <kbd>드래그</kbd> 회전 · <kbd>휠</kbd> 줌 · <kbd>1-7</kbd> 뷰 ·
+        <kbd>이미지 드롭</kbd> 적용
+      </div>
+    </main>
+
+    <script type="module">
+      import * as THREE from 'three';
+      import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+      const C = {
+        palepink: 0xffebf1,
+        casepink: 0xfcc5d2,
+        accentpink: 0xf5a0b5,
+        lilacPale: 0xece0f0,
+        lilac: 0xd8c5e5,
+        lavender: 0xc5b3d8,
+        lavenderDeep: 0xa890c0,
+        yellowPale: 0xfff8d6,
+        yellow: 0xf5e89a,
+        yellowDeep: 0xd4c060,
+        cream: 0xf8eed0,
+        skyBlue: 0xb8d8e8,
+        peach: 0xffd4be,
+        gold: 0xe8c8a0,
+        goldDeep: 0xc89868,
+        warmwhite: 0xfff8f9,
+        bgCream: 0xfdf5f7,
+        neon: 0xff8bb8,
+        ink: 0x1a1a1a,
+        mirrorTone: 0xd8d8e0,
+        silver: 0xc8c8d0,
+        rose: 0xb06880,
+        roseDeep: 0x8a4d63,
+        roseDarker: 0x5d3344,
+      };
+
+      // ============ IMAGE STORAGE (NEW v12 - localStorage + drag-and-drop) ============
+      const STORAGE_KEY_PREFIX = 'tambeauty_model_';
+      const moodImages = { pink: null, lilac: null, yellow: null };
+      const moodImageObjects = {
+        pink: new Image(),
+        lilac: new Image(),
+        yellow: new Image(),
+      };
+
+      function loadImagesFromStorage() {
+        ['pink', 'lilac', 'yellow'].forEach((mood) => {
+          const saved = localStorage.getItem(STORAGE_KEY_PREFIX + mood);
+          if (saved) {
+            moodImages[mood] = saved;
+            const img = moodImageObjects[mood];
+            img.onload = () => {
+              updateSlotUI(mood, true);
+              rebuildAll();
+            };
+            img.src = saved;
+          }
+        });
+      }
+
+      function saveImageToSlot(mood, dataUrl) {
+        moodImages[mood] = dataUrl;
+        try {
+          localStorage.setItem(STORAGE_KEY_PREFIX + mood, dataUrl);
+        } catch (e) {
+          console.warn('localStorage 저장 실패 (용량 초과 가능):', e);
+        }
+        const img = moodImageObjects[mood];
+        img.onload = () => {
+          updateSlotUI(mood, true);
+          rebuildAll();
+        };
+        img.src = dataUrl;
+      }
+
+      function clearSlot(mood) {
+        moodImages[mood] = null;
+        localStorage.removeItem(STORAGE_KEY_PREFIX + mood);
+        moodImageObjects[mood] = new Image();
+        updateSlotUI(mood, false);
+        rebuildAll();
+      }
+
+      function updateSlotUI(mood, hasImage) {
+        const slot = document.getElementById('slot-' + mood);
+        if (!slot) return;
+        if (hasImage) {
+          slot.classList.add('has-image');
+          slot.querySelector('.status').textContent = '✓ 적용됨';
+          slot.querySelector('.thumb').style.backgroundImage =
+            `url(${moodImages[mood]})`;
+          slot.querySelector('.thumb').textContent = '';
+        } else {
+          slot.classList.remove('has-image');
+          slot.querySelector('.status').textContent = '대기 중';
+          slot.querySelector('.thumb').style.backgroundImage = '';
+          slot.querySelector('.thumb').textContent =
+            mood === 'pink' ? '🌸' : mood === 'lilac' ? '💜' : '⭐';
+        }
+      }
+
+      function handleDrop(file, targetMood = null) {
+        if (!file || !file.type.startsWith('image/')) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const mood = targetMood || currentMood;
+          saveImageToSlot(mood, e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // ============ Drag-and-drop wiring ============
+      let dragCounter = 0;
+      const dragOverlay = document.getElementById('dragOverlay');
+
+      window.addEventListener('dragenter', (e) => {
+        e.preventDefault();
+        dragCounter++;
+        if (
+          e.dataTransfer.types.includes('Files') ||
+          e.dataTransfer.types.includes('text/uri-list')
+        ) {
+          dragOverlay.classList.add('active');
+        }
+      });
+      window.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        dragCounter--;
+        if (dragCounter === 0) dragOverlay.classList.remove('active');
+      });
+      window.addEventListener('dragover', (e) => {
+        e.preventDefault();
+      });
+      window.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dragCounter = 0;
+        dragOverlay.classList.remove('active');
+
+        // First check if it dropped on a specific slot
+        const target = e.target.closest('.slot');
+        const targetMood = target ? target.dataset.mood : null;
+
+        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+          handleDrop(e.dataTransfer.files[0], targetMood);
+        } else if (e.dataTransfer.types.includes('text/uri-list')) {
+          // URL drop (some chat clients drop URLs instead of files)
+          const url =
+            e.dataTransfer.getData('text/uri-list') ||
+            e.dataTransfer.getData('text/plain');
+          if (url) {
+            fetch(url)
+              .then((r) => r.blob())
+              .then((blob) => {
+                const file = new File([blob], 'dropped', { type: blob.type });
+                handleDrop(file, targetMood);
+              })
+              .catch((err) => {
+                alert(
+                  '이미지를 가져올 수 없습니다 (CORS). 채팅 이미지를 우클릭→"이미지를 다른 이름으로 저장" 후 다시 드롭해보세요.',
+                );
+              });
+          }
+        }
+      });
+
+      // Slot-specific drop handling for visual feedback
+      document.querySelectorAll('.slot').forEach((slot) => {
+        slot.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          slot.classList.add('dragover');
+        });
+        slot.addEventListener('dragleave', () => {
+          slot.classList.remove('dragover');
+        });
+        slot.addEventListener('drop', () => {
+          slot.classList.remove('dragover');
+        });
+        slot.addEventListener('click', (e) => {
+          if (e.target.classList.contains('clear')) return;
+          const fileInput = document.getElementById('fileInput');
+          fileInput.dataset.targetMood = slot.dataset.mood;
+          fileInput.click();
+        });
+      });
+      document.getElementById('fileInput').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        const targetMood = e.target.dataset.targetMood;
+        if (file) handleDrop(file, targetMood);
+        e.target.value = ''; // reset
+      });
+
+      document.querySelectorAll('.slot .clear').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          clearSlot(btn.dataset.mood);
+        });
+      });
+      document.getElementById('clearAll').addEventListener('click', () => {
+        if (confirm('업로드한 이미지 3개 모두 삭제할까요?')) {
+          ['pink', 'lilac', 'yellow'].forEach((m) => clearSlot(m));
+        }
+      });
+      document.getElementById('howTo').addEventListener('click', () => {
+        alert(
+          '📷 이미지 업로드 방법:\n\n' +
+            '1) 채팅 또는 다른 창에서 이미지를 마우스로 끌어와 뷰어에 떨어뜨리기\n' +
+            '   → 현재 무드 슬롯에 자동 저장\n\n' +
+            '2) 특정 슬롯에 정확히 떨어뜨리면 → 그 무드로 저장\n\n' +
+            '3) 슬롯 클릭 → 파일 선택 창에서 이미지 고르기\n\n' +
+            '4) 이미지는 브라우저에 저장됨 (새로고침해도 유지)\n\n' +
+            '5) 무드 라디오 버튼 바꾸면 → 백패널·사이드·미션 액자 4곳에 즉시 반영',
+        );
+      });
+
+      // ============ Scene ============
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(C.bgCream);
+      scene.fog = new THREE.Fog(C.bgCream, 10, 24);
+
+      const container = document.getElementById('container');
+      const W = () => container.clientWidth;
+      const H = () => container.clientHeight;
+
+      const camera = new THREE.PerspectiveCamera(38, W() / H(), 0.1, 100);
+      camera.position.set(1.8, 1.5, -2.8);
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setSize(W(), H());
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.08;
+      container.appendChild(renderer.domElement);
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.target.set(1.8, 1.1, 1.2);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.07;
+      controls.maxDistance = 12;
+      controls.minDistance = 0.8;
+      controls.maxPolarAngle = Math.PI / 2 - 0.02;
+
+      const ambient = new THREE.AmbientLight(0xfff0f5, 0.5);
+      scene.add(ambient);
+      const hemi = new THREE.HemisphereLight(0xffe5dc, 0xe8d8dd, 0.55);
+      hemi.position.set(0, 5, 0);
+      scene.add(hemi);
+      const keyLight = new THREE.DirectionalLight(0xfff5ec, 0.7);
+      keyLight.position.set(2, 5, -3);
+      keyLight.castShadow = true;
+      keyLight.shadow.mapSize.width = 2048;
+      keyLight.shadow.mapSize.height = 2048;
+      keyLight.shadow.camera.left = -4;
+      keyLight.shadow.camera.right = 4;
+      keyLight.shadow.camera.top = 4;
+      keyLight.shadow.camera.bottom = -4;
+      keyLight.shadow.bias = -0.001;
+      scene.add(keyLight);
+
+      const spotGroup = new THREE.Group();
+      [
+        [0.5, 2.4, 1.3],
+        [1.15, 2.4, 1.3],
+        [1.8, 2.4, 1.2],
+        [2.5, 2.4, 1.3],
+        [3.15, 2.4, 1.3],
+      ].forEach(([x, y, z]) => {
+        const spot = new THREE.SpotLight(
+          0xffe5d8,
+          0.8,
+          3.5,
+          Math.PI / 5,
+          0.4,
+          1.4,
+        );
+        spot.position.set(x, y, z);
+        spot.target.position.set(x, 0.9, z);
+        spotGroup.add(spot);
+        spotGroup.add(spot.target);
+      });
+      scene.add(spotGroup);
+
+      function makeBox(x, y, z, w, h, d, color, opts = {}) {
+        const mat = new THREE.MeshStandardMaterial({
+          color: color,
+          roughness: opts.roughness ?? 0.6,
+          metalness: opts.metalness ?? 0.0,
+          transparent: opts.transparent ?? false,
+          opacity: opts.opacity ?? 1.0,
+        });
+        const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+        mesh.position.set(x, y, z);
+        mesh.castShadow = opts.shadow !== false;
+        mesh.receiveShadow = opts.receive !== false;
+        scene.add(mesh);
+        return mesh;
+      }
+      function makeSignText(text, w, h, bg, fg) {
+        const c = document.createElement('canvas');
+        c.width = 2048;
+        c.height = Math.max(64, Math.round((2048 * h) / w));
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, c.width, c.height);
+        ctx.fillStyle = fg;
+        const fs = Math.round(c.height * 0.46);
+        ctx.font = 'bold ' + fs + 'px Pretendard, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, c.width / 2, c.height / 2);
+        const tex = new THREE.CanvasTexture(c);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        return tex;
+      }
+
+      // Floor
+      const floor = new THREE.Mesh(
+        new THREE.PlaneGeometry(20, 20),
+        new THREE.MeshStandardMaterial({ color: 0xebd8dc, roughness: 0.92 }),
+      );
+      floor.rotation.x = -Math.PI / 2;
+      floor.receiveShadow = true;
+      scene.add(floor);
+
+      // Mirror walls
+      const mirrorWallGroup = new THREE.Group();
+      [-1.2, 1.2].forEach((dx) => {
+        const mirror = new THREE.Mesh(
+          new THREE.PlaneGeometry(1.0, 2.4),
+          new THREE.MeshStandardMaterial({
+            color: C.mirrorTone,
+            roughness: 0.05,
+            metalness: 0.95,
+          }),
+        );
+        mirror.position.set(1.8 + dx, 1.2, 2.405);
+        mirror.rotation.y = Math.PI;
+        mirrorWallGroup.add(mirror);
+        const frame = new THREE.Mesh(
+          new THREE.BoxGeometry(1.02, 2.42, 0.025),
+          new THREE.MeshStandardMaterial({ color: C.gold, metalness: 0.75 }),
+        );
+        frame.position.set(1.8 + dx, 1.2, 2.395);
+        mirrorWallGroup.add(frame);
+      });
+      scene.add(mirrorWallGroup);
+
+      // Y2K accessories
+      const y2kGroup = new THREE.Group();
+      function makeStarIcon(x, y, z, size, color = 0xd8d8e0) {
+        const shape = new THREE.Shape();
+        for (let i = 0; i < 10; i++) {
+          const a = (i / 10) * Math.PI * 2 - Math.PI / 2;
+          const r = i % 2 === 0 ? size : size * 0.4;
+          if (i === 0) shape.moveTo(Math.cos(a) * r, Math.sin(a) * r);
+          else shape.lineTo(Math.cos(a) * r, Math.sin(a) * r);
+        }
+        const geom = new THREE.ExtrudeGeometry(shape, {
+          depth: 0.01,
+          bevelEnabled: false,
+        });
+        const m = new THREE.Mesh(
+          geom,
+          new THREE.MeshStandardMaterial({ color, metalness: 0.7 }),
+        );
+        m.position.set(x, y, z);
+        m.rotation.y = Math.PI;
+        y2kGroup.add(m);
+      }
+      makeStarIcon(1.0, 2.32, 1.59, 0.05);
+      makeStarIcon(2.6, 2.32, 1.59, 0.05);
+      scene.add(y2kGroup);
+
+      // Stylized placeholder
+      function drawPlaceholder(ctx, x, y, w, h, mood) {
+        const bgGrad = ctx.createLinearGradient(x, y, x, y + h);
+        if (mood === 'lilac') {
+          bgGrad.addColorStop(0, '#c5b3d8');
+          bgGrad.addColorStop(1, '#a890c0');
+        } else if (mood === 'yellow') {
+          bgGrad.addColorStop(0, '#f5e89a');
+          bgGrad.addColorStop(1, '#d4c060');
+        } else {
+          bgGrad.addColorStop(0, '#ffd4be');
+          bgGrad.addColorStop(0.5, '#fcc5d2');
+          bgGrad.addColorStop(1, '#f5a0b5');
+        }
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(x, y, w, h);
+
+        const cx = x + w / 2;
+        const fc = y + h * 0.35;
+        const fw = w * 0.25,
+          fh = h * 0.2;
+
+        // Hair
+        ctx.fillStyle = '#5d4030';
+        ctx.beginPath();
+        ctx.ellipse(cx, fc, fw * 1.55, fh * 1.35, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Face
+        ctx.fillStyle = '#f5cdb8';
+        ctx.beginPath();
+        ctx.ellipse(cx, fc, fw, fh, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Cheek blush
+        ctx.fillStyle =
+          mood === 'lilac'
+            ? 'rgba(232,154,175,0.7)'
+            : mood === 'yellow'
+              ? 'rgba(255,160,175,0.75)'
+              : 'rgba(255,138,165,0.7)';
+        ctx.beginPath();
+        ctx.ellipse(
+          cx - fw * 0.4,
+          fc + fh * 0.15,
+          fw * 0.18,
+          fh * 0.13,
+          0,
+          0,
+          Math.PI * 2,
+        );
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(
+          cx + fw * 0.4,
+          fc + fh * 0.15,
+          fw * 0.18,
+          fh * 0.13,
+          0,
+          0,
+          Math.PI * 2,
+        );
+        ctx.fill();
+
+        // Eyes
+        ctx.fillStyle = '#3a2820';
+        ctx.beginPath();
+        ctx.ellipse(
+          cx - fw * 0.35,
+          fc - fh * 0.05,
+          fw * 0.07,
+          fh * 0.04,
+          0,
+          0,
+          Math.PI * 2,
+        );
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(
+          cx + fw * 0.35,
+          fc - fh * 0.05,
+          fw * 0.07,
+          fh * 0.04,
+          0,
+          0,
+          Math.PI * 2,
+        );
+        ctx.fill();
+
+        // Lips
+        ctx.fillStyle =
+          mood === 'lilac'
+            ? '#b06080'
+            : mood === 'yellow'
+              ? '#d05568'
+              : '#d04060';
+        ctx.beginPath();
+        ctx.ellipse(cx, fc + fh * 0.5, fw * 0.22, fh * 0.06, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Drop hint
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+        ctx.font = `bold ${Math.round(w * 0.025)}px Pretendard, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.fillText('📷 채팅 이미지를 끌어다 드롭', cx, y + h * 0.85);
+        ctx.font = `${Math.round(w * 0.02)}px Pretendard, sans-serif`;
+        ctx.fillText(`현재 무드: ${mood.toUpperCase()}`, cx, y + h * 0.9);
+      }
+
+      // ============ BACK PANEL ============
+      const backPanelGroup = new THREE.Group();
+      let backPanelMesh = null;
+      function buildBackPanel() {
+        if (backPanelMesh) backPanelGroup.remove(backPanelMesh);
+        const c = document.createElement('canvas');
+        c.width = 1280;
+        c.height = 1440;
+        const ctx = c.getContext('2d');
+        const dataUrl = moodImages[currentMood];
+        const img = moodImageObjects[currentMood];
+
+        // Background
+        if (currentMood === 'lilac') {
+          const g = ctx.createLinearGradient(0, 0, 0, 1440);
+          g.addColorStop(0, '#c5b3d8');
+          g.addColorStop(1, '#a890c0');
+          ctx.fillStyle = g;
+          ctx.fillRect(0, 0, 1280, 1440);
+        } else if (currentMood === 'yellow') {
+          const g = ctx.createLinearGradient(0, 0, 0, 1440);
+          g.addColorStop(0, '#fff8d6');
+          g.addColorStop(1, '#d4c060');
+          ctx.fillStyle = g;
+          ctx.fillRect(0, 0, 1280, 1440);
+        } else {
+          const g = ctx.createLinearGradient(0, 0, 0, 1440);
+          g.addColorStop(0, '#ffd4be');
+          g.addColorStop(0.5, '#fcc5d2');
+          g.addColorStop(1, '#f5a0b5');
+          ctx.fillStyle = g;
+          ctx.fillRect(0, 0, 1280, 1440);
+        }
+
+        // Model area
+        if (dataUrl && img.complete && img.naturalWidth > 0) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.roundRect(120, 150, 1040, 720, 30);
+          ctx.clip();
+          const ir = img.naturalWidth / img.naturalHeight;
+          const br = 1040 / 720;
+          let dw, dh, dx, dy;
+          if (ir > br) {
+            dh = 720;
+            dw = dh * ir;
+            dx = 120 - (dw - 1040) / 2;
+            dy = 150;
+          } else {
+            dw = 1040;
+            dh = dw / ir;
+            dx = 120;
+            dy = 150 - (dh - 720) / 2;
+          }
+          ctx.drawImage(img, dx, dy, dw, dh);
+          ctx.restore();
+        } else {
+          ctx.fillStyle = 'rgba(255,255,255,0.92)';
+          ctx.beginPath();
+          ctx.roundRect(120, 150, 1040, 720, 30);
+          ctx.fill();
+          drawPlaceholder(ctx, 120, 150, 1040, 720, currentMood);
+        }
+
+        // Brand
+        ctx.fillStyle = '#1a1a1a';
+        ctx.font = 'bold 70px Pretendard, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('TAM BEAUTY', 640, 970);
+        ctx.fillStyle = '#8a4d63';
+        ctx.font = 'bold 180px Pretendard, sans-serif';
+        ctx.fillText('K-CLOUD', 640, 1130);
+        ctx.font = 'italic bold 130px Georgia, serif';
+        ctx.fillStyle = '#b06880';
+        ctx.fillText('BEAUTY', 640, 1260);
+        ctx.fillStyle = '#3a3a3a';
+        ctx.font = 'bold 32px Pretendard, sans-serif';
+        ctx.fillText(
+          '서울의 구름을 당신의 입술 위에 · 首尔云朵之夏',
+          640,
+          1340,
+        );
+        ctx.fillStyle = '#5d3344';
+        ctx.beginPath();
+        ctx.roundRect(370, 1370, 540, 50, 25);
+        ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 24px Pretendard, sans-serif';
+        ctx.fillText('SEOUL CLOUD SUMMER · 2026.07 LOTTE', 640, 1402);
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        backPanelMesh = new THREE.Mesh(
+          new THREE.PlaneGeometry(1.6, 2.4),
+          new THREE.MeshStandardMaterial({ map: tex, roughness: 0.75 }),
+        );
+        backPanelMesh.position.set(1.8, 1.2, 2.405);
+        backPanelMesh.rotation.y = Math.PI;
+        backPanelGroup.add(backPanelMesh);
+      }
+      const bpFrame = new THREE.Mesh(
+        new THREE.BoxGeometry(1.62, 2.42, 0.025),
+        new THREE.MeshStandardMaterial({ color: C.gold, metalness: 0.75 }),
+      );
+      bpFrame.position.set(1.8, 1.2, 2.395);
+      backPanelGroup.add(bpFrame);
+      scene.add(backPanelGroup);
+
+      // ============ SIDE FRAMES ============
+      const sideFramesGroup = new THREE.Group();
+      let leftFrame = null,
+        rightFrame = null,
+        missionFrame = null;
+
+      function buildSideFrame(side) {
+        const isLeft = side === 'left';
+        const moodForFrame = isLeft
+          ? currentMood
+          : currentMood === 'pink'
+            ? 'lilac'
+            : currentMood === 'lilac'
+              ? 'yellow'
+              : 'pink';
+        const dataUrl = moodImages[moodForFrame];
+        const img = moodImageObjects[moodForFrame];
+
+        const c = document.createElement('canvas');
+        c.width = 600;
+        c.height = 800;
+        const ctx = c.getContext('2d');
+
+        if (dataUrl && img.complete && img.naturalWidth > 0) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.roundRect(30, 30, 540, 740, 20);
+          ctx.clip();
+          const ir = img.naturalWidth / img.naturalHeight;
+          const br = 540 / 740;
+          let dw, dh, dx, dy;
+          if (ir > br) {
+            dh = 740;
+            dw = dh * ir;
+            dx = 30 - (dw - 540) / 2;
+            dy = 30;
+          } else {
+            dw = 540;
+            dh = dw / ir;
+            dx = 30;
+            dy = 30 - (dh - 740) / 2;
+          }
+          ctx.drawImage(img, dx, dy, dw, dh);
+          ctx.restore();
+        } else {
+          drawPlaceholder(ctx, 30, 30, 540, 740, moodForFrame);
+        }
+
+        ctx.strokeStyle = '#e8c8a0';
+        ctx.lineWidth = 8;
+        ctx.strokeRect(15, 15, 570, 770);
+        ctx.fillStyle =
+          moodForFrame === 'yellow'
+            ? '#a87600'
+            : moodForFrame === 'lilac'
+              ? '#5d3344'
+              : '#8a4d63';
+        ctx.fillRect(0, 760, 600, 40);
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 18px Pretendard, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('K-CLOUD · ' + moodForFrame.toUpperCase(), 300, 786);
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        const m = new THREE.Mesh(
+          new THREE.PlaneGeometry(0.6, 0.8),
+          new THREE.MeshStandardMaterial({ map: tex, roughness: 0.6 }),
+        );
+        const x = isLeft ? 0.6 : 3.0;
+        m.position.set(x, 1.85, 2.36);
+        m.rotation.y = Math.PI;
+        return m;
+      }
+      function buildBothSideFrames() {
+        if (leftFrame) sideFramesGroup.remove(leftFrame);
+        if (rightFrame) sideFramesGroup.remove(rightFrame);
+        leftFrame = buildSideFrame('left');
+        rightFrame = buildSideFrame('right');
+        sideFramesGroup.add(leftFrame);
+        sideFramesGroup.add(rightFrame);
+      }
+      [0.6, 3.0].forEach((x) => {
+        const f = new THREE.Mesh(
+          new THREE.BoxGeometry(0.64, 0.84, 0.02),
+          new THREE.MeshStandardMaterial({ color: C.gold, metalness: 0.75 }),
+        );
+        f.position.set(x, 1.85, 2.35);
+        sideFramesGroup.add(f);
+      });
+      scene.add(sideFramesGroup);
+
+      // ============ COUNTER ============
+      makeBox(1.8, 0.45, 1.4, 3.6, 0.9, 0.5, C.warmwhite);
+      makeBox(1.8, 0.06, 1.4, 3.55, 0.1, 0.48, C.casepink);
+      makeBox(1.8, 0.905, 1.4, 3.62, 0.008, 0.52, C.gold, { metalness: 0.5 });
+
+      const cfc_c = document.createElement('canvas');
+      cfc_c.width = 2880;
+      cfc_c.height = 600;
+      const cfc = cfc_c.getContext('2d');
+      const cfg = cfc.createLinearGradient(0, 0, 2880, 0);
+      cfg.addColorStop(0, '#fff8d6');
+      cfg.addColorStop(0.3, '#fcc5d2');
+      cfg.addColorStop(0.7, '#d8c5e5');
+      cfg.addColorStop(1, '#c5b3d8');
+      cfc.fillStyle = cfg;
+      cfc.fillRect(0, 0, 2880, 600);
+      cfc.fillStyle = '#1a1a1a';
+      cfc.font = 'bold 70px Pretendard, sans-serif';
+      cfc.textAlign = 'center';
+      cfc.fillText('TAM BEAUTY', 1440, 120);
+      cfc.fillStyle = '#8a4d63';
+      cfc.font = 'bold 150px Pretendard, sans-serif';
+      cfc.fillText('K-CLOUD', 1100, 320);
+      cfc.fillStyle = '#b06880';
+      cfc.font = 'italic bold 130px Georgia, serif';
+      cfc.fillText('BEAUTY', 1780, 320);
+      cfc.fillStyle = '#5d3344';
+      cfc.font = 'bold 34px Pretendard, sans-serif';
+      cfc.fillText('SEOUL CLOUD SUMMER · 2026.07 · LIMITED EDITION', 1440, 502);
+      const cfTex = new THREE.CanvasTexture(cfc_c);
+      cfTex.colorSpace = THREE.SRGBColorSpace;
+      const counterFront = new THREE.Mesh(
+        new THREE.PlaneGeometry(3.55, 0.74),
+        new THREE.MeshStandardMaterial({ map: cfTex, roughness: 0.5 }),
+      );
+      counterFront.position.set(1.8, 0.48, 1.149);
+      counterFront.rotation.y = Math.PI;
+      scene.add(counterFront);
+
+      // ============ HEADER ============
+      const headerGroup = new THREE.Group();
+      const bandC = document.createElement('canvas');
+      bandC.width = 2048;
+      bandC.height = 180;
+      const bnd = bandC.getContext('2d');
+      bnd.fillStyle = '#5d3344';
+      bnd.fillRect(0, 0, 2048, 180);
+      bnd.fillStyle = '#fff';
+      bnd.font = 'bold 60px Pretendard, sans-serif';
+      bnd.textAlign = 'center';
+      bnd.textBaseline = 'middle';
+      bnd.fillText('SEOUL CLOUD SUMMER  ·  首尔云朵之夏  ·  2026.07', 1024, 90);
+      const bandTex = new THREE.CanvasTexture(bandC);
+      bandTex.colorSpace = THREE.SRGBColorSpace;
+      const collectionBand = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.6, 0.14),
+        new THREE.MeshStandardMaterial({ map: bandTex }),
+      );
+      collectionBand.position.set(1.8, 2.28, 1.61);
+      collectionBand.rotation.y = Math.PI;
+      headerGroup.add(collectionBand);
+
+      const mhc = document.createElement('canvas');
+      mhc.width = 1600;
+      mhc.height = 800;
+      const mh = mhc.getContext('2d');
+      const mhg = mh.createLinearGradient(0, 0, 1600, 800);
+      mhg.addColorStop(0, '#fff8d6');
+      mhg.addColorStop(0.5, '#fcc5d2');
+      mhg.addColorStop(1, '#c5b3d8');
+      mh.fillStyle = mhg;
+      mh.fillRect(0, 0, 1600, 800);
+      mh.fillStyle = '#1a1a1a';
+      mh.font = 'bold 60px Pretendard, sans-serif';
+      mh.textAlign = 'center';
+      mh.fillText('TAM BEAUTY', 800, 110);
+      mh.fillStyle = '#8a4d63';
+      mh.font = 'bold 200px Pretendard, sans-serif';
+      mh.fillText('K-CLOUD', 800, 330);
+      mh.fillStyle = '#b06880';
+      mh.font = 'italic bold 160px Georgia, serif';
+      mh.fillText('BEAUTY', 800, 490);
+      mh.fillStyle = '#5d3344';
+      mh.font = 'italic bold 36px Georgia, serif';
+      mh.fillText('— 서울의 구름을 당신의 입술 위에 —', 800, 590);
+      mh.fillStyle = '#3a3a3a';
+      mh.font = 'bold 32px Pretendard, sans-serif';
+      mh.fillText('韩国云朵彩妆  ·  ソウル発・雲のメイク', 800, 650);
+      mh.fillStyle = '#8a4d63';
+      mh.beginPath();
+      mh.roundRect(500, 680, 600, 70, 35);
+      mh.fill();
+      mh.fillStyle = '#fff';
+      mh.font = 'bold 32px Pretendard, sans-serif';
+      mh.fillText('LOTTE EXCLUSIVE · 首尔正品', 800, 723);
+      const mhTex = new THREE.CanvasTexture(mhc);
+      mhTex.colorSpace = THREE.SRGBColorSpace;
+      const mainHeader = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.4, 0.7),
+        new THREE.MeshStandardMaterial({ map: mhTex, roughness: 0.6 }),
+      );
+      mainHeader.position.set(1.8, 1.85, 1.61);
+      mainHeader.rotation.y = Math.PI;
+      headerGroup.add(mainHeader);
+      const mhF = new THREE.Mesh(
+        new THREE.BoxGeometry(1.42, 0.72, 0.02),
+        new THREE.MeshStandardMaterial({ color: C.gold, metalness: 0.7 }),
+      );
+      mhF.position.set(1.8, 1.85, 1.6);
+      headerGroup.add(mhF);
+      scene.add(headerGroup);
+
+      // ============ MISSION + small frame ============
+      const missionGroup = new THREE.Group();
+      const msc = document.createElement('canvas');
+      msc.width = 1024;
+      msc.height = 1280;
+      const ms = msc.getContext('2d');
+      ms.fillStyle = '#fcc5d2';
+      ms.fillRect(0, 0, 1024, 1280);
+      ms.fillStyle = '#5d3344';
+      ms.fillRect(0, 0, 1024, 130);
+      ms.fillStyle = '#fff';
+      ms.font = 'bold 36px Pretendard, sans-serif';
+      ms.textAlign = 'center';
+      ms.fillText('MISSION', 512, 60);
+      ms.font = '24px Pretendard, sans-serif';
+      ms.fillText('나만의 K-Cloud Pick 만들기', 512, 100);
+      const steps = [
+        { n: '1', t: 'BASE 픽', d: '클라우드 블러' },
+        { n: '2', t: 'COLOR 픽', d: '립라이너 12색' },
+        { n: '3', t: 'SELFIE', d: '미러 백패널' },
+        { n: '4', t: 'PASSPORT', d: '도장 + 굿즈' },
+      ];
+      steps.forEach((s, i) => {
+        const y = 180 + i * 260;
+        ms.fillStyle = '#8a4d63';
+        ms.beginPath();
+        ms.arc(170, y + 90, 65, 0, Math.PI * 2);
+        ms.fill();
+        ms.fillStyle = '#fff';
+        ms.font = 'bold italic 80px Georgia, serif';
+        ms.textAlign = 'center';
+        ms.textBaseline = 'middle';
+        ms.fillText(s.n, 170, y + 90);
+        ms.fillStyle = '#1a1a1a';
+        ms.font = 'bold 48px Pretendard, sans-serif';
+        ms.textAlign = 'left';
+        ms.textBaseline = 'top';
+        ms.fillText(s.t, 280, y + 50);
+        ms.fillStyle = '#5a5a5a';
+        ms.font = '34px Pretendard, sans-serif';
+        ms.fillText(s.d, 280, y + 115);
+      });
+      const msTex = new THREE.CanvasTexture(msc);
+      msTex.colorSpace = THREE.SRGBColorSpace;
+      const missionSign = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.4, 0.5),
+        new THREE.MeshStandardMaterial({
+          map: msTex,
+          roughness: 0.6,
+          side: THREE.DoubleSide,
+        }),
+      );
+      missionSign.position.set(2.45, 1.32, 1.05);
+      missionSign.rotation.y = Math.PI - 0.3;
+      missionGroup.add(missionSign);
+      scene.add(missionGroup);
+
+      function buildMissionFrame() {
+        if (missionFrame) missionGroup.remove(missionFrame);
+        const c = document.createElement('canvas');
+        c.width = 400;
+        c.height = 500;
+        const ctx = c.getContext('2d');
+        const dataUrl = moodImages[currentMood];
+        const img = moodImageObjects[currentMood];
+        if (dataUrl && img.complete && img.naturalWidth > 0) {
+          const ir = img.naturalWidth / img.naturalHeight;
+          const br = 400 / 500;
+          let dw, dh, dx, dy;
+          if (ir > br) {
+            dh = 500;
+            dw = dh * ir;
+            dx = -(dw - 400) / 2;
+            dy = 0;
+          } else {
+            dw = 400;
+            dh = dw / ir;
+            dx = 0;
+            dy = -(dh - 500) / 2;
+          }
+          ctx.drawImage(img, dx, dy, dw, dh);
+        } else {
+          drawPlaceholder(ctx, 0, 0, 400, 500, currentMood);
+        }
+        ctx.strokeStyle = '#e8c8a0';
+        ctx.lineWidth = 12;
+        ctx.strokeRect(6, 6, 388, 488);
+        const tex = new THREE.CanvasTexture(c);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        missionFrame = new THREE.Mesh(
+          new THREE.PlaneGeometry(0.28, 0.35),
+          new THREE.MeshStandardMaterial({
+            map: tex,
+            roughness: 0.55,
+            side: THREE.DoubleSide,
+          }),
+        );
+        missionFrame.position.set(2.45, 1.32, 0.7);
+        missionFrame.rotation.y = Math.PI - 0.3;
+        missionGroup.add(missionFrame);
+      }
+
+      // ============ SECTIONS (simplified inherits from v11) ============
+      function makeCloudBlurReal(x, y, z, color) {
+        const grp = new THREE.Group();
+        const body = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.022, 0.026, 0.13, 24),
+          new THREE.MeshStandardMaterial({ color: color, roughness: 0.35 }),
+        );
+        body.position.y = 0.065;
+        grp.add(body);
+        const neck = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.014, 0.02, 0.018, 18),
+          new THREE.MeshStandardMaterial({ color: color }),
+        );
+        neck.position.y = 0.139;
+        grp.add(neck);
+        const sponge = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.018, 0.018, 0.012, 20),
+          new THREE.MeshStandardMaterial({
+            color: C.accentpink,
+            roughness: 0.95,
+          }),
+        );
+        sponge.position.y = 0.155;
+        grp.add(sponge);
+        grp.position.set(x, y, z);
+        return grp;
+      }
+      function makeCloudCompact(x, y, z, color, inner) {
+        const grp = new THREE.Group();
+        const b = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.035, 0.035, 0.012, 32),
+          new THREE.MeshStandardMaterial({ color, roughness: 0.4 }),
+        );
+        b.position.y = 0.006;
+        grp.add(b);
+        const i = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.028, 0.028, 0.004, 32),
+          new THREE.MeshStandardMaterial({ color: inner, roughness: 0.7 }),
+        );
+        i.position.y = 0.012;
+        grp.add(i);
+        grp.position.set(x, y, z);
+        return grp;
+      }
+
+      function makePosmStand(x, y, z, w, h, text, color) {
+        const tex = makeSignText(text, w, h, color, '#ffffff');
+        const s = new THREE.Mesh(
+          new THREE.PlaneGeometry(w, h),
+          new THREE.MeshBasicMaterial({
+            map: tex,
+            side: THREE.DoubleSide,
+            transparent: true,
+          }),
+        );
+        s.position.set(x, y, z);
+        s.rotation.y = Math.PI;
+        scene.add(s);
+      }
+
+      // Sections
+      makeBox(0.5, 1.0, 1.35, 0.6, 0.1, 0.38, C.warmwhite);
+      makeBox(0.5, 1.054, 1.35, 0.62, 0.005, 0.4, C.casepink);
+      [-0.18, -0.06, 0.06].forEach((dx) => {
+        makeBox(0.5 + dx, 1.075, 1.25, 0.1, 0.028, 0.1, C.casepink);
+      });
+      scene.add(makeCloudCompact(0.04, 1.058, 1.42, C.yellow, C.peach));
+      scene.add(makeCloudCompact(0.08, 1.058, 1.45, C.skyBlue, C.cream));
+      scene.add(makeCloudCompact(0.13, 1.058, 1.44, C.lilac, C.casepink));
+      scene.add(makeCloudCompact(0.18, 1.058, 1.42, C.casepink, C.accentpink));
+      makePosmStand(
+        0.5,
+        1.17,
+        1.13,
+        0.46,
+        0.07,
+        '① BASE · 컴팩트 4컬러',
+        '#8a4d63',
+      );
+
+      makeBox(1.15, 1.0, 1.35, 0.5, 0.1, 0.38, C.warmwhite);
+      makeBox(1.15, 1.054, 1.35, 0.52, 0.005, 0.4, C.casepink);
+      scene.add(makeCloudBlurReal(1.03, 1.06, 1.25, C.casepink));
+      scene.add(makeCloudBlurReal(1.15, 1.06, 1.25, C.casepink));
+      scene.add(makeCloudBlurReal(1.27, 1.06, 1.25, C.lilac));
+      scene.add(makeCloudBlurReal(1.03, 1.06, 1.42, C.lilac));
+      scene.add(makeCloudBlurReal(1.15, 1.06, 1.42, C.casepink));
+      scene.add(makeCloudBlurReal(1.27, 1.06, 1.42, C.yellow));
+      makePosmStand(
+        1.15,
+        1.17,
+        1.13,
+        0.46,
+        0.07,
+        '② CLOUD BLUR · 시그니처',
+        '#8a4d63',
+      );
+
+      const tier1 = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.4, 0.42, 0.05, 36),
+        new THREE.MeshStandardMaterial({ color: C.casepink }),
+      );
+      tier1.position.set(1.95, 0.935, 1.35);
+      scene.add(tier1);
+      const tier1b = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.36, 0.36, 0.14, 36),
+        new THREE.MeshPhysicalMaterial({
+          color: 0xfff8f9,
+          roughness: 0.08,
+          transmission: 0.75,
+          transparent: true,
+          opacity: 0.85,
+          ior: 1.45,
+        }),
+      );
+      tier1b.position.set(1.95, 1.03, 1.35);
+      scene.add(tier1b);
+      const tier1t = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.37, 0.37, 0.015, 36),
+        new THREE.MeshStandardMaterial({ color: C.gold, metalness: 0.65 }),
+      );
+      tier1t.position.set(1.95, 1.108, 1.35);
+      scene.add(tier1t);
+      const hero = makeCloudBlurReal(1.95, 1.13, 1.35, C.casepink);
+      hero.scale.set(1.4, 1.4, 1.4);
+      scene.add(hero);
+      [
+        [1.7, 1.4, C.casepink],
+        [2.2, 1.4, C.lilac],
+        [1.7, 1.3, C.yellow],
+        [2.2, 1.3, C.casepink],
+      ].forEach(([x, z, c]) => {
+        scene.add(makeCloudBlurReal(x, 1.12, z, c));
+      });
+      makePosmStand(
+        1.95,
+        1.28,
+        1.13,
+        0.36,
+        0.07,
+        '③ K-CLOUD · 큐레이션',
+        '#8a4d63',
+      );
+
+      makeBox(2.78, 1.0, 1.35, 0.62, 0.1, 0.38, C.warmwhite);
+      makeBox(2.78, 1.054, 1.35, 0.64, 0.005, 0.4, C.lilac);
+      const lc = [
+        0xb47888, 0xc48898, 0xd49aaa, 0xddacbc, 0xa84565, 0x9d3653, 0xb83f5d,
+        0xcc5577, 0xa890c0, 0xc5b3d8, 0xd8c5e5, 0xb88ab5,
+      ];
+      for (let r = 0; r < 3; r++) {
+        for (let c = 0; c < 4; c++) {
+          const idx = r * 4 + c;
+          const lx = 2.78 - 0.26 + c * 0.173;
+          const lz = 1.18 + r * 0.12;
+          const tube = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.022, 0.022, 0.13, 16),
+            new THREE.MeshStandardMaterial({ color: lc[idx], metalness: 0.22 }),
+          );
+          tube.position.set(lx, 1.124, lz);
+          scene.add(tube);
+          const cap = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.025, 0.025, 0.035, 16),
+            new THREE.MeshStandardMaterial({ color: 0x1a1a1a }),
+          );
+          cap.position.set(lx, 1.207, lz);
+          scene.add(cap);
+        }
+      }
+      makePosmStand(
+        2.78,
+        1.17,
+        1.13,
+        0.48,
+        0.07,
+        '④ LIP · 자기 색 12色',
+        '#8a4d63',
+      );
+
+      makeBox(3.32, 1.0, 1.35, 0.4, 0.1, 0.38, C.warmwhite);
+      makeBox(3.32, 1.054, 1.35, 0.42, 0.005, 0.4, C.lavender);
+      [-0.13, -0.04, 0.05, 0.14].forEach((dx) => {
+        const tube = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.018, 0.018, 0.13, 14),
+          new THREE.MeshStandardMaterial({ color: C.lilac }),
+        );
+        tube.position.set(3.32 + dx, 1.125, 1.35);
+        scene.add(tube);
+      });
+      makePosmStand(3.32, 1.19, 1.13, 0.38, 0.07, '⑤ BROW · 마무리', '#8a4d63');
+
+      // ============ Rebuild ============
+      let currentMood = 'pink';
+      function rebuildAll() {
+        buildBackPanel();
+        buildBothSideFrames();
+        buildMissionFrame();
+      }
+
+      // Load saved images from localStorage on init
+      loadImagesFromStorage();
+      rebuildAll();
+
+      // ============ Views ============
+      const VIEWS = {
+        front: {
+          pos: [1.8, 1.5, -2.8],
+          look: [1.8, 1.2, 1.2],
+          title: '정면 뷰 · v12',
+          desc: '채팅 이미지를 끌어다 드롭하면 백패널·사이드·미션 액자 4곳에 즉시 적용. 브라우저에 저장됨.',
+        },
+        leftAngle: {
+          pos: [-0.2, 1.4, -1.3],
+          look: [0.8, 1.1, 1.4],
+          title: '좌측 각도',
+          desc: '좌측 사이드 액자 + ① BASE 컴팩트 4컬러 + ② CLOUD BLUR.',
+        },
+        rightAngle: {
+          pos: [4.0, 1.4, -1.3],
+          look: [3.0, 1.1, 1.4],
+          title: '우측 각도',
+          desc: '우측 사이드 액자 + ④ LIP 12색 + ⑤ BROW.',
+        },
+        best: {
+          pos: [1.95, 1.45, 0.0],
+          look: [1.95, 1.25, 1.35],
+          title: 'BEST 클로즈업',
+          desc: '③ K-CLOUD 큐레이션 · 히어로 클라우드블러 + 4종 링.',
+        },
+        top: {
+          pos: [1.8, 5.0, 1.4],
+          look: [1.8, 1.0, 1.4],
+          title: '탑뷰',
+          desc: '5섹션 + 사이드 액자 + 미션 옆 액자 4곳.',
+        },
+        hero: {
+          pos: [2.7, 1.6, -3.0],
+          look: [1.8, 1.25, 1.4],
+          title: '히어로 컷',
+          desc: '시네마틱. 드롭한 모델 이미지 + 컬렉션 띠 + 헤더 한눈에.',
+        },
+        modelSpot: {
+          pos: [0.6, 1.85, 0.5],
+          look: [0.6, 1.85, 2.36],
+          title: '모델 액자 클로즈업',
+          desc: '좌측 사이드 모델 액자 클로즈업.',
+        },
+      };
+
+      let animTimeout = null;
+      function animateCameraTo(viewKey, dur = 900) {
+        const v = VIEWS[viewKey];
+        if (!v) return;
+        const startPos = camera.position.clone();
+        const startLook = controls.target.clone();
+        const endPos = new THREE.Vector3(...v.pos);
+        const endLook = new THREE.Vector3(...v.look);
+        const startTime = performance.now();
+        document.getElementById('infoTitle').textContent = v.title;
+        document.getElementById('infoDesc').textContent = v.desc;
+        if (animTimeout) cancelAnimationFrame(animTimeout);
+        function tick() {
+          const t = Math.min((performance.now() - startTime) / dur, 1);
+          const e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+          camera.position.lerpVectors(startPos, endPos, e);
+          controls.target.lerpVectors(startLook, endLook, e);
+          controls.update();
+          if (t < 1) animTimeout = requestAnimationFrame(tick);
+        }
+        tick();
+      }
+
+      document.querySelectorAll('.panel.views button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document
+            .querySelectorAll('.panel.views button')
+            .forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          animateCameraTo(btn.dataset.view);
+        });
+      });
+      const vkeys = {
+        1: 'front',
+        2: 'leftAngle',
+        3: 'rightAngle',
+        4: 'best',
+        5: 'top',
+        6: 'hero',
+        7: 'modelSpot',
+      };
+      window.addEventListener('keydown', (e) => {
+        if (vkeys[e.key]) {
+          animateCameraTo(vkeys[e.key]);
+          document.querySelectorAll('.panel.views button').forEach((b) => {
+            b.classList.toggle('active', b.dataset.view === vkeys[e.key]);
+          });
+        }
+      });
+
+      document.querySelectorAll('input[name="mood"]').forEach((radio) => {
+        radio.addEventListener('change', (e) => {
+          currentMood = e.target.value;
+          rebuildAll();
+        });
+      });
+
+      document.getElementById('autoRotate').addEventListener('change', (e) => {
+        controls.autoRotate = e.target.checked;
+        controls.autoRotateSpeed = 0.8;
+      });
+      document.getElementById('warmLight').addEventListener('change', (e) => {
+        spotGroup.visible = e.target.checked;
+      });
+      document
+        .getElementById('showMirrorWall')
+        .addEventListener('change', (e) => {
+          mirrorWallGroup.visible = e.target.checked;
+        });
+      document
+        .getElementById('showBackPanel')
+        .addEventListener('change', (e) => {
+          backPanelGroup.visible = e.target.checked;
+        });
+      document
+        .getElementById('showSideFrames')
+        .addEventListener('change', (e) => {
+          sideFramesGroup.visible = e.target.checked;
+        });
+      document.getElementById('showHeader').addEventListener('change', (e) => {
+        headerGroup.visible = e.target.checked;
+      });
+      document.getElementById('showY2K').addEventListener('change', (e) => {
+        y2kGroup.visible = e.target.checked;
+      });
+      document.getElementById('showMission').addEventListener('change', (e) => {
+        missionGroup.visible = e.target.checked;
+      });
+
+      document.getElementById('screenshot').addEventListener('click', () => {
+        renderer.render(scene, camera);
+        const url = renderer.domElement.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `tambeauty-v12-${Date.now()}.png`;
+        a.click();
+      });
+      document.getElementById('resetCam').addEventListener('click', () => {
+        animateCameraTo('front');
+      });
+
+      function onResize() {
+        camera.aspect = W() / H();
+        camera.updateProjectionMatrix();
+        renderer.setSize(W(), H());
+      }
+      window.addEventListener('resize', onResize);
+
+      function loop() {
+        requestAnimationFrame(loop);
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      loop();
+
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 500);
+    </script>
+  </body>
+</html>
