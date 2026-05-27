@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐뷰티 × 롯데 뷰티 팝업 — 3평 부스 무드보드 (2026.07)</title>
+    <style>
+      :root {
+        --pink-pale: #fff5f8;
+        --pink-soft: #fde6ec;
+        --pink: #fbc4cf;
+        --pink-deep: #f18ea5;
+        --cherry: #e85d70;
+        --red: #d43a4a;
+        --red-deep: #b02838;
+        --nude: #f4d9c7;
+        --cream: #fbf7f4;
+        --ink: #1a1a1a;
+        --ink-soft: #3a3a3a;
+        --gray: #6b6b6b;
+        --gray-soft: #999;
+        --line: #e8e2dc;
+        --bg: #fbf7f4;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 56px 48px 120px;
+      }
+
+      /* Cover */
+      .cover {
+        background:
+          radial-gradient(
+            circle at 15% 20%,
+            rgba(251, 196, 207, 0.6) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 85% 80%,
+            rgba(212, 58, 74, 0.35) 0%,
+            transparent 55%
+          ),
+          linear-gradient(135deg, #fff5f8 0%, #ffeeef 100%);
+        padding: 80px 64px 72px;
+        border-radius: 32px;
+        margin-bottom: 64px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+      }
+      .cover .tag {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(8px);
+        padding: 6px 16px;
+        border-radius: 100px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: var(--red-deep);
+        margin-bottom: 24px;
+        border: 1px solid rgba(212, 58, 74, 0.2);
+      }
+      .cover h1 {
+        font-size: 56px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        margin-bottom: 20px;
+        background: linear-gradient(
+          135deg,
+          var(--ink) 0%,
+          var(--red) 70%,
+          var(--cherry) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .cover .sub {
+        font-size: 18px;
+        color: var(--ink-soft);
+        max-width: 640px;
+        line-height: 1.6;
+        margin-bottom: 32px;
+      }
+      .cover .meta {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+        font-size: 13px;
+        color: var(--gray);
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        padding-top: 20px;
+      }
+      .cover .meta b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* Section */
+      section {
+        margin-bottom: 72px;
+      }
+      .num {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        color: var(--red);
+        margin-bottom: 8px;
+        display: block;
+      }
+      h2 {
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+        color: var(--ink);
+      }
+      .h {
+        font-size: 16px;
+        color: var(--gray);
+        margin-bottom: 32px;
+      }
+
+      /* Concept */
+      .concept-box {
+        background: linear-gradient(
+          135deg,
+          var(--pink-pale) 0%,
+          var(--pink-soft) 100%
+        );
+        border-radius: 24px;
+        padding: 56px 48px;
+        text-align: center;
+        border: 1px solid var(--line);
+      }
+      .concept-box .quote {
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin-bottom: 16px;
+        color: var(--red-deep);
+      }
+      .concept-box .quote em {
+        font-style: normal;
+        color: var(--cherry);
+      }
+      .concept-box .desc {
+        font-size: 16px;
+        color: var(--ink-soft);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.7;
+      }
+      .concept-box .desc b {
+        color: var(--red);
+      }
+
+      /* Why Now */
+      .reasons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 16px;
+      }
+      .reason {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 24px 22px;
+      }
+      .reason .ico {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+      .reason .lbl {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--red);
+        margin-bottom: 6px;
+      }
+      .reason .t {
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: var(--ink);
+      }
+      .reason p {
+        font-size: 13.5px;
+        color: var(--gray);
+        line-height: 1.6;
+      }
+
+      /* Palette */
+      .palette {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+        margin-top: 16px;
+      }
+      .swatch {
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+      .swatch .chip {
+        height: 120px;
+      }
+      .swatch .info {
+        padding: 14px 14px 16px;
+      }
+      .swatch .role {
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--gray);
+        margin-bottom: 4px;
+      }
+      .swatch .name {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+      .swatch .hex {
+        font-size: 11px;
+        color: var(--gray-soft);
+        font-family: 'SF Mono', 'Consolas', monospace;
+      }
+
+      /* Texture */
+      .textures {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+      .tex {
+        aspect-ratio: 1 / 1;
+        border-radius: 18px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid var(--line);
+        position: relative;
+        overflow: hidden;
+      }
+      .tex .label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.8;
+      }
+      .tex .name {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.25;
+      }
+      .tex .name span {
+        display: block;
+        font-size: 12px;
+        font-weight: 500;
+        opacity: 0.7;
+        margin-top: 4px;
+      }
+      .tex.cloud {
+        background:
+          radial-gradient(circle at 30% 30%, #fff 0%, transparent 60%),
+          radial-gradient(circle at 70% 70%, #fff 0%, transparent 50%),
+          radial-gradient(circle at 50% 50%, #fde6ec 0%, #fbc4cf 100%);
+        color: var(--red-deep);
+      }
+      .tex.mirror {
+        background: linear-gradient(
+          135deg,
+          #f0f0f0 0%,
+          #fafafa 30%,
+          #d8d8d8 60%,
+          #e8e8e8 100%
+        );
+        color: var(--ink);
+      }
+      .tex.cherry {
+        background:
+          radial-gradient(
+            circle at 35% 35%,
+            rgba(255, 255, 255, 0.4) 0%,
+            transparent 40%
+          ),
+          radial-gradient(circle at 50% 50%, #e85d70 0%, #b02838 100%);
+        color: #fff;
+      }
+      .tex.fabric {
+        background: repeating-linear-gradient(
+          45deg,
+          #f4d9c7,
+          #f4d9c7 6px,
+          #ebccb8 6px,
+          #ebccb8 12px
+        );
+        color: var(--ink);
+      }
+
+      /* Layout sketch */
+      .floorplan {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 40px;
+      }
+      .booth {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+      .zone {
+        aspect-ratio: 3 / 4;
+        border-radius: 16px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
+        border: 1px dashed rgba(0, 0, 0, 0.08);
+      }
+      .zone .zlbl {
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        opacity: 0.7;
+      }
+      .zone .zname {
+        font-size: 19px;
+        font-weight: 800;
+        line-height: 1.25;
+      }
+      .zone ul {
+        list-style: none;
+        font-size: 12px;
+        line-height: 1.55;
+        opacity: 0.85;
+      }
+      .zone ul li::before {
+        content: '·  ';
+        font-weight: 700;
+      }
+      .zone.left {
+        background: linear-gradient(180deg, #fff5f8 0%, #fbc4cf 100%);
+        color: var(--red-deep);
+      }
+      .zone.center {
+        background: linear-gradient(180deg, #fde6ec 0%, #f18ea5 100%);
+        color: #fff;
+      }
+      .zone.right {
+        background: linear-gradient(180deg, #e85d70 0%, #b02838 100%);
+        color: #fff;
+      }
+      .booth-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 20px;
+        background: var(--pink-pale);
+        border-radius: 12px;
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+      .booth-meta b {
+        color: var(--red);
+      }
+
+      /* SKU */
+      .skus {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .sku {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 28px 26px;
+      }
+      .sku .role {
+        display: inline-block;
+        background: var(--red-deep);
+        color: #fff;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        padding: 4px 10px;
+        border-radius: 100px;
+        margin-bottom: 14px;
+      }
+      .sku.lip .role {
+        background: var(--cherry);
+      }
+      .sku h3 {
+        font-size: 22px;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+      .sku .sub2 {
+        font-size: 13px;
+        color: var(--gray);
+        margin-bottom: 18px;
+      }
+      .sku ul {
+        list-style: none;
+        font-size: 13.5px;
+        line-height: 1.7;
+      }
+      .sku ul li {
+        padding-left: 18px;
+        position: relative;
+        margin-bottom: 4px;
+        color: var(--ink-soft);
+      }
+      .sku ul li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--red);
+        font-weight: 800;
+      }
+
+      /* Refs */
+      .refs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .ref {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 22px 22px;
+      }
+      .ref .cat {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: var(--red);
+        margin-bottom: 6px;
+      }
+      .ref h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: var(--ink);
+      }
+      .ref .keys {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+      .key {
+        font-size: 11.5px;
+        background: var(--pink-pale);
+        color: var(--red-deep);
+        padding: 4px 10px;
+        border-radius: 100px;
+        border: 1px solid var(--pink-soft);
+      }
+      .key.cn {
+        background: #fff5f8;
+        font-family: 'PingFang SC', 'Microsoft YaHei', 'Pretendard', sans-serif;
+      }
+      .ref p {
+        font-size: 12.5px;
+        color: var(--gray);
+        line-height: 1.55;
+      }
+
+      /* Next */
+      .nextlist {
+        background: var(--cream);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 32px;
+      }
+      .nextlist ol {
+        list-style: none;
+        counter-reset: step;
+      }
+      .nextlist li {
+        counter-increment: step;
+        padding-left: 50px;
+        position: relative;
+        font-size: 15px;
+        line-height: 1.65;
+        margin-bottom: 16px;
+        color: var(--ink-soft);
+      }
+      .nextlist li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 32px;
+        height: 32px;
+        background: var(--red);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .nextlist li b {
+        color: var(--ink);
+      }
+
+      /* Foot */
+      .foot {
+        margin-top: 64px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+        font-size: 12px;
+        color: var(--gray-soft);
+        text-align: center;
+      }
+
+      @media (max-width: 760px) {
+        .page {
+          padding: 36px 22px 80px;
+        }
+        .cover {
+          padding: 56px 28px;
+        }
+        .cover h1 {
+          font-size: 38px;
+        }
+        .palette,
+        .textures {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .reasons,
+        .skus,
+        .refs {
+          grid-template-columns: 1fr;
+        }
+        .booth {
+          grid-template-columns: 1fr;
+        }
+        .zone {
+          aspect-ratio: auto;
+          min-height: 180px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- Cover -->
+      <div class="cover">
+        <span class="tag">MOOD BOARD · v1 · 2026.05.27</span>
+        <h1>
+          Cloud to Cherry<br />
+          보송한 피부, 또렷한 입술
+        </h1>
+        <p class="sub">
+          5브랜드 합동 뷰티 팝업 속, 유일한 색조 브랜드.<br />
+          스킨케어 4종이 만든 "준비된 피부"의 마지막 마침표 — 그게 우리
+          3평입니다.
+        </p>
+        <div class="meta">
+          <div><b>WHERE</b> · 롯데백화점 (본점 / 명동)</div>
+          <div><b>WHEN</b> · 2026.07</div>
+          <div><b>SIZE</b> · 약 3평 (10㎡)</div>
+          <div><b>LINEUP</b> · 탐뷰티 + 스킨케어 4브랜드</div>
+          <div><b>TARGET</b> · 중국 관광객 中心</div>
+        </div>
+      </div>
+
+      <!-- 01 Concept -->
+      <section>
+        <span class="num">01 · CONCEPT</span>
+        <h2>한 문장</h2>
+        <div class="h">부스 앞을 지나가는 사람의 머릿속에 남아야 할 단어</div>
+        <div class="concept-box">
+          <div class="quote">
+            보송한 피부,<br />
+            <em>또렷한 입술</em>
+          </div>
+          <p class="desc">
+            여름 7월, 끈적이지 않는 <b>"보송(柔焦)"</b> 베이스 +<br />
+            샤오홍슈 인증을 부르는 <b>또렷한 컬러 립</b>.<br />
+            스킨케어 옆에서 우리만 가능한 <b>"컬러 마침표"</b> 포지션.
+          </p>
+        </div>
+      </section>
+
+      <!-- 02 Why -->
+      <section>
+        <span class="num">02 · WHY THIS NOW</span>
+        <h2>왜 이 방향인가</h2>
+        <div class="h">4가지 변수에서 자연스럽게 떨어지는 결론</div>
+        <div class="reasons">
+          <div class="reason">
+            <div class="ico">🎯</div>
+            <div class="lbl">포지션</div>
+            <div class="t">5브랜드 중 유일한 색조</div>
+            <p>
+              옆 4개 스킨케어 부스는 "준비". 우리는 그 마침표인 "컬러 임팩트"로
+              자동 차별화. 카테고리 충돌 ZERO.
+            </p>
+          </div>
+          <div class="reason">
+            <div class="ico">☁️</div>
+            <div class="lbl">시즌</div>
+            <div class="t">7월 = 보송 베이스</div>
+            <p>
+              여름 끈적임·번짐 우려로 매트·세팅 베이스 강세. 클라우드블러의 솜털
+              텍스처가 시즌과 정확히 일치.
+            </p>
+          </div>
+          <div class="reason">
+            <div class="ico">📸</div>
+            <div class="lbl">타겟</div>
+            <div class="t">중국 관광객 = 인증샷</div>
+            <p>
+              샤오홍슈·도우인 인증을 부르는 비주얼 강한 컬러월·셀카존이 핵심.
+              "柔焦(보송)" 키워드 트렌딩 중.
+            </p>
+          </div>
+          <div class="reason">
+            <div class="ico">📦</div>
+            <div class="lbl">제약</div>
+            <div class="t">통일 부스 = 그래픽 승부</div>
+            <p>
+              구조 변경 불가 → 벽면 그래픽·디스플레이·소품·체험 동선으로 임팩트
+              내야 함. 메시지 단순화 필수.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 Palette -->
+      <section>
+        <span class="num">03 · COLOR</span>
+        <h2>컬러 팔레트</h2>
+        <div class="h">
+          기존 뮤즈아우라 콜라보 그라데이션 계승 — 소프트핑크 → 체리 →
+          글로시레드
+        </div>
+        <div class="palette">
+          <div class="swatch">
+            <div class="chip" style="background: #fff5f8"></div>
+            <div class="info">
+              <div class="role">BASE</div>
+              <div class="name">페일 핑크</div>
+              <div class="hex">#FFF5F8</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: #fbc4cf"></div>
+            <div class="info">
+              <div class="role">CLOUD</div>
+              <div class="name">소프트 핑크</div>
+              <div class="hex">#FBC4CF</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: #f18ea5"></div>
+            <div class="info">
+              <div class="role">BRIDGE</div>
+              <div class="name">체리 핑크</div>
+              <div class="hex">#F18EA5</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: #d43a4a"></div>
+            <div class="info">
+              <div class="role">HERO</div>
+              <div class="name">탐뷰티 레드</div>
+              <div class="hex">#D43A4A</div>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: #1a1a1a"></div>
+            <div class="info">
+              <div class="role">TYPE</div>
+              <div class="name">잉크 블랙</div>
+              <div class="hex">#1A1A1A</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 Texture -->
+      <section>
+        <span class="num">04 · TEXTURE & MATERIAL</span>
+        <h2>재질 무드</h2>
+        <div class="h">실제 부스 집기·소품 발주 시 참고할 4가지 키 텍스처</div>
+        <div class="textures">
+          <div class="tex cloud">
+            <div class="label">SOFT</div>
+            <div class="name">
+              솜털 클라우드<br />
+              <span>퍼프·후로키·구름 오브제</span>
+            </div>
+          </div>
+          <div class="tex mirror">
+            <div class="label">REFLECT</div>
+            <div class="name">
+              풀바디 미러<br />
+              <span>셀카존 핵심 — 360° 인증</span>
+            </div>
+          </div>
+          <div class="tex cherry">
+            <div class="label">GLOSS</div>
+            <div class="name">
+              체리 글로시 레드<br />
+              <span>립 컬러월·POSM 강조색</span>
+            </div>
+          </div>
+          <div class="tex fabric">
+            <div class="label">WARM</div>
+            <div class="name">
+              누드 패브릭<br />
+              <span>러그·트레이 — 럭셔리 따뜻함</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 Layout -->
+      <section>
+        <span class="num">05 · BOOTH LAYOUT</span>
+        <h2>3평 부스 컨셉 스케치</h2>
+        <div class="h">좌·중·우 3존 구성 — 컬러 그라데이션과 동선이 일치</div>
+        <div class="floorplan">
+          <div class="booth">
+            <div class="zone left">
+              <div>
+                <div class="zlbl">LEFT · STEP 1</div>
+                <div class="zname">CLOUD ZONE</div>
+              </div>
+              <ul>
+                <li>클라우드블러 단상</li>
+                <li>솜털 오브제·구름 디스플레이</li>
+                <li>시연 미러 (보송 텍스처 체험)</li>
+              </ul>
+            </div>
+            <div class="zone center">
+              <div>
+                <div class="zlbl">CENTER · PHOTO</div>
+                <div class="zname">SELFIE SPOT</div>
+              </div>
+              <ul>
+                <li>풀바디 미러 + 로고 백드롭</li>
+                <li>해시태그 안내 (#탐뷰티 / 中文 ver.)</li>
+                <li>조명 — 인증샷 친화 톤</li>
+              </ul>
+            </div>
+            <div class="zone right">
+              <div>
+                <div class="zlbl">RIGHT · STEP 2</div>
+                <div class="zname">CHERRY ZONE</div>
+              </div>
+              <ul>
+                <li>립라이너 컬러 스워치월</li>
+                <li>손등 스와치 체험 트레이</li>
+                <li>BEST 컬러 TOP3 큐레이션</li>
+              </ul>
+            </div>
+          </div>
+          <div class="booth-meta">
+            <div>
+              <b>동선</b> · 좌(보송) → 중(인증) → 우(컬러) — 자연스러운
+              BEFORE→AFTER
+            </div>
+            <div><b>면적 배분</b> · 좌 35% · 중 25% · 우 40%</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 SKU -->
+      <section>
+        <span class="num">06 · HERO SKU</span>
+        <h2>3평에 올릴 2제품</h2>
+        <div class="h">
+          이지브로우마스카라·하이라이터·파우더밤은 사이드 진열만, 메인
+          스토리에서 제외
+        </div>
+        <div class="skus">
+          <div class="sku">
+            <div class="role">MAIN HERO</div>
+            <h3>클라우드 블러</h3>
+            <div class="sub2">보송한 베이스의 마침표</div>
+            <ul>
+              <li>신제품 푸시 시점 일치</li>
+              <li>여름 끈적임 잡는 세팅 카테고리</li>
+              <li>"柔焦(보송)" 키워드 = 샤오홍슈 트렌딩</li>
+              <li>옆 스킨케어 4종과 시너지 (피니시 단계)</li>
+            </ul>
+          </div>
+          <div class="sku lip">
+            <div class="role">EXPERIENCE</div>
+            <h3>립라이너</h3>
+            <div class="sub2">컬러월·셀카존의 비주얼 엔진</div>
+            <ul>
+              <li>색조 충동구매 1순위, 객단가 부담 낮음</li>
+              <li>12~15컬러 스워치월 = 부스 비주얼 폭발</li>
+              <li>거울 셀카존 동선과 자연 연결</li>
+              <li>중국 관광객 "한국 립" 구매 의향 高</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 References -->
+      <section>
+        <span class="num">07 · REFERENCE KEYWORDS</span>
+        <h2>레퍼런스 검색 키워드</h2>
+        <div class="h">
+          무드 잡을 때 이 키워드로 핀터레스트·샤오홍슈·구글이미지 검색
+        </div>
+        <div class="refs">
+          <div class="ref">
+            <div class="cat">A · CLOUD MOOD</div>
+            <h4>솜털·구름 디스플레이</h4>
+            <div class="keys">
+              <span class="key">cotton candy beauty popup</span>
+              <span class="key">cloud display retail</span>
+              <span class="key">pink cloud installation</span>
+              <span class="key cn">柔焦 美妆 快闪</span>
+              <span class="key">솜털 오브제</span>
+            </div>
+            <p>좌측 클라우드존 디스플레이·천장 오브제 기획용</p>
+          </div>
+          <div class="ref">
+            <div class="cat">B · LIP WALL</div>
+            <h4>립 컬러 스워치월</h4>
+            <div class="keys">
+              <span class="key">lip swatch wall</span>
+              <span class="key">lipstick color display</span>
+              <span class="key cn">立体口红墙</span>
+              <span class="key cn">口红试色墙</span>
+              <span class="key">charlotte tilbury popup</span>
+            </div>
+            <p>우측 체리존 컬러월 구조·조명 기획용</p>
+          </div>
+          <div class="ref">
+            <div class="cat">C · SELFIE SPOT</div>
+            <h4>인증샷·셀카존</h4>
+            <div class="keys">
+              <span class="key cn">小红书打卡墙</span>
+              <span class="key">photo wall popup</span>
+              <span class="key">mirror selfie installation</span>
+              <span class="key">미러 백드롭 부스</span>
+              <span class="key">dior beauty popup</span>
+            </div>
+            <p>중앙존 미러·백드롭·해시태그 안내 기획용</p>
+          </div>
+          <div class="ref">
+            <div class="cat">D · OVERALL TONE</div>
+            <h4>럭셔리 색조 부스 톤</h4>
+            <div class="keys">
+              <span class="key">YSL beauty popup</span>
+              <span class="key">lancome counter design</span>
+              <span class="key">롯데백화점 1F 뷰티 팝업</span>
+              <span class="key cn">百货公司 美妆 快闪</span>
+              <span class="key">pink luxury booth</span>
+            </div>
+            <p>전체 톤·조명·POSM 톤 정합성 검토용</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 Next -->
+      <section>
+        <span class="num">08 · NEXT STEPS</span>
+        <h2>다음 액션</h2>
+        <div class="h">이 무드보드가 합의되면 바로 다음 산출물로 진행</div>
+        <div class="nextlist">
+          <ol>
+            <li>
+              <b>3평 평면도 + 입면 시안 (v1)</b> — 좌·중·우 3존 치수, 집기 위치,
+              조명 포인트 시각화. 백화점 통일 부스 기본 구조 확인 후 작업.
+            </li>
+            <li>
+              <b>레퍼런스 이미지 큐레이션</b> — 위 4개 카테고리별 5장씩, 총 20장
+              핀터레스트 보드 구성. (사용자 측에서 진행 또는 별도 요청 시 함께)
+            </li>
+            <li>
+              <b>POSM·그래픽 리스트</b> — 벽면 그래픽, 립 스워치월 패널,
+              클라우드 오브제, 해시태그 사이니지 등 발주 항목 리스트업.
+            </li>
+            <li>
+              <b>체험 시나리오 + 운영 동선</b> — 직원 응대 스크립트(한·중),
+              체험→구매 전환 동선, 재고·체험분 운영 룰.
+            </li>
+            <li>
+              <b>예산 견적 정리</b> — 집기 변형 가능 범위 확인 후
+              POSM·소품·인쇄물 항목별 견적 정리.
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <div class="foot">
+        탐뷰티 × 롯데백화점 뷰티 팝업 · 3평 부스 무드보드 v1 · 2026.05.27<br />
+        Cloud to Cherry — 보송한 피부, 또렷한 입술
+      </div>
+    </div>
+  </body>
+</html>
