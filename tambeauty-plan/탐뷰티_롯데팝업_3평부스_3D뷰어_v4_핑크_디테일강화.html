@@ -1,0 +1,1820 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐뷰티 × 롯데 팝업 — 3D 뷰어 v4 (핑크 · 디테일 강화)</title>
+    <style>
+      :root {
+        --pale: #ffebf1;
+        --soft: #fcc5d2;
+        --pink: #f5a0b5;
+        --deep: #e47b98;
+        --rose: #c44b6e;
+        --rose-deep: #9d3653;
+        --pearl: #f5e0e5;
+        --ink: #1a1a1a;
+        --bg: #fdf5f7;
+        --panel-bg: rgba(255, 255, 255, 0.9);
+        --panel-border: rgba(0, 0, 0, 0.08);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--panel-border);
+        z-index: 10;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .brand .logo {
+        font-size: 14px;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        color: var(--rose);
+      }
+      .brand .divider {
+        width: 1px;
+        height: 16px;
+        background: var(--panel-border);
+      }
+      .brand .title {
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--ink);
+        text-transform: uppercase;
+      }
+      .brand .ver {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        background: var(--deep);
+        color: #fff;
+        padding: 3px 8px;
+        border-radius: 100px;
+      }
+      .meta {
+        font-size: 11.5px;
+        color: #888;
+        font-family: 'SF Mono', Consolas, monospace;
+      }
+      .meta b {
+        color: var(--rose);
+      }
+
+      #container {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      #container canvas {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+        cursor: grab;
+      }
+      #container canvas:active {
+        cursor: grabbing;
+      }
+
+      .panel {
+        position: absolute;
+        background: var(--panel-bg);
+        backdrop-filter: blur(14px);
+        border: 1px solid var(--panel-border);
+        border-radius: 14px;
+        padding: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        z-index: 5;
+      }
+      .panel-title {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        color: #888;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        padding-left: 4px;
+      }
+      .panel.views {
+        top: 20px;
+        right: 20px;
+        width: 138px;
+      }
+      .panel.views button {
+        display: block;
+        width: 100%;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink);
+        cursor: pointer;
+        text-align: left;
+        margin-bottom: 2px;
+        font-family: inherit;
+        transition: all 0.15s ease;
+      }
+      .panel.views button:hover {
+        background: rgba(228, 123, 152, 0.12);
+        border-color: rgba(228, 123, 152, 0.2);
+      }
+      .panel.views button.active {
+        background: var(--deep);
+        color: #fff;
+      }
+      .panel.views button .kbd {
+        float: right;
+        font-size: 10.5px;
+        opacity: 0.5;
+        font-family: 'SF Mono', Consolas, monospace;
+        margin-top: 2px;
+      }
+      .panel.views button.active .kbd {
+        opacity: 0.7;
+      }
+
+      .panel.options {
+        top: 20px;
+        left: 20px;
+        width: 208px;
+      }
+      .panel.options label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 4px;
+        font-size: 13px;
+        color: var(--ink);
+        cursor: pointer;
+        border-radius: 6px;
+        user-select: none;
+      }
+      .panel.options label:hover {
+        background: rgba(0, 0, 0, 0.03);
+      }
+      .panel.options input[type='checkbox'] {
+        width: 16px;
+        height: 16px;
+        accent-color: var(--deep);
+        cursor: pointer;
+      }
+      .panel.options .sep {
+        height: 1px;
+        background: var(--panel-border);
+        margin: 8px 0;
+      }
+      .panel.options button {
+        display: block;
+        width: 100%;
+        background: #fff;
+        border: 1px solid var(--panel-border);
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ink);
+        cursor: pointer;
+        margin-bottom: 4px;
+        font-family: inherit;
+        transition: all 0.15s ease;
+      }
+      .panel.options button:hover {
+        background: var(--deep);
+        color: #fff;
+        border-color: var(--deep);
+      }
+
+      .panel.legend {
+        bottom: 20px;
+        left: 20px;
+        width: 220px;
+      }
+      .panel.legend .item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 3px 2px;
+        font-size: 11.5px;
+        color: var(--ink);
+      }
+      .panel.legend .item i {
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+        flex-shrink: 0;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .panel.legend .group-title {
+        font-size: 9.5px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        color: #888;
+        margin-top: 8px;
+        margin-bottom: 4px;
+        padding-left: 2px;
+      }
+      .panel.legend .group-title:first-of-type {
+        margin-top: 4px;
+      }
+
+      .panel.info {
+        bottom: 20px;
+        right: 20px;
+        max-width: 300px;
+        padding: 14px 16px;
+      }
+      .panel.info h3 {
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 4px;
+        color: var(--ink);
+      }
+      .panel.info p {
+        font-size: 11.5px;
+        color: #666;
+        line-height: 1.55;
+      }
+      .panel.info .skulist {
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px dashed var(--panel-border);
+        font-size: 11px;
+        color: #666;
+        line-height: 1.5;
+      }
+      .panel.info .skulist b {
+        color: var(--rose);
+      }
+
+      .hint {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 11px;
+        color: #888;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(8px);
+        padding: 6px 14px;
+        border-radius: 100px;
+        white-space: nowrap;
+        z-index: 4;
+      }
+      .hint kbd {
+        font-family: 'SF Mono', Consolas, monospace;
+        background: rgba(0, 0, 0, 0.08);
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-size: 10.5px;
+        color: var(--ink);
+      }
+
+      .loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 100;
+      }
+      .loader .dot {
+        width: 12px;
+        height: 12px;
+        background: var(--deep);
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 4px;
+        animation: pulse 1.4s infinite;
+      }
+      .loader .dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .loader .dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .loader p {
+        margin-top: 16px;
+        font-size: 13px;
+        color: #666;
+        font-weight: 600;
+      }
+      @keyframes pulse {
+        0%,
+        80%,
+        100% {
+          transform: scale(0.7);
+          opacity: 0.4;
+        }
+        40% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .loader.hidden {
+        display: none;
+      }
+
+      @media (max-width: 760px) {
+        .panel.views,
+        .panel.options,
+        .panel.legend,
+        .panel.info {
+          padding: 10px;
+        }
+        .panel.views {
+          top: 70px;
+          right: 12px;
+          width: 110px;
+        }
+        .panel.options {
+          top: 70px;
+          left: 12px;
+          width: 170px;
+        }
+        .panel.legend {
+          bottom: 60px;
+          left: 12px;
+          width: 180px;
+          max-height: 35vh;
+          overflow-y: auto;
+        }
+        .panel.info {
+          display: none;
+        }
+        .hint {
+          font-size: 10px;
+          padding: 5px 12px;
+        }
+        header {
+          padding: 0 14px;
+          height: 50px;
+        }
+        #container {
+          top: 50px;
+        }
+        .meta {
+          display: none;
+        }
+      }
+    </style>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <span class="logo">TAM BEAUTY</span>
+        <span class="divider"></span>
+        <span class="title">3D BOOTH VIEWER</span>
+        <span class="ver">v4 · 핑크 · 디테일 강화</span>
+      </div>
+      <div class="meta">
+        탐뷰티 케이스 핑크 · 다층 단상 · 풍부한 POSM · <b>+소품 데코</b>
+      </div>
+    </header>
+
+    <main id="container">
+      <div class="loader" id="loader">
+        <span class="dot"></span><span class="dot"></span
+        ><span class="dot"></span>
+        <p>3D 부스 로딩 중...</p>
+      </div>
+
+      <div class="panel views">
+        <div class="panel-title">VIEW</div>
+        <button data-view="front" class="active">
+          정면<span class="kbd">1</span>
+        </button>
+        <button data-view="leftAngle">
+          좌측 각도<span class="kbd">2</span>
+        </button>
+        <button data-view="rightAngle">
+          우측 각도<span class="kbd">3</span>
+        </button>
+        <button data-view="best">
+          BEST 클로즈업<span class="kbd">4</span>
+        </button>
+        <button data-view="top">탑뷰<span class="kbd">5</span></button>
+        <button data-view="hero">히어로 컷<span class="kbd">6</span></button>
+      </div>
+
+      <div class="panel options">
+        <div class="panel-title">OPTIONS</div>
+        <label><input type="checkbox" id="autoRotate" /> 자동 회전</label>
+        <label
+          ><input type="checkbox" id="warmLight" checked /> 따뜻한 조명</label
+        >
+        <label
+          ><input type="checkbox" id="showOrbs" checked /> 막대 오브제</label
+        >
+        <label
+          ><input type="checkbox" id="showHeader" checked /> 헤더·사이드
+          패널</label
+        >
+        <label><input type="checkbox" id="showDeco" checked /> 데코 소품</label>
+        <label><input type="checkbox" id="showPosm" checked /> POSM 카드</label>
+        <div class="sep"></div>
+        <button id="screenshot">📸 화면 캡처</button>
+        <button id="resetCam">↻ 카메라 초기화</button>
+      </div>
+
+      <div class="panel legend">
+        <div class="panel-title">LEGEND</div>
+        <div class="group-title">PINK PALETTE</div>
+        <div class="item">
+          <i style="background: #ffebf1"></i>페일 핑크 (#FFEBF1)
+        </div>
+        <div class="item">
+          <i style="background: #fcc5d2"></i>소프트 핑크 (#FCC5D2) · 케이스톤
+        </div>
+        <div class="item">
+          <i style="background: #f5a0b5"></i>핑크 메인 (#F5A0B5)
+        </div>
+        <div class="item">
+          <i style="background: #e47b98"></i>딥 핑크 (#E47B98)
+        </div>
+        <div class="item">
+          <i style="background: #c44b6e"></i>로즈 (#C44B6E)
+        </div>
+        <div class="item"><i style="background: #f5e0e5"></i>펄 (#F5E0E5)</div>
+
+        <div class="group-title">DISPLAY</div>
+        <div class="item">
+          <i style="background: linear-gradient(180deg, #fff, #fcc5d2)"></i>좌 ·
+          베이스 진열대
+        </div>
+        <div class="item">
+          <i style="background: radial-gradient(circle, #fff, #f5a0b5)"></i>중 ·
+          BEST 다층 단상
+        </div>
+        <div class="item">
+          <i style="background: linear-gradient(180deg, #fff, #e47b98)"></i>우 ·
+          컬러/브로우 진열대
+        </div>
+      </div>
+
+      <div class="panel info" id="infoPanel">
+        <h3 id="infoTitle">정면 뷰 · v4 핑크</h3>
+        <p id="infoDesc">
+          탐뷰티 케이스 핑크 톤 · 다층 단상 · 헤더+사이드 모델 패널 · 풍부한
+          POSM·데코 소품.
+        </p>
+        <div class="skulist">
+          <b>NEW</b> · 사이드 모델 패널 · 다층 단상 · 손거울 · 펄 비즈 · 꽃잎
+          데코 · 섹션 헤더 카드 · 가격/뱃지 POSM
+        </div>
+      </div>
+
+      <div class="hint">
+        <kbd>드래그</kbd> 회전 · <kbd>휠</kbd> 줌 · <kbd>우클릭</kbd> 이동 ·
+        <kbd>1-6</kbd> 뷰 단축키
+      </div>
+    </main>
+
+    <script type="module">
+      import * as THREE from 'three';
+      import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+      // ============ Pink palette (탐뷰티 케이스 톤) ============
+      const C = {
+        palepink: 0xffebf1,
+        softpink: 0xfcc5d2,
+        pink: 0xf5a0b5,
+        deeppink: 0xe47b98,
+        rose: 0xc44b6e,
+        rosedeep: 0x9d3653,
+        pearl: 0xf5e0e5,
+        warmwhite: 0xfff8f9,
+        cream: 0xfdf5f7,
+        silver: 0xd8d0d2,
+        ink: 0x1a1a1a,
+        gold: 0xe8c8a0,
+      };
+
+      // ============ Scene ============
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(C.cream);
+      scene.fog = new THREE.Fog(C.cream, 9, 22);
+
+      const container = document.getElementById('container');
+      const W = () => container.clientWidth;
+      const H = () => container.clientHeight;
+
+      const camera = new THREE.PerspectiveCamera(38, W() / H(), 0.1, 100);
+      camera.position.set(1.8, 1.5, -2.5);
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setSize(W(), H());
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.05;
+      container.appendChild(renderer.domElement);
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.target.set(1.8, 1.0, 1.2);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.07;
+      controls.maxDistance = 10;
+      controls.minDistance = 0.8;
+      controls.maxPolarAngle = Math.PI / 2 - 0.02;
+
+      // ============ Lighting ============
+      const ambient = new THREE.AmbientLight(0xfff0f5, 0.55);
+      scene.add(ambient);
+      const hemi = new THREE.HemisphereLight(0xffd4dc, 0xe8d8dd, 0.6);
+      hemi.position.set(0, 5, 0);
+      scene.add(hemi);
+      const keyLight = new THREE.DirectionalLight(0xfff5f8, 0.7);
+      keyLight.position.set(2, 5, -3);
+      keyLight.castShadow = true;
+      keyLight.shadow.mapSize.width = 2048;
+      keyLight.shadow.mapSize.height = 2048;
+      keyLight.shadow.camera.left = -4;
+      keyLight.shadow.camera.right = 4;
+      keyLight.shadow.camera.top = 4;
+      keyLight.shadow.camera.bottom = -4;
+      keyLight.shadow.bias = -0.001;
+      scene.add(keyLight);
+
+      // 6 spotlights focused on table
+      const spotGroup = new THREE.Group();
+      const spotPositions = [
+        [0.6, 2.4, 1.3],
+        [1.2, 2.4, 1.3],
+        [1.8, 2.4, 1.2],
+        [2.0, 2.4, 1.4],
+        [2.6, 2.4, 1.3],
+        [3.2, 2.4, 1.3],
+      ];
+      spotPositions.forEach(([x, y, z]) => {
+        const spot = new THREE.SpotLight(
+          0xffe5ec,
+          0.85,
+          3.5,
+          Math.PI / 5,
+          0.4,
+          1.4,
+        );
+        spot.position.set(x, y, z);
+        spot.target.position.set(x, 0.9, z);
+        spotGroup.add(spot);
+        spotGroup.add(spot.target);
+      });
+      scene.add(spotGroup);
+
+      const pinkGlow = new THREE.PointLight(0xf5a0b5, 0.55, 2.5);
+      pinkGlow.position.set(1.8, 1.4, 1.0);
+      scene.add(pinkGlow);
+
+      // ============ Helpers ============
+      function makeBox(x, y, z, w, h, d, color, opts = {}) {
+        const mat = new THREE.MeshStandardMaterial({
+          color: color,
+          roughness: opts.roughness ?? 0.6,
+          metalness: opts.metalness ?? 0.0,
+          transparent: opts.transparent ?? false,
+          opacity: opts.opacity ?? 1.0,
+          side: opts.side ?? THREE.FrontSide,
+          emissive: opts.emissive ?? 0x000000,
+          emissiveIntensity: opts.emissiveIntensity ?? 0,
+        });
+        const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+        mesh.position.set(x, y, z);
+        mesh.castShadow = opts.shadow !== false;
+        mesh.receiveShadow = opts.receive !== false;
+        scene.add(mesh);
+        return mesh;
+      }
+
+      function makeSignText(
+        text,
+        w,
+        h,
+        bgColor = '#e47b98',
+        fgColor = '#ffffff',
+        italic = false,
+        fontFamily = 'Pretendard, sans-serif',
+        transparentBg = false,
+      ) {
+        const c = document.createElement('canvas');
+        c.width = 2048;
+        c.height = Math.max(64, Math.round((2048 * h) / w));
+        const ctx = c.getContext('2d');
+        if (!transparentBg) {
+          ctx.fillStyle = bgColor;
+          ctx.fillRect(0, 0, c.width, c.height);
+        }
+        ctx.fillStyle = fgColor;
+        const fontSize = Math.round(c.height * 0.46);
+        ctx.font =
+          (italic ? 'italic ' : '') + 'bold ' + fontSize + 'px ' + fontFamily;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, c.width / 2, c.height / 2);
+        const tex = new THREE.CanvasTexture(c);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        return tex;
+      }
+
+      // ============ Floor ============
+      const floor = new THREE.Mesh(
+        new THREE.PlaneGeometry(20, 20),
+        new THREE.MeshStandardMaterial({ color: 0xeed8dd, roughness: 0.92 }),
+      );
+      floor.rotation.x = -Math.PI / 2;
+      floor.receiveShadow = true;
+      scene.add(floor);
+
+      const floorGlow = new THREE.Mesh(
+        new THREE.CircleGeometry(3.5, 32),
+        new THREE.MeshBasicMaterial({
+          color: 0xf5a0b5,
+          transparent: true,
+          opacity: 0.18,
+        }),
+      );
+      floorGlow.rotation.x = -Math.PI / 2;
+      floorGlow.position.set(1.8, 0.001, 1.2);
+      scene.add(floorGlow);
+
+      // ============ COUNTER ============
+      // Body
+      makeBox(1.8, 0.45, 1.4, 3.6, 0.9, 0.5, C.warmwhite, { roughness: 0.45 });
+      // Inset base (darker pink, recessed look)
+      makeBox(1.8, 0.06, 1.4, 3.55, 0.1, 0.48, C.softpink, { roughness: 0.7 });
+      // Floor base shadow
+      makeBox(1.8, 0.01, 1.4, 3.65, 0.02, 0.52, C.deeppink, { roughness: 0.6 });
+      // Top edge trim
+      makeBox(1.8, 0.905, 1.4, 3.62, 0.008, 0.52, C.deeppink, {
+        roughness: 0.55,
+      });
+      // Top accent ring (slight inset pearl)
+      makeBox(1.8, 0.913, 1.4, 3.58, 0.005, 0.48, C.pearl, { roughness: 0.5 });
+
+      // ===== Counter front big graphic panel =====
+      const counterFrontCanvas = document.createElement('canvas');
+      counterFrontCanvas.width = 2880;
+      counterFrontCanvas.height = 600;
+      const cfc = counterFrontCanvas.getContext('2d');
+      // Pink gradient
+      const cfg = cfc.createLinearGradient(0, 0, 2880, 0);
+      cfg.addColorStop(0, '#ffebf1');
+      cfg.addColorStop(0.3, '#fcc5d2');
+      cfg.addColorStop(0.55, '#f5a0b5');
+      cfg.addColorStop(0.85, '#e47b98');
+      cfg.addColorStop(1, '#c44b6e');
+      cfc.fillStyle = cfg;
+      cfc.fillRect(0, 0, 2880, 600);
+      // Soft highlight
+      const cfh = cfc.createRadialGradient(1440, 100, 80, 1440, 100, 1100);
+      cfh.addColorStop(0, 'rgba(255,255,255,0.5)');
+      cfh.addColorStop(1, 'rgba(255,255,255,0)');
+      cfc.fillStyle = cfh;
+      cfc.fillRect(0, 0, 2880, 600);
+      // Repeating logo wash (subtle)
+      cfc.fillStyle = 'rgba(255,255,255,0.15)';
+      cfc.font = 'bold 38px Pretendard, sans-serif';
+      cfc.textAlign = 'left';
+      for (let x = -100; x < 2900; x += 280) {
+        for (let y = 80; y < 600; y += 110) {
+          cfc.save();
+          cfc.translate(x + (y % 220) * 0.3, y);
+          cfc.rotate(-Math.PI / 36);
+          cfc.fillText('TAM BEAUTY', 0, 0);
+          cfc.restore();
+        }
+      }
+      // Main brand block (center bold)
+      cfc.fillStyle = '#ffffff';
+      cfc.font = 'bold 100px Pretendard, sans-serif';
+      cfc.textAlign = 'center';
+      cfc.fillText('TAM BEAUTY', 1440, 230);
+      cfc.font = 'italic 78px Georgia, serif';
+      cfc.fillText('— Cloud to Bloom —', 1440, 340);
+      cfc.font = '38px Pretendard, sans-serif';
+      cfc.fillText(
+        '보송한 피부, 또렷한 입술  ·  柔焦底妆 × 唇釉色卡墙',
+        1440,
+        420,
+      );
+      // Limited edition badge
+      cfc.fillStyle = '#fff';
+      cfc.strokeStyle = '#ffffff';
+      cfc.lineWidth = 4;
+      cfc.beginPath();
+      cfc.roundRect(1130, 470, 620, 80, 40);
+      cfc.stroke();
+      cfc.fillStyle = '#fff';
+      cfc.font = 'bold 38px Pretendard, sans-serif';
+      cfc.fillText('LOTTE EXCLUSIVE  ·  2026.07', 1440, 522);
+
+      const counterFrontTex = new THREE.CanvasTexture(counterFrontCanvas);
+      counterFrontTex.colorSpace = THREE.SRGBColorSpace;
+      const counterFront = new THREE.Mesh(
+        new THREE.PlaneGeometry(3.55, 0.74),
+        new THREE.MeshStandardMaterial({
+          map: counterFrontTex,
+          roughness: 0.5,
+        }),
+      );
+      counterFront.position.set(1.8, 0.48, 1.151);
+      scene.add(counterFront);
+
+      // ===== Counter side panels =====
+      [-0.001, 3.601].forEach((x, i) => {
+        const sideCanvas = document.createElement('canvas');
+        sideCanvas.width = 800;
+        sideCanvas.height = 1440;
+        const sx = sideCanvas.getContext('2d');
+        const sg = sx.createLinearGradient(0, 0, 0, 1440);
+        sg.addColorStop(0, '#fcc5d2');
+        sg.addColorStop(1, '#c44b6e');
+        sx.fillStyle = sg;
+        sx.fillRect(0, 0, 800, 1440);
+        sx.save();
+        sx.translate(400, 720);
+        sx.rotate(-Math.PI / 2);
+        sx.fillStyle = '#fff';
+        sx.font = 'bold 100px Pretendard, sans-serif';
+        sx.textAlign = 'center';
+        sx.fillText('TAM BEAUTY', 0, 0);
+        sx.restore();
+        const tex = new THREE.CanvasTexture(sideCanvas);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        const side = new THREE.Mesh(
+          new THREE.PlaneGeometry(0.48, 0.86),
+          new THREE.MeshStandardMaterial({ map: tex, roughness: 0.6 }),
+        );
+        side.position.set(x, 0.46, 1.4);
+        side.rotation.y = i === 0 ? -Math.PI / 2 : Math.PI / 2;
+        scene.add(side);
+      });
+
+      // ============ HEADER GROUP (2 panels) ============
+      const headerGroup = new THREE.Group();
+
+      // Main header panel
+      const mainHeaderCanvas = document.createElement('canvas');
+      mainHeaderCanvas.width = 1600;
+      mainHeaderCanvas.height = 1000;
+      const mh = mainHeaderCanvas.getContext('2d');
+      const mhGrad = mh.createLinearGradient(0, 0, 1600, 1000);
+      mhGrad.addColorStop(0, '#fff5f8');
+      mhGrad.addColorStop(0.35, '#fcc5d2');
+      mhGrad.addColorStop(0.7, '#e47b98');
+      mhGrad.addColorStop(1, '#9d3653');
+      mh.fillStyle = mhGrad;
+      mh.fillRect(0, 0, 1600, 1000);
+      // Light highlight
+      const mhh = mh.createRadialGradient(700, 200, 50, 700, 200, 700);
+      mhh.addColorStop(0, 'rgba(255,255,255,0.55)');
+      mhh.addColorStop(1, 'rgba(255,255,255,0)');
+      mh.fillStyle = mhh;
+      mh.fillRect(0, 0, 1600, 1000);
+      // Brand
+      mh.fillStyle = '#1a1a1a';
+      mh.font = 'bold 110px Pretendard, sans-serif';
+      mh.textAlign = 'center';
+      mh.fillText('TAM BEAUTY', 800, 200);
+      mh.fillStyle = '#9d3653';
+      mh.font = 'italic bold 220px Georgia, "Times New Roman", serif';
+      mh.fillText('Cloud to Bloom', 800, 470);
+      mh.fillStyle = '#3a3a3a';
+      mh.font = 'bold 64px Pretendard, sans-serif';
+      mh.fillText('보송한 피부, 또렷한 입술', 800, 610);
+      mh.fillStyle = '#5a5a5a';
+      mh.font = '50px Pretendard, sans-serif';
+      mh.fillText('柔焦遮瑕  ·  唇釉色卡墙', 800, 690);
+      // Best badge
+      mh.fillStyle = '#c44b6e';
+      mh.beginPath();
+      mh.roundRect(540, 770, 520, 110, 55);
+      mh.fill();
+      mh.fillStyle = '#fff';
+      mh.font = 'bold 56px Pretendard, sans-serif';
+      mh.fillText('BEST · 2026.07 LOTTE', 800, 842);
+      // Florals (subtle)
+      mh.fillStyle = 'rgba(255,255,255,0.4)';
+      [
+        [150, 880],
+        [1450, 880],
+        [200, 100],
+        [1400, 150],
+      ].forEach(([fx, fy]) => {
+        mh.beginPath();
+        for (let i = 0; i < 5; i++) {
+          const a = (i / 5) * Math.PI * 2;
+          mh.ellipse(
+            fx + Math.cos(a) * 22,
+            fy + Math.sin(a) * 22,
+            18,
+            12,
+            a,
+            0,
+            Math.PI * 2,
+          );
+        }
+        mh.fill();
+      });
+
+      const mainHeaderTex = new THREE.CanvasTexture(mainHeaderCanvas);
+      mainHeaderTex.colorSpace = THREE.SRGBColorSpace;
+      const mainHeader = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.6, 1.0),
+        new THREE.MeshStandardMaterial({
+          map: mainHeaderTex,
+          side: THREE.DoubleSide,
+          roughness: 0.6,
+        }),
+      );
+      mainHeader.position.set(2.0, 1.48, 1.62);
+      headerGroup.add(mainHeader);
+
+      // Side model panel (dasique-style sidekick)
+      const sideHeaderCanvas = document.createElement('canvas');
+      sideHeaderCanvas.width = 700;
+      sideHeaderCanvas.height = 1100;
+      const sh = sideHeaderCanvas.getContext('2d');
+      sh.fillStyle = '#ffebf1';
+      sh.fillRect(0, 0, 700, 1100);
+      // Soft gradient
+      const shg = sh.createLinearGradient(0, 0, 0, 1100);
+      shg.addColorStop(0, 'rgba(252,197,210,0.6)');
+      shg.addColorStop(1, 'rgba(255,235,241,0)');
+      sh.fillStyle = shg;
+      sh.fillRect(0, 0, 700, 1100);
+      // Model placeholder
+      sh.fillStyle = 'rgba(255,255,255,0.7)';
+      sh.beginPath();
+      sh.roundRect(80, 100, 540, 720, 30);
+      sh.fill();
+      sh.fillStyle = '#b88aa0';
+      sh.font = 'bold 38px Pretendard, sans-serif';
+      sh.textAlign = 'center';
+      sh.fillText('[ MODEL ]', 350, 440);
+      sh.font = '26px Pretendard, sans-serif';
+      sh.fillText('실측 후 모델컷', 350, 480);
+      // Sub badge
+      sh.fillStyle = '#e47b98';
+      sh.beginPath();
+      sh.roundRect(140, 870, 420, 90, 45);
+      sh.fill();
+      sh.fillStyle = '#fff';
+      sh.font = 'bold 42px Pretendard, sans-serif';
+      sh.fillText('NEW IN', 350, 928);
+      // Sub copy
+      sh.fillStyle = '#9d3653';
+      sh.font = 'italic 32px Georgia, serif';
+      sh.fillText('Juicy · Glowy · Dewy', 350, 1020);
+
+      const sideHeaderTex = new THREE.CanvasTexture(sideHeaderCanvas);
+      sideHeaderTex.colorSpace = THREE.SRGBColorSpace;
+      const sideHeader = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.7, 1.1),
+        new THREE.MeshStandardMaterial({
+          map: sideHeaderTex,
+          side: THREE.DoubleSide,
+          roughness: 0.65,
+        }),
+      );
+      sideHeader.position.set(0.65, 1.45, 1.62);
+      headerGroup.add(sideHeader);
+
+      // Support legs
+      [0.3, 0.95, 1.2, 2.8].forEach((x) => {
+        const leg = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.014, 0.014, 0.55, 12),
+          new THREE.MeshStandardMaterial({
+            color: C.rose,
+            roughness: 0.35,
+            metalness: 0.4,
+          }),
+        );
+        leg.position.set(x, 1.22, 1.63);
+        leg.castShadow = true;
+        headerGroup.add(leg);
+        const base = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.045, 0.045, 0.018, 16),
+          new THREE.MeshStandardMaterial({ color: C.rose, roughness: 0.5 }),
+        );
+        base.position.set(x, 0.92, 1.63);
+        headerGroup.add(base);
+      });
+
+      scene.add(headerGroup);
+
+      // ============ Stem orbs ============
+      const orbGroup = new THREE.Group();
+      function makeStemOrb(x, baseY, z, height, orbR, color) {
+        const stem = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.003, 0.003, height, 8),
+          new THREE.MeshStandardMaterial({ color: 0xfff8f9, roughness: 0.5 }),
+        );
+        stem.position.set(x, baseY + height / 2, z);
+        orbGroup.add(stem);
+        const stemBase = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.012, 0.012, 0.006, 16),
+          new THREE.MeshStandardMaterial({
+            color: C.rose,
+            roughness: 0.4,
+            metalness: 0.4,
+          }),
+        );
+        stemBase.position.set(x, baseY + 0.003, z);
+        orbGroup.add(stemBase);
+        const orb = new THREE.Mesh(
+          new THREE.SphereGeometry(orbR, 28, 20),
+          new THREE.MeshStandardMaterial({
+            color: color,
+            roughness: 0.3,
+            metalness: 0.08,
+            transparent: true,
+            opacity: 0.92,
+            emissive: color,
+            emissiveIntensity: 0.14,
+          }),
+        );
+        orb.position.set(x, baseY + height + orbR, z);
+        orb.castShadow = true;
+        orbGroup.add(orb);
+      }
+      scene.add(orbGroup);
+
+      // ============ Deco group (pearls, petals, mini mirrors) ============
+      const decoGroup = new THREE.Group();
+      function makePearl(x, y, z, r = 0.012) {
+        const m = new THREE.Mesh(
+          new THREE.SphereGeometry(r, 16, 12),
+          new THREE.MeshStandardMaterial({
+            color: 0xfff5f8,
+            roughness: 0.18,
+            metalness: 0.5,
+            emissive: 0xfff5f8,
+            emissiveIntensity: 0.1,
+          }),
+        );
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        decoGroup.add(m);
+      }
+      function makePetal(x, y, z, color = C.softpink, rot = 0) {
+        const m = new THREE.Mesh(
+          new THREE.CircleGeometry(0.035, 6),
+          new THREE.MeshStandardMaterial({
+            color: color,
+            roughness: 0.65,
+            side: THREE.DoubleSide,
+          }),
+        );
+        m.rotation.x = -Math.PI / 2 + (Math.random() - 0.5) * 0.4;
+        m.rotation.z = rot;
+        m.position.set(x, y, z);
+        decoGroup.add(m);
+      }
+      function makeHandMirror(x, y, z, rot = 0) {
+        const handle = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.008, 0.008, 0.08, 12),
+          new THREE.MeshStandardMaterial({
+            color: C.rose,
+            roughness: 0.35,
+            metalness: 0.4,
+          }),
+        );
+        handle.position.set(x, y + 0.004, z - 0.05);
+        handle.rotation.set(Math.PI / 2, 0, rot);
+        handle.castShadow = true;
+        decoGroup.add(handle);
+        const frame = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.05, 0.05, 0.008, 24),
+          new THREE.MeshStandardMaterial({
+            color: C.rose,
+            roughness: 0.4,
+            metalness: 0.5,
+          }),
+        );
+        frame.position.set(x, y + 0.004, z + 0.01);
+        frame.rotation.x = -Math.PI / 2;
+        decoGroup.add(frame);
+        const mirror = new THREE.Mesh(
+          new THREE.CircleGeometry(0.043, 24),
+          new THREE.MeshStandardMaterial({
+            color: 0xe5e0e3,
+            roughness: 0.05,
+            metalness: 0.95,
+          }),
+        );
+        mirror.position.set(x, y + 0.009, z + 0.01);
+        mirror.rotation.x = -Math.PI / 2;
+        decoGroup.add(mirror);
+      }
+      scene.add(decoGroup);
+
+      // ============ POSM group (cards) ============
+      const posmGroup = new THREE.Group();
+      function makePosmCard(
+        x,
+        y,
+        z,
+        text,
+        color = '#e47b98',
+        tilt = -Math.PI / 9,
+        w = 0.16,
+        h = 0.07,
+      ) {
+        const tex = makeSignText(text, w, h, color, '#ffffff');
+        const card = new THREE.Mesh(
+          new THREE.PlaneGeometry(w, h),
+          new THREE.MeshBasicMaterial({
+            map: tex,
+            side: THREE.DoubleSide,
+            transparent: true,
+          }),
+        );
+        card.position.set(x, y, z);
+        card.rotation.x = tilt;
+        posmGroup.add(card);
+        return card;
+      }
+      function makePosmStand(x, y, z, w, h, text, color = '#c44b6e') {
+        const tex = makeSignText(text, w, h, color, '#ffffff');
+        const stand = new THREE.Mesh(
+          new THREE.PlaneGeometry(w, h),
+          new THREE.MeshBasicMaterial({
+            map: tex,
+            side: THREE.DoubleSide,
+            transparent: true,
+          }),
+        );
+        stand.position.set(x, y, z);
+        // Small stand base (L-bracket)
+        const baseBox = new THREE.Mesh(
+          new THREE.BoxGeometry(w * 0.4, 0.005, 0.04),
+          new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.5 }),
+        );
+        baseBox.position.set(x, y - h / 2 - 0.002, z);
+        posmGroup.add(baseBox);
+        posmGroup.add(stand);
+      }
+      scene.add(posmGroup);
+
+      // ============ LEFT DISPLAY: 베이스 ============
+      // Tier 1 — bigger lower pedestal
+      makeBox(0.85, 1.0, 1.35, 1.0, 0.1, 0.4, C.warmwhite, { roughness: 0.5 });
+      makeBox(0.85, 1.054, 1.35, 1.02, 0.005, 0.42, C.softpink, {
+        roughness: 0.6,
+      });
+
+      // Tier 2 — smaller upper pedestal (back portion)
+      makeBox(0.6, 1.13, 1.5, 0.45, 0.16, 0.22, C.warmwhite, {
+        roughness: 0.5,
+      });
+      makeBox(0.6, 1.215, 1.5, 0.47, 0.005, 0.24, C.pink, { roughness: 0.6 });
+
+      // Highlighter on tier 2 (3 units)
+      [-0.13, 0, 0.13].forEach((dx) => {
+        const c = makeBox(0.6 + dx, 1.25, 1.5, 0.1, 0.03, 0.07, C.gold, {
+          roughness: 0.25,
+          metalness: 0.55,
+        });
+        makeBox(0.6 + dx, 1.268, 1.5, 0.1, 0.004, 0.07, 0xf5dcb8, {
+          roughness: 0.4,
+        });
+      });
+
+      // Powder Bombs on tier 1 (3 units, 1 row front)
+      [-0.32, -0.17, -0.02].forEach((dx) => {
+        const c = makeBox(0.85 + dx, 1.075, 1.25, 0.1, 0.028, 0.1, C.softpink, {
+          roughness: 0.35,
+          metalness: 0.1,
+        });
+        makeBox(0.85 + dx, 1.092, 1.25, 0.1, 0.004, 0.1, 0xfff8f9, {
+          roughness: 0.4,
+        });
+      });
+
+      // Cloud Blurs standing (3 units, right side of tier 1)
+      [
+        [0.15, 1.28],
+        [0.27, 1.32],
+        [0.21, 1.4],
+      ].forEach(([dx, dz]) => {
+        const tube = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.032, 0.032, 0.15, 24),
+          new THREE.MeshStandardMaterial({
+            color: C.deeppink,
+            roughness: 0.35,
+            metalness: 0.2,
+          }),
+        );
+        tube.position.set(0.85 + dx, 1.13, dz);
+        tube.castShadow = true;
+        scene.add(tube);
+        const cap = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.035, 0.035, 0.038, 24),
+          new THREE.MeshStandardMaterial({
+            color: C.softpink,
+            roughness: 0.35,
+          }),
+        );
+        cap.position.set(0.85 + dx, 1.225, dz);
+        cap.castShadow = true;
+        scene.add(cap);
+        // Gold band
+        const band = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.0335, 0.0335, 0.008, 24),
+          new THREE.MeshStandardMaterial({
+            color: C.gold,
+            roughness: 0.3,
+            metalness: 0.5,
+          }),
+        );
+        band.position.set(0.85 + dx, 1.205, dz);
+        scene.add(band);
+      });
+
+      // Section header card "BASE"
+      makePosmStand(0.85, 1.16, 1.18, 0.32, 0.09, 'BASE  ·  베이스', '#e47b98');
+
+      // POSM cards
+      makePosmCard(0.5, 1.062, 1.2, 'NEW', '#e47b98');
+      makePosmCard(
+        0.85,
+        1.062,
+        1.18,
+        '¥1,980',
+        '#9d3653',
+        -Math.PI / 9,
+        0.12,
+        0.05,
+      );
+      makePosmCard(1.15, 1.062, 1.2, 'BEST', '#c44b6e');
+
+      // Mini swatch tray
+      makeBox(1.1, 1.06, 1.5, 0.18, 0.012, 0.14, 0xe5dae0, {
+        roughness: 0.1,
+        metalness: 0.6,
+      });
+      // Sample tester compact
+      makeBox(1.1, 1.078, 1.5, 0.08, 0.012, 0.08, C.softpink, {
+        roughness: 0.4,
+      });
+
+      // Stem orbs (left, varied heights)
+      makeStemOrb(0.4, 1.06, 1.18, 0.18, 0.048, C.softpink);
+      makeStemOrb(1.18, 1.06, 1.22, 0.24, 0.052, C.pink);
+      makeStemOrb(0.5, 1.06, 1.5, 0.13, 0.04, C.palepink);
+      makeStemOrb(1.25, 1.06, 1.5, 0.16, 0.045, C.pearl);
+
+      // Deco — pearls and petals scattered on left
+      [
+        [0.7, 1.058, 1.2],
+        [0.6, 1.058, 1.25],
+        [0.95, 1.058, 1.22],
+        [1.05, 1.058, 1.28],
+        [0.5, 1.058, 1.35],
+      ].forEach(([x, y, z]) =>
+        makePearl(x, y, z, 0.01 + Math.random() * 0.006),
+      );
+      [
+        [0.55, 1.057, 1.32, C.softpink, 0.3],
+        [0.7, 1.057, 1.18, C.pink, -0.8],
+        [1.05, 1.057, 1.18, C.palepink, 0.5],
+        [1.1, 1.057, 1.38, C.softpink, -0.3],
+      ].forEach(([x, y, z, c, r]) => makePetal(x, y, z, c, r));
+
+      // ============ CENTER DISPLAY: BEST 다층 단상 ============
+      // Tier 1 — large outer ring (clear acrylic look)
+      const tier1Base = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.46, 0.48, 0.05, 36),
+        new THREE.MeshStandardMaterial({
+          color: C.pink,
+          roughness: 0.35,
+          metalness: 0.1,
+        }),
+      );
+      tier1Base.position.set(1.95, 0.935, 1.35);
+      tier1Base.castShadow = true;
+      scene.add(tier1Base);
+
+      const tier1Body = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.42, 0.42, 0.14, 36),
+        new THREE.MeshPhysicalMaterial({
+          color: 0xfff8f9,
+          roughness: 0.08,
+          metalness: 0.0,
+          transmission: 0.75,
+          transparent: true,
+          opacity: 0.85,
+          ior: 1.45,
+          thickness: 0.3,
+        }),
+      );
+      tier1Body.position.set(1.95, 1.03, 1.35);
+      tier1Body.castShadow = true;
+      scene.add(tier1Body);
+
+      const tier1Top = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.43, 0.43, 0.015, 36),
+        new THREE.MeshStandardMaterial({ color: C.pink, roughness: 0.4 }),
+      );
+      tier1Top.position.set(1.95, 1.108, 1.35);
+      scene.add(tier1Top);
+
+      // Tier 2 — smaller inner ring on top
+      const tier2Base = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.22, 0.23, 0.04, 32),
+        new THREE.MeshStandardMaterial({
+          color: C.deeppink,
+          roughness: 0.35,
+          metalness: 0.15,
+        }),
+      );
+      tier2Base.position.set(1.95, 1.135, 1.35);
+      tier2Base.castShadow = true;
+      scene.add(tier2Base);
+
+      const tier2Body = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.2, 0.2, 0.08, 32),
+        new THREE.MeshPhysicalMaterial({
+          color: 0xfff8f9,
+          roughness: 0.08,
+          transmission: 0.7,
+          opacity: 0.85,
+          transparent: true,
+          ior: 1.45,
+        }),
+      );
+      tier2Body.position.set(1.95, 1.195, 1.35);
+      tier2Body.castShadow = true;
+      scene.add(tier2Body);
+
+      const tier2Top = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.21, 0.21, 0.012, 32),
+        new THREE.MeshStandardMaterial({
+          color: C.rose,
+          roughness: 0.4,
+          metalness: 0.2,
+        }),
+      );
+      tier2Top.position.set(1.95, 1.243, 1.35);
+      scene.add(tier2Top);
+
+      // BEST badge sticker on tier 1 top (visible from front)
+      const bestT1Tex = makeSignText('BEST', 0.18, 0.05, '#9d3653', '#ffffff');
+      const bestT1Sign = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.22, 0.065),
+        new THREE.MeshBasicMaterial({
+          map: bestT1Tex,
+          transparent: true,
+          side: THREE.DoubleSide,
+        }),
+      );
+      bestT1Sign.position.set(1.95, 1.116, 1.12);
+      bestT1Sign.rotation.x = -Math.PI / 2.2;
+      scene.add(bestT1Sign);
+
+      // Hero pick on tier 2 (1 prominent cloud blur)
+      const heroTube = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.05, 0.05, 0.22, 28),
+        new THREE.MeshStandardMaterial({
+          color: C.deeppink,
+          roughness: 0.3,
+          metalness: 0.22,
+        }),
+      );
+      heroTube.position.set(1.95, 1.36, 1.35);
+      heroTube.castShadow = true;
+      scene.add(heroTube);
+      const heroCap = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.054, 0.054, 0.052, 28),
+        new THREE.MeshStandardMaterial({ color: C.softpink, roughness: 0.35 }),
+      );
+      heroCap.position.set(1.95, 1.495, 1.35);
+      heroCap.castShadow = true;
+      scene.add(heroCap);
+      const heroBand = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.052, 0.052, 0.014, 28),
+        new THREE.MeshStandardMaterial({
+          color: C.gold,
+          roughness: 0.3,
+          metalness: 0.55,
+        }),
+      );
+      heroBand.position.set(1.95, 1.473, 1.35);
+      scene.add(heroBand);
+
+      // Cloud blurs around tier 1 (4 in ring)
+      [
+        [1.7, 1.4],
+        [2.2, 1.4],
+        [1.7, 1.3],
+        [2.2, 1.3],
+      ].forEach(([x, z]) => {
+        const tube = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.038, 0.038, 0.17, 24),
+          new THREE.MeshStandardMaterial({
+            color: C.deeppink,
+            roughness: 0.32,
+            metalness: 0.18,
+          }),
+        );
+        tube.position.set(x, 1.205, z);
+        tube.castShadow = true;
+        scene.add(tube);
+        const cap = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.041, 0.041, 0.042, 24),
+          new THREE.MeshStandardMaterial({ color: C.softpink }),
+        );
+        cap.position.set(x, 1.31, z);
+        cap.castShadow = true;
+        scene.add(cap);
+        const band = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.039, 0.039, 0.01, 24),
+          new THREE.MeshStandardMaterial({
+            color: C.gold,
+            roughness: 0.3,
+            metalness: 0.5,
+          }),
+        );
+        band.position.set(x, 1.29, z);
+        scene.add(band);
+      });
+
+      // BEST header card on stand (above)
+      makePosmStand(1.95, 1.28, 1.15, 0.28, 0.08, 'BEST · 베스트', '#c44b6e');
+
+      // POSM cards floating around
+      makePosmCard(1.7, 1.066, 1.18, '#1', '#9d3653');
+      makePosmCard(2.2, 1.066, 1.18, '#2', '#9d3653');
+      makePosmCard(
+        1.95,
+        1.066,
+        1.18,
+        'HERO PICK',
+        '#c44b6e',
+        -Math.PI / 8,
+        0.22,
+        0.07,
+      );
+
+      // Center stem orbs (more, taller, dramatic)
+      makeStemOrb(1.5, 1.12, 1.2, 0.4, 0.07, C.pink);
+      makeStemOrb(2.4, 1.12, 1.2, 0.46, 0.075, C.deeppink);
+      makeStemOrb(1.55, 1.12, 1.55, 0.28, 0.06, C.softpink);
+      makeStemOrb(2.35, 1.12, 1.55, 0.32, 0.062, C.pearl);
+      makeStemOrb(1.95, 1.12, 1.6, 0.5, 0.08, C.rose);
+      makeStemOrb(1.95, 1.12, 1.1, 0.22, 0.055, C.palepink);
+
+      // Deco — pearls around tier 1 base
+      const ringR = 0.48;
+      for (let i = 0; i < 16; i++) {
+        const a = (i / 16) * Math.PI * 2;
+        makePearl(
+          1.95 + Math.cos(a) * ringR,
+          0.962,
+          1.35 + Math.sin(a) * ringR,
+          0.011,
+        );
+      }
+      // Petals scattered
+      [
+        [1.6, 1.06, 1.15, C.softpink, 0.5],
+        [2.3, 1.06, 1.15, C.pink, -0.3],
+        [1.7, 1.06, 1.65, C.palepink, 0.8],
+        [2.25, 1.06, 1.65, C.softpink, -0.6],
+        [1.55, 1.06, 1.4, C.pink, 0.2],
+        [2.4, 1.06, 1.4, C.softpink, -0.4],
+      ].forEach(([x, y, z, c, r]) => makePetal(x, y, z, c, r));
+
+      // Hand mirror in front
+      makeHandMirror(2.45, 1.06, 1.13, Math.PI / 8);
+
+      // ============ RIGHT DISPLAY: 컬러·브로우 ============
+      // Tier 1 — main pedestal (lip products)
+      makeBox(3.05, 1.0, 1.35, 1.05, 0.1, 0.4, C.warmwhite, { roughness: 0.5 });
+      makeBox(3.05, 1.054, 1.35, 1.07, 0.005, 0.42, C.deeppink, {
+        roughness: 0.6,
+      });
+
+      // Tier 2 — back smaller pedestal (brow mascara)
+      makeBox(3.25, 1.13, 1.52, 0.55, 0.16, 0.18, C.warmwhite, {
+        roughness: 0.5,
+      });
+      makeBox(3.25, 1.215, 1.52, 0.57, 0.005, 0.2, C.rose, { roughness: 0.6 });
+
+      // Easy Brow Mascara on tier 2 (4 units)
+      [-0.18, -0.06, 0.06, 0.18].forEach((dx) => {
+        const tube = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.018, 0.018, 0.12, 14),
+          new THREE.MeshStandardMaterial({
+            color: 0x6b4226,
+            roughness: 0.4,
+            metalness: 0.15,
+          }),
+        );
+        tube.position.set(3.25 + dx, 1.28, 1.52);
+        tube.castShadow = true;
+        scene.add(tube);
+        const cap = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.02, 0.02, 0.04, 14),
+          new THREE.MeshStandardMaterial({
+            color: C.gold,
+            roughness: 0.35,
+            metalness: 0.45,
+          }),
+        );
+        cap.position.set(3.25 + dx, 1.36, 1.52);
+        cap.castShadow = true;
+        scene.add(cap);
+      });
+
+      // Lip liner display — 12 colors in 4×3 standing grid on tier 1
+      // Use pink-toned variations + a few warmer reds for variety
+      const lipColors = [
+        0xa84565,
+        0xc44b6e,
+        0xd86583,
+        0xe88aa3, // top row
+        0x9d3653,
+        0xb83f5d,
+        0xcc5577,
+        0xdd7e98, // mid row
+        0x802a44,
+        0x952f4e,
+        0xa83f5e,
+        0xbd5577, // bottom row
+      ];
+      const lipCols = 4,
+        lipRows = 3;
+      const lipGridW = 0.55,
+        lipGridD = 0.24;
+      const lipSpacingX = lipGridW / (lipCols - 1);
+      const lipSpacingZ = lipGridD / (lipRows - 1);
+      for (let r = 0; r < lipRows; r++) {
+        for (let c = 0; c < lipCols; c++) {
+          const idx = r * lipCols + c;
+          const lx = 3.05 - lipGridW / 2 + c * lipSpacingX - 0.13;
+          const lz = 1.3 - lipGridD / 2 + r * lipSpacingZ;
+          const tube = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.022, 0.022, 0.13, 16),
+            new THREE.MeshStandardMaterial({
+              color: lipColors[idx],
+              roughness: 0.3,
+              metalness: 0.22,
+            }),
+          );
+          tube.position.set(lx, 1.124, lz);
+          tube.castShadow = true;
+          scene.add(tube);
+          const cap = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.025, 0.025, 0.035, 16),
+            new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.4 }),
+          );
+          cap.position.set(lx, 1.207, lz);
+          cap.castShadow = true;
+          scene.add(cap);
+        }
+      }
+
+      // Mini box around lip liners (like dasique Mini box)
+      // 4 side panels
+      const boxW = 0.66,
+        boxD = 0.32,
+        boxH = 0.08;
+      const boxX = 3.05 - 0.13,
+        boxY = 1.06,
+        boxZ = 1.3;
+      [
+        [boxX, boxY + boxH / 2, boxZ + boxD / 2, boxW, boxH, 0.003], // front
+        [boxX, boxY + boxH / 2, boxZ - boxD / 2, boxW, boxH, 0.003], // back
+        [boxX + boxW / 2, boxY + boxH / 2, boxZ, 0.003, boxH, boxD], // right
+        [boxX - boxW / 2, boxY + boxH / 2, boxZ, 0.003, boxH, boxD], // left
+      ].forEach(([x, y, z, w, h, d]) => {
+        makeBox(x, y, z, w, h, d, C.softpink, {
+          roughness: 0.4,
+          opacity: 0.85,
+          transparent: true,
+        });
+      });
+
+      // Swatch tester — small mirror tray + tester sticks
+      makeBox(2.7, 1.06, 1.42, 0.22, 0.012, 0.14, 0xe5dae0, {
+        roughness: 0.1,
+        metalness: 0.6,
+      });
+      // 2 tester lips lying on it
+      [
+        [2.65, 1.42, 0xc44b6e, Math.PI / 6],
+        [2.75, 1.45, 0xa84565, -Math.PI / 4],
+      ].forEach(([x, z, color, rot]) => {
+        const t = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.022, 0.022, 0.11, 16),
+          new THREE.MeshStandardMaterial({
+            color,
+            roughness: 0.3,
+            metalness: 0.2,
+          }),
+        );
+        t.position.set(x, 1.085, z);
+        t.rotation.set(Math.PI / 2, 0, rot);
+        t.castShadow = true;
+        scene.add(t);
+      });
+
+      // Q-tip canister
+      const qtipBase = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.035, 0.035, 0.08, 18),
+        new THREE.MeshStandardMaterial({ color: C.warmwhite, roughness: 0.5 }),
+      );
+      qtipBase.position.set(2.65, 1.1, 1.55);
+      qtipBase.castShadow = true;
+      scene.add(qtipBase);
+      // Q-tips inside (white dots)
+      for (let i = 0; i < 6; i++) {
+        const a = (i / 6) * Math.PI * 2;
+        const qtip = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.003, 0.003, 0.06, 8),
+          new THREE.MeshStandardMaterial({ color: 0xffffff }),
+        );
+        qtip.position.set(
+          2.65 + Math.cos(a) * 0.018,
+          1.16,
+          1.55 + Math.sin(a) * 0.018,
+        );
+        scene.add(qtip);
+      }
+
+      // Section header card "COLOR · BROW"
+      makePosmStand(3.05, 1.28, 1.18, 0.42, 0.09, 'COLOR · BROW', '#c44b6e');
+      // Lip liner box label
+      makePosmCard(
+        boxX,
+        boxY + 0.07,
+        boxZ + boxD / 2 + 0.005,
+        '12 SHADES',
+        '#9d3653',
+        0,
+        0.12,
+        0.025,
+      );
+      // Mini badge on lip box
+      makePosmCard(
+        boxX + 0.2,
+        1.06,
+        boxZ + boxD / 2 + 0.005,
+        'MINI',
+        '#e47b98',
+        0,
+        0.06,
+        0.025,
+      );
+      // POSM cards
+      makePosmCard(2.6, 1.066, 1.2, 'HOT', '#c44b6e');
+      makePosmCard(
+        3.05,
+        1.066,
+        1.18,
+        'LIMITED',
+        '#9d3653',
+        -Math.PI / 9,
+        0.18,
+        0.06,
+      );
+      makePosmCard(3.4, 1.066, 1.2, 'NEW', '#e47b98');
+      makePosmCard(
+        3.25,
+        1.222,
+        1.4,
+        'BROW',
+        '#9d3653',
+        -Math.PI / 10,
+        0.16,
+        0.05,
+      );
+
+      // Stem orbs
+      makeStemOrb(2.55, 1.12, 1.2, 0.18, 0.05, C.deeppink);
+      makeStemOrb(3.5, 1.12, 1.2, 0.24, 0.055, C.rose);
+      makeStemOrb(2.7, 1.12, 1.55, 0.15, 0.045, C.pink);
+      makeStemOrb(3.55, 1.12, 1.55, 0.2, 0.05, C.softpink);
+
+      // Hand mirror on right side
+      makeHandMirror(2.62, 1.062, 1.16, -Math.PI / 6);
+
+      // Deco — pearls and petals
+      [
+        [2.75, 1.058, 1.18],
+        [2.95, 1.058, 1.18],
+        [3.2, 1.058, 1.18],
+        [3.4, 1.058, 1.22],
+        [3.5, 1.058, 1.5],
+      ].forEach(([x, y, z]) =>
+        makePearl(x, y, z, 0.01 + Math.random() * 0.006),
+      );
+      [
+        [2.85, 1.057, 1.2, C.softpink, 0.3],
+        [3.5, 1.057, 1.2, C.pink, -0.7],
+        [2.7, 1.057, 1.6, C.palepink, 0.4],
+        [3.4, 1.057, 1.6, C.deeppink, -0.2],
+      ].forEach(([x, y, z, c, r]) => makePetal(x, y, z, c, r));
+
+      // ============ View Presets ============
+      const VIEWS = {
+        front: {
+          pos: [1.8, 1.5, -2.5],
+          look: [1.8, 1.1, 1.2],
+          title: '정면 뷰 · v4',
+          desc: '카운터 정면. 헤더+사이드 모델 패널 + 카운터 정면 그래픽 + 다층 단상 + POSM·데코 모두 한눈에.',
+        },
+        leftAngle: {
+          pos: [-0.1, 1.4, -1.5],
+          look: [0.85, 1.1, 1.3],
+          title: '좌측 각도 뷰',
+          desc: '베이스 다층 진열대 — 파우더밤·하이라이터·클라우드블러 + 손거울·펄·꽃잎 데코.',
+        },
+        rightAngle: {
+          pos: [4.0, 1.4, -1.5],
+          look: [3.05, 1.1, 1.3],
+          title: '우측 각도 뷰',
+          desc: '립라이너 12 미니박스 + 이지브로우 다층 + 스와치 트레이·면봉통·헤더 카드.',
+        },
+        best: {
+          pos: [1.95, 1.45, 0.0],
+          look: [1.95, 1.25, 1.35],
+          title: 'BEST 클로즈업',
+          desc: '중앙 다층 단상 — 1단 클라우드블러 4개 링 + 2단 히어로 픽 1개 + 막대 오브제 6개.',
+        },
+        top: {
+          pos: [1.8, 4.8, 1.4],
+          look: [1.8, 1.0, 1.4],
+          title: '탑뷰',
+          desc: '위에서 본 시점. 테이블 위 좌·중·우 3섹션 + 헤더·사이드 패널 배치 확인.',
+        },
+        hero: {
+          pos: [2.7, 1.6, -2.8],
+          look: [1.8, 1.15, 1.3],
+          title: '히어로 컷',
+          desc: '비스듬 시네마틱 앵글. 대표 보고 + SNS 메인 비주얼용 베스트 컷.',
+        },
+      };
+
+      let animateTimeout = null;
+      function animateCameraTo(viewKey, dur = 900) {
+        const v = VIEWS[viewKey];
+        if (!v) return;
+        const startPos = camera.position.clone();
+        const startLook = controls.target.clone();
+        const endPos = new THREE.Vector3(...v.pos);
+        const endLook = new THREE.Vector3(...v.look);
+        const startTime = performance.now();
+        document.getElementById('infoTitle').textContent = v.title;
+        document.getElementById('infoDesc').textContent = v.desc;
+        if (animateTimeout) cancelAnimationFrame(animateTimeout);
+        function tick() {
+          const t = Math.min((performance.now() - startTime) / dur, 1);
+          const e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+          camera.position.lerpVectors(startPos, endPos, e);
+          controls.target.lerpVectors(startLook, endLook, e);
+          controls.update();
+          if (t < 1) animateTimeout = requestAnimationFrame(tick);
+        }
+        tick();
+      }
+
+      document.querySelectorAll('.panel.views button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document
+            .querySelectorAll('.panel.views button')
+            .forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          animateCameraTo(btn.dataset.view);
+        });
+      });
+
+      const viewKeys = {
+        1: 'front',
+        2: 'leftAngle',
+        3: 'rightAngle',
+        4: 'best',
+        5: 'top',
+        6: 'hero',
+      };
+      window.addEventListener('keydown', (e) => {
+        if (viewKeys[e.key]) {
+          const v = viewKeys[e.key];
+          document.querySelectorAll('.panel.views button').forEach((b) => {
+            b.classList.toggle('active', b.dataset.view === v);
+          });
+          animateCameraTo(v);
+        }
+      });
+
+      // ============ Options ============
+      document.getElementById('autoRotate').addEventListener('change', (e) => {
+        controls.autoRotate = e.target.checked;
+        controls.autoRotateSpeed = 0.8;
+      });
+      document.getElementById('warmLight').addEventListener('change', (e) => {
+        spotGroup.visible = e.target.checked;
+        if (e.target.checked) {
+          ambient.intensity = 0.55;
+          renderer.toneMappingExposure = 1.05;
+        } else {
+          ambient.intensity = 0.9;
+          renderer.toneMappingExposure = 1.2;
+        }
+      });
+      document.getElementById('showOrbs').addEventListener('change', (e) => {
+        orbGroup.visible = e.target.checked;
+      });
+      document.getElementById('showHeader').addEventListener('change', (e) => {
+        headerGroup.visible = e.target.checked;
+      });
+      document.getElementById('showDeco').addEventListener('change', (e) => {
+        decoGroup.visible = e.target.checked;
+      });
+      document.getElementById('showPosm').addEventListener('change', (e) => {
+        posmGroup.visible = e.target.checked;
+      });
+
+      document.getElementById('screenshot').addEventListener('click', () => {
+        renderer.render(scene, camera);
+        const url = renderer.domElement.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `tambeauty-booth-v4-${Date.now()}.png`;
+        a.click();
+      });
+
+      document.getElementById('resetCam').addEventListener('click', () => {
+        document.querySelectorAll('.panel.views button').forEach((b) => {
+          b.classList.toggle('active', b.dataset.view === 'front');
+        });
+        animateCameraTo('front');
+      });
+
+      function onResize() {
+        camera.aspect = W() / H();
+        camera.updateProjectionMatrix();
+        renderer.setSize(W(), H());
+      }
+      window.addEventListener('resize', onResize);
+
+      function loop() {
+        requestAnimationFrame(loop);
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      loop();
+
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 500);
+    </script>
+  </body>
+</html>
