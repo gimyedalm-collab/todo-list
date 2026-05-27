@@ -1,0 +1,1728 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐뷰티 × 롯데 뷰티 팝업 — 3평 부스 평면도 & 입면 시안 v1</title>
+    <style>
+      :root {
+        --pink-pale: #fff5f8;
+        --pink-soft: #fde6ec;
+        --pink: #fbc4cf;
+        --pink-deep: #f18ea5;
+        --cherry: #e85d70;
+        --red: #d43a4a;
+        --red-deep: #b02838;
+        --nude: #f4d9c7;
+        --cream: #fbf7f4;
+        --ink: #1a1a1a;
+        --ink-soft: #3a3a3a;
+        --gray: #6b6b6b;
+        --gray-soft: #999;
+        --line: #e8e2dc;
+        --bg: #fbf7f4;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 56px 48px 120px;
+      }
+      .cover {
+        background: linear-gradient(135deg, #fff5f8 0%, #ffeeef 100%);
+        padding: 56px 48px;
+        border-radius: 28px;
+        margin-bottom: 56px;
+        border: 1px solid var(--line);
+      }
+      .cover .tag {
+        display: inline-block;
+        background: #fff;
+        padding: 5px 14px;
+        border-radius: 100px;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--red-deep);
+        margin-bottom: 18px;
+        border: 1px solid var(--pink-soft);
+      }
+      .cover h1 {
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.15;
+        margin-bottom: 12px;
+      }
+      .cover .sub {
+        font-size: 15px;
+        color: var(--gray);
+      }
+      .cover .specs {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+      .cover .specs b {
+        color: var(--red);
+      }
+      section {
+        margin-bottom: 64px;
+      }
+      .num {
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        color: var(--red);
+        margin-bottom: 8px;
+        display: block;
+      }
+      h2 {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+      .h {
+        font-size: 14.5px;
+        color: var(--gray);
+        margin-bottom: 28px;
+      }
+
+      .drawing {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 32px;
+        margin-bottom: 24px;
+      }
+      .drawing svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .legend {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+        margin-top: 28px;
+        padding-top: 24px;
+        border-top: 1px dashed var(--line);
+      }
+      .leg-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+      .leg-box {
+        width: 22px;
+        height: 22px;
+        border-radius: 5px;
+        flex-shrink: 0;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .zones {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 32px;
+      }
+      .zd {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 26px 22px;
+      }
+      .zd .ztag {
+        display: inline-block;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        padding: 4px 10px;
+        border-radius: 100px;
+        margin-bottom: 12px;
+      }
+      .zd.cloud .ztag {
+        background: var(--pink-soft);
+        color: var(--red-deep);
+      }
+      .zd.center .ztag {
+        background: var(--pink);
+        color: #fff;
+      }
+      .zd.cherry .ztag {
+        background: var(--red);
+        color: #fff;
+      }
+      .zd h3 {
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+      .zd .area {
+        font-size: 12px;
+        color: var(--gray);
+        font-family: 'SF Mono', Consolas, monospace;
+        margin-bottom: 14px;
+      }
+      .zd table {
+        width: 100%;
+        font-size: 12.5px;
+        border-collapse: collapse;
+      }
+      .zd table th {
+        text-align: left;
+        font-weight: 600;
+        color: var(--gray);
+        padding: 6px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 11px;
+        letter-spacing: 0.05em;
+      }
+      .zd table td {
+        padding: 6px 0;
+        border-bottom: 1px solid var(--line);
+        color: var(--ink-soft);
+        vertical-align: top;
+      }
+      .zd table td.size {
+        text-align: right;
+        font-family: 'SF Mono', Consolas, monospace;
+        font-size: 11.5px;
+        color: var(--gray);
+        white-space: nowrap;
+      }
+
+      .flow {
+        background: var(--cream);
+        border-radius: 18px;
+        padding: 28px 26px;
+        border: 1px solid var(--line);
+      }
+      .flow ol {
+        list-style: none;
+        counter-reset: f;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+      }
+      .flow li {
+        counter-increment: f;
+        background: #fff;
+        border-radius: 12px;
+        padding: 18px 16px 18px 50px;
+        position: relative;
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        border: 1px solid var(--line);
+      }
+      .flow li::before {
+        content: counter(f);
+        position: absolute;
+        left: 14px;
+        top: 18px;
+        width: 26px;
+        height: 26px;
+        background: var(--red);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .flow li b {
+        color: var(--ink);
+      }
+
+      .note {
+        background: #fff8e1;
+        border-left: 4px solid #f5b800;
+        padding: 16px 20px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: var(--ink-soft);
+        margin-top: 16px;
+      }
+      .note b {
+        color: #a87600;
+      }
+
+      .foot {
+        margin-top: 56px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font-size: 11.5px;
+        color: var(--gray-soft);
+        text-align: center;
+      }
+      @media (max-width: 760px) {
+        .page {
+          padding: 32px 18px 80px;
+        }
+        .cover {
+          padding: 40px 24px;
+        }
+        .cover h1 {
+          font-size: 28px;
+        }
+        .zones {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- Cover -->
+      <div class="cover">
+        <span class="tag">PLAN & ELEVATION · v1 · 2026.05.27</span>
+        <h1>탐뷰티 3평 부스 평면도 & 입면 시안</h1>
+        <p class="sub">
+          롯데백화점 7월 뷰티 팝업 · Cloud to Cherry 컨셉 기반 공간 시각화
+        </p>
+        <div class="specs">
+          <div><b>가정 치수</b> 3.6m × 2.8m (10.08㎡)</div>
+          <div><b>천장고</b> 2.4m (가정)</div>
+          <div><b>입구</b> 전면 오픈</div>
+          <div><b>전기</b> 후면 벽 콘센트 가정</div>
+        </div>
+      </div>
+
+      <!-- 01 Floor Plan -->
+      <section>
+        <span class="num">01 · FLOOR PLAN</span>
+        <h2>평면도 (Top View)</h2>
+        <div class="h">위에서 본 부스 구성 — 좌 35% · 중 25% · 우 40% 분할</div>
+
+        <div class="drawing">
+          <svg viewBox="0 0 720 580" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background grid -->
+            <defs>
+              <pattern
+                id="grid"
+                width="20"
+                height="20"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 20 0 L 0 0 0 20"
+                  fill="none"
+                  stroke="#f0eae4"
+                  stroke-width="0.5"
+                />
+              </pattern>
+              <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#fff5f8" />
+                <stop offset="100%" stop-color="#fbc4cf" />
+              </linearGradient>
+              <linearGradient id="centerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#fde6ec" />
+                <stop offset="100%" stop-color="#f18ea5" />
+              </linearGradient>
+              <linearGradient id="cherryGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#e85d70" />
+                <stop offset="100%" stop-color="#b02838" />
+              </linearGradient>
+            </defs>
+            <rect width="720" height="580" fill="url(#grid)" />
+
+            <!-- Booth outline (3.6m x 2.8m at 100px = 1m, so 360 x 280) -->
+            <!-- Centered with margin -->
+            <g transform="translate(120, 90)">
+              <!-- Outer booth wall (back + side walls) -->
+              <rect
+                x="0"
+                y="0"
+                width="480"
+                height="380"
+                fill="#fff"
+                stroke="#1a1a1a"
+                stroke-width="3"
+              />
+
+              <!-- Zone backgrounds: left 35% = 168, center 25% = 120, right 40% = 192 -->
+              <rect
+                x="0"
+                y="0"
+                width="168"
+                height="380"
+                fill="url(#cloudGrad)"
+                opacity="0.55"
+              />
+              <rect
+                x="168"
+                y="0"
+                width="120"
+                height="380"
+                fill="url(#centerGrad)"
+                opacity="0.55"
+              />
+              <rect
+                x="288"
+                y="0"
+                width="192"
+                height="380"
+                fill="url(#cherryGrad)"
+                opacity="0.55"
+              />
+
+              <!-- Zone divider lines (dashed) -->
+              <line
+                x1="168"
+                y1="0"
+                x2="168"
+                y2="380"
+                stroke="#fff"
+                stroke-width="1.5"
+                stroke-dasharray="4 4"
+              />
+              <line
+                x1="288"
+                y1="0"
+                x2="288"
+                y2="380"
+                stroke="#fff"
+                stroke-width="1.5"
+                stroke-dasharray="4 4"
+              />
+
+              <!-- ===== LEFT ZONE: Cloud ===== -->
+              <!-- Display pedestal (0.8m x 0.4m) -->
+              <rect
+                x="34"
+                y="50"
+                width="100"
+                height="60"
+                fill="#fff"
+                stroke="#d43a4a"
+                stroke-width="2"
+                rx="4"
+              />
+              <text
+                x="84"
+                y="78"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="700"
+                fill="#d43a4a"
+              >
+                클라우드
+              </text>
+              <text
+                x="84"
+                y="92"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="700"
+                fill="#d43a4a"
+              >
+                블러 단상
+              </text>
+              <text
+                x="84"
+                y="105"
+                text-anchor="middle"
+                font-size="9"
+                fill="#999"
+              >
+                80×40cm
+              </text>
+
+              <!-- Cloud objet (hanging from ceiling - shown as dashed circle) -->
+              <circle
+                cx="84"
+                cy="200"
+                r="48"
+                fill="#fff"
+                fill-opacity="0.6"
+                stroke="#f18ea5"
+                stroke-width="2"
+                stroke-dasharray="3 3"
+              />
+              <text
+                x="84"
+                y="200"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="700"
+                fill="#b02838"
+              >
+                솜털 오브제
+              </text>
+              <text
+                x="84"
+                y="215"
+                text-anchor="middle"
+                font-size="9"
+                fill="#b02838"
+              >
+                (천장 매달기)
+              </text>
+
+              <!-- Demo mirror -->
+              <rect
+                x="44"
+                y="290"
+                width="80"
+                height="60"
+                fill="#e8e8e8"
+                stroke="#666"
+                stroke-width="1.5"
+                rx="2"
+              />
+              <text
+                x="84"
+                y="318"
+                text-anchor="middle"
+                font-size="10"
+                font-weight="700"
+                fill="#333"
+              >
+                시연 미러
+              </text>
+              <text
+                x="84"
+                y="332"
+                text-anchor="middle"
+                font-size="9"
+                fill="#666"
+              >
+                데스크탑
+              </text>
+
+              <!-- ===== CENTER ZONE: Selfie ===== -->
+              <!-- Full body mirror on back wall -->
+              <rect
+                x="190"
+                y="20"
+                width="76"
+                height="120"
+                fill="#ededed"
+                stroke="#333"
+                stroke-width="2"
+                rx="2"
+              />
+              <text
+                x="228"
+                y="70"
+                text-anchor="middle"
+                font-size="10"
+                font-weight="700"
+                fill="#333"
+              >
+                풀바디
+              </text>
+              <text
+                x="228"
+                y="84"
+                text-anchor="middle"
+                font-size="10"
+                font-weight="700"
+                fill="#333"
+              >
+                미러
+              </text>
+              <text
+                x="228"
+                y="100"
+                text-anchor="middle"
+                font-size="9"
+                fill="#666"
+              >
+                H 2.0m
+              </text>
+
+              <!-- Logo backdrop -->
+              <rect
+                x="180"
+                y="155"
+                width="96"
+                height="40"
+                fill="#d43a4a"
+                rx="3"
+              />
+              <text
+                x="228"
+                y="175"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="800"
+                fill="#fff"
+              >
+                TAM BEAUTY
+              </text>
+              <text
+                x="228"
+                y="188"
+                text-anchor="middle"
+                font-size="8"
+                fill="#fff"
+                opacity="0.8"
+              >
+                로고 백드롭
+              </text>
+
+              <!-- Selfie floor mark -->
+              <circle
+                cx="228"
+                cy="280"
+                r="42"
+                fill="#fff"
+                stroke="#f18ea5"
+                stroke-width="2"
+                stroke-dasharray="5 3"
+              />
+              <text
+                x="228"
+                y="278"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="700"
+                fill="#b02838"
+              >
+                📸
+              </text>
+              <text
+                x="228"
+                y="295"
+                text-anchor="middle"
+                font-size="9"
+                font-weight="700"
+                fill="#b02838"
+              >
+                SELFIE
+              </text>
+
+              <!-- ===== RIGHT ZONE: Cherry ===== -->
+              <!-- Lip swatch wall (on back wall) -->
+              <rect
+                x="304"
+                y="20"
+                width="160"
+                height="80"
+                fill="#fff"
+                stroke="#d43a4a"
+                stroke-width="2.5"
+                rx="3"
+              />
+              <!-- swatch grid: 4 cols x 3 rows = 12 swatches -->
+              <g>
+                <rect
+                  x="312"
+                  y="28"
+                  width="32"
+                  height="20"
+                  fill="#c0394a"
+                  rx="2"
+                />
+                <rect
+                  x="348"
+                  y="28"
+                  width="32"
+                  height="20"
+                  fill="#d43a4a"
+                  rx="2"
+                />
+                <rect
+                  x="384"
+                  y="28"
+                  width="32"
+                  height="20"
+                  fill="#e85d70"
+                  rx="2"
+                />
+                <rect
+                  x="420"
+                  y="28"
+                  width="32"
+                  height="20"
+                  fill="#f18ea5"
+                  rx="2"
+                />
+                <rect
+                  x="312"
+                  y="52"
+                  width="32"
+                  height="20"
+                  fill="#a8294a"
+                  rx="2"
+                />
+                <rect
+                  x="348"
+                  y="52"
+                  width="32"
+                  height="20"
+                  fill="#b02838"
+                  rx="2"
+                />
+                <rect
+                  x="384"
+                  y="52"
+                  width="32"
+                  height="20"
+                  fill="#cc4d5a"
+                  rx="2"
+                />
+                <rect
+                  x="420"
+                  y="52"
+                  width="32"
+                  height="20"
+                  fill="#dd7585"
+                  rx="2"
+                />
+                <rect
+                  x="312"
+                  y="76"
+                  width="32"
+                  height="20"
+                  fill="#8e1f3a"
+                  rx="2"
+                />
+                <rect
+                  x="348"
+                  y="76"
+                  width="32"
+                  height="20"
+                  fill="#a3344a"
+                  rx="2"
+                />
+                <rect
+                  x="384"
+                  y="76"
+                  width="32"
+                  height="20"
+                  fill="#bc5060"
+                  rx="2"
+                />
+                <rect
+                  x="420"
+                  y="76"
+                  width="32"
+                  height="20"
+                  fill="#d57a8a"
+                  rx="2"
+                />
+              </g>
+              <text
+                x="384"
+                y="115"
+                text-anchor="middle"
+                font-size="10"
+                font-weight="800"
+                fill="#d43a4a"
+              >
+                립라이너 컬러월 (12-15 SKU)
+              </text>
+              <text
+                x="384"
+                y="128"
+                text-anchor="middle"
+                font-size="9"
+                fill="#666"
+              >
+                160×80cm · 벽 부착
+              </text>
+
+              <!-- Swatch experience tray -->
+              <rect
+                x="324"
+                y="180"
+                width="120"
+                height="60"
+                fill="#fff"
+                stroke="#d43a4a"
+                stroke-width="2"
+                rx="4"
+              />
+              <text
+                x="384"
+                y="208"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="700"
+                fill="#d43a4a"
+              >
+                스와치 체험 트레이
+              </text>
+              <text
+                x="384"
+                y="224"
+                text-anchor="middle"
+                font-size="9"
+                fill="#999"
+              >
+                60×40cm
+              </text>
+
+              <!-- BEST TOP3 curation -->
+              <rect
+                x="334"
+                y="280"
+                width="100"
+                height="46"
+                fill="#d43a4a"
+                rx="4"
+              />
+              <text
+                x="384"
+                y="300"
+                text-anchor="middle"
+                font-size="10"
+                font-weight="800"
+                fill="#fff"
+              >
+                BEST TOP 3
+              </text>
+              <text
+                x="384"
+                y="316"
+                text-anchor="middle"
+                font-size="9"
+                fill="#fff"
+                opacity="0.85"
+              >
+                큐레이션 단상
+              </text>
+
+              <!-- Staff position (small) -->
+              <circle cx="440" cy="350" r="14" fill="#1a1a1a" />
+              <text
+                x="440"
+                y="354"
+                text-anchor="middle"
+                font-size="11"
+                fill="#fff"
+              >
+                👤
+              </text>
+              <text
+                x="440"
+                y="375"
+                text-anchor="middle"
+                font-size="8.5"
+                font-weight="700"
+                fill="#1a1a1a"
+              >
+                STAFF
+              </text>
+
+              <!-- Customer flow arrows -->
+              <g
+                stroke="#d43a4a"
+                stroke-width="2.5"
+                fill="none"
+                stroke-linecap="round"
+              >
+                <!-- Entry arrow (bottom) -->
+                <path d="M 84 410 L 84 380" marker-end="url(#arrow)" />
+                <!-- Cloud to Center -->
+                <path
+                  d="M 130 230 Q 165 250 195 235"
+                  marker-end="url(#arrow)"
+                  opacity="0.7"
+                />
+                <!-- Center to Cherry -->
+                <path
+                  d="M 270 230 Q 295 215 320 230"
+                  marker-end="url(#arrow)"
+                  opacity="0.7"
+                />
+              </g>
+
+              <defs>
+                <marker
+                  id="arrow"
+                  markerWidth="10"
+                  markerHeight="10"
+                  refX="8"
+                  refY="3"
+                  orient="auto"
+                >
+                  <path d="M0,0 L8,3 L0,6 Z" fill="#d43a4a" />
+                </marker>
+              </defs>
+
+              <!-- Zone labels -->
+              <text
+                x="84"
+                y="14"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="800"
+                fill="#b02838"
+                letter-spacing="1.5"
+              >
+                CLOUD ZONE
+              </text>
+              <text
+                x="228"
+                y="14"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="800"
+                fill="#b02838"
+                letter-spacing="1.5"
+              >
+                SELFIE SPOT
+              </text>
+              <text
+                x="384"
+                y="14"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="800"
+                fill="#b02838"
+                letter-spacing="1.5"
+              >
+                CHERRY ZONE
+              </text>
+            </g>
+
+            <!-- Dimension lines -->
+            <!-- Total width 3.6m -->
+            <g
+              stroke="#666"
+              stroke-width="1"
+              fill="#666"
+              font-size="11"
+              font-family="SF Mono, Consolas, monospace"
+            >
+              <line x1="120" y1="490" x2="600" y2="490" />
+              <line x1="120" y1="485" x2="120" y2="495" />
+              <line x1="600" y1="485" x2="600" y2="495" />
+              <text x="360" y="510" text-anchor="middle" font-weight="700">
+                3.60 m (전체 폭)
+              </text>
+
+              <!-- Zone widths -->
+              <line x1="120" y1="475" x2="288" y2="475" stroke-width="0.8" />
+              <text x="204" y="468" text-anchor="middle" font-size="9.5">
+                1.26m · 좌 35%
+              </text>
+              <line x1="288" y1="475" x2="408" y2="475" stroke-width="0.8" />
+              <text x="348" y="468" text-anchor="middle" font-size="9.5">
+                0.90m · 중 25%
+              </text>
+              <line x1="408" y1="475" x2="600" y2="475" stroke-width="0.8" />
+              <text x="504" y="468" text-anchor="middle" font-size="9.5">
+                1.44m · 우 40%
+              </text>
+
+              <!-- Total depth 2.8m -->
+              <line x1="80" y1="90" x2="80" y2="470" />
+              <line x1="75" y1="90" x2="85" y2="90" />
+              <line x1="75" y1="470" x2="85" y2="470" />
+              <text
+                x="55"
+                y="285"
+                text-anchor="middle"
+                font-weight="700"
+                transform="rotate(-90, 55, 285)"
+              >
+                2.80 m (깊이)
+              </text>
+            </g>
+
+            <!-- Compass / orientation -->
+            <g transform="translate(640, 100)">
+              <circle
+                cx="0"
+                cy="0"
+                r="22"
+                fill="#fff"
+                stroke="#1a1a1a"
+                stroke-width="1.5"
+              />
+              <text
+                x="0"
+                y="-8"
+                text-anchor="middle"
+                font-size="8"
+                font-weight="700"
+                fill="#1a1a1a"
+              >
+                통로
+              </text>
+              <text
+                x="0"
+                y="4"
+                text-anchor="middle"
+                font-size="10"
+                fill="#d43a4a"
+              >
+                ▲
+              </text>
+              <text x="0" y="16" text-anchor="middle" font-size="8" fill="#666">
+                앞
+              </text>
+            </g>
+
+            <!-- Entry label -->
+            <g transform="translate(204, 530)">
+              <rect x="0" y="0" width="60" height="22" fill="#1a1a1a" rx="11" />
+              <text
+                x="30"
+                y="15"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="700"
+                fill="#fff"
+              >
+                ENTRY
+              </text>
+            </g>
+          </svg>
+
+          <div class="legend">
+            <div class="leg-item">
+              <div
+                class="leg-box"
+                style="
+                  background:
+                    url(#cloudGrad), linear-gradient(180deg, #fff5f8, #fbc4cf);
+                "
+              ></div>
+              좌측 · 클라우드존 (35%)
+            </div>
+            <div class="leg-item">
+              <div
+                class="leg-box"
+                style="background: linear-gradient(180deg, #fde6ec, #f18ea5)"
+              ></div>
+              중앙 · 셀카존 (25%)
+            </div>
+            <div class="leg-item">
+              <div
+                class="leg-box"
+                style="background: linear-gradient(180deg, #e85d70, #b02838)"
+              ></div>
+              우측 · 체리존 (40%)
+            </div>
+            <div class="leg-item">
+              <div class="leg-box" style="background: #1a1a1a"></div>
+              스태프 스탠바이
+            </div>
+            <div class="leg-item">
+              <div
+                class="leg-box"
+                style="background: #fff; border: 2px dashed #f18ea5"
+              ></div>
+              천장 매달기 / 셀카 마크
+            </div>
+            <div class="leg-item">
+              <div class="leg-box" style="background: #d43a4a"></div>
+              레드 강조 집기 / 백드롭
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 Front Elevation -->
+      <section>
+        <span class="num">02 · FRONT ELEVATION</span>
+        <h2>정면 입면도 (Front View)</h2>
+        <div class="h">부스 앞 통로에서 바라본 모습 — 천장고 2.4m 가정</div>
+
+        <div class="drawing">
+          <svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg">
+            <rect width="720" height="380" fill="url(#grid)" />
+
+            <g transform="translate(120, 60)">
+              <!-- Back wall outline -->
+              <rect
+                x="0"
+                y="0"
+                width="480"
+                height="240"
+                fill="#fff"
+                stroke="#1a1a1a"
+                stroke-width="3"
+              />
+
+              <!-- Floor base shadow -->
+              <rect x="0" y="240" width="480" height="20" fill="#e8e2dc" />
+
+              <!-- Zone background bands -->
+              <rect
+                x="0"
+                y="0"
+                width="168"
+                height="240"
+                fill="url(#cloudGrad)"
+                opacity="0.45"
+              />
+              <rect
+                x="168"
+                y="0"
+                width="120"
+                height="240"
+                fill="url(#centerGrad)"
+                opacity="0.45"
+              />
+              <rect
+                x="288"
+                y="0"
+                width="192"
+                height="240"
+                fill="url(#cherryGrad)"
+                opacity="0.45"
+              />
+
+              <line
+                x1="168"
+                y1="0"
+                x2="168"
+                y2="240"
+                stroke="#fff"
+                stroke-width="1.5"
+                stroke-dasharray="4 4"
+              />
+              <line
+                x1="288"
+                y1="0"
+                x2="288"
+                y2="240"
+                stroke="#fff"
+                stroke-width="1.5"
+                stroke-dasharray="4 4"
+              />
+
+              <!-- ===== LEFT: Cloud Zone Elevation ===== -->
+              <!-- Cloud objet hanging -->
+              <ellipse
+                cx="84"
+                cy="55"
+                rx="50"
+                ry="28"
+                fill="#fff"
+                fill-opacity="0.85"
+                stroke="#f18ea5"
+                stroke-width="1.5"
+              />
+              <ellipse
+                cx="64"
+                cy="48"
+                rx="20"
+                ry="12"
+                fill="#fff"
+                fill-opacity="0.7"
+              />
+              <ellipse
+                cx="104"
+                cy="62"
+                rx="22"
+                ry="13"
+                fill="#fff"
+                fill-opacity="0.7"
+              />
+              <text
+                x="84"
+                y="58"
+                text-anchor="middle"
+                font-size="9"
+                font-weight="700"
+                fill="#b02838"
+              >
+                솜털 클라우드
+              </text>
+              <!-- Cable -->
+              <line
+                x1="84"
+                y1="0"
+                x2="84"
+                y2="30"
+                stroke="#999"
+                stroke-width="0.8"
+                stroke-dasharray="2 2"
+              />
+
+              <!-- Display pedestal -->
+              <rect
+                x="44"
+                y="160"
+                width="80"
+                height="80"
+                fill="#fff"
+                stroke="#d43a4a"
+                stroke-width="2"
+              />
+              <!-- product on pedestal -->
+              <rect
+                x="74"
+                y="135"
+                width="20"
+                height="28"
+                fill="#d43a4a"
+                rx="3"
+              />
+              <text
+                x="84"
+                y="153"
+                text-anchor="middle"
+                font-size="7"
+                fill="#fff"
+                font-weight="700"
+              >
+                BLUR
+              </text>
+              <text
+                x="84"
+                y="205"
+                text-anchor="middle"
+                font-size="10"
+                font-weight="700"
+                fill="#d43a4a"
+              >
+                클라우드블러
+              </text>
+              <text
+                x="84"
+                y="220"
+                text-anchor="middle"
+                font-size="9"
+                fill="#999"
+              >
+                H 80cm
+              </text>
+
+              <!-- ===== CENTER: Selfie Spot Elevation ===== -->
+              <!-- Full body mirror -->
+              <rect
+                x="195"
+                y="30"
+                width="66"
+                height="170"
+                fill="#ededed"
+                stroke="#333"
+                stroke-width="2"
+              />
+              <!-- Mirror reflection lines -->
+              <line
+                x1="200"
+                y1="40"
+                x2="256"
+                y2="40"
+                stroke="#fff"
+                stroke-width="1.5"
+                opacity="0.7"
+              />
+              <line
+                x1="200"
+                y1="60"
+                x2="240"
+                y2="60"
+                stroke="#fff"
+                stroke-width="1"
+                opacity="0.5"
+              />
+              <text
+                x="228"
+                y="115"
+                text-anchor="middle"
+                font-size="9"
+                font-weight="700"
+                fill="#333"
+              >
+                FULL
+              </text>
+              <text
+                x="228"
+                y="128"
+                text-anchor="middle"
+                font-size="9"
+                font-weight="700"
+                fill="#333"
+              >
+                BODY
+              </text>
+              <text
+                x="228"
+                y="141"
+                text-anchor="middle"
+                font-size="9"
+                font-weight="700"
+                fill="#333"
+              >
+                MIRROR
+              </text>
+              <text
+                x="228"
+                y="217"
+                text-anchor="middle"
+                font-size="9"
+                fill="#999"
+              >
+                200×60cm
+              </text>
+
+              <!-- Logo above -->
+              <rect
+                x="180"
+                y="10"
+                width="96"
+                height="18"
+                fill="#d43a4a"
+                rx="2"
+              />
+              <text
+                x="228"
+                y="23"
+                text-anchor="middle"
+                font-size="9"
+                font-weight="800"
+                fill="#fff"
+              >
+                TAM BEAUTY
+              </text>
+
+              <!-- ===== RIGHT: Cherry Zone Elevation ===== -->
+              <!-- Lip swatch wall mounted -->
+              <rect
+                x="304"
+                y="25"
+                width="160"
+                height="110"
+                fill="#fff"
+                stroke="#d43a4a"
+                stroke-width="2"
+              />
+              <!-- Swatches in elevation -->
+              <g>
+                <rect
+                  x="312"
+                  y="33"
+                  width="34"
+                  height="22"
+                  fill="#c0394a"
+                  rx="2"
+                />
+                <rect
+                  x="350"
+                  y="33"
+                  width="34"
+                  height="22"
+                  fill="#d43a4a"
+                  rx="2"
+                />
+                <rect
+                  x="388"
+                  y="33"
+                  width="34"
+                  height="22"
+                  fill="#e85d70"
+                  rx="2"
+                />
+                <rect
+                  x="426"
+                  y="33"
+                  width="30"
+                  height="22"
+                  fill="#f18ea5"
+                  rx="2"
+                />
+                <rect
+                  x="312"
+                  y="59"
+                  width="34"
+                  height="22"
+                  fill="#a8294a"
+                  rx="2"
+                />
+                <rect
+                  x="350"
+                  y="59"
+                  width="34"
+                  height="22"
+                  fill="#b02838"
+                  rx="2"
+                />
+                <rect
+                  x="388"
+                  y="59"
+                  width="34"
+                  height="22"
+                  fill="#cc4d5a"
+                  rx="2"
+                />
+                <rect
+                  x="426"
+                  y="59"
+                  width="30"
+                  height="22"
+                  fill="#dd7585"
+                  rx="2"
+                />
+                <rect
+                  x="312"
+                  y="85"
+                  width="34"
+                  height="22"
+                  fill="#8e1f3a"
+                  rx="2"
+                />
+                <rect
+                  x="350"
+                  y="85"
+                  width="34"
+                  height="22"
+                  fill="#a3344a"
+                  rx="2"
+                />
+                <rect
+                  x="388"
+                  y="85"
+                  width="34"
+                  height="22"
+                  fill="#bc5060"
+                  rx="2"
+                />
+                <rect
+                  x="426"
+                  y="85"
+                  width="30"
+                  height="22"
+                  fill="#d57a8a"
+                  rx="2"
+                />
+              </g>
+              <text
+                x="384"
+                y="123"
+                text-anchor="middle"
+                font-size="9"
+                font-weight="700"
+                fill="#d43a4a"
+              >
+                LIP COLOR WALL
+              </text>
+
+              <!-- Swatch tray under wall -->
+              <rect
+                x="324"
+                y="170"
+                width="120"
+                height="40"
+                fill="#fff"
+                stroke="#d43a4a"
+                stroke-width="1.5"
+              />
+              <text
+                x="384"
+                y="195"
+                text-anchor="middle"
+                font-size="9"
+                font-weight="700"
+                fill="#d43a4a"
+              >
+                스와치 트레이
+              </text>
+              <text
+                x="384"
+                y="225"
+                text-anchor="middle"
+                font-size="9"
+                fill="#999"
+              >
+                H 90cm
+              </text>
+
+              <!-- Lighting indicators (track lights from ceiling) -->
+              <g fill="#f5b800">
+                <circle cx="84" cy="3" r="3" />
+                <circle cx="228" cy="3" r="3" />
+                <circle cx="384" cy="3" r="3" />
+                <circle cx="160" cy="3" r="3" />
+                <circle cx="320" cy="3" r="3" />
+                <circle cx="440" cy="3" r="3" />
+              </g>
+              <text
+                x="240"
+                y="-8"
+                text-anchor="middle"
+                font-size="9"
+                fill="#a87600"
+              >
+                🔆 트랙 조명 (스팟 6구)
+              </text>
+            </g>
+
+            <!-- Dimensions: total width and height -->
+            <g
+              stroke="#666"
+              stroke-width="1"
+              fill="#666"
+              font-size="11"
+              font-family="SF Mono, Consolas, monospace"
+            >
+              <!-- Width -->
+              <line x1="120" y1="330" x2="600" y2="330" />
+              <line x1="120" y1="325" x2="120" y2="335" />
+              <line x1="600" y1="325" x2="600" y2="335" />
+              <text x="360" y="350" text-anchor="middle" font-weight="700">
+                3.60 m
+              </text>
+
+              <!-- Height -->
+              <line x1="85" y1="60" x2="85" y2="300" />
+              <line x1="80" y1="60" x2="90" y2="60" />
+              <line x1="80" y1="300" x2="90" y2="300" />
+              <text
+                x="50"
+                y="180"
+                text-anchor="middle"
+                font-weight="700"
+                transform="rotate(-90, 50, 180)"
+              >
+                2.40 m
+              </text>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 03 Zone Details -->
+      <section>
+        <span class="num">03 · ZONE DETAILS</span>
+        <h2>존별 집기·치수 표</h2>
+        <div class="h">발주·제작 시 참고할 1차 사양 (실측 후 조정)</div>
+
+        <div class="zones">
+          <div class="zd cloud">
+            <span class="ztag">LEFT · CLOUD</span>
+            <h3>클라우드존</h3>
+            <div class="area">1.26m × 2.8m · 3.53㎡ (35%)</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>집기</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>클라우드블러 디스플레이 단상</td>
+                  <td class="size">80×40×80cm</td>
+                </tr>
+                <tr>
+                  <td>솜털 오브제 (천장 매달기)</td>
+                  <td class="size">Ø80cm</td>
+                </tr>
+                <tr>
+                  <td>시연 미러 (탁상형)</td>
+                  <td class="size">80×60cm</td>
+                </tr>
+                <tr>
+                  <td>제품 시연 트레이</td>
+                  <td class="size">단상 상단</td>
+                </tr>
+                <tr>
+                  <td>퍼프·솜털 패브릭 소품</td>
+                  <td class="size">분산 배치</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="zd center">
+            <span class="ztag">CENTER · SELFIE</span>
+            <h3>셀카존</h3>
+            <div class="area">0.9m × 2.8m · 2.52㎡ (25%)</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>집기</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>풀바디 미러 (벽 부착)</td>
+                  <td class="size">200×60cm</td>
+                </tr>
+                <tr>
+                  <td>TAM BEAUTY 로고 백드롭</td>
+                  <td class="size">96×18cm</td>
+                </tr>
+                <tr>
+                  <td>핑크 러그 / 셀카 마크</td>
+                  <td class="size">Ø80cm</td>
+                </tr>
+                <tr>
+                  <td>해시태그 사이니지 (한·중)</td>
+                  <td class="size">A4 ×2</td>
+                </tr>
+                <tr>
+                  <td>링라이트 / 셀카 조명</td>
+                  <td class="size">천장 스팟</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="zd cherry">
+            <span class="ztag">RIGHT · CHERRY</span>
+            <h3>체리존</h3>
+            <div class="area">1.44m × 2.8m · 4.03㎡ (40%)</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>집기</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>립 컬러월 (벽 부착)</td>
+                  <td class="size">160×120cm</td>
+                </tr>
+                <tr>
+                  <td>스와치 체험 트레이</td>
+                  <td class="size">120×40cm</td>
+                </tr>
+                <tr>
+                  <td>BEST TOP3 큐레이션 단상</td>
+                  <td class="size">100×46cm</td>
+                </tr>
+                <tr>
+                  <td>스와치용 면봉·티슈 디스펜서</td>
+                  <td class="size">트레이 위</td>
+                </tr>
+                <tr>
+                  <td>거울 (소형 손거울 비치)</td>
+                  <td class="size">×3-5개</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note">
+          ⚠️ <b>실측 필요</b> — 위 치수는 통일 부스 가이드를 받기 전 가정치
+          (3.6m×2.8m×2.4m). 실제 부스 폭·깊이·천장고·전기 위치·벽면 부착 가능
+          범위 확인 후 1:1로 재조정.
+        </div>
+      </section>
+
+      <!-- 04 Customer Flow -->
+      <section>
+        <span class="num">04 · CUSTOMER FLOW</span>
+        <h2>고객 동선 시나리오</h2>
+        <div class="h">자연스러운 좌→중→우 흐름, 평균 체류 3-5분 목표</div>
+        <div class="flow">
+          <ol>
+            <li>
+              <b>입장 (전면)</b> · 통로에서 솜털 클라우드 오브제·핑크
+              그라데이션이 시선 캐치
+            </li>
+            <li>
+              <b>좌 · 클라우드존</b> · 클라우드블러 시연 미러에서 보송 텍스처
+              손등 체험
+            </li>
+            <li>
+              <b>중 · 셀카존</b> · 풀바디 미러·로고 백드롭 앞에서 인증샷 1컷
+            </li>
+            <li>
+              <b>우 · 체리존</b> · 립 컬러월 스캐닝 → 스와치 트레이에서 컬러
+              1-2개 테스트
+            </li>
+            <li>
+              <b>큐레이션 픽</b> · BEST TOP3 단상에서 베스트셀러 확인, 스태프
+              어시스트
+            </li>
+            <li>
+              <b>구매 / 결제</b> · 백화점 공용 카운터 또는 부스 내 결제 동선
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 05 Variants -->
+      <section>
+        <span class="num">05 · VARIANTS</span>
+        <h2>치수 시나리오별 대응</h2>
+        <div class="h">백화점 실측 후 부스 크기가 다를 경우 대응 옵션</div>
+        <div class="zones">
+          <div class="zd cloud">
+            <span class="ztag">CASE A · 가로형</span>
+            <h3>3.6m × 2.8m (가정안)</h3>
+            <div class="area">현재 시안</div>
+            <table>
+              <tbody>
+                <tr>
+                  <td>좌·중·우 3존 구성</td>
+                  <td class="size">권장</td>
+                </tr>
+                <tr>
+                  <td>풀바디 미러 + 컬러월 모두 수용</td>
+                  <td class="size">OK</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="zd center">
+            <span class="ztag">CASE B · 정사각형</span>
+            <h3>3.2m × 3.2m (대안)</h3>
+            <div class="area">균등 면적</div>
+            <table>
+              <tbody>
+                <tr>
+                  <td>중앙 셀카존 면적 확대</td>
+                  <td class="size">+20%</td>
+                </tr>
+                <tr>
+                  <td>컬러월을 좌·우 양쪽 분할</td>
+                  <td class="size">대안</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="zd cherry">
+            <span class="ztag">CASE C · 좁고 깊은형</span>
+            <h3>2.4m × 4.0m (대안)</h3>
+            <div class="area">통로형</div>
+            <table>
+              <tbody>
+                <tr>
+                  <td>3존을 앞→뒤로 재배치</td>
+                  <td class="size">필수</td>
+                </tr>
+                <tr>
+                  <td>입구쪽 셀카존, 안쪽 체리존</td>
+                  <td class="size">권장</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <div class="foot">
+        탐뷰티 × 롯데백화점 뷰티 팝업 · 3평 부스 평면도 & 입면 시안 v1 ·
+        2026.05.27
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      탐뷰티 × 롯데 뷰티 팝업 — 체험 시나리오 & 한·중 응대 스크립트 v1
+    </title>
+    <style>
+      :root {
+        --pink-pale: #fff5f8;
+        --pink-soft: #fde6ec;
+        --pink: #fbc4cf;
+        --cherry: #e85d70;
+        --red: #d43a4a;
+        --red-deep: #b02838;
+        --cream: #fbf7f4;
+        --ink: #1a1a1a;
+        --ink-soft: #3a3a3a;
+        --gray: #6b6b6b;
+        --gray-soft: #999;
+        --line: #e8e2dc;
+        --bg: #fbf7f4;
+        --kr: #d43a4a;
+        --cn: #c1392b;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', 'PingFang SC',
+          'Microsoft YaHei', sans-serif;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 56px 48px 120px;
+      }
+
+      .cover {
+        background: linear-gradient(135deg, #fff5f8 0%, #ffeeef 100%);
+        padding: 56px 48px;
+        border-radius: 28px;
+        margin-bottom: 56px;
+        border: 1px solid var(--line);
+      }
+      .cover .tag {
+        display: inline-block;
+        background: #fff;
+        padding: 5px 14px;
+        border-radius: 100px;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--red-deep);
+        margin-bottom: 18px;
+        border: 1px solid var(--pink-soft);
+      }
+      .cover h1 {
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.15;
+        margin-bottom: 12px;
+      }
+      .cover .sub {
+        font-size: 15px;
+        color: var(--gray);
+      }
+      .cover .meta {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+      .cover .meta b {
+        color: var(--red);
+      }
+
+      section {
+        margin-bottom: 64px;
+      }
+      .num {
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        color: var(--red);
+        margin-bottom: 8px;
+        display: block;
+      }
+      h2 {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+      .h {
+        font-size: 14.5px;
+        color: var(--gray);
+        margin-bottom: 28px;
+      }
+
+      /* Flow timeline */
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+      }
+      .step {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 22px 22px;
+        position: relative;
+      }
+      .step .stepnum {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: var(--red);
+        color: #fff;
+        border-radius: 50%;
+        font-weight: 800;
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
+      .step .stepname {
+        font-size: 17px;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+      .step .stepzone {
+        display: inline-block;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--red-deep);
+        background: var(--pink-soft);
+        padding: 3px 8px;
+        border-radius: 100px;
+        margin-bottom: 12px;
+      }
+      .step .stepdur {
+        font-size: 11.5px;
+        color: var(--gray-soft);
+        margin-left: 8px;
+        font-family: 'SF Mono', Consolas, monospace;
+      }
+      .step ul {
+        list-style: none;
+        font-size: 13px;
+        line-height: 1.65;
+        color: var(--ink-soft);
+      }
+      .step ul li {
+        padding-left: 16px;
+        position: relative;
+        margin-bottom: 4px;
+      }
+      .step ul li::before {
+        content: '·';
+        position: absolute;
+        left: 0;
+        color: var(--red);
+        font-weight: 800;
+      }
+
+      /* Script card */
+      .scripts {
+        display: grid;
+        gap: 18px;
+      }
+      .script {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .script .head {
+        background: var(--cream);
+        padding: 16px 22px;
+        border-bottom: 1px solid var(--line);
+      }
+      .script .scene {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--red);
+        margin-bottom: 4px;
+      }
+      .script .title {
+        font-size: 17px;
+        font-weight: 800;
+        color: var(--ink);
+      }
+      .script .body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .lang {
+        padding: 22px 24px;
+      }
+      .lang.kr {
+        border-right: 1px solid var(--line);
+      }
+      .lang .flag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        margin-bottom: 12px;
+      }
+      .lang.kr .flag {
+        color: var(--kr);
+      }
+      .lang.cn .flag {
+        color: var(--cn);
+      }
+      .lang .flag .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .lang.kr .flag .dot {
+        background: var(--kr);
+      }
+      .lang.cn .flag .dot {
+        background: var(--cn);
+      }
+      .lang p {
+        font-size: 14px;
+        line-height: 1.7;
+        color: var(--ink-soft);
+        margin-bottom: 12px;
+      }
+      .lang p b {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .lang .pron {
+        font-size: 11.5px;
+        color: var(--gray-soft);
+        font-style: italic;
+        margin-top: -8px;
+        margin-bottom: 12px;
+        font-family: 'SF Mono', Consolas, monospace;
+      }
+      .lang .tip {
+        font-size: 12px;
+        color: var(--gray);
+        background: var(--pink-pale);
+        padding: 10px 12px;
+        border-radius: 8px;
+        line-height: 1.55;
+      }
+      .lang .tip b {
+        color: var(--red-deep);
+      }
+
+      /* FAQ */
+      .faqlist {
+        display: grid;
+        gap: 12px;
+      }
+      .faq {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 18px 22px;
+      }
+      .faq .q {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 8px;
+      }
+      .faq .q::before {
+        content: 'Q.';
+        color: var(--red);
+        font-weight: 800;
+        margin-right: 6px;
+      }
+      .faq .a {
+        font-size: 13px;
+        color: var(--ink-soft);
+        margin-bottom: 6px;
+        line-height: 1.65;
+      }
+      .faq .a::before {
+        content: 'A.';
+        color: var(--gray);
+        font-weight: 800;
+        margin-right: 6px;
+      }
+      .faq .a.cn {
+        color: var(--gray);
+        font-size: 12.5px;
+      }
+
+      /* Roles */
+      .roles {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .role {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 24px 24px;
+      }
+      .role .lbl {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--red);
+        margin-bottom: 8px;
+      }
+      .role h3 {
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+      .role ul {
+        list-style: none;
+        font-size: 13px;
+        line-height: 1.7;
+        color: var(--ink-soft);
+      }
+      .role ul li {
+        padding-left: 18px;
+        position: relative;
+        margin-bottom: 4px;
+      }
+      .role ul li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--red);
+        font-weight: 800;
+      }
+
+      /* KPI */
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 14px;
+      }
+      .kpi {
+        background: #fff;
+        padding: 22px 20px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+      }
+      .kpi .ico {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+      .kpi .name {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 4px;
+      }
+      .kpi .target {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--red);
+      }
+      .kpi .desc {
+        font-size: 11.5px;
+        color: var(--gray);
+        margin-top: 4px;
+      }
+
+      .note {
+        background: #fff8e1;
+        border-left: 4px solid #f5b800;
+        padding: 16px 20px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: var(--ink-soft);
+        margin-top: 18px;
+      }
+      .note b {
+        color: #a87600;
+      }
+
+      .foot {
+        margin-top: 56px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font-size: 11.5px;
+        color: var(--gray-soft);
+        text-align: center;
+      }
+      @media (max-width: 760px) {
+        .page {
+          padding: 32px 16px 80px;
+        }
+        .cover {
+          padding: 36px 22px;
+        }
+        .cover h1 {
+          font-size: 26px;
+        }
+        .roles {
+          grid-template-columns: 1fr;
+        }
+        .script .body {
+          grid-template-columns: 1fr;
+        }
+        .lang.kr {
+          border-right: none;
+          border-bottom: 1px solid var(--line);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="cover">
+        <span class="tag">EXPERIENCE SCENARIO & SCRIPTS · v1 · 2026.05.27</span>
+        <h1>체험 시나리오 & 한·중 응대 스크립트</h1>
+        <p class="sub">
+          탐뷰티 3평 부스 6스텝 고객 여정 + 직원 응대 스크립트 (한국어·중국어) +
+          FAQ + KPI
+        </p>
+        <div class="meta">
+          <div><b>목표 체류</b> · 3-5분</div>
+          <div><b>구매 전환</b> · 15-20%</div>
+          <div><b>인증샷</b> · 1인 1컷</div>
+          <div><b>운영 인력</b> · 2-3인 (한·중 가능자 必)</div>
+        </div>
+      </div>
+
+      <!-- 01 Customer Journey -->
+      <section>
+        <span class="num">01 · CUSTOMER JOURNEY</span>
+        <h2>6스텝 고객 여정</h2>
+        <div class="h">
+          평면도 좌→중→우 동선 기반 — 각 스텝별 직원 액션 포함
+        </div>
+        <div class="timeline">
+          <div class="step">
+            <div class="stepnum">1</div>
+            <div class="stepname">
+              시선 캐치 <span class="stepdur">~10초</span>
+            </div>
+            <span class="stepzone">ENTRY</span>
+            <ul>
+              <li>통로에서 솜털 오브제·핑크 그라데이션이 시선 끔</li>
+              <li>스태프: 가벼운 인사·시야 마주치기, 부담 ✗</li>
+              <li>입구 헤더 사인 "Cloud to Cherry" 노출</li>
+            </ul>
+          </div>
+          <div class="step">
+            <div class="stepnum">2</div>
+            <div class="stepname">
+              웰컴 <span class="stepdur">15-30초</span>
+            </div>
+            <span class="stepzone">CLOUD ZONE</span>
+            <ul>
+              <li>고객 부스 진입 → 스태프 첫 인사·언어 파악</li>
+              <li>"보송한 신제품 클라우드블러" 한 줄 소개</li>
+              <li>손등 시연 권유 (No-pressure)</li>
+            </ul>
+          </div>
+          <div class="step">
+            <div class="stepnum">3</div>
+            <div class="stepname">
+              베이스 체험 <span class="stepdur">60-90초</span>
+            </div>
+            <span class="stepzone">CLOUD ZONE</span>
+            <ul>
+              <li>클라우드블러 손등 도포 → 거울로 텍스처 확인</li>
+              <li>"여름 끈적임 + 모공 정돈" USP 전달</li>
+              <li>샤오홍슈 "柔焦" 키워드 자연 노출</li>
+            </ul>
+          </div>
+          <div class="step">
+            <div class="stepnum">4</div>
+            <div class="stepname">
+              셀카 유도 <span class="stepdur">30-60초</span>
+            </div>
+            <span class="stepzone">SELFIE SPOT</span>
+            <ul>
+              <li>중앙 미러·로고 백드롭으로 안내</li>
+              <li>해시태그 QR 카드 제공 (한·중)</li>
+              <li>스태프가 사진 1컷 찍어주기 제안</li>
+            </ul>
+          </div>
+          <div class="step">
+            <div class="stepnum">5</div>
+            <div class="stepname">
+              컬러 스와치 <span class="stepdur">60-120초</span>
+            </div>
+            <span class="stepzone">CHERRY ZONE</span>
+            <ul>
+              <li>립 컬러월에서 마음에 드는 컬러 선택</li>
+              <li>스와치 트레이에서 손등 1-2컬러 테스트</li>
+              <li>BEST TOP3 큐레이션 단상 안내</li>
+            </ul>
+          </div>
+          <div class="step">
+            <div class="stepnum">6</div>
+            <div class="stepname">
+              구매 유도 <span class="stepdur">30-60초</span>
+            </div>
+            <span class="stepzone">CLOSE</span>
+            <ul>
+              <li>"가장 마음에 드신 컬러는?" 클로징 질문</li>
+              <li>팝업 한정 혜택·샘플 파우치 안내</li>
+              <li>비구매시 카탈로그·QR 카드 + 자연스러운 배웅</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 Scripts -->
+      <section>
+        <span class="num">02 · STAFF SCRIPTS</span>
+        <h2>스텝별 한·중 응대 스크립트</h2>
+        <div class="h">
+          스태프 외우기용 — 자연스럽게 약간 변형 OK, 핵심 키워드만 유지
+        </div>
+
+        <div class="scripts">
+          <!-- Scene 1 -->
+          <div class="script">
+            <div class="head">
+              <div class="scene">SCENE 1 · 웰컴</div>
+              <div class="title">부스 진입 첫 인사</div>
+            </div>
+            <div class="body">
+              <div class="lang kr">
+                <div class="flag"><span class="dot"></span>한국어 (KR)</div>
+                <p>
+                  "안녕하세요! <b>탐뷰티</b>입니다. 오늘 새로 나온
+                  <b>클라우드블러</b>, 손등에 한 번 발라보실래요? 여름에 끈적임
+                  없이 보송하게 잡아주는 신제품이에요."
+                </p>
+                <div class="tip">
+                  <b>TIP</b> · 인사 후 3초 안에 시연 제안. 손등 가까이 트레이
+                  내밀기.
+                </div>
+              </div>
+              <div class="lang cn">
+                <div class="flag"><span class="dot"></span>中文 (CN)</div>
+                <p>
+                  "您好！欢迎来到 <b>TAM BEAUTY</b>。这是我们最新推出的
+                  <b>柔焦遮瑕霜（Cloud Blur）</b
+                  >，要不要试一下？夏天清爽不黏腻，<b>柔焦毛孔</b>瞬间细腻。"
+                </p>
+                <div class="pron">Nín hǎo! Huānyíng láidào TAM BEAUTY...</div>
+                <div class="tip">
+                  <b>TIP</b> · "柔焦(róu jiāo)" 키워드를 첫 문장에 넣기 —
+                  샤오홍슈 트렌딩 단어
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scene 2 -->
+          <div class="script">
+            <div class="head">
+              <div class="scene">SCENE 2 · 베이스 시연</div>
+              <div class="title">클라우드블러 손등 체험</div>
+            </div>
+            <div class="body">
+              <div class="lang kr">
+                <div class="flag"><span class="dot"></span>한국어 (KR)</div>
+                <p>
+                  "이렇게 한 번 두드려주시면, 솜털처럼 보송한 막이 생겨요.
+                  <b>피지·모공 흠집까지 자연스럽게 가려주면서</b>, 여름에
+                  무너지지 않아요. 손등 위 거울로 비교해보세요."
+                </p>
+                <div class="tip">
+                  <b>TIP</b> · 두드림 → 거울 확인 → "어떠세요?" 한 번 물어봄
+                </div>
+              </div>
+              <div class="lang cn">
+                <div class="flag"><span class="dot"></span>中文 (CN)</div>
+                <p>
+                  "轻轻拍开就好，会有<b>云雾般的柔焦质感</b>。<b>毛孔、痘印</b>都能自然遮盖，夏天也不脱妆。看，对比一下镜子里的效果。"
+                </p>
+                <div class="pron">Qīngqīng pāi kāi jiù hǎo, huì yǒu...</div>
+                <div class="tip">
+                  <b>TIP</b> · 모공·잡티 키워드 "毛孔(máo kǒng)·痘印(dòu yìn)"
+                  강조
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scene 3 -->
+          <div class="script">
+            <div class="head">
+              <div class="scene">SCENE 3 · 셀카 유도</div>
+              <div class="title">중앙 셀카존 안내</div>
+            </div>
+            <div class="body">
+              <div class="lang kr">
+                <div class="flag"><span class="dot"></span>한국어 (KR)</div>
+                <p>
+                  "여기 거울 앞에서 한 컷 어떠세요? 해시태그
+                  <b>#탐뷰티 #클라우드블러</b> 올려주시면 다음에 오실 때 작은
+                  선물 드려요. QR 찍으면 바로 인스타로 연결돼요."
+                </p>
+                <div class="tip">
+                  <b>TIP</b> · 사진 찍어드릴까 한 번 더 권유, 부담스러우면 바로
+                  통과
+                </div>
+              </div>
+              <div class="lang cn">
+                <div class="flag"><span class="dot"></span>中文 (CN)</div>
+                <p>
+                  "在这里拍一张照吧！发到<b>小红书</b>带上
+                  <b>#TamBeauty #柔焦遮瑕</b
+                  >，扫这个二维码可以关注我们，下次买有折扣哦。"
+                </p>
+                <div class="pron">Zài zhèlǐ pāi yī zhāng zhào ba!</div>
+                <div class="tip">
+                  <b>TIP</b> · 샤오홍슈(小红书) 명시 / 다음 할인 인센티브
+                  자연스럽게 끼움
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scene 4 -->
+          <div class="script">
+            <div class="head">
+              <div class="scene">SCENE 4 · 립 스와치</div>
+              <div class="title">컬러월·트레이 안내</div>
+            </div>
+            <div class="body">
+              <div class="lang kr">
+                <div class="flag"><span class="dot"></span>한국어 (KR)</div>
+                <p>
+                  "여기가 저희 <b>립라이너 컬러월</b>이에요. 12컬러 중에 마음에
+                  드시는 거 손등에 발라보실 수 있어요. 어떤 톤 좋아하세요?
+                  <b>또렷한 레드</b> 좋아하시면 <b>BEST TOP3</b> 추천드릴게요."
+                </p>
+                <div class="tip">
+                  <b>TIP</b> · 톤 질문 → 큐레이션. 면봉으로 위생적 스와치.
+                </div>
+              </div>
+              <div class="lang cn">
+                <div class="flag"><span class="dot"></span>中文 (CN)</div>
+                <p>
+                  "这是我们的
+                  <b>唇线笔色卡墙</b
+                  >，12个颜色都可以试。您喜欢什么色调？<b>正红、豆沙、樱花粉</b>都有，畅销
+                  TOP3 我推荐给您。"
+                </p>
+                <div class="pron">
+                  Zhè shì wǒmen de chúnxiàn bǐ sèkǎ qiáng...
+                </div>
+                <div class="tip">
+                  <b>TIP</b> · 정홍(正红)·도사(豆沙)·앵화분(樱花粉) — 중국 인기
+                  컬러 톤 키워드
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Scene 5 -->
+          <div class="script">
+            <div class="head">
+              <div class="scene">SCENE 5 · 클로징</div>
+              <div class="title">구매 유도 & 배웅</div>
+            </div>
+            <div class="body">
+              <div class="lang kr">
+                <div class="flag"><span class="dot"></span>한국어 (KR)</div>
+                <p>
+                  "가장 잘 어울리시는 컬러였어요! 오늘 팝업 한정으로
+                  <b>샘플 파우치</b>도 같이 드리고 있어요. 어떻게 하시겠어요?
+                  (비구매 시) 괜찮으세요! 카탈로그랑 할인 QR 챙겨드릴게요,
+                  천천히 보세요."
+                </p>
+                <div class="tip">
+                  <b>TIP</b> · 비구매도 절대 부담 ✗ — 다음 방문·온라인 유도
+                </div>
+              </div>
+              <div class="lang cn">
+                <div class="flag"><span class="dot"></span>中文 (CN)</div>
+                <p>
+                  "这个颜色非常适合您！今天快闪限定有<b>样品小礼包</b>赠送哦。要不要带一支？(비구매시)
+                  没关系！这是我们的小册子和折扣二维码，慢慢看哦。"
+                </p>
+                <div class="pron">Zhège yánsè fēicháng shìhé nín!</div>
+                <div class="tip">
+                  <b>TIP</b> · 不(bù)·没关系(méi guānxi) — 부담 없는 톤. QR
+                  카드는 반드시 손에 쥐어주기
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 FAQ -->
+      <section>
+        <span class="num">03 · FAQ</span>
+        <h2>예상 질문 & 답변</h2>
+        <div class="h">관광객 자주 묻는 질문 — 스태프 사전 숙지</div>
+        <div class="faqlist">
+          <div class="faq">
+            <div class="q">중국에서도 살 수 있나요? / 中国哪里可以买?</div>
+            <div class="a">
+              샤오홍슈 공식 계정과 한국 공홈에서 해외 배송 가능합니다. QR 카드로
+              안내드릴게요.
+            </div>
+            <div class="a cn">
+              小红书官方账号和韩国官网都支持海外配送，扫这个二维码可以直接进入。
+            </div>
+          </div>
+          <div class="faq">
+            <div class="q">테스터 없나요? 미니어처는요? / 有小样吗?</div>
+            <div class="a">
+              미니어처는 별도 양산하지 않지만, 오늘 구매 시 <b>샘플 파우치</b>를
+              함께 드려요. 손등 스와치는 자유롭게 해보실 수 있어요.
+            </div>
+            <div class="a cn">
+              迷你装目前没有，但今天购买可以赠送<b>样品小礼包</b>。可以在试色台上自由试用。
+            </div>
+          </div>
+          <div class="faq">
+            <div class="q">클라우드블러 — 모든 피부에 맞나요?</div>
+            <div class="a">
+              건성·복합성·지성 모두 사용 가능, 특히 모공·피지 고민에 효과적.
+              자극 테스트 완료 제품입니다.
+            </div>
+            <div class="a cn">
+              所有肤质都适用，尤其推荐毛孔、出油烦恼。已完成肌肤测试。
+            </div>
+          </div>
+          <div class="faq">
+            <div class="q">립라이너 발색 / 지속력은? / 持久度怎么样?</div>
+            <div class="a">
+              매트 마무리·약 6시간 발색 유지. 음식 섭취 후 가벼운 리터치 권장.
+            </div>
+            <div class="a cn">哑光质感，持妆约6小时。吃饭后建议轻补一下。</div>
+          </div>
+          <div class="faq">
+            <div class="q">팝업 한정 혜택은? / 有什么限定优惠?</div>
+            <div class="a">
+              2개 이상 구매 시 한정 쇼핑백 + 샘플 파우치, 인증샷 업로드 시 다음
+              구매 할인 코드 제공.
+            </div>
+            <div class="a cn">
+              购买2件以上送限定购物袋和样品礼包，发小红书还能得到下次购买折扣码。
+            </div>
+          </div>
+          <div class="faq">
+            <div class="q">
+              결제 — 위챗·알리페이 가능한가요? / 微信支付宝可以吗?
+            </div>
+            <div class="a">
+              백화점 공용 카운터에서 위챗페이·알리페이 결제 가능, 면세 처리도
+              안내 가능합니다.
+            </div>
+            <div class="a cn">
+              百货公司收银台支持微信支付和支付宝，也可以办理免税手续。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 Roles -->
+      <section>
+        <span class="num">04 · STAFF ROLES</span>
+        <h2>스태프 역할 분담</h2>
+        <div class="h">2-3인 운영 기준 · 한·중 응대자 1인 이상 필수</div>
+        <div class="roles">
+          <div class="role">
+            <div class="lbl">ROLE A · GREETER (1인)</div>
+            <h3>웰컴·시연 담당</h3>
+            <ul>
+              <li>부스 입구 응대 · 첫 인사 · 언어 파악</li>
+              <li>클라우드존 시연 진행 (손등 도포·텍스처 설명)</li>
+              <li>중앙 셀카존으로 자연 이동 유도</li>
+              <li>한국어 + 가능하면 영어/중국어 기초</li>
+            </ul>
+          </div>
+          <div class="role">
+            <div class="lbl">ROLE B · CURATOR (1인)</div>
+            <h3>컬러·구매 클로징</h3>
+            <ul>
+              <li>체리존 립 컬러월 큐레이션 · 스와치 도움</li>
+              <li>BEST TOP3 추천 · 톤별 매칭 어드바이스</li>
+              <li>구매 클로징 · 샘플·QR 카드 전달</li>
+              <li><b>중국어 응대 필수</b> (관광객 메인 타겟)</li>
+            </ul>
+          </div>
+          <div class="role">
+            <div class="lbl">ROLE C · FLOATER (1인, 피크타임 추가)</div>
+            <h3>피크타임 보조</h3>
+            <ul>
+              <li>피크타임(12-14시·17-19시) 추가 투입</li>
+              <li>재고·소모품(면봉·티슈) 보충</li>
+              <li>셀카존 사진 촬영 보조</li>
+              <li>외국어 사이니지·QR 안내</li>
+            </ul>
+          </div>
+          <div class="role">
+            <div class="lbl">ROLE D · MANAGER (1인, 순환)</div>
+            <h3>운영 매니저</h3>
+            <ul>
+              <li>일일 매출·체험·SNS 인증 KPI 트래킹</li>
+              <li>백화점 측 커뮤니케이션 · 인접 브랜드 협조</li>
+              <li>이슈 대응 (제품 결함·고객 컴플레인)</li>
+              <li>일 마감 정리·재고 관리</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 KPI -->
+      <section>
+        <span class="num">05 · KPI</span>
+        <h2>운영 목표 지표</h2>
+        <div class="h">일 평균 기준 — 실제 운영 1주 후 조정</div>
+        <div class="kpis">
+          <div class="kpi">
+            <div class="ico">👥</div>
+            <div class="name">일 부스 방문자</div>
+            <div class="target">200-300명</div>
+            <div class="desc">평일/주말 ±30% 변동</div>
+          </div>
+          <div class="kpi">
+            <div class="ico">🧴</div>
+            <div class="name">시연 체험율</div>
+            <div class="target">60%+</div>
+            <div class="desc">방문자 중 손등 시연 진행</div>
+          </div>
+          <div class="kpi">
+            <div class="ico">📸</div>
+            <div class="name">셀카존 인증</div>
+            <div class="target">30%+</div>
+            <div class="desc">사진 촬영 또는 SNS 업로드</div>
+          </div>
+          <div class="kpi">
+            <div class="ico">💳</div>
+            <div class="name">구매 전환율</div>
+            <div class="target">15-20%</div>
+            <div class="desc">방문자 → 구매 전환</div>
+          </div>
+          <div class="kpi">
+            <div class="ico">💄</div>
+            <div class="name">객단가</div>
+            <div class="target">₩45-65K</div>
+            <div class="desc">립라이너 + 클라우드블러 묶음</div>
+          </div>
+          <div class="kpi">
+            <div class="ico">📲</div>
+            <div class="name">QR 스캔</div>
+            <div class="target">40%+</div>
+            <div class="desc">샤오홍슈·공홈 QR 스캔</div>
+          </div>
+        </div>
+
+        <div class="note">
+          ⚠️ <b>측정 방법</b> · 일일 카운터 (수동 클리커) + POS 데이터 + QR 스캔
+          추적. 매일 마감 후 KPI 시트에 기록, 주차별 리뷰로 운영 조정.
+        </div>
+      </section>
+
+      <!-- 06 Daily checklist -->
+      <section>
+        <span class="num">06 · DAILY CHECKLIST</span>
+        <h2>일일 운영 체크리스트</h2>
+        <div class="h">오픈 전·중·마감 시점별 필수 점검 항목</div>
+        <div class="roles">
+          <div class="role">
+            <div class="lbl">OPEN · 오픈 30분 전</div>
+            <h3>오픈 준비</h3>
+            <ul>
+              <li>부스 청소·미러 닦기·바닥 청결</li>
+              <li>제품 디스플레이 정리, 재고 확인</li>
+              <li>스와치 소모품 보충 (면봉·티슈·알코올)</li>
+              <li>POSM·카탈로그·QR 카드 비치</li>
+              <li>조명·전원 점검, 스마트폰 결제 OK</li>
+            </ul>
+          </div>
+          <div class="role">
+            <div class="lbl">MID · 운영 중 매 2시간</div>
+            <h3>중간 점검</h3>
+            <ul>
+              <li>스와치 트레이 청결·면봉 보충</li>
+              <li>샤오홍슈 인증 카운트·QR 스캔 수 기록</li>
+              <li>재고 잔여 확인, 베스트 컬러 보충</li>
+              <li>고객 컴플레인·반품 이슈 기록</li>
+            </ul>
+          </div>
+          <div class="role">
+            <div class="lbl">CLOSE · 마감 후</div>
+            <h3>마감 정리</h3>
+            <ul>
+              <li>일 매출·체험·인증 KPI 기입</li>
+              <li>재고 카운트, 익일 보충 발주</li>
+              <li>POSM·카탈로그 잔량 정리</li>
+              <li>이슈 메모 → 매니저 일일 보고</li>
+              <li>부스 잠금·전원 차단</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="foot">
+        탐뷰티 × 롯데백화점 뷰티 팝업 · 체험 시나리오 & 한·중 스크립트 v1 ·
+        2026.05.27
+      </div>
+    </div>
+  </body>
+</html>

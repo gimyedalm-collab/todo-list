@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐뷰티 × 롯데 뷰티 팝업 — 레퍼런스 큐레이션 워크북 v1</title>
+    <style>
+      :root {
+        --pink-pale: #fff5f8;
+        --pink-soft: #fde6ec;
+        --pink: #fbc4cf;
+        --cherry: #e85d70;
+        --red: #d43a4a;
+        --red-deep: #b02838;
+        --cream: #fbf7f4;
+        --ink: #1a1a1a;
+        --ink-soft: #3a3a3a;
+        --gray: #6b6b6b;
+        --gray-soft: #999;
+        --line: #e8e2dc;
+        --bg: #fbf7f4;
+        --green: #2d9d6f;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 56px 48px 120px;
+      }
+
+      .cover {
+        background: linear-gradient(135deg, #fff5f8 0%, #ffeeef 100%);
+        padding: 56px 48px;
+        border-radius: 28px;
+        margin-bottom: 56px;
+        border: 1px solid var(--line);
+      }
+      .cover .tag {
+        display: inline-block;
+        background: #fff;
+        padding: 5px 14px;
+        border-radius: 100px;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--red-deep);
+        margin-bottom: 18px;
+        border: 1px solid var(--pink-soft);
+      }
+      .cover h1 {
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.15;
+        margin-bottom: 12px;
+      }
+      .cover .sub {
+        font-size: 15px;
+        color: var(--gray);
+      }
+
+      .howto {
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        font-size: 13px;
+        color: var(--ink-soft);
+        line-height: 1.7;
+      }
+      .howto b {
+        color: var(--red);
+      }
+
+      section {
+        margin-bottom: 64px;
+      }
+      .num {
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        color: var(--red);
+        margin-bottom: 8px;
+        display: block;
+      }
+      h2 {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+      .h {
+        font-size: 14.5px;
+        color: var(--gray);
+        margin-bottom: 28px;
+      }
+
+      .platforms {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin-bottom: 28px;
+      }
+      .plat {
+        background: #fff;
+        padding: 18px 18px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+      }
+      .plat .ico {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+      .plat h4 {
+        font-size: 15px;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+      .plat .url {
+        font-size: 11.5px;
+        color: var(--gray-soft);
+        font-family: 'SF Mono', Consolas, monospace;
+        margin-bottom: 8px;
+      }
+      .plat p {
+        font-size: 12.5px;
+        color: var(--ink-soft);
+        line-height: 1.6;
+      }
+      .plat p b {
+        color: var(--red-deep);
+      }
+
+      /* Category card */
+      .catgrid {
+        display: grid;
+        gap: 20px;
+      }
+      .cat {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+      .cat .head {
+        padding: 22px 26px;
+        border-bottom: 1px solid var(--line);
+        background: var(--cream);
+      }
+      .cat .id {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: var(--red);
+        margin-bottom: 6px;
+      }
+      .cat h3 {
+        font-size: 22px;
+        font-weight: 800;
+        margin-bottom: 6px;
+        letter-spacing: -0.01em;
+      }
+      .cat .purpose {
+        font-size: 13.5px;
+        color: var(--gray);
+        line-height: 1.6;
+      }
+      .cat .body {
+        padding: 22px 26px;
+      }
+      .cat h4 {
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--gray);
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        margin-top: 14px;
+      }
+      .cat h4:first-child {
+        margin-top: 0;
+      }
+      .keys {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+      .key {
+        font-size: 12px;
+        background: var(--pink-pale);
+        color: var(--red-deep);
+        padding: 5px 11px;
+        border-radius: 100px;
+        border: 1px solid var(--pink-soft);
+      }
+      .key.cn {
+        background: #fff5f8;
+        font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      }
+      .key.en {
+        background: #fff;
+      }
+      .checklist {
+        list-style: none;
+        font-size: 13px;
+        color: var(--ink-soft);
+        line-height: 1.7;
+      }
+      .checklist li {
+        padding-left: 22px;
+        position: relative;
+        margin-bottom: 4px;
+      }
+      .checklist li::before {
+        content: '☐';
+        position: absolute;
+        left: 0;
+        color: var(--red);
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      /* Slot grid */
+      .slots {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .slot {
+        aspect-ratio: 4 / 5;
+        background: var(--cream);
+        border: 1.5px dashed var(--line);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 10px;
+        color: var(--gray-soft);
+        font-size: 11.5px;
+      }
+      .slot .n {
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--pink);
+        margin-bottom: 4px;
+      }
+      .slot .lbl {
+        font-size: 10.5px;
+        color: var(--gray-soft);
+      }
+
+      /* Workflow */
+      .workflow {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 28px;
+      }
+      .workflow ol {
+        list-style: none;
+        counter-reset: w;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+      }
+      .workflow li {
+        counter-increment: w;
+        background: var(--cream);
+        border-radius: 12px;
+        padding: 20px 18px 20px 56px;
+        position: relative;
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        border: 1px solid var(--line);
+      }
+      .workflow li::before {
+        content: 'STEP ' counter(w);
+        position: absolute;
+        left: 14px;
+        top: 18px;
+        font-size: 9.5px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        color: var(--red);
+        background: #fff;
+        padding: 4px 6px;
+        border-radius: 4px;
+      }
+      .workflow li b {
+        display: block;
+        color: var(--ink);
+        font-size: 14.5px;
+        margin-bottom: 6px;
+        margin-top: 22px;
+      }
+
+      /* Filter criteria */
+      .criteria {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      .crit {
+        background: #fff;
+        padding: 20px 22px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+      }
+      .crit .lvl {
+        font-size: 10.5px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        padding: 3px 8px;
+        border-radius: 100px;
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+      .crit.go .lvl {
+        background: #d9f0e6;
+        color: #1f7a52;
+      }
+      .crit.no .lvl {
+        background: #fde6ec;
+        color: #b02838;
+      }
+      .crit h4 {
+        font-size: 16px;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+      .crit ul {
+        list-style: none;
+        font-size: 13px;
+        line-height: 1.65;
+        color: var(--ink-soft);
+      }
+      .crit ul li {
+        padding-left: 16px;
+        position: relative;
+        margin-bottom: 4px;
+      }
+      .crit.go ul li::before {
+        content: '✓';
+        color: #1f7a52;
+        position: absolute;
+        left: 0;
+        font-weight: 800;
+      }
+      .crit.no ul li::before {
+        content: '✗';
+        color: #d43a4a;
+        position: absolute;
+        left: 0;
+        font-weight: 800;
+      }
+
+      .note {
+        background: #fff8e1;
+        border-left: 4px solid #f5b800;
+        padding: 16px 20px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: var(--ink-soft);
+        margin-top: 18px;
+      }
+      .note b {
+        color: #a87600;
+      }
+
+      .foot {
+        margin-top: 56px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font-size: 11.5px;
+        color: var(--gray-soft);
+        text-align: center;
+      }
+      @media (max-width: 760px) {
+        .page {
+          padding: 32px 16px 80px;
+        }
+        .cover {
+          padding: 36px 22px;
+        }
+        .cover h1 {
+          font-size: 26px;
+        }
+        .criteria {
+          grid-template-columns: 1fr;
+        }
+        .slots {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="cover">
+        <span class="tag">REFERENCE CURATION WORKBOOK · v1 · 2026.05.27</span>
+        <h1>레퍼런스 큐레이션 워크북</h1>
+        <p class="sub">
+          핀터레스트·샤오홍슈·인스타그램에서 부스 디자인 레퍼런스를 효율적으로
+          모으는 가이드
+        </p>
+        <div class="howto">
+          <b>이 문서는 사용 방법</b> · ① 아래 8개 카테고리별 검색 키워드로
+          이미지를 찾고<br />
+          ② 각 카테고리당 <b>3-5장</b>씩 핀터레스트 보드 또는 폴더에 저장<br />
+          ③ 필터링 기준에 따라 선별 후 디자이너·집기 업체에 전달<br />
+          ④ 최종 큐레이션: 카테고리당 <b>1-2장 핵심</b>으로 정리
+        </div>
+      </div>
+
+      <!-- 01 Platforms -->
+      <section>
+        <span class="num">01 · WHERE TO SEARCH</span>
+        <h2>플랫폼별 활용 가이드</h2>
+        <div class="h">각 플랫폼이 강한 카테고리와 검색 팁</div>
+        <div class="platforms">
+          <div class="plat">
+            <div class="ico">📌</div>
+            <h4>Pinterest</h4>
+            <div class="url">pinterest.com</div>
+            <p>
+              <b>강점</b> · 부스·디스플레이·인테리어 전체 무드. 영어 키워드
+              위주, 보드별 정리 편리.
+            </p>
+          </div>
+          <div class="plat">
+            <div class="ico">📕</div>
+            <h4>샤오홍슈 (小红书)</h4>
+            <div class="url">xiaohongshu.com</div>
+            <p>
+              <b>강점</b> · 중국 관광객 인증샷 트렌드·"打卡墙" 사례. 중국어
+              키워드 필수.
+            </p>
+          </div>
+          <div class="plat">
+            <div class="ico">📷</div>
+            <h4>Instagram</h4>
+            <div class="url">instagram.com / 해시태그</div>
+            <p>
+              <b>강점</b> · 실제 K-뷰티 팝업 사례, 인플루언서 후기. #뷰티팝업
+              #올리브영팝업 등.
+            </p>
+          </div>
+          <div class="plat">
+            <div class="ico">🔍</div>
+            <h4>Google Images</h4>
+            <div class="url">images.google.com</div>
+            <p>
+              <b>강점</b> · "site:dezeen.com booth" 같이 디자인 매거진 한정
+              검색이 강력.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 Categories -->
+      <section>
+        <span class="num">02 · CATEGORIES (8 BUCKETS)</span>
+        <h2>레퍼런스 8카테고리</h2>
+        <div class="h">부스 요소별 검색 키워드 + 체크리스트 + 이미지 슬롯</div>
+
+        <div class="catgrid">
+          <!-- A. Cloud zone -->
+          <div class="cat">
+            <div class="head">
+              <div class="id">A · CLOUD ZONE</div>
+              <h3>솜털·구름 디스플레이</h3>
+              <div class="purpose">
+                좌측 클라우드존 솜털 오브제·천장 매달기·단상 데코 레퍼런스
+              </div>
+            </div>
+            <div class="body">
+              <h4>한국어</h4>
+              <div class="keys">
+                <span class="key">솜털 오브제 디스플레이</span>
+                <span class="key">구름 인테리어</span>
+                <span class="key">핑크 클라우드 부스</span>
+                <span class="key">뷰티 매장 솜털</span>
+              </div>
+              <h4>English</h4>
+              <div class="keys">
+                <span class="key en">cotton candy beauty popup</span>
+                <span class="key en">cloud display retail</span>
+                <span class="key en">pink fluffy installation</span>
+                <span class="key en">soft pastel beauty booth</span>
+              </div>
+              <h4>中文</h4>
+              <div class="keys">
+                <span class="key cn">柔焦 美妆 快闪</span>
+                <span class="key cn">云朵 装置 美妆</span>
+                <span class="key cn">粉色 棉花 陈列</span>
+              </div>
+              <h4>체크리스트</h4>
+              <ul class="checklist">
+                <li>천장 매달기인지 바닥 거치인지 명확한지</li>
+                <li>크기·비율 (Ø50cm vs Ø100cm 등) 분명한지</li>
+                <li>퍼프·솜·풍선 등 자재 추정 가능한지</li>
+                <li>전체 톤이 핑크 그라데이션과 어울리는지</li>
+              </ul>
+              <h4>이미지 슬롯 (3-5장 저장)</h4>
+              <div class="slots">
+                <div class="slot">
+                  <div class="n">A1</div>
+                  <div class="lbl">메인 오브제</div>
+                </div>
+                <div class="slot">
+                  <div class="n">A2</div>
+                  <div class="lbl">단상 데코</div>
+                </div>
+                <div class="slot">
+                  <div class="n">A3</div>
+                  <div class="lbl">자재 디테일</div>
+                </div>
+                <div class="slot">
+                  <div class="n">A4</div>
+                  <div class="lbl">예비</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- B. Lip swatch wall -->
+          <div class="cat">
+            <div class="head">
+              <div class="id">B · LIP WALL</div>
+              <h3>립 컬러 스워치월</h3>
+              <div class="purpose">
+                우측 체리존 핵심 — 12-15컬러 입체 디스플레이 레퍼런스
+              </div>
+            </div>
+            <div class="body">
+              <h4>한국어</h4>
+              <div class="keys">
+                <span class="key">립스틱 컬러월</span>
+                <span class="key">립 디스플레이 매장</span>
+                <span class="key">립스틱 진열대</span>
+                <span class="key">컬러 그라데이션 월</span>
+              </div>
+              <h4>English</h4>
+              <div class="keys">
+                <span class="key en">lip swatch wall</span>
+                <span class="key en">lipstick color display</span>
+                <span class="key en">cosmetics wall installation</span>
+                <span class="key en">charlotte tilbury popup</span>
+              </div>
+              <h4>中文</h4>
+              <div class="keys">
+                <span class="key cn">立体口红墙</span>
+                <span class="key cn">口红试色墙</span>
+                <span class="key cn">唇釉 陈列墙</span>
+              </div>
+              <h4>체크리스트</h4>
+              <ul class="checklist">
+                <li>입체감 (튀어나옴) vs 평면 (벽 부착) 명확한지</li>
+                <li>컬러 배열이 12-15개 수용 가능한 구조인지</li>
+                <li>조명 (백라이트·스팟) 처리 보이는지</li>
+                <li>벽 부착 또는 자립형인지 확인</li>
+              </ul>
+              <h4>이미지 슬롯</h4>
+              <div class="slots">
+                <div class="slot">
+                  <div class="n">B1</div>
+                  <div class="lbl">전체 월</div>
+                </div>
+                <div class="slot">
+                  <div class="n">B2</div>
+                  <div class="lbl">배열 디테일</div>
+                </div>
+                <div class="slot">
+                  <div class="n">B3</div>
+                  <div class="lbl">조명 처리</div>
+                </div>
+                <div class="slot">
+                  <div class="n">B4</div>
+                  <div class="lbl">예비</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- C. Selfie spot -->
+          <div class="cat">
+            <div class="head">
+              <div class="id">C · SELFIE SPOT</div>
+              <h3>인증샷·셀카존</h3>
+              <div class="purpose">
+                중앙 미러·로고 백드롭·해시태그 사이니지·바닥 마크 레퍼런스
+              </div>
+            </div>
+            <div class="body">
+              <h4>한국어</h4>
+              <div class="keys">
+                <span class="key">미러 셀카존</span>
+                <span class="key">백드롭 포토존</span>
+                <span class="key">팝업 인증 포토월</span>
+                <span class="key">뷰티 셀카 스팟</span>
+              </div>
+              <h4>English</h4>
+              <div class="keys">
+                <span class="key en">photo wall popup</span>
+                <span class="key en">mirror selfie installation</span>
+                <span class="key en">selfie booth retail</span>
+                <span class="key en">brand backdrop photo spot</span>
+              </div>
+              <h4>中文</h4>
+              <div class="keys">
+                <span class="key cn">小红书打卡墙</span>
+                <span class="key cn">网红打卡 拍照</span>
+                <span class="key cn">镜子 自拍 装置</span>
+              </div>
+              <h4>체크리스트</h4>
+              <ul class="checklist">
+                <li>풀바디 미러 사이즈가 200×60cm 가까운지</li>
+                <li>해시태그·QR 노출 방식 자연스러운지</li>
+                <li>조명이 셀카 친화 톤 (웜·핑크)인지</li>
+                <li>로고 노출 사이즈가 작지도 크지도 않은지</li>
+              </ul>
+              <h4>이미지 슬롯</h4>
+              <div class="slots">
+                <div class="slot">
+                  <div class="n">C1</div>
+                  <div class="lbl">미러+백드롭</div>
+                </div>
+                <div class="slot">
+                  <div class="n">C2</div>
+                  <div class="lbl">해시태그 UI</div>
+                </div>
+                <div class="slot">
+                  <div class="n">C3</div>
+                  <div class="lbl">바닥 마크</div>
+                </div>
+                <div class="slot">
+                  <div class="n">C4</div>
+                  <div class="lbl">예비</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- D. Overall booth -->
+          <div class="cat">
+            <div class="head">
+              <div class="id">D · BOOTH OVERALL</div>
+              <h3>전체 부스 톤</h3>
+              <div class="purpose">
+                3평급 럭셔리 색조 부스 전체 무드 — 백화점 통일 부스 인접 사례
+              </div>
+            </div>
+            <div class="body">
+              <h4>한국어</h4>
+              <div class="keys">
+                <span class="key">롯데백화점 뷰티 팝업</span>
+                <span class="key">신세계 뷰티 부스</span>
+                <span class="key">백화점 1F 색조 팝업</span>
+                <span class="key">럭셔리 뷰티 부스</span>
+              </div>
+              <h4>English</h4>
+              <div class="keys">
+                <span class="key en">YSL beauty popup</span>
+                <span class="key en">dior beauty counter</span>
+                <span class="key en">luxury beauty booth design</span>
+                <span class="key en">department store cosmetics popup</span>
+              </div>
+              <h4>中文</h4>
+              <div class="keys">
+                <span class="key cn">百货公司 美妆 快闪</span>
+                <span class="key cn">高级 美妆 陈列</span>
+                <span class="key cn">韩国 美妆店 设计</span>
+              </div>
+              <h4>체크리스트</h4>
+              <ul class="checklist">
+                <li>면적이 3-5평 비슷한 규모인지</li>
+                <li>그래픽·집기로만 임팩트 낸 사례인지 (구조 변경 ✗)</li>
+                <li>핑크·레드 톤이 메인 컬러로 쓰인 사례</li>
+                <li>백화점 환경 (천장 낮음·통로 인접) 고려한 디자인</li>
+              </ul>
+              <h4>이미지 슬롯</h4>
+              <div class="slots">
+                <div class="slot">
+                  <div class="n">D1</div>
+                  <div class="lbl">정면 뷰</div>
+                </div>
+                <div class="slot">
+                  <div class="n">D2</div>
+                  <div class="lbl">내부 뷰</div>
+                </div>
+                <div class="slot">
+                  <div class="n">D3</div>
+                  <div class="lbl">조명·디테일</div>
+                </div>
+                <div class="slot">
+                  <div class="n">D4</div>
+                  <div class="lbl">예비</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- E. Material / texture -->
+          <div class="cat">
+            <div class="head">
+              <div class="id">E · MATERIAL</div>
+              <h3>재질·텍스처 디테일</h3>
+              <div class="purpose">
+                집기·소품 자재 선정용 — 솜털·미러·체리글로시·누드패브릭
+              </div>
+            </div>
+            <div class="body">
+              <h4>한국어</h4>
+              <div class="keys">
+                <span class="key">아크릴 핑크 디스플레이</span>
+                <span class="key">우드 + 핑크 매장</span>
+                <span class="key">패브릭 트레이 뷰티</span>
+                <span class="key">미러 아크릴 부스</span>
+              </div>
+              <h4>English</h4>
+              <div class="keys">
+                <span class="key en">pink acrylic display</span>
+                <span class="key en">velvet beauty tray</span>
+                <span class="key en">glossy red lacquer</span>
+                <span class="key en">brushed metal pink booth</span>
+              </div>
+              <h4>中文</h4>
+              <div class="keys">
+                <span class="key cn">亚克力 美妆陈列</span>
+                <span class="key cn">玫红 漆面 装置</span>
+              </div>
+              <h4>체크리스트</h4>
+              <ul class="checklist">
+                <li>자재 확인 가능한 클로즈업 샷인지</li>
+                <li>가공 난이도·예산 추정 가능한지</li>
+                <li>유지보수 관점 (지문·흠집) 적합한지</li>
+              </ul>
+              <h4>이미지 슬롯</h4>
+              <div class="slots">
+                <div class="slot">
+                  <div class="n">E1</div>
+                  <div class="lbl">솜털 자재</div>
+                </div>
+                <div class="slot">
+                  <div class="n">E2</div>
+                  <div class="lbl">아크릴 클로즈업</div>
+                </div>
+                <div class="slot">
+                  <div class="n">E3</div>
+                  <div class="lbl">체리 글로시</div>
+                </div>
+                <div class="slot">
+                  <div class="n">E4</div>
+                  <div class="lbl">예비</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- F. Lighting -->
+          <div class="cat">
+            <div class="head">
+              <div class="id">F · LIGHTING</div>
+              <h3>조명 연출</h3>
+              <div class="purpose">
+                스팟·트랙·링라이트 — 셀카 친화·제품 강조 양립
+              </div>
+            </div>
+            <div class="body">
+              <h4>한국어</h4>
+              <div class="keys">
+                <span class="key">트랙 조명 매장</span>
+                <span class="key">핑크 조명 뷰티</span>
+                <span class="key">링라이트 셀카존</span>
+                <span class="key">백라이트 디스플레이</span>
+              </div>
+              <h4>English</h4>
+              <div class="keys">
+                <span class="key en">retail track lighting</span>
+                <span class="key en">backlit display cosmetics</span>
+                <span class="key en">selfie ring light booth</span>
+                <span class="key en">warm pink ambient lighting</span>
+              </div>
+              <h4>체크리스트</h4>
+              <ul class="checklist">
+                <li>색온도가 셀카·제품 모두 친화적 (2700-3500K)인지</li>
+                <li>백라이트가 컬러월에 효과적으로 적용됐는지</li>
+                <li>천장 매립 vs 트랙·스팟 구분 명확한지</li>
+              </ul>
+              <h4>이미지 슬롯</h4>
+              <div class="slots">
+                <div class="slot">
+                  <div class="n">F1</div>
+                  <div class="lbl">스팟 조명</div>
+                </div>
+                <div class="slot">
+                  <div class="n">F2</div>
+                  <div class="lbl">백라이트</div>
+                </div>
+                <div class="slot">
+                  <div class="n">F3</div>
+                  <div class="lbl">링라이트</div>
+                </div>
+                <div class="slot">
+                  <div class="n">F4</div>
+                  <div class="lbl">예비</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- G. Signage / typography -->
+          <div class="cat">
+            <div class="head">
+              <div class="id">G · SIGNAGE</div>
+              <h3>사이니지·타이포그래피</h3>
+              <div class="purpose">
+                헤더 사인·QR 카드·해시태그 사이니지 디자인 톤
+              </div>
+            </div>
+            <div class="body">
+              <h4>한국어</h4>
+              <div class="keys">
+                <span class="key">팝업 헤더 사인</span>
+                <span class="key">한중 사이니지</span>
+                <span class="key">QR 카드 디자인</span>
+                <span class="key">럭셔리 매장 타이포</span>
+              </div>
+              <h4>English</h4>
+              <div class="keys">
+                <span class="key en">popup header sign</span>
+                <span class="key en">bilingual retail signage</span>
+                <span class="key en">QR card design beauty</span>
+                <span class="key en">luxury cosmetics typography</span>
+              </div>
+              <h4>중文</h4>
+              <div class="keys">
+                <span class="key cn">韩中双语 招牌</span>
+                <span class="key cn">促销 二维码 卡</span>
+              </div>
+              <h4>체크리스트</h4>
+              <ul class="checklist">
+                <li>한·중 병기 시 위계 명확한지 (메인/서브)</li>
+                <li>핑크 그라데이션 위에서도 가독성 OK</li>
+                <li>로고 사용 가이드 일관성</li>
+              </ul>
+              <h4>이미지 슬롯</h4>
+              <div class="slots">
+                <div class="slot">
+                  <div class="n">G1</div>
+                  <div class="lbl">헤더 사인</div>
+                </div>
+                <div class="slot">
+                  <div class="n">G2</div>
+                  <div class="lbl">한중 사이니지</div>
+                </div>
+                <div class="slot">
+                  <div class="n">G3</div>
+                  <div class="lbl">QR 카드</div>
+                </div>
+                <div class="slot">
+                  <div class="n">G4</div>
+                  <div class="lbl">예비</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- H. Novelty / packaging -->
+          <div class="cat">
+            <div class="head">
+              <div class="id">H · NOVELTY</div>
+              <h3>노벨티·패키징</h3>
+              <div class="purpose">
+                샘플 파우치·쇼핑백·손거울 등 굿즈 디자인 톤
+              </div>
+            </div>
+            <div class="body">
+              <h4>한국어</h4>
+              <div class="keys">
+                <span class="key">팝업 한정 쇼핑백</span>
+                <span class="key">샘플 파우치 뷰티</span>
+                <span class="key">노벨티 손거울</span>
+                <span class="key">한정판 굿즈 뷰티</span>
+              </div>
+              <h4>English</h4>
+              <div class="keys">
+                <span class="key en">limited edition shopping bag</span>
+                <span class="key en">sample pouch beauty popup</span>
+                <span class="key en">branded compact mirror</span>
+                <span class="key en">cosmetics gwp gift</span>
+              </div>
+              <h4>中文</h4>
+              <div class="keys">
+                <span class="key cn">限定 购物袋</span>
+                <span class="key cn">美妆 小样 套装</span>
+                <span class="key cn">小镜子 周边</span>
+              </div>
+              <h4>체크리스트</h4>
+              <ul class="checklist">
+                <li>실사용 가능한 디자인인지 (버리지 않을 만한지)</li>
+                <li>로고 노출이 자연스러운지 (과하지 않은지)</li>
+                <li>인스타·샤오홍슈 인증 유발 비주얼</li>
+              </ul>
+              <h4>이미지 슬롯</h4>
+              <div class="slots">
+                <div class="slot">
+                  <div class="n">H1</div>
+                  <div class="lbl">쇼핑백</div>
+                </div>
+                <div class="slot">
+                  <div class="n">H2</div>
+                  <div class="lbl">샘플 파우치</div>
+                </div>
+                <div class="slot">
+                  <div class="n">H3</div>
+                  <div class="lbl">손거울</div>
+                </div>
+                <div class="slot">
+                  <div class="n">H4</div>
+                  <div class="lbl">예비</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 Criteria -->
+      <section>
+        <span class="num">03 · FILTER CRITERIA</span>
+        <h2>선별 기준</h2>
+        <div class="h">모은 이미지 중 어떤 걸 핵심으로 남길지 판단 기준</div>
+        <div class="criteria">
+          <div class="crit go">
+            <span class="lvl">✓ KEEP</span>
+            <h4>핵심으로 남길 이미지</h4>
+            <ul>
+              <li>3평급 부스에 1:1 적용 가능한 스케일</li>
+              <li>핑크·체리·레드 그라데이션과 톤 일치</li>
+              <li>제작 자재·시공 방법이 사진에서 추정 가능</li>
+              <li>중국 관광객·SNS 인증 친화적 비주얼</li>
+              <li>예산 ₩5-6M 범위 안에서 재현 가능</li>
+              <li>유지보수·청결 운영 가능한 구조</li>
+            </ul>
+          </div>
+          <div class="crit no">
+            <span class="lvl">✗ DROP</span>
+            <h4>레퍼런스에서 제외할 이미지</h4>
+            <ul>
+              <li>10평 이상 대형 부스 사례 (스케일 불일치)</li>
+              <li>채도 너무 높은 형광 핑크·네온 (브랜드 톤 ✗)</li>
+              <li>구조 자체를 바꾼 사례 (백화점 통일부스 ✗)</li>
+              <li>지나치게 미니멀해서 비주얼 약한 사례</li>
+              <li>비현실적 예산 (해외 럭셔리 글로벌 팝업 등)</li>
+              <li>관리 불가능한 자재 (생화·식물 다량 등)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 Workflow -->
+      <section>
+        <span class="num">04 · WORKFLOW</span>
+        <h2>작업 순서</h2>
+        <div class="h">레퍼런스 수집부터 디자이너 전달까지 4단계</div>
+        <div class="workflow">
+          <ol>
+            <li>
+              <b>수집 (1-2일)</b>
+              플랫폼 4종 × 카테고리 8개 = 위 키워드로 검색하며 카테고리당
+              5-10장씩 핀터레스트 보드 또는 노션 저장. 총 60-80장 목표.
+            </li>
+            <li>
+              <b>1차 필터 (반나절)</b>
+              위 KEEP/DROP 기준으로 솎아내기. 카테고리당 3-5장으로 압축. 너무
+              비슷한 건 1개만 남김.
+            </li>
+            <li>
+              <b>최종 큐레이션 (반나절)</b>
+              카테고리당 1-2장 핵심 픽 + 1장 대안 = 카테고리당 2-3장. 총
+              16-24장의 최종 레퍼런스 보드 완성.
+            </li>
+            <li>
+              <b>전달·피드백 (1일)</b>
+              집기 업체·디자이너에게 보드 + 본 워크북 함께 공유. "이 부분 차용"
+              "이 부분 제외" 메모 첨부.
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 05 Suggested boards -->
+      <section>
+        <span class="num">05 · SUGGESTED BOARDS</span>
+        <h2>핀터레스트 보드 구조 추천</h2>
+        <div class="h">
+          레퍼런스 정리 시 보드 분리 추천 — 디자이너 공유도 편함
+        </div>
+        <div class="workflow">
+          <ol>
+            <li>
+              <b>탐뷰티-Booth-A-Cloud</b>
+              솜털 오브제·구름 디스플레이 (카테고리 A)
+            </li>
+            <li>
+              <b>탐뷰티-Booth-B-LipWall</b>
+              립 컬러월·스워치 트레이 (카테고리 B)
+            </li>
+            <li>
+              <b>탐뷰티-Booth-C-Selfie</b>
+              미러·백드롭·해시태그 (카테고리 C)
+            </li>
+            <li>
+              <b>탐뷰티-Booth-D-Overall</b>
+              전체 부스 톤·럭셔리 색조 사례 (카테고리 D)
+            </li>
+            <li>
+              <b>탐뷰티-Booth-E-Material</b>
+              자재·텍스처 클로즈업 (카테고리 E)
+            </li>
+            <li>
+              <b>탐뷰티-Booth-F-Lighting</b>
+              조명 (카테고리 F)
+            </li>
+            <li>
+              <b>탐뷰티-Booth-G-Signage</b>
+              사이니지·타이포 (카테고리 G)
+            </li>
+            <li>
+              <b>탐뷰티-Booth-H-Novelty</b>
+              노벨티·패키징 (카테고리 H)
+            </li>
+          </ol>
+        </div>
+
+        <div class="note">
+          ⚠️ <b>이미지 저작권 주의</b> · 핀터레스트·구글에서 모은 이미지는 내부
+          참고용으로만 사용. 공식 발주·납품·외부 공개 자료에는 직접
+          촬영·디자이너 제작 이미지로 교체.
+        </div>
+      </section>
+
+      <div class="foot">
+        탐뷰티 × 롯데백화점 뷰티 팝업 · 레퍼런스 큐레이션 워크북 v1 · 2026.05.27
+      </div>
+    </div>
+  </body>
+</html>

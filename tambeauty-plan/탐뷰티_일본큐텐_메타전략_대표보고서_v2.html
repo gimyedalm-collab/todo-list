@@ -28,19 +28,34 @@
         --bad-soft: #fde6e6;
         --navy: #1f2a44;
       }
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      html, body {
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
         background: var(--bg);
         color: var(--ink);
-        font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
         line-height: 1.7;
         -webkit-font-smoothing: antialiased;
       }
-      .page { max-width: 1000px; margin: 0 auto; padding: 56px 48px 120px; }
+      .page {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 56px 48px 120px;
+      }
 
       /* Cover */
       .cover {
-        background: linear-gradient(135deg, #fff5f8 0%, #fbc4cf 55%, #ffeeef 100%);
+        background: linear-gradient(
+          135deg,
+          #fff5f8 0%,
+          #fbc4cf 55%,
+          #ffeeef 100%
+        );
         padding: 88px 64px;
         border-radius: 28px;
         margin-bottom: 64px;
@@ -50,72 +65,128 @@
       }
       .cover::before {
         content: '';
-        position: absolute; right: -100px; top: -100px;
-        width: 360px; height: 360px;
-        background: radial-gradient(circle, rgba(241,142,165,0.28) 0%, transparent 70%);
+        position: absolute;
+        right: -100px;
+        top: -100px;
+        width: 360px;
+        height: 360px;
+        background: radial-gradient(
+          circle,
+          rgba(241, 142, 165, 0.28) 0%,
+          transparent 70%
+        );
         border-radius: 50%;
       }
       .cover::after {
         content: '';
-        position: absolute; right: 80px; bottom: -120px;
-        width: 320px; height: 320px;
-        background: radial-gradient(circle, rgba(212,58,74,0.15) 0%, transparent 70%);
+        position: absolute;
+        right: 80px;
+        bottom: -120px;
+        width: 320px;
+        height: 320px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 58, 74, 0.15) 0%,
+          transparent 70%
+        );
         border-radius: 50%;
       }
       .tag {
-        display: inline-block; padding: 7px 16px;
-        background: rgba(255,255,255,0.8);
+        display: inline-block;
+        padding: 7px 16px;
+        background: rgba(255, 255, 255, 0.8);
         border: 1px solid var(--line);
         border-radius: 100px;
-        font-size: 12px; font-weight: 700;
-        margin-bottom: 22px; color: var(--gray);
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 22px;
+        color: var(--gray);
         letter-spacing: 1.5px;
       }
       .version-tag {
-        display: inline-block; padding: 4px 12px;
-        background: var(--ink); color: white;
-        border-radius: 6px; font-size: 11px; font-weight: 800;
-        letter-spacing: 1.5px; margin-left: 8px;
+        display: inline-block;
+        padding: 4px 12px;
+        background: var(--ink);
+        color: white;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        margin-left: 8px;
       }
       h1.title {
-        font-size: 50px; font-weight: 800;
-        line-height: 1.2; letter-spacing: -1.6px;
+        font-size: 50px;
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -1.6px;
         margin-bottom: 18px;
-        position: relative; z-index: 2;
+        position: relative;
+        z-index: 2;
       }
       h1.title em {
         font-style: normal;
-        background: linear-gradient(180deg, transparent 60%, rgba(255,255,255,0.65) 60%);
+        background: linear-gradient(
+          180deg,
+          transparent 60%,
+          rgba(255, 255, 255, 0.65) 60%
+        );
       }
       .cover .subtitle {
-        font-size: 18px; font-weight: 500; color: var(--gray);
-        max-width: 740px; line-height: 1.6;
-        position: relative; z-index: 2;
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--gray);
+        max-width: 740px;
+        line-height: 1.6;
+        position: relative;
+        z-index: 2;
       }
       .cover .meta {
-        display: flex; gap: 36px;
-        margin-top: 44px; position: relative; z-index: 2;
+        display: flex;
+        gap: 36px;
+        margin-top: 44px;
+        position: relative;
+        z-index: 2;
         flex-wrap: wrap;
       }
-      .cover .meta div { font-size: 13px; color: var(--gray); }
-      .cover .meta strong { display: block; color: var(--ink); font-size: 15px; font-weight: 700; margin-top: 4px; }
+      .cover .meta div {
+        font-size: 13px;
+        color: var(--gray);
+      }
+      .cover .meta strong {
+        display: block;
+        color: var(--ink);
+        font-size: 15px;
+        font-weight: 700;
+        margin-top: 4px;
+      }
 
       /* Section */
-      section { margin-bottom: 72px; }
-      .section-head { margin-bottom: 32px; }
+      section {
+        margin-bottom: 72px;
+      }
+      .section-head {
+        margin-bottom: 32px;
+      }
       .section-num {
         display: inline-block;
-        font-size: 12px; font-weight: 700; letter-spacing: 2px;
-        color: var(--pink-deep); margin-bottom: 12px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--pink-deep);
+        margin-bottom: 12px;
       }
       h2 {
-        font-size: 30px; font-weight: 800;
-        letter-spacing: -0.8px; line-height: 1.32;
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -0.8px;
+        line-height: 1.32;
         margin-bottom: 14px;
       }
       .lede {
-        font-size: 16.5px; color: var(--gray);
-        max-width: 800px; line-height: 1.7;
+        font-size: 16.5px;
+        color: var(--gray);
+        max-width: 800px;
+        line-height: 1.7;
       }
 
       /* Empathy block - CEO's view */
@@ -127,28 +198,43 @@
         margin-bottom: 32px;
       }
       .empathy .quote-mark {
-        font-size: 40px; line-height: 1;
+        font-size: 40px;
+        line-height: 1;
         color: var(--pink-deep);
         font-weight: 800;
         margin-bottom: 4px;
       }
       .empathy .quote {
-        font-size: 19px; font-weight: 600;
-        color: var(--ink); line-height: 1.55;
+        font-size: 19px;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.55;
         margin-bottom: 16px;
       }
       .empathy .response-label {
-        font-size: 11px; font-weight: 800;
-        color: var(--pink-deep); letter-spacing: 2px;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--pink-deep);
+        letter-spacing: 2px;
         margin-bottom: 8px;
       }
       .empathy .response {
-        font-size: 15.5px; color: var(--gray); line-height: 1.7;
+        font-size: 15.5px;
+        color: var(--gray);
+        line-height: 1.7;
       }
 
       /* Card grid */
-      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-      .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
       .card {
         background: var(--paper);
         border: 1px solid var(--line);
@@ -156,15 +242,27 @@
         padding: 26px 28px;
       }
       .card h3 {
-        font-size: 17px; font-weight: 700;
-        margin-bottom: 12px; letter-spacing: -0.3px;
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: -0.3px;
       }
-      .card p { font-size: 14.5px; color: var(--gray); line-height: 1.7; }
+      .card p {
+        font-size: 14.5px;
+        color: var(--gray);
+        line-height: 1.7;
+      }
       .card .num {
-        display: inline-flex; align-items: center; justify-content: center;
-        width: 28px; height: 28px; border-radius: 50%;
-        background: var(--pink-soft); color: var(--pink-deep);
-        font-size: 13px; font-weight: 800;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--pink-soft);
+        color: var(--pink-deep);
+        font-size: 13px;
+        font-weight: 800;
         margin-bottom: 14px;
       }
 
@@ -180,34 +278,47 @@
       }
       .truth-block .belief {
         display: inline-block;
-        font-size: 11px; font-weight: 800;
-        color: var(--bad); letter-spacing: 1.5px;
-        padding: 4px 10px; border-radius: 6px;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--bad);
+        letter-spacing: 1.5px;
+        padding: 4px 10px;
+        border-radius: 6px;
         background: var(--bad-soft);
         margin-bottom: 12px;
       }
       .truth-block h3 {
-        font-size: 17px; font-weight: 700;
-        margin-bottom: 8px; letter-spacing: -0.3px;
-        color: var(--gray); text-decoration: line-through;
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: -0.3px;
+        color: var(--gray);
+        text-decoration: line-through;
         text-decoration-color: var(--bad);
         text-decoration-thickness: 2px;
       }
       .truth-block .truth-label {
         display: inline-block;
-        font-size: 11px; font-weight: 800;
-        color: var(--good); letter-spacing: 1.5px;
-        padding: 4px 10px; border-radius: 6px;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--good);
+        letter-spacing: 1.5px;
+        padding: 4px 10px;
+        border-radius: 6px;
         background: var(--good-soft);
         margin: 12px 0 8px;
       }
       .truth-block .truth-text {
-        font-size: 16px; font-weight: 700;
-        color: var(--ink); line-height: 1.55;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.55;
         margin-bottom: 12px;
       }
       .truth-block p {
-        font-size: 14.5px; color: var(--gray); line-height: 1.7;
+        font-size: 14.5px;
+        color: var(--gray);
+        line-height: 1.7;
       }
 
       /* Comparison table */
@@ -223,28 +334,47 @@
         grid-template-columns: 200px 1fr 1fr;
         background: var(--bg);
         border-bottom: 2px solid var(--line);
-        font-size: 13px; font-weight: 800;
-        color: var(--gray); letter-spacing: 1px;
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--gray);
+        letter-spacing: 1px;
       }
-      .compare-header > div { padding: 16px 20px; }
+      .compare-header > div {
+        padding: 16px 20px;
+      }
       .compare-row {
         display: grid;
         grid-template-columns: 200px 1fr 1fr;
         border-bottom: 1px solid var(--line);
       }
-      .compare-row:last-child { border-bottom: none; }
-      .compare-row > div { padding: 18px 20px; font-size: 14.5px; line-height: 1.6; }
+      .compare-row:last-child {
+        border-bottom: none;
+      }
+      .compare-row > div {
+        padding: 18px 20px;
+        font-size: 14.5px;
+        line-height: 1.6;
+      }
       .compare-row > div:first-child {
-        font-weight: 700; color: var(--ink);
+        font-weight: 700;
+        color: var(--ink);
         background: var(--bg);
         font-size: 14px;
       }
-      .compare-row > div:nth-child(2) { color: var(--gray); }
-      .compare-row > div:nth-child(3) { color: var(--ink); font-weight: 500; border-left: 1px solid var(--line); }
+      .compare-row > div:nth-child(2) {
+        color: var(--gray);
+      }
+      .compare-row > div:nth-child(3) {
+        color: var(--ink);
+        font-weight: 500;
+        border-left: 1px solid var(--line);
+      }
 
       /* Scenario comparison */
       .scenario-grid {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
         margin-bottom: 24px;
       }
       .scenario {
@@ -259,9 +389,11 @@
       }
       .scenario .s-tag {
         display: inline-block;
-        font-size: 11px; font-weight: 800;
+        font-size: 11px;
+        font-weight: 800;
         letter-spacing: 1.5px;
-        padding: 4px 10px; border-radius: 6px;
+        padding: 4px 10px;
+        border-radius: 6px;
         margin-bottom: 12px;
       }
       .scenario.lose .s-tag {
@@ -273,49 +405,70 @@
         color: white;
       }
       .scenario h3 {
-        font-size: 19px; font-weight: 800;
-        margin-bottom: 8px; letter-spacing: -0.3px;
+        font-size: 19px;
+        font-weight: 800;
+        margin-bottom: 8px;
+        letter-spacing: -0.3px;
       }
       .scenario .s-sub {
-        font-size: 13px; color: var(--gray);
+        font-size: 13px;
+        color: var(--gray);
         margin-bottom: 18px;
       }
       .scenario .s-stats {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
         margin-bottom: 18px;
       }
       .scenario .s-stat {
-        background: rgba(255,255,255,0.7);
+        background: rgba(255, 255, 255, 0.7);
         border: 1px solid var(--line);
         border-radius: 10px;
         padding: 14px 16px;
       }
-      .scenario.lose .s-stat { background: var(--bg); }
+      .scenario.lose .s-stat {
+        background: var(--bg);
+      }
       .scenario .s-stat-label {
-        font-size: 11px; color: var(--gray-soft);
-        font-weight: 700; letter-spacing: 0.5px;
+        font-size: 11px;
+        color: var(--gray-soft);
+        font-weight: 700;
+        letter-spacing: 0.5px;
         margin-bottom: 4px;
       }
       .scenario .s-stat-value {
-        font-size: 18px; font-weight: 800;
+        font-size: 18px;
+        font-weight: 800;
         letter-spacing: -0.3px;
       }
-      .scenario.win .s-stat-value { color: var(--pink-deep); }
-      .scenario.lose .s-stat-value { color: var(--gray); }
+      .scenario.win .s-stat-value {
+        color: var(--pink-deep);
+      }
+      .scenario.lose .s-stat-value {
+        color: var(--gray);
+      }
       .scenario ul {
-        list-style: none; padding: 0;
+        list-style: none;
+        padding: 0;
       }
       .scenario li {
-        font-size: 14px; color: var(--gray);
-        padding: 6px 0; padding-left: 20px;
-        position: relative; line-height: 1.6;
+        font-size: 14px;
+        color: var(--gray);
+        padding: 6px 0;
+        padding-left: 20px;
+        position: relative;
+        line-height: 1.6;
       }
       .scenario li::before {
         content: '•';
-        position: absolute; left: 6px;
+        position: absolute;
+        left: 6px;
         color: var(--pink-deep);
       }
-      .scenario.lose li::before { color: var(--gray-soft); }
+      .scenario.lose li::before {
+        color: var(--gray-soft);
+      }
 
       /* Key point cards */
       .keypoint-list {
@@ -333,32 +486,44 @@
         gap: 24px;
         align-items: start;
       }
-      .keypoint:last-child { border-bottom: none; }
+      .keypoint:last-child {
+        border-bottom: none;
+      }
       .keypoint .kp-num {
-        font-size: 32px; font-weight: 800;
+        font-size: 32px;
+        font-weight: 800;
         color: var(--pink-deep);
-        line-height: 1; letter-spacing: -1px;
+        line-height: 1;
+        letter-spacing: -1px;
       }
       .keypoint h3 {
-        font-size: 18px; font-weight: 700;
-        margin-bottom: 8px; letter-spacing: -0.3px;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: -0.3px;
       }
       .keypoint p {
-        font-size: 14.5px; color: var(--gray); line-height: 1.7;
+        font-size: 14.5px;
+        color: var(--gray);
+        line-height: 1.7;
       }
       .keypoint .kp-emphasis {
         margin-top: 12px;
         padding: 10px 14px;
         background: var(--pink-pale);
         border-left: 3px solid var(--pink-deep);
-        font-size: 13.5px; font-weight: 600;
-        color: var(--ink); line-height: 1.55;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.55;
         border-radius: 0 8px 8px 0;
       }
 
       /* Option cards */
       .option-grid {
-        display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
       }
       .option {
         background: var(--paper);
@@ -372,48 +537,72 @@
         background: linear-gradient(135deg, #fff 0%, var(--pink-pale) 100%);
       }
       .option .badge {
-        position: absolute; top: -12px; right: 20px;
-        background: var(--pink-deep); color: white;
-        font-size: 11px; font-weight: 800;
-        padding: 5px 12px; border-radius: 100px;
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        background: var(--pink-deep);
+        color: white;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 5px 12px;
+        border-radius: 100px;
         letter-spacing: 1px;
       }
       .option .o-name {
-        font-size: 12px; font-weight: 800;
-        color: var(--gray-soft); letter-spacing: 1.5px;
+        font-size: 12px;
+        font-weight: 800;
+        color: var(--gray-soft);
+        letter-spacing: 1.5px;
         margin-bottom: 8px;
       }
       .option h3 {
-        font-size: 18px; font-weight: 700;
-        margin-bottom: 14px; letter-spacing: -0.3px;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        letter-spacing: -0.3px;
       }
       .option .o-cost {
-        font-size: 22px; font-weight: 800;
+        font-size: 22px;
+        font-weight: 800;
         color: var(--pink-deep);
         margin-bottom: 16px;
       }
-      .option.lose .o-cost { color: var(--gray); }
-      .option ul { list-style: none; padding: 0; margin-bottom: 16px; }
+      .option.lose .o-cost {
+        color: var(--gray);
+      }
+      .option ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 16px;
+      }
       .option li {
-        font-size: 13.5px; color: var(--gray);
-        padding: 4px 0; padding-left: 16px;
-        position: relative; line-height: 1.5;
+        font-size: 13.5px;
+        color: var(--gray);
+        padding: 4px 0;
+        padding-left: 16px;
+        position: relative;
+        line-height: 1.5;
       }
       .option li::before {
         content: '·';
-        position: absolute; left: 4px;
+        position: absolute;
+        left: 4px;
         color: var(--pink-deep);
-        font-weight: 800; font-size: 18px;
+        font-weight: 800;
+        font-size: 18px;
         line-height: 1;
       }
       .option .o-verdict {
-        font-size: 13px; font-weight: 700;
+        font-size: 13px;
+        font-weight: 700;
         padding-top: 12px;
         border-top: 1px solid var(--line);
         color: var(--gray);
         line-height: 1.5;
       }
-      .option.recommended .o-verdict { color: var(--pink-deep); }
+      .option.recommended .o-verdict {
+        color: var(--pink-deep);
+      }
 
       /* Pixel asset block */
       .asset-block {
@@ -427,26 +616,44 @@
       }
       .asset-block::before {
         content: '';
-        position: absolute; right: -40px; bottom: -40px;
-        width: 200px; height: 200px;
-        background: radial-gradient(circle, rgba(251,196,207,0.15) 0%, transparent 70%);
+        position: absolute;
+        right: -40px;
+        bottom: -40px;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(
+          circle,
+          rgba(251, 196, 207, 0.15) 0%,
+          transparent 70%
+        );
       }
       .asset-block .ab-label {
-        font-size: 11px; font-weight: 800;
-        color: var(--pink); letter-spacing: 2px;
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--pink);
+        letter-spacing: 2px;
         margin-bottom: 14px;
       }
       .asset-block h3 {
-        font-size: 24px; font-weight: 800;
-        color: white; margin-bottom: 14px;
+        font-size: 24px;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 14px;
         letter-spacing: -0.5px;
       }
       .asset-block p {
-        font-size: 16px; color: rgba(255,255,255,0.8);
-        line-height: 1.65; max-width: 700px;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.65;
+        max-width: 700px;
       }
-      .asset-block p + p { margin-top: 10px; }
-      .asset-block strong { color: var(--pink); font-weight: 700; }
+      .asset-block p + p {
+        margin-top: 10px;
+      }
+      .asset-block strong {
+        color: var(--pink);
+        font-weight: 700;
+      }
 
       /* Conclusion */
       .conclusion {
@@ -456,45 +663,85 @@
         border-radius: 24px;
         margin-top: 48px;
       }
-      .conclusion h2 { color: #fff; margin-bottom: 18px; }
-      .conclusion p {
-        font-size: 16.5px; color: rgba(255,255,255,0.8);
-        max-width: 800px; line-height: 1.75;
+      .conclusion h2 {
+        color: #fff;
+        margin-bottom: 18px;
       }
-      .conclusion p + p { margin-top: 14px; }
-      .conclusion strong { color: var(--pink); font-weight: 700; }
+      .conclusion p {
+        font-size: 16.5px;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 800px;
+        line-height: 1.75;
+      }
+      .conclusion p + p {
+        margin-top: 14px;
+      }
+      .conclusion strong {
+        color: var(--pink);
+        font-weight: 700;
+      }
 
       .divider-soft {
-        height: 1px; background: var(--line);
+        height: 1px;
+        background: var(--line);
         margin: 64px 0;
       }
 
       @media (max-width: 760px) {
-        .page { padding: 32px 20px 80px; }
-        .cover { padding: 52px 28px; border-radius: 20px; }
-        h1.title { font-size: 32px; }
-        .cover .subtitle { font-size: 15px; }
-        h2 { font-size: 24px; }
-        .grid-2, .grid-3, .scenario-grid, .option-grid { grid-template-columns: 1fr; }
-        .compare-header, .compare-row { grid-template-columns: 1fr; }
-        .compare-row > div:nth-child(3) { border-left: none; border-top: 1px solid var(--line); }
-        .keypoint { grid-template-columns: 1fr; gap: 12px; }
+        .page {
+          padding: 32px 20px 80px;
+        }
+        .cover {
+          padding: 52px 28px;
+          border-radius: 20px;
+        }
+        h1.title {
+          font-size: 32px;
+        }
+        .cover .subtitle {
+          font-size: 15px;
+        }
+        h2 {
+          font-size: 24px;
+        }
+        .grid-2,
+        .grid-3,
+        .scenario-grid,
+        .option-grid {
+          grid-template-columns: 1fr;
+        }
+        .compare-header,
+        .compare-row {
+          grid-template-columns: 1fr;
+        }
+        .compare-row > div:nth-child(3) {
+          border-left: none;
+          border-top: 1px solid var(--line);
+        }
+        .keypoint {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
       }
     </style>
   </head>
   <body>
     <div class="page">
-
       <!-- COVER -->
       <header class="cover">
-        <span class="tag">TAM BEAUTY · JAPAN STRATEGY <span class="version-tag">V2</span></span>
+        <span class="tag"
+          >TAM BEAUTY · JAPAN STRATEGY <span class="version-tag">V2</span></span
+        >
         <h1 class="title">
           시딩은 옳습니다.<br />
           <em>다만 시딩만으로는</em><br />
           탐뷰티가 보고 있는 곳에 닿지 않습니다.
         </h1>
         <p class="subtitle">
-          K뷰티 브랜드들이 시딩으로 성장한 모습은 보이지만, 보이지 않는 곳에서 그들이 무엇을 같이 했는지가 더 중요합니다. 이 자료는 "다른 브랜드들이 시딩만으로 성장했다"는 인식의 사각지대를 다루고, 메타 광고를 병행해야 하는 키포인트를 정리한 보고서입니다.
+          K뷰티 브랜드들이 시딩으로 성장한 모습은 보이지만, 보이지 않는 곳에서
+          그들이 무엇을 같이 했는지가 더 중요합니다. 이 자료는 "다른 브랜드들이
+          시딩만으로 성장했다"는 인식의 사각지대를 다루고, 메타 광고를 병행해야
+          하는 키포인트를 정리한 보고서입니다.
         </p>
         <div class="meta">
           <div>대상<strong>대표님 검토용</strong></div>
@@ -508,15 +755,27 @@
         <div class="section-head">
           <span class="section-num">01 · 출발점</span>
           <h2>대표님께서 보신 시딩의 힘은 분명히 존재합니다</h2>
-          <p class="lede">시딩이 잘못된 게 아닙니다. 일본 시장에서 K뷰티 브랜드들이 인스타 시딩으로 인지를 만들어 성장한 사례는 실제로 있고, 그 방식이 일본 색조 시장에서 작동한다는 것도 사실입니다. 다만, "보이는 시딩" 뒤에 무엇이 함께 있었는지를 같이 봐야 합니다.</p>
+          <p class="lede">
+            시딩이 잘못된 게 아닙니다. 일본 시장에서 K뷰티 브랜드들이 인스타
+            시딩으로 인지를 만들어 성장한 사례는 실제로 있고, 그 방식이 일본
+            색조 시장에서 작동한다는 것도 사실입니다. 다만, "보이는 시딩" 뒤에
+            무엇이 함께 있었는지를 같이 봐야 합니다.
+          </p>
         </div>
 
         <div class="empathy">
           <div class="quote-mark">"</div>
-          <div class="quote">다른 K뷰티 브랜드들도 인스타 시딩만으로 일본에서 성장하지 않았나요?</div>
+          <div class="quote">
+            다른 K뷰티 브랜드들도 인스타 시딩만으로 일본에서 성장하지 않았나요?
+          </div>
           <div class="response-label">실무자 입장에서</div>
           <div class="response">
-            이 인식이 만들어진 이유는 분명히 있습니다. 우리가 일본 인스타에서 K뷰티 브랜드를 처음 인지하는 경로가 보통 인플루언서 콘텐츠라서, "시딩 = 성장의 원인"으로 자연스럽게 연결됩니다. 그런데 우리가 인스타에서 보는 인플루언서 콘텐츠 옆에는 항상 같은 브랜드의 페이드 광고가 함께 노출되고 있었습니다. 이 부분이 보이지 않을 뿐, 운영되지 않은 것이 아닙니다.
+            이 인식이 만들어진 이유는 분명히 있습니다. 우리가 일본 인스타에서
+            K뷰티 브랜드를 처음 인지하는 경로가 보통 인플루언서 콘텐츠라서,
+            "시딩 = 성장의 원인"으로 자연스럽게 연결됩니다. 그런데 우리가
+            인스타에서 보는 인플루언서 콘텐츠 옆에는 항상 같은 브랜드의 페이드
+            광고가 함께 노출되고 있었습니다. 이 부분이 보이지 않을 뿐, 운영되지
+            않은 것이 아닙니다.
           </div>
         </div>
       </section>
@@ -526,39 +785,73 @@
         <div class="section-head">
           <span class="section-num">02 · 사각지대</span>
           <h2>"시딩만으로 성공한 브랜드"의 4가지 진실</h2>
-          <p class="lede">시장에서 "시딩만으로 성장했다"고 보이는 브랜드들을 자세히 보면, 시딩과 함께 작동한 다른 요소들이 있었습니다. 이 요소들을 같이 못 보면, 똑같은 결과를 시딩만으로 재현하려는 시도가 됩니다.</p>
+          <p class="lede">
+            시장에서 "시딩만으로 성장했다"고 보이는 브랜드들을 자세히 보면,
+            시딩과 함께 작동한 다른 요소들이 있었습니다. 이 요소들을 같이 못
+            보면, 똑같은 결과를 시딩만으로 재현하려는 시도가 됩니다.
+          </p>
         </div>
 
         <div class="truth-block">
           <span class="belief">통념</span>
           <h3>인스타 시딩만으로 자생적으로 큐텐 매출이 늘어났다</h3>
           <span class="truth-label">실제</span>
-          <div class="truth-text">시딩과 동시에 메타·틱톡 페이드 광고를 같이 돌렸습니다</div>
-          <p>일본 인스타에서 K뷰티 색조 브랜드의 인플루언서 콘텐츠가 자주 보이는 시기, 같은 브랜드의 광고 게재 흔적이 메타 광고 라이브러리에 그대로 남아 있습니다. 시딩이 노출의 정성적 측면을 담당하고, 페이드 광고가 정량적 도달과 리타게팅을 담당하는 이중 구조였습니다.</p>
+          <div class="truth-text">
+            시딩과 동시에 메타·틱톡 페이드 광고를 같이 돌렸습니다
+          </div>
+          <p>
+            일본 인스타에서 K뷰티 색조 브랜드의 인플루언서 콘텐츠가 자주 보이는
+            시기, 같은 브랜드의 광고 게재 흔적이 메타 광고 라이브러리에 그대로
+            남아 있습니다. 시딩이 노출의 정성적 측면을 담당하고, 페이드 광고가
+            정량적 도달과 리타게팅을 담당하는 이중 구조였습니다.
+          </p>
         </div>
 
         <div class="truth-block">
           <span class="belief">통념</span>
           <h3>시딩 인플루언서가 큐텐 구매로 자연 전환을 만들었다</h3>
           <span class="truth-label">실제</span>
-          <div class="truth-text">시딩으로 만든 인지를 픽셀로 잡아서 광고로 재타겟했습니다</div>
-          <p>인플루언서 콘텐츠를 본 유저를 그냥 두면 큐텐 검색까지 가는 비율이 5~10%에 그칩니다. 성공 브랜드들은 시딩 콘텐츠에 노출된 유저를 메타 픽셀로 잡아서, "이 콘텐츠를 본 사람"에게 별도 광고를 다시 보여주는 리타게팅을 운영했습니다. 이게 전환율을 30~50%까지 끌어올린 메커니즘입니다.</p>
+          <div class="truth-text">
+            시딩으로 만든 인지를 픽셀로 잡아서 광고로 재타겟했습니다
+          </div>
+          <p>
+            인플루언서 콘텐츠를 본 유저를 그냥 두면 큐텐 검색까지 가는 비율이
+            5~10%에 그칩니다. 성공 브랜드들은 시딩 콘텐츠에 노출된 유저를 메타
+            픽셀로 잡아서, "이 콘텐츠를 본 사람"에게 별도 광고를 다시 보여주는
+            리타게팅을 운영했습니다. 이게 전환율을 30~50%까지 끌어올린
+            메커니즘입니다.
+          </p>
         </div>
 
         <div class="truth-block">
           <span class="belief">통념</span>
           <h3>적은 비용으로 시딩만 잘하면 큰 매출이 만들어진다</h3>
           <span class="truth-label">실제</span>
-          <div class="truth-text">시딩 단독 성공 사례는 메가 인플루언서 한 명에 시딩 1건으로 광고 ROAS 이상의 도달을 만든 케이스에 가깝습니다</div>
-          <p>10만~100만 팔로워급 인플루언서가 자발적으로 콘텐츠를 올려준 케이스가 "시딩 성공"으로 보이는 것이고, 이건 광고비를 안 쓴 게 아니라 인플루언서 섭외/협찬 비용으로 광고비 이상을 쓴 결과입니다. 마이크로 인플루언서 시딩 몇백 건과는 전혀 다른 구조입니다.</p>
+          <div class="truth-text">
+            시딩 단독 성공 사례는 메가 인플루언서 한 명에 시딩 1건으로 광고 ROAS
+            이상의 도달을 만든 케이스에 가깝습니다
+          </div>
+          <p>
+            10만~100만 팔로워급 인플루언서가 자발적으로 콘텐츠를 올려준 케이스가
+            "시딩 성공"으로 보이는 것이고, 이건 광고비를 안 쓴 게 아니라
+            인플루언서 섭외/협찬 비용으로 광고비 이상을 쓴 결과입니다. 마이크로
+            인플루언서 시딩 몇백 건과는 전혀 다른 구조입니다.
+          </p>
         </div>
 
         <div class="truth-block">
           <span class="belief">통념</span>
           <h3>그 브랜드들도 처음엔 시딩 단독으로 시작했다</h3>
           <span class="truth-label">실제</span>
-          <div class="truth-text">대부분 시딩 시작 시점부터 메타 광고를 같이 운영했습니다</div>
-          <p>일본 시장에 진출한 K뷰티 색조 브랜드 중 큐텐 톱 카테고리에 안착한 브랜드들은 거의 예외 없이 진입 첫 분기부터 메타·라인 광고를 같이 돌렸습니다. 시딩이 광고보다 먼저인 게 아니라, 같이 시작하는 것이 표준 운영 방식입니다.</p>
+          <div class="truth-text">
+            대부분 시딩 시작 시점부터 메타 광고를 같이 운영했습니다
+          </div>
+          <p>
+            일본 시장에 진출한 K뷰티 색조 브랜드 중 큐텐 톱 카테고리에 안착한
+            브랜드들은 거의 예외 없이 진입 첫 분기부터 메타·라인 광고를 같이
+            돌렸습니다. 시딩이 광고보다 먼저인 게 아니라, 같이 시작하는 것이
+            표준 운영 방식입니다.
+          </p>
         </div>
       </section>
 
@@ -567,7 +860,11 @@
         <div class="section-head">
           <span class="section-num">03 · 조건 차이</span>
           <h2>참고하신 브랜드들과 탐뷰티의 진입 조건은 다릅니다</h2>
-          <p class="lede">같은 방식을 쓰려면 조건이 같아야 합니다. 시딩 단독으로 큐텐을 키운 것으로 보이는 브랜드들과 탐뷰티의 현재 조건을 정직하게 비교하면, 똑같은 전략을 쓸 수 없는 차이가 있습니다.</p>
+          <p class="lede">
+            같은 방식을 쓰려면 조건이 같아야 합니다. 시딩 단독으로 큐텐을 키운
+            것으로 보이는 브랜드들과 탐뷰티의 현재 조건을 정직하게 비교하면,
+            똑같은 전략을 쓸 수 없는 차이가 있습니다.
+          </p>
         </div>
 
         <div class="compare-table">
@@ -603,8 +900,10 @@
           </div>
         </div>
 
-        <p class="lede" style="margin-top: 12px;">
-          핵심은 마지막 두 줄입니다. 시장 진입 시점이 늦어진 만큼 경쟁이 심해졌고, 운영 기간이 짧은 만큼 자연 트래픽 자산이 부족합니다. 이 두 가지 핸디캡을 메우는 가장 빠른 방법이 메타 광고입니다.
+        <p class="lede" style="margin-top: 12px">
+          핵심은 마지막 두 줄입니다. 시장 진입 시점이 늦어진 만큼 경쟁이
+          심해졌고, 운영 기간이 짧은 만큼 자연 트래픽 자산이 부족합니다. 이 두
+          가지 핸디캡을 메우는 가장 빠른 방법이 메타 광고입니다.
         </p>
       </section>
 
@@ -613,7 +912,11 @@
         <div class="section-head">
           <span class="section-num">04 · 시나리오</span>
           <h2>두 가지 시나리오의 6개월 후 모습</h2>
-          <p class="lede">동일한 시딩 예산을 기준으로, 메타 광고를 병행했을 때와 안 했을 때의 차이를 예상해 보면 다음과 같습니다. 절대 숫자보다 두 시나리오 사이의 격차를 보세요.</p>
+          <p class="lede">
+            동일한 시딩 예산을 기준으로, 메타 광고를 병행했을 때와 안 했을 때의
+            차이를 예상해 보면 다음과 같습니다. 절대 숫자보다 두 시나리오 사이의
+            격차를 보세요.
+          </p>
         </div>
 
         <div class="scenario-grid">
@@ -650,7 +953,9 @@
           <div class="scenario win">
             <span class="s-tag">시나리오 B (권장)</span>
             <h3>시딩 + 메타 병행</h3>
-            <div class="s-sub">월 시딩 200만 원 + 메타 100만 원 · 6개월 운영</div>
+            <div class="s-sub">
+              월 시딩 200만 원 + 메타 100만 원 · 6개월 운영
+            </div>
             <div class="s-stats">
               <div class="s-stat">
                 <div class="s-stat-label">6개월 후 큐텐 매출</div>
@@ -679,7 +984,9 @@
         </div>
 
         <p class="lede">
-          시딩 예산을 늘리는 것이 아니라, 기존 예산의 1/3을 메타로 이동시키는 것만으로 결과 차이가 발생합니다. 같은 비용으로 자산이 시간을 두고 누적되는 구조가 만들어집니다.
+          시딩 예산을 늘리는 것이 아니라, 기존 예산의 1/3을 메타로 이동시키는
+          것만으로 결과 차이가 발생합니다. 같은 비용으로 자산이 시간을 두고
+          누적되는 구조가 만들어집니다.
         </p>
       </section>
 
@@ -688,7 +995,11 @@
         <div class="section-head">
           <span class="section-num">05 · 키포인트</span>
           <h2>메타 광고를 병행해야 하는 6가지 결정적 이유</h2>
-          <p class="lede">아래 6가지는 시딩이 잘 작동하더라도, 메타 없이는 채워지지 않는 영역입니다. 즉, 시딩과 메타는 같은 일을 하는 게 아니라 서로 다른 일을 합니다.</p>
+          <p class="lede">
+            아래 6가지는 시딩이 잘 작동하더라도, 메타 없이는 채워지지 않는
+            영역입니다. 즉, 시딩과 메타는 같은 일을 하는 게 아니라 서로 다른
+            일을 합니다.
+          </p>
         </div>
 
         <div class="keypoint-list">
@@ -696,8 +1007,16 @@
             <div class="kp-num">01</div>
             <div>
               <h3>시딩이 만든 인지를 매출로 전환시키는 다리</h3>
-              <p>시딩은 "이 브랜드를 봤다"까지 만듭니다. "이 브랜드를 큐텐에서 검색했다"로 이어지는 단계는 메타 리타게팅이 담당합니다. 시딩 콘텐츠를 본 유저에게 며칠 뒤 메타 광고로 한 번 더 노출하면 큐텐 검색 전환률이 5%대에서 30~50%대로 점프합니다.</p>
-              <div class="kp-emphasis">시딩이 씨앗이라면, 메타 리타게팅은 그 씨앗에 물을 주는 단계입니다. 둘 중 하나만 하면 다른 하나의 효율이 안 나옵니다.</div>
+              <p>
+                시딩은 "이 브랜드를 봤다"까지 만듭니다. "이 브랜드를 큐텐에서
+                검색했다"로 이어지는 단계는 메타 리타게팅이 담당합니다. 시딩
+                콘텐츠를 본 유저에게 며칠 뒤 메타 광고로 한 번 더 노출하면 큐텐
+                검색 전환률이 5%대에서 30~50%대로 점프합니다.
+              </p>
+              <div class="kp-emphasis">
+                시딩이 씨앗이라면, 메타 리타게팅은 그 씨앗에 물을 주는
+                단계입니다. 둘 중 하나만 하면 다른 하나의 효율이 안 나옵니다.
+              </div>
             </div>
           </div>
 
@@ -705,9 +1024,16 @@
             <div class="kp-num">02</div>
             <div>
               <h3>픽셀 데이터는 시간이 회복되지 않는 자산</h3>
-              <p>메타 픽셀은 한 번 안 쌓아두면, 나중에 광고하려고 마음먹어도 처음부터 다시 시작해야 합니다. 픽셀 데이터·유사 타겟 풀은 시간이 지날수록 ROAS를 올리는 자산인데, 늦게 시작하면 그만큼 늦게 효과가 납니다.</p>
-              <div class="kp-emphasis">6개월 시딩 단독 → 6개월 후 메타 시작 = 픽셀 학습 0에서 시작
-                <br>6개월 시딩+메타 병행 → 6개월 후 = 픽셀 학습 6개월 누적</div>
+              <p>
+                메타 픽셀은 한 번 안 쌓아두면, 나중에 광고하려고 마음먹어도
+                처음부터 다시 시작해야 합니다. 픽셀 데이터·유사 타겟 풀은 시간이
+                지날수록 ROAS를 올리는 자산인데, 늦게 시작하면 그만큼 늦게
+                효과가 납니다.
+              </p>
+              <div class="kp-emphasis">
+                6개월 시딩 단독 → 6개월 후 메타 시작 = 픽셀 학습 0에서 시작
+                <br />6개월 시딩+메타 병행 → 6개월 후 = 픽셀 학습 6개월 누적
+              </div>
             </div>
           </div>
 
@@ -715,8 +1041,17 @@
             <div class="kp-num">03</div>
             <div>
               <h3>측정 가능한 ROAS로 의사결정의 객관성 확보</h3>
-              <p>시딩 단독은 효과를 "느낌"으로만 판단해야 합니다. 메타는 광고비 100만 원 쓸 때마다 정확히 어떤 매출이 발생했는지 숫자로 보입니다. 대표님께서 "메타가 효과 있나 없나"를 객관적으로 판단하실 수 있게 만드는 유일한 방법이 메타를 일단 한 번 돌려보는 것입니다.</p>
-              <div class="kp-emphasis">시딩의 효과 측정 어려움이 "시딩 무의미한 것 같다"는 현재 인식의 원인입니다. 메타는 이 모호함을 제거합니다.</div>
+              <p>
+                시딩 단독은 효과를 "느낌"으로만 판단해야 합니다. 메타는 광고비
+                100만 원 쓸 때마다 정확히 어떤 매출이 발생했는지 숫자로
+                보입니다. 대표님께서 "메타가 효과 있나 없나"를 객관적으로
+                판단하실 수 있게 만드는 유일한 방법이 메타를 일단 한 번 돌려보는
+                것입니다.
+              </p>
+              <div class="kp-emphasis">
+                시딩의 효과 측정 어려움이 "시딩 무의미한 것 같다"는 현재 인식의
+                원인입니다. 메타는 이 모호함을 제거합니다.
+              </div>
             </div>
           </div>
 
@@ -724,8 +1059,16 @@
             <div class="kp-num">04</div>
             <div>
               <h3>메가데뷔 4위 모멘텀을 휘발시키지 않는 유일한 방법</h3>
-              <p>메가데뷔로 만든 인지는 후속 트래픽이 부어져야 자연 검색량으로 전환됩니다. 메타가 그 후속 트래픽 역할입니다. 시딩만으로는 이 검색량이 만들어지지 않아서, 메가데뷔 효과가 행사 직후 1~2개월 이내에 사라집니다.</p>
-              <div class="kp-emphasis">탐뷰티가 어렵게 만든 메가데뷔 4위라는 자산을 가장 빨리 잃어버리는 방법이 시딩 단독 유지입니다.</div>
+              <p>
+                메가데뷔로 만든 인지는 후속 트래픽이 부어져야 자연 검색량으로
+                전환됩니다. 메타가 그 후속 트래픽 역할입니다. 시딩만으로는 이
+                검색량이 만들어지지 않아서, 메가데뷔 효과가 행사 직후 1~2개월
+                이내에 사라집니다.
+              </p>
+              <div class="kp-emphasis">
+                탐뷰티가 어렵게 만든 메가데뷔 4위라는 자산을 가장 빨리
+                잃어버리는 방법이 시딩 단독 유지입니다.
+              </div>
             </div>
           </div>
 
@@ -733,8 +1076,16 @@
             <div class="kp-num">05</div>
             <div>
               <h3>큐텐 메가와리 사이클과 메타가 만드는 시너지</h3>
-              <p>큐텐 매출의 60~70%가 메가와리 5일에 발생하는데, 메가와리 직전 1~2주에 메타 광고를 집중하면 행사 시작 시점에 검색량이 폭발합니다. 시딩만으로는 메가와리 트리거를 제대로 활용할 수 없습니다.</p>
-              <div class="kp-emphasis">한 번의 메가와리에서 메타 병행이 만드는 매출 차이가, 메타 한 달 광고비를 회수합니다.</div>
+              <p>
+                큐텐 매출의 60~70%가 메가와리 5일에 발생하는데, 메가와리 직전
+                1~2주에 메타 광고를 집중하면 행사 시작 시점에 검색량이
+                폭발합니다. 시딩만으로는 메가와리 트리거를 제대로 활용할 수
+                없습니다.
+              </p>
+              <div class="kp-emphasis">
+                한 번의 메가와리에서 메타 병행이 만드는 매출 차이가, 메타 한 달
+                광고비를 회수합니다.
+              </div>
             </div>
           </div>
 
@@ -742,8 +1093,15 @@
             <div class="kp-num">06</div>
             <div>
               <h3>시딩 자산이 메타에서 한 번 더 일함</h3>
-              <p>시딩 인플루언서들이 만든 콘텐츠는 메타 광고 소재로 재활용 가능합니다. 같은 콘텐츠가 시딩에서 한 번, 메타 광고에서 한 번, 두 번 일하는 구조가 됩니다. 메타 안 돌리면 시딩 콘텐츠가 인플루언서 피드에서 한 번 노출되고 끝납니다.</p>
-              <div class="kp-emphasis">시딩 콘텐츠 100건 × 메타 노출 = 사실상 시딩 효과 3~5배 증폭</div>
+              <p>
+                시딩 인플루언서들이 만든 콘텐츠는 메타 광고 소재로 재활용
+                가능합니다. 같은 콘텐츠가 시딩에서 한 번, 메타 광고에서 한 번,
+                두 번 일하는 구조가 됩니다. 메타 안 돌리면 시딩 콘텐츠가
+                인플루언서 피드에서 한 번 노출되고 끝납니다.
+              </p>
+              <div class="kp-emphasis">
+                시딩 콘텐츠 100건 × 메타 노출 = 사실상 시딩 효과 3~5배 증폭
+              </div>
             </div>
           </div>
         </div>
@@ -759,8 +1117,17 @@
         <div class="asset-block">
           <div class="ab-label">PIXEL ASSET</div>
           <h3>메타 광고를 안 한 6개월은 단순히 매출 손실이 아닙니다.</h3>
-          <p>탐뷰티가 일본 시장에서 향후 어떤 광고를 돌리든, <strong>모든 광고 효율의 출발점</strong>이 픽셀 데이터입니다. 이 데이터는 광고를 돌려야만 쌓이고, 광고를 안 돌린 기간은 영구히 채워지지 않습니다.</p>
-          <p>지금 안 한다는 결정은 "광고 시작하면 첫 3~6개월은 ROAS가 낮을 수밖에 없는 구조"를 <strong>미래로 미루는 것</strong>이지, 피하는 것이 아닙니다.</p>
+          <p>
+            탐뷰티가 일본 시장에서 향후 어떤 광고를 돌리든,
+            <strong>모든 광고 효율의 출발점</strong>이 픽셀 데이터입니다. 이
+            데이터는 광고를 돌려야만 쌓이고, 광고를 안 돌린 기간은 영구히
+            채워지지 않습니다.
+          </p>
+          <p>
+            지금 안 한다는 결정은 "광고 시작하면 첫 3~6개월은 ROAS가 낮을 수밖에
+            없는 구조"를 <strong>미래로 미루는 것</strong>이지, 피하는 것이
+            아닙니다.
+          </p>
         </div>
       </section>
 
@@ -769,14 +1136,27 @@
         <div class="section-head">
           <span class="section-num">07 · 의사결정 옵션</span>
           <h2>대표님께서 선택하실 수 있는 3가지 안</h2>
-          <p class="lede">시딩 단독 의향을 100% 존중하는 안부터, 가장 효율적인 병행 안까지 정리했습니다. 세 안 모두 시딩은 그대로 유지됩니다 — 차이는 그 위에 무엇을 얹을지입니다.</p>
+          <p class="lede">
+            시딩 단독 의향을 100% 존중하는 안부터, 가장 효율적인 병행 안까지
+            정리했습니다. 세 안 모두 시딩은 그대로 유지됩니다 — 차이는 그 위에
+            무엇을 얹을지입니다.
+          </p>
         </div>
 
         <div class="option-grid">
           <div class="option lose">
             <div class="o-name">옵션 A</div>
             <h3>시딩 단독 유지</h3>
-            <div class="o-cost">월 300만 원<br><small style="font-size:13px; color:var(--gray-soft); font-weight:500;">시딩 100%</small></div>
+            <div class="o-cost">
+              월 300만 원<br /><small
+                style="
+                  font-size: 13px;
+                  color: var(--gray-soft);
+                  font-weight: 500;
+                "
+                >시딩 100%</small
+              >
+            </div>
             <ul>
               <li>대표님 의향 100% 반영</li>
               <li>광고비 추가 부담 없음</li>
@@ -784,13 +1164,25 @@
               <li>측정·자산 누적 어려움</li>
               <li>매출 성장 정체 가능성 큼</li>
             </ul>
-            <div class="o-verdict">대표님 의향을 가장 정확히 반영하지만, 6개월 후 메가데뷔 효과는 휘발됩니다.</div>
+            <div class="o-verdict">
+              대표님 의향을 가장 정확히 반영하지만, 6개월 후 메가데뷔 효과는
+              휘발됩니다.
+            </div>
           </div>
 
           <div class="option">
             <div class="o-name">옵션 B</div>
             <h3>시딩 + 픽셀 LP만 운영</h3>
-            <div class="o-cost">월 300만 원<br><small style="font-size:13px; color:var(--gray-soft); font-weight:500;">시딩 100% · 광고비 0</small></div>
+            <div class="o-cost">
+              월 300만 원<br /><small
+                style="
+                  font-size: 13px;
+                  color: var(--gray-soft);
+                  font-weight: 500;
+                "
+                >시딩 100% · 광고비 0</small
+              >
+            </div>
             <ul>
               <li>메타 광고는 안 돌림 (대표님 의향 반영)</li>
               <li>브릿지 LP 제작 1회성 비용만 발생</li>
@@ -798,14 +1190,26 @@
               <li>나중에 광고 시작 시 즉시 운영 가능</li>
               <li>매출 성장은 시딩 단독과 유사</li>
             </ul>
-            <div class="o-verdict">광고비 0원으로 미래 자산만 쌓아두는 안. 대표님 의사결정 권한 침범 안 함.</div>
+            <div class="o-verdict">
+              광고비 0원으로 미래 자산만 쌓아두는 안. 대표님 의사결정 권한 침범
+              안 함.
+            </div>
           </div>
 
           <div class="option recommended">
             <div class="badge">권장</div>
             <div class="o-name">옵션 C</div>
             <h3>시딩 + 메타 소액 테스트</h3>
-            <div class="o-cost">월 300만 원<br><small style="font-size:13px; color:var(--gray-soft); font-weight:500;">시딩 200 + 메타 100</small></div>
+            <div class="o-cost">
+              월 300만 원<br /><small
+                style="
+                  font-size: 13px;
+                  color: var(--gray-soft);
+                  font-weight: 500;
+                "
+                >시딩 200 + 메타 100</small
+              >
+            </div>
             <ul>
               <li>총 예산 동일, 시딩 비중만 일부 조정</li>
               <li>한 달 후 메타 ROAS 객관 데이터 확보</li>
@@ -813,7 +1217,10 @@
               <li>메가데뷔 모멘텀 유지</li>
               <li>대표님께서 데이터 보고 확장·축소 결정</li>
             </ul>
-            <div class="o-verdict">대표님 의사결정 권한을 침범하지 않으면서, 1개월 후 데이터 기반 재결정 구조.</div>
+            <div class="o-verdict">
+              대표님 의사결정 권한을 침범하지 않으면서, 1개월 후 데이터 기반
+              재결정 구조.
+            </div>
           </div>
         </div>
       </section>
@@ -821,12 +1228,29 @@
       <!-- 결론 -->
       <section class="conclusion">
         <h2>최종 정리</h2>
-        <p>대표님께서 보신 시딩의 힘은 분명히 존재합니다. 다만 그 브랜드들이 <strong>시딩만으로</strong> 성장한 것은 아닙니다. 시딩과 메타 광고가 함께 작동한 결과이고, 그 두 가지의 시너지가 큐텐 매출을 끌어올린 메커니즘입니다.</p>
-        <p>탐뷰티는 이미 메가데뷔 4위와 시딩 몇백 건이라는 좋은 베이스를 만들어 놓으셨습니다. 이 자산이 일을 시작하게 만들려면, 시딩 옆에 메타를 한 번 같이 올려보는 결정만 남아 있습니다.</p>
-        <p>제안 드리는 것은 <strong>월 100만 원 규모의 메타 소액 테스트</strong>로 시작하는 것입니다. 시딩은 그대로 유지하고, 한 달 후 데이터를 보고 대표님께서 확장·유지·축소를 결정하시는 구조입니다. 의사결정 권한은 100% 대표님께 있고, 저희는 객관적 숫자를 만들어 드리는 역할만 합니다.</p>
-        <p>한 달의 테스트 비용으로, 다음 6개월의 큐텐 전략을 <strong>"감"이 아닌 "데이터"로</strong> 결정하실 수 있게 됩니다.</p>
+        <p>
+          대표님께서 보신 시딩의 힘은 분명히 존재합니다. 다만 그 브랜드들이
+          <strong>시딩만으로</strong> 성장한 것은 아닙니다. 시딩과 메타 광고가
+          함께 작동한 결과이고, 그 두 가지의 시너지가 큐텐 매출을 끌어올린
+          메커니즘입니다.
+        </p>
+        <p>
+          탐뷰티는 이미 메가데뷔 4위와 시딩 몇백 건이라는 좋은 베이스를 만들어
+          놓으셨습니다. 이 자산이 일을 시작하게 만들려면, 시딩 옆에 메타를 한 번
+          같이 올려보는 결정만 남아 있습니다.
+        </p>
+        <p>
+          제안 드리는 것은
+          <strong>월 100만 원 규모의 메타 소액 테스트</strong>로 시작하는
+          것입니다. 시딩은 그대로 유지하고, 한 달 후 데이터를 보고 대표님께서
+          확장·유지·축소를 결정하시는 구조입니다. 의사결정 권한은 100% 대표님께
+          있고, 저희는 객관적 숫자를 만들어 드리는 역할만 합니다.
+        </p>
+        <p>
+          한 달의 테스트 비용으로, 다음 6개월의 큐텐 전략을
+          <strong>"감"이 아닌 "데이터"로</strong> 결정하실 수 있게 됩니다.
+        </p>
       </section>
-
     </div>
   </body>
 </html>
