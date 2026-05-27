@@ -1,0 +1,2174 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐뷰티 × 롯데 팝업 — 3평 부스 평면도 v2 (카운터형)</title>
+    <style>
+      :root {
+        --pale: #ffebf1;
+        --soft: #fcc5d2;
+        --pink: #f5a0b5;
+        --deep: #e47b98;
+        --rose: #c44b6e;
+        --rose-deep: #9d3653;
+        --pearl: #f5e0e5;
+        --cream: #fdf5f7;
+        --ink: #1a1a1a;
+        --ink-soft: #3a3a3a;
+        --gray: #6b6b6b;
+        --gray-soft: #999;
+        --line: #e8d8dd;
+        --bg: #fdf5f7;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 56px 48px 120px;
+      }
+
+      .cover {
+        background: linear-gradient(135deg, #ffebf1 0%, #fcc5d2 100%);
+        padding: 56px 48px;
+        border-radius: 28px;
+        margin-bottom: 56px;
+        border: 1px solid var(--line);
+      }
+      .cover .tag {
+        display: inline-block;
+        background: #fff;
+        padding: 5px 14px;
+        border-radius: 100px;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--rose-deep);
+        margin-bottom: 18px;
+        border: 1px solid var(--soft);
+      }
+      .cover h1 {
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.15;
+        margin-bottom: 12px;
+      }
+      .cover .sub {
+        font-size: 15px;
+        color: var(--gray);
+        line-height: 1.65;
+      }
+      .cover .specs {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+      .cover .specs b {
+        color: var(--rose);
+      }
+
+      section {
+        margin-bottom: 56px;
+      }
+      .num {
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        color: var(--rose);
+        margin-bottom: 8px;
+        display: block;
+      }
+      h2 {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+      .h {
+        font-size: 14.5px;
+        color: var(--gray);
+        margin-bottom: 24px;
+      }
+
+      .drawing {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 32px;
+        margin-bottom: 24px;
+      }
+      .drawing svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .caption {
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px dashed var(--line);
+        font-size: 12.5px;
+        color: var(--gray);
+        text-align: center;
+      }
+
+      .legend {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .leg {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12.5px;
+        color: var(--ink-soft);
+      }
+      .leg .swatch {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        flex-shrink: 0;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .specs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin-top: 24px;
+      }
+      .spec-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 20px 22px;
+      }
+      .spec-card .lbl {
+        font-size: 10.5px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        color: var(--rose);
+        margin-bottom: 6px;
+      }
+      .spec-card h3 {
+        font-size: 16px;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+      .spec-card ul {
+        list-style: none;
+        font-size: 13px;
+        color: var(--ink-soft);
+        line-height: 1.7;
+      }
+      .spec-card ul li {
+        padding-left: 16px;
+        position: relative;
+      }
+      .spec-card ul li::before {
+        content: '·';
+        position: absolute;
+        left: 4px;
+        color: var(--deep);
+      }
+      .spec-card .dim {
+        font-size: 11.5px;
+        color: var(--gray);
+        font-family: 'SF Mono', Consolas, monospace;
+        margin-top: 8px;
+      }
+
+      .note {
+        background: #fff8e1;
+        border-left: 4px solid #f5b800;
+        padding: 16px 20px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: var(--ink-soft);
+        margin-top: 18px;
+      }
+      .note b {
+        color: #a87600;
+      }
+
+      .compare {
+        background: var(--pale);
+        border: 1px solid var(--soft);
+        border-radius: 16px;
+        padding: 24px 26px;
+        margin-top: 18px;
+      }
+      .compare h3 {
+        font-size: 16px;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+      .compare table {
+        width: 100%;
+        font-size: 13px;
+      }
+      .compare th,
+      .compare td {
+        text-align: left;
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--soft);
+      }
+      .compare th {
+        font-weight: 700;
+        color: var(--rose-deep);
+        font-size: 11.5px;
+        letter-spacing: 0.05em;
+      }
+      .compare td.x {
+        color: var(--gray-soft);
+      }
+      .compare td.o {
+        color: var(--rose);
+        font-weight: 600;
+      }
+
+      .foot {
+        margin-top: 56px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font-size: 11.5px;
+        color: var(--gray-soft);
+        text-align: center;
+      }
+      @media (max-width: 760px) {
+        .page {
+          padding: 32px 18px 80px;
+        }
+        .cover {
+          padding: 40px 24px;
+        }
+        .cover h1 {
+          font-size: 26px;
+        }
+        .drawing {
+          padding: 18px 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="cover">
+        <span class="tag">FLOOR PLAN v2 · COUNTER · 2026.05.27</span>
+        <h1>3평 부스 평면도 & 입면 시안 v2</h1>
+        <p class="sub">
+          카운터형 디스플레이 (정면 only) · 핑크 톤 · 헤더 2패널 · 다층 단상
+          구조 · 백화점/집기 업체/디자이너 전달용 도면
+        </p>
+        <div class="specs">
+          <div><b>구조</b> 카운터형 (워크인 ✗)</div>
+          <div><b>치수</b> 3.6m W × 0.5m D × 0.9m H (카운터)</div>
+          <div><b>헤더</b> 메인 1.6m + 사이드 0.7m, H 1.0~1.1m</div>
+          <div><b>벽 사용</b> ✗ (자립형 헤더)</div>
+        </div>
+      </div>
+
+      <!-- 01 Front Elevation -->
+      <section>
+        <span class="num">01 · FRONT ELEVATION</span>
+        <h2>정면도 (Front View)</h2>
+        <div class="h">
+          고객이 보는 메인 시점 · 카운터 + 헤더 2패널 + 다층 디스플레이
+        </div>
+
+        <div class="drawing">
+          <svg viewBox="0 0 720 540" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern
+                id="grid2"
+                width="20"
+                height="20"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 20 0 L 0 0 0 20"
+                  fill="none"
+                  stroke="#f5e8ed"
+                  stroke-width="0.5"
+                />
+              </pattern>
+              <linearGradient
+                id="counterFront"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
+                <stop offset="0%" stop-color="#ffebf1" />
+                <stop offset="30%" stop-color="#fcc5d2" />
+                <stop offset="55%" stop-color="#f5a0b5" />
+                <stop offset="85%" stop-color="#e47b98" />
+                <stop offset="100%" stop-color="#c44b6e" />
+              </linearGradient>
+              <linearGradient
+                id="mainHeader"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stop-color="#fff5f8" />
+                <stop offset="35%" stop-color="#fcc5d2" />
+                <stop offset="70%" stop-color="#e47b98" />
+                <stop offset="100%" stop-color="#9d3653" />
+              </linearGradient>
+              <linearGradient id="sideHeader" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#fcc5d2" />
+                <stop offset="100%" stop-color="#ffebf1" />
+              </linearGradient>
+            </defs>
+            <rect width="720" height="540" fill="url(#grid2)" />
+
+            <!-- Booth front view (1m = 130px scale) -->
+            <g transform="translate(60, 30)">
+              <!-- Main header panel (back, 1.6m W x 1.0m H) -->
+              <!-- positioned at x: 1.2~2.8m, y: 0.85~1.85m above floor -->
+              <rect
+                x="156"
+                y="0"
+                width="208"
+                height="130"
+                fill="url(#mainHeader)"
+                stroke="#9d3653"
+                stroke-width="1.5"
+                rx="4"
+              />
+              <text
+                x="260"
+                y="35"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="900"
+                fill="#fff"
+              >
+                TAM BEAUTY
+              </text>
+              <text
+                x="260"
+                y="62"
+                text-anchor="middle"
+                font-size="18"
+                font-weight="800"
+                fill="#fff"
+                font-style="italic"
+                font-family="Georgia, serif"
+              >
+                Cloud to Bloom
+              </text>
+              <text
+                x="260"
+                y="80"
+                text-anchor="middle"
+                font-size="8.5"
+                fill="#fff"
+              >
+                보송한 피부, 또렷한 입술
+              </text>
+              <text
+                x="260"
+                y="93"
+                text-anchor="middle"
+                font-size="7.5"
+                fill="#fff"
+                opacity="0.85"
+              >
+                柔焦遮瑕 · 唇釉色卡墙
+              </text>
+              <rect
+                x="200"
+                y="103"
+                width="120"
+                height="18"
+                rx="9"
+                fill="#c44b6e"
+              />
+              <text
+                x="260"
+                y="116"
+                text-anchor="middle"
+                font-size="8"
+                font-weight="700"
+                fill="#fff"
+              >
+                BEST · LOTTE 2026.07
+              </text>
+
+              <!-- Side model panel (left, 0.7m W x 1.1m H) -->
+              <rect
+                x="65"
+                y="-13"
+                width="91"
+                height="143"
+                fill="url(#sideHeader)"
+                stroke="#e47b98"
+                stroke-width="1.5"
+                rx="4"
+              />
+              <rect
+                x="73"
+                y="-5"
+                width="75"
+                height="100"
+                fill="#fff"
+                opacity="0.75"
+                rx="3"
+              />
+              <text
+                x="110.5"
+                y="40"
+                text-anchor="middle"
+                font-size="8.5"
+                font-weight="700"
+                fill="#b88aa0"
+              >
+                [ MODEL ]
+              </text>
+              <text
+                x="110.5"
+                y="54"
+                text-anchor="middle"
+                font-size="7"
+                fill="#b88aa0"
+              >
+                실측 후 컷 삽입
+              </text>
+              <rect
+                x="80"
+                y="103"
+                width="62"
+                height="14"
+                rx="7"
+                fill="#e47b98"
+              />
+              <text
+                x="111"
+                y="113"
+                text-anchor="middle"
+                font-size="8"
+                font-weight="800"
+                fill="#fff"
+              >
+                NEW IN
+              </text>
+              <text
+                x="111"
+                y="125"
+                text-anchor="middle"
+                font-size="7"
+                font-style="italic"
+                fill="#9d3653"
+                font-family="Georgia, serif"
+              >
+                Juicy · Glowy · Dewy
+              </text>
+
+              <!-- Header support legs (4 thin posts) -->
+              <line
+                x1="92"
+                y1="130"
+                x2="92"
+                y2="195"
+                stroke="#c44b6e"
+                stroke-width="2"
+              />
+              <line
+                x1="129"
+                y1="130"
+                x2="129"
+                y2="195"
+                stroke="#c44b6e"
+                stroke-width="2"
+              />
+              <line
+                x1="183"
+                y1="130"
+                x2="183"
+                y2="195"
+                stroke="#c44b6e"
+                stroke-width="2"
+              />
+              <line
+                x1="335"
+                y1="130"
+                x2="335"
+                y2="195"
+                stroke="#c44b6e"
+                stroke-width="2"
+              />
+
+              <!-- Counter top (3.6m W x 0.5m D, top surface at H 0.9m) -->
+              <!-- Drawn here as the top line -->
+              <line
+                x1="0"
+                y1="195"
+                x2="468"
+                y2="195"
+                stroke="#1a1a1a"
+                stroke-width="2"
+              />
+
+              <!-- ===== DISPLAY ON COUNTER ===== -->
+              <g transform="translate(0, 195)">
+                <!-- LEFT section pedestals (BASE) -->
+                <!-- Tier 1 -->
+                <rect
+                  x="42"
+                  y="-13"
+                  width="130"
+                  height="13"
+                  fill="#fff"
+                  stroke="#e47b98"
+                  stroke-width="1.2"
+                  rx="2"
+                />
+                <!-- Tier 2 (smaller, back) -->
+                <rect
+                  x="56"
+                  y="-34"
+                  width="59"
+                  height="21"
+                  fill="#fff"
+                  stroke="#f5a0b5"
+                  stroke-width="1"
+                  rx="2"
+                />
+                <!-- Section header card "BASE" -->
+                <rect
+                  x="80"
+                  y="-58"
+                  width="42"
+                  height="14"
+                  rx="3"
+                  fill="#e47b98"
+                />
+                <text
+                  x="101"
+                  y="-48"
+                  text-anchor="middle"
+                  font-size="8"
+                  font-weight="800"
+                  fill="#fff"
+                >
+                  BASE
+                </text>
+
+                <!-- Products on tier 1 -->
+                <circle
+                  cx="55"
+                  cy="-22"
+                  r="5"
+                  fill="#fcc5d2"
+                  stroke="#e47b98"
+                  stroke-width="0.5"
+                />
+                <circle
+                  cx="68"
+                  cy="-22"
+                  r="5"
+                  fill="#fcc5d2"
+                  stroke="#e47b98"
+                  stroke-width="0.5"
+                />
+                <circle
+                  cx="81"
+                  cy="-22"
+                  r="5"
+                  fill="#fcc5d2"
+                  stroke="#e47b98"
+                  stroke-width="0.5"
+                />
+                <!-- Cloud blur tubes (rectangle for elevation view) -->
+                <rect
+                  x="113"
+                  y="-37"
+                  width="9"
+                  height="22"
+                  fill="#e47b98"
+                  rx="1"
+                />
+                <rect
+                  x="125"
+                  y="-37"
+                  width="9"
+                  height="22"
+                  fill="#e47b98"
+                  rx="1"
+                />
+                <rect
+                  x="137"
+                  y="-37"
+                  width="9"
+                  height="22"
+                  fill="#e47b98"
+                  rx="1"
+                />
+                <!-- Highlighters on tier 2 -->
+                <rect
+                  x="63"
+                  y="-46"
+                  width="9"
+                  height="6"
+                  fill="#e8c8a0"
+                  rx="1"
+                />
+                <rect
+                  x="78"
+                  y="-46"
+                  width="9"
+                  height="6"
+                  fill="#e8c8a0"
+                  rx="1"
+                />
+                <rect
+                  x="93"
+                  y="-46"
+                  width="9"
+                  height="6"
+                  fill="#e8c8a0"
+                  rx="1"
+                />
+
+                <!-- CENTER section (BEST round pedestal) -->
+                <!-- Tier 1 (round, larger) -->
+                <ellipse
+                  cx="234"
+                  cy="-12"
+                  rx="62"
+                  ry="13"
+                  fill="#fff"
+                  stroke="#e47b98"
+                  stroke-width="1.2"
+                />
+                <!-- Tier 2 (round, smaller on top) -->
+                <ellipse
+                  cx="234"
+                  cy="-36"
+                  rx="30"
+                  ry="7"
+                  fill="#fff"
+                  stroke="#c44b6e"
+                  stroke-width="1"
+                />
+                <!-- Section header card "BEST" -->
+                <rect
+                  x="207"
+                  y="-78"
+                  width="54"
+                  height="14"
+                  rx="3"
+                  fill="#c44b6e"
+                />
+                <text
+                  x="234"
+                  y="-68"
+                  text-anchor="middle"
+                  font-size="8"
+                  font-weight="800"
+                  fill="#fff"
+                >
+                  BEST
+                </text>
+                <!-- Hero pick (taller cloud blur) on tier 2 -->
+                <rect
+                  x="228"
+                  y="-65"
+                  width="12"
+                  height="28"
+                  fill="#e47b98"
+                  rx="1.5"
+                />
+                <rect
+                  x="226"
+                  y="-68"
+                  width="16"
+                  height="5"
+                  fill="#fcc5d2"
+                  rx="1"
+                />
+                <!-- Cloud blurs around tier 1 -->
+                <rect
+                  x="194"
+                  y="-28"
+                  width="9"
+                  height="20"
+                  fill="#e47b98"
+                  rx="1"
+                />
+                <rect
+                  x="264"
+                  y="-28"
+                  width="9"
+                  height="20"
+                  fill="#e47b98"
+                  rx="1"
+                />
+                <rect
+                  x="210"
+                  y="-26"
+                  width="9"
+                  height="18"
+                  fill="#e47b98"
+                  rx="1"
+                />
+                <rect
+                  x="247"
+                  y="-26"
+                  width="9"
+                  height="18"
+                  fill="#e47b98"
+                  rx="1"
+                />
+
+                <!-- RIGHT section (COLOR · BROW) -->
+                <!-- Tier 1 -->
+                <rect
+                  x="298"
+                  y="-13"
+                  width="135"
+                  height="13"
+                  fill="#fff"
+                  stroke="#e47b98"
+                  stroke-width="1.2"
+                  rx="2"
+                />
+                <!-- Tier 2 (back, smaller) -->
+                <rect
+                  x="332"
+                  y="-34"
+                  width="72"
+                  height="21"
+                  fill="#fff"
+                  stroke="#f5a0b5"
+                  stroke-width="1"
+                  rx="2"
+                />
+                <!-- Section header card "COLOR · BROW" -->
+                <rect
+                  x="338"
+                  y="-58"
+                  width="62"
+                  height="14"
+                  rx="3"
+                  fill="#c44b6e"
+                />
+                <text
+                  x="369"
+                  y="-48"
+                  text-anchor="middle"
+                  font-size="7.5"
+                  font-weight="800"
+                  fill="#fff"
+                >
+                  COLOR · BROW
+                </text>
+                <!-- Mini box with lip liners (12) -->
+                <rect
+                  x="313"
+                  y="-30"
+                  width="86"
+                  height="17"
+                  fill="none"
+                  stroke="#f5a0b5"
+                  stroke-width="1"
+                  stroke-dasharray="2 2"
+                  rx="2"
+                />
+                <!-- Lip liner tubes (top row of grid, simplified) -->
+                <g>
+                  <rect x="316" y="-26" width="5" height="12" fill="#c44b6e" />
+                  <rect x="322" y="-26" width="5" height="12" fill="#d86583" />
+                  <rect x="328" y="-26" width="5" height="12" fill="#e88aa3" />
+                  <rect x="334" y="-26" width="5" height="12" fill="#a84565" />
+                  <rect x="341" y="-26" width="5" height="12" fill="#9d3653" />
+                  <rect x="347" y="-26" width="5" height="12" fill="#c44b6e" />
+                  <rect x="353" y="-26" width="5" height="12" fill="#dd7e98" />
+                  <rect x="359" y="-26" width="5" height="12" fill="#a84565" />
+                  <rect x="366" y="-26" width="5" height="12" fill="#b83f5d" />
+                  <rect x="372" y="-26" width="5" height="12" fill="#cc5577" />
+                  <rect x="378" y="-26" width="5" height="12" fill="#b05044" />
+                  <rect x="384" y="-26" width="5" height="12" fill="#bd5577" />
+                </g>
+                <!-- Brow mascara on tier 2 -->
+                <rect
+                  x="338"
+                  y="-46"
+                  width="6"
+                  height="12"
+                  fill="#6b4226"
+                  rx="0.5"
+                />
+                <rect
+                  x="348"
+                  y="-46"
+                  width="6"
+                  height="12"
+                  fill="#6b4226"
+                  rx="0.5"
+                />
+                <rect
+                  x="358"
+                  y="-46"
+                  width="6"
+                  height="12"
+                  fill="#6b4226"
+                  rx="0.5"
+                />
+                <rect
+                  x="368"
+                  y="-46"
+                  width="6"
+                  height="12"
+                  fill="#6b4226"
+                  rx="0.5"
+                />
+
+                <!-- Stem orbs (selected, to show vertical drama) -->
+                <line
+                  x1="36"
+                  y1="-30"
+                  x2="36"
+                  y2="-13"
+                  stroke="#fff"
+                  stroke-width="1"
+                />
+                <circle cx="36" cy="-33" r="4" fill="#fcc5d2" />
+                <line
+                  x1="175"
+                  y1="-50"
+                  x2="175"
+                  y2="-13"
+                  stroke="#fff"
+                  stroke-width="1"
+                />
+                <circle cx="175" cy="-53" r="5" fill="#f5a0b5" />
+                <line
+                  x1="190"
+                  y1="-70"
+                  x2="190"
+                  y2="-12"
+                  stroke="#fff"
+                  stroke-width="1"
+                />
+                <circle cx="190" cy="-73" r="5.5" fill="#c44b6e" />
+                <line
+                  x1="280"
+                  y1="-70"
+                  x2="280"
+                  y2="-12"
+                  stroke="#fff"
+                  stroke-width="1"
+                />
+                <circle cx="280" cy="-73" r="5.5" fill="#e47b98" />
+                <line
+                  x1="296"
+                  y1="-50"
+                  x2="296"
+                  y2="-13"
+                  stroke="#fff"
+                  stroke-width="1"
+                />
+                <circle cx="296" cy="-53" r="5" fill="#f5e0e5" />
+                <line
+                  x1="302"
+                  y1="-30"
+                  x2="302"
+                  y2="-13"
+                  stroke="#fff"
+                  stroke-width="1"
+                />
+                <circle cx="302" cy="-33" r="4" fill="#fcc5d2" />
+                <line
+                  x1="425"
+                  y1="-40"
+                  x2="425"
+                  y2="-13"
+                  stroke="#fff"
+                  stroke-width="1"
+                />
+                <circle cx="425" cy="-43" r="4.5" fill="#c44b6e" />
+              </g>
+
+              <!-- Counter body (front graphic) -->
+              <rect
+                x="0"
+                y="195"
+                width="468"
+                height="117"
+                fill="url(#counterFront)"
+                stroke="#1a1a1a"
+                stroke-width="2"
+              />
+              <!-- Top edge trim -->
+              <line
+                x1="0"
+                y1="197"
+                x2="468"
+                y2="197"
+                stroke="#e47b98"
+                stroke-width="1.5"
+              />
+              <!-- Bottom inset -->
+              <line
+                x1="0"
+                y1="305"
+                x2="468"
+                y2="305"
+                stroke="#c44b6e"
+                stroke-width="1"
+              />
+
+              <!-- Brand block on counter front -->
+              <text
+                x="234"
+                y="225"
+                text-anchor="middle"
+                font-size="14"
+                font-weight="900"
+                fill="#fff"
+                letter-spacing="2"
+              >
+                TAM BEAUTY
+              </text>
+              <text
+                x="234"
+                y="247"
+                text-anchor="middle"
+                font-size="13"
+                font-style="italic"
+                fill="#fff"
+                font-family="Georgia, serif"
+              >
+                — Cloud to Bloom —
+              </text>
+              <text
+                x="234"
+                y="265"
+                text-anchor="middle"
+                font-size="8.5"
+                fill="#fff"
+                opacity="0.92"
+              >
+                보송한 피부, 또렷한 입술 · 柔焦底妆
+              </text>
+              <rect
+                x="170"
+                y="276"
+                width="128"
+                height="20"
+                rx="10"
+                fill="none"
+                stroke="#fff"
+                stroke-width="1"
+              />
+              <text
+                x="234"
+                y="290"
+                text-anchor="middle"
+                font-size="9"
+                font-weight="700"
+                fill="#fff"
+              >
+                LOTTE EXCLUSIVE · 2026.07
+              </text>
+
+              <!-- Floor -->
+              <line
+                x1="-30"
+                y1="312"
+                x2="498"
+                y2="312"
+                stroke="#1a1a1a"
+                stroke-width="2"
+              />
+              <rect
+                x="-30"
+                y="312"
+                width="528"
+                height="14"
+                fill="#eed8dd"
+                opacity="0.5"
+              />
+
+              <!-- Ceiling spotlights indication -->
+              <g fill="#f5b800">
+                <circle cx="80" cy="-30" r="3" />
+                <circle cx="160" cy="-30" r="3" />
+                <circle cx="234" cy="-30" r="3" />
+                <circle cx="280" cy="-30" r="3" />
+                <circle cx="360" cy="-30" r="3" />
+                <circle cx="420" cy="-30" r="3" />
+              </g>
+              <text
+                x="234"
+                y="-38"
+                text-anchor="middle"
+                font-size="9"
+                fill="#a87600"
+              >
+                🔆 트랙 조명 (스팟 6구, 천장 매립)
+              </text>
+            </g>
+
+            <!-- Dimensions -->
+            <g
+              stroke="#666"
+              stroke-width="0.8"
+              fill="#666"
+              font-size="10"
+              font-family="SF Mono, Consolas, monospace"
+            >
+              <!-- Total width -->
+              <line x1="60" y1="360" x2="528" y2="360" />
+              <line x1="60" y1="355" x2="60" y2="365" />
+              <line x1="528" y1="355" x2="528" y2="365" />
+              <text x="294" y="378" text-anchor="middle" font-weight="700">
+                3.60 m
+              </text>
+
+              <!-- Total height (with header) -->
+              <line x1="40" y1="30" x2="40" y2="342" />
+              <line x1="35" y1="30" x2="45" y2="30" />
+              <line x1="35" y1="342" x2="45" y2="342" />
+              <text
+                x="20"
+                y="190"
+                text-anchor="middle"
+                font-weight="700"
+                transform="rotate(-90, 20, 190)"
+              >
+                2.40 m (total)
+              </text>
+
+              <!-- Counter height -->
+              <line x1="538" y1="225" x2="538" y2="342" />
+              <line x1="533" y1="225" x2="543" y2="225" />
+              <line x1="533" y1="342" x2="543" y2="342" />
+              <text x="565" y="285" text-anchor="middle" font-weight="700">
+                0.90 m
+              </text>
+              <text
+                x="565"
+                y="300"
+                text-anchor="middle"
+                font-size="9"
+                fill="#999"
+              >
+                카운터 높이
+              </text>
+
+              <!-- Header height -->
+              <line x1="538" y1="30" x2="538" y2="225" />
+              <line x1="533" y1="30" x2="543" y2="30" />
+              <line x1="533" y1="220" x2="543" y2="220" />
+              <text x="572" y="125" text-anchor="middle" font-weight="700">
+                1.5 m
+              </text>
+              <text
+                x="572"
+                y="140"
+                text-anchor="middle"
+                font-size="9"
+                fill="#999"
+              >
+                헤더+디스플레이
+              </text>
+
+              <!-- Section widths -->
+              <line x1="60" y1="346" x2="232" y2="346" stroke-width="0.6" />
+              <text x="146" y="338" text-anchor="middle" font-size="9">
+                BASE 1.30m
+              </text>
+              <line x1="232" y1="346" x2="358" y2="346" stroke-width="0.6" />
+              <text x="295" y="338" text-anchor="middle" font-size="9">
+                BEST 0.97m
+              </text>
+              <line x1="358" y1="346" x2="528" y2="346" stroke-width="0.6" />
+              <text x="443" y="338" text-anchor="middle" font-size="9">
+                COLOR/BROW 1.30m
+              </text>
+            </g>
+          </svg>
+
+          <div class="caption">
+            ※ Front Elevation · 1m = 130px · 천장 트랙 조명 6구 / 헤더 2패널 +
+            다층 단상 / 카운터 정면 그래픽
+          </div>
+
+          <div class="legend">
+            <div class="leg">
+              <div
+                class="swatch"
+                style="background: linear-gradient(135deg, #fff5f8, #9d3653)"
+              ></div>
+              메인 헤더 패널
+            </div>
+            <div class="leg">
+              <div
+                class="swatch"
+                style="background: linear-gradient(180deg, #fcc5d2, #ffebf1)"
+              ></div>
+              사이드 모델 패널
+            </div>
+            <div class="leg">
+              <div
+                class="swatch"
+                style="background: linear-gradient(90deg, #ffebf1, #c44b6e)"
+              ></div>
+              카운터 정면 그래픽
+            </div>
+            <div class="leg">
+              <div class="swatch" style="background: #e47b98"></div>
+              클라우드블러·립라이너
+            </div>
+            <div class="leg">
+              <div class="swatch" style="background: #fcc5d2"></div>
+              파우더밤
+            </div>
+            <div class="leg">
+              <div class="swatch" style="background: #e8c8a0"></div>
+              하이라이터·브로우 캡
+            </div>
+            <div class="leg">
+              <div class="swatch" style="background: #6b4226"></div>
+              이지브로우마스카라
+            </div>
+            <div class="leg">
+              <div class="swatch" style="background: #fff" border="1"></div>
+              아크릴 단상 (다층)
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 Top View -->
+      <section>
+        <span class="num">02 · TOP VIEW</span>
+        <h2>탑뷰 (Plan View)</h2>
+        <div class="h">
+          위에서 본 카운터·디스플레이 배치 + 직원 위치 + 고객 동선
+        </div>
+
+        <div class="drawing">
+          <svg viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg">
+            <rect width="720" height="360" fill="url(#grid2)" />
+
+            <g transform="translate(60, 60)">
+              <!-- Counter body (top view, 3.6m W x 0.5m D) -->
+              <rect
+                x="0"
+                y="0"
+                width="468"
+                height="65"
+                fill="#fff8f9"
+                stroke="#1a1a1a"
+                stroke-width="2"
+              />
+
+              <!-- Header panels (behind counter, shown dashed) -->
+              <rect
+                x="156"
+                y="-6"
+                width="208"
+                height="8"
+                fill="#fcc5d2"
+                stroke="#9d3653"
+                stroke-width="1.2"
+                stroke-dasharray="3 2"
+                opacity="0.85"
+              />
+              <text
+                x="260"
+                y="-12"
+                text-anchor="middle"
+                font-size="9"
+                font-weight="700"
+                fill="#9d3653"
+              >
+                메인 헤더 (자립)
+              </text>
+              <rect
+                x="65"
+                y="-6"
+                width="91"
+                height="8"
+                fill="#ffebf1"
+                stroke="#e47b98"
+                stroke-width="1.2"
+                stroke-dasharray="3 2"
+                opacity="0.85"
+              />
+              <text
+                x="110"
+                y="-12"
+                text-anchor="middle"
+                font-size="9"
+                font-weight="700"
+                fill="#e47b98"
+              >
+                모델 패널
+              </text>
+
+              <!-- LEFT SECTION (BASE) -->
+              <rect
+                x="42"
+                y="6"
+                width="130"
+                height="58"
+                fill="#fff5f8"
+                stroke="#e47b98"
+                stroke-width="0.8"
+                stroke-dasharray="2 2"
+              />
+              <text
+                x="107"
+                y="-2"
+                text-anchor="middle"
+                font-size="8.5"
+                font-weight="800"
+                fill="#e47b98"
+                letter-spacing="1"
+              >
+                BASE
+              </text>
+
+              <!-- Tier 1 pedestal (top view circle/rect) -->
+              <rect
+                x="49"
+                y="15"
+                width="118"
+                height="32"
+                fill="#fff"
+                stroke="#e47b98"
+                stroke-width="1"
+                rx="2"
+              />
+              <!-- Tier 2 (smaller, back) -->
+              <rect
+                x="62"
+                y="20"
+                width="55"
+                height="14"
+                fill="#ffe8f0"
+                stroke="#f5a0b5"
+                stroke-width="0.8"
+                rx="1"
+              />
+              <!-- Products as circles in top view -->
+              <circle cx="60" cy="32" r="4" fill="#fcc5d2" />
+              <circle cx="72" cy="32" r="4" fill="#fcc5d2" />
+              <circle cx="84" cy="32" r="4" fill="#fcc5d2" />
+              <circle cx="98" cy="32" r="4" fill="#e47b98" />
+              <circle cx="110" cy="32" r="4" fill="#e47b98" />
+              <circle cx="122" cy="32" r="4" fill="#e47b98" />
+              <circle cx="78" cy="26" r="3" fill="#e8c8a0" />
+              <circle cx="92" cy="26" r="3" fill="#e8c8a0" />
+              <circle cx="106" cy="26" r="3" fill="#e8c8a0" />
+              <circle
+                cx="155"
+                cy="35"
+                r="2.5"
+                fill="#e5dae0"
+                stroke="#c44b6e"
+                stroke-width="0.5"
+              />
+              <text
+                x="155"
+                y="46"
+                text-anchor="middle"
+                font-size="6"
+                fill="#666"
+              >
+                미러
+              </text>
+
+              <!-- CENTER SECTION (BEST) -->
+              <rect
+                x="187"
+                y="6"
+                width="125"
+                height="58"
+                fill="#fff0f5"
+                stroke="#c44b6e"
+                stroke-width="0.8"
+                stroke-dasharray="2 2"
+              />
+              <text
+                x="249"
+                y="-2"
+                text-anchor="middle"
+                font-size="8.5"
+                font-weight="800"
+                fill="#c44b6e"
+                letter-spacing="1"
+              >
+                BEST
+              </text>
+
+              <!-- Round tier 1 -->
+              <circle
+                cx="249"
+                cy="35"
+                r="28"
+                fill="#fff"
+                stroke="#e47b98"
+                stroke-width="1.2"
+              />
+              <!-- Round tier 2 (smaller on top) -->
+              <circle
+                cx="249"
+                cy="35"
+                r="13"
+                fill="#ffe8f0"
+                stroke="#c44b6e"
+                stroke-width="0.8"
+              />
+              <!-- Hero product (center) -->
+              <circle
+                cx="249"
+                cy="35"
+                r="4.5"
+                fill="#e47b98"
+                stroke="#9d3653"
+                stroke-width="0.6"
+              />
+              <!-- Ring of 4 products around tier 1 -->
+              <circle cx="226" cy="25" r="3.5" fill="#e47b98" />
+              <circle cx="272" cy="25" r="3.5" fill="#e47b98" />
+              <circle cx="226" cy="45" r="3.5" fill="#e47b98" />
+              <circle cx="272" cy="45" r="3.5" fill="#e47b98" />
+
+              <!-- RIGHT SECTION (COLOR · BROW) -->
+              <rect
+                x="328"
+                y="6"
+                width="135"
+                height="58"
+                fill="#fff5f8"
+                stroke="#c44b6e"
+                stroke-width="0.8"
+                stroke-dasharray="2 2"
+              />
+              <text
+                x="395"
+                y="-2"
+                text-anchor="middle"
+                font-size="8.5"
+                font-weight="800"
+                fill="#c44b6e"
+                letter-spacing="1"
+              >
+                COLOR · BROW
+              </text>
+
+              <!-- Tier 1 -->
+              <rect
+                x="333"
+                y="15"
+                width="125"
+                height="32"
+                fill="#fff"
+                stroke="#e47b98"
+                stroke-width="1"
+                rx="2"
+              />
+              <!-- Tier 2 (back) -->
+              <rect
+                x="358"
+                y="20"
+                width="68"
+                height="14"
+                fill="#ffe8f0"
+                stroke="#f5a0b5"
+                stroke-width="0.8"
+                rx="1"
+              />
+              <!-- Lip liner mini-box (12 in grid) -->
+              <rect
+                x="340"
+                y="38"
+                width="80"
+                height="14"
+                fill="none"
+                stroke="#f5a0b5"
+                stroke-width="0.8"
+                stroke-dasharray="2 1"
+              />
+              <g>
+                <circle cx="345" cy="42" r="1.7" fill="#c44b6e" />
+                <circle cx="352" cy="42" r="1.7" fill="#d86583" />
+                <circle cx="359" cy="42" r="1.7" fill="#e88aa3" />
+                <circle cx="366" cy="42" r="1.7" fill="#a84565" />
+                <circle cx="345" cy="46" r="1.7" fill="#9d3653" />
+                <circle cx="352" cy="46" r="1.7" fill="#c44b6e" />
+                <circle cx="359" cy="46" r="1.7" fill="#dd7e98" />
+                <circle cx="366" cy="46" r="1.7" fill="#a84565" />
+                <circle cx="345" cy="50" r="1.7" fill="#b83f5d" />
+                <circle cx="352" cy="50" r="1.7" fill="#cc5577" />
+                <circle cx="359" cy="50" r="1.7" fill="#b05044" />
+                <circle cx="366" cy="50" r="1.7" fill="#bd5577" />
+              </g>
+              <text
+                x="380"
+                y="44"
+                text-anchor="middle"
+                font-size="6"
+                font-weight="700"
+                fill="#9d3653"
+              >
+                MINI
+              </text>
+              <text
+                x="380"
+                y="50"
+                text-anchor="middle"
+                font-size="6"
+                fill="#999"
+              >
+                12 shades
+              </text>
+              <!-- Brow mascara on tier 2 -->
+              <circle cx="368" cy="26" r="2" fill="#6b4226" />
+              <circle cx="378" cy="26" r="2" fill="#6b4226" />
+              <circle cx="388" cy="26" r="2" fill="#6b4226" />
+              <circle cx="398" cy="26" r="2" fill="#6b4226" />
+              <!-- Mirror tray + Q-tip canister -->
+              <rect
+                x="430"
+                y="22"
+                width="18"
+                height="14"
+                rx="1"
+                fill="#e5dae0"
+                stroke="#c44b6e"
+                stroke-width="0.6"
+              />
+              <circle
+                cx="448"
+                cy="48"
+                r="4"
+                fill="#fff"
+                stroke="#c44b6e"
+                stroke-width="0.8"
+              />
+              <text
+                x="448"
+                y="58"
+                text-anchor="middle"
+                font-size="6"
+                fill="#666"
+              >
+                면봉
+              </text>
+
+              <!-- Counter front edge label -->
+              <text
+                x="234"
+                y="85"
+                text-anchor="middle"
+                font-size="9"
+                font-weight="700"
+                fill="#c44b6e"
+              >
+                ← 카운터 정면 그래픽 (고객 방향) →
+              </text>
+
+              <!-- Customer side (front) -->
+              <line
+                x1="0"
+                y1="100"
+                x2="468"
+                y2="100"
+                stroke="#1a1a1a"
+                stroke-width="0.8"
+                stroke-dasharray="6 4"
+              />
+              <text
+                x="234"
+                y="115"
+                text-anchor="middle"
+                font-size="11"
+                font-weight="700"
+                fill="#1a1a1a"
+              >
+                고객 통로 (Customer Aisle)
+              </text>
+
+              <!-- Customer flow arrows -->
+              <g stroke="#c44b6e" stroke-width="1.5" fill="none">
+                <path d="M 80 130 Q 80 105 100 95" marker-end="url(#arrow2)" />
+                <path
+                  d="M 234 130 Q 234 105 240 95"
+                  marker-end="url(#arrow2)"
+                />
+                <path
+                  d="M 380 130 Q 380 105 370 95"
+                  marker-end="url(#arrow2)"
+                />
+              </g>
+              <defs>
+                <marker
+                  id="arrow2"
+                  markerWidth="8"
+                  markerHeight="8"
+                  refX="6"
+                  refY="3"
+                  orient="auto"
+                >
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#c44b6e" />
+                </marker>
+              </defs>
+
+              <!-- Staff position (behind counter) -->
+              <circle cx="234" cy="-25" r="8" fill="#1a1a1a" />
+              <text
+                x="234"
+                y="-22"
+                text-anchor="middle"
+                font-size="9"
+                fill="#fff"
+              >
+                👤
+              </text>
+              <text
+                x="234"
+                y="-40"
+                text-anchor="middle"
+                font-size="8"
+                font-weight="700"
+                fill="#1a1a1a"
+              >
+                STAFF · 카운터 뒤
+              </text>
+
+              <!-- Storage hint -->
+              <rect
+                x="395"
+                y="-20"
+                width="65"
+                height="15"
+                fill="none"
+                stroke="#999"
+                stroke-width="0.8"
+                stroke-dasharray="2 2"
+              />
+              <text
+                x="427"
+                y="-10"
+                text-anchor="middle"
+                font-size="7.5"
+                fill="#999"
+              >
+                재고함 (카운터 뒤)
+              </text>
+            </g>
+
+            <!-- Dimensions for top view -->
+            <g
+              stroke="#666"
+              stroke-width="0.8"
+              fill="#666"
+              font-size="10"
+              font-family="SF Mono, Consolas, monospace"
+            >
+              <line x1="60" y1="180" x2="528" y2="180" />
+              <line x1="60" y1="175" x2="60" y2="185" />
+              <line x1="528" y1="175" x2="528" y2="185" />
+              <text x="294" y="200" text-anchor="middle" font-weight="700">
+                3.60 m
+              </text>
+
+              <line x1="40" y1="60" x2="40" y2="125" />
+              <line x1="35" y1="60" x2="45" y2="60" />
+              <line x1="35" y1="125" x2="45" y2="125" />
+              <text
+                x="20"
+                y="92"
+                text-anchor="middle"
+                font-weight="700"
+                transform="rotate(-90, 20, 92)"
+              >
+                0.50 m (깊이)
+              </text>
+            </g>
+          </svg>
+
+          <div class="caption">
+            ※ Top View · 카운터 + 헤더 패널(점선) + 직원·재고 위치 + 고객 동선
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 Side Elevation -->
+      <section>
+        <span class="num">03 · SIDE ELEVATION</span>
+        <h2>측면도 (Side View)</h2>
+        <div class="h">
+          측면에서 본 카운터 깊이·헤더 자립 구조·디스플레이 높이
+        </div>
+
+        <div class="drawing">
+          <svg viewBox="0 0 480 500" xmlns="http://www.w3.org/2000/svg">
+            <rect width="480" height="500" fill="url(#grid2)" />
+
+            <g transform="translate(100, 30)">
+              <!-- Floor line -->
+              <line
+                x1="-30"
+                y1="380"
+                x2="320"
+                y2="380"
+                stroke="#1a1a1a"
+                stroke-width="2"
+              />
+              <rect
+                x="-30"
+                y="380"
+                width="350"
+                height="14"
+                fill="#eed8dd"
+                opacity="0.5"
+              />
+
+              <!-- Counter (side view, 0.5m D x 0.9m H) -->
+              <rect
+                x="80"
+                y="263"
+                width="130"
+                height="117"
+                fill="url(#counterFront)"
+                stroke="#1a1a1a"
+                stroke-width="2"
+              />
+              <line
+                x1="80"
+                y1="265"
+                x2="210"
+                y2="265"
+                stroke="#e47b98"
+                stroke-width="1.5"
+              />
+
+              <!-- Brand strip on side -->
+              <text
+                x="145"
+                y="320"
+                text-anchor="middle"
+                font-size="14"
+                font-weight="900"
+                fill="#fff"
+                letter-spacing="2"
+                transform="rotate(-90, 145, 320)"
+              >
+                TAM BEAUTY
+              </text>
+
+              <!-- Display tier 1 (on counter top) -->
+              <rect
+                x="100"
+                y="245"
+                width="90"
+                height="20"
+                fill="#fff"
+                stroke="#e47b98"
+                stroke-width="1"
+                rx="2"
+              />
+              <text
+                x="145"
+                y="258"
+                text-anchor="middle"
+                font-size="8"
+                font-weight="700"
+                fill="#e47b98"
+              >
+                TIER 1 (단상)
+              </text>
+
+              <!-- Display tier 2 (smaller on top of tier 1) -->
+              <rect
+                x="120"
+                y="215"
+                width="50"
+                height="30"
+                fill="#fff"
+                stroke="#c44b6e"
+                stroke-width="1"
+                rx="2"
+              />
+              <text
+                x="145"
+                y="232"
+                text-anchor="middle"
+                font-size="8"
+                font-weight="700"
+                fill="#c44b6e"
+              >
+                TIER 2
+              </text>
+
+              <!-- Header panel (back, taller) -->
+              <rect
+                x="218"
+                y="93"
+                width="14"
+                height="148"
+                fill="url(#mainHeader)"
+                stroke="#9d3653"
+                stroke-width="1.2"
+              />
+              <text
+                x="240"
+                y="120"
+                font-size="9"
+                font-weight="700"
+                fill="#9d3653"
+              >
+                메인 헤더
+              </text>
+              <text x="240" y="135" font-size="9" fill="#666">
+                1.6m W × 1.0m H
+              </text>
+
+              <!-- Header legs (visible from side) -->
+              <line
+                x1="225"
+                y1="241"
+                x2="225"
+                y2="285"
+                stroke="#c44b6e"
+                stroke-width="2"
+              />
+              <circle cx="225" cy="288" r="3" fill="#c44b6e" />
+
+              <!-- Side model panel (in front of main header, slightly forward) -->
+              <rect
+                x="195"
+                y="83"
+                width="14"
+                height="160"
+                fill="url(#sideHeader)"
+                stroke="#e47b98"
+                stroke-width="1.2"
+              />
+              <text
+                x="240"
+                y="170"
+                font-size="9"
+                font-weight="700"
+                fill="#e47b98"
+              >
+                사이드 모델
+              </text>
+              <text x="240" y="184" font-size="9" fill="#666">
+                0.7m W × 1.1m H
+              </text>
+
+              <!-- Spot lights (ceiling) -->
+              <g fill="#f5b800">
+                <circle cx="100" cy="35" r="4" />
+                <circle cx="150" cy="35" r="4" />
+                <circle cx="200" cy="35" r="4" />
+              </g>
+              <line
+                x1="100"
+                y1="35"
+                x2="120"
+                y2="240"
+                stroke="#fff5cc"
+                stroke-width="6"
+                stroke-opacity="0.4"
+              />
+              <line
+                x1="150"
+                y1="35"
+                x2="145"
+                y2="240"
+                stroke="#fff5cc"
+                stroke-width="6"
+                stroke-opacity="0.4"
+              />
+              <line
+                x1="200"
+                y1="35"
+                x2="180"
+                y2="240"
+                stroke="#fff5cc"
+                stroke-width="6"
+                stroke-opacity="0.4"
+              />
+              <text
+                x="150"
+                y="25"
+                text-anchor="middle"
+                font-size="8.5"
+                fill="#a87600"
+              >
+                🔆 천장 스팟 조명
+              </text>
+
+              <!-- Customer position -->
+              <g transform="translate(20, 290)">
+                <ellipse
+                  cx="0"
+                  cy="0"
+                  rx="14"
+                  ry="6"
+                  fill="#1a1a1a"
+                  opacity="0.7"
+                />
+                <circle
+                  cx="0"
+                  cy="-50"
+                  r="14"
+                  fill="#fcc5d2"
+                  stroke="#c44b6e"
+                  stroke-width="1.5"
+                />
+                <rect
+                  x="-12"
+                  y="-38"
+                  width="24"
+                  height="40"
+                  rx="3"
+                  fill="#e47b98"
+                />
+                <text
+                  x="0"
+                  y="20"
+                  text-anchor="middle"
+                  font-size="10"
+                  font-weight="700"
+                  fill="#1a1a1a"
+                >
+                  고객
+                </text>
+              </g>
+
+              <!-- Staff position behind counter -->
+              <g transform="translate(265, 290)">
+                <ellipse
+                  cx="0"
+                  cy="0"
+                  rx="14"
+                  ry="6"
+                  fill="#1a1a1a"
+                  opacity="0.7"
+                />
+                <circle
+                  cx="0"
+                  cy="-50"
+                  r="14"
+                  fill="#fff"
+                  stroke="#1a1a1a"
+                  stroke-width="1.5"
+                />
+                <rect
+                  x="-12"
+                  y="-38"
+                  width="24"
+                  height="40"
+                  rx="3"
+                  fill="#1a1a1a"
+                />
+                <text
+                  x="0"
+                  y="20"
+                  text-anchor="middle"
+                  font-size="10"
+                  font-weight="700"
+                  fill="#1a1a1a"
+                >
+                  스태프
+                </text>
+              </g>
+            </g>
+
+            <!-- Dimensions -->
+            <g
+              stroke="#666"
+              stroke-width="0.8"
+              fill="#666"
+              font-size="10"
+              font-family="SF Mono, Consolas, monospace"
+            >
+              <line x1="80" y1="425" x2="310" y2="425" />
+              <line x1="80" y1="420" x2="80" y2="430" />
+              <line x1="310" y1="420" x2="310" y2="430" />
+              <text x="195" y="445" text-anchor="middle" font-size="9">
+                0.50m (카운터) · 0.16m (헤더)
+              </text>
+
+              <line x1="65" y1="62" x2="65" y2="410" />
+              <line x1="60" y1="62" x2="70" y2="62" />
+              <line x1="60" y1="410" x2="70" y2="410" />
+              <text
+                x="35"
+                y="237"
+                text-anchor="middle"
+                font-weight="700"
+                transform="rotate(-90, 35, 237)"
+              >
+                2.40 m
+              </text>
+            </g>
+          </svg>
+
+          <div class="caption">
+            ※ Side View · 카운터 + 헤더 자립 구조 + 고객·스태프 위치 + 천장 스팟
+            빔
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 Spec Details -->
+      <section>
+        <span class="num">04 · COMPONENT SPECS</span>
+        <h2>주요 집기 사양</h2>
+        <div class="h">발주·제작 시 1차 참고 사양 (실측 후 조정)</div>
+
+        <div class="specs-grid">
+          <div class="spec-card">
+            <div class="lbl">A · COUNTER</div>
+            <h3>카운터 본체</h3>
+            <ul>
+              <li>MDF + 시트 래핑 또는 페인트</li>
+              <li>상판 안에 살짝 inset 처리</li>
+              <li>정면 그래픽 패널 부착</li>
+              <li>좌·우 측면 패널 (세로 로고)</li>
+            </ul>
+            <div class="dim">3.6m × 0.5m × 0.9m</div>
+          </div>
+
+          <div class="spec-card">
+            <div class="lbl">B · MAIN HEADER</div>
+            <h3>메인 헤더 패널</h3>
+            <ul>
+              <li>자립형, 카운터 위 또는 뒤 거치</li>
+              <li>프레임 + 교체식 그래픽 (모듈러)</li>
+              <li>지지 다리 2개 (로즈톤 메탈)</li>
+              <li>Cloud to Bloom 메인 카피</li>
+            </ul>
+            <div class="dim">1.6m × 1.0m, 무게 ~8kg</div>
+          </div>
+
+          <div class="spec-card">
+            <div class="lbl">C · SIDE MODEL</div>
+            <h3>사이드 모델 패널</h3>
+            <ul>
+              <li>자립형, 메인 헤더 좌측</li>
+              <li>모델 사진 + NEW IN 뱃지</li>
+              <li>모델 사진 영역만 교체식</li>
+              <li>지지 다리 2개</li>
+            </ul>
+            <div class="dim">0.7m × 1.1m, 무게 ~5kg</div>
+          </div>
+
+          <div class="spec-card">
+            <div class="lbl">D · BASE 단상</div>
+            <h3>좌 베이스 진열대 (2단)</h3>
+            <ul>
+              <li>1단: 130×40×10cm, 화이트 + 핑크 트림</li>
+              <li>2단: 55×22×16cm, 1단 위 뒤쪽 배치</li>
+              <li>파우더밤 3·하이라이터 3·클라우드블러 3</li>
+              <li>모듈러 큐브 (재사용 가능)</li>
+            </ul>
+            <div class="dim">전체 풋프린트 130×40cm</div>
+          </div>
+
+          <div class="spec-card">
+            <div class="lbl">E · BEST 원형 단상</div>
+            <h3>중앙 BEST 다층 단상</h3>
+            <ul>
+              <li>1단: 원형 Ø84cm, H 14cm, 클리어 아크릴 + 핑크 베이스링</li>
+              <li>2단: 원형 Ø40cm, H 8cm, 클리어 아크릴 + 로즈 톱</li>
+              <li>히어로 클라우드블러 1 + 링 4</li>
+              <li>가장 비주얼 핵심 자산</li>
+            </ul>
+            <div class="dim">총 H 24cm (카운터 위)</div>
+          </div>
+
+          <div class="spec-card">
+            <div class="lbl">F · COLOR 단상</div>
+            <h3>우 컬러·브로우 진열대 (2단)</h3>
+            <ul>
+              <li>1단: 135×40×10cm + 립라이너 미니박스</li>
+              <li>2단: 72×20×16cm, 이지브로우 4</li>
+              <li>미니박스: 86×32×8cm 자립</li>
+              <li>스와치 트레이·면봉통 (앞쪽)</li>
+            </ul>
+            <div class="dim">전체 풋프린트 135×40cm</div>
+          </div>
+
+          <div class="spec-card">
+            <div class="lbl">G · STEM ORBS</div>
+            <h3>막대형 구체 오브제</h3>
+            <ul>
+              <li>총 14개 (좌 4 · 중 6 · 우 4)</li>
+              <li>스템: 화이트 메탈, Ø6mm × H 13~50cm</li>
+              <li>구체: 페일/소프트/메인/딥/펄 핑크 다양</li>
+              <li>스템 베이스: 로즈톤 골드</li>
+            </ul>
+            <div class="dim">구체 Ø 4-8cm</div>
+          </div>
+
+          <div class="spec-card">
+            <div class="lbl">H · POSM · 데코</div>
+            <h3>POSM 카드 · 데코 소품</h3>
+            <ul>
+              <li>섹션 헤더 3종 (BASE·BEST·COLOR·BROW)</li>
+              <li>비스듬 스티커 ~12종 (NEW·HOT·LIMITED 등)</li>
+              <li>손거울 2개 (로즈 핸들 + 미러)</li>
+              <li>펄 비즈 20+ · 핑크 꽃잎 12+</li>
+            </ul>
+            <div class="dim">카드 5×5cm, 거울 Ø10cm</div>
+          </div>
+        </div>
+
+        <div class="note">
+          ⚠️ <b>실측 필수</b> — 위 치수는 통일 부스 카운터 가이드 받기 전 가정치
+          (3.6×0.5×0.9m). 실제 카운터 폭·깊이·높이·전기 위치·헤더 거치 방식 확인
+          후 1:1 보정 필요.
+        </div>
+      </section>
+
+      <!-- 05 v1 vs v2 -->
+      <section>
+        <span class="num">05 · v1 vs v2</span>
+        <h2>변경사항 요약</h2>
+        <div class="h">평면도 v1 (워크인) → v2 (카운터형) 변경 핵심</div>
+
+        <div class="compare">
+          <h3>📐 구조 비교</h3>
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 30%">항목</th>
+                <th>v1 (워크인)</th>
+                <th>v2 (카운터형)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>부스 형태</b></td>
+                <td class="x">고객이 부스 안에 들어옴</td>
+                <td class="o">카운터 앞에서 정면 보기</td>
+              </tr>
+              <tr>
+                <td><b>벽 사용</b></td>
+                <td class="x">좌·우 측벽 + 뒷벽 모두 사용</td>
+                <td class="o">벽 사용 ✗</td>
+              </tr>
+              <tr>
+                <td><b>백월 그래픽</b></td>
+                <td class="x">뒷벽 전체 그래픽</td>
+                <td class="o">자립 헤더 2패널로 대체</td>
+              </tr>
+              <tr>
+                <td><b>풀바디 미러·셀카존</b></td>
+                <td class="x">중앙존에 포함</td>
+                <td class="o">제거 (모델 패널이 인증 역할)</td>
+              </tr>
+              <tr>
+                <td><b>단상 구조</b></td>
+                <td class="x">단일 단</td>
+                <td class="o">2단 다층 구조</td>
+              </tr>
+              <tr>
+                <td><b>천장 매달기</b></td>
+                <td class="x">솜털 클라우드 오브제</td>
+                <td class="o">단상 위 막대형 오브제 14개</td>
+              </tr>
+              <tr>
+                <td><b>컬러 톤</b></td>
+                <td class="x">소프트핑크 → 체리 → 레드</td>
+                <td class="o">탐뷰티 핑크 (FCC5D2 → C44B6E)</td>
+              </tr>
+              <tr>
+                <td><b>SKU 진열</b></td>
+                <td class="x">메인 2종 위주</td>
+                <td class="o">전 SKU (블러·립·파우더·하이·브로우)</td>
+              </tr>
+              <tr>
+                <td><b>POSM·데코</b></td>
+                <td class="x">기본 사이니지만</td>
+                <td class="o">자립 카드·스티커·손거울·펄·꽃잎</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 06 Next steps -->
+      <section>
+        <span class="num">06 · NEXT STEPS</span>
+        <h2>이 도면 받으면 할 일</h2>
+        <div class="h">의사결정 순서</div>
+
+        <div class="specs-grid">
+          <div class="spec-card">
+            <div class="lbl">1 · 백화점</div>
+            <h3>실측·카운터 가이드 수령</h3>
+            <ul>
+              <li>실제 카운터 W×D×H 확정</li>
+              <li>전기·조명·천장 가이드</li>
+              <li>헤더 패널 거치 가능 여부 확인</li>
+              <li>측면 패널 부착 가능 여부</li>
+            </ul>
+          </div>
+
+          <div class="spec-card">
+            <div class="lbl">2 · 집기 업체</div>
+            <h3>견적·제작 의뢰</h3>
+            <ul>
+              <li>본 도면 + POSM 발주리스트 v3 전달</li>
+              <li>모듈러·재사용성 강조</li>
+              <li>2-3개 업체 비교 견적</li>
+              <li>제작 리드타임 2-3주</li>
+            </ul>
+          </div>
+
+          <div class="spec-card">
+            <div class="lbl">3 · 디자이너</div>
+            <h3>그래픽·렌더링</h3>
+            <ul>
+              <li>헤더·사이드 패널 그래픽 디자인</li>
+              <li>카운터 정면 그래픽 디자인</li>
+              <li>모델 사진 촬영 또는 선정</li>
+              <li>3D 렌더링 시안 (선택)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="foot">
+        탐뷰티 × 롯데백화점 뷰티 팝업 · 3평 부스 평면도 v2 (카운터형) ·
+        2026.05.27<br />
+        ※ 본 도면은 가정 치수 기준 · 실측 후 보정 필수
+      </div>
+    </div>
+  </body>
+</html>

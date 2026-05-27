@@ -1,0 +1,1488 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐뷰티 × 롯데 팝업 — POSM 발주 리스트 v3 (카운터형·핑크)</title>
+    <style>
+      :root {
+        --pale: #ffebf1;
+        --soft: #fcc5d2;
+        --pink: #f5a0b5;
+        --deep: #e47b98;
+        --rose: #c44b6e;
+        --rose-deep: #9d3653;
+        --pearl: #f5e0e5;
+        --cream: #fdf5f7;
+        --ink: #1a1a1a;
+        --ink-soft: #3a3a3a;
+        --gray: #6b6b6b;
+        --gray-soft: #999;
+        --line: #e8d8dd;
+        --bg: #fdf5f7;
+        --reuse: #2d9d6f;
+        --reuse-soft: #d9f0e6;
+        --once: #c78200;
+        --once-soft: #fff4d6;
+        --consum: #a55a1f;
+        --consum-soft: #ffe6d6;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 56px 48px 120px;
+      }
+
+      .cover {
+        background: linear-gradient(135deg, #ffebf1 0%, #fcc5d2 100%);
+        padding: 56px 48px;
+        border-radius: 28px;
+        margin-bottom: 56px;
+        border: 1px solid var(--line);
+      }
+      .cover .tag {
+        display: inline-block;
+        background: #fff;
+        padding: 5px 14px;
+        border-radius: 100px;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--rose-deep);
+        margin-bottom: 18px;
+        border: 1px solid var(--soft);
+      }
+      .cover h1 {
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.15;
+        margin-bottom: 12px;
+      }
+      .cover .sub {
+        font-size: 15px;
+        color: var(--gray);
+        line-height: 1.65;
+      }
+
+      .vs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 28px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .vs > div {
+        background: #fff;
+        padding: 16px 18px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+      }
+      .vs .l {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--gray);
+        margin-bottom: 6px;
+      }
+      .vs .v {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--rose-deep);
+        font-family: 'SF Mono', Consolas, monospace;
+      }
+      .vs .v.old {
+        color: var(--gray-soft);
+        text-decoration: line-through;
+        font-size: 18px;
+      }
+      .vs .v.new {
+        color: var(--reuse);
+      }
+      .vs .note {
+        font-size: 11px;
+        color: var(--ink-soft);
+        margin-top: 4px;
+        line-height: 1.5;
+      }
+
+      section {
+        margin-bottom: 56px;
+      }
+      .num {
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        color: var(--rose);
+        margin-bottom: 8px;
+        display: block;
+      }
+      h2 {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+      .h {
+        font-size: 14.5px;
+        color: var(--gray);
+        margin-bottom: 24px;
+      }
+
+      table {
+        width: 100%;
+        background: #fff;
+        border-collapse: collapse;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        font-size: 13px;
+      }
+      thead th {
+        background: var(--pale);
+        text-align: left;
+        font-weight: 700;
+        padding: 14px 12px;
+        color: var(--rose-deep);
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border-bottom: 1px solid var(--line);
+      }
+      thead th.r {
+        text-align: right;
+      }
+      thead th.c {
+        text-align: center;
+      }
+      tbody td {
+        padding: 12px 12px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+        color: var(--ink-soft);
+      }
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+      tbody td.r {
+        text-align: right;
+        font-family: 'SF Mono', Consolas, monospace;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      tbody td.c {
+        text-align: center;
+      }
+      tbody td .item {
+        font-weight: 700;
+        color: var(--ink);
+        font-size: 13.5px;
+        margin-bottom: 3px;
+      }
+      tbody td .spec {
+        font-size: 11.5px;
+        color: var(--gray);
+        line-height: 1.5;
+      }
+      tr.new-row td {
+        background: linear-gradient(
+          90deg,
+          rgba(252, 197, 210, 0.18),
+          transparent 80%
+        );
+      }
+
+      .pill {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        padding: 3px 7px;
+        border-radius: 100px;
+        white-space: nowrap;
+      }
+      .pill.reuse {
+        background: var(--reuse-soft);
+        color: var(--reuse);
+      }
+      .pill.once {
+        background: var(--once-soft);
+        color: var(--once);
+      }
+      .pill.consum {
+        background: var(--consum-soft);
+        color: var(--consum);
+      }
+      .pill.new {
+        background: var(--rose);
+        color: #fff;
+        margin-left: 6px;
+        font-size: 9.5px;
+      }
+
+      .prio {
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        margin-right: 3px;
+        vertical-align: middle;
+      }
+      .prio.p1 {
+        background: var(--rose);
+      }
+      .prio.p2 {
+        background: #f5b800;
+      }
+      .prio.p3 {
+        background: #999;
+      }
+
+      tfoot td {
+        padding: 14px 12px;
+        background: var(--pale);
+        font-weight: 700;
+        color: var(--rose-deep);
+      }
+      tfoot td.r {
+        text-align: right;
+        font-family: 'SF Mono', Consolas, monospace;
+        color: var(--rose-deep);
+        font-size: 13px;
+      }
+
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 20px;
+        padding: 14px 16px;
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        font-size: 12px;
+        color: var(--ink-soft);
+      }
+      .legend > div {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .scenarios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+      }
+      .scn {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 24px 22px;
+      }
+      .scn.best {
+        border: 2px solid var(--rose);
+        position: relative;
+      }
+      .scn.best::after {
+        content: 'RECOMMENDED';
+        position: absolute;
+        top: -10px;
+        right: 16px;
+        background: var(--rose);
+        color: #fff;
+        padding: 3px 10px;
+        border-radius: 100px;
+        font-size: 9.5px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+      }
+      .scn .lvl {
+        font-size: 10.5px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        padding: 3px 9px;
+        border-radius: 100px;
+        margin-bottom: 12px;
+        display: inline-block;
+      }
+      .scn .lvl.a {
+        background: var(--cream);
+        color: var(--gray);
+      }
+      .scn .lvl.b {
+        background: var(--pale);
+        color: var(--rose);
+      }
+      .scn .lvl.c {
+        background: var(--soft);
+        color: var(--rose-deep);
+      }
+      .scn h3 {
+        font-size: 17px;
+        font-weight: 800;
+        margin-bottom: 6px;
+      }
+      .scn .amt {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--ink);
+        font-family: 'SF Mono', Consolas, monospace;
+        margin-bottom: 10px;
+      }
+      .scn .desc {
+        font-size: 13px;
+        color: var(--ink-soft);
+        line-height: 1.6;
+        margin-bottom: 10px;
+      }
+      .scn .perpop {
+        font-size: 12px;
+        color: var(--reuse);
+        font-weight: 700;
+        background: var(--reuse-soft);
+        padding: 6px 10px;
+        border-radius: 6px;
+      }
+
+      .note {
+        background: #fff8e1;
+        border-left: 4px solid #f5b800;
+        padding: 16px 20px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: var(--ink-soft);
+        margin-top: 18px;
+      }
+      .note b {
+        color: #a87600;
+      }
+
+      .ok {
+        background: var(--reuse-soft);
+        border-left: 4px solid var(--reuse);
+        padding: 16px 20px;
+        border-radius: 8px;
+        font-size: 13px;
+        color: var(--ink-soft);
+        margin-top: 18px;
+      }
+      .ok b {
+        color: var(--reuse);
+      }
+
+      .foot {
+        margin-top: 56px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        font-size: 11.5px;
+        color: var(--gray-soft);
+        text-align: center;
+      }
+      @media (max-width: 760px) {
+        .page {
+          padding: 32px 16px 80px;
+        }
+        .cover {
+          padding: 36px 22px;
+        }
+        .cover h1 {
+          font-size: 24px;
+        }
+        .vs {
+          grid-template-columns: 1fr;
+        }
+        table {
+          font-size: 11.5px;
+        }
+        thead th,
+        tbody td {
+          padding: 8px 6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="cover">
+        <span class="tag"
+          >POSM ORDER LIST v3 · COUNTER · PINK · 2026.05.27</span
+        >
+        <h1>POSM 발주 리스트 v3 — 카운터형·핑크</h1>
+        <p class="sub">
+          3D 뷰어 v4 (카운터형·핑크·디테일 강화) 기준 전 항목 발주 리스트<br />
+          모듈러 자산 위주로 재사용성 ↑ · 다음 팝업에도 70% 활용 가능
+        </p>
+
+        <div class="vs">
+          <div>
+            <div class="l">v2 (워크인·1회용)</div>
+            <div class="v old">₩ 5,307,500</div>
+            <div class="note">초기 안</div>
+          </div>
+          <div>
+            <div class="l">v3 (카운터형·이번 팝업)</div>
+            <div class="v">₩ 5,690,000</div>
+            <div class="note">디테일·POSM·데코 +</div>
+          </div>
+          <div>
+            <div class="l">v3 (2회 분담 실질)</div>
+            <div class="v new">₩ 3,775,000</div>
+            <div class="note">재사용 75% · -33.7%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="legend">
+        <div><span class="pill reuse">REUSE</span>재사용 자산</div>
+        <div><span class="pill once">ONCE</span>일회성</div>
+        <div><span class="pill consum">CONSUM</span>소모품</div>
+        <div>
+          <span class="prio p1"></span>P1 필수 / <span class="prio p2"></span>P2
+          권장 / <span class="prio p3"></span>P3 옵션
+        </div>
+        <div><span class="pill new">NEW</span>v3 신규 항목</div>
+      </div>
+
+      <!-- 01 Counter -->
+      <section>
+        <span class="num">01 · COUNTER STRUCTURE</span>
+        <h2>카운터 본체 & 그래픽</h2>
+        <div class="h">
+          카운터형 부스의 핵심 자산 — 모듈러 설계로 재사용 최대화
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%">항목</th>
+              <th>유형</th>
+              <th class="c">P</th>
+              <th class="c">수량</th>
+              <th class="r">단가(₩)</th>
+              <th class="r">소계(₩)</th>
+              <th class="r">2회분담</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  카운터 본체 (모듈러)<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  3.6×0.5×0.9m, MDF + 시트 래핑 · 분리식 (3분할 운반 가능)
+                </div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">720,000</td>
+              <td class="r">720,000</td>
+              <td class="r">360,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  카운터 정면 그래픽 패널<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">3.55×0.74m, 교체식 시트 · 이번 컨셉 전용</div>
+              </td>
+              <td><span class="pill once">ONCE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">140,000</td>
+              <td class="r">140,000</td>
+              <td class="r">140,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  카운터 측면 패널 좌·우<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  0.48×0.86m × 2, 세로 로고 · 컨셉 바뀌면 그래픽만 교체
+                </div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p2"></span></td>
+              <td class="c">2</td>
+              <td class="r">55,000</td>
+              <td class="r">110,000</td>
+              <td class="r">55,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">소계</td>
+              <td class="r">970,000</td>
+              <td class="r">555,000</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <!-- 02 Headers -->
+      <section>
+        <span class="num">02 · HEADERS</span>
+        <h2>헤더 2패널 (자립형)</h2>
+        <div class="h">
+          벽 사용 불가 대응 — 자립 헤더 2개 (메인 + 사이드 모델)
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%">항목</th>
+              <th>유형</th>
+              <th class="c">P</th>
+              <th class="c">수량</th>
+              <th class="r">단가(₩)</th>
+              <th class="r">소계(₩)</th>
+              <th class="r">2회분담</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  메인 헤더 패널<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  1.6×1.0m, 프레임(자가) + 교체식 그래픽 · 지지 다리 2개 포함
+                </div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">340,000</td>
+              <td class="r">340,000</td>
+              <td class="r">170,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  메인 헤더 그래픽 (이번 컨셉)<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  "Cloud to Bloom" + 모델·카피·뱃지 · 컨셉 전용
+                </div>
+              </td>
+              <td><span class="pill once">ONCE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">120,000</td>
+              <td class="r">120,000</td>
+              <td class="r">120,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  사이드 모델 패널<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  0.7×1.1m, 프레임(자가) + 교체식 모델 사진 · 지지 다리 2개
+                </div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">220,000</td>
+              <td class="r">220,000</td>
+              <td class="r">110,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  사이드 모델 그래픽 (이번 컨셉)<span class="pill new"
+                    >NEW</span
+                  >
+                </div>
+                <div class="spec">모델컷 + NEW IN 뱃지 · 컨셉 전용</div>
+              </td>
+              <td><span class="pill once">ONCE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">80,000</td>
+              <td class="r">80,000</td>
+              <td class="r">80,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">소계</td>
+              <td class="r">760,000</td>
+              <td class="r">480,000</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <!-- 03 Left section -->
+      <section>
+        <span class="num">03 · LEFT SECTION (BASE)</span>
+        <h2>좌 · 베이스 진열대 (2단 다층)</h2>
+        <div class="h">파우더밤·하이라이터·클라우드블러 진열</div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%">항목</th>
+              <th>유형</th>
+              <th class="c">P</th>
+              <th class="c">수량</th>
+              <th class="r">단가(₩)</th>
+              <th class="r">소계(₩)</th>
+              <th class="r">2회분담</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  베이스 1단 단상 (모듈러 큐브 L)<span class="pill new"
+                    >NEW</span
+                  >
+                </div>
+                <div class="spec">100×40×10cm, 화이트 MDF + 핑크 트림</div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">220,000</td>
+              <td class="r">220,000</td>
+              <td class="r">110,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  베이스 2단 단상 (모듈러 큐브 S)<span class="pill new"
+                    >NEW</span
+                  >
+                </div>
+                <div class="spec">55×22×16cm, 1단 위 뒤쪽 배치</div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">120,000</td>
+              <td class="r">120,000</td>
+              <td class="r">60,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  섹션 헤더 카드 "BASE"<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">자립 카드, 32×9cm 핑크 배경</div>
+              </td>
+              <td><span class="pill once">ONCE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">18,000</td>
+              <td class="r">18,000</td>
+              <td class="r">18,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">소계</td>
+              <td class="r">358,000</td>
+              <td class="r">188,000</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <!-- 04 Center section -->
+      <section>
+        <span class="num">04 · CENTER SECTION (BEST)</span>
+        <h2>중 · BEST 원형 다층 단상</h2>
+        <div class="h">부스 비주얼 핵심 — 가장 임팩트 있는 자산</div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%">항목</th>
+              <th>유형</th>
+              <th class="c">P</th>
+              <th class="c">수량</th>
+              <th class="r">단가(₩)</th>
+              <th class="r">소계(₩)</th>
+              <th class="r">2회분담</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  BEST 1단 원형 아크릴 단상<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  Ø84cm × H 14cm, 클리어 아크릴 + 핑크 베이스링
+                </div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">380,000</td>
+              <td class="r">380,000</td>
+              <td class="r">190,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  BEST 2단 원형 아크릴 단상<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">Ø40cm × H 8cm, 1단 위 중앙</div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">180,000</td>
+              <td class="r">180,000</td>
+              <td class="r">90,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  섹션 헤더 카드 "BEST"<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  자립 카드, 28×8cm 로즈 배경 · 카피 변경 가능
+                </div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">24,000</td>
+              <td class="r">24,000</td>
+              <td class="r">12,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">소계</td>
+              <td class="r">584,000</td>
+              <td class="r">292,000</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <!-- 05 Right section -->
+      <section>
+        <span class="num">05 · RIGHT SECTION (COLOR · BROW)</span>
+        <h2>우 · 컬러·브로우 진열대 (2단 + 미니박스)</h2>
+        <div class="h">
+          립라이너 12 컬러월(미니박스 형식) + 이지브로우마스카라
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%">항목</th>
+              <th>유형</th>
+              <th class="c">P</th>
+              <th class="c">수량</th>
+              <th class="r">단가(₩)</th>
+              <th class="r">소계(₩)</th>
+              <th class="r">2회분담</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  컬러 1단 단상 (모듈러 큐브 L)<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">105×40×10cm, 화이트 + 딥핑크 트림</div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">230,000</td>
+              <td class="r">230,000</td>
+              <td class="r">115,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  컬러 2단 단상 (모듈러 큐브 S)<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">72×20×16cm, 뒤쪽 배치 · 이지브로우용</div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">140,000</td>
+              <td class="r">140,000</td>
+              <td class="r">70,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  립라이너 미니박스<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  86×32×8cm, 12 컬러 진열 (4×3 그리드) · 패널 교체식
+                </div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">95,000</td>
+              <td class="r">95,000</td>
+              <td class="r">47,500</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="item">립 컬러 패널 (이번 컨셉)</div>
+                <div class="spec">
+                  12-15 컬러 패널, 다음 컨셉 새 라인업이면 재제작
+                </div>
+              </td>
+              <td><span class="pill once">ONCE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">60,000</td>
+              <td class="r">60,000</td>
+              <td class="r">60,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  섹션 헤더 카드 "COLOR · BROW"<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">자립 카드, 42×9cm 로즈 배경</div>
+              </td>
+              <td><span class="pill once">ONCE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">22,000</td>
+              <td class="r">22,000</td>
+              <td class="r">22,000</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="item">스와치 미니 트레이 (미러)</div>
+                <div class="spec">22×14cm, 미러 표면, 면봉통 옆</div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p2"></span></td>
+              <td class="c">1</td>
+              <td class="r">65,000</td>
+              <td class="r">65,000</td>
+              <td class="r">32,500</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  면봉통 + 면봉 1주분<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">Ø7cm 통, 면봉 100개 1통 × 4주</div>
+              </td>
+              <td><span class="pill consum">CONSUM</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">4</td>
+              <td class="r">12,000</td>
+              <td class="r">48,000</td>
+              <td class="r">48,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">소계</td>
+              <td class="r">660,000</td>
+              <td class="r">395,000</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <!-- 06 Stem orbs & deco -->
+      <section>
+        <span class="num">06 · STEM ORBS & DECO</span>
+        <h2>막대형 구체 오브제 & 데코 소품</h2>
+        <div class="h">v4 신규 추가 디테일 — 단상 위 볼륨감 + 풍성한 데코</div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%">항목</th>
+              <th>유형</th>
+              <th class="c">P</th>
+              <th class="c">수량</th>
+              <th class="r">단가(₩)</th>
+              <th class="r">소계(₩)</th>
+              <th class="r">2회분담</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  막대형 구체 오브제 세트<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  14개 (좌 4·중 6·우 4) · 핑크 그라데이션 5톤 · 스템 H 13-50cm ·
+                  구체 Ø4-8cm · 분해 보관
+                </div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">14</td>
+              <td class="r">22,000</td>
+              <td class="r">308,000</td>
+              <td class="r">154,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  손거울 (로즈 핸들)<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  Ø10cm 미러 + 로즈톤 메탈 핸들 · 데스크탑 거치형
+                </div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p2"></span></td>
+              <td class="c">2</td>
+              <td class="r">35,000</td>
+              <td class="r">70,000</td>
+              <td class="r">35,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  펄 비즈 (데코)<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  Ø1cm 펄 화이트 비즈 · 20-30개 · 단상 주변 흩뿌리기
+                </div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p3"></span></td>
+              <td class="c">30</td>
+              <td class="r">800</td>
+              <td class="r">24,000</td>
+              <td class="r">12,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  실크 꽃잎 데코<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  핑크 톤 3종 (페일·소프트·메인) 각 4-5장 · 단상 주변
+                </div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p3"></span></td>
+              <td class="c">12</td>
+              <td class="r">1,500</td>
+              <td class="r">18,000</td>
+              <td class="r">9,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  제품 시연 미러 (탁상형)<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">25×20cm, 핑크 프레임, 자가 보유</div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p2"></span></td>
+              <td class="c">2</td>
+              <td class="r">42,000</td>
+              <td class="r">84,000</td>
+              <td class="r">42,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">소계</td>
+              <td class="r">504,000</td>
+              <td class="r">252,000</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <!-- 07 POSM cards -->
+      <section>
+        <span class="num">07 · POSM CARDS & STICKERS</span>
+        <h2>POSM 카드 · 스티커</h2>
+        <div class="h">자립 카드·비스듬 스티커 — 풍부한 메시지 전달</div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%">항목</th>
+              <th>유형</th>
+              <th class="c">P</th>
+              <th class="c">수량</th>
+              <th class="r">단가(₩)</th>
+              <th class="r">소계(₩)</th>
+              <th class="r">2회분담</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  POSM 비스듬 스티커 풀세트<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">
+                  NEW·HOT·LIMITED·HERO PICK·#1·#2·12 SHADES·MINI·BROW·BEST 등
+                  12종
+                </div>
+              </td>
+              <td><span class="pill once">ONCE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">12</td>
+              <td class="r">3,500</td>
+              <td class="r">42,000</td>
+              <td class="r">42,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  가격표 카드 세트<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">3-5×2cm 라미네이팅 · ₩/¥ 병기 · 각 SKU별</div>
+              </td>
+              <td><span class="pill once">ONCE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">20</td>
+              <td class="r">1,200</td>
+              <td class="r">24,000</td>
+              <td class="r">24,000</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="item">컬러 네임 카드 (한·중·일)</div>
+                <div class="spec">립라이너 12 컬러별 이름·번호</div>
+              </td>
+              <td><span class="pill once">ONCE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">15</td>
+              <td class="r">2,500</td>
+              <td class="r">37,500</td>
+              <td class="r">37,500</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="item">해시태그·QR 사이니지 (한·중·일)</div>
+                <div class="spec">
+                  A5 자립 사이니지 3장 (한국어/중국어/일본어)
+                </div>
+              </td>
+              <td><span class="pill once">ONCE</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">3</td>
+              <td class="r">40,000</td>
+              <td class="r">120,000</td>
+              <td class="r">120,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">소계</td>
+              <td class="r">223,500</td>
+              <td class="r">223,500</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <!-- 08 Print / Novelty -->
+      <section>
+        <span class="num">08 · PRINTS · NOVELTY · STAFF</span>
+        <h2>인쇄물 · 노벨티 · 스태프</h2>
+        <div class="h">소모품·일회성 — 매번 새로 제작</div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%">항목</th>
+              <th>유형</th>
+              <th class="c">P</th>
+              <th class="c">수량</th>
+              <th class="r">단가(₩)</th>
+              <th class="r">소계(₩)</th>
+              <th class="r">2회분담</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="item">제품 카탈로그 (한·중·일)</div>
+                <div class="spec">A5 4P, 400부</div>
+              </td>
+              <td><span class="pill consum">CONSUM</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">400</td>
+              <td class="r">650</td>
+              <td class="r">260,000</td>
+              <td class="r">260,000</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="item">샤오홍슈 QR 카드</div>
+                <div class="spec">9×5.5cm, 1,000부</div>
+              </td>
+              <td><span class="pill consum">CONSUM</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1,000</td>
+              <td class="r">120</td>
+              <td class="r">120,000</td>
+              <td class="r">120,000</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="item">샘플 파우치 (체험 키트)</div>
+                <div class="spec">200개 (구매자 우선)</div>
+              </td>
+              <td><span class="pill consum">CONSUM</span></td>
+              <td class="c"><span class="prio p2"></span></td>
+              <td class="c">200</td>
+              <td class="r">1,800</td>
+              <td class="r">360,000</td>
+              <td class="r">360,000</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="item">팝업 한정 쇼핑백</div>
+                <div class="spec">200매, 핑크 그라데이션</div>
+              </td>
+              <td><span class="pill consum">CONSUM</span></td>
+              <td class="c"><span class="prio p2"></span></td>
+              <td class="c">200</td>
+              <td class="r">1,200</td>
+              <td class="r">240,000</td>
+              <td class="r">240,000</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="item">손거울 노벨티 (구매자 GWP)</div>
+                <div class="spec">Ø8cm 로고 손거울 · 구매자 한정 · 100개</div>
+              </td>
+              <td><span class="pill consum">CONSUM</span></td>
+              <td class="c"><span class="prio p3"></span></td>
+              <td class="c">100</td>
+              <td class="r">3,500</td>
+              <td class="r">350,000</td>
+              <td class="r">350,000</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="item">스태프 명찰 (자석형)</div>
+                <div class="spec">8×5cm, 자가 보유</div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p2"></span></td>
+              <td class="c">4</td>
+              <td class="r">15,000</td>
+              <td class="r">60,000</td>
+              <td class="r">30,000</td>
+            </tr>
+            <tr class="new-row">
+              <td>
+                <div class="item">
+                  스태프 유니폼 액세서리<span class="pill new">NEW</span>
+                </div>
+                <div class="spec">핑크 스카프 또는 앞치마 · 자가 보유</div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p3"></span></td>
+              <td class="c">4</td>
+              <td class="r">25,000</td>
+              <td class="r">100,000</td>
+              <td class="r">50,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">소계</td>
+              <td class="r">1,490,000</td>
+              <td class="r">1,410,000</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <!-- 09 Storage / logistics -->
+      <section>
+        <span class="num">09 · STORAGE & LOGISTICS</span>
+        <h2>보관·물류 비용</h2>
+        <div class="h">재사용 자산 운영비</div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%">항목</th>
+              <th>유형</th>
+              <th class="c">P</th>
+              <th class="c">수량</th>
+              <th class="r">단가(₩)</th>
+              <th class="r">소계(₩)</th>
+              <th class="r">2회분담</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="item">창고 보관비 (3개월)</div>
+                <div class="spec">팝업 종료 후 다음 팝업 전 보관 · 3-5㎡</div>
+              </td>
+              <td><span class="pill consum">CONSUM</span></td>
+              <td class="c"><span class="prio p2"></span></td>
+              <td class="c">3</td>
+              <td class="r">80,000</td>
+              <td class="r">240,000</td>
+              <td class="r">120,000</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="item">설치·철수·운반비</div>
+                <div class="spec">
+                  롯데 명동 → 창고 (1.5톤 트럭) · 카운터형이라 v2보다 운반 쉬움
+                </div>
+              </td>
+              <td><span class="pill consum">CONSUM</span></td>
+              <td class="c"><span class="prio p1"></span></td>
+              <td class="c">1</td>
+              <td class="r">280,000</td>
+              <td class="r">280,000</td>
+              <td class="r">280,000</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="item">분해·재조립 매뉴얼</div>
+                <div class="spec">1회 작성, 다음 팝업에 재활용</div>
+              </td>
+              <td><span class="pill reuse">REUSE</span></td>
+              <td class="c"><span class="prio p2"></span></td>
+              <td class="c">1</td>
+              <td class="r">100,000</td>
+              <td class="r">100,000</td>
+              <td class="r">50,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">소계</td>
+              <td class="r">620,000</td>
+              <td class="r">450,000</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <!-- 10 Grand Total -->
+      <section>
+        <span class="num">10 · GRAND TOTAL</span>
+        <h2>총괄 — v2 vs v3</h2>
+        <div class="h">
+          VAT 별도 · 2회 분담 = 이번 + 다음 팝업 동일 자산 활용
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 36%">카테고리</th>
+              <th class="r">v2 (워크인)</th>
+              <th class="r">v3 (카운터)</th>
+              <th class="r">v3 (2회분담)</th>
+              <th class="r">절감률</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01 · 카운터 본체·그래픽</td>
+              <td class="r">—</td>
+              <td class="r">970,000</td>
+              <td class="r">555,000</td>
+              <td class="r">신규</td>
+            </tr>
+            <tr>
+              <td>02 · 헤더 2패널</td>
+              <td class="r">—</td>
+              <td class="r">760,000</td>
+              <td class="r">480,000</td>
+              <td class="r">신규</td>
+            </tr>
+            <tr>
+              <td>03 · 좌 베이스 진열대</td>
+              <td class="r">1,065,000</td>
+              <td class="r">358,000</td>
+              <td class="r">188,000</td>
+              <td class="r">-66.4% / -47.5%</td>
+            </tr>
+            <tr>
+              <td>04 · 중 BEST 단상</td>
+              <td class="r">1,000,000</td>
+              <td class="r">584,000</td>
+              <td class="r">292,000</td>
+              <td class="r">-41.6% / -50.0%</td>
+            </tr>
+            <tr>
+              <td>05 · 우 컬러·브로우</td>
+              <td class="r">1,267,500</td>
+              <td class="r">660,000</td>
+              <td class="r">395,000</td>
+              <td class="r">-47.9% / -40.2%</td>
+            </tr>
+            <tr>
+              <td>06 · 막대 오브제·데코</td>
+              <td class="r">—</td>
+              <td class="r">504,000</td>
+              <td class="r">252,000</td>
+              <td class="r">신규</td>
+            </tr>
+            <tr>
+              <td>07 · POSM 카드</td>
+              <td class="r">—</td>
+              <td class="r">223,500</td>
+              <td class="r">223,500</td>
+              <td class="r">신규</td>
+            </tr>
+            <tr>
+              <td>08 · 인쇄·노벨티·스태프</td>
+              <td class="r">1,040,000</td>
+              <td class="r">1,490,000</td>
+              <td class="r">1,410,000</td>
+              <td class="r">+43.3%</td>
+            </tr>
+            <tr>
+              <td>09 · 보관·물류</td>
+              <td class="r">540,000</td>
+              <td class="r">620,000</td>
+              <td class="r">450,000</td>
+              <td class="r">+14.8%</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>합계 (이번 팝업)</td>
+              <td class="r">5,527,500</td>
+              <td class="r">5,690,000</td>
+              <td class="r">3,775,000</td>
+              <td class="r" style="color: var(--reuse)">-33.7%</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <div class="ok">
+          ✅ <b>핵심 인사이트</b> · v3 이번 팝업 총액 ₩5.69M (v2 대비 +3%).
+          디테일·POSM·데코 추가에도 단상 모듈러화로 단상 비용 -50% 절감. 다음
+          팝업 분담 시 <b>₩3.78M (-33.7%)</b>.<br />
+          ※ 2회 팝업 합산 절감 효과: <b>₩7.55M</b>
+        </div>
+      </section>
+
+      <!-- 11 Scenarios -->
+      <section>
+        <span class="num">11 · BUDGET SCENARIOS</span>
+        <h2>예산 시나리오 3안</h2>
+        <div class="scenarios">
+          <div class="scn">
+            <span class="lvl a">A · 미니멈</span>
+            <h3>P1 필수만</h3>
+            <div class="amt">₩ 4,250,000</div>
+            <p class="desc">
+              카운터+헤더+단상 핵심 + 인쇄물·QR + 카탈로그. 막대
+              오브제·데코·노벨티 일부 제외.
+            </p>
+            <div class="perpop">2회 분담 ₩ 2,950,000</div>
+          </div>
+          <div class="scn best">
+            <span class="lvl b">B · v3 풀</span>
+            <h3>전 항목 (디테일 강화)</h3>
+            <div class="amt">₩ 5,690,000</div>
+            <p class="desc">
+              v4 뷰어 그대로. 막대 오브제 14개·데코 소품·POSM 카드·핑크 톤
+              풀세트.
+            </p>
+            <div class="perpop">2회 분담 ₩ 3,775,000</div>
+          </div>
+          <div class="scn">
+            <span class="lvl c">C · 프리미엄</span>
+            <h3>v3 + 옵션 확장</h3>
+            <div class="amt">₩ 6,450,000</div>
+            <p class="desc">
+              + 손거울 노벨티 200개 증량 · 추가 막대 오브제 · 바닥 매트 · 실측
+              후 추가 미러.
+            </p>
+            <div class="perpop">2회 분담 ₩ 4,250,000</div>
+          </div>
+        </div>
+
+        <div class="note">
+          💡 <b>"디테일 살리고 너무 비싸지 않게 + 다음에도 쓴다"</b> 조건이면
+          <b>시나리오 B 권장</b>.<br />
+          미니멈은 디테일 약함 (대표 보고·SNS 임팩트 부족), 프리미엄은 ROI 추가
+          검토 필요.
+        </div>
+      </section>
+
+      <!-- 12 v2 vs v3 -->
+      <section>
+        <span class="num">12 · v2 → v3 변경 요약</span>
+        <h2>주요 변경사항</h2>
+        <div class="scenarios">
+          <div class="scn">
+            <span class="lvl b">REMOVED</span>
+            <h3>v2에서 제거 (구조 변경)</h3>
+            <p class="desc">
+              · 벽면 그래픽 3종 (좌·중·우, ₩315K) → 벽 사용 X<br />
+              · 풀바디 미러 (₩260K) → 카운터형엔 불필요<br />
+              · 셀카 마크 러그 → 동일<br />
+              · 부스 정면 헤더 사인 → 자립 헤더로 대체<br />
+              · 솜털 클라우드 오브제 → 막대 오브제로 대체
+            </p>
+          </div>
+          <div class="scn best">
+            <span class="lvl b">ADDED</span>
+            <h3>v3 신규 (카운터형 + 디테일)</h3>
+            <p class="desc">
+              · 카운터 본체·정면 그래픽·측면 패널<br />
+              · 메인 헤더 + 사이드 모델 패널<br />
+              · 다층 단상 (좌 2단·중 2단·우 2단)<br />
+              · 립라이너 미니박스<br />
+              · 막대 오브제 14개 (핑크 톤)<br />
+              · 손거울·펄 비즈·꽃잎 데코<br />
+              · 섹션 헤더 카드 3종 (자립)<br />
+              · POSM 비스듬 스티커 12종<br />
+              · 가격표 카드 세트<br />
+              · 스태프 유니폼 액세서리
+            </p>
+          </div>
+          <div class="scn">
+            <span class="lvl b">CHANGED</span>
+            <h3>변경·이동</h3>
+            <p class="desc">
+              · 컬러: 핑크/체리/레드 → 탐뷰티 케이스 핑크 톤<br />
+              · 모든 단상: 일체형 → 모듈러 큐브<br />
+              · 헤더 사인: 부스 정면 → 자립 2패널<br />
+              · POSM 사이니지 한·중 → 한·중·일 3개국<br />
+              · 카탈로그 한·중 → 한·중·일 3개국
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="foot">
+        탐뷰티 × 롯데백화점 뷰티 팝업 · POSM 발주 리스트 v3 (카운터형·핑크) ·
+        2026.05.27<br />
+        ※ 모든 단가는 1차 추정치 · VAT 별도 · 실측 후 보정 필수
+      </div>
+    </div>
+  </body>
+</html>
