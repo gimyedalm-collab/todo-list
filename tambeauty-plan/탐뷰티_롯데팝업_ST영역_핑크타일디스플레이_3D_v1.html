@@ -417,7 +417,14 @@
             그레이)
           </div>
           <div class="row">
-            <span class="dot" style="background: #3fb8e8"></span>KN 집기 (a~f)
+            <span
+              class="dot"
+              style="background: #f2f2f2; border: 1px solid #ccc"
+            ></span
+            >KN 집기 — 화이트 프레임 + 펙보드
+          </div>
+          <div class="row">
+            <span class="dot" style="background: #222"></span>캐스터 (이동식 휠)
           </div>
         </div>
       </div>
@@ -1071,43 +1078,281 @@
       mirrorPanel.position.set(4.7, 0, 5.2);
       scene.add(mirrorPanel);
 
-      // ============ SURROUNDING FIXTURES (KN blue boxes - low detail context) ============
-      function makeKNBox(x, z, w, d, rot = 0, label = 'KN') {
-        const group = new THREE.Group();
-        const geo = new RoundedBoxGeometry(w, 1.7, d, 3, 0.08);
-        const mat = new THREE.MeshStandardMaterial({
-          color: 0x3fb8e8,
-          roughness: 0.45,
-          metalness: 0.15,
-        });
-        const box = new THREE.Mesh(geo, mat);
-        box.position.y = 0.85;
-        box.castShadow = true;
-        box.receiveShadow = true;
-        group.add(box);
+      // ============ KN 집기 (실제 도면 기반: 화이트 프레임 + 펙보드 + 셸프 + 캐스터) ============
+      // 펙보드 텍스처 (구멍 패턴)
+      function makePegboardTexture() {
+        const size = 512;
+        const c = document.createElement('canvas');
+        c.width = c.height = size;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = '#f4f4f4';
+        ctx.fillRect(0, 0, size, size);
+        ctx.fillStyle = '#2a2a2a';
+        const step = 28;
+        const r = 4;
+        for (let y = step / 2; y < size; y += step) {
+          for (let x = step / 2; x < size; x += step) {
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+        // subtle shading
+        const grad = ctx.createLinearGradient(0, 0, 0, size);
+        grad.addColorStop(0, 'rgba(0,0,0,0.05)');
+        grad.addColorStop(1, 'rgba(0,0,0,0.0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, size, size);
+        const tex = new THREE.CanvasTexture(c);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+        return tex;
+      }
+      const pegboardTex = makePegboardTexture();
 
-        // top edge highlight
-        const top = new THREE.Mesh(
-          new THREE.BoxGeometry(w + 0.02, 0.04, d + 0.02),
-          new THREE.MeshStandardMaterial({ color: 0x6dcaf0, roughness: 0.3 }),
+      const whiteFrameMat = new THREE.MeshStandardMaterial({
+        color: 0xf2f2f2,
+        roughness: 0.45,
+        metalness: 0.25,
+      });
+      const shelfMat = new THREE.MeshStandardMaterial({
+        color: 0xfafafa,
+        roughness: 0.5,
+        metalness: 0.1,
+      });
+      const wheelMat = new THREE.MeshStandardMaterial({
+        color: 0x222222,
+        roughness: 0.4,
+        metalness: 0.3,
+      });
+      const wheelHubMat = new THREE.MeshStandardMaterial({
+        color: 0x888888,
+        roughness: 0.35,
+        metalness: 0.6,
+      });
+
+      function makeKNCabinet(x, z, w, d, rot = 0, opts = {}) {
+        const group = new THREE.Group();
+        const h = opts.h || 1.65; // 캐비닛 본체 높이
+        const frameT = 0.035; // 프레임 두께
+        const wheelH = 0.1; // 캐스터 높이
+        const baseY = wheelH;
+
+        // ===== 4 corner vertical posts =====
+        const postGeo = new THREE.BoxGeometry(frameT, h, frameT);
+        const cornerOffX = [-w / 2 + frameT / 2, w / 2 - frameT / 2];
+        const cornerOffZ = [-d / 2 + frameT / 2, d / 2 - frameT / 2];
+        cornerOffX.forEach((cx) => {
+          cornerOffZ.forEach((cz) => {
+            const post = new THREE.Mesh(postGeo, whiteFrameMat);
+            post.position.set(cx, baseY + h / 2, cz);
+            post.castShadow = true;
+            group.add(post);
+          });
+        });
+
+        // ===== Horizontal frame rails (top + bottom + middle x2) =====
+        function railX(yPos) {
+          // x방향 가로 레일 (앞/뒤 2개)
+          [-d / 2 + frameT / 2, d / 2 - frameT / 2].forEach((cz) => {
+            const r = new THREE.Mesh(
+              new THREE.BoxGeometry(w, frameT, frameT),
+              whiteFrameMat,
+            );
+            r.position.set(0, yPos, cz);
+            r.castShadow = true;
+            group.add(r);
+          });
+        }
+        function railZ(yPos) {
+          // z방향 (좌/우 2개)
+          [-w / 2 + frameT / 2, w / 2 - frameT / 2].forEach((cx) => {
+            const r = new THREE.Mesh(
+              new THREE.BoxGeometry(frameT, frameT, d),
+              whiteFrameMat,
+            );
+            r.position.set(cx, yPos, 0);
+            r.castShadow = true;
+            group.add(r);
+          });
+        }
+        railX(baseY + 0.02);
+        railZ(baseY + 0.02);
+        railX(baseY + h - 0.02);
+        railZ(baseY + h - 0.02);
+        // 중단 보강 레일
+        railX(baseY + h * 0.42);
+
+        // ===== Pegboard back panel (뒷면 펙보드) =====
+        const pegGeo = new THREE.PlaneGeometry(w - frameT * 2, h - frameT * 2);
+        const pegMat = new THREE.MeshStandardMaterial({
+          map: pegboardTex,
+          roughness: 0.7,
+          metalness: 0.05,
+        });
+        const peg = new THREE.Mesh(pegGeo, pegMat);
+        peg.position.set(0, baseY + h / 2, -d / 2 + frameT + 0.005);
+        peg.receiveShadow = true;
+        group.add(peg);
+
+        // ===== Shelves (4단) =====
+        const shelfHs = [0.42, 0.72, 1.02, 1.32]; // y offsets from baseY
+        shelfHs.forEach((sh) => {
+          const shelf = new THREE.Mesh(
+            new THREE.BoxGeometry(w - frameT * 2, 0.018, d - frameT * 2 - 0.04),
+            shelfMat,
+          );
+          shelf.position.set(0, baseY + sh, 0.01);
+          shelf.castShadow = true;
+          shelf.receiveShadow = true;
+          group.add(shelf);
+
+          // shelf front lip (얇은 선)
+          const lip = new THREE.Mesh(
+            new THREE.BoxGeometry(w - frameT * 2, 0.025, 0.012),
+            new THREE.MeshStandardMaterial({ color: 0xe0e0e0, roughness: 0.5 }),
+          );
+          lip.position.set(0, baseY + sh + 0.005, d / 2 - frameT - 0.02);
+          group.add(lip);
+        });
+
+        // ===== Bottom storage with X-bracing =====
+        // 하단 패널 (양쪽)
+        const bottomPanelH = h * 0.32;
+        const bracePanel = new THREE.Group();
+        // 좌/우 패널 안쪽
+        // X 브레이스 (사선 2개)
+        const braceLen = Math.sqrt(
+          (w - frameT * 2) ** 2 + (bottomPanelH - 0.04) ** 2,
         );
-        top.position.y = 1.72;
-        group.add(top);
+        const angle = Math.atan2(bottomPanelH - 0.04, w - frameT * 2);
+        const braceGeo = new THREE.BoxGeometry(braceLen, 0.025, 0.025);
+        const b1 = new THREE.Mesh(braceGeo, whiteFrameMat);
+        b1.position.set(0, baseY + bottomPanelH / 2, -d / 2 + frameT + 0.02);
+        b1.rotation.z = angle;
+        group.add(b1);
+        const b2 = new THREE.Mesh(braceGeo, whiteFrameMat);
+        b2.position.set(0, baseY + bottomPanelH / 2, -d / 2 + frameT + 0.02);
+        b2.rotation.z = -angle;
+        group.add(b2);
+        // 앞쪽도 X
+        const b3 = new THREE.Mesh(braceGeo, whiteFrameMat);
+        b3.position.set(0, baseY + bottomPanelH / 2, d / 2 - frameT - 0.02);
+        b3.rotation.z = angle;
+        group.add(b3);
+        const b4 = new THREE.Mesh(braceGeo, whiteFrameMat);
+        b4.position.set(0, baseY + bottomPanelH / 2, d / 2 - frameT - 0.02);
+        b4.rotation.z = -angle;
+        group.add(b4);
+
+        // ===== Casters (4 wheels) =====
+        function makeCaster(cx, cz) {
+          const wheelGroup = new THREE.Group();
+          // bracket
+          const bracket = new THREE.Mesh(
+            new THREE.BoxGeometry(0.05, 0.04, 0.05),
+            new THREE.MeshStandardMaterial({
+              color: 0x444444,
+              roughness: 0.4,
+              metalness: 0.7,
+            }),
+          );
+          bracket.position.y = wheelH - 0.03;
+          wheelGroup.add(bracket);
+          // wheel (cylinder rotated)
+          const wheel = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.045, 0.045, 0.025, 16),
+            wheelMat,
+          );
+          wheel.rotation.z = Math.PI / 2;
+          wheel.position.y = 0.045;
+          wheelGroup.add(wheel);
+          // hub
+          const hub = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.012, 0.012, 0.028, 12),
+            wheelHubMat,
+          );
+          hub.rotation.z = Math.PI / 2;
+          hub.position.y = 0.045;
+          wheelGroup.add(hub);
+          wheelGroup.position.set(cx, 0, cz);
+          return wheelGroup;
+        }
+        const wheelInset = 0.08;
+        group.add(makeCaster(-w / 2 + wheelInset, -d / 2 + wheelInset));
+        group.add(makeCaster(w / 2 - wheelInset, -d / 2 + wheelInset));
+        group.add(makeCaster(-w / 2 + wheelInset, d / 2 - wheelInset));
+        group.add(makeCaster(w / 2 - wheelInset, d / 2 - wheelInset));
+
+        // ===== Products on shelves (decorative) =====
+        if (!opts.empty) {
+          shelfHs.forEach((sh, si) => {
+            const productCount = Math.max(2, Math.floor(w / 0.28));
+            for (let p = 0; p < productCount; p++) {
+              const px =
+                -w / 2 +
+                frameT +
+                0.12 +
+                (p * (w - 0.3)) / Math.max(1, productCount - 1);
+              const isJar = (si + p) % 3 === 0;
+              const bottle = new THREE.Mesh(
+                isJar
+                  ? new THREE.CylinderGeometry(0.045, 0.045, 0.1, 16)
+                  : new THREE.CylinderGeometry(0.035, 0.04, 0.18, 16),
+                new THREE.MeshPhysicalMaterial({
+                  color: (si + p) % 2 ? 0xf5d6dc : 0xe88aa5,
+                  roughness: 0.3,
+                  metalness: 0.05,
+                  clearcoat: 0.6,
+                }),
+              );
+              bottle.position.set(
+                px,
+                baseY + sh + (isJar ? 0.06 : 0.1),
+                -d / 2 + frameT + 0.1 + (p % 2) * 0.08,
+              );
+              bottle.castShadow = true;
+              group.add(bottle);
+
+              // cap
+              const cap = new THREE.Mesh(
+                new THREE.CylinderGeometry(
+                  isJar ? 0.048 : 0.022,
+                  isJar ? 0.048 : 0.022,
+                  isJar ? 0.018 : 0.025,
+                  12,
+                ),
+                new THREE.MeshStandardMaterial({
+                  color: 0xc44b6e,
+                  roughness: 0.35,
+                }),
+              );
+              cap.position.set(
+                px,
+                baseY + sh + (isJar ? 0.125 : 0.205),
+                -d / 2 + frameT + 0.1 + (p % 2) * 0.08,
+              );
+              group.add(cap);
+            }
+          });
+        }
 
         group.position.set(x, 0, z);
         group.rotation.y = rot;
         return group;
       }
 
-      // 집기 a, b, c, d (right wall - KN)
-      scene.add(makeKNBox(5.2, -3.5, 1.0, 1.6));
-      scene.add(makeKNBox(5.2, -1.0, 1.0, 1.6));
-      scene.add(makeKNBox(5.2, 1.5, 1.0, 1.6));
-      scene.add(makeKNBox(3.5, 4.8, 1.6, 1.0));
-      // 집기 e (back-left of ST)
-      scene.add(makeKNBox(-1.0, 3.5, 1.8, 0.6, (20 * Math.PI) / 180));
-      // 집기 f (front-left of ST)
-      scene.add(makeKNBox(-0.5, -3.2, 1.8, 0.6, (20 * Math.PI) / 180));
+      // ============ 평면도 배치대로 KN 집기 6대 ============
+      // 우측 벽면 KN a, b, c (수직 정렬)
+      scene.add(makeKNCabinet(5.4, -3.0, 1.5, 0.5, -Math.PI / 2));
+      scene.add(makeKNCabinet(5.4, -0.8, 1.5, 0.5, -Math.PI / 2));
+      scene.add(makeKNCabinet(5.4, 1.4, 1.5, 0.5, -Math.PI / 2));
+      // KN d (상단)
+      scene.add(makeKNCabinet(3.0, 5.0, 1.5, 0.5, 0));
+      // KN e (back-left of ST, 평면도 +20° 회전)
+      scene.add(makeKNCabinet(-0.8, 3.3, 1.5, 0.5, (20 * Math.PI) / 180));
+      // KN f (front-left of ST)
+      scene.add(makeKNCabinet(-0.3, -3.0, 1.5, 0.5, (20 * Math.PI) / 180));
 
       // ============ POS (purple) ============
       const posGroup = new THREE.Group();
