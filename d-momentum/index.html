@@ -69,6 +69,24 @@
       html {
         scroll-behavior: smooth;
       }
+      /* Offset sections from the fixed header when scrolled-to via anchor link */
+      #roster,
+      #artist-dasha,
+      #campaigns,
+      #services,
+      #partners,
+      #get-cast,
+      #about,
+      #contact {
+        scroll-margin-top: calc(var(--header-h) + 8px);
+      }
+      /* Active state on nav while scrolling */
+      .dm-nav a.is-active {
+        color: var(--ink);
+      }
+      .dm-nav a.is-active::after {
+        width: 100%;
+      }
       body {
         background: var(--bg);
         color: var(--ink);
@@ -1618,26 +1636,29 @@
       }
     </style>
   </head>
-  <body>
+  <body id="top">
     <!-- HEADER -->
     <header class="dm-header">
       <a href="#" class="dm-logo"
         ><span class="d">D</span>m<span class="dot">.</span></a
       >
       <nav class="dm-nav">
-        <a href="#roster"
-          ><span class="kr">로스터</span><span class="en">Roster</span></a
+        <a href="#top" data-spy="top"
+          ><span class="kr">메인</span><span class="en">Home</span></a
         >
-        <a href="#campaigns"
+        <a href="#artist-dasha" data-spy="artist-dasha"
+          ><span class="kr">아티스트</span><span class="en">Artist</span></a
+        >
+        <a href="#campaigns" data-spy="campaigns"
           ><span class="kr">캠페인</span><span class="en">Campaigns</span></a
         >
-        <a href="#services"
+        <a href="#services" data-spy="services"
           ><span class="kr">서비스</span><span class="en">Services</span></a
         >
-        <a href="#about"
+        <a href="#about" data-spy="about"
           ><span class="kr">소개</span><span class="en">About</span></a
         >
-        <a href="#contact"
+        <a href="#contact" data-spy="contact"
           ><span class="kr">문의</span><span class="en">Contact</span></a
         >
       </nav>
@@ -2936,6 +2957,26 @@
             .forEach((p) => p.classList.toggle('active', p.dataset.tab === t));
         };
       });
+      // SCROLL-SPY — highlight nav item matching current section
+      const navLinks = document.querySelectorAll('.dm-nav a[data-spy]');
+      const spyTargets = Array.from(navLinks)
+        .map((a) => ({ link: a, el: document.getElementById(a.dataset.spy) }))
+        .filter((t) => t.el);
+      function updateSpy() {
+        const y = window.scrollY + 120; // offset for header
+        let current = spyTargets[0];
+        for (const t of spyTargets) {
+          if (t.el.offsetTop <= y) current = t;
+        }
+        // If near top, force "Home"
+        if (window.scrollY < 80) current = spyTargets[0];
+        navLinks.forEach((a) =>
+          a.classList.toggle('is-active', a === current.link),
+        );
+      }
+      window.addEventListener('scroll', updateSpy, { passive: true });
+      updateSpy();
+
       // REVEAL
       const io = new IntersectionObserver(
         (entries) => {
