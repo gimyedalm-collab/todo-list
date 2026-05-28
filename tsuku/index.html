@@ -1373,6 +1373,32 @@
         margin-top: 16px;
         letter-spacing: 0.2em;
       }
+      .footer-collab {
+        max-width: var(--maxw);
+        margin: 36px auto 0;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+        font-size: 12px;
+        color: var(--text-mute);
+        letter-spacing: 0.06em;
+        text-align: center;
+        line-height: 1.8;
+      }
+      .footer-collab .label {
+        font-family: var(--jp);
+        color: var(--ember);
+        letter-spacing: 0.32em;
+        margin-right: 14px;
+        opacity: 0.85;
+      }
+      .footer-collab a {
+        color: var(--ember);
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s;
+      }
+      .footer-collab a:hover {
+        border-bottom-color: var(--ember);
+      }
       @media (max-width: 660px) {
         .footer-inner {
           flex-direction: column;
@@ -1380,6 +1406,15 @@
         }
         .footer-contact {
           text-align: left;
+        }
+        .footer-collab {
+          text-align: left;
+          line-height: 1.85;
+        }
+        .footer-collab .label {
+          display: block;
+          margin-right: 0;
+          margin-bottom: 6px;
         }
       }
 
@@ -1972,6 +2007,11 @@
           <a href="tel:0507-1448-0864">0507-1448-0864</a>
           <span class="small">© TSUKU · GUNSAN</span>
         </div>
+      </div>
+      <div class="footer-collab">
+        <span class="label">協業 · INQUIRY</span>
+        미디어 · 협업 · 프랜차이즈 문의는
+        <a href="tel:0507-1448-0864">0507-1448-0864</a> 으로 연락 주세요.
       </div>
     </footer>
 
