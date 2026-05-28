@@ -286,6 +286,25 @@
         display: none !important;
       }
 
+      /* ─── PAGE SYSTEM (SPA-style: each nav click swaps visible content) ─── */
+      [data-page] {
+        display: none;
+      }
+      [data-page].active {
+        display: block;
+        animation: pageIn 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+      }
+      @keyframes pageIn {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       /* ─── HEADER ─── */
       .dm-header {
         position: fixed;
@@ -1962,22 +1981,22 @@
         ><span class="d">D</span>m<span class="dot">.</span></a
       >
       <nav class="dm-nav">
-        <a href="#top" data-spy="top"
+        <a href="#home" data-page-link="home" class="is-active"
           ><span class="kr">메인</span><span class="en">Home</span></a
         >
-        <a href="#artist-dasha" data-spy="artist-dasha"
+        <a href="#artist" data-page-link="artist"
           ><span class="kr">아티스트</span><span class="en">Artist</span></a
         >
-        <a href="#campaigns" data-spy="campaigns"
+        <a href="#campaigns" data-page-link="campaigns"
           ><span class="kr">캠페인</span><span class="en">Campaigns</span></a
         >
-        <a href="#services" data-spy="services"
+        <a href="#services" data-page-link="services"
           ><span class="kr">서비스</span><span class="en">Services</span></a
         >
-        <a href="#about" data-spy="about"
+        <a href="#about" data-page-link="about"
           ><span class="kr">소개</span><span class="en">About</span></a
         >
-        <a href="#contact" data-spy="contact"
+        <a href="#contact" data-page-link="contact"
           ><span class="kr">문의</span><span class="en">Contact</span></a
         >
       </nav>
@@ -2051,7 +2070,7 @@
     </header>
 
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero active" data-page="home">
       <div
         class="hero-stage"
         data-cursor="Featured →"
@@ -2090,7 +2109,7 @@
     </section>
 
     <!-- TICKER -->
-    <div class="ticker">
+    <div class="ticker active" data-page="home">
       <div class="ticker-track">
         <span>Now Casting</span>
         <span>TAM BEAUTY SS26</span>
@@ -2110,7 +2129,7 @@
     </div>
 
     <!-- ============ N° 01 ROSTER ============ -->
-    <section id="roster" class="section">
+    <section id="roster" class="section active" data-page="home">
       <div class="section-head">
         <div class="section-num">
           N° 01 —
@@ -2225,6 +2244,7 @@
       id="artist-dasha"
       class="artist-section section"
       style="padding-top: 0"
+      data-page="artist"
     >
       <div class="artist-id-strip">
         <div><b>DASHA TARAN</b> · D MOMENTUM ARTIST 001</div>
@@ -2689,7 +2709,12 @@
     </section>
 
     <!-- ============ N° 02 CAMPAIGNS (DNA/IMG signature) ============ -->
-    <section id="campaigns" class="section" style="background: var(--bg-2)">
+    <section
+      id="campaigns"
+      class="section"
+      style="background: var(--bg-2)"
+      data-page="campaigns"
+    >
       <div class="section-head">
         <div class="section-num">
           N° 02 —
@@ -2821,7 +2846,11 @@
     </section>
 
     <!-- ============ N° 03 IN NUMBERS (Whalar pattern) ============ -->
-    <section class="numbers section" style="padding-left: 0; padding-right: 0">
+    <section
+      class="numbers section"
+      style="padding-left: 0; padding-right: 0"
+      data-page="campaigns"
+    >
       <div style="padding: 0 var(--pad-x) 56px">
         <div
           class="section-head"
@@ -2886,6 +2915,7 @@
       id="services"
       class="section"
       style="padding-left: 0; padding-right: 0"
+      data-page="services"
     >
       <div style="padding: 0 var(--pad-x) 56px">
         <div
@@ -2986,6 +3016,7 @@
       id="partners"
       class="section"
       style="padding-left: 0; padding-right: 0; background: var(--bg-2)"
+      data-page="campaigns"
     >
       <div style="padding: 0 var(--pad-x) 56px">
         <div
@@ -3081,7 +3112,11 @@
     </section>
 
     <!-- ============ N° 06 AS SEEN IN (IMG "Covers" pattern) ============ -->
-    <section class="section" style="padding-left: 0; padding-right: 0">
+    <section
+      class="section"
+      style="padding-left: 0; padding-right: 0"
+      data-page="campaigns"
+    >
       <div style="padding: 0 var(--pad-x) 56px">
         <div
           class="section-head"
@@ -3154,6 +3189,7 @@
       id="get-cast"
       class="section"
       style="padding-left: 0; padding-right: 0"
+      data-page="contact"
     >
       <div style="padding: 0 var(--pad-x) 56px">
         <div
@@ -3236,7 +3272,12 @@
     </section>
 
     <!-- ============ N° 08 ABOUT ============ -->
-    <section id="about" class="section" style="background: var(--bg-2)">
+    <section
+      id="about"
+      class="section"
+      style="background: var(--bg-2)"
+      data-page="about"
+    >
       <div class="section-head">
         <div class="section-num">
           N° 08 —
@@ -3301,7 +3342,7 @@
     </section>
 
     <!-- ============ N° 09 CONTACT ============ -->
-    <section id="contact" class="section">
+    <section id="contact" class="section" data-page="contact">
       <div class="section-head">
         <div class="section-num">
           N° 09 —
@@ -3458,25 +3499,62 @@
             .forEach((p) => p.classList.toggle('active', p.dataset.tab === t));
         };
       });
-      // SCROLL-SPY — highlight nav item matching current section
-      const navLinks = document.querySelectorAll('.dm-nav a[data-spy]');
-      const spyTargets = Array.from(navLinks)
-        .map((a) => ({ link: a, el: document.getElementById(a.dataset.spy) }))
-        .filter((t) => t.el);
-      function updateSpy() {
-        const y = window.scrollY + 120; // offset for header
-        let current = spyTargets[0];
-        for (const t of spyTargets) {
-          if (t.el.offsetTop <= y) current = t;
+      // ─── SPA PAGE SYSTEM — click a nav tab, only that page shows ───
+      const PAGES = [
+        'home',
+        'artist',
+        'campaigns',
+        'services',
+        'about',
+        'contact',
+      ];
+      // Map for internal links that should navigate to a specific page
+      const PAGE_ALIAS = {
+        roster: 'home',
+        'artist-dasha': 'artist',
+        partners: 'campaigns',
+        'get-cast': 'contact',
+      };
+
+      function showPage(name) {
+        if (!PAGES.includes(name)) name = 'home';
+        // Toggle page visibility
+        document.querySelectorAll('[data-page]').forEach((el) => {
+          el.classList.toggle('active', el.dataset.page === name);
+        });
+        // Update nav active state
+        document.querySelectorAll('.dm-nav a[data-page-link]').forEach((a) => {
+          a.classList.toggle('is-active', a.dataset.pageLink === name);
+        });
+        // Scroll to top instantly (each tab feels like a separate page)
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        // Update URL hash without triggering hashchange loop
+        if (location.hash !== '#' + name) {
+          history.replaceState(null, '', '#' + name);
         }
-        // If near top, force "Home"
-        if (window.scrollY < 80) current = spyTargets[0];
-        navLinks.forEach((a) =>
-          a.classList.toggle('is-active', a === current.link),
-        );
       }
-      window.addEventListener('scroll', updateSpy, { passive: true });
-      updateSpy();
+
+      // Universal click handler for nav + internal links pointing to a page or alias
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a[href^="#"]');
+        if (!a) return;
+        const raw = a.getAttribute('href').slice(1);
+        const target = PAGE_ALIAS[raw] || raw;
+        if (PAGES.includes(target)) {
+          e.preventDefault();
+          showPage(target);
+        }
+      });
+
+      // Browser back/forward
+      window.addEventListener('hashchange', () => {
+        const name = location.hash.slice(1);
+        showPage(PAGE_ALIAS[name] || name);
+      });
+
+      // Init — read hash or default to home
+      const initial = location.hash.slice(1);
+      showPage(PAGE_ALIAS[initial] || initial || 'home');
 
       // REVEAL
       const io = new IntersectionObserver(
