@@ -1624,6 +1624,98 @@
         color: #3c1e1e !important;
       }
 
+      /* === BOTTOM BAR (하단 고정 상담 바) === */
+      body { padding-bottom: 84px; }
+      .bottom-bar {
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 95;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        background: rgba(5, 5, 7, 0.96);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(184, 153, 104, 0.35);
+        box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+      }
+      .bbar-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 16px 12px;
+        background: transparent;
+        border: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+        color: #fff;
+        cursor: pointer;
+        font-family: inherit;
+        text-align: left;
+        transition: background 0.2s ease;
+        min-height: 64px;
+      }
+      .bbar-item:last-child { border-right: none; }
+      .bbar-item:hover { background: rgba(184, 153, 104, 0.08); }
+      .bbar-item:active { background: rgba(184, 153, 104, 0.15); }
+      .bbar-ico {
+        width: 36px; height: 36px;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 50%;
+        font-size: 18px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .bbar-tel .bbar-ico {
+        background: var(--gold);
+        color: #fff;
+      }
+      .bbar-kakao .bbar-ico {
+        background: #fee500;
+        color: #3c1e1e;
+        font-family: 'Cormorant Garamond', serif;
+      }
+      .bbar-telegram .bbar-ico {
+        background: #2aaae2;
+        color: #fff;
+        font-size: 20px;
+      }
+      .bbar-label {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+      .bbar-label strong {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gold-light);
+        letter-spacing: 0.02em;
+      }
+      .bbar-label small {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.04em;
+        margin-top: 2px;
+      }
+
+      /* toast 위치를 하단 바 위로 */
+      .toast { bottom: 104px !important; }
+
+      @media (max-width: 540px) {
+        body { padding-bottom: 68px; }
+        .bottom-bar { grid-template-columns: 1fr 1fr 1fr; }
+        .bbar-item {
+          flex-direction: column;
+          gap: 4px;
+          padding: 10px 6px;
+          min-height: 60px;
+        }
+        .bbar-ico { width: 28px; height: 28px; font-size: 14px; }
+        .bbar-telegram .bbar-ico { font-size: 16px; }
+        .bbar-label { align-items: center; text-align: center; }
+        .bbar-label strong { font-size: 11px; }
+        .bbar-label small { display: none; }
+        .toast { bottom: 84px !important; }
+      }
+
       /* === ABOUT CERT PORTRAIT (인물 사진 모드) === */
       .about-cert-portrait {
         max-width: 100% !important;
@@ -3312,27 +3404,40 @@
       </div>
     </footer>
 
-    <!-- ==================== FLOATING CTA ==================== -->
-    <div class="float-cta">
-      <a href="tel:1644-1488" class="float-btn tel-label">1644-1488</a>
+    <!-- ==================== BOTTOM BAR ==================== -->
+    <nav class="bottom-bar" aria-label="빠른 상담">
+      <a href="tel:1644-1488" class="bbar-item bbar-tel">
+        <span class="bbar-ico" aria-hidden="true">☎</span>
+        <span class="bbar-label">
+          <strong>전화상담</strong>
+          <small>1644-1488</small>
+        </span>
+      </a>
+      <button
+        type="button"
+        class="bbar-item bbar-kakao"
+        onclick="copyKakaoId(event)"
+        aria-label="카카오톡 ID SJDT2 복사"
+      >
+        <span class="bbar-ico" aria-hidden="true">K</span>
+        <span class="bbar-label">
+          <strong>카카오톡</strong>
+          <small>@SJDT2</small>
+        </span>
+      </button>
       <a
         href="https://t.me/sjagency2"
         target="_blank"
         rel="noopener"
-        class="float-btn telegram"
-        title="텔레그램 @sjagency2"
-        >✈</a
+        class="bbar-item bbar-telegram"
       >
-      <button
-        type="button"
-        class="float-btn kakao"
-        title="카카오톡 ID SJDT2 복사"
-        onclick="copyKakaoId(event)"
-      >
-        K
-      </button>
-      <a href="tel:1644-1488" class="float-btn tel" title="전화 상담">☎</a>
-    </div>
+        <span class="bbar-ico" aria-hidden="true">✈</span>
+        <span class="bbar-label">
+          <strong>텔레그램</strong>
+          <small>@sjagency2</small>
+        </span>
+      </a>
+    </nav>
 
     <!-- ==================== TOAST ==================== -->
     <div id="toast" class="toast" role="status" aria-live="polite">
