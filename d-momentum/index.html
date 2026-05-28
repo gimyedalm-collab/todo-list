@@ -281,11 +281,12 @@
       }
 
       /* ─── PAGE SYSTEM (SPA-style: each nav click swaps visible content) ─── */
-      [data-page] {
-        display: none;
+      /* !important is required because some pages (.hero with display:grid)
+         have same-specificity display declarations that would otherwise override */
+      [data-page]:not(.active) {
+        display: none !important;
       }
       [data-page].active {
-        display: block;
         animation: pageIn 0.4s cubic-bezier(0.2, 0, 0.2, 1);
       }
       @keyframes pageIn {
