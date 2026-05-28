@@ -412,6 +412,13 @@
             <span class="dot" style="background: #fff"></span>네온 시그니처
             (TAMBEAUTY)
           </div>
+          <div class="row">
+            <span class="dot" style="background: #bfbfbf"></span>기둥 (콘크리트
+            그레이)
+          </div>
+          <div class="row">
+            <span class="dot" style="background: #3fb8e8"></span>KN 집기 (a~f)
+          </div>
         </div>
       </div>
 
@@ -433,9 +440,9 @@
           <button data-view="plan">평면 매칭</button>
         </div>
         <div class="meta">
-          ST 사이즈 · <b>L 1800 × W 700 × H 2100mm</b> &nbsp;|&nbsp; 각도 ·
-          <b>평면도 기준 약 +20°</b> &nbsp;|&nbsp; 타일 ·
-          <b>100mm 핑크 세라믹 무드</b>
+          ST 사이즈 · <b>L 1200 × W 450 × H 1450mm</b> &nbsp;|&nbsp; 각도 ·
+          <b>평면도 기준 약 +20°</b> &nbsp;|&nbsp; 기둥 ·
+          <b>900 × 900 × H 3400mm × 2EA</b>
         </div>
       </div>
     </div>
@@ -511,18 +518,18 @@
         200,
       );
       if (isMobile) {
-        camera.position.set(9, 7, 11);
+        camera.position.set(12, 9, 14);
       } else {
-        camera.position.set(7, 6, 9);
+        camera.position.set(10, 8, 12);
       }
 
       const controls = new OrbitControls(camera, canvas);
       controls.enableDamping = true;
       controls.dampingFactor = 0.08;
-      controls.minDistance = 4;
-      controls.maxDistance = 22;
+      controls.minDistance = 5;
+      controls.maxDistance = 30;
       controls.maxPolarAngle = Math.PI / 2.05;
-      controls.target.set(0, 1.6, 0);
+      controls.target.set(0, 1.2, 0);
       // 모바일 터치 제스처 설정
       controls.touches = {
         ONE: THREE.TOUCH.ROTATE,
@@ -646,9 +653,9 @@
       const tileTexSide = makeTileTexture('#f5a0b5', '#ffeef2', 2, 9);
 
       // main panel - tall rectangle (front+back visible)
-      const panelW = 3.6; // 1800mm scale
-      const panelH = 4.2; // 2100mm scale
-      const panelD = 1.4; // 700mm scale
+      const panelW = 2.4; // 1200mm scale
+      const panelH = 2.9; // 1450mm scale (덜 부담스럽게)
+      const panelD = 0.9; // 450mm scale
 
       const panelGeo = new THREE.BoxGeometry(panelW, panelH, panelD);
       const panelMats = [
@@ -717,8 +724,8 @@
 
         // gold frame (back panel)
         const frameShape = new THREE.Shape();
-        const w = 0.95;
-        const h = 1.55;
+        const w = 0.62;
+        const h = 1.05;
         frameShape.moveTo(-w, 0);
         frameShape.lineTo(-w, h * 0.55);
         frameShape.quadraticCurveTo(-w, h, 0, h);
@@ -743,7 +750,7 @@
         const frame = new THREE.Mesh(frameGeo, frameMat);
         frame.position.set(
           0,
-          1.4,
+          1.25,
           zSide > 0 ? panelD / 2 + 0.02 : -panelD / 2 - 0.06,
         );
         frame.rotation.y = zSide > 0 ? 0 : Math.PI;
@@ -751,8 +758,8 @@
 
         // mirror inner
         const innerShape = new THREE.Shape();
-        const iw = 0.85;
-        const ih = 1.45;
+        const iw = 0.55;
+        const ih = 0.97;
         innerShape.moveTo(-iw, 0);
         innerShape.lineTo(-iw, ih * 0.55);
         innerShape.quadraticCurveTo(-iw, ih, 0, ih);
@@ -770,7 +777,7 @@
         const innerMirror = new THREE.Mesh(innerGeo, innerMat);
         innerMirror.position.set(
           0,
-          1.4,
+          1.25,
           zSide > 0 ? panelD / 2 + 0.085 : -panelD / 2 - 0.085,
         );
         innerMirror.rotation.y = zSide > 0 ? 0 : Math.PI;
@@ -783,7 +790,7 @@
 
       // ============ SHELVES WITH PRODUCTS ============
       function makeShelf(yPos, zSide, xOffset = 0) {
-        const shelfGeo = new RoundedBoxGeometry(0.85, 0.08, 0.32, 3, 0.02);
+        const shelfGeo = new RoundedBoxGeometry(0.6, 0.06, 0.24, 3, 0.02);
         const shelfMat = new THREE.MeshStandardMaterial({
           color: 0xd9678a,
           roughness: 0.4,
@@ -887,20 +894,20 @@
         return group;
       }
 
-      // 6 shelves per side (3 left of mirror, 3 right of mirror)
-      const shelfYs = [1.55, 2.4, 3.25]; // 3 rows
-      const sideOffsets = [-1.25, 1.25]; // left and right of arch
+      // 2단 셸프 (사이즈 축소에 맞춤)
+      const shelfYs = [1.4, 2.15]; // 2 rows
+      const sideOffsets = [-0.85, 0.85]; // left and right of arch
       const productTypes = ['tube', 'bottle', 'jar'];
 
       [1, -1].forEach((zSide) => {
         shelfYs.forEach((y, i) => {
           sideOffsets.forEach((xOff) => {
             stGroup.add(makeShelf(y, zSide, xOff));
-            // 3 products per shelf
-            for (let p = 0; p < 3; p++) {
-              const px = xOff - 0.3 + p * 0.3;
+            // 2 products per shelf (사이즈 축소)
+            for (let p = 0; p < 2; p++) {
+              const px = xOff - 0.13 + p * 0.26;
               const type = productTypes[(i + p) % 3];
-              stGroup.add(makeProduct(px, y + 0.04, zSide, type));
+              stGroup.add(makeProduct(px, y + 0.03, zSide, type));
             }
           });
         });
@@ -939,10 +946,10 @@
           map: tex,
           transparent: true,
         });
-        const plane = new THREE.Mesh(new THREE.PlaneGeometry(2.7, 0.58), mat);
+        const plane = new THREE.Mesh(new THREE.PlaneGeometry(1.8, 0.4), mat);
         plane.position.set(
           0,
-          3.65,
+          2.65,
           zSide > 0 ? panelD / 2 + 0.025 : -panelD / 2 - 0.025,
         );
         plane.rotation.y = zSide > 0 ? 0 : Math.PI;
@@ -991,12 +998,78 @@
         );
         return group;
       }
-      stGroup.add(makePlanter(-1.6, 1));
-      stGroup.add(makePlanter(1.6, 1));
-      stGroup.add(makePlanter(-1.6, -1));
-      stGroup.add(makePlanter(1.6, -1));
+      stGroup.add(makePlanter(-1.1, 1));
+      stGroup.add(makePlanter(1.1, 1));
+      stGroup.add(makePlanter(-1.1, -1));
+      stGroup.add(makePlanter(1.1, -1));
 
       scene.add(stGroup);
+
+      // ============ 기둥 (PILLARS) — 평면도 우측 상/하 ============
+      function makePillar(x, z, h = 3.4) {
+        const group = new THREE.Group();
+        // base shadow plate
+        const plate = new THREE.Mesh(
+          new THREE.BoxGeometry(1.1, 0.03, 1.1),
+          new THREE.MeshStandardMaterial({ color: 0xe8d8dd, roughness: 0.8 }),
+        );
+        plate.position.y = 0.015;
+        plate.receiveShadow = true;
+        group.add(plate);
+        // pillar body — 콘크리트 그레이
+        const body = new THREE.Mesh(
+          new THREE.BoxGeometry(0.9, h, 0.9),
+          new THREE.MeshStandardMaterial({
+            color: 0xbfbfbf,
+            roughness: 0.65,
+            metalness: 0.05,
+          }),
+        );
+        body.position.y = h / 2;
+        body.castShadow = true;
+        body.receiveShadow = true;
+        group.add(body);
+        // top cap
+        const cap = new THREE.Mesh(
+          new THREE.BoxGeometry(0.96, 0.06, 0.96),
+          new THREE.MeshStandardMaterial({ color: 0xa8a8a8, roughness: 0.55 }),
+        );
+        cap.position.y = h - 0.03;
+        group.add(cap);
+        group.position.set(x, 0, z);
+        return group;
+      }
+      // 평면도 우측 상단 기둥 (Mirror 옆), 우측 하단 기둥
+      scene.add(makePillar(6.2, 5.0));
+      scene.add(makePillar(6.2, -5.0));
+
+      // ============ MIRROR PANEL (평면도 우측 상단 'Mirror') ============
+      const mirrorPanel = new THREE.Group();
+      // 프레임
+      const mFrame = new THREE.Mesh(
+        new THREE.BoxGeometry(1.5, 2.4, 0.08),
+        new THREE.MeshStandardMaterial({
+          color: 0xd9d9d9,
+          roughness: 0.55,
+          metalness: 0.1,
+        }),
+      );
+      mFrame.position.y = 1.2;
+      mFrame.castShadow = true;
+      mirrorPanel.add(mFrame);
+      // 미러면
+      const mSurface = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.36, 2.26),
+        new THREE.MeshPhysicalMaterial({
+          color: 0xe8edee,
+          roughness: 0.06,
+          metalness: 1.0,
+        }),
+      );
+      mSurface.position.set(0, 1.2, 0.045);
+      mirrorPanel.add(mSurface);
+      mirrorPanel.position.set(4.7, 0, 5.2);
+      scene.add(mirrorPanel);
 
       // ============ SURROUNDING FIXTURES (KN blue boxes - low detail context) ============
       function makeKNBox(x, z, w, d, rot = 0, label = 'KN') {
@@ -1205,18 +1278,18 @@
       // ============ VIEW PRESETS ============
       const views = isMobile
         ? {
-            hero: { pos: [9, 7, 11], target: [0, 1.6, 0] },
-            front: { pos: [0, 3, 11], target: [0, 2.0, 0] },
-            side: { pos: [11, 3, 0], target: [0, 2.0, 0] },
-            top: { pos: [0.01, 17, 0.01], target: [0, 0, 0] },
-            plan: { pos: [5, 13, 7.5], target: [0, 0, 0] },
+            hero: { pos: [13, 10, 15], target: [0, 1.0, 0] },
+            front: { pos: [0, 4, 16], target: [0, 1.4, 0] },
+            side: { pos: [16, 4, 0], target: [0, 1.4, 0] },
+            top: { pos: [0.01, 22, 0.01], target: [0, 0, 0] },
+            plan: { pos: [7, 18, 10], target: [0, 0, 0] },
           }
         : {
-            hero: { pos: [7, 6, 9], target: [0, 1.6, 0] },
-            front: { pos: [0, 2.5, 8.5], target: [0, 2.0, 0] },
-            side: { pos: [9, 2.5, 0], target: [0, 2.0, 0] },
-            top: { pos: [0.01, 14, 0.01], target: [0, 0, 0] },
-            plan: { pos: [4, 11, 6], target: [0, 0, 0] },
+            hero: { pos: [10, 8, 12], target: [0, 1.2, 0] },
+            front: { pos: [0, 3.5, 13], target: [0, 1.4, 0] },
+            side: { pos: [13, 3.5, 0], target: [0, 1.4, 0] },
+            top: { pos: [0.01, 19, 0.01], target: [0, 0, 0] },
+            plan: { pos: [6, 15, 9], target: [0, 0, 0] },
           };
 
       function setView(name) {
