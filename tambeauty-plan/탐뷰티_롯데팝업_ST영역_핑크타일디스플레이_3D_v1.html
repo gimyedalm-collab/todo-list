@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>탐뷰티 × 롯데 팝업 — ST 영역 핑크 타일 디스플레이 3D v1</title>
+    <style>
+      :root {
+        --pale: #ffebf1;
+        --soft: #fcc5d2;
+        --pink: #f5a0b5;
+        --deep: #e47b98;
+        --rose: #c44b6e;
+        --rose-deep: #9d3653;
+        --cream: #fdf5f7;
+        --ink: #1a1a1a;
+        --gray: #6b6b6b;
+        --line: #e8d8dd;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        background: linear-gradient(135deg, #ffebf1 0%, #fcc5d2 100%);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        overflow: hidden;
+      }
+      #app {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+      #scene {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .hud {
+        position: fixed;
+        z-index: 10;
+        pointer-events: none;
+      }
+      .hud-top {
+        top: 24px;
+        left: 24px;
+        right: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .title-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 18px 22px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 12px 40px rgba(157, 54, 83, 0.12);
+        pointer-events: auto;
+      }
+      .title-card .tag {
+        display: inline-block;
+        background: var(--rose-deep);
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 100px;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        margin-bottom: 8px;
+      }
+      .title-card h1 {
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+        margin-bottom: 4px;
+      }
+      .title-card p {
+        font-size: 12.5px;
+        color: var(--gray);
+        line-height: 1.45;
+      }
+
+      .legend {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 14px 18px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 12px 40px rgba(157, 54, 83, 0.12);
+        font-size: 11.5px;
+        line-height: 1.6;
+        color: var(--ink);
+        pointer-events: auto;
+      }
+      .legend strong {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: var(--rose-deep);
+        margin-bottom: 6px;
+        font-weight: 800;
+      }
+      .legend .row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .legend .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+      }
+
+      .hud-bottom {
+        bottom: 22px;
+        left: 24px;
+        right: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 16px;
+      }
+      .ctrl {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 12px 40px rgba(157, 54, 83, 0.12);
+        display: flex;
+        gap: 6px;
+        pointer-events: auto;
+      }
+      .ctrl button {
+        background: #fff;
+        border: 1px solid var(--line);
+        padding: 8px 13px;
+        border-radius: 9px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ink);
+        cursor: pointer;
+        font-family: inherit;
+        letter-spacing: -0.01em;
+        transition: all 0.18s ease;
+      }
+      .ctrl button:hover {
+        background: var(--pale);
+        border-color: var(--soft);
+      }
+      .ctrl button.active {
+        background: var(--rose-deep);
+        color: #fff;
+        border-color: var(--rose-deep);
+      }
+      .meta {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 12px 40px rgba(157, 54, 83, 0.12);
+        font-size: 11.5px;
+        color: var(--gray);
+        line-height: 1.5;
+      }
+      .meta b {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .hint {
+        position: fixed;
+        bottom: 84px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(26, 26, 26, 0.7);
+        color: #fff;
+        font-size: 11px;
+        padding: 7px 14px;
+        border-radius: 100px;
+        letter-spacing: 0.05em;
+        z-index: 9;
+        animation: fade 6s ease forwards;
+        pointer-events: none;
+      }
+      @keyframes fade {
+        0%,
+        70% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scene"></canvas>
+
+      <div class="hud hud-top">
+        <div class="title-card">
+          <span class="tag">ST · 고정 집기 A · 3D Rendering</span>
+          <h1>탐뷰티 × 롯데 팝업 — ST 영역 핑크 타일 디스플레이</h1>
+          <p>
+            평면도 중앙 ST 영역에 들어갈 양면 진열대 — Você bem tododia 무드
+            차용 · 핑크 타일 + 아치 미러 + 양면 셸프
+          </p>
+        </div>
+        <div class="legend">
+          <strong>구성 요소</strong>
+          <div class="row">
+            <span class="dot" style="background: #f5a0b5"></span>핑크 타일 패널
+            (양면)
+          </div>
+          <div class="row">
+            <span class="dot" style="background: #fce6ec"></span>그라우트 라인
+            (화이트)
+          </div>
+          <div class="row">
+            <span class="dot" style="background: #e8c46a"></span>골드 아치 미러
+            프레임
+          </div>
+          <div class="row">
+            <span class="dot" style="background: #c44b6e"></span>로즈 베이스
+            카운터
+          </div>
+          <div class="row">
+            <span class="dot" style="background: #fff"></span>네온 시그니처
+            (TAMBEAUTY)
+          </div>
+        </div>
+      </div>
+
+      <div class="hint">
+        마우스 드래그로 회전 · 휠로 확대/축소 · 우클릭으로 이동
+      </div>
+
+      <div class="hud hud-bottom">
+        <div class="ctrl">
+          <button data-view="hero" class="active">히어로</button>
+          <button data-view="front">정면</button>
+          <button data-view="side">측면</button>
+          <button data-view="top">탑뷰</button>
+          <button data-view="plan">평면 매칭</button>
+        </div>
+        <div class="meta">
+          ST 사이즈 · <b>L 1800 × W 700 × H 2100mm</b> &nbsp;|&nbsp; 각도 ·
+          <b>평면도 기준 약 +20°</b> &nbsp;|&nbsp; 타일 ·
+          <b>100mm 핑크 세라믹 무드</b>
+        </div>
+      </div>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+
+    <script type="module">
+      import * as THREE from 'three';
+      import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+      import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+      const canvas = document.getElementById('scene');
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.1;
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xffeaf0);
+      scene.fog = new THREE.Fog(0xffeaf0, 18, 42);
+
+      const camera = new THREE.PerspectiveCamera(
+        38,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        200,
+      );
+      camera.position.set(7, 6, 9);
+
+      const controls = new OrbitControls(camera, canvas);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.minDistance = 4;
+      controls.maxDistance = 22;
+      controls.maxPolarAngle = Math.PI / 2.05;
+      controls.target.set(0, 1.6, 0);
+
+      // ============ LIGHTING ============
+      scene.add(new THREE.AmbientLight(0xffe5ec, 0.55));
+
+      const keyLight = new THREE.DirectionalLight(0xfff2e8, 1.1);
+      keyLight.position.set(6, 10, 5);
+      keyLight.castShadow = true;
+      keyLight.shadow.mapSize.set(2048, 2048);
+      keyLight.shadow.camera.left = -10;
+      keyLight.shadow.camera.right = 10;
+      keyLight.shadow.camera.top = 10;
+      keyLight.shadow.camera.bottom = -10;
+      keyLight.shadow.bias = -0.0003;
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0xffc8d4, 0.45);
+      fillLight.position.set(-6, 4, -4);
+      scene.add(fillLight);
+
+      const rimLight = new THREE.PointLight(0xff9bb5, 0.6, 14);
+      rimLight.position.set(0, 3.5, -3);
+      scene.add(rimLight);
+
+      // ============ TILE TEXTURE ============
+      function makeTileTexture(tileColor, groutColor, tilesX = 8, tilesY = 12) {
+        const size = 1024;
+        const c = document.createElement('canvas');
+        c.width = c.height = size;
+        const ctx = c.getContext('2d');
+
+        ctx.fillStyle = groutColor;
+        ctx.fillRect(0, 0, size, size);
+
+        const cellW = size / tilesX;
+        const cellH = size / tilesY;
+        const gap = 4;
+
+        for (let y = 0; y < tilesY; y++) {
+          for (let x = 0; x < tilesX; x++) {
+            const px = x * cellW + gap;
+            const py = y * cellH + gap;
+            const w = cellW - gap * 2;
+            const h = cellH - gap * 2;
+
+            // tile base
+            const grad = ctx.createLinearGradient(px, py, px + w, py + h);
+            grad.addColorStop(0, tileColor);
+            grad.addColorStop(0.5, shade(tileColor, -6));
+            grad.addColorStop(1, shade(tileColor, -14));
+            ctx.fillStyle = grad;
+            ctx.fillRect(px, py, w, h);
+
+            // gloss highlight
+            ctx.fillStyle = 'rgba(255,255,255,0.18)';
+            ctx.fillRect(px + 2, py + 2, w - 4, h * 0.35);
+
+            // subtle edge
+            ctx.strokeStyle = 'rgba(0,0,0,0.04)';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(px + 0.5, py + 0.5, w - 1, h - 1);
+          }
+        }
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        tex.anisotropy = 8;
+        return tex;
+      }
+
+      function shade(hex, percent) {
+        const h = hex.replace('#', '');
+        const r = parseInt(h.substring(0, 2), 16);
+        const g = parseInt(h.substring(2, 4), 16);
+        const b = parseInt(h.substring(4, 6), 16);
+        const amt = (255 * percent) / 100;
+        const nr = Math.max(0, Math.min(255, Math.round(r + amt)));
+        const ng = Math.max(0, Math.min(255, Math.round(g + amt)));
+        const nb = Math.max(0, Math.min(255, Math.round(b + amt)));
+        return `rgb(${nr},${ng},${nb})`;
+      }
+
+      // ============ FLOOR ============
+      const floorMat = new THREE.MeshStandardMaterial({
+        color: 0xfff4f7,
+        roughness: 0.55,
+        metalness: 0.05,
+      });
+      const floor = new THREE.Mesh(new THREE.CircleGeometry(18, 64), floorMat);
+      floor.rotation.x = -Math.PI / 2;
+      floor.receiveShadow = true;
+      scene.add(floor);
+
+      // floor accent ring (Lotte cream tone)
+      const ring = new THREE.Mesh(
+        new THREE.RingGeometry(8.4, 8.7, 64),
+        new THREE.MeshBasicMaterial({
+          color: 0xf0d8de,
+          transparent: true,
+          opacity: 0.5,
+        }),
+      );
+      ring.rotation.x = -Math.PI / 2;
+      ring.position.y = 0.002;
+      scene.add(ring);
+
+      // ============ ST FIXTURE (CENTRAL PINK TILE DISPLAY) ============
+      const stGroup = new THREE.Group();
+      stGroup.rotation.y = (20 * Math.PI) / 180; // 평면도 +20도
+
+      // tile texture for ST
+      const tileTexFront = makeTileTexture('#f5a0b5', '#ffeef2', 6, 9);
+      const tileTexBack = makeTileTexture('#f5a0b5', '#ffeef2', 6, 9);
+      const tileTexSide = makeTileTexture('#f5a0b5', '#ffeef2', 2, 9);
+
+      // main panel - tall rectangle (front+back visible)
+      const panelW = 3.6; // 1800mm scale
+      const panelH = 4.2; // 2100mm scale
+      const panelD = 1.4; // 700mm scale
+
+      const panelGeo = new THREE.BoxGeometry(panelW, panelH, panelD);
+      const panelMats = [
+        new THREE.MeshStandardMaterial({
+          map: tileTexSide,
+          roughness: 0.35,
+          metalness: 0.1,
+        }),
+        new THREE.MeshStandardMaterial({
+          map: tileTexSide,
+          roughness: 0.35,
+          metalness: 0.1,
+        }),
+        new THREE.MeshStandardMaterial({ color: 0xf5a0b5, roughness: 0.5 }),
+        new THREE.MeshStandardMaterial({ color: 0xe88aa5, roughness: 0.5 }),
+        new THREE.MeshStandardMaterial({
+          map: tileTexFront,
+          roughness: 0.35,
+          metalness: 0.1,
+        }),
+        new THREE.MeshStandardMaterial({
+          map: tileTexBack,
+          roughness: 0.35,
+          metalness: 0.1,
+        }),
+      ];
+      const panel = new THREE.Mesh(panelGeo, panelMats);
+      panel.position.y = panelH / 2 + 0.5; // sit on base
+      panel.castShadow = true;
+      panel.receiveShadow = true;
+      stGroup.add(panel);
+
+      // ============ BASE COUNTER (rose pink) ============
+      const baseGeo = new RoundedBoxGeometry(
+        panelW + 0.4,
+        1.0,
+        panelD + 0.5,
+        4,
+        0.08,
+      );
+      const baseMat = new THREE.MeshStandardMaterial({
+        color: 0xd9678a,
+        roughness: 0.35,
+        metalness: 0.15,
+      });
+      const base = new THREE.Mesh(baseGeo, baseMat);
+      base.position.y = 0.5;
+      base.castShadow = true;
+      base.receiveShadow = true;
+      stGroup.add(base);
+
+      // base top accent (lighter pink tabletop)
+      const topGeo = new THREE.BoxGeometry(panelW + 0.42, 0.06, panelD + 0.52);
+      const topMat = new THREE.MeshStandardMaterial({
+        color: 0xf09bb3,
+        roughness: 0.3,
+        metalness: 0.2,
+      });
+      const baseTop = new THREE.Mesh(topGeo, topMat);
+      baseTop.position.y = 1.01;
+      stGroup.add(baseTop);
+
+      // ============ ARCH MIRROR (both sides) ============
+      function makeArchMirror(zSide) {
+        const archGroup = new THREE.Group();
+
+        // gold frame (back panel)
+        const frameShape = new THREE.Shape();
+        const w = 0.95;
+        const h = 1.55;
+        frameShape.moveTo(-w, 0);
+        frameShape.lineTo(-w, h * 0.55);
+        frameShape.quadraticCurveTo(-w, h, 0, h);
+        frameShape.quadraticCurveTo(w, h, w, h * 0.55);
+        frameShape.lineTo(w, 0);
+        frameShape.lineTo(-w, 0);
+
+        const frameGeo = new THREE.ExtrudeGeometry(frameShape, {
+          depth: 0.04,
+          bevelEnabled: true,
+          bevelThickness: 0.025,
+          bevelSize: 0.025,
+          bevelSegments: 3,
+        });
+        const frameMat = new THREE.MeshStandardMaterial({
+          color: 0xe8c46a,
+          roughness: 0.25,
+          metalness: 0.85,
+          emissive: 0xffd76a,
+          emissiveIntensity: 0.18,
+        });
+        const frame = new THREE.Mesh(frameGeo, frameMat);
+        frame.position.set(
+          0,
+          1.4,
+          zSide > 0 ? panelD / 2 + 0.02 : -panelD / 2 - 0.06,
+        );
+        frame.rotation.y = zSide > 0 ? 0 : Math.PI;
+        archGroup.add(frame);
+
+        // mirror inner
+        const innerShape = new THREE.Shape();
+        const iw = 0.85;
+        const ih = 1.45;
+        innerShape.moveTo(-iw, 0);
+        innerShape.lineTo(-iw, ih * 0.55);
+        innerShape.quadraticCurveTo(-iw, ih, 0, ih);
+        innerShape.quadraticCurveTo(iw, ih, iw, ih * 0.55);
+        innerShape.lineTo(iw, 0);
+        innerShape.lineTo(-iw, 0);
+
+        const innerGeo = new THREE.ShapeGeometry(innerShape);
+        const innerMat = new THREE.MeshPhysicalMaterial({
+          color: 0xdfe6e8,
+          roughness: 0.06,
+          metalness: 1.0,
+          envMapIntensity: 1.0,
+        });
+        const innerMirror = new THREE.Mesh(innerGeo, innerMat);
+        innerMirror.position.set(
+          0,
+          1.4,
+          zSide > 0 ? panelD / 2 + 0.085 : -panelD / 2 - 0.085,
+        );
+        innerMirror.rotation.y = zSide > 0 ? 0 : Math.PI;
+        archGroup.add(innerMirror);
+
+        return archGroup;
+      }
+      stGroup.add(makeArchMirror(1));
+      stGroup.add(makeArchMirror(-1));
+
+      // ============ SHELVES WITH PRODUCTS ============
+      function makeShelf(yPos, zSide, xOffset = 0) {
+        const shelfGeo = new RoundedBoxGeometry(0.85, 0.08, 0.32, 3, 0.02);
+        const shelfMat = new THREE.MeshStandardMaterial({
+          color: 0xd9678a,
+          roughness: 0.4,
+          metalness: 0.15,
+        });
+        const shelf = new THREE.Mesh(shelfGeo, shelfMat);
+        shelf.position.set(
+          xOffset,
+          yPos,
+          zSide > 0 ? panelD / 2 + 0.16 : -panelD / 2 - 0.16,
+        );
+        shelf.castShadow = true;
+        shelf.receiveShadow = true;
+        return shelf;
+      }
+
+      function makeProduct(xPos, yPos, zSide, type = 'tube') {
+        const group = new THREE.Group();
+
+        if (type === 'tube') {
+          const body = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.07, 0.075, 0.42, 24),
+            new THREE.MeshPhysicalMaterial({
+              color: 0xf5d6dc,
+              roughness: 0.25,
+              metalness: 0.05,
+              clearcoat: 0.6,
+              clearcoatRoughness: 0.3,
+            }),
+          );
+          body.position.y = 0.25;
+          group.add(body);
+
+          const cap = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.075, 0.075, 0.06, 24),
+            new THREE.MeshStandardMaterial({ color: 0xc44b6e, roughness: 0.3 }),
+          );
+          cap.position.y = 0.49;
+          group.add(cap);
+        } else if (type === 'bottle') {
+          const body = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.08, 0.075, 0.36, 24),
+            new THREE.MeshPhysicalMaterial({
+              color: 0xfae3e8,
+              roughness: 0.22,
+              metalness: 0.05,
+              clearcoat: 0.7,
+              clearcoatRoughness: 0.25,
+            }),
+          );
+          body.position.y = 0.22;
+          group.add(body);
+
+          const neck = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.04, 0.06, 0.06, 16),
+            new THREE.MeshStandardMaterial({
+              color: 0xfae3e8,
+              roughness: 0.25,
+            }),
+          );
+          neck.position.y = 0.43;
+          group.add(neck);
+
+          const cap = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.045, 0.045, 0.06, 16),
+            new THREE.MeshStandardMaterial({ color: 0xc44b6e, roughness: 0.3 }),
+          );
+          cap.position.y = 0.49;
+          group.add(cap);
+        } else if (type === 'jar') {
+          const body = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.1, 0.1, 0.18, 24),
+            new THREE.MeshPhysicalMaterial({
+              color: 0xc44b6e,
+              roughness: 0.28,
+              metalness: 0.12,
+              clearcoat: 0.5,
+            }),
+          );
+          body.position.y = 0.13;
+          group.add(body);
+
+          const lid = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.105, 0.105, 0.04, 24),
+            new THREE.MeshStandardMaterial({
+              color: 0xe88aa5,
+              roughness: 0.35,
+            }),
+          );
+          lid.position.y = 0.24;
+          group.add(lid);
+        }
+
+        group.position.set(
+          xPos,
+          yPos,
+          zSide > 0 ? panelD / 2 + 0.16 : -panelD / 2 - 0.16,
+        );
+        if (zSide < 0) group.rotation.y = Math.PI;
+        group.castShadow = true;
+        return group;
+      }
+
+      // 6 shelves per side (3 left of mirror, 3 right of mirror)
+      const shelfYs = [1.55, 2.4, 3.25]; // 3 rows
+      const sideOffsets = [-1.25, 1.25]; // left and right of arch
+      const productTypes = ['tube', 'bottle', 'jar'];
+
+      [1, -1].forEach((zSide) => {
+        shelfYs.forEach((y, i) => {
+          sideOffsets.forEach((xOff) => {
+            stGroup.add(makeShelf(y, zSide, xOff));
+            // 3 products per shelf
+            for (let p = 0; p < 3; p++) {
+              const px = xOff - 0.3 + p * 0.3;
+              const type = productTypes[(i + p) % 3];
+              stGroup.add(makeProduct(px, y + 0.04, zSide, type));
+            }
+          });
+        });
+      });
+
+      // ============ TOP SIGNAGE - TAMBEAUTY ============
+      function makeSignText(zSide) {
+        const c = document.createElement('canvas');
+        c.width = 1024;
+        c.height = 220;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = 'rgba(0,0,0,0)';
+        ctx.fillRect(0, 0, c.width, c.height);
+
+        // glow halo
+        ctx.shadowColor = 'rgba(255,255,255,0.95)';
+        ctx.shadowBlur = 35;
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '700 110px "Pretendard", "Helvetica", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('TAMBEAUTY', c.width / 2, c.height / 2 + 5);
+
+        ctx.shadowBlur = 14;
+        ctx.fillText('TAMBEAUTY', c.width / 2, c.height / 2 + 5);
+
+        // subtitle
+        ctx.shadowBlur = 8;
+        ctx.font = '400 24px "Pretendard", sans-serif';
+        ctx.fillStyle = 'rgba(255,255,255,0.92)';
+        ctx.fillText('cloud beauty, everyday', c.width / 2, c.height / 2 + 75);
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        const mat = new THREE.MeshBasicMaterial({
+          map: tex,
+          transparent: true,
+        });
+        const plane = new THREE.Mesh(new THREE.PlaneGeometry(2.7, 0.58), mat);
+        plane.position.set(
+          0,
+          3.65,
+          zSide > 0 ? panelD / 2 + 0.025 : -panelD / 2 - 0.025,
+        );
+        plane.rotation.y = zSide > 0 ? 0 : Math.PI;
+        return plane;
+      }
+      stGroup.add(makeSignText(1));
+      stGroup.add(makeSignText(-1));
+
+      // ============ SIDE PLANTERS (per reference) ============
+      function makePlanter(x, zSide) {
+        const group = new THREE.Group();
+        const pot = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.16, 0.12, 0.22, 20),
+          new THREE.MeshStandardMaterial({
+            color: 0xc44b6e,
+            roughness: 0.5,
+            metalness: 0.1,
+          }),
+        );
+        pot.position.y = 0.11;
+        pot.castShadow = true;
+        group.add(pot);
+
+        // foliage (simple cluster)
+        for (let i = 0; i < 5; i++) {
+          const leaf = new THREE.Mesh(
+            new THREE.SphereGeometry(0.08, 12, 8),
+            new THREE.MeshStandardMaterial({
+              color: i % 2 ? 0x5a8a4a : 0x6fa05c,
+              roughness: 0.8,
+            }),
+          );
+          leaf.position.set(
+            (Math.random() - 0.5) * 0.15,
+            0.24 + Math.random() * 0.1,
+            (Math.random() - 0.5) * 0.15,
+          );
+          leaf.castShadow = true;
+          group.add(leaf);
+        }
+
+        group.position.set(
+          x,
+          1.04,
+          zSide > 0 ? panelD / 2 + 0.18 : -panelD / 2 - 0.18,
+        );
+        return group;
+      }
+      stGroup.add(makePlanter(-1.6, 1));
+      stGroup.add(makePlanter(1.6, 1));
+      stGroup.add(makePlanter(-1.6, -1));
+      stGroup.add(makePlanter(1.6, -1));
+
+      scene.add(stGroup);
+
+      // ============ SURROUNDING FIXTURES (KN blue boxes - low detail context) ============
+      function makeKNBox(x, z, w, d, rot = 0, label = 'KN') {
+        const group = new THREE.Group();
+        const geo = new RoundedBoxGeometry(w, 1.7, d, 3, 0.08);
+        const mat = new THREE.MeshStandardMaterial({
+          color: 0x3fb8e8,
+          roughness: 0.45,
+          metalness: 0.15,
+        });
+        const box = new THREE.Mesh(geo, mat);
+        box.position.y = 0.85;
+        box.castShadow = true;
+        box.receiveShadow = true;
+        group.add(box);
+
+        // top edge highlight
+        const top = new THREE.Mesh(
+          new THREE.BoxGeometry(w + 0.02, 0.04, d + 0.02),
+          new THREE.MeshStandardMaterial({ color: 0x6dcaf0, roughness: 0.3 }),
+        );
+        top.position.y = 1.72;
+        group.add(top);
+
+        group.position.set(x, 0, z);
+        group.rotation.y = rot;
+        return group;
+      }
+
+      // 집기 a, b, c, d (right wall - KN)
+      scene.add(makeKNBox(5.2, -3.5, 1.0, 1.6));
+      scene.add(makeKNBox(5.2, -1.0, 1.0, 1.6));
+      scene.add(makeKNBox(5.2, 1.5, 1.0, 1.6));
+      scene.add(makeKNBox(3.5, 4.8, 1.6, 1.0));
+      // 집기 e (back-left of ST)
+      scene.add(makeKNBox(-1.0, 3.5, 1.8, 0.6, (20 * Math.PI) / 180));
+      // 집기 f (front-left of ST)
+      scene.add(makeKNBox(-0.5, -3.2, 1.8, 0.6, (20 * Math.PI) / 180));
+
+      // ============ POS (purple) ============
+      const posGroup = new THREE.Group();
+      const posBase = new THREE.Mesh(
+        new RoundedBoxGeometry(1.5, 1.0, 0.8, 3, 0.05),
+        new THREE.MeshStandardMaterial({
+          color: 0x6b3aa0,
+          roughness: 0.4,
+          metalness: 0.15,
+        }),
+      );
+      posBase.position.y = 0.5;
+      posBase.castShadow = true;
+      posGroup.add(posBase);
+      posGroup.position.set(-3.5, 0, 3.0);
+      posGroup.rotation.y = (35 * Math.PI) / 180;
+      scene.add(posGroup);
+
+      // ============ MEDIA WALL (gray) ============
+      const media = new THREE.Mesh(
+        new RoundedBoxGeometry(2.4, 2.0, 2.0, 3, 0.05),
+        new THREE.MeshStandardMaterial({
+          color: 0x808080,
+          roughness: 0.5,
+          metalness: 0.1,
+        }),
+      );
+      media.position.set(-4.5, 1.0, 0.5);
+      media.rotation.y = (35 * Math.PI) / 180;
+      media.castShadow = true;
+      media.receiveShadow = true;
+      scene.add(media);
+
+      // media screen
+      const screen = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.8, 1.3),
+        new THREE.MeshBasicMaterial({ color: 0xffc8d4 }),
+      );
+      screen.position.set(-4.5, 1.1, 0.5);
+      screen.rotation.y = (35 * Math.PI) / 180 + Math.PI;
+      const screenOffset = new THREE.Vector3(
+        Math.sin((35 * Math.PI) / 180) * 1.01,
+        0,
+        Math.cos((35 * Math.PI) / 180) * 1.01,
+      );
+      screen.position.add(screenOffset.multiplyScalar(-1));
+      scene.add(screen);
+
+      // ============ PHOTO ZONE (orange box, left-front) ============
+      const photoZone = new THREE.Mesh(
+        new RoundedBoxGeometry(1.0, 2.4, 1.8, 3, 0.05),
+        new THREE.MeshStandardMaterial({
+          color: 0xeba23e,
+          roughness: 0.45,
+          metalness: 0.1,
+        }),
+      );
+      photoZone.position.set(-5.0, 1.2, -2.5);
+      photoZone.castShadow = true;
+      scene.add(photoZone);
+
+      // ============ VP ZONE (orange flat, front) ============
+      const vp = new THREE.Mesh(
+        new RoundedBoxGeometry(2.6, 0.5, 1.1, 3, 0.05),
+        new THREE.MeshStandardMaterial({
+          color: 0xeba23e,
+          roughness: 0.5,
+          metalness: 0.1,
+        }),
+      );
+      vp.position.set(-3.0, 0.25, -4.0);
+      vp.castShadow = true;
+      vp.receiveShadow = true;
+      scene.add(vp);
+
+      // ============ BANNER (magenta) ============
+      const banner = new THREE.Mesh(
+        new RoundedBoxGeometry(0.8, 2.6, 1.0, 3, 0.04),
+        new THREE.MeshStandardMaterial({
+          color: 0xc94db0,
+          roughness: 0.4,
+          metalness: 0.1,
+        }),
+      );
+      banner.position.set(-5.5, 1.3, 4.5);
+      banner.castShadow = true;
+      scene.add(banner);
+
+      // ============ IN/OUT arrows (subtle ground markers) ============
+      function makeArrow(x, z, dir = 'in') {
+        const c = document.createElement('canvas');
+        c.width = c.height = 256;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = 'rgba(0,0,0,0)';
+        ctx.fillRect(0, 0, 256, 256);
+        ctx.fillStyle = '#c44b6e';
+        ctx.beginPath();
+        if (dir === 'in') {
+          ctx.moveTo(128, 30);
+          ctx.lineTo(220, 130);
+          ctx.lineTo(170, 130);
+          ctx.lineTo(170, 226);
+          ctx.lineTo(86, 226);
+          ctx.lineTo(86, 130);
+          ctx.lineTo(36, 130);
+        } else {
+          ctx.moveTo(128, 226);
+          ctx.lineTo(36, 126);
+          ctx.lineTo(86, 126);
+          ctx.lineTo(86, 30);
+          ctx.lineTo(170, 30);
+          ctx.lineTo(170, 126);
+          ctx.lineTo(220, 126);
+        }
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = '#9d3653';
+        ctx.font = '800 56px "Pretendard", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(dir.toUpperCase(), 128, dir === 'in' ? 120 : 175);
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        const plane = new THREE.Mesh(
+          new THREE.PlaneGeometry(0.9, 0.9),
+          new THREE.MeshBasicMaterial({ map: tex, transparent: true }),
+        );
+        plane.rotation.x = -Math.PI / 2;
+        plane.position.set(x, 0.01, z);
+        return plane;
+      }
+      scene.add(makeArrow(0.5, -5.0, 'in'));
+      scene.add(makeArrow(-2.0, 5.0, 'out'));
+
+      // ============ AMBIENT PARTICLES (bubbles like ref image) ============
+      const bubbleGeo = new THREE.SphereGeometry(0.04, 12, 12);
+      const bubbleMat = new THREE.MeshPhysicalMaterial({
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.4,
+        roughness: 0.0,
+        metalness: 0.0,
+        transmission: 0.9,
+        thickness: 0.05,
+      });
+      const bubbles = [];
+      for (let i = 0; i < 18; i++) {
+        const b = new THREE.Mesh(bubbleGeo, bubbleMat);
+        b.position.set(
+          (Math.random() - 0.5) * 8,
+          3 + Math.random() * 3,
+          (Math.random() - 0.5) * 6,
+        );
+        b.userData.speed = 0.001 + Math.random() * 0.002;
+        b.userData.offset = Math.random() * Math.PI * 2;
+        scene.add(b);
+        bubbles.push(b);
+      }
+
+      // ============ VIEW PRESETS ============
+      const views = {
+        hero: { pos: [7, 6, 9], target: [0, 1.6, 0] },
+        front: { pos: [0, 2.5, 8.5], target: [0, 2.0, 0] },
+        side: { pos: [9, 2.5, 0], target: [0, 2.0, 0] },
+        top: { pos: [0.01, 14, 0.01], target: [0, 0, 0] },
+        plan: { pos: [4, 11, 6], target: [0, 0, 0] },
+      };
+
+      function setView(name) {
+        const v = views[name];
+        if (!v) return;
+        const startPos = camera.position.clone();
+        const startTarget = controls.target.clone();
+        const endPos = new THREE.Vector3(...v.pos);
+        const endTarget = new THREE.Vector3(...v.target);
+        const dur = 700;
+        const t0 = performance.now();
+        function tween() {
+          const t = Math.min(1, (performance.now() - t0) / dur);
+          const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+          camera.position.lerpVectors(startPos, endPos, ease);
+          controls.target.lerpVectors(startTarget, endTarget, ease);
+          controls.update();
+          if (t < 1) requestAnimationFrame(tween);
+        }
+        tween();
+      }
+
+      document.querySelectorAll('.ctrl button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document
+            .querySelectorAll('.ctrl button')
+            .forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          setView(btn.dataset.view);
+        });
+      });
+
+      // ============ ANIMATION LOOP ============
+      const clock = new THREE.Clock();
+      function animate() {
+        const t = clock.getElapsedTime();
+
+        bubbles.forEach((b) => {
+          b.position.y += b.userData.speed * 30;
+          b.position.x += Math.sin(t + b.userData.offset) * 0.003;
+          if (b.position.y > 7) {
+            b.position.y = 2.5;
+            b.position.x = (Math.random() - 0.5) * 8;
+            b.position.z = (Math.random() - 0.5) * 6;
+          }
+        });
+
+        controls.update();
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      // ============ RESIZE ============
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>
