@@ -682,27 +682,43 @@
         z-index: 2;
       }
       .menu-visual {
-        height: 180px;
+        height: 170px;
         margin: -32px -28px 26px;
-        background-size: cover;
-        background-position: center;
+        background:
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(232, 136, 74, 0.22),
+            transparent 65%
+          ),
+          linear-gradient(180deg, var(--bg-3), var(--bg-2));
         position: relative;
         overflow: hidden;
         border-bottom: 1px solid var(--line);
       }
-      .menu-visual::after {
-        content: '';
+      .menu-visual span {
         position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          180deg,
-          rgba(26, 19, 16, 0.05) 0%,
-          rgba(26, 19, 16, 0.55) 100%
-        );
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: var(--jp);
+        font-size: 84px;
+        color: rgba(232, 136, 74, 0.28);
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        transition:
+          color 0.4s ease,
+          transform 0.5s ease;
       }
-      .menu-card:hover .menu-visual {
-        transform: scale(1.05);
-        transition: transform 0.7s ease;
+      .menu-card:hover .menu-visual span {
+        color: rgba(232, 136, 74, 0.5);
+        transform: translate(-50%, -50%) scale(1.05);
+      }
+      .menu-card.limited .menu-visual span {
+        color: rgba(212, 184, 118, 0.32);
+      }
+      .menu-card.limited:hover .menu-visual span {
+        color: rgba(212, 184, 118, 0.55);
       }
       .menu-jp {
         font-family: var(--jp);
@@ -1162,12 +1178,7 @@
 
         <div class="menu-grid">
           <article class="menu-card limited reveal">
-            <div
-              class="menu-visual"
-              style="
-                background-image: url('https://images.unsplash.com/photo-1770966666361-b448e634e163?w=900&q=75&auto=format&fit=crop');
-              "
-            ></div>
+            <div class="menu-visual"><span>特</span></div>
             <div class="menu-jp">特ロースかつ</div>
             <h3 class="menu-name">숯불 특로스카츠</h3>
             <p class="menu-desc">
@@ -1178,12 +1189,7 @@
           </article>
 
           <article class="menu-card reveal">
-            <div
-              class="menu-visual"
-              style="
-                background-image: url('https://images.unsplash.com/photo-1770966666346-fbfde1f89a33?w=900&q=75&auto=format&fit=crop');
-              "
-            ></div>
+            <div class="menu-visual"><span>半</span></div>
             <div class="menu-jp">半半かつ</div>
             <h3 class="menu-name">숯불 반반카츠</h3>
             <p class="menu-desc">
@@ -1194,12 +1200,7 @@
           </article>
 
           <article class="menu-card reveal">
-            <div
-              class="menu-visual"
-              style="
-                background-image: url('https://images.unsplash.com/photo-1496112774951-bf41010eed5e?w=900&q=75&auto=format&fit=crop');
-              "
-            ></div>
+            <div class="menu-visual"><span>チ</span></div>
             <div class="menu-jp">ゴーダチーズかつ</div>
             <h3 class="menu-name">숯불 고다치즈카츠</h3>
             <p class="menu-desc">
@@ -1210,12 +1211,7 @@
           </article>
 
           <article class="menu-card reveal">
-            <div
-              class="menu-visual"
-              style="
-                background-image: url('https://images.unsplash.com/photo-1770904984245-afbfaf46307d?w=900&q=75&auto=format&fit=crop');
-              "
-            ></div>
+            <div class="menu-visual"><span>ロ</span></div>
             <div class="menu-jp">ロースかつ</div>
             <h3 class="menu-name">숯불 로스카츠</h3>
             <p class="menu-desc">
@@ -1226,12 +1222,7 @@
           </article>
 
           <article class="menu-card reveal">
-            <div
-              class="menu-visual"
-              style="
-                background-image: url('https://images.unsplash.com/photo-1622052073730-04bbc497be48?w=900&q=75&auto=format&fit=crop');
-              "
-            ></div>
+            <div class="menu-visual"><span>ヒ</span></div>
             <div class="menu-jp">ヒレかつ</div>
             <h3 class="menu-name">숯불 히레카츠</h3>
             <p class="menu-desc">
@@ -1241,12 +1232,7 @@
           </article>
 
           <article class="menu-card reveal">
-            <div
-              class="menu-visual"
-              style="
-                background-image: url('https://images.unsplash.com/photo-1625144093498-bf62fca631c5?w=900&q=75&auto=format&fit=crop');
-              "
-            ></div>
+            <div class="menu-visual"><span>海</span></div>
             <div class="menu-jp">エビサンド</div>
             <h3 class="menu-name">숯불 에비산도</h3>
             <p class="menu-desc">
