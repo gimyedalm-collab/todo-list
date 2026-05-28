@@ -344,22 +344,17 @@
         gap: 36px;
         justify-self: center;
       }
+      /* Nav always English uppercase (premium Korean entertainment convention) */
       .dm-nav a {
         font-family: var(--font-sans);
-        font-size: 16px;
+        font-size: 13px;
         font-weight: 500;
-        letter-spacing: -0.015em;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
         color: var(--ink-2);
         transition: color 0.2s;
         padding: 6px 0;
         position: relative;
-      }
-      /* English mode: editorial uppercase */
-      [data-lang='en'] .dm-nav a {
-        font-size: 13px;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        font-weight: 500;
       }
       .dm-nav a::after {
         content: '';
@@ -2050,21 +2045,11 @@
         ><span class="d">D</span>m<span class="dot">.</span></a
       >
       <nav class="dm-nav">
-        <a href="#home" data-page-link="home" class="is-active"
-          ><span class="kr">메인</span><span class="en">Main</span></a
-        >
-        <a href="#about" data-page-link="about"
-          ><span class="kr">소개</span><span class="en">About</span></a
-        >
-        <a href="#artist" data-page-link="artist"
-          ><span class="kr">아티스트</span><span class="en">Artist</span></a
-        >
-        <a href="#event" data-page-link="event"
-          ><span class="kr">이벤트</span><span class="en">Event</span></a
-        >
-        <a href="#contact" data-page-link="contact"
-          ><span class="kr">문의</span><span class="en">Contact</span></a
-        >
+        <a href="#home" data-page-link="home" class="is-active">MAIN</a>
+        <a href="#about" data-page-link="about">ABOUT</a>
+        <a href="#artist" data-page-link="artist">ARTIST</a>
+        <a href="#event" data-page-link="event">EVENT</a>
+        <a href="#contact" data-page-link="contact">CONTACT</a>
       </nav>
       <div class="dm-tools">
         <div class="dm-lang">
