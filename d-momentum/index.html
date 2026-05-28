@@ -133,7 +133,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -220,11 +220,48 @@
         line-break: strict;
       }
       /* Korean mode: disable italic on <em> (Fraunces has no Korean glyphs, falls back to ugly synthetic oblique) */
-      [data-lang='kr'] em {
+      /* Global em: NO italic in any inline emphasis (italic 'a' in serif is hard to read).
+         Use crimson color + medium weight as emphasis instead. */
+      em {
         font-style: normal !important;
         font-family: inherit !important;
-        color: var(--hairline);
-        font-weight: 600;
+        color: var(--hairline) !important;
+        font-weight: 600 !important;
+      }
+      /* Keep italic ONLY for: single-letter signature marks + small unit characters */
+      .dm-logo .d,
+      .dm-footer-mark em,
+      .sns-card .followers em,
+      .award .big em,
+      .tab-btn .idx {
+        font-style: italic !important;
+        font-family: var(--font-serif) !important;
+        font-weight: 400 !important;
+      }
+      .dm-footer-mark em {
+        color: inherit !important;
+      }
+      .sns-card .followers em {
+        color: var(--mute) !important;
+        font-weight: 400 !important;
+      }
+      .award .big em {
+        color: var(--hairline) !important;
+        font-weight: 400 !important;
+      }
+      .tab-btn .idx {
+        color: var(--mute) !important;
+        font-weight: 400 !important;
+      }
+      .tab-btn.active .idx {
+        color: var(--hairline) !important;
+      }
+      /* Long-form italic block elements (quote conventions — at large size italic 'a' is fine) */
+      .manifesto,
+      .profile-quote,
+      .profile-bio,
+      .about-quote {
+        font-style: italic;
       }
       a {
         color: inherit;
@@ -1469,10 +1506,10 @@
       }
       .press-item .name {
         font-family: var(--font-serif);
-        font-style: italic;
-        font-weight: 400;
+        font-style: normal;
+        font-weight: 600;
         font-size: clamp(22px, 2.4vw, 32px);
-        letter-spacing: -0.01em;
+        letter-spacing: -0.015em;
         color: var(--ink);
       }
       .press-item .issue {
