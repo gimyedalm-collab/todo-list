@@ -612,6 +612,72 @@
         }
       }
 
+      /* ─── HOME WELCOME STATEMENT ─── */
+      .home-welcome {
+        padding: var(--pad-y) var(--pad-x);
+      }
+      .home-welcome-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: end;
+        max-width: 1400px;
+      }
+      .home-welcome-title {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(32px, 4.5vw, 68px);
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        margin-top: 24px;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
+      .home-welcome-body {
+        color: var(--ink-2);
+        font-size: 16px;
+        line-height: 1.85;
+        margin-bottom: 36px;
+        max-width: 520px;
+      }
+      .home-welcome-links {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+      }
+      .home-welcome-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        font-family: var(--font-display);
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: -0.015em;
+        color: var(--ink);
+        padding: 6px 0;
+        transition: gap 0.25s ease;
+      }
+      .home-welcome-links a:hover {
+        gap: 24px;
+        color: var(--hairline);
+      }
+      .home-welcome-links a svg {
+        opacity: 0.6;
+        transition: opacity 0.25s ease;
+      }
+      .home-welcome-links a:hover svg {
+        opacity: 1;
+      }
+      @media (max-width: 760px) {
+        .home-welcome-inner {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+      }
+
       /* ─── SECTION ─── */
       .section {
         padding: var(--pad-y) var(--pad-x);
@@ -2077,26 +2143,22 @@
         />
         <div class="hero-caption">
           <div>
-            <em>Dasha Taran</em> · <span class="kr">탐뷰티 SS26 캠페인</span
-            ><span class="en">TAM BEAUTY SS26 Campaign</span>
+            <em>D Momentum</em> · <span class="kr">2026 시즌 캐스팅 진행</span
+            ><span class="en">2026 Season · Now Casting</span>
           </div>
-          <div>
-            <span class="kr">현재 진행 중</span
-            ><span class="en">In Production</span>
-          </div>
+          <div><span class="kr">서울</span><span class="en">Seoul</span></div>
         </div>
       </div>
       <div class="hero-bar">
         <h1 class="hero-title" id="heroTitle">
           <span class="kr"
-            ><span class="word">탤런트<em>가</em></span>
-            <span class="word">곧</span>
-            <span class="word">모멘텀.</span></span
+            ><span class="word">다음 페이스를</span>
+            <span class="word"><em>발굴합니다</em>.</span></span
           >
           <span class="en"
-            ><span class="word">Talent</span>
-            <span class="word"><em>is</em></span>
-            <span class="word">momentum.</span></span
+            ><span class="word">Discovering</span>
+            <span class="word">the next</span>
+            <span class="word"><em>face</em>.</span></span
           >
         </h1>
       </div>
@@ -2122,8 +2184,85 @@
       </div>
     </div>
 
+    <!-- ============ HOME WELCOME STATEMENT (home page only) ============ -->
+    <section class="home-welcome active" data-page="home">
+      <div class="home-welcome-inner">
+        <div>
+          <div class="section-num">
+            N° 00 —
+            <b
+              ><span class="kr">D Momentum</span
+              ><span class="en">D Momentum</span></b
+            >
+          </div>
+          <h2 class="home-welcome-title">
+            <span class="kr"
+              >광고, 콘텐츠, 라이선스 —<br />한 명의 아티스트가 가진 모든
+              <em>가능성</em>.</span
+            >
+            <span class="en"
+              >Advertising, content, licensing —<br />every
+              <em>possibility</em> one artist can carry.</span
+            >
+          </h2>
+        </div>
+        <div class="home-welcome-side">
+          <p class="home-welcome-body">
+            <span class="kr"
+              >D Momentum은 2024년 서울에서 시작된 부티크 글로벌 탤런트
+              매니지먼트 에이전시입니다. 정예 아티스트의 영향력을 가장 정밀한
+              방향으로 가속화합니다.</span
+            >
+            <span class="en"
+              >D Momentum is a boutique global talent management agency founded
+              in Seoul, 2024. We accelerate select artists' influence in the
+              most precise direction.</span
+            >
+          </p>
+          <div class="home-welcome-links">
+            <a href="#artist">
+              <span class="kr">아티스트 보기</span
+              ><span class="en">View artist</span>
+              <svg width="14" height="10" viewBox="0 0 14 10">
+                <path
+                  d="M0 5h12M8 1l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  fill="none"
+                />
+              </svg>
+            </a>
+            <a href="#campaigns">
+              <span class="kr">최근 캠페인</span
+              ><span class="en">Recent work</span>
+              <svg width="14" height="10" viewBox="0 0 14 10">
+                <path
+                  d="M0 5h12M8 1l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  fill="none"
+                />
+              </svg>
+            </a>
+            <a href="#contact">
+              <span class="kr">문의하기</span
+              ><span class="en">Get in touch</span>
+              <svg width="14" height="10" viewBox="0 0 14 10">
+                <path
+                  d="M0 5h12M8 1l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  fill="none"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ N° 01 ROSTER ============ -->
-    <section id="roster" class="section active" data-page="home">
+    <section id="roster" class="section" data-page="artist">
       <div class="section-head">
         <div class="section-num">
           N° 01 —
