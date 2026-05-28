@@ -3,25 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>츠쿠 TSUKU — 숯불에 입힌 카츠 · 군산 나운동</title>
+    <title>츠쿠 TSUKU — 숯불이 닿는 순간 · 군산 나운동</title>
     <meta
       name="description"
-      content="훈연 향을 입혀 저온에서 천천히 익혀낸, 군산 단 한 곳의 숯불 돈카츠. 군산 나운동 츠쿠(TSUKU)."
+      content="츠쿠(つく)는 일본어로 '닿다, 입혀지다'. 바삭하게 튀긴 카츠 위에 숯불 향을 한 번 더 입힙니다. 군산 단 한 곳의 숯불 돈카츠 — 츠쿠."
     />
-    <meta name="theme-color" content="#0a0807" />
+    <meta name="theme-color" content="#1a1310" />
     <meta name="author" content="TSUKU" />
     <meta
       name="keywords"
       content="츠쿠, TSUKU, 군산 돈카츠, 군산 카츠, 나운동 돈카츠, 숯불 돈카츠, 군산 맛집, 군산 일식"
     />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="restaurant" />
     <meta property="og:site_name" content="츠쿠 TSUKU" />
-    <meta property="og:title" content="츠쿠 TSUKU — 숯불에 입힌 카츠" />
+    <meta property="og:title" content="츠쿠 TSUKU — 숯불이 닿는 순간" />
     <meta
       property="og:description"
-      content="훈연 향을 입혀 저온에서 천천히 익혀낸, 군산 단 한 곳의 숯불 돈카츠."
+      content="츠쿠(つく)는 일본어로 '닿다'. 카츠 위에 숯불 향을 입히는 순간, 비로소 한 장의 카츠가 됩니다."
     />
     <meta
       property="og:image"
@@ -35,20 +34,17 @@
     />
     <meta property="og:locale" content="ko_KR" />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="츠쿠 TSUKU — 숯불에 입힌 카츠" />
+    <meta name="twitter:title" content="츠쿠 TSUKU — 숯불이 닿는 순간" />
     <meta name="twitter:description" content="군산, 단 한 곳의 숯불 돈카츠." />
     <meta
       name="twitter:image"
       content="https://gimyedalm-collab.github.io/todo-list/tsuku/og.svg"
     />
 
-    <!-- Icon -->
     <link rel="icon" type="image/svg+xml" href="logo.svg" />
     <link rel="apple-touch-icon" href="logo.svg" />
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -56,7 +52,6 @@
       rel="stylesheet"
     />
 
-    <!-- JSON-LD Restaurant Schema -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -110,18 +105,21 @@
 
     <style>
       :root {
-        --bg: #0a0807;
-        --bg-2: #14100d;
-        --bg-3: #1c1612;
-        --line: #2a221c;
-        --text: #f4ede3;
-        --text-dim: #b8ab9b;
-        --text-mute: #7a6e60;
-        --ember: #d97742;
-        --ember-soft: #b25e30;
-        --gold: #c9a961;
-        --gold-soft: #8c7340;
-        --red: #8c2f24;
+        --bg: #1a1310;
+        --bg-2: #251c15;
+        --bg-3: #2f241b;
+        --bg-warm: #3a2c20;
+        --line: #3a2d22;
+        --line-soft: #2a2018;
+        --text: #faf3e7;
+        --text-dim: #d2c3ac;
+        --text-mute: #9a8a76;
+        --ember: #e8884a;
+        --ember-soft: #c87038;
+        --ember-glow: rgba(232, 136, 74, 0.18);
+        --gold: #d4b876;
+        --red: #a64030;
+        --cream: #f3e6cf;
         --serif: 'Noto Serif KR', 'Shippori Mincho', serif;
         --jp: 'Shippori Mincho', 'Noto Serif KR', serif;
         --sans: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -141,7 +139,7 @@
         color: var(--text);
         font-family: var(--sans);
         font-weight: 300;
-        line-height: 1.65;
+        line-height: 1.7;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
       }
@@ -155,25 +153,24 @@
         max-width: 100%;
       }
 
-      /* ===== Background ambience ===== */
       body::before {
         content: '';
         position: fixed;
         inset: 0;
         background:
           radial-gradient(
-            ellipse 800px 600px at 80% -10%,
-            rgba(217, 119, 66, 0.1),
+            ellipse 900px 700px at 85% -5%,
+            rgba(232, 136, 74, 0.16),
+            transparent 55%
+          ),
+          radial-gradient(
+            ellipse 800px 600px at -10% 40%,
+            rgba(166, 64, 48, 0.12),
             transparent 60%
           ),
           radial-gradient(
-            ellipse 700px 500px at -10% 30%,
-            rgba(140, 47, 36, 0.08),
-            transparent 60%
-          ),
-          radial-gradient(
-            ellipse 900px 700px at 50% 110%,
-            rgba(201, 169, 97, 0.05),
+            ellipse 1000px 800px at 50% 110%,
+            rgba(212, 184, 118, 0.08),
             transparent 60%
           );
         pointer-events: none;
@@ -187,9 +184,9 @@
         left: 0;
         right: 0;
         z-index: 50;
-        backdrop-filter: blur(14px);
-        background: rgba(10, 8, 7, 0.6);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(16px);
+        background: rgba(26, 19, 16, 0.7);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
       .nav-inner {
         max-width: var(--maxw);
@@ -202,20 +199,20 @@
       .brand {
         display: flex;
         align-items: baseline;
-        gap: 10px;
+        gap: 12px;
         font-family: var(--serif);
         font-weight: 600;
         letter-spacing: 0.08em;
       }
       .brand .kr {
-        font-size: 20px;
+        font-size: 21px;
         color: var(--text);
       }
       .brand .jp {
         font-family: var(--jp);
         font-size: 13px;
         color: var(--ember);
-        letter-spacing: 0.2em;
+        letter-spacing: 0.22em;
       }
       .nav-links {
         display: flex;
@@ -230,7 +227,7 @@
       .nav-links a:hover {
         color: var(--ember);
       }
-      @media (max-width: 720px) {
+      @media (max-width: 760px) {
         .nav-inner {
           padding: 14px 20px;
         }
@@ -248,56 +245,85 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 120px 24px 80px;
+        padding: 120px 24px 100px;
         z-index: 1;
         overflow: hidden;
+      }
+      .hero-photo {
+        position: absolute;
+        inset: 0;
+        background-image: url('https://images.unsplash.com/photo-1621851709622-e19c9a4f0cc5?w=1800&q=75&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.55) saturate(1.15) contrast(1.05);
+        z-index: -2;
+      }
+      .hero-photo::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(26, 19, 16, 0.25) 0%,
+            rgba(26, 19, 16, 0.2) 40%,
+            rgba(26, 19, 16, 0.75) 100%
+          ),
+          radial-gradient(
+            ellipse 70% 50% at 50% 55%,
+            transparent,
+            rgba(26, 19, 16, 0.55)
+          );
       }
       .hero-smoke {
         position: absolute;
         inset: 0;
-        opacity: 0.45;
+        opacity: 0.55;
         pointer-events: none;
         background:
           radial-gradient(
             circle at 30% 60%,
-            rgba(217, 119, 66, 0.18),
+            rgba(232, 136, 74, 0.22),
             transparent 35%
           ),
           radial-gradient(
             circle at 70% 40%,
-            rgba(201, 169, 97, 0.1),
+            rgba(212, 184, 118, 0.14),
             transparent 40%
           );
         filter: blur(40px);
         animation: drift 18s ease-in-out infinite alternate;
+        z-index: -1;
       }
       @keyframes drift {
         0% {
           transform: translate(0, 0) scale(1);
         }
         100% {
-          transform: translate(40px, -20px) scale(1.08);
+          transform: translate(50px, -25px) scale(1.1);
         }
       }
       .hero-kanji {
         font-family: var(--jp);
-        font-size: clamp(56px, 12vw, 140px);
+        font-size: clamp(48px, 9vw, 110px);
         font-weight: 600;
         color: transparent;
-        -webkit-text-stroke: 1px rgba(217, 119, 66, 0.35);
-        letter-spacing: 0.15em;
+        -webkit-text-stroke: 1px rgba(232, 136, 74, 0.45);
+        letter-spacing: 0.18em;
         line-height: 1;
-        margin-bottom: 20px;
+        margin-bottom: 24px;
         opacity: 0;
         animation: fadeUp 1.4s ease 0.2s forwards;
       }
       .hero-title {
         font-family: var(--serif);
-        font-size: clamp(34px, 6.4vw, 72px);
+        font-size: clamp(32px, 5.8vw, 64px);
         font-weight: 500;
-        letter-spacing: -0.01em;
-        line-height: 1.2;
-        margin-bottom: 28px;
+        letter-spacing: -0.015em;
+        line-height: 1.3;
+        margin-bottom: 32px;
+        max-width: 920px;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
         opacity: 0;
         animation: fadeUp 1.4s ease 0.5s forwards;
       }
@@ -306,14 +332,28 @@
         color: var(--ember);
         font-weight: 600;
       }
-      .hero-sub {
-        font-size: 15px;
+      .hero-title .small {
+        display: block;
+        font-size: 0.55em;
         color: var(--text-dim);
-        letter-spacing: 0.25em;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        margin-top: 18px;
+      }
+      .hero-sub {
+        font-size: 13px;
+        color: var(--text-dim);
+        letter-spacing: 0.35em;
         text-transform: uppercase;
         margin-bottom: 56px;
         opacity: 0;
         animation: fadeUp 1.4s ease 0.8s forwards;
+      }
+      .hero-sub::before,
+      .hero-sub::after {
+        content: '·';
+        margin: 0 14px;
+        color: var(--ember);
       }
       .hero-cta {
         display: flex;
@@ -327,7 +367,7 @@
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        padding: 14px 28px;
+        padding: 14px 30px;
         font-size: 13px;
         letter-spacing: 0.18em;
         font-weight: 500;
@@ -337,7 +377,7 @@
       }
       .btn-primary {
         background: var(--ember);
-        color: #1a0e07;
+        color: #2a1a0d;
         border: 1px solid var(--ember);
       }
       .btn-primary:hover {
@@ -345,9 +385,10 @@
         color: var(--ember);
       }
       .btn-ghost {
-        background: transparent;
+        background: rgba(26, 19, 16, 0.4);
         color: var(--text);
-        border: 1px solid rgba(244, 237, 227, 0.25);
+        border: 1px solid rgba(250, 243, 231, 0.3);
+        backdrop-filter: blur(6px);
       }
       .btn-ghost:hover {
         border-color: var(--ember);
@@ -355,12 +396,12 @@
       }
       .hero-scroll {
         position: absolute;
-        bottom: 32px;
+        bottom: 36px;
         left: 50%;
         transform: translateX(-50%);
         font-size: 11px;
-        letter-spacing: 0.3em;
-        color: var(--text-mute);
+        letter-spacing: 0.35em;
+        color: var(--text-dim);
         opacity: 0;
         animation: fadeUp 1.4s ease 1.4s forwards;
       }
@@ -368,8 +409,8 @@
         content: '';
         display: block;
         width: 1px;
-        height: 40px;
-        background: linear-gradient(to bottom, var(--text-mute), transparent);
+        height: 44px;
+        background: linear-gradient(to bottom, var(--text-dim), transparent);
         margin: 12px auto 0;
         animation: scrollHint 2.5s ease-in-out infinite;
       }
@@ -398,7 +439,7 @@
       /* ===== Sections ===== */
       .section {
         position: relative;
-        padding: 120px 24px;
+        padding: 130px 24px;
         z-index: 1;
       }
       .container {
@@ -409,127 +450,191 @@
         font-family: var(--jp);
         font-size: 13px;
         color: var(--ember);
-        letter-spacing: 0.4em;
+        letter-spacing: 0.42em;
         margin-bottom: 18px;
         text-transform: uppercase;
       }
       .section-title {
         font-family: var(--serif);
-        font-size: clamp(28px, 4.2vw, 44px);
+        font-size: clamp(28px, 4.4vw, 48px);
         font-weight: 500;
-        letter-spacing: -0.01em;
-        line-height: 1.25;
-        margin-bottom: 24px;
+        letter-spacing: -0.015em;
+        line-height: 1.3;
+        margin-bottom: 26px;
       }
       .section-lead {
         font-size: 17px;
         color: var(--text-dim);
-        max-width: 620px;
-        line-height: 1.8;
+        max-width: 640px;
+        line-height: 1.85;
       }
 
-      /* ===== Story ===== */
-      .story {
+      /* ===== Name story ===== */
+      .name-story {
         background: linear-gradient(
           180deg,
           transparent,
-          rgba(20, 16, 13, 0.5) 50%,
+          rgba(58, 44, 32, 0.35) 50%,
           transparent
         );
+        text-align: center;
       }
-      .story-grid {
+      .name-story .container {
+        max-width: 820px;
+      }
+      .name-mark {
+        font-family: var(--jp);
+        font-size: clamp(120px, 22vw, 220px);
+        font-weight: 600;
+        line-height: 1;
+        background: linear-gradient(
+          180deg,
+          var(--ember) 0%,
+          var(--ember-soft) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 8px;
+        letter-spacing: -0.02em;
+      }
+      .name-romaji {
+        font-family: var(--jp);
+        font-size: 14px;
+        color: var(--text-mute);
+        letter-spacing: 0.5em;
+        margin-bottom: 48px;
+        text-transform: uppercase;
+      }
+      .name-title {
+        font-family: var(--serif);
+        font-size: clamp(26px, 3.8vw, 38px);
+        font-weight: 500;
+        margin-bottom: 32px;
+        line-height: 1.4;
+      }
+      .name-body {
+        font-size: 17px;
+        color: var(--text-dim);
+        line-height: 2;
+        max-width: 620px;
+        margin: 0 auto;
+      }
+      .name-body p {
+        margin-bottom: 22px;
+      }
+      .name-body strong {
+        color: var(--cream);
+        font-weight: 500;
+      }
+      .name-divider {
+        width: 60px;
+        height: 1px;
+        background: var(--ember);
+        margin: 56px auto 28px;
+      }
+      .name-sign {
+        font-family: var(--serif);
+        font-size: 14px;
+        color: var(--text-mute);
+        letter-spacing: 0.3em;
+      }
+
+      /* ===== Craft (Story) ===== */
+      .craft-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 80px;
+        gap: 90px;
         align-items: center;
       }
-      .story-visual {
+      .craft-visual {
         aspect-ratio: 4/5;
-        background:
-          radial-gradient(
-            circle at 30% 40%,
-            rgba(217, 119, 66, 0.25),
-            transparent 55%
+        background-image:
+          linear-gradient(
+            180deg,
+            rgba(26, 19, 16, 0.1) 0%,
+            rgba(26, 19, 16, 0.55) 100%
           ),
-          radial-gradient(
-            circle at 70% 70%,
-            rgba(140, 47, 36, 0.3),
-            transparent 55%
-          ),
-          linear-gradient(135deg, #1c1612, #0a0807);
+          url('https://images.unsplash.com/photo-1588182657969-777d766e31ab?w=900&q=75&auto=format&fit=crop');
+        background-size: cover;
+        background-position: center;
         border: 1px solid var(--line);
         border-radius: 4px;
         position: relative;
         overflow: hidden;
       }
-      .story-visual::before {
-        content: '炭'; /* charcoal */
+      .craft-visual::before {
+        content: '炭';
         position: absolute;
         font-family: var(--jp);
-        font-size: 280px;
+        font-size: 220px;
         font-weight: 600;
-        color: rgba(217, 119, 66, 0.08);
+        color: rgba(250, 243, 231, 0.85);
+        text-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         line-height: 1;
+        mix-blend-mode: overlay;
       }
-      .story-visual::after {
+      .craft-visual::after {
         content: '숯불에 입혀, 천천히';
         position: absolute;
         bottom: 28px;
         left: 28px;
         font-family: var(--serif);
         font-size: 14px;
-        color: var(--text-dim);
-        letter-spacing: 0.2em;
+        color: var(--text);
+        letter-spacing: 0.22em;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
       }
-      .story-points {
+      .craft-points {
         display: flex;
         flex-direction: column;
-        gap: 32px;
-        margin-top: 40px;
+        gap: 38px;
+        margin-top: 44px;
       }
-      .story-point {
+      .craft-point {
         display: flex;
-        gap: 20px;
-        padding-bottom: 28px;
+        gap: 24px;
+        padding-bottom: 32px;
         border-bottom: 1px solid var(--line);
       }
-      .story-point:last-child {
+      .craft-point:last-child {
         border-bottom: none;
+        padding-bottom: 0;
       }
-      .story-point-num {
+      .craft-num {
         font-family: var(--jp);
-        font-size: 22px;
+        font-size: 26px;
         color: var(--ember);
         flex-shrink: 0;
-        width: 36px;
+        width: 42px;
         font-weight: 600;
       }
-      .story-point h4 {
+      .craft-point h4 {
         font-family: var(--serif);
-        font-size: 18px;
+        font-size: 19px;
         font-weight: 500;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         color: var(--text);
       }
-      .story-point p {
-        font-size: 14.5px;
+      .craft-point p {
+        font-size: 15px;
         color: var(--text-dim);
-        line-height: 1.8;
+        line-height: 1.85;
       }
-      @media (max-width: 860px) {
-        .story-grid {
+      @media (max-width: 880px) {
+        .craft-grid {
           grid-template-columns: 1fr;
-          gap: 48px;
+          gap: 56px;
         }
       }
 
       /* ===== Menu ===== */
       .menu-header {
         text-align: center;
-        margin-bottom: 72px;
+        margin-bottom: 80px;
       }
       .menu-header .section-lead {
         margin: 0 auto;
@@ -550,78 +655,79 @@
           box-shadow 0.3s ease;
         position: relative;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
       }
       .menu-card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(217, 119, 66, 0.4);
-        box-shadow: 0 20px 60px -20px rgba(217, 119, 66, 0.15);
+        transform: translateY(-5px);
+        border-color: rgba(232, 136, 74, 0.5);
+        box-shadow: 0 24px 60px -20px rgba(232, 136, 74, 0.2);
       }
       .menu-card.limited {
-        border-color: rgba(201, 169, 97, 0.35);
+        border-color: rgba(212, 184, 118, 0.4);
       }
       .menu-card.limited::after {
         content: '限定';
         position: absolute;
-        top: 16px;
-        right: 16px;
+        top: 18px;
+        right: 18px;
         font-family: var(--jp);
         font-size: 11px;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.22em;
         color: var(--gold);
-        background: rgba(201, 169, 97, 0.1);
-        padding: 4px 10px;
-        border: 1px solid rgba(201, 169, 97, 0.3);
+        background: rgba(212, 184, 118, 0.12);
+        padding: 5px 11px;
+        border: 1px solid rgba(212, 184, 118, 0.35);
         border-radius: 2px;
+        z-index: 2;
       }
       .menu-visual {
-        height: 140px;
-        margin: -32px -28px 24px;
-        background:
-          radial-gradient(
-            circle at 40% 50%,
-            rgba(217, 119, 66, 0.2),
-            transparent 60%
-          ),
-          linear-gradient(180deg, var(--bg-3), var(--bg-2));
+        height: 180px;
+        margin: -32px -28px 26px;
+        background-size: cover;
+        background-position: center;
         position: relative;
         overflow: hidden;
         border-bottom: 1px solid var(--line);
       }
-      .menu-visual span {
+      .menu-visual::after {
+        content: '';
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-family: var(--jp);
-        font-size: 64px;
-        color: rgba(217, 119, 66, 0.18);
-        font-weight: 600;
-        letter-spacing: -0.05em;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(26, 19, 16, 0.05) 0%,
+          rgba(26, 19, 16, 0.55) 100%
+        );
+      }
+      .menu-card:hover .menu-visual {
+        transform: scale(1.05);
+        transition: transform 0.7s ease;
       }
       .menu-jp {
         font-family: var(--jp);
         font-size: 12px;
         color: var(--ember);
-        letter-spacing: 0.25em;
+        letter-spacing: 0.28em;
         margin-bottom: 10px;
       }
       .menu-name {
         font-family: var(--serif);
-        font-size: 20px;
+        font-size: 21px;
         font-weight: 500;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
         color: var(--text);
       }
       .menu-desc {
-        font-size: 13.5px;
+        font-size: 14px;
         color: var(--text-dim);
-        line-height: 1.7;
-        margin-bottom: 22px;
-        min-height: 70px;
+        line-height: 1.75;
+        margin-bottom: 24px;
+        flex: 1;
       }
       .menu-price {
         font-family: var(--serif);
-        font-size: 22px;
+        font-size: 23px;
         font-weight: 500;
         color: var(--ember);
         letter-spacing: 0.02em;
@@ -630,26 +736,80 @@
         font-size: 12px;
         color: var(--text-mute);
         margin-left: 4px;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
       }
-      @media (max-width: 900px) {
+      @media (max-width: 920px) {
         .menu-grid {
           grid-template-columns: repeat(2, 1fr);
         }
       }
-      @media (max-width: 560px) {
+      @media (max-width: 580px) {
         .menu-grid {
           grid-template-columns: 1fr;
           gap: 20px;
         }
-        .menu-desc {
-          min-height: 0;
+      }
+
+      /* ===== Gallery ===== */
+      .gallery {
+        background: linear-gradient(180deg, transparent, rgba(58, 44, 32, 0.3));
+      }
+      .gallery-header {
+        text-align: center;
+        margin-bottom: 64px;
+      }
+      .gallery-header .section-lead {
+        margin: 0 auto;
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+      .gallery-item {
+        aspect-ratio: 3/4;
+        background-size: cover;
+        background-position: center;
+        border-radius: 4px;
+        border: 1px solid var(--line);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.4s ease;
+      }
+      .gallery-item:hover {
+        transform: translateY(-4px);
+      }
+      .gallery-item::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(26, 19, 16, 0) 50%,
+          rgba(26, 19, 16, 0.55) 100%
+        );
+      }
+      .gallery-item.tall {
+        grid-row: span 2;
+        aspect-ratio: 3/7;
+      }
+      @media (max-width: 880px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .gallery-item.tall {
+          grid-row: auto;
+          aspect-ratio: 3/4;
         }
       }
 
-      /* ===== Info / Visit ===== */
+      /* ===== Visit ===== */
       .visit {
-        background: linear-gradient(180deg, transparent, rgba(20, 16, 13, 0.4));
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba(37, 28, 21, 0.45)
+        );
       }
       .visit-grid {
         display: grid;
@@ -664,30 +824,30 @@
       }
       .info-row {
         display: flex;
-        gap: 24px;
-        padding-bottom: 24px;
+        gap: 28px;
+        padding-bottom: 26px;
         border-bottom: 1px solid var(--line);
       }
       .info-label {
         font-family: var(--jp);
         font-size: 12px;
         color: var(--ember);
-        letter-spacing: 0.3em;
+        letter-spacing: 0.32em;
         flex-shrink: 0;
         width: 90px;
         padding-top: 4px;
       }
       .info-body {
         flex: 1;
-        font-size: 15px;
+        font-size: 15.5px;
         color: var(--text);
-        line-height: 1.8;
+        line-height: 1.85;
       }
       .info-body small {
         display: block;
         font-size: 13px;
         color: var(--text-mute);
-        margin-top: 4px;
+        margin-top: 6px;
         letter-spacing: 0.05em;
       }
       .info-body a {
@@ -715,22 +875,22 @@
         background:
           radial-gradient(
             circle at 65% 45%,
-            rgba(217, 119, 66, 0.22),
+            rgba(232, 136, 74, 0.28),
             transparent 35%
           ),
           repeating-linear-gradient(
             45deg,
             transparent,
-            transparent 24px,
-            rgba(255, 255, 255, 0.015) 24px,
-            rgba(255, 255, 255, 0.015) 25px
+            transparent 26px,
+            rgba(255, 255, 255, 0.02) 26px,
+            rgba(255, 255, 255, 0.02) 27px
           ),
           repeating-linear-gradient(
             -45deg,
             transparent,
-            transparent 24px,
-            rgba(255, 255, 255, 0.015) 24px,
-            rgba(255, 255, 255, 0.015) 25px
+            transparent 26px,
+            rgba(255, 255, 255, 0.02) 26px,
+            rgba(255, 255, 255, 0.02) 27px
           );
         pointer-events: none;
       }
@@ -739,26 +899,26 @@
         top: 45%;
         left: 65%;
         transform: translate(-50%, -50%);
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
         background: var(--ember);
         border-radius: 50%;
         box-shadow:
-          0 0 0 6px rgba(217, 119, 66, 0.2),
-          0 0 0 16px rgba(217, 119, 66, 0.08);
-        animation: pulse 2.5s ease-in-out infinite;
+          0 0 0 7px rgba(232, 136, 74, 0.22),
+          0 0 0 18px rgba(232, 136, 74, 0.1);
+        animation: pulse 2.6s ease-in-out infinite;
       }
       @keyframes pulse {
         0%,
         100% {
           box-shadow:
-            0 0 0 6px rgba(217, 119, 66, 0.2),
-            0 0 0 16px rgba(217, 119, 66, 0.08);
+            0 0 0 7px rgba(232, 136, 74, 0.22),
+            0 0 0 18px rgba(232, 136, 74, 0.1);
         }
         50% {
           box-shadow:
-            0 0 0 10px rgba(217, 119, 66, 0.25),
-            0 0 0 24px rgba(217, 119, 66, 0.04);
+            0 0 0 11px rgba(232, 136, 74, 0.28),
+            0 0 0 26px rgba(232, 136, 74, 0.05);
         }
       }
       .map-card-top,
@@ -770,7 +930,7 @@
         font-family: var(--jp);
         font-size: 13px;
         color: var(--ember);
-        letter-spacing: 0.3em;
+        letter-spacing: 0.32em;
       }
       .map-buttons {
         display: flex;
@@ -783,10 +943,10 @@
         padding: 12px 20px;
         font-size: 12px;
       }
-      @media (max-width: 860px) {
+      @media (max-width: 880px) {
         .visit-grid {
           grid-template-columns: 1fr;
-          gap: 48px;
+          gap: 56px;
         }
         .map-card {
           aspect-ratio: 4/3;
@@ -799,7 +959,7 @@
       /* ===== Footer ===== */
       .footer {
         border-top: 1px solid var(--line);
-        padding: 60px 24px 40px;
+        padding: 60px 24px 44px;
         position: relative;
         z-index: 1;
       }
@@ -819,25 +979,27 @@
         font-family: var(--jp);
         font-size: 14px;
         color: var(--ember);
-        letter-spacing: 0.3em;
-        margin-bottom: 6px;
+        letter-spacing: 0.32em;
+        margin-bottom: 8px;
       }
       .footer-brand .kr {
-        font-size: 22px;
+        font-size: 23px;
         font-weight: 500;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.06em;
       }
       .footer-brand p {
-        margin-top: 8px;
-        font-size: 12px;
+        margin-top: 10px;
+        font-size: 13px;
         color: var(--text-mute);
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
+        max-width: 320px;
+        line-height: 1.7;
       }
       .footer-contact {
         text-align: right;
-        font-size: 13px;
+        font-size: 13.5px;
         color: var(--text-dim);
-        line-height: 1.8;
+        line-height: 1.85;
       }
       .footer-contact a {
         color: var(--ember);
@@ -846,10 +1008,10 @@
         display: block;
         font-size: 11px;
         color: var(--text-mute);
-        margin-top: 14px;
-        letter-spacing: 0.15em;
+        margin-top: 16px;
+        letter-spacing: 0.2em;
       }
-      @media (max-width: 640px) {
+      @media (max-width: 660px) {
         .footer-inner {
           flex-direction: column;
           align-items: flex-start;
@@ -864,8 +1026,8 @@
         opacity: 0;
         transform: translateY(28px);
         transition:
-          opacity 0.9s ease,
-          transform 0.9s ease;
+          opacity 0.95s ease,
+          transform 0.95s ease;
       }
       .reveal.in {
         opacity: 1;
@@ -874,7 +1036,6 @@
     </style>
   </head>
   <body>
-    <!-- ===== NAV ===== -->
     <nav class="nav">
       <div class="nav-inner">
         <a href="#" class="brand">
@@ -882,8 +1043,10 @@
           <span class="jp">TSUKU</span>
         </a>
         <div class="nav-links">
+          <a href="#name">이름</a>
+          <a href="#craft">만드는 법</a>
           <a href="#menu">메뉴</a>
-          <a href="#story">이야기</a>
+          <a href="#gallery">매장</a>
           <a href="#visit">오시는 길</a>
         </div>
       </div>
@@ -891,64 +1054,92 @@
 
     <!-- ===== HERO ===== -->
     <header class="hero">
+      <div class="hero-photo"></div>
       <div class="hero-smoke"></div>
-      <div class="hero-kanji">炭火とんかつ</div>
+      <div class="hero-kanji">炭がつく</div>
       <h1 class="hero-title">
-        숯불에 입힌, <br />
-        <em>군산 단 한 곳</em>의 카츠
+        숯이 <em>닿는</em> 순간,<br />
+        한 장의 카츠가 됩니다.
+        <span class="small">TSUKU · 군산, 단 한 곳의 숯불 돈카츠</span>
       </h1>
-      <p class="hero-sub">TSUKU · GUNSAN · NAUN-DONG</p>
+      <p class="hero-sub">GUNSAN · NAUN-DONG</p>
       <div class="hero-cta">
-        <a href="#menu" class="btn btn-primary">메뉴 보기 →</a>
+        <a href="#name" class="btn btn-primary">이름의 의미 →</a>
         <a href="tel:0507-1448-0864" class="btn btn-ghost">전화 예약</a>
       </div>
       <div class="hero-scroll">SCROLL</div>
     </header>
 
-    <!-- ===== STORY ===== -->
-    <section id="story" class="section story">
+    <!-- ===== NAME STORY ===== -->
+    <section id="name" class="section name-story">
       <div class="container">
-        <div class="story-grid">
-          <div class="story-visual reveal"></div>
+        <div class="reveal">
+          <div class="name-mark">つく</div>
+          <div class="name-romaji">
+            T &nbsp;·&nbsp; S &nbsp;·&nbsp; U &nbsp;·&nbsp; K &nbsp;·&nbsp; U
+          </div>
+          <h2 class="name-title">츠쿠 — 숯불이 옷을 입히는 순간.</h2>
+          <div class="name-body">
+            <p>
+              일본어로 <strong>‘츠쿠(つく)’</strong>는 ‘닿다, 입혀지다’를
+              뜻합니다.
+            </p>
+            <p>
+              저희는 카츠를 단지 튀기지 않습니다.<br />
+              바삭한 옷을 입은 카츠 위에,<br />
+              마지막엔 <strong>숯불 향을 한 번 더 입혀</strong> 완성합니다.
+            </p>
+            <p>가게의 이름이, 그대로 한 접시의 공정이 됩니다.</p>
+            <div class="name-divider"></div>
+            <p class="name-sign">— 군산, 단 한 곳의 숯불 돈카츠.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CRAFT ===== -->
+    <section id="craft" class="section">
+      <div class="container">
+        <div class="craft-grid">
+          <div class="craft-visual reveal"></div>
           <div class="reveal">
-            <div class="eyebrow">物語 · STORY</div>
+            <div class="eyebrow">仕事 · OUR CRAFT</div>
             <h2 class="section-title">
-              튀김이 아니라,<br />
-              한 번 더 익혀내는 시간.
+              한 장의 카츠에,<br />
+              세 번의 시간을 들입니다.
             </h2>
             <p class="section-lead">
-              츠쿠의 카츠는 낮은 온도에서 천천히 익힙니다. 튀기고 끝나는 것이
-              아니라, 마지막엔 숯불 위에 한 번 더 올려 훈연 향을 입혀
-              완성합니다.
+              빠르게 튀겨내는 것이 아니라, 천천히. 마지막엔 숯불 위에서 한 번
+              더. 이 순서가 바뀌면, 츠쿠의 카츠가 아닙니다.
             </p>
-            <div class="story-points">
-              <div class="story-point">
-                <span class="story-point-num">壱</span>
+            <div class="craft-points">
+              <div class="craft-point">
+                <span class="craft-num">壱</span>
                 <div>
-                  <h4>저온 슬로우 프라이</h4>
+                  <h4>저온에서 천천히 — 슬로우 프라이</h4>
                   <p>
-                    겉의 바삭함은 잃지 않으면서 속까지 촉촉하게. 빠르게 튀기지
-                    않습니다.
+                    겉의 바삭함은 그대로 두면서, 속까지 촉촉하게 익혀냅니다.
+                    빠르게 튀기지 않는 이유입니다.
                   </p>
                 </div>
               </div>
-              <div class="story-point">
-                <span class="story-point-num">弐</span>
+              <div class="craft-point">
+                <span class="craft-num">弐</span>
                 <div>
-                  <h4>숯불 훈연 마감</h4>
+                  <h4>숯불 위에서, 한 번 더 — 훈연 마감</h4>
                   <p>
-                    마지막 단계에서 숯불 위로. 표면에 옅은 훈연 향과 깊이를
-                    더합니다.
+                    튀김으로 끝나지 않습니다. 마지막엔 숯불 위에 한 번 더 올려,
+                    옅은 훈연 향을 옷에 입힙니다.
                   </p>
                 </div>
               </div>
-              <div class="story-point">
-                <span class="story-point-num">参</span>
+              <div class="craft-point">
+                <span class="craft-num">参</span>
                 <div>
-                  <h4>군산, 단 한 곳</h4>
+                  <h4>군산, 단 한 곳에서만</h4>
                   <p>
-                    군산에서 처음 만나는 숯불 돈카츠. 다찌석에서 혼자, 4인석에서
-                    가족과 함께.
+                    군산에서 처음 만나는 숯불 돈카츠. 다찌 한 자리, 가족과의 한
+                    자리. 어느 자리든 어울리는 한 끼.
                   </p>
                 </div>
               </div>
@@ -962,74 +1153,166 @@
     <section id="menu" class="section">
       <div class="container">
         <div class="menu-header reveal">
-          <div class="eyebrow">お品書き · MENU</div>
-          <h2 class="section-title">시그니처 메뉴</h2>
+          <div class="eyebrow">お品書き · OUR MENU</div>
+          <h2 class="section-title">한 접시, 여섯 결.</h2>
           <p class="section-lead">
-            모든 카츠는 숯불 위에서 한 번 더 마무리됩니다.
+            모든 카츠는 숯불 위에서 마지막 한 번 더 완성됩니다.
           </p>
         </div>
 
         <div class="menu-grid">
           <article class="menu-card limited reveal">
-            <div class="menu-visual"><span>特</span></div>
+            <div
+              class="menu-visual"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1770966666361-b448e634e163?w=900&q=75&auto=format&fit=crop');
+              "
+            ></div>
             <div class="menu-jp">特ロースかつ</div>
             <h3 class="menu-name">숯불 특로스카츠</h3>
             <p class="menu-desc">
-              두툼하게 잘라낸 등심을 숯불향으로 마감. 매일 한정 수량.
+              두툼하게 결을 살려 손질한 등심. 매일 한정 수량으로만 준비합니다.
+              츠쿠의 첫 번째 결.
             </p>
             <div class="menu-price">15,500<small>원</small></div>
           </article>
 
           <article class="menu-card reveal">
-            <div class="menu-visual"><span>半</span></div>
+            <div
+              class="menu-visual"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1770966666346-fbfde1f89a33?w=900&q=75&auto=format&fit=crop');
+              "
+            ></div>
             <div class="menu-jp">半半かつ</div>
             <h3 class="menu-name">숯불 반반카츠</h3>
             <p class="menu-desc">
-              로스(등심)와 히레(안심)를 한 접시에. 츠쿠의 결을 한 번에 맛보는
-              메뉴.
+              등심의 풍미와 안심의 결, 한 접시에 나란히. 츠쿠가 처음이라면 가장
+              추천드립니다.
             </p>
             <div class="menu-price">17,000<small>원</small></div>
           </article>
 
           <article class="menu-card reveal">
-            <div class="menu-visual"><span>チ</span></div>
+            <div
+              class="menu-visual"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1496112774951-bf41010eed5e?w=900&q=75&auto=format&fit=crop');
+              "
+            ></div>
             <div class="menu-jp">ゴーダチーズかつ</div>
             <h3 class="menu-name">숯불 고다치즈카츠</h3>
             <p class="menu-desc">
-              진한 고다치즈가 흘러나오는 단면. 짭조름한 풍미와 훈연 향의 균형.
+              고소한 고다치즈가 단면을 타고 흘러내립니다. 짭조름한 풍미가 숯불
+              향과 만나는 자리.
             </p>
             <div class="menu-price">14,000<small>원</small></div>
           </article>
 
           <article class="menu-card reveal">
-            <div class="menu-visual"><span>ロ</span></div>
+            <div
+              class="menu-visual"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1770904984245-afbfaf46307d?w=900&q=75&auto=format&fit=crop');
+              "
+            ></div>
             <div class="menu-jp">ロースかつ</div>
             <h3 class="menu-name">숯불 로스카츠</h3>
             <p class="menu-desc">
-              기본에 충실한 등심 카츠. 츠쿠의 시그니처 기본형.
+              기본이 가장 어렵습니다. 등심 본연의 풍미를, 숯불 향만 한 켜 더해
+              마무리합니다.
             </p>
             <div class="menu-price">13,500<small>원</small></div>
           </article>
 
           <article class="menu-card reveal">
-            <div class="menu-visual"><span>ヒ</span></div>
+            <div
+              class="menu-visual"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1622052073730-04bbc497be48?w=900&q=75&auto=format&fit=crop');
+              "
+            ></div>
             <div class="menu-jp">ヒレかつ</div>
             <h3 class="menu-name">숯불 히레카츠</h3>
             <p class="menu-desc">
-              기름기 적은 안심으로 부드럽게. 담백함을 선호한다면 추천.
+              기름기 적은 안심을 부드럽게. 담백한 결을 좋아하시는 분께 권합니다.
             </p>
             <div class="menu-price">14,500<small>원</small></div>
           </article>
 
           <article class="menu-card reveal">
-            <div class="menu-visual"><span>海</span></div>
+            <div
+              class="menu-visual"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1625144093498-bf62fca631c5?w=900&q=75&auto=format&fit=crop');
+              "
+            ></div>
             <div class="menu-jp">エビサンド</div>
             <h3 class="menu-name">숯불 에비산도</h3>
             <p class="menu-desc">
-              통새우를 두툼하게 끼운 산도. 사이드 또는 가벼운 한 끼로.
+              통새우를 두툼하게 끼운 산도. 가벼운 한 끼로, 또는 카츠와 함께
+              나누어 드시기에.
             </p>
             <div class="menu-price">13,500<small>원</small></div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section id="gallery" class="section gallery">
+      <div class="container">
+        <div class="gallery-header reveal">
+          <div class="eyebrow">店内 · ATMOSPHERE</div>
+          <h2 class="section-title">다찌 한 자리, 그 너머의 시간.</h2>
+          <p class="section-lead">
+            혼자 다찌에서 묵묵히, 또는 가족과 함께 4인석에서. 어느 결의
+            시간이든, 츠쿠는 비워두고 기다립니다.
+          </p>
+        </div>
+        <div class="gallery-grid reveal">
+          <div
+            class="gallery-item tall"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1562560471-cb5b5f96c1ab?w=800&q=75&auto=format&fit=crop');
+            "
+          ></div>
+          <div
+            class="gallery-item"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1673950839785-c4b255074e6a?w=800&q=75&auto=format&fit=crop');
+            "
+          ></div>
+          <div
+            class="gallery-item"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1765295218800-f48e616391a0?w=800&q=75&auto=format&fit=crop');
+            "
+          ></div>
+          <div
+            class="gallery-item"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1693822998952-b8d18c61043b?w=800&q=75&auto=format&fit=crop');
+            "
+          ></div>
+          <div
+            class="gallery-item"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1672756214803-61e605da34fc?w=800&q=75&auto=format&fit=crop');
+            "
+          ></div>
+          <div
+            class="gallery-item"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1596832734869-53f1992bdbea?w=800&q=75&auto=format&fit=crop');
+            "
+          ></div>
+          <div
+            class="gallery-item"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1746003668321-d400319650ce?w=800&q=75&auto=format&fit=crop');
+            "
+          ></div>
         </div>
       </div>
     </section>
@@ -1105,9 +1388,9 @@
     <footer class="footer">
       <div class="footer-inner">
         <div class="footer-brand">
-          <div class="jp">炭火とんかつ TSUKU</div>
+          <div class="jp">炭がつく · TSUKU</div>
           <div class="kr">츠쿠</div>
-          <p>군산, 단 한 곳의 숯불 돈카츠</p>
+          <p>숯이 닿는 순간, 한 장의 카츠가 됩니다. 군산 나운동.</p>
         </div>
         <div class="footer-contact">
           전북 군산시 서수송1길 18<br />
@@ -1118,7 +1401,6 @@
     </footer>
 
     <script>
-      // Reveal-on-scroll
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
