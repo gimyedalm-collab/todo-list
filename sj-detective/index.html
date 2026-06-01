@@ -2029,6 +2029,173 @@
       }
 
       /* ============================================
+         === DARK MODE UNIFICATION (전체 다크 톤) ===
+         ============================================ */
+      .about, .why, .credentials, .faq { background: #050507; }
+      .services, .team, .cases { background: #0e0e10; }
+
+      /* 섹션 헤딩/부제 */
+      .about .section-title, .services .section-title, .why .section-title,
+      .team .section-title, .credentials .section-title, .cases .section-title,
+      .faq .section-title { color: #fff; }
+      .about .section-sub, .services .section-sub, .why .section-sub,
+      .team .section-sub, .credentials .section-sub, .cases .section-sub,
+      .faq .section-sub { color: rgba(255, 255, 255, 0.65); }
+      .section-title .gold { color: var(--gold-light) !important; }
+
+      /* About */
+      .about-text .label { color: var(--gold-light); }
+      .about-text h2 { color: #fff; }
+      .about-text h2 span { color: var(--gold-light) !important; }
+      .about-text p { color: rgba(255, 255, 255, 0.78); }
+      .about-text p strong { color: #fff; }
+      .about-text .sign { border-top-color: rgba(255, 255, 255, 0.1); }
+      .about-text .sign-name { color: #fff; }
+      .about-text .sign-name small { color: rgba(255, 255, 255, 0.45); }
+      .about-visual.about-visual-cert { background: transparent !important; }
+
+      /* cert-strip → dark */
+      .cert-strip {
+        background: #15151a !important;
+        border-color: rgba(184, 153, 104, 0.5) !important;
+      }
+      .cert-strip-title { color: #fff !important; }
+      .cert-list li { color: rgba(255, 255, 255, 0.82) !important; }
+      .cert-list-people li strong { color: #fff !important; }
+      .cert-list-people li span { color: rgba(255, 255, 255, 0.5) !important; }
+      .cert-note {
+        border-top-color: rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.5) !important;
+      }
+
+      /* Services cards */
+      .svc-grid {
+        background: rgba(255, 255, 255, 0.06) !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      .svc-card {
+        background: #0e0e10 !important;
+      }
+      .svc-card:hover {
+        background: #1a1a1c !important;
+        transform: none;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      }
+      .svc-card:hover .svc-num,
+      .svc-card:hover .svc-arrow { color: var(--gold-light); }
+      .svc-num { color: var(--gold-light) !important; }
+      .svc-title { color: #fff !important; }
+      .svc-desc { color: rgba(255, 255, 255, 0.7) !important; }
+      .svc-arrow { color: rgba(255, 255, 255, 0.4) !important; }
+      .svc-tags span {
+        border-color: rgba(255, 255, 255, 0.15) !important;
+        color: rgba(255, 255, 255, 0.55) !important;
+      }
+      .svc-card:hover .svc-tags span {
+        border-color: rgba(184, 153, 104, 0.5) !important;
+        color: var(--gold-light) !important;
+      }
+
+      /* Why cards */
+      .why-card {
+        background: #15151a !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      .why-card:hover {
+        border-color: var(--gold) !important;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      }
+      .why-card-feature {
+        background: linear-gradient(180deg, #1d1a13, #15131a) !important;
+        border-color: var(--gold) !important;
+      }
+      .why-title { color: #fff !important; }
+      .why-desc { color: rgba(255, 255, 255, 0.72) !important; }
+      .why-desc strong { color: var(--gold-light); }
+      .why-ico {
+        border-color: var(--gold) !important;
+        color: var(--gold-light) !important;
+      }
+
+      /* Team */
+      .team-card {
+        background: #15151a !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      .team-card:hover {
+        border-color: var(--gold) !important;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      }
+      .team-name {
+        color: #fff !important;
+        border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      .team-name small { color: rgba(255, 255, 255, 0.5) !important; }
+      .team-desc { color: rgba(255, 255, 255, 0.72) !important; }
+      .team-pledge {
+        background: #15151a !important;
+        border-left-color: var(--gold) !important;
+      }
+      .team-pledge p { color: rgba(255, 255, 255, 0.88) !important; }
+      .team-pledge p strong { color: var(--gold-light); }
+
+      /* Credentials */
+      .cred-card {
+        background: #15151a !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      .cred-card:hover {
+        border-color: var(--gold) !important;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      }
+      .cred-card figcaption strong { color: #fff !important; }
+      .cred-img-wrap {
+        background: linear-gradient(135deg, #1f1c16, #15131a) !important;
+      }
+      .cred-business {
+        background: #15151a !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+        border-left-color: var(--gold) !important;
+      }
+      .cred-biz-text h3 { color: #fff !important; }
+      .cred-biz-list li {
+        border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      .cred-biz-list li strong { color: #fff !important; }
+      .cred-biz-list li span { color: rgba(255, 255, 255, 0.5) !important; }
+      .cred-biz-note {
+        border-top-color: rgba(255, 255, 255, 0.08) !important;
+        color: rgba(255, 255, 255, 0.45) !important;
+      }
+
+      /* Cases */
+      .case-card {
+        background: #15151a !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      .case-card:hover {
+        border-color: var(--gold) !important;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      }
+      .case-meta { color: rgba(255, 255, 255, 0.42) !important; }
+      .case-title { color: #fff !important; }
+      .case-excerpt { color: rgba(255, 255, 255, 0.72) !important; }
+      .case-result {
+        border-top-color: rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      /* FAQ */
+      .faq-item { border-bottom-color: rgba(255, 255, 255, 0.08) !important; }
+      .faq-q { color: #fff; }
+      .faq-q:hover { color: var(--gold-light); }
+      .faq-q .q-toggle {
+        border-color: rgba(255, 255, 255, 0.18) !important;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .faq-a { color: rgba(255, 255, 255, 0.72) !important; }
+
+      /* ============================================
          === MOBILE OPTIMIZATION (종합) ===
          ============================================ */
       @media (max-width: 960px) {
@@ -3009,22 +3176,6 @@
           </div>
         </div>
 
-        <figure class="team-group">
-          <div class="team-group-wrap">
-            <img
-              src="images/team-group.jpg"
-              alt="SJ 탐정사무소 조사원 단체사진"
-              onerror="this.parentElement.classList.add('team-group-missing')"
-            />
-            <div class="team-group-fallback">
-              <span class="team-group-fb-mark">단체사진</span>
-              <span class="team-group-fb-sub">images/team-group.jpg</span>
-            </div>
-          </div>
-          <figcaption class="team-group-note">
-            ※ 모자이크된 부분은 조사원들의 보안상 처리된 부분입니다.
-          </figcaption>
-        </figure>
 
         <div class="team-grid">
           <div class="team-card">
