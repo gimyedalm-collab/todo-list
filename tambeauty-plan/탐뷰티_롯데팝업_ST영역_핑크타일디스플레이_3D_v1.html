@@ -438,8 +438,8 @@
       <button class="toggle-btn" id="hudToggle" aria-label="HUD 토글">⌄</button>
 
       <div class="mode-toggle" id="modeToggle">
-        <button data-mode="real">Before · 실 집기</button>
-        <button data-mode="both" class="active">After · 개조 시안</button>
+        <button data-mode="real" class="active">Before · 실 집기</button>
+        <button data-mode="both">After · 개조 시안</button>
       </div>
 
       <div class="hud hud-top">
@@ -447,10 +447,10 @@
           <span class="tag">ST · 고정 집기 A · 3D Rendering</span>
           <h1>탐뷰티 × 롯데 팝업 — ST 영역 핑크 타일 디스플레이</h1>
           <p>
-            <b>Before → After 시안</b> · 베이스는 실제 ST 집기 (화이트 메탈
-            행거+셸프). 그 위에 핑크 타일 백드롭 · 골드 아치 미러 · 사인보드 ·
-            베이스 트림 · 화분을 <b>추가 부착</b>한 개조안. 상단 토글로 Before /
-            After 전환.
+            <b>철조 프레임 골격</b> 상태 — 셸프·진열물 모두 제거하고 베이스 박스
+            + 4코너 포스트 + 가로보만 남긴 빈 구조. 상단 토글의 <b>After</b>를
+            누르면 개조 시안(핑크 백드롭·아치 미러·사인보드·화분) 부착 결과로
+            전환.
           </p>
         </div>
         <div class="legend">
@@ -484,7 +484,7 @@
               class="dot"
               style="background: #eee; border: 1px solid #aaa"
             ></span
-            >실 ST 집기 (5단 화장품 진열 셸프 + 중앙 카운터)
+            >실 ST 집기 (철조 프레임 골격)
           </div>
           <div class="row">
             <span
@@ -1309,7 +1309,7 @@
             u.add(top);
           });
 
-          // 측면 가로 보 (좌/우 - 셸프 지지)
+          // 측면 가로 보 (좌/우)
           [-w / 2 + t / 2, w / 2 - t / 2].forEach((px) => {
             const side = new THREE.Mesh(
               new THREE.BoxGeometry(t, t, d),
@@ -1319,81 +1319,14 @@
             u.add(side);
           });
 
-          // ── 5단 진열 셸프 ──
-          const shelfYs = [0.32, 0.7, 1.08, 1.46, 1.82];
-          shelfYs.forEach((sh) => {
-            const shelfY = baseH + sh;
-            // 메인 셸프 패널 (두꺼워서 잘 보임)
-            const panel = new THREE.Mesh(
-              new THREE.BoxGeometry(w - t * 2, 0.03, d - t * 2),
-              shelfPanelMat,
+          // 중단 가로 보 (구조 보강 — 앞/뒤)
+          [-d / 2 + t / 2, d / 2 - t / 2].forEach((pz) => {
+            const mid = new THREE.Mesh(
+              new THREE.BoxGeometry(w, t, t),
+              whiteMat,
             );
-            panel.position.set(0, shelfY, 0);
-            panel.castShadow = true;
-            panel.receiveShadow = true;
-            u.add(panel);
-            // 앞면 엣지 라인 (가시성 강화)
-            const frontEdge = new THREE.Mesh(
-              new THREE.BoxGeometry(w - t * 2 + 0.006, 0.038, 0.015),
-              shelfEdgeMat,
-            );
-            frontEdge.position.set(0, shelfY, d / 2 - t - 0.0075);
-            u.add(frontEdge);
-            // 뒷면 엣지 라인
-            const backEdge = new THREE.Mesh(
-              new THREE.BoxGeometry(w - t * 2 + 0.006, 0.034, 0.01),
-              shelfEdgeMat,
-            );
-            backEdge.position.set(0, shelfY, -d / 2 + t + 0.005);
-            u.add(backEdge);
-            // 좌우 측면 엣지
-            [-1, 1].forEach((sign) => {
-              const sideEdge = new THREE.Mesh(
-                new THREE.BoxGeometry(0.012, 0.038, d - t * 2 + 0.005),
-                shelfEdgeMat,
-              );
-              sideEdge.position.set(sign * (w / 2 - t - 0.006), shelfY, 0);
-              u.add(sideEdge);
-            });
-            // 셸프 아래 LED 라이트 라인 (살짝 따뜻한 톤)
-            const underLed = new THREE.Mesh(
-              new THREE.BoxGeometry(w - t * 2 - 0.04, 0.005, 0.015),
-              new THREE.MeshBasicMaterial({
-                color: 0xfff2dc,
-                transparent: true,
-                opacity: 0.85,
-              }),
-            );
-            underLed.position.set(0, shelfY - 0.018, d / 2 - t - 0.01);
-            u.add(underLed);
-          });
-
-          // ── 각 단에 화장품 배치 (3개씩) ──
-          const cosmeticTypes = [
-            ['box', 'pump', 'box'], // 1단 (가장 아래) — 패키지
-            ['jar', 'bottle', 'jar'], // 2단
-            ['bottle', 'mister', 'bottle'], // 3단
-            ['pump', 'jar', 'pump'], // 4단
-            ['tube', 'tube', 'tube'], // 5단 (top)
-          ];
-          const palettes = [
-            { c: 0xf5d6dc, a: 0xc44b6e },
-            { c: 0xfae3e8, a: 0xe88aa5 },
-            { c: 0xffe1ea, a: 0x9d3653 },
-            { c: 0xf2c5d0, a: 0xc44b6e },
-            { c: 0xe8d8dd, a: 0x9d3653 },
-            { c: 0xfff0f3, a: 0xd9678a },
-          ];
-          shelfYs.forEach((sh, si) => {
-            const shelfY = baseH + sh + 0.015;
-            const types = cosmeticTypes[si];
-            types.forEach((type, pi) => {
-              const palette = palettes[(si * 2 + pi) % palettes.length];
-              const cosmetic = makeCosmetic(type, palette.c, palette.a);
-              const xPos = -0.24 + pi * 0.24;
-              cosmetic.position.set(xPos, shelfY, 0);
-              u.add(cosmetic);
-            });
+            mid.position.set(0, baseH + h * 0.45, pz);
+            u.add(mid);
           });
 
           u.position.x = xOff;
@@ -1403,7 +1336,7 @@
         root.add(makeShelfUnit(-0.85));
         root.add(makeShelfUnit(0.85));
 
-        // ── 중앙 카운터 (메인 베스트셀러 디스플레이) ──
+        // ── 중앙 낮은 카운터 (깡통 박스만) ──
         const cw = 0.8,
           ch = 1.05,
           cd = 0.42;
@@ -1416,88 +1349,13 @@
         centerBox.receiveShadow = true;
         root.add(centerBox);
 
-        // 카운터 상단 평면 (디스플레이 면 — 진열대)
+        // 카운터 상단 평면만 (디스플레이 면)
         const centerTop = new THREE.Mesh(
           new THREE.BoxGeometry(cw + 0.03, 0.04, cd + 0.03),
           lightShelfMat,
         );
         centerTop.position.y = ch + 0.02;
         root.add(centerTop);
-
-        // 앞면 도어 라인 (중간 슬릿 — 수납문)
-        const doorLine = new THREE.Mesh(
-          new THREE.BoxGeometry(cw - 0.05, 0.006, 0.004),
-          new THREE.MeshStandardMaterial({ color: 0xb8b8b8, roughness: 0.6 }),
-        );
-        doorLine.position.set(0, ch * 0.5, cd / 2 + 0.001);
-        root.add(doorLine);
-
-        // 좌우 손잡이 라인
-        [-0.18, 0.18].forEach((hx) => {
-          const handle = new THREE.Mesh(
-            new THREE.BoxGeometry(0.025, 0.05, 0.008),
-            new THREE.MeshStandardMaterial({
-              color: 0xa0a0a0,
-              roughness: 0.35,
-              metalness: 0.65,
-            }),
-          );
-          handle.position.set(hx, ch * 0.55, cd / 2 + 0.005);
-          root.add(handle);
-        });
-
-        // ── 카운터 상단에 베스트셀러 진열 ──
-        // 중앙: 메인 히어로 제품 (사이즈 1.5x)
-        const heroPump = makeCosmetic('pump', 0xfae3e8, 0xc44b6e);
-        heroPump.position.set(0, ch + 0.04, -0.05);
-        heroPump.scale.set(1.5, 1.5, 1.5);
-        root.add(heroPump);
-
-        // 좌: 서브 제품 (자)
-        const leftJar = makeCosmetic('jar', 0xfff0f3, 0x9d3653);
-        leftJar.position.set(-0.22, ch + 0.04, 0.05);
-        leftJar.scale.set(1.2, 1.2, 1.2);
-        root.add(leftJar);
-
-        // 우: 서브 제품 (보틀)
-        const rightBottle = makeCosmetic('bottle', 0xf5d6dc, 0xe88aa5);
-        rightBottle.position.set(0.22, ch + 0.04, 0.05);
-        rightBottle.scale.set(1.2, 1.2, 1.2);
-        root.add(rightBottle);
-
-        // 앞쪽 작은 미러 (메이크업 테스트용)
-        const counterMirror = new THREE.Mesh(
-          new THREE.CircleGeometry(0.055, 24),
-          new THREE.MeshPhysicalMaterial({
-            color: 0xdfe6e8,
-            roughness: 0.05,
-            metalness: 1.0,
-          }),
-        );
-        counterMirror.position.set(0, ch + 0.045, 0.16);
-        counterMirror.rotation.x = -Math.PI / 6;
-        root.add(counterMirror);
-
-        // 미러 뒤 받침 스탠드
-        const mirrorStand = new THREE.Mesh(
-          new THREE.BoxGeometry(0.01, 0.06, 0.012),
-          new THREE.MeshStandardMaterial({
-            color: 0xc4c4c4,
-            roughness: 0.4,
-            metalness: 0.5,
-          }),
-        );
-        mirrorStand.position.set(0, ch + 0.035, 0.18);
-        mirrorStand.rotation.x = Math.PI / 12;
-        root.add(mirrorStand);
-
-        // 앞 양옆에 작은 테스터 제품 2개
-        const tester1 = makeCosmetic('tube', 0xffe1ea, 0xc44b6e);
-        tester1.position.set(-0.28, ch + 0.04, 0.14);
-        root.add(tester1);
-        const tester2 = makeCosmetic('tube', 0xf2c5d0, 0x9d3653);
-        tester2.position.set(0.28, ch + 0.04, 0.14);
-        root.add(tester2);
 
         return root;
       }
@@ -2111,8 +1969,8 @@
           setPinkOpacity(1.0);
         }
       }
-      // 초기 모드: After (개조 시안)
-      setMode('both');
+      // 초기 모드: Before (실 집기 = 깡통 철조 프레임만)
+      setMode('real');
 
       document.querySelectorAll('.mode-toggle button').forEach((btn) => {
         btn.addEventListener('click', () => {
