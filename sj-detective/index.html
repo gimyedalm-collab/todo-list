@@ -2075,6 +2075,183 @@
         }
       }
 
+      /* === WARNING (사기 주의 섹션) === */
+      .warning {
+        background: #050507;
+        position: relative;
+        overflow: hidden;
+      }
+      .warning::before {
+        content: '!';
+        position: absolute;
+        top: 40px;
+        right: -20px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 320px;
+        font-weight: 700;
+        color: rgba(184, 50, 42, 0.05);
+        line-height: 1;
+        pointer-events: none;
+      }
+      .warning .section-title { color: #fff; }
+      .warning .section-sub { color: rgba(255, 255, 255, 0.65); }
+      .warning-eyebrow {
+        color: var(--red) !important;
+      }
+      .warning-eyebrow::before,
+      .warning-eyebrow::after {
+        color: var(--red) !important;
+      }
+      .warn-red {
+        color: var(--red);
+        position: relative;
+        display: inline-block;
+      }
+      .warn-red::after {
+        content: '';
+        position: absolute;
+        left: 0; right: 0; bottom: 4px;
+        height: 10px;
+        background: rgba(184, 50, 42, 0.25);
+        z-index: -1;
+      }
+
+      .warn-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        position: relative;
+        z-index: 2;
+      }
+      .warn-card {
+        background: #15151a;
+        border: 1px solid rgba(184, 50, 42, 0.25);
+        padding: 40px 32px;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s;
+      }
+      .warn-card:hover {
+        border-color: var(--red);
+        box-shadow: 0 20px 50px rgba(184, 50, 42, 0.15);
+        transform: translateY(-4px);
+      }
+      .warn-card-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px;
+      }
+      .warn-card-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 28px;
+        font-weight: 600;
+        color: var(--red);
+        letter-spacing: 0.05em;
+      }
+      .warn-badge {
+        font-family: 'Pretendard', sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        color: #fff;
+        background: var(--red);
+        padding: 4px 10px;
+      }
+      .warn-title {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.02em;
+        line-height: 1.4;
+        margin-bottom: 14px;
+      }
+      .warn-desc {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.85;
+        margin-bottom: 22px;
+        flex-grow: 1;
+      }
+      .warn-desc strong {
+        color: #fff;
+        background: rgba(184, 50, 42, 0.18);
+        padding: 0 4px;
+      }
+      .warn-sj {
+        margin-top: auto;
+        padding: 18px 18px 20px;
+        background: linear-gradient(135deg, rgba(184, 153, 104, 0.12), rgba(184, 153, 104, 0.04));
+        border-left: 3px solid var(--gold);
+      }
+      .warn-sj-tag {
+        display: inline-block;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        color: var(--gold-light);
+        margin-bottom: 8px;
+      }
+      .warn-sj p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.82);
+        line-height: 1.8;
+        margin: 0;
+      }
+      .warn-sj p strong { color: var(--gold-light); }
+
+      .warn-bottom {
+        margin-top: 60px;
+        text-align: center;
+        padding: 36px 24px;
+        background: linear-gradient(180deg, rgba(184, 153, 104, 0.06), transparent);
+        border-top: 1px solid rgba(184, 153, 104, 0.2);
+      }
+      .warn-bottom p {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.8;
+        margin-bottom: 24px;
+      }
+      .warn-bottom p strong {
+        font-family: 'Noto Serif KR', serif;
+        color: var(--gold-light);
+        font-size: 19px;
+        font-weight: 700;
+      }
+      .warn-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 16px 32px;
+        background: var(--gold);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        border-radius: 2px;
+        transition: all 0.25s;
+        box-shadow: 0 8px 24px rgba(184, 153, 104, 0.25);
+      }
+      .warn-cta-btn:hover {
+        background: var(--gold-deep);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 960px) {
+        .warn-grid { grid-template-columns: 1fr; gap: 20px; }
+        .warning::before { font-size: 180px; top: 30px; }
+        .warn-card { padding: 32px 26px; }
+        .warn-title { font-size: 19px; }
+        .warn-desc { font-size: 13px; }
+        .warn-sj p { font-size: 12px; }
+        .warn-bottom { margin-top: 40px; padding: 28px 20px; }
+        .warn-bottom p { font-size: 14px; }
+        .warn-bottom p strong { font-size: 16px; }
+      }
+
       /* ============================================
          === LAYOUT REFINEMENT (PC + Mobile 정합) ===
          ============================================ */
@@ -3691,6 +3868,96 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== WARNING (사기 주의) ==================== -->
+    <section class="block warning" id="warning">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow warning-eyebrow">BEWARE OF FRAUD</div>
+          <h2 class="section-title">
+            의뢰 전에 <span class="warn-red">반드시</span> 확인하세요.
+          </h2>
+          <p class="section-sub">
+            매년 수많은 의뢰인이 무자격·미등록 업체에 속아 두 번 상처받습니다.<br />
+            아래 3가지만 확인해도 사기의 90%는 피할 수 있습니다.
+          </p>
+        </div>
+
+        <div class="warn-grid">
+          <article class="warn-card">
+            <div class="warn-card-head">
+              <span class="warn-card-num">01</span>
+              <span class="warn-badge">함정</span>
+            </div>
+            <h3 class="warn-title">실체가 없는 사무소</h3>
+            <p class="warn-desc">
+              홈페이지에는 그럴듯한 사무실 사진이 있지만,
+              <strong>사업자등록증·실주소를 공개하지 못하는</strong> 업체가
+              대다수입니다. 문제가 생겨도 찾아갈 곳이 없습니다.
+            </p>
+            <div class="warn-sj">
+              <span class="warn-sj-tag">SJ는 다릅니다</span>
+              <p>
+                국세청 정식 사업자등록(<strong>702-22-02085</strong>) ·
+                경기 고양 일산서구 자유프라자 8층 806호에 실제 사무공간을
+                직접 운영합니다. 의뢰인이 직접 방문하실 수 있습니다.
+              </p>
+            </div>
+          </article>
+
+          <article class="warn-card">
+            <div class="warn-card-head">
+              <span class="warn-card-num">02</span>
+              <span class="warn-badge">함정</span>
+            </div>
+            <h3 class="warn-title">자격증 없이 영업하는 업체</h3>
+            <p class="warn-desc">
+              탐정사 자격 없이 "전직 형사" "업계 20년" 같은 모호한
+              경력만 내세우는 곳이 흔합니다. 무자격 조사는
+              <strong>증거 효력도, 법적 보호도 받기 어렵습니다.</strong>
+            </p>
+            <div class="warn-sj">
+              <span class="warn-sj-tag">SJ는 다릅니다</span>
+              <p>
+                대표 김혁진 · 총괄팀장 신대현 <strong>전원 탐정사 1급
+                정식 자격증 보유</strong> (한국자격검정평가진흥원 발급).
+                자격증 원본을 사이트와 사무소에서 직접 확인하실 수 있습니다.
+              </p>
+            </div>
+          </article>
+
+          <article class="warn-card">
+            <div class="warn-card-head">
+              <span class="warn-card-num">03</span>
+              <span class="warn-badge">함정</span>
+            </div>
+            <h3 class="warn-title">불투명한 비용·결과물 사기</h3>
+            <p class="warn-desc">
+              "성공보수 후불제"로 끌어들인 뒤 추가비용을 계속 요구하거나,
+              <strong>조작된 사진·영상을 결과물로 넘기고 잠적</strong>하는
+              사례가 가장 많이 신고됩니다.
+            </p>
+            <div class="warn-sj">
+              <span class="warn-sj-tag">SJ는 다릅니다</span>
+              <p>
+                계약서에 조사 범위·기간·비용을 모두 명시하며,
+                <strong>의뢰인 합의 없는 추가 청구는 일절 없습니다.</strong>
+                의뢰인이 원하시면 조사 현장에 <strong>직접 동행</strong>하여
+                결과를 실시간으로 확인하실 수 있습니다.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="warn-bottom">
+          <p>
+            위 3가지를 확인하셨다면, 이제 안심하고 상담하세요.<br />
+            <strong>당신의 진실에는 정식 사무소가 필요합니다.</strong>
+          </p>
+          <a href="#cta" class="warn-cta-btn">무료상담 신청 →</a>
         </div>
       </div>
     </section>
