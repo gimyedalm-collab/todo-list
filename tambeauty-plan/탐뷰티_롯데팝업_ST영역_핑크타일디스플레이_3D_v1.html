@@ -447,10 +447,10 @@
           <span class="tag">ST · 고정 집기 A · 3D Rendering</span>
           <h1>탐뷰티 × 롯데 팝업 — ST 영역 핑크 타일 디스플레이</h1>
           <p>
-            <b>단칸 베이스 위에 핑크 시안 얹기</b> · 위로 솟던
-            포스트·가로보(파티션 막대기)는 모두 제거. 받침대 단칸은 그대로, 그
-            위에 핑크 백드롭 · 아치 미러 · 사인보드 · 화분이 얹힌 형태. 토글로
-            Before(베이스만) / After(얹은 시안) 전환.
+            <b>ㄴ 형태 시안</b> · 받침대 단칸(가로) + 백드롭(세로) = ㄴ 모양.
+            바닥부터 솟던 백드롭의 밑부분을 받침대 박스 위까지 잘라내고, 바닥
+            받침 띠도 제거. 받침대가 ㄴ의 가로 부분 역할. 토글로
+            Before(받침대만) / After(ㄴ 형태 완성) 전환.
           </p>
         </div>
         <div class="legend">
@@ -733,11 +733,12 @@
       const tileTexBack = makeTileTexture('#f5a0b5', '#ffeef2', 6, 9);
       const tileTexSide = makeTileTexture('#f5a0b5', '#ffeef2', 2, 9);
 
-      // 핑크 개조 시안은 "실 집기 위에 부착되는 추가 데코" 컨셉.
-      // panelW/H/D는 백드롭 패널 + 시그니처 위치 계산용 상수로만 사용.
+      // 핑크 개조 시안은 받침대 박스(높이 0.5) 위에 얹히는 ㄴ 형태 백드롭.
+      // 가로 = 실 집기 받침대 / 세로 = 백드롭 패널
       const panelW = 2.6;
-      const panelH = 2.6;
+      const panelH = 2.0; // 바닥까지 가던 2.6 → 받침대 위에서 시작하는 2.0
       const panelD = 0.06; // 얇은 패널 두께
+      const baseY = 0.5; // 실 집기 받침대 박스 높이 (백드롭이 여기서부터 시작)
       const backdropZ = -0.3; // 실 집기(깊이 0.42, 뒤편 z=-0.21) 뒤에 살짝 떨어져 부착
 
       // ============ 핑크 타일 백드롭 패널 (실 집기 뒤편에 새로 세우는 벽) ============
@@ -762,22 +763,12 @@
         }), // -Z 뒷면
       ];
       const panel = new THREE.Mesh(backdropGeo, panelMats);
-      panel.position.set(0, panelH / 2 + 0.05, backdropZ);
+      // 받침대 박스(baseY=0.5) 위에서 시작 — ㄴ 형태의 세로 막대
+      panel.position.set(0, baseY + panelH / 2, backdropZ);
       panel.castShadow = true;
       panel.receiveShadow = true;
       stGroup.add(panel);
-
-      // 백드롭을 받치는 얇은 베이스 (벽이 바닥에 닿는 라인)
-      const baseFootGeo = new THREE.BoxGeometry(panelW, 0.05, panelD + 0.04);
-      const baseFootMat = new THREE.MeshStandardMaterial({
-        color: 0xc44b6e,
-        roughness: 0.4,
-      });
-      const baseFoot = new THREE.Mesh(baseFootGeo, baseFootMat);
-      baseFoot.position.set(0, 0.025, backdropZ);
-      baseFoot.castShadow = true;
-      baseFoot.receiveShadow = true;
-      stGroup.add(baseFoot);
+      // 백드롭 받침 띠(baseFoot)는 ㄴ 형태 컨셉상 제거 — 받침대가 가로 부분 대신
 
       // ============ 핑크 베이스 트림 (실 집기 베이스 박스 상단에 덧대지는 띠) ============
       const trimW = 2.6;
@@ -815,14 +806,16 @@
         opacity: 0.95,
       });
       const ledTop = new THREE.Mesh(ledGeo, ledMat);
+      // 백드롭 상단 (받침대 위 baseY + 백드롭 높이 + 살짝 위)
       ledTop.position.set(
         0,
-        panelH + 0.05 + 0.04,
+        baseY + panelH + 0.04,
         backdropZ + panelD / 2 + 0.01,
       );
       stGroup.add(ledTop);
       const ledBottom = new THREE.Mesh(ledGeo, ledMat);
-      ledBottom.position.set(0, 0.5 + 0.08, backdropZ + panelD / 2 + 0.01);
+      // 백드롭 하단 (받침대 박스 상단 라인 + 0.05 — 백드롭 시작점 살짝 위)
+      ledBottom.position.set(0, baseY + 0.05, backdropZ + panelD / 2 + 0.01);
       stGroup.add(ledBottom);
 
       // ============ ARCH MIRROR (both sides) ============
@@ -855,8 +848,8 @@
           emissiveIntensity: 0.18,
         });
         const frame = new THREE.Mesh(frameGeo, frameMat);
-        // 백드롭 앞면에 부착 (실 집기 뒤편 백드롭 → z=backdropZ+panelD/2)
-        frame.position.set(0, 0.95, backdropZ + panelD / 2 + 0.025);
+        // 백드롭 앞면 중하단에 부착 (받침대 위 시선 높이)
+        frame.position.set(0, baseY + 0.55, backdropZ + panelD / 2 + 0.025);
         frame.rotation.y = 0;
         archGroup.add(frame);
 
@@ -879,7 +872,11 @@
           envMapIntensity: 1.0,
         });
         const innerMirror = new THREE.Mesh(innerGeo, innerMat);
-        innerMirror.position.set(0, 0.95, backdropZ + panelD / 2 + 0.09);
+        innerMirror.position.set(
+          0,
+          baseY + 0.55,
+          backdropZ + panelD / 2 + 0.09,
+        );
         innerMirror.rotation.y = 0;
         archGroup.add(innerMirror);
 
@@ -1029,8 +1026,12 @@
           transparent: true,
         });
         const plane = new THREE.Mesh(new THREE.PlaneGeometry(1.8, 0.4), mat);
-        // 백드롭 상단에 부착되는 사인보드 (앞면 부착)
-        plane.position.set(0, panelH - 0.25, backdropZ + panelD / 2 + 0.025);
+        // 백드롭 상단에 부착되는 사인보드 — 받침대 위 백드롭의 상단부
+        plane.position.set(
+          0,
+          baseY + panelH - 0.25,
+          backdropZ + panelD / 2 + 0.025,
+        );
         plane.rotation.y = 0;
         return plane;
       }
@@ -1046,7 +1047,11 @@
           emissiveIntensity: 0.15,
         }),
       );
-      signLine.position.set(0, panelH - 0.5, backdropZ + panelD / 2 + 0.02);
+      signLine.position.set(
+        0,
+        baseY + panelH - 0.5,
+        backdropZ + panelD / 2 + 0.02,
+      );
       stGroup.add(signLine);
 
       // ============ SIDE PLANTERS (per reference) ============
