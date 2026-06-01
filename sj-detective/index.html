@@ -2028,6 +2028,106 @@
         }
       }
 
+      /* === OUR OFFICE === */
+      .office { background: #0e0e10; }
+      .office-hero {
+        margin: 0 0 50px;
+        position: relative;
+      }
+      .office-img-wrap {
+        position: relative;
+        background: linear-gradient(135deg, #1f1c16, #15131a);
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .office-img-wide { aspect-ratio: 21/10; }
+      .office-img-wrap img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .office-img-fallback {
+        display: none;
+        position: absolute; inset: 0;
+        flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 8px;
+        font-family: 'Noto Serif KR', serif;
+      }
+      .office-img-wrap.office-img-missing img { display: none; }
+      .office-img-wrap.office-img-missing .office-img-fallback { display: flex; }
+      .office-fb-mark {
+        font-size: 22px; font-weight: 700;
+        color: var(--gold-light);
+        letter-spacing: 0.12em;
+      }
+      .office-fb-sub {
+        font-family: 'Pretendard', sans-serif;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.05em;
+      }
+      .office-hero-cap {
+        margin-top: 16px;
+        display: flex; align-items: center; gap: 14px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.65);
+        letter-spacing: 0.02em;
+      }
+      .office-cap-tag {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 12px; font-weight: 700;
+        letter-spacing: 0.3em;
+        padding: 5px 12px;
+        background: var(--gold);
+        color: #fff;
+      }
+      .office-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .office-card {
+        margin: 0;
+        transition: transform 0.3s;
+      }
+      .office-card:hover { transform: translateY(-4px); }
+      .office-card .office-img-wrap { aspect-ratio: 4/3; }
+      .office-card:hover .office-img-wrap {
+        border-color: var(--gold);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      }
+      .office-card figcaption {
+        margin-top: 16px;
+        padding: 0 4px;
+      }
+      .office-card figcaption strong {
+        display: block;
+        font-family: 'Noto Serif KR', serif;
+        font-size: 16px; font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.01em;
+        margin-bottom: 4px;
+      }
+      .office-card figcaption span {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.55);
+        letter-spacing: 0.02em;
+      }
+
+      @media (max-width: 960px) {
+        .office-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+        .office-img-wide { aspect-ratio: 16/10; }
+        .office-hero-cap { font-size: 12px; gap: 10px; }
+        .office-cap-tag { font-size: 10px; padding: 4px 10px; }
+        .office-card figcaption strong { font-size: 14px; }
+        .office-card figcaption span { font-size: 11px; }
+      }
+      @media (max-width: 540px) {
+        .office-grid { grid-template-columns: 1fr; }
+        .office-img-wide { aspect-ratio: 4/3; }
+      }
+
       /* ============================================
          === DARK MODE UNIFICATION (전체 다크 톤) ===
          ============================================ */
@@ -2823,6 +2923,7 @@
             <li><a href="#process">진행절차</a></li>
             <li><a href="#why">신뢰의 약속</a></li>
             <li><a href="#team">팀</a></li>
+            <li><a href="#office">사무소</a></li>
             <li><a href="#credentials">자격증</a></li>
             <li><a href="#cases">해결사례</a></li>
             <li><a href="#faq">FAQ</a></li>
@@ -3211,6 +3312,97 @@
             의뢰는 사건이 아니라 <strong>사람의 인생</strong>입니다.<br />
             우리는 그 무게를 알기에, 얼굴을 먼저 보여드립니다.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== OUR OFFICE ==================== -->
+    <section class="block office" id="office">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-eyebrow">OUR OFFICE</div>
+          <h2 class="section-title">
+            온라인이 아닌, <span class="gold">실제 사무공간</span>
+          </h2>
+          <p class="section-sub">
+            경기 고양 일산서구 자유프라자 8층 806호 ―<br />
+            의뢰인이 직접 방문하실 수 있는 정식 사무소에서 모든 상담이
+            진행됩니다.
+          </p>
+        </div>
+
+        <figure class="office-hero">
+          <div class="office-img-wrap office-img-wide">
+            <img
+              src="images/office-front.jpg"
+              alt="SJ Detective Agency 사무소 입구"
+              onerror="this.parentElement.classList.add('office-img-missing')"
+            />
+            <div class="office-img-fallback">
+              <span class="office-fb-mark">사무소 입구</span>
+              <span class="office-fb-sub">images/office-front.jpg</span>
+            </div>
+          </div>
+          <figcaption class="office-hero-cap">
+            <span class="office-cap-tag">ENTRANCE</span>
+            정식 등록된 사무공간 · 의뢰인 1:1 상담 부스 운영
+          </figcaption>
+        </figure>
+
+        <div class="office-grid">
+          <figure class="office-card">
+            <div class="office-img-wrap">
+              <img
+                src="images/office-investigation.jpg"
+                alt="SJ 탐정사무소 조사실"
+                onerror="this.parentElement.classList.add('office-img-missing')"
+              />
+              <div class="office-img-fallback">
+                <span class="office-fb-mark">조사실</span>
+                <span class="office-fb-sub">images/office-investigation.jpg</span>
+              </div>
+            </div>
+            <figcaption>
+              <strong>01 · 조사실</strong>
+              <span>증거 정리 · 디지털 포렌식 · 촬영 장비 운영</span>
+            </figcaption>
+          </figure>
+
+          <figure class="office-card">
+            <div class="office-img-wrap">
+              <img
+                src="images/office-meeting.jpg"
+                alt="SJ 탐정사무소 회의실"
+                onerror="this.parentElement.classList.add('office-img-missing')"
+              />
+              <div class="office-img-fallback">
+                <span class="office-fb-mark">회의실</span>
+                <span class="office-fb-sub">images/office-meeting.jpg</span>
+              </div>
+            </div>
+            <figcaption>
+              <strong>02 · 회의실</strong>
+              <span>의뢰인 브리핑 · 사건 검토 · 결과 보고</span>
+            </figcaption>
+          </figure>
+
+          <figure class="office-card">
+            <div class="office-img-wrap">
+              <img
+                src="images/office-consult.jpg"
+                alt="SJ 탐정사무소 상담실"
+                onerror="this.parentElement.classList.add('office-img-missing')"
+              />
+              <div class="office-img-fallback">
+                <span class="office-fb-mark">상담실</span>
+                <span class="office-fb-sub">images/office-consult.jpg</span>
+              </div>
+            </div>
+            <figcaption>
+              <strong>03 · 비밀 상담실</strong>
+              <span>완전 차폐 · 1:1 비공개 상담 전용 공간</span>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
