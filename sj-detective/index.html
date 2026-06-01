@@ -2028,6 +2028,46 @@
         }
       }
 
+      /* ============================================
+         === LAYOUT REFINEMENT (PC + Mobile 정합) ===
+         ============================================ */
+      /* 그리드 gap 통일 (svc는 1px 보더라인 의도, cred만 4컬럼이라 24px 유지) */
+      .why-grid { gap: 30px !important; }
+
+      /* 카드 figcaption 텍스트 길이 달라도 정렬 균등 */
+      .office-card figcaption { min-height: 58px; }
+      .cred-card figcaption { min-height: 52px; }
+
+      /* 컨테이너 패딩 단계별 균등화 */
+      @media (max-width: 1280px) { .container { padding: 0 32px; } }
+      @media (max-width: 960px) { .container { padding: 0 24px; } }
+      @media (max-width: 480px) { .container { padding: 0 18px; } }
+
+      /* 헤더 GPU 가속 — 모바일 스크롤 시 깜빡임 방지 */
+      header {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform;
+      }
+
+      /* 모바일 nav 펼침 안정 */
+      body.nav-open { overflow: hidden; }
+      header nav { z-index: 99; }
+
+      /* 하단 바와 footer 사이 안전 마진 */
+      footer { padding-bottom: 30px; }
+
+      /* 와이드 모니터 (1600+)에서 컨텐츠 중앙 정렬 유지 */
+      @media (min-width: 1600px) {
+        .hero h1 { font-size: 80px; }
+      }
+
+      /* 이미지 로딩 중 레이아웃 시프트 방지 */
+      img { background-color: rgba(255, 255, 255, 0.02); }
+
+      /* 가로 스크롤 완전 차단 */
+      html, body { overflow-x: clip; }
+
       /* === OUR OFFICE === */
       .office { background: #0e0e10; }
       .office-hero {
