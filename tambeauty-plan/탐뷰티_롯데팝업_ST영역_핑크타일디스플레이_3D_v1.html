@@ -484,7 +484,7 @@
               class="dot"
               style="background: #eee; border: 1px solid #aaa"
             ></span
-            >실 ST 집기 (화이트 메탈 행거+셸프)
+            >실 ST 집기 (5단 화장품 진열 셸프 + 중앙 카운터)
           </div>
           <div class="row">
             <span
@@ -1090,8 +1090,8 @@
       stGroup.add(makePlanter(-1.22, 1));
       stGroup.add(makePlanter(1.22, 1));
 
-      // ============ 실 집기 (REAL CABINET) — 사진 기반 ============
-      // 화이트 메탈 행거 시스템: 좌우 행거 유닛 2개 + 중앙 낮은 셸프 유닛 1개
+      // ============ 실 집기 (REAL CABINET) — 화장품 진열 셸프 시스템 ============
+      // 좌/우 5단 셸프 유닛 + 중앙 카운터 (메인 디스플레이)
       function buildRealCabinet() {
         const root = new THREE.Group();
         const whiteMat = new THREE.MeshStandardMaterial({
@@ -1108,9 +1108,156 @@
           color: 0xe0e0e0,
           roughness: 0.5,
         });
+        const shelfPanelMat = new THREE.MeshStandardMaterial({
+          color: 0xfbfbfb,
+          roughness: 0.4,
+          metalness: 0.12,
+        });
+        const shelfEdgeMat = new THREE.MeshStandardMaterial({
+          color: 0xb5b5b5,
+          roughness: 0.4,
+          metalness: 0.2,
+        });
 
-        // ── 좌/우 키 큰 행거 유닛 ──
-        function makeHanger(xOff) {
+        // ── 화장품 메이커: tube · bottle · pump · jar · box · mister ──
+        function makeCosmetic(type, color, accentColor) {
+          const g = new THREE.Group();
+          const baseMat = new THREE.MeshPhysicalMaterial({
+            color: color,
+            roughness: 0.25,
+            metalness: 0.05,
+            clearcoat: 0.65,
+            clearcoatRoughness: 0.25,
+          });
+          const capMat = new THREE.MeshStandardMaterial({
+            color: accentColor,
+            roughness: 0.35,
+            metalness: 0.25,
+          });
+
+          if (type === 'tube') {
+            const body = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.036, 0.044, 0.16, 20),
+              baseMat,
+            );
+            body.position.y = 0.08;
+            body.castShadow = true;
+            g.add(body);
+            const cap = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.04, 0.04, 0.024, 16),
+              capMat,
+            );
+            cap.position.y = 0.172;
+            g.add(cap);
+          } else if (type === 'bottle') {
+            const body = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.046, 0.046, 0.14, 20),
+              baseMat,
+            );
+            body.position.y = 0.07;
+            body.castShadow = true;
+            g.add(body);
+            const shoulder = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.026, 0.046, 0.025, 16),
+              baseMat,
+            );
+            shoulder.position.y = 0.155;
+            g.add(shoulder);
+            const cap = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.028, 0.028, 0.03, 16),
+              capMat,
+            );
+            cap.position.y = 0.185;
+            g.add(cap);
+          } else if (type === 'pump') {
+            const body = new THREE.Mesh(
+              new THREE.BoxGeometry(0.07, 0.18, 0.07),
+              baseMat,
+            );
+            body.position.y = 0.09;
+            body.castShadow = true;
+            g.add(body);
+            const neck = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.022, 0.022, 0.025, 12),
+              capMat,
+            );
+            neck.position.y = 0.195;
+            g.add(neck);
+            const head = new THREE.Mesh(
+              new THREE.BoxGeometry(0.055, 0.025, 0.025),
+              capMat,
+            );
+            head.position.set(0.012, 0.22, 0);
+            g.add(head);
+            const nozzle = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.005, 0.005, 0.022, 8),
+              capMat,
+            );
+            nozzle.rotation.z = Math.PI / 2;
+            nozzle.position.set(0.05, 0.22, 0);
+            g.add(nozzle);
+          } else if (type === 'jar') {
+            const body = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.058, 0.058, 0.065, 20),
+              baseMat,
+            );
+            body.position.y = 0.0325;
+            body.castShadow = true;
+            g.add(body);
+            const lid = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.061, 0.061, 0.028, 20),
+              capMat,
+            );
+            lid.position.y = 0.079;
+            g.add(lid);
+          } else if (type === 'box') {
+            const body = new THREE.Mesh(
+              new THREE.BoxGeometry(0.085, 0.14, 0.055),
+              new THREE.MeshStandardMaterial({
+                color: color,
+                roughness: 0.7,
+                metalness: 0.05,
+              }),
+            );
+            body.position.y = 0.07;
+            body.castShadow = true;
+            g.add(body);
+            const label = new THREE.Mesh(
+              new THREE.BoxGeometry(0.086, 0.028, 0.056),
+              new THREE.MeshStandardMaterial({
+                color: accentColor,
+                roughness: 0.6,
+              }),
+            );
+            label.position.y = 0.045;
+            g.add(label);
+          } else if (type === 'mister') {
+            const body = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.034, 0.034, 0.155, 20),
+              baseMat,
+            );
+            body.position.y = 0.0775;
+            body.castShadow = true;
+            g.add(body);
+            const trigger = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.018, 0.018, 0.028, 12),
+              capMat,
+            );
+            trigger.position.y = 0.169;
+            g.add(trigger);
+            const nozzle = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.004, 0.004, 0.02, 8),
+              capMat,
+            );
+            nozzle.rotation.z = Math.PI / 2;
+            nozzle.position.set(0.025, 0.183, 0);
+            g.add(nozzle);
+          }
+          return g;
+        }
+
+        // ── 좌/우 5단 화장품 진열 셸프 유닛 ──
+        function makeShelfUnit(xOff) {
           const u = new THREE.Group();
           const w = 0.75,
             h = 2.0,
@@ -1162,84 +1309,102 @@
             u.add(top);
           });
 
-          // 상단 행거바 (수평 금속봉)
-          const topBar = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.013, 0.013, w - 0.08, 14),
-            metalMat,
-          );
-          topBar.rotation.z = Math.PI / 2;
-          topBar.position.set(0, baseH + h - 0.16, 0);
-          u.add(topBar);
+          // 측면 가로 보 (좌/우 - 셸프 지지)
+          [-w / 2 + t / 2, w / 2 - t / 2].forEach((px) => {
+            const side = new THREE.Mesh(
+              new THREE.BoxGeometry(t, t, d),
+              whiteMat,
+            );
+            side.position.set(px, baseH + h - t / 2, 0);
+            u.add(side);
+          });
 
-          // 중간 행거바
-          const midBar = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.013, 0.013, w - 0.08, 14),
-            metalMat,
-          );
-          midBar.rotation.z = Math.PI / 2;
-          midBar.position.set(0, baseH + h * 0.5, 0);
-          u.add(midBar);
+          // ── 5단 진열 셸프 ──
+          const shelfYs = [0.32, 0.7, 1.08, 1.46, 1.82];
+          shelfYs.forEach((sh) => {
+            const shelfY = baseH + sh;
+            // 메인 셸프 패널 (두꺼워서 잘 보임)
+            const panel = new THREE.Mesh(
+              new THREE.BoxGeometry(w - t * 2, 0.03, d - t * 2),
+              shelfPanelMat,
+            );
+            panel.position.set(0, shelfY, 0);
+            panel.castShadow = true;
+            panel.receiveShadow = true;
+            u.add(panel);
+            // 앞면 엣지 라인 (가시성 강화)
+            const frontEdge = new THREE.Mesh(
+              new THREE.BoxGeometry(w - t * 2 + 0.006, 0.038, 0.015),
+              shelfEdgeMat,
+            );
+            frontEdge.position.set(0, shelfY, d / 2 - t - 0.0075);
+            u.add(frontEdge);
+            // 뒷면 엣지 라인
+            const backEdge = new THREE.Mesh(
+              new THREE.BoxGeometry(w - t * 2 + 0.006, 0.034, 0.01),
+              shelfEdgeMat,
+            );
+            backEdge.position.set(0, shelfY, -d / 2 + t + 0.005);
+            u.add(backEdge);
+            // 좌우 측면 엣지
+            [-1, 1].forEach((sign) => {
+              const sideEdge = new THREE.Mesh(
+                new THREE.BoxGeometry(0.012, 0.038, d - t * 2 + 0.005),
+                shelfEdgeMat,
+              );
+              sideEdge.position.set(sign * (w / 2 - t - 0.006), shelfY, 0);
+              u.add(sideEdge);
+            });
+            // 셸프 아래 LED 라이트 라인 (살짝 따뜻한 톤)
+            const underLed = new THREE.Mesh(
+              new THREE.BoxGeometry(w - t * 2 - 0.04, 0.005, 0.015),
+              new THREE.MeshBasicMaterial({
+                color: 0xfff2dc,
+                transparent: true,
+                opacity: 0.85,
+              }),
+            );
+            underLed.position.set(0, shelfY - 0.018, d / 2 - t - 0.01);
+            u.add(underLed);
+          });
 
-          // 옷 더미 (상단 행거바)
-          const clothColors = [
-            0xd9c5b8, 0x6a8aa8, 0xc5a0a0, 0xb0c4d0, 0xa8b5a0, 0x8a7a90,
+          // ── 각 단에 화장품 배치 (3개씩) ──
+          const cosmeticTypes = [
+            ['box', 'pump', 'box'], // 1단 (가장 아래) — 패키지
+            ['jar', 'bottle', 'jar'], // 2단
+            ['bottle', 'mister', 'bottle'], // 3단
+            ['pump', 'jar', 'pump'], // 4단
+            ['tube', 'tube', 'tube'], // 5단 (top)
           ];
-          for (let i = 0; i < 6; i++) {
-            const cw = 0.09 + Math.random() * 0.015;
-            const ch_ = 0.5 + Math.random() * 0.08;
-            const cloth = new THREE.Mesh(
-              new THREE.BoxGeometry(cw, ch_, 0.28),
-              new THREE.MeshStandardMaterial({
-                color: clothColors[i % clothColors.length],
-                roughness: 0.85,
-              }),
-            );
-            cloth.position.set(
-              -0.3 + i * 0.115,
-              baseH + h - 0.16 - ch_ / 2 - 0.04,
-              0,
-            );
-            cloth.castShadow = true;
-            u.add(cloth);
-            // 옷걸이 후크 (작은 토러스)
-            const hook = new THREE.Mesh(
-              new THREE.TorusGeometry(0.018, 0.0035, 6, 14, Math.PI),
-              metalMat,
-            );
-            hook.position.set(-0.3 + i * 0.115, baseH + h - 0.16 + 0.018, 0);
-            hook.rotation.x = Math.PI / 2;
-            u.add(hook);
-          }
-
-          // 옷 더미 (중간 행거바)
-          for (let i = 0; i < 6; i++) {
-            const cw = 0.085 + Math.random() * 0.015;
-            const ch_ = 0.42 + Math.random() * 0.06;
-            const cloth = new THREE.Mesh(
-              new THREE.BoxGeometry(cw, ch_, 0.26),
-              new THREE.MeshStandardMaterial({
-                color: clothColors[(i + 3) % clothColors.length],
-                roughness: 0.85,
-              }),
-            );
-            cloth.position.set(
-              -0.3 + i * 0.115,
-              baseH + h * 0.5 - ch_ / 2 - 0.03,
-              0,
-            );
-            cloth.castShadow = true;
-            u.add(cloth);
-          }
+          const palettes = [
+            { c: 0xf5d6dc, a: 0xc44b6e },
+            { c: 0xfae3e8, a: 0xe88aa5 },
+            { c: 0xffe1ea, a: 0x9d3653 },
+            { c: 0xf2c5d0, a: 0xc44b6e },
+            { c: 0xe8d8dd, a: 0x9d3653 },
+            { c: 0xfff0f3, a: 0xd9678a },
+          ];
+          shelfYs.forEach((sh, si) => {
+            const shelfY = baseH + sh + 0.015;
+            const types = cosmeticTypes[si];
+            types.forEach((type, pi) => {
+              const palette = palettes[(si * 2 + pi) % palettes.length];
+              const cosmetic = makeCosmetic(type, palette.c, palette.a);
+              const xPos = -0.24 + pi * 0.24;
+              cosmetic.position.set(xPos, shelfY, 0);
+              u.add(cosmetic);
+            });
+          });
 
           u.position.x = xOff;
           return u;
         }
 
-        root.add(makeHanger(-0.85));
-        root.add(makeHanger(0.85));
+        root.add(makeShelfUnit(-0.85));
+        root.add(makeShelfUnit(0.85));
 
-        // ── 중앙 낮은 셸프 유닛 (모자 디스플레이) ──
-        const cw = 0.78,
+        // ── 중앙 카운터 (메인 베스트셀러 디스플레이) ──
+        const cw = 0.8,
           ch = 1.05,
           cd = 0.42;
         const centerBox = new THREE.Mesh(
@@ -1251,72 +1416,88 @@
         centerBox.receiveShadow = true;
         root.add(centerBox);
 
-        // 상단 평면 (살짝 진한 톤 + 두께감)
+        // 카운터 상단 평면 (디스플레이 면 — 진열대)
         const centerTop = new THREE.Mesh(
-          new THREE.BoxGeometry(cw + 0.025, 0.035, cd + 0.025),
+          new THREE.BoxGeometry(cw + 0.03, 0.04, cd + 0.03),
           lightShelfMat,
         );
-        centerTop.position.y = ch + 0.017;
+        centerTop.position.y = ch + 0.02;
         root.add(centerTop);
 
-        // 중간 셸프 라인 (앞면에 슬릿)
-        const slit = new THREE.Mesh(
-          new THREE.BoxGeometry(cw - 0.04, 0.008, 0.005),
-          new THREE.MeshStandardMaterial({ color: 0xc8c8c8, roughness: 0.7 }),
+        // 앞면 도어 라인 (중간 슬릿 — 수납문)
+        const doorLine = new THREE.Mesh(
+          new THREE.BoxGeometry(cw - 0.05, 0.006, 0.004),
+          new THREE.MeshStandardMaterial({ color: 0xb8b8b8, roughness: 0.6 }),
         );
-        slit.position.set(0, ch * 0.5, cd / 2 + 0.001);
-        root.add(slit);
+        doorLine.position.set(0, ch * 0.5, cd / 2 + 0.001);
+        root.add(doorLine);
 
-        // 모자 디스플레이 (6개: 2 row × 3 col)
-        const capColors = [
-          0x2a2a2a, 0xc0392b, 0xf4f0e6, 0x2c3e50, 0xd35400, 0x8e44ad,
-        ];
-        for (let i = 0; i < 6; i++) {
-          const row = Math.floor(i / 3);
-          const col = i % 3;
-          const cap = new THREE.Mesh(
-            new THREE.SphereGeometry(
-              0.065,
-              16,
-              12,
-              0,
-              Math.PI * 2,
-              0,
-              Math.PI / 2.1,
-            ),
+        // 좌우 손잡이 라인
+        [-0.18, 0.18].forEach((hx) => {
+          const handle = new THREE.Mesh(
+            new THREE.BoxGeometry(0.025, 0.05, 0.008),
             new THREE.MeshStandardMaterial({
-              color: capColors[i],
-              roughness: 0.75,
+              color: 0xa0a0a0,
+              roughness: 0.35,
+              metalness: 0.65,
             }),
           );
-          cap.position.set(-0.26 + col * 0.26, ch + 0.1, -0.1 + row * 0.2);
-          cap.castShadow = true;
-          root.add(cap);
+          handle.position.set(hx, ch * 0.55, cd / 2 + 0.005);
+          root.add(handle);
+        });
 
-          // 캡 바이저(챙)
-          const visor = new THREE.Mesh(
-            new THREE.CylinderGeometry(
-              0.075,
-              0.075,
-              0.008,
-              16,
-              1,
-              false,
-              Math.PI * 0.75,
-              Math.PI * 0.5,
-            ),
-            new THREE.MeshStandardMaterial({
-              color: capColors[i],
-              roughness: 0.75,
-            }),
-          );
-          visor.position.set(
-            -0.26 + col * 0.26,
-            ch + 0.058,
-            -0.1 + row * 0.2 - 0.04,
-          );
-          root.add(visor);
-        }
+        // ── 카운터 상단에 베스트셀러 진열 ──
+        // 중앙: 메인 히어로 제품 (사이즈 1.5x)
+        const heroPump = makeCosmetic('pump', 0xfae3e8, 0xc44b6e);
+        heroPump.position.set(0, ch + 0.04, -0.05);
+        heroPump.scale.set(1.5, 1.5, 1.5);
+        root.add(heroPump);
+
+        // 좌: 서브 제품 (자)
+        const leftJar = makeCosmetic('jar', 0xfff0f3, 0x9d3653);
+        leftJar.position.set(-0.22, ch + 0.04, 0.05);
+        leftJar.scale.set(1.2, 1.2, 1.2);
+        root.add(leftJar);
+
+        // 우: 서브 제품 (보틀)
+        const rightBottle = makeCosmetic('bottle', 0xf5d6dc, 0xe88aa5);
+        rightBottle.position.set(0.22, ch + 0.04, 0.05);
+        rightBottle.scale.set(1.2, 1.2, 1.2);
+        root.add(rightBottle);
+
+        // 앞쪽 작은 미러 (메이크업 테스트용)
+        const counterMirror = new THREE.Mesh(
+          new THREE.CircleGeometry(0.055, 24),
+          new THREE.MeshPhysicalMaterial({
+            color: 0xdfe6e8,
+            roughness: 0.05,
+            metalness: 1.0,
+          }),
+        );
+        counterMirror.position.set(0, ch + 0.045, 0.16);
+        counterMirror.rotation.x = -Math.PI / 6;
+        root.add(counterMirror);
+
+        // 미러 뒤 받침 스탠드
+        const mirrorStand = new THREE.Mesh(
+          new THREE.BoxGeometry(0.01, 0.06, 0.012),
+          new THREE.MeshStandardMaterial({
+            color: 0xc4c4c4,
+            roughness: 0.4,
+            metalness: 0.5,
+          }),
+        );
+        mirrorStand.position.set(0, ch + 0.035, 0.18);
+        mirrorStand.rotation.x = Math.PI / 12;
+        root.add(mirrorStand);
+
+        // 앞 양옆에 작은 테스터 제품 2개
+        const tester1 = makeCosmetic('tube', 0xffe1ea, 0xc44b6e);
+        tester1.position.set(-0.28, ch + 0.04, 0.14);
+        root.add(tester1);
+        const tester2 = makeCosmetic('tube', 0xf2c5d0, 0x9d3653);
+        tester2.position.set(0.28, ch + 0.04, 0.14);
+        root.add(tester2);
 
         return root;
       }
