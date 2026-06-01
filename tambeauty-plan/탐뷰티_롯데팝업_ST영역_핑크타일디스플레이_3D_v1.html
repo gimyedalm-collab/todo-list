@@ -216,6 +216,62 @@
         }
       }
 
+      /* ===== 모드 토글 (실 집기 / 개조 시안 / 통합) ===== */
+      .mode-toggle {
+        position: fixed;
+        top: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 12;
+        display: flex;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-radius: 100px;
+        padding: 5px;
+        gap: 3px;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        box-shadow: 0 10px 30px rgba(157, 54, 83, 0.16);
+        pointer-events: auto;
+      }
+      .mode-toggle button {
+        background: transparent;
+        border: 0;
+        padding: 8px 16px;
+        border-radius: 100px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--gray);
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+      .mode-toggle button:hover {
+        color: var(--ink);
+      }
+      .mode-toggle button.active {
+        background: var(--rose-deep);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(157, 54, 83, 0.3);
+      }
+      @media (max-width: 768px) {
+        .mode-toggle {
+          top: max(70px, calc(env(safe-area-inset-top) + 70px));
+          left: 12px;
+          right: 12px;
+          transform: none;
+          justify-content: center;
+        }
+        .mode-toggle button {
+          padding: 7px 12px;
+          font-size: 11px;
+          flex: 1;
+          text-align: center;
+        }
+      }
+
       /* ===== 토글 버튼 (모바일에서 HUD 접기) ===== */
       .toggle-btn {
         position: fixed;
@@ -381,13 +437,20 @@
 
       <button class="toggle-btn" id="hudToggle" aria-label="HUD 토글">⌄</button>
 
+      <div class="mode-toggle" id="modeToggle">
+        <button data-mode="both" class="active">통합 시안</button>
+        <button data-mode="real">실 집기</button>
+        <button data-mode="pink">개조만</button>
+      </div>
+
       <div class="hud hud-top">
         <div class="title-card">
           <span class="tag">ST · 고정 집기 A · 3D Rendering</span>
           <h1>탐뷰티 × 롯데 팝업 — ST 영역 핑크 타일 디스플레이</h1>
           <p>
-            평면도 중앙 ST 영역에 들어갈 양면 진열대 — Você bem tododia 무드
-            차용 · 핑크 타일 + 아치 미러 + 양면 셸프
+            <b>2-레이어 시안</b> · 베이스는 실제 ST 집기 (화이트 메탈
+            행거+셸프), 그 위에 핑크 타일 + 아치 미러 + 시그니처를 덧입힌 개조안
+            — 상단 토글로 비교
           </p>
         </div>
         <div class="legend">
@@ -415,6 +478,13 @@
           <div class="row">
             <span class="dot" style="background: #bfbfbf"></span>기둥 (콘크리트
             그레이)
+          </div>
+          <div class="row">
+            <span
+              class="dot"
+              style="background: #eee; border: 1px solid #aaa"
+            ></span
+            >실 ST 집기 (화이트 메탈 행거+셸프)
           </div>
           <div class="row">
             <span
@@ -650,9 +720,13 @@
       ring.position.y = 0.002;
       scene.add(ring);
 
-      // ============ ST FIXTURE (CENTRAL PINK TILE DISPLAY) ============
-      const stGroup = new THREE.Group();
-      stGroup.rotation.y = (20 * Math.PI) / 180; // 평면도 +20도
+      // ============ ST FIXTURE — 2 LAYER (실 집기 + 핑크 개조 시안) ============
+      // stRoot ─ realCabinet (실 집기: 화이트 메탈 행거 시스템)
+      //        └ stGroup (핑크 개조 시안: 타일+아치+시그니처)
+      const stRoot = new THREE.Group();
+      stRoot.rotation.y = (20 * Math.PI) / 180; // 평면도 +20도
+
+      const stGroup = new THREE.Group(); // 핑크 개조 오버레이
 
       // tile texture for ST
       const tileTexFront = makeTileTexture('#f5a0b5', '#ffeef2', 6, 9);
@@ -1010,7 +1084,242 @@
       stGroup.add(makePlanter(-1.1, -1));
       stGroup.add(makePlanter(1.1, -1));
 
-      scene.add(stGroup);
+      // ============ 실 집기 (REAL CABINET) — 사진 기반 ============
+      // 화이트 메탈 행거 시스템: 좌우 행거 유닛 2개 + 중앙 낮은 셸프 유닛 1개
+      function buildRealCabinet() {
+        const root = new THREE.Group();
+        const whiteMat = new THREE.MeshStandardMaterial({
+          color: 0xeeeeee,
+          roughness: 0.5,
+          metalness: 0.15,
+        });
+        const metalMat = new THREE.MeshStandardMaterial({
+          color: 0x9a9a9a,
+          roughness: 0.3,
+          metalness: 0.7,
+        });
+        const lightShelfMat = new THREE.MeshStandardMaterial({
+          color: 0xe0e0e0,
+          roughness: 0.5,
+        });
+
+        // ── 좌/우 키 큰 행거 유닛 ──
+        function makeHanger(xOff) {
+          const u = new THREE.Group();
+          const w = 0.75,
+            h = 2.0,
+            d = 0.42;
+          const t = 0.035;
+          const baseH = 0.5;
+
+          // 하단 베이스 박스
+          const base = new THREE.Mesh(
+            new THREE.BoxGeometry(w, baseH, d),
+            whiteMat,
+          );
+          base.position.y = baseH / 2;
+          base.castShadow = true;
+          base.receiveShadow = true;
+          u.add(base);
+
+          // 베이스 상단 트림 (살짝 진한 톤)
+          const baseTop = new THREE.Mesh(
+            new THREE.BoxGeometry(w + 0.02, 0.025, d + 0.02),
+            lightShelfMat,
+          );
+          baseTop.position.y = baseH + 0.012;
+          u.add(baseTop);
+
+          // 4 코너 수직 포스트 (베이스 위로)
+          [
+            [-w / 2 + t / 2, -d / 2 + t / 2],
+            [w / 2 - t / 2, -d / 2 + t / 2],
+            [-w / 2 + t / 2, d / 2 - t / 2],
+            [w / 2 - t / 2, d / 2 - t / 2],
+          ].forEach(([px, pz]) => {
+            const post = new THREE.Mesh(
+              new THREE.BoxGeometry(t, h, t),
+              whiteMat,
+            );
+            post.position.set(px, baseH + h / 2, pz);
+            post.castShadow = true;
+            u.add(post);
+          });
+
+          // 상단 가로 보 (앞/뒤)
+          [-d / 2 + t / 2, d / 2 - t / 2].forEach((pz) => {
+            const top = new THREE.Mesh(
+              new THREE.BoxGeometry(w, t, t),
+              whiteMat,
+            );
+            top.position.set(0, baseH + h - t / 2, pz);
+            u.add(top);
+          });
+
+          // 상단 행거바 (수평 금속봉)
+          const topBar = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.013, 0.013, w - 0.08, 14),
+            metalMat,
+          );
+          topBar.rotation.z = Math.PI / 2;
+          topBar.position.set(0, baseH + h - 0.16, 0);
+          u.add(topBar);
+
+          // 중간 행거바
+          const midBar = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.013, 0.013, w - 0.08, 14),
+            metalMat,
+          );
+          midBar.rotation.z = Math.PI / 2;
+          midBar.position.set(0, baseH + h * 0.5, 0);
+          u.add(midBar);
+
+          // 옷 더미 (상단 행거바)
+          const clothColors = [
+            0xd9c5b8, 0x6a8aa8, 0xc5a0a0, 0xb0c4d0, 0xa8b5a0, 0x8a7a90,
+          ];
+          for (let i = 0; i < 6; i++) {
+            const cw = 0.09 + Math.random() * 0.015;
+            const ch_ = 0.5 + Math.random() * 0.08;
+            const cloth = new THREE.Mesh(
+              new THREE.BoxGeometry(cw, ch_, 0.28),
+              new THREE.MeshStandardMaterial({
+                color: clothColors[i % clothColors.length],
+                roughness: 0.85,
+              }),
+            );
+            cloth.position.set(
+              -0.3 + i * 0.115,
+              baseH + h - 0.16 - ch_ / 2 - 0.04,
+              0,
+            );
+            cloth.castShadow = true;
+            u.add(cloth);
+            // 옷걸이 후크 (작은 토러스)
+            const hook = new THREE.Mesh(
+              new THREE.TorusGeometry(0.018, 0.0035, 6, 14, Math.PI),
+              metalMat,
+            );
+            hook.position.set(-0.3 + i * 0.115, baseH + h - 0.16 + 0.018, 0);
+            hook.rotation.x = Math.PI / 2;
+            u.add(hook);
+          }
+
+          // 옷 더미 (중간 행거바)
+          for (let i = 0; i < 6; i++) {
+            const cw = 0.085 + Math.random() * 0.015;
+            const ch_ = 0.42 + Math.random() * 0.06;
+            const cloth = new THREE.Mesh(
+              new THREE.BoxGeometry(cw, ch_, 0.26),
+              new THREE.MeshStandardMaterial({
+                color: clothColors[(i + 3) % clothColors.length],
+                roughness: 0.85,
+              }),
+            );
+            cloth.position.set(
+              -0.3 + i * 0.115,
+              baseH + h * 0.5 - ch_ / 2 - 0.03,
+              0,
+            );
+            cloth.castShadow = true;
+            u.add(cloth);
+          }
+
+          u.position.x = xOff;
+          return u;
+        }
+
+        root.add(makeHanger(-0.85));
+        root.add(makeHanger(0.85));
+
+        // ── 중앙 낮은 셸프 유닛 (모자 디스플레이) ──
+        const cw = 0.78,
+          ch = 1.05,
+          cd = 0.42;
+        const centerBox = new THREE.Mesh(
+          new THREE.BoxGeometry(cw, ch, cd),
+          whiteMat,
+        );
+        centerBox.position.y = ch / 2;
+        centerBox.castShadow = true;
+        centerBox.receiveShadow = true;
+        root.add(centerBox);
+
+        // 상단 평면 (살짝 진한 톤 + 두께감)
+        const centerTop = new THREE.Mesh(
+          new THREE.BoxGeometry(cw + 0.025, 0.035, cd + 0.025),
+          lightShelfMat,
+        );
+        centerTop.position.y = ch + 0.017;
+        root.add(centerTop);
+
+        // 중간 셸프 라인 (앞면에 슬릿)
+        const slit = new THREE.Mesh(
+          new THREE.BoxGeometry(cw - 0.04, 0.008, 0.005),
+          new THREE.MeshStandardMaterial({ color: 0xc8c8c8, roughness: 0.7 }),
+        );
+        slit.position.set(0, ch * 0.5, cd / 2 + 0.001);
+        root.add(slit);
+
+        // 모자 디스플레이 (6개: 2 row × 3 col)
+        const capColors = [
+          0x2a2a2a, 0xc0392b, 0xf4f0e6, 0x2c3e50, 0xd35400, 0x8e44ad,
+        ];
+        for (let i = 0; i < 6; i++) {
+          const row = Math.floor(i / 3);
+          const col = i % 3;
+          const cap = new THREE.Mesh(
+            new THREE.SphereGeometry(
+              0.065,
+              16,
+              12,
+              0,
+              Math.PI * 2,
+              0,
+              Math.PI / 2.1,
+            ),
+            new THREE.MeshStandardMaterial({
+              color: capColors[i],
+              roughness: 0.75,
+            }),
+          );
+          cap.position.set(-0.26 + col * 0.26, ch + 0.1, -0.1 + row * 0.2);
+          cap.castShadow = true;
+          root.add(cap);
+
+          // 캡 바이저(챙)
+          const visor = new THREE.Mesh(
+            new THREE.CylinderGeometry(
+              0.075,
+              0.075,
+              0.008,
+              16,
+              1,
+              false,
+              Math.PI * 0.75,
+              Math.PI * 0.5,
+            ),
+            new THREE.MeshStandardMaterial({
+              color: capColors[i],
+              roughness: 0.75,
+            }),
+          );
+          visor.position.set(
+            -0.26 + col * 0.26,
+            ch + 0.058,
+            -0.1 + row * 0.2 - 0.04,
+          );
+          root.add(visor);
+        }
+
+        return root;
+      }
+      const realCabinet = buildRealCabinet();
+
+      // 부모 그룹으로 묶기
+      stRoot.add(realCabinet);
+      stRoot.add(stGroup);
+      scene.add(stRoot);
 
       // ============ 기둥 (PILLARS) — 평면도 우측 상/하 ============
       function makePillar(x, z, h = 3.4) {
@@ -1564,6 +1873,69 @@
             .forEach((b) => b.classList.remove('active'));
           btn.classList.add('active');
           setView(btn.dataset.view);
+        });
+      });
+
+      // ============ 모드 토글 (실 집기 ↔ 개조 시안 ↔ 통합) ============
+      // 핑크 오버레이의 모든 머티리얼 원본 보관 후 통합 모드에서 반투명 처리
+      const pinkMaterials = [];
+      stGroup.traverse((obj) => {
+        if (obj.isMesh && obj.material) {
+          const mats = Array.isArray(obj.material)
+            ? obj.material
+            : [obj.material];
+          mats.forEach((m) => {
+            if (!pinkMaterials.find((x) => x.mat === m)) {
+              pinkMaterials.push({
+                mat: m,
+                origOpacity: m.opacity ?? 1,
+                origTransparent: m.transparent ?? false,
+              });
+            }
+          });
+        }
+      });
+
+      function setPinkOpacity(op) {
+        pinkMaterials.forEach(({ mat, origOpacity, origTransparent }) => {
+          if (op >= 1) {
+            mat.opacity = origOpacity;
+            mat.transparent = origTransparent;
+          } else {
+            mat.transparent = true;
+            mat.opacity = op * origOpacity;
+          }
+          mat.depthWrite = op >= 0.9;
+          mat.needsUpdate = true;
+        });
+      }
+
+      function setMode(mode) {
+        if (mode === 'real') {
+          realCabinet.visible = true;
+          stGroup.visible = false;
+          setPinkOpacity(1.0);
+        } else if (mode === 'pink') {
+          realCabinet.visible = false;
+          stGroup.visible = true;
+          setPinkOpacity(1.0);
+        } else {
+          // both — 실 집기 + 핑크 반투명 오버레이
+          realCabinet.visible = true;
+          stGroup.visible = true;
+          setPinkOpacity(0.55);
+        }
+      }
+      // 초기 모드: both (통합)
+      setMode('both');
+
+      document.querySelectorAll('.mode-toggle button').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document
+            .querySelectorAll('.mode-toggle button')
+            .forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          setMode(btn.dataset.mode);
         });
       });
 
