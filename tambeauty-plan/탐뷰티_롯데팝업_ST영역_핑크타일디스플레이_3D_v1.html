@@ -438,8 +438,8 @@
       <button class="toggle-btn" id="hudToggle" aria-label="HUD 토글">⌄</button>
 
       <div class="mode-toggle" id="modeToggle">
-        <button data-mode="real" class="active">Before · 실 집기</button>
-        <button data-mode="both">After · 개조 시안</button>
+        <button data-mode="real">Before · 베이스만</button>
+        <button data-mode="both" class="active">After · 위에 얹은 시안</button>
       </div>
 
       <div class="hud hud-top">
@@ -447,10 +447,10 @@
           <span class="tag">ST · 고정 집기 A · 3D Rendering</span>
           <h1>탐뷰티 × 롯데 팝업 — ST 영역 핑크 타일 디스플레이</h1>
           <p>
-            <b>철조 프레임 골격</b> 상태 — 셸프·진열물 모두 제거하고 베이스 박스
-            + 4코너 포스트 + 가로보만 남긴 빈 구조. 상단 토글의 <b>After</b>를
-            누르면 개조 시안(핑크 백드롭·아치 미러·사인보드·화분) 부착 결과로
-            전환.
+            <b>단칸 베이스 위에 핑크 시안 얹기</b> · 위로 솟던
+            포스트·가로보(파티션 막대기)는 모두 제거. 받침대 단칸은 그대로, 그
+            위에 핑크 백드롭 · 아치 미러 · 사인보드 · 화분이 얹힌 형태. 토글로
+            Before(베이스만) / After(얹은 시안) 전환.
           </p>
         </div>
         <div class="legend">
@@ -484,7 +484,7 @@
               class="dot"
               style="background: #eee; border: 1px solid #aaa"
             ></span
-            >실 ST 집기 (철조 프레임 골격)
+            >실 ST 단칸 베이스 (받침대 박스)
           </div>
           <div class="row">
             <span
@@ -1256,16 +1256,16 @@
           return g;
         }
 
-        // ── 좌/우 5단 화장품 진열 셸프 유닛 ──
-        function makeShelfUnit(xOff) {
+        // ── 좌/우 단칸 베이스 박스 (받침대) ──
+        // 위로 솟던 4코너 포스트 + 가로보(상/측/중단) 모두 제거.
+        // 단칸 박스만 남겨서 위에 핑크 시안을 올릴 지지대 역할.
+        function makeBaseUnit(xOff) {
           const u = new THREE.Group();
           const w = 0.75,
-            h = 2.0,
             d = 0.42;
-          const t = 0.035;
           const baseH = 0.5;
 
-          // 하단 베이스 박스
+          // 하단 베이스 박스 (지지대)
           const base = new THREE.Mesh(
             new THREE.BoxGeometry(w, baseH, d),
             whiteMat,
@@ -1275,7 +1275,7 @@
           base.receiveShadow = true;
           u.add(base);
 
-          // 베이스 상단 트림 (살짝 진한 톤)
+          // 베이스 상단 트림 (살짝 진한 톤 — 디스플레이 면)
           const baseTop = new THREE.Mesh(
             new THREE.BoxGeometry(w + 0.02, 0.025, d + 0.02),
             lightShelfMat,
@@ -1283,58 +1283,12 @@
           baseTop.position.y = baseH + 0.012;
           u.add(baseTop);
 
-          // 4 코너 수직 포스트 (베이스 위로)
-          [
-            [-w / 2 + t / 2, -d / 2 + t / 2],
-            [w / 2 - t / 2, -d / 2 + t / 2],
-            [-w / 2 + t / 2, d / 2 - t / 2],
-            [w / 2 - t / 2, d / 2 - t / 2],
-          ].forEach(([px, pz]) => {
-            const post = new THREE.Mesh(
-              new THREE.BoxGeometry(t, h, t),
-              whiteMat,
-            );
-            post.position.set(px, baseH + h / 2, pz);
-            post.castShadow = true;
-            u.add(post);
-          });
-
-          // 상단 가로 보 (앞/뒤)
-          [-d / 2 + t / 2, d / 2 - t / 2].forEach((pz) => {
-            const top = new THREE.Mesh(
-              new THREE.BoxGeometry(w, t, t),
-              whiteMat,
-            );
-            top.position.set(0, baseH + h - t / 2, pz);
-            u.add(top);
-          });
-
-          // 측면 가로 보 (좌/우)
-          [-w / 2 + t / 2, w / 2 - t / 2].forEach((px) => {
-            const side = new THREE.Mesh(
-              new THREE.BoxGeometry(t, t, d),
-              whiteMat,
-            );
-            side.position.set(px, baseH + h - t / 2, 0);
-            u.add(side);
-          });
-
-          // 중단 가로 보 (구조 보강 — 앞/뒤)
-          [-d / 2 + t / 2, d / 2 - t / 2].forEach((pz) => {
-            const mid = new THREE.Mesh(
-              new THREE.BoxGeometry(w, t, t),
-              whiteMat,
-            );
-            mid.position.set(0, baseH + h * 0.45, pz);
-            u.add(mid);
-          });
-
           u.position.x = xOff;
           return u;
         }
 
-        root.add(makeShelfUnit(-0.85));
-        root.add(makeShelfUnit(0.85));
+        root.add(makeBaseUnit(-0.85));
+        root.add(makeBaseUnit(0.85));
 
         // ── 중앙 낮은 카운터 (깡통 박스만) ──
         const cw = 0.8,
@@ -1969,8 +1923,8 @@
           setPinkOpacity(1.0);
         }
       }
-      // 초기 모드: Before (실 집기 = 깡통 철조 프레임만)
-      setMode('real');
+      // 초기 모드: After (단칸 베이스 위에 핑크 시안 얹기)
+      setMode('both');
 
       document.querySelectorAll('.mode-toggle button').forEach((btn) => {
         btn.addEventListener('click', () => {
