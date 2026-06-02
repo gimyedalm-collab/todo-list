@@ -4,46 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      연세매일치과의원 | 안산 고잔동 야간·주말 진료 치과 (임플란트·교정·소아)
+      연세매일치과의원 | 안산 고잔동 임플란트·미세현미경 정밀진료 (야간·주말
+      진료)
     </title>
     <meta
       name="description"
-      content="안산 고잔동 이마트 5층 연세매일치과의원. 평일 야간 21시까지, 토요일·주말 진료. 임플란트·치아교정·소아치과 전 분야 협진. 온 가족이 매일 믿고 찾는 치과."
+      content="하버드 임플란트 과정을 수료한 대표원장 김하슬람. 안산 고잔동 연세매일치과의원 — 미세현미경 정밀진료, 평일 야간 21시·토·일 진료. 임플란트·교정·소아 전 분야 협진."
     />
     <meta
       name="keywords"
-      content="안산치과, 고잔동치과, 안산임플란트, 안산교정, 안산소아치과, 안산야간진료치과, 연세매일치과"
+      content="안산치과, 고잔동치과, 안산임플란트, 안산교정, 안산소아치과, 미세현미경치과, 안산야간진료치과, 연세매일치과, 김하슬람"
     />
     <meta
       property="og:title"
-      content="연세매일치과의원 | 안산 야간·주말 진료 치과"
+      content="연세매일치과의원 | 안산 임플란트·미세현미경 정밀진료"
     />
     <meta
       property="og:description"
-      content="평일 21시까지, 토·일 진료. 온 가족이 매일 믿고 찾는 안산 고잔동 치과."
+      content="하버드 임플란트 수료 대표원장의 정밀 진료. 안산 고잔동, 평일 야간·주말 진료."
     />
-    <meta property="og:image" content="images/og.jpg" />
+    <meta property="og:image" content="images/precision.jpg" />
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@500;600;700;900&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --navy: #0f2c52;
-        --blue: #1a6fc4;
-        --sky: #3a93e0;
-        --teal: #16a3a3;
-        --bg: #f5f8fc;
-        --ink: #1c2733;
-        --gray: #6b7888;
-        --line: #e4ebf3;
-        --gold: #c9a24b;
-        --radius: 18px;
-        --shadow: 0 14px 40px rgba(15, 44, 82, 0.1);
-        --shadow-sm: 0 6px 18px rgba(15, 44, 82, 0.08);
+        --navy: #0c2440;
+        --navy2: #102f54;
+        --ink: #1c2230;
+        --charcoal: #11151c;
+        --gold: #b08d4f;
+        --gold-l: #c8a766;
+        --paper: #f6f3ee;
+        --paper2: #efe9e0;
+        --gray: #73798a;
+        --gray-d: #4a5160;
+        --line: #e6e0d6;
+        --line-d: #1f3a5c;
+        --radius: 6px;
+        --shadow: 0 24px 60px rgba(12, 36, 64, 0.16);
+        --shadow-sm: 0 10px 30px rgba(12, 36, 64, 0.09);
+        --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
       }
       * {
         margin: 0;
@@ -57,9 +62,10 @@
         font-family: 'Noto Sans KR', sans-serif;
         color: var(--ink);
         background: #fff;
-        line-height: 1.65;
+        line-height: 1.7;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
+        letter-spacing: -0.01em;
       }
       img {
         max-width: 100%;
@@ -69,178 +75,244 @@
         text-decoration: none;
         color: inherit;
       }
+      .serif {
+        font-family: 'Noto Serif KR', serif;
+      }
       .wrap {
-        max-width: 1180px;
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 0 22px;
+        padding: 0 26px;
       }
       .center {
         text-align: center;
       }
+      section {
+        padding: 110px 0;
+      }
       .eyebrow {
         display: inline-block;
-        font-size: 0.82rem;
+        font-size: 0.78rem;
         font-weight: 700;
-        letter-spacing: 0.18em;
-        color: var(--blue);
-        background: #e8f1fb;
-        padding: 7px 16px;
-        border-radius: 30px;
-        margin-bottom: 18px;
+        letter-spacing: 0.28em;
+        color: var(--gold);
+        margin-bottom: 22px;
+        position: relative;
+        padding-left: 0;
+      }
+      .eyebrow.line::before {
+        content: '';
+        display: inline-block;
+        width: 30px;
+        height: 1px;
+        background: var(--gold);
+        vertical-align: middle;
+        margin-right: 12px;
+      }
+      .eyebrow.line::after {
+        content: '';
+        display: inline-block;
+        width: 30px;
+        height: 1px;
+        background: var(--gold);
+        vertical-align: middle;
+        margin-left: 12px;
       }
       h2.sec {
-        font-size: 2.05rem;
-        font-weight: 900;
+        font-size: 2.4rem;
+        font-weight: 700;
         color: var(--navy);
-        line-height: 1.3;
+        line-height: 1.4;
         letter-spacing: -0.02em;
       }
-      h2.sec span {
-        color: var(--blue);
+      h2.sec em {
+        font-style: normal;
+        color: var(--gold);
       }
       .sub {
         color: var(--gray);
-        font-size: 1.05rem;
-        margin-top: 14px;
-      }
-      section {
-        padding: 88px 0;
-      }
-      .ph {
-        /* image placeholder */
-        background: linear-gradient(135deg, #dce8f5, #eef4fb);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #9fb3c9;
-        font-size: 0.85rem;
-        font-weight: 500;
-        text-align: center;
-        letter-spacing: 0.03em;
+        font-size: 1.06rem;
+        margin-top: 18px;
+        font-weight: 300;
+        line-height: 1.85;
       }
 
-      /* ===== Top bar ===== */
+      /* image box with object-fit */
+      .imgbox {
+        position: relative;
+        overflow: hidden;
+        background: var(--paper2);
+      }
+      .imgbox img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* ===== Top utility bar ===== */
       .topbar {
-        background: var(--navy);
-        color: #cdddf0;
-        font-size: 0.82rem;
+        background: var(--charcoal);
+        color: #a9b4c4;
+        font-size: 0.8rem;
+        letter-spacing: 0.02em;
       }
       .topbar .wrap {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 38px;
+        height: 40px;
       }
       .topbar a {
-        color: #cdddf0;
+        color: #cfd8e4;
       }
       .topbar .right {
         display: flex;
-        gap: 20px;
+        gap: 22px;
+        align-items: center;
       }
-      @media (max-width: 680px) {
+      .topbar .right b {
+        color: var(--gold-l);
+      }
+      @media (max-width: 720px) {
         .topbar .left {
           display: none;
         }
       }
 
-      /* ===== Header / Nav ===== */
+      /* ===== Header ===== */
       header {
         position: sticky;
         top: 0;
-        z-index: 50;
-        background: rgba(255, 255, 255, 0.96);
-        backdrop-filter: blur(8px);
+        z-index: 60;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(10px);
         border-bottom: 1px solid var(--line);
       }
       nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 74px;
+        height: 82px;
       }
       .logo {
         display: flex;
         align-items: center;
-        gap: 11px;
-        font-weight: 900;
-        color: var(--navy);
-        font-size: 1.32rem;
-        letter-spacing: -0.02em;
+        gap: 13px;
       }
       .logo .mark {
-        width: 40px;
-        height: 40px;
-        border-radius: 11px;
-        background: linear-gradient(135deg, var(--blue), var(--teal));
+        width: 46px;
+        height: 46px;
+        border: 1.5px solid var(--gold);
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
+        color: var(--navy);
         font-weight: 900;
-        font-size: 1.1rem;
+        font-size: 0.92rem;
+        font-family: 'Noto Serif KR', serif;
       }
-      .logo small {
+      .logo .lt {
+        font-family: 'Noto Serif KR', serif;
+        font-weight: 700;
+        color: var(--navy);
+        font-size: 1.32rem;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+      .logo .lt small {
         display: block;
-        font-size: 0.62rem;
+        font-family: 'Noto Sans KR';
+        font-size: 0.6rem;
         font-weight: 500;
-        color: var(--gray);
-        letter-spacing: 0.22em;
-        margin-top: 2px;
+        color: var(--gold);
+        letter-spacing: 0.34em;
+        margin-top: 3px;
       }
       .menu {
         display: flex;
-        gap: 34px;
+        gap: 38px;
         list-style: none;
         font-weight: 500;
         font-size: 0.98rem;
       }
       .menu a {
         color: var(--ink);
-        transition: color 0.2s;
+        transition: color 0.25s;
+        position: relative;
+        padding: 4px 0;
+      }
+      .menu a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 1.5px;
+        background: var(--gold);
+        transition: width 0.28s var(--ease);
       }
       .menu a:hover {
-        color: var(--blue);
+        color: var(--navy);
+      }
+      .menu a:hover::after {
+        width: 100%;
       }
       .nav-cta {
         display: flex;
         align-items: center;
-        gap: 14px;
+        gap: 18px;
       }
       .nav-tel {
-        font-weight: 900;
+        font-family: 'Noto Serif KR', serif;
+        font-weight: 700;
         color: var(--navy);
-        font-size: 1.18rem;
-        letter-spacing: 0.01em;
+        font-size: 1.2rem;
       }
       .btn {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 9px;
         font-weight: 700;
-        border-radius: 30px;
-        padding: 12px 24px;
-        transition: 0.2s;
+        border-radius: 2px;
+        padding: 14px 28px;
+        transition: 0.28s var(--ease);
         cursor: pointer;
         border: none;
-        font-size: 0.95rem;
+        font-size: 0.94rem;
+        letter-spacing: 0.02em;
       }
-      .btn-primary {
-        background: linear-gradient(135deg, var(--blue), var(--sky));
+      .btn-gold {
+        background: var(--gold);
         color: #fff;
-        box-shadow: 0 8px 20px rgba(26, 111, 196, 0.35);
       }
-      .btn-primary:hover {
+      .btn-gold:hover {
+        background: var(--navy);
         transform: translateY(-2px);
-        box-shadow: 0 12px 26px rgba(26, 111, 196, 0.45);
       }
-      .btn-ghost {
+      .btn-navy {
+        background: var(--navy);
+        color: #fff;
+      }
+      .btn-navy:hover {
+        background: var(--gold);
+      }
+      .btn-out {
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      .btn-out:hover {
         background: #fff;
-        color: var(--blue);
-        border: 1.5px solid var(--blue);
+        color: var(--navy);
       }
-      .btn-ghost:hover {
-        background: var(--blue);
+      .btn-outline-d {
+        background: transparent;
+        color: var(--navy);
+        border: 1px solid var(--navy);
+      }
+      .btn-outline-d:hover {
+        background: var(--navy);
         color: #fff;
       }
       .hamb {
@@ -251,15 +323,12 @@
         padding: 6px;
       }
       .hamb span {
-        width: 24px;
+        width: 26px;
         height: 2px;
         background: var(--navy);
-        border-radius: 2px;
       }
-      @media (max-width: 980px) {
-        .menu {
-          display: none;
-        }
+      @media (max-width: 1040px) {
+        .menu,
         .nav-tel {
           display: none;
         }
@@ -269,326 +338,488 @@
         .menu.open {
           display: flex;
           position: absolute;
-          top: 74px;
+          top: 82px;
           left: 0;
           right: 0;
           flex-direction: column;
           background: #fff;
-          padding: 18px 22px;
-          gap: 20px;
+          padding: 22px 26px;
+          gap: 22px;
           border-bottom: 1px solid var(--line);
-          box-shadow: var(--shadow);
+          box-shadow: var(--shadow-sm);
         }
       }
 
       /* ===== Hero ===== */
       .hero {
         position: relative;
-        background: linear-gradient(
-          160deg,
-          #0f2c52 0%,
-          #14457f 55%,
-          #1a6fc4 100%
-        );
-        color: #fff;
+        min-height: 88vh;
+        display: flex;
+        align-items: center;
+        background: var(--charcoal);
         overflow: hidden;
-        padding: 96px 0 0;
       }
-      .hero::before {
+      .hero .bg {
+        position: absolute;
+        inset: 0;
+      }
+      .hero .bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.42;
+      }
+      .hero .bg::after {
         content: '';
         position: absolute;
-        top: -120px;
-        right: -120px;
-        width: 480px;
-        height: 480px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(58, 147, 224, 0.5),
-          transparent 70%
+        inset: 0;
+        background: linear-gradient(
+          100deg,
+          rgba(8, 18, 32, 0.94) 0%,
+          rgba(10, 28, 52, 0.82) 42%,
+          rgba(12, 36, 64, 0.35) 100%
         );
       }
       .hero .wrap {
         position: relative;
-        display: grid;
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: 40px;
-        align-items: center;
+        z-index: 2;
+        width: 100%;
+        padding-top: 60px;
+        padding-bottom: 60px;
       }
-      .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: rgba(255, 255, 255, 0.12);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        padding: 8px 16px;
-        border-radius: 30px;
-        font-size: 0.83rem;
-        font-weight: 500;
-        margin-bottom: 26px;
-      }
-      .hero-badge b {
-        color: #9fd2ff;
+      .hero .eyebrow {
+        color: var(--gold-l);
       }
       .hero h1 {
-        font-size: 3.05rem;
-        font-weight: 900;
-        line-height: 1.28;
-        letter-spacing: -0.03em;
-        margin-bottom: 22px;
-      }
-      .hero h1 .hl {
-        color: #7ec2ff;
-      }
-      .hero p.lead {
-        font-size: 1.18rem;
-        color: #cfe0f3;
-        font-weight: 300;
-        margin-bottom: 36px;
-        line-height: 1.7;
-      }
-      .hero p.lead b {
+        font-family: 'Noto Serif KR', serif;
+        color: #fff;
+        font-size: 3.7rem;
         font-weight: 700;
+        line-height: 1.32;
+        letter-spacing: -0.03em;
+        margin-bottom: 30px;
+      }
+      .hero h1 em {
+        font-style: normal;
+        color: var(--gold-l);
+      }
+      .hero .lead {
+        color: #d4dce6;
+        font-size: 1.18rem;
+        font-weight: 300;
+        line-height: 1.9;
+        max-width: 620px;
+        margin-bottom: 42px;
+      }
+      .hero .lead b {
+        font-weight: 500;
         color: #fff;
       }
       .hero-actions {
         display: flex;
         gap: 14px;
         flex-wrap: wrap;
-        margin-bottom: 34px;
+        margin-bottom: 54px;
       }
-      .hero-actions .btn-white {
-        background: #fff;
-        color: var(--navy);
-      }
-      .hero-actions .btn-white:hover {
-        transform: translateY(-2px);
-      }
-      .hero-actions .btn-line {
-        background: transparent;
-        color: #fff;
-        border: 1.5px solid rgba(255, 255, 255, 0.5);
-      }
-      .hero-actions .btn-line:hover {
-        background: rgba(255, 255, 255, 0.12);
-      }
-      .hero-quick {
+      .hero-meta {
         display: flex;
-        gap: 26px;
-        padding-bottom: 40px;
+        gap: 0;
         flex-wrap: wrap;
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+        padding-top: 30px;
+        max-width: 680px;
       }
-      .hero-quick div {
-        font-size: 0.92rem;
-        color: #bcd3ea;
+      .hero-meta .m {
+        padding-right: 40px;
+        margin-right: 40px;
+        border-right: 1px solid rgba(255, 255, 255, 0.16);
       }
-      .hero-quick b {
+      .hero-meta .m:last-child {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+      }
+      .hero-meta small {
         display: block;
-        color: #fff;
-        font-weight: 700;
-        font-size: 1.02rem;
-        margin-top: 2px;
-      }
-      .hero-visual {
-        position: relative;
-      }
-      .hero-visual .ph {
-        height: 430px;
-        border-radius: 24px;
-        border: 6px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-      }
-      .hero-float {
-        position: absolute;
-        left: -26px;
-        bottom: 46px;
-        background: #fff;
-        color: var(--ink);
-        border-radius: 16px;
-        padding: 16px 20px;
-        box-shadow: var(--shadow);
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .hero-float .ico {
-        width: 42px;
-        height: 42px;
-        border-radius: 11px;
-        background: #e8f6f1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.3rem;
-      }
-      .hero-float small {
-        color: var(--gray);
+        color: var(--gold-l);
         font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        margin-bottom: 7px;
       }
-      .hero-float b {
-        display: block;
-        color: var(--navy);
-        font-size: 1.02rem;
+      .hero-meta b {
+        color: #fff;
+        font-family: 'Noto Serif KR', serif;
+        font-weight: 600;
+        font-size: 1.12rem;
       }
-      @media (max-width: 980px) {
-        .hero {
-          padding: 60px 0 0;
-        }
-        .hero .wrap {
-          grid-template-columns: 1fr;
-          gap: 30px;
-        }
+      @media (max-width: 860px) {
         .hero h1 {
-          font-size: 2.2rem;
+          font-size: 2.3rem;
         }
-        .hero-visual .ph {
-          height: 300px;
+        .hero {
+          min-height: auto;
+          padding: 40px 0;
         }
-        .hero-float {
-          left: 10px;
+        .hero-meta .m {
+          padding-right: 22px;
+          margin-right: 22px;
         }
       }
 
-      /* ===== Trust numbers ===== */
+      /* ===== Trust strip ===== */
       .trust {
-        background: #fff;
-        border-bottom: 1px solid var(--line);
-        position: relative;
-        z-index: 2;
+        background: var(--navy);
+        color: #fff;
       }
       .trust .wrap {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 18px;
-        padding: 40px 22px;
+        gap: 0;
       }
       .trust .item {
+        padding: 42px 26px;
         text-align: center;
-        padding: 14px;
-        border-right: 1px solid var(--line);
+        border-right: 1px solid var(--line-d);
       }
       .trust .item:last-child {
         border-right: none;
       }
-      .trust .num {
-        font-size: 2.3rem;
-        font-weight: 900;
-        color: var(--blue);
-        letter-spacing: -0.02em;
-        line-height: 1;
+      .trust .ic {
+        font-size: 0.74rem;
+        letter-spacing: 0.2em;
+        color: var(--gold-l);
+        margin-bottom: 14px;
       }
-      .trust .num small {
-        font-size: 1.1rem;
+      .trust .t {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 1.34rem;
+        font-weight: 600;
+        line-height: 1.4;
       }
-      .trust .lab {
-        color: var(--gray);
-        font-size: 0.92rem;
+      .trust .d {
+        color: #9fb0c6;
+        font-size: 0.86rem;
         margin-top: 8px;
+        font-weight: 300;
       }
-      @media (max-width: 720px) {
+      @media (max-width: 780px) {
         .trust .wrap {
           grid-template-columns: repeat(2, 1fr);
         }
         .trust .item:nth-child(2) {
           border-right: none;
         }
+        .trust .item:nth-child(1),
+        .trust .item:nth-child(2) {
+          border-bottom: 1px solid var(--line-d);
+        }
       }
 
-      /* ===== Why / values ===== */
-      .why {
-        background: var(--bg);
+      /* ===== Philosophy ===== */
+      .phil {
+        background: var(--paper);
       }
-      .cards {
+      .phil .head {
+        max-width: 760px;
+        margin: 0 auto 70px;
+        text-align: center;
+      }
+      .phil .head p.intro {
+        margin-top: 24px;
+        color: var(--gray-d);
+        font-size: 1.12rem;
+        font-weight: 300;
+        line-height: 2;
+      }
+      .vals {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        margin-top: 48px;
+        gap: 28px;
       }
-      .card {
+      .val {
         background: #fff;
-        border-radius: var(--radius);
-        padding: 36px 30px;
-        box-shadow: var(--shadow-sm);
+        padding: 46px 38px;
         border: 1px solid var(--line);
-        transition: 0.25s;
+        transition: 0.35s var(--ease);
+        position: relative;
       }
-      .card:hover {
-        transform: translateY(-6px);
+      .val:hover {
+        transform: translateY(-7px);
         box-shadow: var(--shadow);
+        border-color: var(--gold);
       }
-      .card .ico {
-        width: 60px;
-        height: 60px;
-        border-radius: 16px;
-        background: linear-gradient(135deg, #e8f1fb, #e6f6f3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.7rem;
-        margin-bottom: 22px;
+      .val .no {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 1rem;
+        color: var(--gold);
+        letter-spacing: 0.1em;
+        margin-bottom: 20px;
+        display: block;
       }
-      .card h3 {
-        font-size: 1.28rem;
-        font-weight: 900;
+      .val h3 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 1.4rem;
+        font-weight: 700;
         color: var(--navy);
-        margin-bottom: 12px;
+        margin-bottom: 14px;
+        line-height: 1.45;
       }
-      .card p {
+      .val p {
         color: var(--gray);
         font-size: 0.97rem;
+        font-weight: 300;
+        line-height: 1.85;
       }
       @media (max-width: 880px) {
-        .cards {
+        .vals {
           grid-template-columns: 1fr;
         }
       }
 
+      /* ===== Signature (microscope) ===== */
+      .sig {
+        background: #fff;
+      }
+      .sig .wrap {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 64px;
+        align-items: center;
+      }
+      .sig .imgbox {
+        height: 560px;
+        border-radius: 2px;
+        box-shadow: var(--shadow);
+      }
+      .sig h2 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 2.3rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.42;
+        margin-bottom: 24px;
+      }
+      .sig h2 em {
+        font-style: normal;
+        color: var(--gold);
+      }
+      .sig p {
+        color: var(--gray-d);
+        font-size: 1.05rem;
+        font-weight: 300;
+        line-height: 2;
+        margin-bottom: 22px;
+      }
+      .sig ul {
+        list-style: none;
+        display: grid;
+        gap: 16px;
+        margin-top: 30px;
+      }
+      .sig li {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        color: var(--ink);
+        font-size: 1rem;
+      }
+      .sig li::before {
+        content: '—';
+        color: var(--gold);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .sig li b {
+        font-weight: 700;
+        color: var(--navy);
+      }
+      @media (max-width: 920px) {
+        .sig .wrap {
+          grid-template-columns: 1fr;
+          gap: 36px;
+        }
+        .sig .imgbox {
+          height: 340px;
+        }
+      }
+
+      /* ===== Doctor / Credentials ===== */
+      .doc {
+        background: var(--charcoal);
+        color: #fff;
+        position: relative;
+      }
+      .doc .wrap {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .doc .left .imgbox {
+        height: 520px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .doc .cert {
+        margin-top: 18px;
+        background: #fff;
+        padding: 16px;
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        border-radius: 2px;
+      }
+      .doc .cert .imgbox {
+        width: 96px;
+        height: 72px;
+        flex-shrink: 0;
+        border: 1px solid var(--line);
+      }
+      .doc .cert .ct small {
+        color: var(--gold);
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        display: block;
+        margin-bottom: 4px;
+      }
+      .doc .cert .ct b {
+        color: var(--navy);
+        font-size: 0.95rem;
+        font-family: 'Noto Serif KR', serif;
+        line-height: 1.4;
+      }
+      .doc .eyebrow {
+        color: var(--gold-l);
+      }
+      .doc h2 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 2.3rem;
+        font-weight: 700;
+        line-height: 1.4;
+        margin-bottom: 10px;
+      }
+      .doc h2 em {
+        font-style: normal;
+        color: var(--gold-l);
+      }
+      .doc .name {
+        font-size: 1.05rem;
+        color: #cdd7e4;
+        margin-bottom: 30px;
+      }
+      .doc .name b {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 1.5rem;
+        color: #fff;
+        font-weight: 600;
+        margin-right: 10px;
+      }
+      .doc .quote {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 1.24rem;
+        color: #eef2f7;
+        font-weight: 500;
+        line-height: 1.85;
+        border-left: 2px solid var(--gold);
+        padding-left: 26px;
+        margin-bottom: 34px;
+      }
+      .doc ul {
+        list-style: none;
+        display: grid;
+        gap: 14px;
+      }
+      .doc li {
+        display: flex;
+        gap: 13px;
+        align-items: flex-start;
+        color: #cdd7e4;
+        font-size: 1rem;
+        font-weight: 300;
+      }
+      .doc li::before {
+        content: '✓';
+        color: var(--gold-l);
+        flex-shrink: 0;
+        font-weight: 700;
+        font-size: 0.9rem;
+        margin-top: 4px;
+      }
+      .doc li b {
+        color: #fff;
+        font-weight: 500;
+      }
+      @media (max-width: 920px) {
+        .doc .wrap {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .doc .left .imgbox {
+          height: 360px;
+        }
+      }
+
       /* ===== Services ===== */
+      .serv {
+        background: var(--paper);
+      }
       .serv-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 22px;
-        margin-top: 48px;
+        gap: 26px;
+        margin-top: 60px;
       }
-      .serv {
-        position: relative;
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: var(--shadow-sm);
-        border: 1px solid var(--line);
+      .scard {
         background: #fff;
+        border: 1px solid var(--line);
+        transition: 0.32s var(--ease);
       }
-      .serv .ph {
-        height: 170px;
+      .scard:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow);
+        border-color: var(--gold);
       }
-      .serv .body {
-        padding: 24px 24px 28px;
+      .scard .top {
+        padding: 40px 34px 0;
       }
-      .serv .tag {
-        font-size: 0.78rem;
+      .scard .no {
+        font-family: 'Noto Serif KR', serif;
+        color: var(--gold);
+        font-size: 0.95rem;
+        letter-spacing: 0.1em;
+      }
+      .scard h3 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 1.42rem;
         font-weight: 700;
-        color: var(--teal);
-        letter-spacing: 0.05em;
-      }
-      .serv h3 {
-        font-size: 1.32rem;
-        font-weight: 900;
         color: var(--navy);
-        margin: 6px 0 10px;
+        margin: 14px 0 12px;
       }
-      .serv p {
+      .scard p {
         color: var(--gray);
-        font-size: 0.94rem;
-        min-height: 48px;
+        font-size: 0.96rem;
+        font-weight: 300;
+        line-height: 1.85;
+        padding: 0 34px;
+        min-height: 78px;
       }
-      .serv .more {
-        display: inline-flex;
+      .scard .ft {
+        padding: 18px 34px 34px;
+        border-top: 1px solid var(--line);
+        margin-top: 22px;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 6px;
-        margin-top: 14px;
-        color: var(--blue);
+      }
+      .scard .ft span {
+        color: var(--gold);
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
         font-weight: 700;
-        font-size: 0.92rem;
+      }
+      .scard .ft a {
+        color: var(--navy);
+        font-weight: 700;
+        font-size: 0.9rem;
       }
       @media (max-width: 880px) {
         .serv-grid {
@@ -596,245 +827,171 @@
         }
       }
 
-      /* ===== Doctor ===== */
-      .doctor {
-        background: linear-gradient(160deg, #0f2c52, #163d6d);
-        color: #fff;
-      }
-      .doctor .wrap {
-        display: grid;
-        grid-template-columns: 0.85fr 1.15fr;
-        gap: 50px;
-        align-items: center;
-      }
-      .doctor .ph {
-        height: 460px;
-        border-radius: 22px;
-        border: 5px solid rgba(255, 255, 255, 0.12);
-      }
-      .doctor .eyebrow {
-        background: rgba(255, 255, 255, 0.12);
-        color: #9fd2ff;
-      }
-      .doctor h2 {
-        font-size: 2.1rem;
-        font-weight: 900;
-        line-height: 1.35;
-        margin-bottom: 8px;
-      }
-      .doctor h2 b {
-        color: #7ec2ff;
-      }
-      .doctor .role {
-        color: #9fd2ff;
-        font-weight: 500;
-        margin-bottom: 24px;
-      }
-      .doctor .quote {
-        font-size: 1.12rem;
-        color: #dce9f7;
-        font-weight: 300;
-        border-left: 3px solid var(--gold);
-        padding-left: 20px;
-        margin-bottom: 28px;
-        line-height: 1.8;
-      }
-      .doctor ul {
-        list-style: none;
-        display: grid;
-        gap: 12px;
-      }
-      .doctor li {
-        display: flex;
-        gap: 12px;
-        align-items: flex-start;
-        color: #cfe0f3;
-        font-size: 0.98rem;
-      }
-      .doctor li::before {
-        content: '✓';
-        color: var(--teal);
-        font-weight: 900;
-        background: rgba(22, 163, 163, 0.2);
-        border-radius: 50%;
-        width: 22px;
-        height: 22px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        font-size: 0.8rem;
-        margin-top: 3px;
-      }
-      .doctor .fill {
-        color: #ffd98a;
-        font-style: italic;
-      }
-      @media (max-width: 880px) {
-        .doctor .wrap {
-          grid-template-columns: 1fr;
-        }
-        .doctor .ph {
-          height: 320px;
-        }
-      }
-
-      /* ===== Hours / access ===== */
+      /* ===== Hours & Directions ===== */
       .hours {
-        background: var(--bg);
+        background: #fff;
       }
       .hours .grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 30px;
-        margin-top: 46px;
-      }
-      .hours-card,
-      .map-card {
-        background: #fff;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-sm);
+        gap: 0;
+        margin-top: 60px;
         border: 1px solid var(--line);
-        overflow: hidden;
       }
-      .hours-card {
-        padding: 38px 36px;
+      .hcol {
+        padding: 54px 50px;
       }
-      .hours-card h3 {
-        font-size: 1.4rem;
-        font-weight: 900;
-        color: var(--navy);
-        margin-bottom: 8px;
+      .hcol.l {
+        border-right: 1px solid var(--line);
+        background: var(--paper);
       }
-      .hours-card .note {
-        display: inline-block;
-        background: #fff4e0;
-        color: #b9852b;
+      .hcol h3 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 1.5rem;
         font-weight: 700;
-        font-size: 0.82rem;
-        padding: 5px 13px;
-        border-radius: 20px;
-        margin-bottom: 24px;
+        color: var(--navy);
+        margin-bottom: 10px;
+      }
+      .hcol .tag {
+        display: inline-block;
+        background: var(--navy);
+        color: #fff;
+        font-size: 0.74rem;
+        letter-spacing: 0.12em;
+        padding: 7px 16px;
+        margin-bottom: 30px;
+        font-weight: 500;
       }
       .hrow {
         display: flex;
         justify-content: space-between;
-        padding: 13px 0;
-        border-bottom: 1px dashed var(--line);
+        padding: 16px 0;
+        border-bottom: 1px solid var(--line);
         font-size: 1rem;
       }
       .hrow:last-child {
         border-bottom: none;
       }
       .hrow .day {
-        font-weight: 700;
+        font-weight: 500;
         color: var(--ink);
       }
       .hrow .time {
-        color: var(--gray);
+        color: var(--gray-d);
+        font-family: 'Noto Serif KR', serif;
       }
       .hrow.hl .time {
-        color: var(--blue);
-        font-weight: 700;
-      }
-      .hrow .close {
-        color: #c0392b;
-        font-weight: 700;
+        color: var(--gold);
+        font-weight: 600;
       }
       .lunch {
-        margin-top: 18px;
-        background: #f1f6fc;
-        border-radius: 12px;
-        padding: 13px 18px;
-        font-size: 0.92rem;
+        margin-top: 26px;
         color: var(--gray);
+        font-size: 0.92rem;
+        font-weight: 300;
       }
       .lunch b {
         color: var(--navy);
+        font-weight: 500;
       }
-      .map-card .ph {
-        height: 230px;
-      }
-      .map-card .info {
-        padding: 28px 32px;
-      }
-      .map-card .info h3 {
-        font-size: 1.25rem;
-        font-weight: 900;
-        color: var(--navy);
-        margin-bottom: 16px;
-      }
-      .map-card .info .line {
+      .hcol .line {
         display: flex;
-        gap: 12px;
+        gap: 16px;
         align-items: flex-start;
-        margin-bottom: 13px;
-        color: var(--gray);
-        font-size: 0.96rem;
+        margin-bottom: 18px;
       }
-      .map-card .info .line .k {
-        color: var(--blue);
+      .hcol .line .k {
+        color: var(--gold);
+        font-size: 0.74rem;
+        letter-spacing: 0.14em;
         font-weight: 700;
-        min-width: 54px;
+        min-width: 64px;
+        padding-top: 4px;
       }
-      .map-card .info .line b {
+      .hcol .line b {
         color: var(--ink);
+        font-weight: 500;
+        font-size: 1.02rem;
+        line-height: 1.6;
+      }
+      .mapwrap {
+        margin-top: 8px;
+      }
+      .mapwrap .imgbox {
+        height: 200px;
+        border: 1px solid var(--line);
       }
       @media (max-width: 880px) {
         .hours .grid {
           grid-template-columns: 1fr;
         }
+        .hcol.l {
+          border-right: none;
+          border-bottom: 1px solid var(--line);
+        }
+        .hcol {
+          padding: 40px 30px;
+        }
       }
 
       /* ===== Reviews ===== */
+      .rev {
+        background: var(--paper);
+      }
       .rev-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 22px;
-        margin-top: 46px;
+        gap: 26px;
+        margin-top: 56px;
       }
-      .rev {
+      .rcard {
         background: #fff;
         border: 1px solid var(--line);
-        border-radius: var(--radius);
-        padding: 30px 28px;
-        box-shadow: var(--shadow-sm);
+        padding: 40px 34px;
       }
-      .rev .stars {
+      .rcard .q {
+        font-family: 'Noto Serif KR', serif;
         color: var(--gold);
-        font-size: 1.05rem;
-        letter-spacing: 2px;
-        margin-bottom: 14px;
-      }
-      .rev p {
-        color: var(--ink);
-        font-size: 0.98rem;
-        line-height: 1.75;
+        font-size: 2.4rem;
+        line-height: 0.5;
         margin-bottom: 18px;
+        display: block;
       }
-      .rev .who {
+      .rcard p {
+        color: var(--ink);
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.9;
+        margin-bottom: 24px;
+      }
+      .rcard .who {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 13px;
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
       }
-      .rev .av {
-        width: 42px;
-        height: 42px;
+      .rcard .av {
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--blue), var(--teal));
-        color: #fff;
+        background: var(--navy);
+        color: var(--gold-l);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: 700;
+        font-family: 'Noto Serif KR', serif;
+        font-weight: 600;
       }
-      .rev .who b {
+      .rcard .who b {
         color: var(--navy);
-        font-size: 0.95rem;
+        font-size: 0.94rem;
+        font-weight: 500;
       }
-      .rev .who small {
+      .rcard .who small {
         color: var(--gray);
         font-size: 0.82rem;
+        display: block;
       }
       @media (max-width: 880px) {
         .rev-grid {
@@ -844,185 +1001,207 @@
 
       /* ===== Final CTA ===== */
       .final {
-        background: linear-gradient(135deg, var(--blue), var(--teal));
+        background: var(--navy);
         color: #fff;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .final::before {
+        content: '';
+        position: absolute;
+        top: -140px;
+        right: -100px;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(176, 141, 79, 0.22),
+          transparent 70%
+        );
+      }
+      .final .wrap {
+        position: relative;
+      }
+      .final .eyebrow {
+        color: var(--gold-l);
       }
       .final h2 {
-        font-size: 2.2rem;
-        font-weight: 900;
-        margin-bottom: 14px;
-        line-height: 1.35;
+        font-family: 'Noto Serif KR', serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.42;
+        margin-bottom: 18px;
       }
       .final p {
-        font-size: 1.12rem;
-        color: #eaf4ff;
-        margin-bottom: 34px;
+        color: #c4cedd;
+        font-size: 1.1rem;
         font-weight: 300;
+        margin-bottom: 36px;
+      }
+      .final .tel {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 6px 0 34px;
+      }
+      .final .tel a {
+        color: #fff;
       }
       .final .row {
         display: flex;
-        gap: 16px;
+        gap: 14px;
         justify-content: center;
         flex-wrap: wrap;
-      }
-      .final .btn-white {
-        background: #fff;
-        color: var(--blue);
-      }
-      .final .btn-out {
-        background: transparent;
-        border: 1.5px solid #fff;
-        color: #fff;
-      }
-      .final .tel-big {
-        font-size: 2.6rem;
-        font-weight: 900;
-        margin: 8px 0 30px;
-        letter-spacing: 0.01em;
-      }
-      .final .tel-big a {
-        color: #fff;
       }
 
       /* ===== Footer ===== */
       footer {
-        background: var(--navy);
-        color: #9fb3c9;
-        padding: 54px 0 30px;
+        background: var(--charcoal);
+        color: #8a96a8;
+        padding: 64px 0 32px;
         font-size: 0.9rem;
       }
       footer .top {
         display: flex;
         justify-content: space-between;
-        gap: 40px;
+        gap: 44px;
         flex-wrap: wrap;
-        padding-bottom: 30px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 34px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
       footer .logo-f {
-        font-size: 1.3rem;
-        font-weight: 900;
+        font-family: 'Noto Serif KR', serif;
+        font-size: 1.4rem;
+        font-weight: 700;
         color: #fff;
-        margin-bottom: 14px;
+        margin-bottom: 16px;
       }
       footer .top p {
-        max-width: 420px;
-        line-height: 1.8;
+        max-width: 430px;
+        line-height: 1.9;
+        font-weight: 300;
       }
       footer .fcol h4 {
         color: #fff;
-        font-size: 0.95rem;
-        margin-bottom: 14px;
+        font-size: 0.82rem;
+        letter-spacing: 0.16em;
+        margin-bottom: 16px;
+        font-weight: 500;
       }
       footer .fcol a {
         display: block;
-        margin-bottom: 9px;
-        color: #9fb3c9;
+        margin-bottom: 10px;
+        color: #8a96a8;
+        font-weight: 300;
       }
       footer .fcol a:hover {
-        color: #fff;
+        color: var(--gold-l);
       }
       footer .bottom {
-        padding-top: 24px;
+        padding-top: 26px;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 10px;
-        font-size: 0.82rem;
-        color: #6f86a0;
+        font-size: 0.8rem;
+        color: #5f6b7c;
       }
 
-      /* ===== Sticky mobile CTA ===== */
+      /* ===== Sticky / float ===== */
       .mobile-cta {
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 60;
+        z-index: 70;
         display: none;
         background: #fff;
-        box-shadow: 0 -6px 20px rgba(15, 44, 82, 0.14);
-        padding: 10px 14px;
-        gap: 10px;
+        box-shadow: 0 -8px 24px rgba(12, 36, 64, 0.16);
+        padding: 10px 12px;
+        gap: 8px;
       }
       .mobile-cta a {
         flex: 1;
         text-align: center;
-        padding: 14px 0;
-        border-radius: 12px;
-        font-weight: 800;
-        font-size: 0.98rem;
+        padding: 15px 0;
+        font-weight: 700;
+        font-size: 0.95rem;
       }
       .mobile-cta .m-tel {
         background: var(--navy);
         color: #fff;
       }
-      .mobile-cta .m-book {
-        background: linear-gradient(135deg, var(--blue), var(--sky));
+      .mobile-cta .m-map {
+        background: var(--gold);
         color: #fff;
       }
-      .mobile-cta .m-kakao {
-        background: #fae100;
-        color: #3c1e1e;
+      .mobile-cta .m-blog {
+        background: var(--paper2);
+        color: var(--navy);
       }
       @media (max-width: 780px) {
         .mobile-cta {
           display: flex;
         }
         body {
-          padding-bottom: 74px;
+          padding-bottom: 72px;
         }
       }
-
-      /* float buttons (desktop) */
       .floatcol {
         position: fixed;
-        right: 20px;
-        bottom: 26px;
-        z-index: 55;
+        right: 22px;
+        bottom: 30px;
+        z-index: 65;
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 11px;
       }
       .floatcol a {
-        width: 58px;
-        height: 58px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        box-shadow: var(--shadow);
-        font-size: 0.62rem;
+        box-shadow: var(--shadow-sm);
+        font-size: 0.6rem;
         font-weight: 700;
-        color: #fff;
-        gap: 2px;
+        gap: 3px;
+        transition: 0.25s;
+      }
+      .floatcol a:hover {
+        transform: translateY(-3px);
       }
       .floatcol .f-tel {
         background: var(--navy);
+        color: #fff;
       }
-      .floatcol .f-book {
-        background: var(--blue);
+      .floatcol .f-map {
+        background: var(--gold);
+        color: #fff;
       }
-      .floatcol .f-kakao {
-        background: #fae100;
-        color: #3c1e1e;
-      }
-      .floatcol .f-top {
+      .floatcol .f-blog {
         background: #fff;
         color: var(--navy);
         border: 1px solid var(--line);
+      }
+      .floatcol .f-top {
+        background: var(--charcoal);
+        color: #fff;
       }
       @media (max-width: 780px) {
         .floatcol {
           display: none;
         }
       }
+
       .reveal {
         opacity: 0;
-        transform: translateY(26px);
-        transition: 0.7s cubic-bezier(0.2, 0.7, 0.3, 1);
+        transform: translateY(32px);
+        transition: 0.85s var(--ease);
       }
       .reveal.in {
         opacity: 1;
@@ -1031,15 +1210,15 @@
     </style>
   </head>
   <body>
-    <!-- Top bar -->
+    <!-- Top utility -->
     <div class="topbar">
       <div class="wrap">
         <div class="left">
-          📍 경기 안산시 단원구 원포공원1로 46 이마트 고잔점 5층
+          경기 안산시 단원구 원포공원1로 46 · 이마트 고잔점 5층
         </div>
         <div class="right">
-          <span>평일 야간 21시까지 · 토요일 진료</span>
-          <a href="tel:031-411-2475">☎ 031-411-2475</a>
+          <span>평일 야간 <b>21시</b>까지 · 토·일 진료</span>
+          <a href="tel:031-411-2475">T. 031-411-2475</a>
         </div>
       </div>
     </div>
@@ -1050,18 +1229,21 @@
         <nav>
           <a href="#home" class="logo">
             <span class="mark">매일</span>
-            <span>연세매일치과의원<small>YONSEI MAEIL DENTAL</small></span>
+            <span class="lt"
+              >연세매일치과의원<small>YONSEI MAEIL DENTAL CLINIC</small></span
+            >
           </a>
           <ul class="menu" id="menu">
-            <li><a href="#why">병원소개</a></li>
-            <li><a href="#services">진료안내</a></li>
-            <li><a href="#doctor">의료진</a></li>
-            <li><a href="#reviews">치료후기</a></li>
-            <li><a href="#hours">진료시간·오시는길</a></li>
+            <li><a href="#phil">병원소개</a></li>
+            <li><a href="#sig">정밀진료</a></li>
+            <li><a href="#doc">대표원장</a></li>
+            <li><a href="#serv">진료안내</a></li>
+            <li><a href="#rev">치료후기</a></li>
+            <li><a href="#hours">오시는길</a></li>
           </ul>
           <div class="nav-cta">
             <span class="nav-tel">031-411-2475</span>
-            <a href="#hours" class="btn btn-primary">예약·상담</a>
+            <a href="#hours" class="btn btn-navy">예약·상담</a>
           </div>
           <div class="hamb" id="hamb">
             <span></span><span></span><span></span>
@@ -1071,374 +1253,435 @@
     </header>
 
     <!-- Hero -->
-    <section class="hero" id="home" style="padding-top: 0">
+    <section class="hero" id="home">
+      <div class="bg">
+        <img
+          src="images/precision.jpg"
+          alt="연세매일치과 대표원장 정밀 진료 장면"
+        />
+      </div>
       <div class="wrap">
-        <div class="hero-text">
-          <div class="hero-badge">
-            🦷 안산 고잔동 · <b>야간 &amp; 주말 진료</b> 치과
-          </div>
-          <h1>
-            온 가족이 <span class="hl">매일</span> 믿고 찾는<br />안산 고잔동
-            치과
-          </h1>
-          <p class="lead">
-            바쁜 일상에도 치과가 멀게 느껴지지 않도록.<br />
-            <b>평일 밤 9시까지, 토요일·주말</b>에도 진료하며<br />
-            임플란트·교정·소아까지 <b>전 분야 협진 시스템</b>으로 한 곳에서
-            해결합니다.
-          </p>
-          <div class="hero-actions">
-            <a href="tel:031-411-2475" class="btn btn-white"
-              >☎ 전화 예약 031-411-2475</a
-            >
-            <a href="#hours" class="btn btn-line">진료시간·오시는길</a>
-          </div>
-          <div class="hero-quick">
-            <div>진료시간<b>평일 10:00 – 21:00</b></div>
-            <div>주말<b>토·일 진료 (야간)</b></div>
-            <div>위치<b>이마트 고잔점 5층</b></div>
-          </div>
+        <div class="eyebrow">
+          HARVARD-TRAINED IMPLANT &nbsp;·&nbsp; 미세현미경 정밀진료
         </div>
-        <div class="hero-visual">
-          <div class="ph">
-            ［ 메인 이미지 ］<br />병원 외관 / 진료실 / 의료진 사진
+        <h1>치아 하나에도,<br /><em>평생</em>을 생각합니다</h1>
+        <p class="lead">
+          보이지 않는 <b>0.1mm의 차이</b>가 치아의 평생을 좌우합니다.<br />
+          하버드 임플란트 과정을 수료한 대표원장이<br />
+          미세현미경으로 <b>한 치아도 놓치지 않는 정밀 진료</b>를 합니다.
+        </p>
+        <div class="hero-actions">
+          <a href="tel:031-411-2475" class="btn btn-gold"
+            >전화상담 031-411-2475</a
+          >
+          <a href="#hours" class="btn btn-out">진료시간 · 오시는 길</a>
+        </div>
+        <div class="hero-meta">
+          <div class="m">
+            <small>LOCATION</small><b>안산 고잔동 · 이마트 5층</b>
           </div>
-          <div class="hero-float">
-            <div class="ico">🌙</div>
-            <div>
-              <small>퇴근 후에도 OK</small><b>평일 야간진료 21시까지</b>
-            </div>
+          <div class="m"><small>WEEKDAY</small><b>평일 10:00 – 21:00</b></div>
+          <div class="m"><small>WEEKEND</small><b>토 · 일 진료</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust strip -->
+    <div class="trust">
+      <div class="wrap">
+        <div class="item">
+          <div class="ic">CREDENTIAL</div>
+          <div class="t">Harvard 임플란트</div>
+          <div class="d">대표원장 임상 과정 수료</div>
+        </div>
+        <div class="item">
+          <div class="ic">PRECISION</div>
+          <div class="t">미세현미경 진료</div>
+          <div class="d">0.1mm까지 정밀하게</div>
+        </div>
+        <div class="item">
+          <div class="ic">SYSTEM</div>
+          <div class="t">전 분야 협진</div>
+          <div class="d">한 곳에서 통합 진료</div>
+        </div>
+        <div class="item">
+          <div class="ic">ACCESS</div>
+          <div class="t">야간 · 주말 진료</div>
+          <div class="d">평일 21시 · 토 · 일</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Philosophy -->
+    <section class="phil" id="phil">
+      <div class="wrap">
+        <div class="head">
+          <div class="eyebrow line reveal">PHILOSOPHY</div>
+          <h2 class="sec serif reveal">
+            매일 같은 마음으로,<br /><em>정밀하게</em>
+          </h2>
+          <p class="intro reveal">
+            유행을 좇기보다 기본에 충실합니다. 당장의 치료보다 환자분이 10년,
+            20년 후에도 건강하게 씹을 수 있는 치아를 남기는 것 — 그것이
+            연세매일치과가 지켜온 진료의 원칙입니다.
+          </p>
+        </div>
+        <div class="vals">
+          <div class="val reveal">
+            <span class="no">01</span>
+            <h3>정밀 진단 위에<br />치료가 시작됩니다</h3>
+            <p>
+              미세현미경과 디지털 진단 장비로 육안으로 보이지 않는 부분까지
+              확인합니다. 정확한 진단이 과하지 않은, 꼭 필요한 치료로
+              이어집니다.
+            </p>
+          </div>
+          <div class="val reveal">
+            <span class="no">02</span>
+            <h3>자연치아를<br />최대한 지킵니다</h3>
+            <p>
+              발치와 임플란트를 권하기 전에, 살릴 수 있는 치아인지 먼저
+              고민합니다. 보존 치료를 우선하는 것이 환자를 위한 진료라고
+              믿습니다.
+            </p>
+          </div>
+          <div class="val reveal">
+            <span class="no">03</span>
+            <h3>한 곳에서 끝나는<br />통합 협진</h3>
+            <p>
+              임플란트·교정·보철·소아·잇몸까지 분야별로 함께 진단합니다. 여러
+              병원을 옮겨 다닐 필요 없이 균형 잡힌 치료 계획을 세웁니다.
+            </p>
+          </div>
+          <div class="val reveal">
+            <span class="no">04</span>
+            <h3>온 가족의<br />평생 주치의</h3>
+            <p>
+              아이의 첫 치과부터 부모님의 임플란트까지. 가족 모두의 구강 건강을
+              오래도록 곁에서 책임지는 동네 주치의를 지향합니다.
+            </p>
+          </div>
+          <div class="val reveal">
+            <span class="no">05</span>
+            <h3>철저한<br />위생·감염관리</h3>
+            <p>
+              멸균 시스템과 1회용 기구 사용을 원칙으로 합니다. 보이지 않는 곳의
+              청결까지 지켜야 비로소 안심할 수 있다고 생각합니다.
+            </p>
+          </div>
+          <div class="val reveal">
+            <span class="no">06</span>
+            <h3>바쁜 일상에<br />가까운 치과</h3>
+            <p>
+              퇴근 후에도 부담 없도록 평일 밤 9시까지, 주말에도 진료합니다.
+              이마트 고잔점 5층, 넓은 주차장으로 접근도 편리합니다.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Trust numbers -->
-    <div class="trust">
+    <!-- Signature: microscope precision -->
+    <section class="sig" id="sig">
       <div class="wrap">
-        <div class="item">
-          <div class="num">21<small>시</small></div>
-          <div class="lab">평일 야간진료 운영</div>
+        <div class="imgbox reveal">
+          <img
+            src="images/microscope.jpg"
+            alt="미세현미경을 이용한 정밀 진료"
+          />
         </div>
-        <div class="item">
-          <div class="num">전과목</div>
-          <div class="lab">분야별 협진 진료</div>
-        </div>
-        <div class="item">
-          <div class="num">토·일</div>
-          <div class="lab">주말·공휴일 진료</div>
-        </div>
-        <div class="item">
-          <div class="num">5<small>F</small></div>
-          <div class="lab">이마트 고잔점 직결</div>
+        <div class="reveal">
+          <div class="eyebrow">SIGNATURE CARE</div>
+          <h2 class="serif">
+            0.1mm의 차이를 보는<br /><em>미세현미경 정밀진료</em>
+          </h2>
+          <p>
+            맨눈으로는 보이지 않던 미세한 충치, 신경관, 균열까지. 고배율
+            미세현미경으로 직접 확인하며 진료하기 때문에 불필요하게 치아를
+            깎거나 빼지 않고, 살릴 수 있는 치아를 더 오래 보존합니다.
+          </p>
+          <ul>
+            <li>
+              <b>정밀 신경치료</b> — 미세한 신경관까지 확인해 재발률을 낮춥니다
+            </li>
+            <li>
+              <b>정확한 임플란트</b> — 식립 위치와 잇몸 상태를 정밀하게
+              진단합니다
+            </li>
+            <li><b>최소 침습 보존</b> — 건강한 치아 조직을 최대한 남깁니다</li>
+            <li>
+              <b>실시간 환자 공유</b> — 모니터로 내 치아 상태를 직접 확인합니다
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Why -->
-    <section class="why" id="why">
-      <div class="wrap center">
-        <div class="eyebrow reveal">WHY YONSEI MAEIL</div>
-        <h2 class="sec reveal">연세매일치과를 선택하는 <span>이유</span></h2>
-        <p class="sub reveal">
-          ‘매일 같은 마음으로’ — 환자 한 분 한 분을 가족처럼 진료합니다.
-        </p>
-        <div class="cards">
-          <div class="card reveal">
-            <div class="ico">🌙</div>
-            <h3>야간·주말 진료</h3>
-            <p>
-              평일 밤 9시까지, 토요일과 주말에도 진료합니다. 시간에 쫓기지 않고
-              충분한 상담과 치료를 받으실 수 있습니다.
-            </p>
+    <!-- Doctor / Credentials -->
+    <section class="doc" id="doc">
+      <div class="wrap">
+        <div class="left reveal">
+          <div class="imgbox">
+            <img src="images/precision.jpg" alt="대표원장 김하슬람 정밀 술기" />
           </div>
-          <div class="card reveal">
-            <div class="ico">🤝</div>
-            <h3>전 분야 협진 시스템</h3>
-            <p>
-              임플란트·교정·보철·소아·잇몸 치료까지, 각 분야를 함께 진단하는
-              협진으로 정확하고 균형 잡힌 치료 계획을 세웁니다.
-            </p>
+          <div class="cert">
+            <div class="imgbox">
+              <img
+                src="images/harvard-cert-kim-haseulram.jpg"
+                alt="하버드 치대 임플란트 과정 수료증"
+              />
+            </div>
+            <div class="ct">
+              <small>HARVARD SCHOOL OF DENTAL MEDICINE</small>
+              <b>Advanced CE Program in Implant Dentistry 수료</b>
+            </div>
           </div>
-          <div class="card reveal">
-            <div class="ico">👨‍👩‍👧‍👦</div>
-            <h3>온 가족 주치의</h3>
-            <p>
-              아이부터 부모님까지 한 곳에서. 소아치과 진료를 갖춰 가족 모두의
-              구강 건강을 평생 관리합니다.
-            </p>
-          </div>
-          <div class="card reveal">
-            <div class="ico">🔬</div>
-            <h3>정밀 디지털 진단</h3>
-            <p>
-              정확한 진단 장비를 바탕으로 과하지 않은 ‘꼭 필요한 치료’만
-              권합니다. 과잉진료 없는 정직한 진료를 약속합니다.
-            </p>
-          </div>
-          <div class="card reveal">
-            <div class="ico">🛡️</div>
-            <h3>위생·감염관리</h3>
-            <p>
-              멸균 시스템과 1회용 기구 사용 원칙으로 안심하고 진료받을 수 있는
-              청결한 환경을 유지합니다.
-            </p>
-          </div>
-          <div class="card reveal">
-            <div class="ico">📍</div>
-            <h3>편리한 접근성</h3>
-            <p>
-              이마트 고잔점 5층, 넓은 주차장과 대중교통 모두 편리합니다.
-              쇼핑·일상 동선에서 부담 없이 들르세요.
-            </p>
-          </div>
+        </div>
+        <div class="reveal">
+          <div class="eyebrow">DIRECTOR</div>
+          <h2 class="serif">환자의 <em>10년 후</em>까지<br />책임지는 진료</h2>
+          <p class="name">
+            <b>김하슬람</b>연세매일치과의원 대표원장 / Kim Haseulram
+          </p>
+          <p class="quote">
+            “좋은 치료는 화려한 장비가 아니라, 한 치아도 소홀히 하지 않는
+            정밀함에서 나온다고 믿습니다.”
+          </p>
+          <ul>
+            <li>
+              <b>Harvard School of Dental Medicine</b> — Advanced Continuing
+              Education Program in Implant Dentistry 수료
+            </li>
+            <li>미세현미경 정밀진료 · 임플란트 식립 다수 임상</li>
+            <li>대한치과의사협회 정회원</li>
+            <li>임플란트 · 보철 · 보존 통합 진료</li>
+          </ul>
+          <p
+            style="
+              margin-top: 26px;
+              color: #8a99b0;
+              font-size: 0.86rem;
+              font-weight: 300;
+            "
+          >
+            ※ 추가 약력·학회 활동은 확정되는 대로 보강해 드립니다.
+          </p>
         </div>
       </div>
     </section>
 
     <!-- Services -->
-    <section id="services">
+    <section class="serv" id="serv">
       <div class="wrap center">
-        <div class="eyebrow reveal">TREATMENT</div>
-        <h2 class="sec reveal">한 곳에서 받는 <span>전 분야 진료</span></h2>
+        <div class="eyebrow line reveal">TREATMENT</div>
+        <h2 class="sec serif reveal">한 곳에서 받는 <em>전 분야 진료</em></h2>
         <p class="sub reveal">
-          임플란트부터 소아 진료까지, 연세매일치과의 핵심 진료 분야입니다.
+          임플란트부터 소아 진료까지, 각 분야를 정밀하게 진단하고 협진합니다.
         </p>
         <div class="serv-grid">
-          <div class="serv reveal">
-            <div class="ph">［ 임플란트 이미지 ］</div>
-            <div class="body" style="text-align: left">
-              <span class="tag">IMPLANT</span>
+          <div class="scard reveal">
+            <div class="top">
+              <span class="no">01</span>
               <h3>임플란트</h3>
-              <p>
-                정밀 진단 기반의 안전한 식립. 뼈이식·무절개 등 환자 상태에 맞춘
-                맞춤 임플란트를 진행합니다.
-              </p>
-              <a href="#hours" class="more">상담 예약 →</a>
+            </div>
+            <p>
+              정밀 진단 기반의 안전한 식립. 뼈이식·무절개 등 환자 상태에 맞춘
+              맞춤 임플란트를 진행합니다.
+            </p>
+            <div class="ft">
+              <span>IMPLANT</span><a href="#hours">상담예약 →</a>
             </div>
           </div>
-          <div class="serv reveal">
-            <div class="ph">［ 치아교정 이미지 ］</div>
-            <div class="body" style="text-align: left">
-              <span class="tag">ORTHODONTICS</span>
+          <div class="scard reveal">
+            <div class="top">
+              <span class="no">02</span>
               <h3>치아교정</h3>
-              <p>
-                투명교정·부분교정·성장기 교정까지. 심미와 기능을 함께 고려한
-                교정 플랜을 제안합니다.
-              </p>
-              <a href="#hours" class="more">상담 예약 →</a>
+            </div>
+            <p>
+              투명교정·부분교정·성장기 교정까지. 심미와 기능을 함께 고려한 교정
+              플랜을 제안합니다.
+            </p>
+            <div class="ft">
+              <span>ORTHODONTICS</span><a href="#hours">상담예약 →</a>
             </div>
           </div>
-          <div class="serv reveal">
-            <div class="ph">［ 심미보철 이미지 ］</div>
-            <div class="body" style="text-align: left">
-              <span class="tag">PROSTHODONTICS</span>
-              <h3>심미보철·라미네이트</h3>
-              <p>
-                자연스러운 색과 형태의 보철. 크라운·브릿지·라미네이트로 건강하고
-                아름다운 미소를 완성합니다.
-              </p>
-              <a href="#hours" class="more">상담 예약 →</a>
+          <div class="scard reveal">
+            <div class="top">
+              <span class="no">03</span>
+              <h3>심미보철 · 라미네이트</h3>
+            </div>
+            <p>
+              자연스러운 색과 형태의 보철. 크라운·브릿지·라미네이트로 건강하고
+              아름다운 미소를 완성합니다.
+            </p>
+            <div class="ft">
+              <span>PROSTHODONTICS</span><a href="#hours">상담예약 →</a>
             </div>
           </div>
-          <div class="serv reveal">
-            <div class="ph">［ 소아치과 이미지 ］</div>
-            <div class="body" style="text-align: left">
-              <span class="tag">PEDIATRIC</span>
+          <div class="scard reveal">
+            <div class="top">
+              <span class="no">04</span>
               <h3>소아치과</h3>
-              <p>
-                아이가 무서워하지 않는 편안한 진료. 충치 예방, 불소도포,
-                실란트로 우리 아이 첫 치과를 책임집니다.
-              </p>
-              <a href="#hours" class="more">상담 예약 →</a>
+            </div>
+            <p>
+              아이가 무서워하지 않는 편안한 진료. 충치 예방, 불소도포, 실란트로
+              우리 아이 첫 치과를 책임집니다.
+            </p>
+            <div class="ft">
+              <span>PEDIATRIC</span><a href="#hours">상담예약 →</a>
             </div>
           </div>
-          <div class="serv reveal">
-            <div class="ph">［ 충치·신경치료 이미지 ］</div>
-            <div class="body" style="text-align: left">
-              <span class="tag">CONSERVATIVE</span>
-              <h3>충치·신경치료</h3>
-              <p>
-                치아를 최대한 살리는 보존 치료. 정밀한 신경치료로 자연치아를
-                오래 지킵니다.
-              </p>
-              <a href="#hours" class="more">상담 예약 →</a>
+          <div class="scard reveal">
+            <div class="top">
+              <span class="no">05</span>
+              <h3>충치 · 신경치료</h3>
+            </div>
+            <p>
+              미세현미경으로 치아를 최대한 살리는 보존 치료. 정밀한 신경치료로
+              자연치아를 오래 지킵니다.
+            </p>
+            <div class="ft">
+              <span>CONSERVATIVE</span><a href="#hours">상담예약 →</a>
             </div>
           </div>
-          <div class="serv reveal">
-            <div class="ph">［ 잇몸·사랑니 이미지 ］</div>
-            <div class="body" style="text-align: left">
-              <span class="tag">PERIO &amp; SURGERY</span>
-              <h3>잇몸치료·사랑니 발치</h3>
-              <p>
-                스케일링·잇몸치료로 치아 건강의 기초를 다지고, 까다로운 사랑니도
-                안전하게 발치합니다.
-              </p>
-              <a href="#hours" class="more">상담 예약 →</a>
+          <div class="scard reveal">
+            <div class="top">
+              <span class="no">06</span>
+              <h3>잇몸치료 · 사랑니 발치</h3>
+            </div>
+            <p>
+              스케일링·잇몸치료로 치아 건강의 기초를 다지고, 까다로운 사랑니도
+              안전하게 발치합니다.
+            </p>
+            <div class="ft">
+              <span>PERIO · SURGERY</span><a href="#hours">상담예약 →</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Doctor -->
-    <section class="doctor" id="doctor">
-      <div class="wrap">
-        <div class="ph">
-          ［ 대표원장 사진 ］<br />가운 입은 원장님 프로필 사진
-        </div>
-        <div>
-          <div class="eyebrow">DIRECTOR</div>
-          <h2>환자의 <b>10년 후</b>까지 생각하는<br />진료를 합니다</h2>
-          <p class="role">
-            연세매일치과의원 대표원장
-            <span class="fill">［ 원장님 성함 입력 ］</span>
-          </p>
-          <p class="quote">
-            “당장의 치료보다 환자분이 오래 건강하게 씹을 수 있는 치아를 만드는
-            것. 그것이 ‘매일 같은 마음’으로 지켜온 저희 진료 철학입니다.”
-          </p>
-          <ul>
-            <li>
-              <span class="fill"
-                >［ 약력 1 — 예: ○○대학교 치과대학 졸업 ］</span
-              >
-            </li>
-            <li>
-              <span class="fill"
-                >［ 약력 2 — 예: 대한치과의사협회 정회원 ］</span
-              >
-            </li>
-            <li>
-              <span class="fill"
-                >［ 약력 3 — 예: 대한구강악안면임플란트학회 회원 ］</span
-              >
-            </li>
-            <li>
-              <span class="fill">［ 약력 4 — 예: 전) ○○치과 진료원장 ］</span>
-            </li>
-          </ul>
-          <p style="margin-top: 24px; color: #9fd2ff; font-size: 0.9rem">
-            ※ 블로그·실제 약력 확인 후 정확한 내용으로 교체해 드립니다.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Hours & Access -->
+    <!-- Hours & Directions -->
     <section class="hours" id="hours">
       <div class="wrap center">
-        <div class="eyebrow reveal">HOURS &amp; DIRECTIONS</div>
-        <h2 class="sec reveal">진료시간 · <span>오시는 길</span></h2>
+        <div class="eyebrow line reveal">HOURS &amp; DIRECTIONS</div>
+        <h2 class="sec serif reveal">진료시간 · <em>오시는 길</em></h2>
         <p class="sub reveal">
           바쁜 직장인과 가족을 위해 늦은 시간과 주말에도 진료합니다.
         </p>
-        <div class="grid">
-          <div class="hours-card reveal" style="text-align: left">
-            <h3>진료시간 안내</h3>
-            <div class="note">🌙 평일 야간진료 · 토·일 진료</div>
+        <div class="grid reveal">
+          <div class="hcol l" style="text-align: left">
+            <h3>진료시간</h3>
+            <div class="tag">평일 야간 · 토 · 일 진료</div>
             <div class="hrow hl">
               <span class="day">평일 (월–금)</span
               ><span class="time">10:00 – 21:00</span>
             </div>
             <div class="hrow hl">
               <span class="day">토요일</span
-              ><span class="time">10:00 – 진료</span>
+              ><span class="time">진료 (시간 문의)</span>
             </div>
             <div class="hrow hl">
-              <span class="day">일요일·공휴일</span
-              ><span class="time">야간 진료 (예약 문의)</span>
+              <span class="day">일요일 · 공휴일</span
+              ><span class="time">야간 진료 (예약)</span>
             </div>
             <div class="hrow">
               <span class="day">점심시간</span
               ><span class="time">12:30 – 14:00</span>
             </div>
-            <div class="lunch">
-              📞 정확한 요일별 진료시간은 <b>031-411-2475</b>로 확인 후 방문해
+            <p class="lunch">
+              정확한 요일별 진료시간은 <b>031-411-2475</b>로 확인 후 방문해
               주세요.
-            </div>
+            </p>
           </div>
-          <div class="map-card reveal">
-            <a
-              href="https://map.naver.com/v5/search/연세매일치과의원"
-              target="_blank"
-              rel="noopener"
-            >
-              <div class="ph">［ 네이버 지도 ］<br />클릭 시 지도로 이동</div>
-            </a>
-            <div class="info">
-              <h3>오시는 길</h3>
-              <div class="line">
-                <span class="k">주소</span
-                ><b>경기 안산시 단원구 원포공원1로 46<br />이마트 고잔점 5층</b>
-              </div>
-              <div class="line">
-                <span class="k">전화</span><b>031-411-2475</b>
-              </div>
-              <div class="line">
-                <span class="k">주차</span
-                ><b>이마트 고잔점 주차장 이용 (편리)</b>
-              </div>
-              <div class="line">
-                <span class="k">대중교통</span
-                ><b>고잔동 일대 버스 정류장 인근</b>
-              </div>
+          <div class="hcol" style="text-align: left">
+            <h3>오시는 길</h3>
+            <div style="height: 8px"></div>
+            <div class="line">
+              <span class="k">ADDRESS</span
+              ><b>경기 안산시 단원구 원포공원1로 46<br />이마트 고잔점 5층</b>
+            </div>
+            <div class="line">
+              <span class="k">TEL</span><b>031-411-2475</b>
+            </div>
+            <div class="line">
+              <span class="k">PARKING</span><b>이마트 고잔점 주차장 이용</b>
+            </div>
+            <div class="mapwrap">
               <a
                 href="https://map.naver.com/v5/search/연세매일치과의원"
                 target="_blank"
                 rel="noopener"
-                class="btn btn-primary"
-                style="margin-top: 10px"
-                >네이버 지도로 길찾기 →</a
               >
+                <div
+                  class="imgbox"
+                  style="
+                    background: linear-gradient(135deg, #e9eef4, #f3f6fa);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #9aa7b8;
+                    font-size: 0.86rem;
+                  "
+                >
+                  네이버 지도에서 길찾기 →
+                </div>
+              </a>
             </div>
+            <a
+              href="https://map.naver.com/v5/search/연세매일치과의원"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-outline-d"
+              style="margin-top: 18px"
+              >지도로 길찾기</a
+            >
           </div>
         </div>
       </div>
     </section>
 
     <!-- Reviews -->
-    <section id="reviews">
+    <section class="rev" id="rev">
       <div class="wrap center">
-        <div class="eyebrow reveal">REVIEWS</div>
-        <h2 class="sec reveal">환자분들의 <span>실제 후기</span></h2>
+        <div class="eyebrow line reveal">REVIEWS</div>
+        <h2 class="sec serif reveal">환자분들의 <em>실제 이야기</em></h2>
         <p class="sub reveal">
-          ※ 아래는 예시 후기입니다 — 실제 네이버/구글 후기로 교체해 드립니다.
+          ※ 아래는 예시 후기입니다 — 실제 네이버·구글 후기로 교체해 드립니다.
         </p>
         <div class="rev-grid">
-          <div class="rev reveal">
-            <div class="stars">★★★★★</div>
+          <div class="rcard reveal">
+            <span class="q">“</span>
             <p>
-              “퇴근하고 9시 전에 갈 수 있는 치과를 찾다가 알게 됐어요.
-              야간인데도 꼼꼼하게 봐주시고 과잉진료 없이 필요한 것만
-              설명해주셔서 믿음이 갑니다.”
+              퇴근하고 갈 수 있는 치과를 찾다 알게 됐어요. 야간인데도 현미경으로
+              꼼꼼히 봐주시고, 과잉진료 없이 필요한 것만 설명해주셔서 믿음이
+              갑니다.
             </p>
             <div class="who">
-              <div class="av">김</div>
+              <div class="av">金</div>
               <div><b>김○○ 님</b><small>임플란트 상담</small></div>
             </div>
           </div>
-          <div class="rev reveal">
-            <div class="stars">★★★★★</div>
+          <div class="rcard reveal">
+            <span class="q">“</span>
             <p>
-              “아이 둘 데리고 다니는데 소아 진료까지 한 곳에서 돼서 너무 편해요.
-              아이가 무서워했는데 선생님이 잘 달래주셔서 지금은 치과를 안
-              무서워해요.”
+              아이 둘 데리고 다니는데 소아 진료까지 한 곳에서 돼서 편해요.
+              무서워하던 아이를 잘 달래주셔서 이제는 치과를 안 무서워합니다.
             </p>
             <div class="who">
-              <div class="av">이</div>
+              <div class="av">李</div>
               <div><b>이○○ 님</b><small>소아 충치치료</small></div>
             </div>
           </div>
-          <div class="rev reveal">
-            <div class="stars">★★★★★</div>
+          <div class="rcard reveal">
+            <span class="q">“</span>
             <p>
-              “이마트 5층이라 장보러 왔다가 스케일링 받고 가기 딱 좋아요. 위치도
-              좋고 주차도 편하고, 주말에 진료해서 직장인에게 최고입니다.”
+              다른 곳에선 신경치료하고 빼자고 했는데, 여기선 현미경으로 보시더니
+              살릴 수 있다고 하셨어요. 덕분에 자연치아를 지켰습니다.
             </p>
             <div class="who">
-              <div class="av">박</div>
-              <div><b>박○○ 님</b><small>스케일링·검진</small></div>
+              <div class="av">朴</div>
+              <div><b>박○○ 님</b><small>미세현미경 신경치료</small></div>
             </div>
           </div>
         </div>
@@ -1448,13 +1691,15 @@
     <!-- Final CTA -->
     <section class="final">
       <div class="wrap">
-        <h2>지금 바로 예약하고<br />편안한 진료를 경험하세요</h2>
+        <div class="eyebrow">RESERVATION</div>
+        <h2 class="serif">정밀한 진료의 차이를<br />직접 경험해 보세요</h2>
         <p>
-          야간·주말 진료, 전 분야 협진. 궁금한 점은 전화 한 통이면 충분합니다.
+          야간·주말 진료, 미세현미경 정밀진료. 궁금한 점은 전화 한 통이면
+          충분합니다.
         </p>
-        <div class="tel-big"><a href="tel:031-411-2475">☎ 031-411-2475</a></div>
+        <div class="tel"><a href="tel:031-411-2475">031-411-2475</a></div>
         <div class="row">
-          <a href="tel:031-411-2475" class="btn btn-white">전화 예약하기</a>
+          <a href="tel:031-411-2475" class="btn btn-gold">전화 예약하기</a>
           <a
             href="https://map.naver.com/v5/search/연세매일치과의원"
             target="_blank"
@@ -1480,24 +1725,21 @@
           <div>
             <div class="logo-f">연세매일치과의원</div>
             <p>
-              안산 고잔동, 온 가족이 매일 믿고 찾는 치과.<br />
-              야간·주말 진료와 전 분야 협진으로 가까이에서 건강한 미소를
-              지킵니다.
+              안산 고잔동, 매일 같은 마음으로 정밀하게.<br />
+              하버드 임플란트 수료 대표원장의 미세현미경 정밀진료와 전 분야
+              협진으로 가까이에서 건강한 미소를 지킵니다.
             </p>
           </div>
           <div class="fcol">
-            <h4>진료안내</h4>
-            <a href="#services">임플란트</a>
-            <a href="#services">치아교정</a>
-            <a href="#services">소아치과</a>
-            <a href="#services">심미보철</a>
+            <h4>TREATMENT</h4>
+            <a href="#serv">임플란트</a><a href="#serv">치아교정</a
+            ><a href="#serv">소아치과</a><a href="#serv">미세현미경 신경치료</a>
           </div>
           <div class="fcol">
-            <h4>바로가기</h4>
-            <a href="#why">병원소개</a>
-            <a href="#doctor">의료진</a>
-            <a href="#hours">오시는 길</a>
-            <a
+            <h4>CLINIC</h4>
+            <a href="#phil">병원소개</a><a href="#doc">대표원장</a
+            ><a href="#hours">오시는 길</a
+            ><a
               href="https://blog.naver.com/maeil0508"
               target="_blank"
               rel="noopener"
@@ -1505,38 +1747,36 @@
             >
           </div>
           <div class="fcol">
-            <h4>진료시간</h4>
-            <a>평일 10:00 – 21:00</a>
-            <a>토·일 진료 (야간)</a>
-            <a>점심 12:30 – 14:00</a>
-            <a style="color: #fff; font-weight: 700">☎ 031-411-2475</a>
+            <h4>HOURS</h4>
+            <a>평일 10:00 – 21:00</a><a>토 · 일 진료</a><a>점심 12:30 – 14:00</a
+            ><a style="color: #fff">T. 031-411-2475</a>
           </div>
         </div>
         <div class="bottom">
           <div>
             경기 안산시 단원구 원포공원1로 46 이마트 고잔점 5층 ·
-            연세매일치과의원
+            연세매일치과의원 · 대표원장 김하슬람
           </div>
-          <div>© 2026 YONSEI MAEIL DENTAL CLINIC. All rights reserved.</div>
+          <div>© 2026 YONSEI MAEIL DENTAL CLINIC.</div>
         </div>
       </div>
     </footer>
 
     <!-- Sticky mobile CTA -->
     <div class="mobile-cta">
-      <a href="tel:031-411-2475" class="m-tel">☎ 전화</a>
+      <a href="tel:031-411-2475" class="m-tel">전화상담</a>
       <a
         href="https://map.naver.com/v5/search/연세매일치과의원"
         target="_blank"
         rel="noopener"
-        class="m-book"
+        class="m-map"
         >네이버 예약</a
       >
       <a
         href="https://blog.naver.com/maeil0508"
         target="_blank"
         rel="noopener"
-        class="m-kakao"
+        class="m-blog"
         >블로그</a
       >
     </div>
@@ -1548,21 +1788,20 @@
         href="https://map.naver.com/v5/search/연세매일치과의원"
         target="_blank"
         rel="noopener"
-        class="f-book"
+        class="f-map"
         >📍<span>지도</span></a
       >
       <a
         href="https://blog.naver.com/maeil0508"
         target="_blank"
         rel="noopener"
-        class="f-kakao"
+        class="f-blog"
         >📝<span>블로그</span></a
       >
       <a href="#home" class="f-top">▲<span>TOP</span></a>
     </div>
 
     <script>
-      // mobile menu
       const hamb = document.getElementById('hamb'),
         menu = document.getElementById('menu');
       hamb.addEventListener('click', () => menu.classList.toggle('open'));
@@ -1571,11 +1810,13 @@
         .forEach((a) =>
           a.addEventListener('click', () => menu.classList.remove('open')),
         );
-      // scroll reveal
       const io = new IntersectionObserver(
         (es) =>
           es.forEach((e) => {
-            if (e.isIntersecting) e.target.classList.add('in');
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
           }),
         { threshold: 0.12 },
       );

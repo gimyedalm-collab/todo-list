@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "yonsei-maeil",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-y",
+        "http-server",
+        "yonsei-maeil-dental",
+        "-p",
+        "5599",
+        "-c-1"
+      ],
+      "port": 5599
+    }
+  ]
+}
