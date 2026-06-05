@@ -319,11 +319,12 @@
       }
       .hero h1 {
         font-family: 'Noto Serif KR', serif;
-        font-size: clamp(36px, 5.6vw, 72px);
+        font-size: clamp(26px, 3.4vw, 46px);
         font-weight: 700;
-        line-height: 1.25;
+        line-height: 1.32;
         letter-spacing: -0.03em;
         margin-bottom: 32px;
+        max-width: 920px;
       }
       .hero h1 .gold {
         color: var(--gold-light);
@@ -2327,7 +2328,7 @@
 
       /* 와이드 모니터 (1600+)에서 컨텐츠 중앙 정렬 유지 */
       @media (min-width: 1600px) {
-        .hero h1 { font-size: 80px; }
+        .hero h1 { font-size: 48px; }
       }
 
       /* 이미지 로딩 중 레이아웃 시프트 방지 */
