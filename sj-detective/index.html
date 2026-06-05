@@ -1754,10 +1754,16 @@
         height: 100%;
       }
       .warn-desc {
-        flex-grow: 1;
+        flex-grow: 0 !important;
+        min-height: 120px;
+        margin-bottom: 0 !important;
       }
       .warn-sj {
-        margin-top: auto !important;
+        margin-top: 22px !important;
+      }
+      @media (max-width: 960px) {
+        .warn-desc { min-height: 0; }
+        .warn-sj { margin-top: 16px !important; }
       }
 
       /* Why: 카드 내부 정렬 통일 (extra-tag·desc 하단 정렬) */
