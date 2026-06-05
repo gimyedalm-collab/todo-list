@@ -1695,6 +1695,79 @@
         color: #3c1e1e !important;
       }
 
+      /* === CARD HEIGHT NORMALIZATION (카드 내부 하단 항목 정렬 통일) === */
+      /* Cases: RESULT 라인이 모든 카드 같은 높이에 떨어지도록 */
+      .case-card {
+        display: flex;
+        flex-direction: column;
+      }
+      .case-body {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+      .case-excerpt {
+        flex-grow: 1;
+      }
+      .case-result {
+        margin-top: auto;
+      }
+
+      /* WARNING: SJ 다릅니다 박스가 모든 카드 같은 높이에 떨어지도록 */
+      .warn-card {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      .warn-desc {
+        flex-grow: 1;
+      }
+      .warn-sj {
+        margin-top: auto;
+      }
+
+      /* Why: 카드 내부 정렬 통일 (extra-tag·desc 하단 정렬) */
+      .why-card {
+        display: flex;
+        flex-direction: column;
+      }
+      .why-desc {
+        flex-grow: 1;
+      }
+      .why-extra-tag {
+        margin-top: auto;
+      }
+
+      /* Team: 프로필 카드 내부 desc 늘이기 */
+      .team-card-body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .team-desc {
+        flex-grow: 1;
+      }
+
+      /* Services: svc-tags가 모든 카드 같은 높이에 (svc-arrow는 absolute 그대로) */
+      .svc-card {
+        display: flex;
+        flex-direction: column;
+      }
+      .svc-desc {
+        flex-grow: 1;
+      }
+      .svc-tags {
+        margin-top: auto;
+      }
+
+      /* Office: figcaption 정렬 (이미 min-height로 처리 중이라 추가 보강) */
+      .office-card {
+        display: flex;
+        flex-direction: column;
+      }
+      .office-card figcaption {
+        margin-top: auto;
+      }
+
       /* === ABOUT LEAD (강조 도입 라인) === */
       .about-lead {
         margin: -4px 0 26px !important;
