@@ -1696,10 +1696,22 @@
       }
 
       /* === CARD HEIGHT NORMALIZATION (카드 내부 하단 항목 정렬 통일) === */
+      /* 그리드 행 자체를 1fr로 강제 → 모든 카드 같은 높이 보장 */
+      .case-grid,
+      .warn-grid,
+      .why-grid,
+      .team-grid,
+      .svc-grid,
+      .office-grid {
+        grid-auto-rows: 1fr;
+        align-items: stretch;
+      }
+
       /* Cases: RESULT 라인이 모든 카드 같은 높이에 떨어지도록 */
       .case-card {
-        display: flex;
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100%;
       }
       .case-body {
         display: flex;
@@ -1717,12 +1729,13 @@
       .warn-card {
         display: flex !important;
         flex-direction: column !important;
+        height: 100%;
       }
       .warn-desc {
         flex-grow: 1;
       }
       .warn-sj {
-        margin-top: auto;
+        margin-top: auto !important;
       }
 
       /* Why: 카드 내부 정렬 통일 (extra-tag·desc 하단 정렬) */
