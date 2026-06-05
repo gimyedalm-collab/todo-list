@@ -15,6 +15,11 @@
       name="keywords"
       content="안산치과, 고잔동치과, 안산임플란트, 안산교정, 안산소아치과, 미세현미경치과, 안산야간진료치과, 연세매일치과, 김하슬람"
     />
+    <meta name="theme-color" content="#0c2440" />
+    <link
+      rel="canonical"
+      href="https://gimyedalm-collab.github.io/todo-list/yonsei-maeil-dental/"
+    />
     <meta
       property="og:title"
       content="연세매일치과의원 | 안산 임플란트·미세현미경 정밀진료"
@@ -25,12 +30,60 @@
     />
     <meta property="og:image" content="images/precision.jpg" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <!-- favicon: 골드 링 + 매일 -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c2440'/%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%23c8a766' stroke-width='2.5'/%3E%3Ctext x='32' y='40' font-size='20' font-family='serif' font-weight='700' fill='%23fff' text-anchor='middle'%3E매일%3C/text%3E%3C/svg%3E"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@500;600;700;900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="preload"
+      as="image"
+      href="images/precision.jpg"
+      fetchpriority="high"
+    />
+    <!-- 구조화 데이터 (SEO) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Dentist",
+        "name": "연세매일치과의원",
+        "image": "https://gimyedalm-collab.github.io/todo-list/yonsei-maeil-dental/images/precision.jpg",
+        "url": "https://gimyedalm-collab.github.io/todo-list/yonsei-maeil-dental/",
+        "telephone": "+82-31-411-2475",
+        "priceRange": "₩₩",
+        "medicalSpecialty": "Dentistry",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "원포공원1로 46 이마트 고잔점 5층",
+          "addressLocality": "안산시 단원구",
+          "addressRegion": "경기도",
+          "addressCountry": "KR"
+        },
+        "founder": { "@type": "Person", "name": "김하슬람" },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "10:00",
+            "closes": "21:00"
+          }
+        ],
+        "sameAs": ["https://blog.naver.com/maeil0508"]
+      }
+    </script>
     <style>
       :root {
         --navy: #0c2440;
@@ -45,7 +98,6 @@
         --gray-d: #4a5160;
         --line: #e6e0d6;
         --line-d: #1f3a5c;
-        --radius: 6px;
         --shadow: 0 24px 60px rgba(12, 36, 64, 0.16);
         --shadow-sm: 0 10px 30px rgba(12, 36, 64, 0.09);
         --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -88,7 +140,34 @@
       }
       section {
         padding: 110px 0;
+        scroll-margin-top: 84px;
       }
+      .icon {
+        width: 22px;
+        height: 22px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex-shrink: 0;
+      }
+      :focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 3px;
+      }
+      /* scroll progress */
+      #progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 0;
+        background: linear-gradient(90deg, var(--gold), var(--gold-l));
+        z-index: 100;
+        transition: width 0.1s linear;
+      }
+
       .eyebrow {
         display: inline-block;
         font-size: 0.78rem;
@@ -96,18 +175,8 @@
         letter-spacing: 0.28em;
         color: var(--gold);
         margin-bottom: 22px;
-        position: relative;
-        padding-left: 0;
       }
-      .eyebrow.line::before {
-        content: '';
-        display: inline-block;
-        width: 30px;
-        height: 1px;
-        background: var(--gold);
-        vertical-align: middle;
-        margin-right: 12px;
-      }
+      .eyebrow.line::before,
       .eyebrow.line::after {
         content: '';
         display: inline-block;
@@ -115,6 +184,11 @@
         height: 1px;
         background: var(--gold);
         vertical-align: middle;
+      }
+      .eyebrow.line::before {
+        margin-right: 12px;
+      }
+      .eyebrow.line::after {
         margin-left: 12px;
       }
       h2.sec {
@@ -135,8 +209,6 @@
         font-weight: 300;
         line-height: 1.85;
       }
-
-      /* image box with object-fit */
       .imgbox {
         position: relative;
         overflow: hidden;
@@ -149,7 +221,7 @@
         display: block;
       }
 
-      /* ===== Top utility bar ===== */
+      /* Top bar */
       .topbar {
         background: var(--charcoal);
         color: #a9b4c4;
@@ -164,6 +236,9 @@
       }
       .topbar a {
         color: #cfd8e4;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
       }
       .topbar .right {
         display: flex;
@@ -173,13 +248,17 @@
       .topbar .right b {
         color: var(--gold-l);
       }
+      .topbar .icon {
+        width: 14px;
+        height: 14px;
+      }
       @media (max-width: 720px) {
         .topbar .left {
           display: none;
         }
       }
 
-      /* ===== Header ===== */
+      /* Header */
       header {
         position: sticky;
         top: 0;
@@ -187,6 +266,12 @@
         background: rgba(255, 255, 255, 0.94);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid var(--line);
+        transition:
+          box-shadow 0.3s,
+          background 0.3s;
+      }
+      header.scrolled {
+        box-shadow: 0 6px 24px rgba(12, 36, 64, 0.08);
       }
       nav {
         display: flex;
@@ -252,10 +337,12 @@
         background: var(--gold);
         transition: width 0.28s var(--ease);
       }
-      .menu a:hover {
+      .menu a:hover,
+      .menu a.active {
         color: var(--navy);
       }
-      .menu a:hover::after {
+      .menu a:hover::after,
+      .menu a.active::after {
         width: 100%;
       }
       .nav-cta {
@@ -268,10 +355,19 @@
         font-weight: 700;
         color: var(--navy);
         font-size: 1.2rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .nav-tel .icon {
+        width: 18px;
+        height: 18px;
+        color: var(--gold);
       }
       .btn {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 9px;
         font-weight: 700;
         border-radius: 2px;
@@ -281,6 +377,10 @@
         border: none;
         font-size: 0.94rem;
         letter-spacing: 0.02em;
+      }
+      .btn .icon {
+        width: 18px;
+        height: 18px;
       }
       .btn-gold {
         background: var(--gold);
@@ -321,11 +421,23 @@
         gap: 5px;
         cursor: pointer;
         padding: 6px;
+        background: none;
+        border: none;
       }
       .hamb span {
         width: 26px;
         height: 2px;
         background: var(--navy);
+        transition: 0.3s;
+      }
+      .hamb.on span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .hamb.on span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamb.on span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
       }
       @media (max-width: 1040px) {
         .menu,
@@ -350,10 +462,10 @@
         }
       }
 
-      /* ===== Hero ===== */
+      /* Hero */
       .hero {
         position: relative;
-        min-height: 88vh;
+        min-height: 90vh;
         display: flex;
         align-items: center;
         background: var(--charcoal);
@@ -368,6 +480,15 @@
         height: 100%;
         object-fit: cover;
         opacity: 0.42;
+        animation: slowzoom 18s ease-out forwards;
+      }
+      @keyframes slowzoom {
+        from {
+          transform: scale(1.08);
+        }
+        to {
+          transform: scale(1);
+        }
       }
       .hero .bg::after {
         content: '';
@@ -375,7 +496,7 @@
         inset: 0;
         background: linear-gradient(
           100deg,
-          rgba(8, 18, 32, 0.94) 0%,
+          rgba(8, 18, 32, 0.95) 0%,
           rgba(10, 28, 52, 0.82) 42%,
           rgba(12, 36, 64, 0.35) 100%
         );
@@ -384,8 +505,7 @@
         position: relative;
         z-index: 2;
         width: 100%;
-        padding-top: 60px;
-        padding-bottom: 60px;
+        padding: 70px 26px;
       }
       .hero .eyebrow {
         color: var(--gold-l);
@@ -423,11 +543,10 @@
       }
       .hero-meta {
         display: flex;
-        gap: 0;
         flex-wrap: wrap;
         border-top: 1px solid rgba(255, 255, 255, 0.16);
         padding-top: 30px;
-        max-width: 680px;
+        max-width: 700px;
       }
       .hero-meta .m {
         padding-right: 40px;
@@ -458,15 +577,18 @@
         }
         .hero {
           min-height: auto;
-          padding: 40px 0;
+        }
+        .hero .wrap {
+          padding: 50px 26px;
         }
         .hero-meta .m {
-          padding-right: 22px;
-          margin-right: 22px;
+          padding-right: 20px;
+          margin-right: 20px;
+          margin-bottom: 10px;
         }
       }
 
-      /* ===== Trust strip ===== */
+      /* Trust strip */
       .trust {
         background: var(--navy);
         color: #fff;
@@ -474,32 +596,44 @@
       .trust .wrap {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 0;
       }
       .trust .item {
-        padding: 42px 26px;
+        padding: 40px 24px;
         text-align: center;
         border-right: 1px solid var(--line-d);
+        transition: background 0.3s;
+      }
+      .trust .item:hover {
+        background: var(--navy2);
       }
       .trust .item:last-child {
         border-right: none;
       }
-      .trust .ic {
-        font-size: 0.74rem;
-        letter-spacing: 0.2em;
+      .trust .icwrap {
+        width: 46px;
+        height: 46px;
+        margin: 0 auto 16px;
+        border: 1px solid var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: var(--gold-l);
-        margin-bottom: 14px;
+      }
+      .trust .icwrap .icon {
+        width: 22px;
+        height: 22px;
       }
       .trust .t {
         font-family: 'Noto Serif KR', serif;
-        font-size: 1.34rem;
+        font-size: 1.3rem;
         font-weight: 600;
         line-height: 1.4;
       }
       .trust .d {
         color: #9fb0c6;
-        font-size: 0.86rem;
-        margin-top: 8px;
+        font-size: 0.85rem;
+        margin-top: 7px;
         font-weight: 300;
       }
       @media (max-width: 780px) {
@@ -515,7 +649,7 @@
         }
       }
 
-      /* ===== Philosophy ===== */
+      /* Philosophy */
       .phil {
         background: var(--paper);
       }
@@ -541,24 +675,38 @@
         padding: 46px 38px;
         border: 1px solid var(--line);
         transition: 0.35s var(--ease);
-        position: relative;
       }
       .val:hover {
         transform: translateY(-7px);
         box-shadow: var(--shadow);
         border-color: var(--gold);
       }
+      .val .ic {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--paper);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        margin-bottom: 22px;
+      }
+      .val .ic .icon {
+        width: 26px;
+        height: 26px;
+      }
       .val .no {
         font-family: 'Noto Serif KR', serif;
-        font-size: 1rem;
+        font-size: 0.85rem;
         color: var(--gold);
         letter-spacing: 0.1em;
-        margin-bottom: 20px;
         display: block;
+        margin-bottom: 10px;
       }
       .val h3 {
         font-family: 'Noto Serif KR', serif;
-        font-size: 1.4rem;
+        font-size: 1.38rem;
         font-weight: 700;
         color: var(--navy);
         margin-bottom: 14px;
@@ -576,7 +724,7 @@
         }
       }
 
-      /* ===== Signature (microscope) ===== */
+      /* Signature */
       .sig {
         background: #fff;
       }
@@ -588,8 +736,33 @@
       }
       .sig .imgbox {
         height: 560px;
-        border-radius: 2px;
         box-shadow: var(--shadow);
+      }
+      .sig .imgbox .badge {
+        position: absolute;
+        left: 24px;
+        bottom: 24px;
+        background: rgba(12, 36, 64, 0.9);
+        color: #fff;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        backdrop-filter: blur(4px);
+      }
+      .sig .imgbox .badge .icon {
+        width: 26px;
+        height: 26px;
+        color: var(--gold-l);
+      }
+      .sig .imgbox .badge b {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 1rem;
+      }
+      .sig .imgbox .badge small {
+        display: block;
+        color: #9fb0c6;
+        font-size: 0.74rem;
       }
       .sig h2 {
         font-family: 'Noto Serif KR', serif;
@@ -603,7 +776,7 @@
         font-style: normal;
         color: var(--gold);
       }
-      .sig p {
+      .sig p.t {
         color: var(--gray-d);
         font-size: 1.05rem;
         font-weight: 300;
@@ -623,11 +796,11 @@
         color: var(--ink);
         font-size: 1rem;
       }
-      .sig li::before {
-        content: '—';
+      .sig li .icon {
+        width: 20px;
+        height: 20px;
         color: var(--gold);
-        font-weight: 700;
-        flex-shrink: 0;
+        margin-top: 3px;
       }
       .sig li b {
         font-weight: 700;
@@ -639,15 +812,14 @@
           gap: 36px;
         }
         .sig .imgbox {
-          height: 340px;
+          height: 360px;
         }
       }
 
-      /* ===== Doctor / Credentials ===== */
+      /* Doctor */
       .doc {
         background: var(--charcoal);
         color: #fff;
-        position: relative;
       }
       .doc .wrap {
         display: grid;
@@ -666,18 +838,17 @@
         display: flex;
         gap: 16px;
         align-items: center;
-        border-radius: 2px;
       }
       .doc .cert .imgbox {
         width: 96px;
-        height: 72px;
+        height: 74px;
         flex-shrink: 0;
         border: 1px solid var(--line);
       }
       .doc .cert .ct small {
         color: var(--gold);
-        font-size: 0.72rem;
-        letter-spacing: 0.14em;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
         display: block;
         margin-bottom: 4px;
       }
@@ -736,12 +907,10 @@
         font-size: 1rem;
         font-weight: 300;
       }
-      .doc li::before {
-        content: '✓';
+      .doc li .icon {
+        width: 18px;
+        height: 18px;
         color: var(--gold-l);
-        flex-shrink: 0;
-        font-weight: 700;
-        font-size: 0.9rem;
         margin-top: 4px;
       }
       .doc li b {
@@ -754,11 +923,11 @@
           gap: 40px;
         }
         .doc .left .imgbox {
-          height: 360px;
+          height: 380px;
         }
       }
 
-      /* ===== Services ===== */
+      /* Services */
       .serv {
         background: var(--paper);
       }
@@ -772,6 +941,8 @@
         background: #fff;
         border: 1px solid var(--line);
         transition: 0.32s var(--ease);
+        display: flex;
+        flex-direction: column;
       }
       .scard:hover {
         transform: translateY(-6px);
@@ -780,32 +951,49 @@
       }
       .scard .top {
         padding: 40px 34px 0;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .scard .sic {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--paper);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        flex-shrink: 0;
+      }
+      .scard .sic .icon {
+        width: 24px;
+        height: 24px;
       }
       .scard .no {
         font-family: 'Noto Serif KR', serif;
         color: var(--gold);
-        font-size: 0.95rem;
+        font-size: 0.85rem;
         letter-spacing: 0.1em;
       }
       .scard h3 {
         font-family: 'Noto Serif KR', serif;
-        font-size: 1.42rem;
+        font-size: 1.4rem;
         font-weight: 700;
         color: var(--navy);
-        margin: 14px 0 12px;
+        margin-top: 4px;
       }
       .scard p {
         color: var(--gray);
         font-size: 0.96rem;
         font-weight: 300;
         line-height: 1.85;
-        padding: 0 34px;
-        min-height: 78px;
+        padding: 18px 34px 0;
+        min-height: 88px;
       }
       .scard .ft {
         padding: 18px 34px 34px;
-        border-top: 1px solid var(--line);
-        margin-top: 22px;
+        margin-top: auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -813,13 +1001,20 @@
       .scard .ft span {
         color: var(--gold);
         font-size: 0.7rem;
-        letter-spacing: 0.16em;
+        letter-spacing: 0.14em;
         font-weight: 700;
       }
       .scard .ft a {
         color: var(--navy);
         font-weight: 700;
         font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .scard .ft a .icon {
+        width: 15px;
+        height: 15px;
       }
       @media (max-width: 880px) {
         .serv-grid {
@@ -827,14 +1022,13 @@
         }
       }
 
-      /* ===== Hours & Directions ===== */
+      /* Hours */
       .hours {
         background: #fff;
       }
       .hours .grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 0;
         margin-top: 60px;
         border: 1px solid var(--line);
       }
@@ -851,6 +1045,14 @@
         font-weight: 700;
         color: var(--navy);
         margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .hcol h3 .icon {
+        width: 22px;
+        height: 22px;
+        color: var(--gold);
       }
       .hcol .tag {
         display: inline-block;
@@ -896,17 +1098,15 @@
       }
       .hcol .line {
         display: flex;
-        gap: 16px;
+        gap: 14px;
         align-items: flex-start;
         margin-bottom: 18px;
       }
-      .hcol .line .k {
+      .hcol .line .icon {
+        width: 18px;
+        height: 18px;
         color: var(--gold);
-        font-size: 0.74rem;
-        letter-spacing: 0.14em;
-        font-weight: 700;
-        min-width: 64px;
-        padding-top: 4px;
+        margin-top: 4px;
       }
       .hcol .line b {
         color: var(--ink);
@@ -916,10 +1116,14 @@
       }
       .mapwrap {
         margin-top: 8px;
-      }
-      .mapwrap .imgbox {
-        height: 200px;
         border: 1px solid var(--line);
+      }
+      .mapwrap iframe {
+        width: 100%;
+        height: 220px;
+        border: 0;
+        display: block;
+        filter: grayscale(0.15);
       }
       @media (max-width: 880px) {
         .hours .grid {
@@ -934,7 +1138,7 @@
         }
       }
 
-      /* ===== Reviews ===== */
+      /* Reviews */
       .rev {
         background: var(--paper);
       }
@@ -948,14 +1152,23 @@
         background: #fff;
         border: 1px solid var(--line);
         padding: 40px 34px;
+        transition: 0.3s var(--ease);
       }
-      .rcard .q {
-        font-family: 'Noto Serif KR', serif;
+      .rcard:hover {
+        box-shadow: var(--shadow-sm);
+        transform: translateY(-4px);
+      }
+      .rcard .stars {
+        display: flex;
+        gap: 3px;
         color: var(--gold);
-        font-size: 2.4rem;
-        line-height: 0.5;
         margin-bottom: 18px;
-        display: block;
+      }
+      .rcard .stars .icon {
+        width: 17px;
+        height: 17px;
+        fill: var(--gold);
+        stroke: var(--gold);
       }
       .rcard p {
         color: var(--ink);
@@ -999,7 +1212,7 @@
         }
       }
 
-      /* ===== Final CTA ===== */
+      /* Final */
       .final {
         background: var(--navy);
         color: #fff;
@@ -1038,13 +1251,21 @@
         color: #c4cedd;
         font-size: 1.1rem;
         font-weight: 300;
-        margin-bottom: 36px;
+        margin-bottom: 30px;
       }
       .final .tel {
         font-family: 'Noto Serif KR', serif;
         font-size: 3rem;
         font-weight: 700;
         margin: 6px 0 34px;
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .final .tel .icon {
+        width: 42px;
+        height: 42px;
+        color: var(--gold-l);
       }
       .final .tel a {
         color: #fff;
@@ -1055,8 +1276,20 @@
         justify-content: center;
         flex-wrap: wrap;
       }
+      @media (max-width: 640px) {
+        .final h2 {
+          font-size: 1.8rem;
+        }
+        .final .tel {
+          font-size: 2.1rem;
+        }
+        .final .tel .icon {
+          width: 30px;
+          height: 30px;
+        }
+      }
 
-      /* ===== Footer ===== */
+      /* Footer */
       footer {
         background: var(--charcoal);
         color: #8a96a8;
@@ -1109,7 +1342,7 @@
         color: #5f6b7c;
       }
 
-      /* ===== Sticky / float ===== */
+      /* Sticky mobile + float */
       .mobile-cta {
         position: fixed;
         bottom: 0;
@@ -1119,15 +1352,24 @@
         display: none;
         background: #fff;
         box-shadow: 0 -8px 24px rgba(12, 36, 64, 0.16);
-        padding: 10px 12px;
+        padding: 9px 10px;
         gap: 8px;
       }
       .mobile-cta a {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
         text-align: center;
-        padding: 15px 0;
+        padding: 9px 0;
         font-weight: 700;
-        font-size: 0.95rem;
+        font-size: 0.78rem;
+        border-radius: 3px;
+      }
+      .mobile-cta a .icon {
+        width: 20px;
+        height: 20px;
       }
       .mobile-cta .m-tel {
         background: var(--navy);
@@ -1146,9 +1388,10 @@
           display: flex;
         }
         body {
-          padding-bottom: 72px;
+          padding-bottom: 76px;
         }
       }
+
       .floatcol {
         position: fixed;
         right: 22px;
@@ -1156,24 +1399,29 @@
         z-index: 65;
         display: flex;
         flex-direction: column;
-        gap: 11px;
+        gap: 12px;
       }
       .floatcol a {
-        width: 60px;
-        height: 60px;
+        width: 62px;
+        height: 62px;
         border-radius: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         box-shadow: var(--shadow-sm);
-        font-size: 0.6rem;
+        font-size: 0.62rem;
         font-weight: 700;
         gap: 3px;
-        transition: 0.25s;
+        transition: 0.25s var(--ease);
       }
       .floatcol a:hover {
         transform: translateY(-3px);
+        box-shadow: var(--shadow);
+      }
+      .floatcol a .icon {
+        width: 24px;
+        height: 24px;
       }
       .floatcol .f-tel {
         background: var(--navy);
@@ -1191,6 +1439,12 @@
       .floatcol .f-top {
         background: var(--charcoal);
         color: #fff;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .floatcol .f-top.show {
+        opacity: 1;
+        pointer-events: auto;
       }
       @media (max-width: 780px) {
         .floatcol {
@@ -1207,9 +1461,101 @@
         opacity: 1;
         transform: none;
       }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
     </style>
   </head>
   <body>
+    <!-- SVG icon sprite -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="i-phone" viewBox="0 0 24 24">
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
+        />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24">
+        <path d="M12 20h9" />
+        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z" />
+      </symbol>
+      <symbol id="i-up" viewBox="0 0 24 24">
+        <path d="M18 15l-6-6-6 6" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </symbol>
+      <symbol id="i-car" viewBox="0 0 24 24">
+        <path
+          d="M5 13l1.5-4.5A2 2 0 0 1 8.4 7h7.2a2 2 0 0 1 1.9 1.5L19 13v5h-2v-2H7v2H5z"
+        />
+        <circle cx="7.5" cy="15.5" r="1" />
+        <circle cx="16.5" cy="15.5" r="1" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="M20 6L9 17l-5-5" />
+      </symbol>
+      <symbol id="i-star" viewBox="0 0 24 24">
+        <path
+          d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"
+        />
+      </symbol>
+      <symbol id="i-award" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="6" />
+        <path d="M9 13.5L7.5 22 12 19l4.5 3L15 13.5" />
+      </symbol>
+      <symbol id="i-scope" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" />
+        <path d="M21 21l-4.3-4.3" />
+      </symbol>
+      <symbol id="i-net" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z" />
+      </symbol>
+      <symbol id="i-tooth" viewBox="0 0 24 24">
+        <path
+          d="M12 5.5C10.5 4 8.5 3.5 7 4.2 5 5 4 7 4.5 10c.4 2.2.8 3.5 1.2 6 .3 1.8.6 4 1.8 4s1-3 2.5-3 1.3 3 2.5 3 1.5-2.2 1.8-4c.4-2.5.8-3.8 1.2-6 .5-3-.5-5-2.5-5.8-1.5-.7-3.5-.2-5 1.3z"
+        />
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24">
+        <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z" />
+        <path d="M9 12l2 2 4-4" />
+      </symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24">
+        <path
+          d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"
+        />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8" />
+        <path d="M21 21l-4.3-4.3" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24">
+        <path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" />
+      </symbol>
+    </svg>
+
+    <div id="progress"></div>
+
     <!-- Top utility -->
     <div class="topbar">
       <div class="wrap">
@@ -1218,16 +1564,18 @@
         </div>
         <div class="right">
           <span>평일 야간 <b>21시</b>까지 · 토·일 진료</span>
-          <a href="tel:031-411-2475">T. 031-411-2475</a>
+          <a href="tel:031-411-2475"
+            ><svg class="icon"><use href="#i-phone" /></svg> 031-411-2475</a
+          >
         </div>
       </div>
     </div>
 
     <!-- Header -->
-    <header>
+    <header id="hdr">
       <div class="wrap">
         <nav>
-          <a href="#home" class="logo">
+          <a href="#home" class="logo" aria-label="연세매일치과의원 홈">
             <span class="mark">매일</span>
             <span class="lt"
               >연세매일치과의원<small>YONSEI MAEIL DENTAL CLINIC</small></span
@@ -1242,12 +1590,14 @@
             <li><a href="#hours">오시는길</a></li>
           </ul>
           <div class="nav-cta">
-            <span class="nav-tel">031-411-2475</span>
+            <span class="nav-tel"
+              ><svg class="icon"><use href="#i-phone" /></svg>031-411-2475</span
+            >
             <a href="#hours" class="btn btn-navy">예약·상담</a>
           </div>
-          <div class="hamb" id="hamb">
+          <button class="hamb" id="hamb" aria-label="메뉴 열기">
             <span></span><span></span><span></span>
-          </div>
+          </button>
         </nav>
       </div>
     </header>
@@ -1257,7 +1607,8 @@
       <div class="bg">
         <img
           src="images/precision.jpg"
-          alt="연세매일치과 대표원장 정밀 진료 장면"
+          alt="연세매일치과 대표원장의 정밀 진료 장면"
+          fetchpriority="high"
         />
       </div>
       <div class="wrap">
@@ -1272,7 +1623,8 @@
         </p>
         <div class="hero-actions">
           <a href="tel:031-411-2475" class="btn btn-gold"
-            >전화상담 031-411-2475</a
+            ><svg class="icon"><use href="#i-phone" /></svg>전화상담
+            031-411-2475</a
           >
           <a href="#hours" class="btn btn-out">진료시간 · 오시는 길</a>
         </div>
@@ -1290,22 +1642,30 @@
     <div class="trust">
       <div class="wrap">
         <div class="item">
-          <div class="ic">CREDENTIAL</div>
+          <div class="icwrap">
+            <svg class="icon"><use href="#i-award" /></svg>
+          </div>
           <div class="t">Harvard 임플란트</div>
           <div class="d">대표원장 임상 과정 수료</div>
         </div>
         <div class="item">
-          <div class="ic">PRECISION</div>
+          <div class="icwrap">
+            <svg class="icon"><use href="#i-scope" /></svg>
+          </div>
           <div class="t">미세현미경 진료</div>
           <div class="d">0.1mm까지 정밀하게</div>
         </div>
         <div class="item">
-          <div class="ic">SYSTEM</div>
+          <div class="icwrap">
+            <svg class="icon"><use href="#i-net" /></svg>
+          </div>
           <div class="t">전 분야 협진</div>
           <div class="d">한 곳에서 통합 진료</div>
         </div>
         <div class="item">
-          <div class="ic">ACCESS</div>
+          <div class="icwrap">
+            <svg class="icon"><use href="#i-clock" /></svg>
+          </div>
           <div class="t">야간 · 주말 진료</div>
           <div class="d">평일 21시 · 토 · 일</div>
         </div>
@@ -1328,6 +1688,9 @@
         </div>
         <div class="vals">
           <div class="val reveal">
+            <div class="ic">
+              <svg class="icon"><use href="#i-search" /></svg>
+            </div>
             <span class="no">01</span>
             <h3>정밀 진단 위에<br />치료가 시작됩니다</h3>
             <p>
@@ -1337,6 +1700,9 @@
             </p>
           </div>
           <div class="val reveal">
+            <div class="ic">
+              <svg class="icon"><use href="#i-tooth" /></svg>
+            </div>
             <span class="no">02</span>
             <h3>자연치아를<br />최대한 지킵니다</h3>
             <p>
@@ -1346,6 +1712,9 @@
             </p>
           </div>
           <div class="val reveal">
+            <div class="ic">
+              <svg class="icon"><use href="#i-net" /></svg>
+            </div>
             <span class="no">03</span>
             <h3>한 곳에서 끝나는<br />통합 협진</h3>
             <p>
@@ -1354,6 +1723,9 @@
             </p>
           </div>
           <div class="val reveal">
+            <div class="ic">
+              <svg class="icon"><use href="#i-heart" /></svg>
+            </div>
             <span class="no">04</span>
             <h3>온 가족의<br />평생 주치의</h3>
             <p>
@@ -1362,6 +1734,9 @@
             </p>
           </div>
           <div class="val reveal">
+            <div class="ic">
+              <svg class="icon"><use href="#i-shield" /></svg>
+            </div>
             <span class="no">05</span>
             <h3>철저한<br />위생·감염관리</h3>
             <p>
@@ -1370,6 +1745,9 @@
             </p>
           </div>
           <div class="val reveal">
+            <div class="ic">
+              <svg class="icon"><use href="#i-clock" /></svg>
+            </div>
             <span class="no">06</span>
             <h3>바쁜 일상에<br />가까운 치과</h3>
             <p>
@@ -1381,54 +1759,83 @@
       </div>
     </section>
 
-    <!-- Signature: microscope precision -->
+    <!-- Signature -->
     <section class="sig" id="sig">
       <div class="wrap">
         <div class="imgbox reveal">
           <img
             src="images/microscope.jpg"
-            alt="미세현미경을 이용한 정밀 진료"
+            alt="미세현미경을 이용한 정밀 진료 모습"
+            loading="lazy"
           />
+          <div class="badge">
+            <svg class="icon"><use href="#i-scope" /></svg>
+            <div>
+              <b>고배율 미세현미경</b><small>실시간 모니터링 진료</small>
+            </div>
+          </div>
         </div>
         <div class="reveal">
           <div class="eyebrow">SIGNATURE CARE</div>
           <h2 class="serif">
             0.1mm의 차이를 보는<br /><em>미세현미경 정밀진료</em>
           </h2>
-          <p>
+          <p class="t">
             맨눈으로는 보이지 않던 미세한 충치, 신경관, 균열까지. 고배율
             미세현미경으로 직접 확인하며 진료하기 때문에 불필요하게 치아를
             깎거나 빼지 않고, 살릴 수 있는 치아를 더 오래 보존합니다.
           </p>
           <ul>
             <li>
-              <b>정밀 신경치료</b> — 미세한 신경관까지 확인해 재발률을 낮춥니다
+              <svg class="icon"><use href="#i-check" /></svg
+              ><span
+                ><b>정밀 신경치료</b> — 미세한 신경관까지 확인해 재발률을
+                낮춥니다</span
+              >
             </li>
             <li>
-              <b>정확한 임플란트</b> — 식립 위치와 잇몸 상태를 정밀하게
-              진단합니다
+              <svg class="icon"><use href="#i-check" /></svg
+              ><span
+                ><b>정확한 임플란트</b> — 식립 위치와 잇몸 상태를 정밀하게
+                진단합니다</span
+              >
             </li>
-            <li><b>최소 침습 보존</b> — 건강한 치아 조직을 최대한 남깁니다</li>
             <li>
-              <b>실시간 환자 공유</b> — 모니터로 내 치아 상태를 직접 확인합니다
+              <svg class="icon"><use href="#i-check" /></svg
+              ><span
+                ><b>최소 침습 보존</b> — 건강한 치아 조직을 최대한
+                남깁니다</span
+              >
+            </li>
+            <li>
+              <svg class="icon"><use href="#i-check" /></svg
+              ><span
+                ><b>실시간 환자 공유</b> — 모니터로 내 치아 상태를 직접
+                확인합니다</span
+              >
             </li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Doctor / Credentials -->
+    <!-- Doctor -->
     <section class="doc" id="doc">
       <div class="wrap">
         <div class="left reveal">
           <div class="imgbox">
-            <img src="images/precision.jpg" alt="대표원장 김하슬람 정밀 술기" />
+            <img
+              src="images/precision.jpg"
+              alt="대표원장 김하슬람의 정밀 술기 모습"
+              loading="lazy"
+            />
           </div>
           <div class="cert">
             <div class="imgbox">
               <img
                 src="images/harvard-cert-kim-haseulram.jpg"
-                alt="하버드 치대 임플란트 과정 수료증"
+                alt="하버드 치대 임플란트 과정 수료증 (Dr. Kim Haseulram)"
+                loading="lazy"
               />
             </div>
             <div class="ct">
@@ -1449,12 +1856,24 @@
           </p>
           <ul>
             <li>
-              <b>Harvard School of Dental Medicine</b> — Advanced Continuing
-              Education Program in Implant Dentistry 수료
+              <svg class="icon"><use href="#i-check" /></svg
+              ><span
+                ><b>Harvard School of Dental Medicine</b> — Advanced Continuing
+                Education Program in Implant Dentistry 수료</span
+              >
             </li>
-            <li>미세현미경 정밀진료 · 임플란트 식립 다수 임상</li>
-            <li>대한치과의사협회 정회원</li>
-            <li>임플란트 · 보철 · 보존 통합 진료</li>
+            <li>
+              <svg class="icon"><use href="#i-check" /></svg
+              ><span>미세현미경 정밀진료 · 임플란트 식립 다수 임상</span>
+            </li>
+            <li>
+              <svg class="icon"><use href="#i-check" /></svg
+              ><span>대한치과의사협회 정회원</span>
+            </li>
+            <li>
+              <svg class="icon"><use href="#i-check" /></svg
+              ><span>임플란트 · 보철 · 보존 통합 진료</span>
+            </li>
           </ul>
           <p
             style="
@@ -1481,80 +1900,128 @@
         <div class="serv-grid">
           <div class="scard reveal">
             <div class="top">
-              <span class="no">01</span>
-              <h3>임플란트</h3>
+              <div class="sic">
+                <svg class="icon"><use href="#i-tooth" /></svg>
+              </div>
+              <div>
+                <span class="no">01</span>
+                <h3>임플란트</h3>
+              </div>
             </div>
             <p>
               정밀 진단 기반의 안전한 식립. 뼈이식·무절개 등 환자 상태에 맞춘
               맞춤 임플란트를 진행합니다.
             </p>
             <div class="ft">
-              <span>IMPLANT</span><a href="#hours">상담예약 →</a>
+              <span>IMPLANT</span
+              ><a href="#hours"
+                >상담예약 <svg class="icon"><use href="#i-arrow" /></svg
+              ></a>
             </div>
           </div>
           <div class="scard reveal">
             <div class="top">
-              <span class="no">02</span>
-              <h3>치아교정</h3>
+              <div class="sic">
+                <svg class="icon"><use href="#i-spark" /></svg>
+              </div>
+              <div>
+                <span class="no">02</span>
+                <h3>치아교정</h3>
+              </div>
             </div>
             <p>
               투명교정·부분교정·성장기 교정까지. 심미와 기능을 함께 고려한 교정
               플랜을 제안합니다.
             </p>
             <div class="ft">
-              <span>ORTHODONTICS</span><a href="#hours">상담예약 →</a>
+              <span>ORTHODONTICS</span
+              ><a href="#hours"
+                >상담예약 <svg class="icon"><use href="#i-arrow" /></svg
+              ></a>
             </div>
           </div>
           <div class="scard reveal">
             <div class="top">
-              <span class="no">03</span>
-              <h3>심미보철 · 라미네이트</h3>
+              <div class="sic">
+                <svg class="icon"><use href="#i-star" /></svg>
+              </div>
+              <div>
+                <span class="no">03</span>
+                <h3>심미보철·라미네이트</h3>
+              </div>
             </div>
             <p>
               자연스러운 색과 형태의 보철. 크라운·브릿지·라미네이트로 건강하고
               아름다운 미소를 완성합니다.
             </p>
             <div class="ft">
-              <span>PROSTHODONTICS</span><a href="#hours">상담예약 →</a>
+              <span>PROSTHODONTICS</span
+              ><a href="#hours"
+                >상담예약 <svg class="icon"><use href="#i-arrow" /></svg
+              ></a>
             </div>
           </div>
           <div class="scard reveal">
             <div class="top">
-              <span class="no">04</span>
-              <h3>소아치과</h3>
+              <div class="sic">
+                <svg class="icon"><use href="#i-heart" /></svg>
+              </div>
+              <div>
+                <span class="no">04</span>
+                <h3>소아치과</h3>
+              </div>
             </div>
             <p>
               아이가 무서워하지 않는 편안한 진료. 충치 예방, 불소도포, 실란트로
               우리 아이 첫 치과를 책임집니다.
             </p>
             <div class="ft">
-              <span>PEDIATRIC</span><a href="#hours">상담예약 →</a>
+              <span>PEDIATRIC</span
+              ><a href="#hours"
+                >상담예약 <svg class="icon"><use href="#i-arrow" /></svg
+              ></a>
             </div>
           </div>
           <div class="scard reveal">
             <div class="top">
-              <span class="no">05</span>
-              <h3>충치 · 신경치료</h3>
+              <div class="sic">
+                <svg class="icon"><use href="#i-scope" /></svg>
+              </div>
+              <div>
+                <span class="no">05</span>
+                <h3>충치·신경치료</h3>
+              </div>
             </div>
             <p>
               미세현미경으로 치아를 최대한 살리는 보존 치료. 정밀한 신경치료로
               자연치아를 오래 지킵니다.
             </p>
             <div class="ft">
-              <span>CONSERVATIVE</span><a href="#hours">상담예약 →</a>
+              <span>CONSERVATIVE</span
+              ><a href="#hours"
+                >상담예약 <svg class="icon"><use href="#i-arrow" /></svg
+              ></a>
             </div>
           </div>
           <div class="scard reveal">
             <div class="top">
-              <span class="no">06</span>
-              <h3>잇몸치료 · 사랑니 발치</h3>
+              <div class="sic">
+                <svg class="icon"><use href="#i-shield" /></svg>
+              </div>
+              <div>
+                <span class="no">06</span>
+                <h3>잇몸치료·사랑니 발치</h3>
+              </div>
             </div>
             <p>
               스케일링·잇몸치료로 치아 건강의 기초를 다지고, 까다로운 사랑니도
               안전하게 발치합니다.
             </p>
             <div class="ft">
-              <span>PERIO · SURGERY</span><a href="#hours">상담예약 →</a>
+              <span>PERIO · SURGERY</span
+              ><a href="#hours"
+                >상담예약 <svg class="icon"><use href="#i-arrow" /></svg
+              ></a>
             </div>
           </div>
         </div>
@@ -1571,7 +2038,9 @@
         </p>
         <div class="grid reveal">
           <div class="hcol l" style="text-align: left">
-            <h3>진료시간</h3>
+            <h3>
+              <svg class="icon"><use href="#i-clock" /></svg>진료시간
+            </h3>
             <div class="tag">평일 야간 · 토 · 일 진료</div>
             <div class="hrow hl">
               <span class="day">평일 (월–금)</span
@@ -1595,38 +2064,28 @@
             </p>
           </div>
           <div class="hcol" style="text-align: left">
-            <h3>오시는 길</h3>
-            <div style="height: 8px"></div>
+            <h3>
+              <svg class="icon"><use href="#i-pin" /></svg>오시는 길
+            </h3>
+            <div style="height: 6px"></div>
             <div class="line">
-              <span class="k">ADDRESS</span
+              <svg class="icon"><use href="#i-pin" /></svg
               ><b>경기 안산시 단원구 원포공원1로 46<br />이마트 고잔점 5층</b>
             </div>
             <div class="line">
-              <span class="k">TEL</span><b>031-411-2475</b>
+              <svg class="icon"><use href="#i-phone" /></svg><b>031-411-2475</b>
             </div>
             <div class="line">
-              <span class="k">PARKING</span><b>이마트 고잔점 주차장 이용</b>
+              <svg class="icon"><use href="#i-car" /></svg
+              ><b>이마트 고잔점 주차장 이용 (편리)</b>
             </div>
             <div class="mapwrap">
-              <a
-                href="https://map.naver.com/v5/search/연세매일치과의원"
-                target="_blank"
-                rel="noopener"
-              >
-                <div
-                  class="imgbox"
-                  style="
-                    background: linear-gradient(135deg, #e9eef4, #f3f6fa);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: #9aa7b8;
-                    font-size: 0.86rem;
-                  "
-                >
-                  네이버 지도에서 길찾기 →
-                </div>
-              </a>
+              <iframe
+                title="연세매일치과의원 위치 지도"
+                src="https://www.google.com/maps?q=경기 안산시 단원구 원포공원1로 46&z=17&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
             <a
               href="https://map.naver.com/v5/search/연세매일치과의원"
@@ -1634,7 +2093,8 @@
               rel="noopener"
               class="btn btn-outline-d"
               style="margin-top: 18px"
-              >지도로 길찾기</a
+              ><svg class="icon"><use href="#i-pin" /></svg>네이버 지도로
+              길찾기</a
             >
           </div>
         </div>
@@ -1651,7 +2111,13 @@
         </p>
         <div class="rev-grid">
           <div class="rcard reveal">
-            <span class="q">“</span>
+            <div class="stars">
+              <svg class="icon"><use href="#i-star" /></svg
+              ><svg class="icon"><use href="#i-star" /></svg
+              ><svg class="icon"><use href="#i-star" /></svg
+              ><svg class="icon"><use href="#i-star" /></svg
+              ><svg class="icon"><use href="#i-star" /></svg>
+            </div>
             <p>
               퇴근하고 갈 수 있는 치과를 찾다 알게 됐어요. 야간인데도 현미경으로
               꼼꼼히 봐주시고, 과잉진료 없이 필요한 것만 설명해주셔서 믿음이
@@ -1663,7 +2129,13 @@
             </div>
           </div>
           <div class="rcard reveal">
-            <span class="q">“</span>
+            <div class="stars">
+              <svg class="icon"><use href="#i-star" /></svg
+              ><svg class="icon"><use href="#i-star" /></svg
+              ><svg class="icon"><use href="#i-star" /></svg
+              ><svg class="icon"><use href="#i-star" /></svg
+              ><svg class="icon"><use href="#i-star" /></svg>
+            </div>
             <p>
               아이 둘 데리고 다니는데 소아 진료까지 한 곳에서 돼서 편해요.
               무서워하던 아이를 잘 달래주셔서 이제는 치과를 안 무서워합니다.
@@ -1674,7 +2146,13 @@
             </div>
           </div>
           <div class="rcard reveal">
-            <span class="q">“</span>
+            <div class="stars">
+              <svg class="icon"><use href="#i-star" /></svg
+              ><svg class="icon"><use href="#i-star" /></svg
+              ><svg class="icon"><use href="#i-star" /></svg
+              ><svg class="icon"><use href="#i-star" /></svg
+              ><svg class="icon"><use href="#i-star" /></svg>
+            </div>
             <p>
               다른 곳에선 신경치료하고 빼자고 했는데, 여기선 현미경으로 보시더니
               살릴 수 있다고 하셨어요. 덕분에 자연치아를 지켰습니다.
@@ -1697,22 +2175,27 @@
           야간·주말 진료, 미세현미경 정밀진료. 궁금한 점은 전화 한 통이면
           충분합니다.
         </p>
-        <div class="tel"><a href="tel:031-411-2475">031-411-2475</a></div>
+        <div class="tel">
+          <svg class="icon"><use href="#i-phone" /></svg
+          ><a href="tel:031-411-2475">031-411-2475</a>
+        </div>
         <div class="row">
-          <a href="tel:031-411-2475" class="btn btn-gold">전화 예약하기</a>
+          <a href="tel:031-411-2475" class="btn btn-gold"
+            ><svg class="icon"><use href="#i-phone" /></svg>전화 예약하기</a
+          >
           <a
             href="https://map.naver.com/v5/search/연세매일치과의원"
             target="_blank"
             rel="noopener"
             class="btn btn-out"
-            >네이버 예약·지도</a
+            ><svg class="icon"><use href="#i-pin" /></svg>네이버 예약·지도</a
           >
           <a
             href="https://blog.naver.com/maeil0508"
             target="_blank"
             rel="noopener"
             class="btn btn-out"
-            >블로그 바로가기</a
+            ><svg class="icon"><use href="#i-pen" /></svg>블로그 바로가기</a
           >
         </div>
       </div>
@@ -1762,54 +2245,68 @@
       </div>
     </footer>
 
-    <!-- Sticky mobile CTA -->
+    <!-- Mobile CTA -->
     <div class="mobile-cta">
-      <a href="tel:031-411-2475" class="m-tel">전화상담</a>
+      <a href="tel:031-411-2475" class="m-tel"
+        ><svg class="icon"><use href="#i-phone" /></svg>전화상담</a
+      >
       <a
         href="https://map.naver.com/v5/search/연세매일치과의원"
         target="_blank"
         rel="noopener"
         class="m-map"
-        >네이버 예약</a
+        ><svg class="icon"><use href="#i-pin" /></svg>네이버 예약</a
       >
       <a
         href="https://blog.naver.com/maeil0508"
         target="_blank"
         rel="noopener"
         class="m-blog"
-        >블로그</a
+        ><svg class="icon"><use href="#i-pen" /></svg>블로그</a
       >
     </div>
 
-    <!-- Desktop float -->
+    <!-- Float -->
     <div class="floatcol">
-      <a href="tel:031-411-2475" class="f-tel">☎<span>전화</span></a>
+      <a href="tel:031-411-2475" class="f-tel" aria-label="전화"
+        ><svg class="icon"><use href="#i-phone" /></svg><span>전화</span></a
+      >
       <a
         href="https://map.naver.com/v5/search/연세매일치과의원"
         target="_blank"
         rel="noopener"
         class="f-map"
-        >📍<span>지도</span></a
+        aria-label="지도"
+        ><svg class="icon"><use href="#i-pin" /></svg><span>지도</span></a
       >
       <a
         href="https://blog.naver.com/maeil0508"
         target="_blank"
         rel="noopener"
         class="f-blog"
-        >📝<span>블로그</span></a
+        aria-label="블로그"
+        ><svg class="icon"><use href="#i-pen" /></svg><span>블로그</span></a
       >
-      <a href="#home" class="f-top">▲<span>TOP</span></a>
+      <a href="#home" class="f-top" id="ftop" aria-label="맨 위로"
+        ><svg class="icon"><use href="#i-up" /></svg><span>TOP</span></a
+      >
     </div>
 
     <script>
       const hamb = document.getElementById('hamb'),
         menu = document.getElementById('menu');
-      hamb.addEventListener('click', () => menu.classList.toggle('open'));
-      menu
-        .querySelectorAll('a')
-        .forEach((a) =>
-          a.addEventListener('click', () => menu.classList.remove('open')),
-        );
+      hamb.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        hamb.classList.toggle('on');
+      });
+      menu.querySelectorAll('a').forEach((a) =>
+        a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          hamb.classList.remove('on');
+        }),
+      );
+
+      // reveal
       const io = new IntersectionObserver(
         (es) =>
           es.forEach((e) => {
@@ -1821,6 +2318,29 @@
         { threshold: 0.12 },
       );
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+      // scroll: progress bar + header shadow + back-to-top + active nav
+      const hdr = document.getElementById('hdr'),
+        prog = document.getElementById('progress'),
+        ftop = document.getElementById('ftop');
+      const secs = [...document.querySelectorAll('section[id]')];
+      const links = [...document.querySelectorAll('.menu a')];
+      function onScroll() {
+        const st = window.scrollY,
+          h = document.body.scrollHeight - window.innerHeight;
+        prog.style.width = (st / h) * 100 + '%';
+        hdr.classList.toggle('scrolled', st > 10);
+        ftop.classList.toggle('show', st > 600);
+        let cur = '';
+        for (const s of secs) {
+          if (st >= s.offsetTop - 120) cur = s.id;
+        }
+        links.forEach((a) =>
+          a.classList.toggle('active', a.getAttribute('href') === '#' + cur),
+        );
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
     </script>
   </body>
 </html>
