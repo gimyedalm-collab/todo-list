@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이용약관 — (SJ)에스제이탐정사무소</title>
+    <meta
+      name="description"
+      content="(SJ)에스제이탐정사무소 이용약관 — 서비스 이용 조건 및 의뢰인·사무소의 권리·의무"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Serif+KR:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%23050507'/><text x='50' y='68' font-family='Georgia,serif' font-size='52' font-weight='700' fill='%23b89968' text-anchor='middle' letter-spacing='-2'>SJ</text></svg>"
+    />
+    <style>
+      :root {
+        --bg: #050507;
+        --bg-card: #15151a;
+        --line: rgba(255, 255, 255, 0.08);
+        --text: rgba(255, 255, 255, 0.82);
+        --text-soft: rgba(255, 255, 255, 0.6);
+        --text-mute: rgba(255, 255, 255, 0.4);
+        --gold: #b89968;
+        --gold-light: #d4b888;
+        --gold-deep: #8c6f43;
+        --red: #b8332a;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+        font-size: 15px;
+      }
+      a { color: var(--gold-light); text-decoration: none; }
+      a:hover { color: #fff; text-decoration: underline; }
+
+      header {
+        position: sticky; top: 0; z-index: 100;
+        background: rgba(5, 5, 7, 0.95);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav {
+        max-width: 1100px; margin: 0 auto;
+        padding: 18px 32px;
+        display: flex; align-items: center; justify-content: space-between;
+      }
+      .logo {
+        display: flex; align-items: baseline; gap: 10px;
+        color: #fff; text-decoration: none;
+      }
+      .logo:hover { text-decoration: none; }
+      .logo-mark {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 28px; font-weight: 700;
+        color: var(--gold-light); letter-spacing: 0.06em;
+      }
+      .logo-text {
+        font-size: 12px; letter-spacing: 0.25em;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .back-link {
+        font-size: 13px; color: var(--text-soft);
+        letter-spacing: 0.05em;
+      }
+      .back-link:hover { color: var(--gold-light); }
+
+      main {
+        max-width: 880px; margin: 0 auto;
+        padding: 80px 32px 100px;
+      }
+      .doc-eyebrow {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 13px; letter-spacing: 0.35em;
+        color: var(--gold-deep);
+        margin-bottom: 18px; text-transform: uppercase;
+      }
+      h1 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: 700; color: #fff;
+        letter-spacing: -0.025em; line-height: 1.35;
+        margin-bottom: 18px;
+      }
+      .doc-meta {
+        font-size: 13px; color: var(--text-mute);
+        letter-spacing: 0.04em;
+        padding-bottom: 28px; margin-bottom: 48px;
+        border-bottom: 1px solid var(--line);
+      }
+      .doc-meta strong {
+        color: var(--gold-light); font-weight: 500;
+      }
+      .doc-intro {
+        font-size: 15px; color: var(--text-soft);
+        line-height: 1.95;
+        margin-bottom: 56px;
+        padding: 24px 26px;
+        background: var(--bg-card);
+        border-left: 3px solid var(--gold);
+      }
+
+      h2 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 20px; font-weight: 700; color: #fff;
+        letter-spacing: -0.015em; line-height: 1.4;
+        margin: 48px 0 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--line);
+        scroll-margin-top: 100px;
+      }
+      h2::before {
+        content: attr(data-num);
+        font-family: 'Cormorant Garamond', serif;
+        color: var(--gold-deep);
+        font-size: 15px; letter-spacing: 0.1em;
+        margin-right: 12px;
+      }
+      h3 {
+        font-size: 15px; font-weight: 600;
+        color: var(--gold-light);
+        margin: 24px 0 10px;
+      }
+      p { margin-bottom: 14px; color: var(--text); }
+      p strong { color: #fff; font-weight: 600; }
+      ol, ul {
+        margin: 12px 0 18px 24px; color: var(--text);
+      }
+      ol li, ul li {
+        margin-bottom: 8px; padding-left: 6px;
+      }
+      ul.dash {
+        list-style: none; margin-left: 0;
+      }
+      ul.dash li::before {
+        content: '·'; color: var(--gold);
+        margin-right: 10px; font-weight: 700;
+      }
+      .warn-box {
+        margin: 18px 0; padding: 18px 22px;
+        background: rgba(184, 50, 42, 0.08);
+        border: 1px solid rgba(184, 50, 42, 0.3);
+        border-left: 3px solid var(--red);
+        font-size: 14px;
+      }
+      .warn-box strong { color: #ff6b5e; }
+
+      .doc-foot {
+        margin-top: 80px; padding-top: 32px;
+        border-top: 1px solid var(--line);
+        font-size: 13px; color: var(--text-mute);
+        line-height: 1.9;
+      }
+      .doc-foot strong { color: var(--gold-light); }
+      .doc-foot-links {
+        margin-top: 24px;
+        display: flex; gap: 24px; flex-wrap: wrap;
+      }
+      .doc-foot-links a {
+        font-size: 13px; letter-spacing: 0.05em;
+      }
+
+      footer {
+        background: #030305;
+        padding: 36px 32px 28px;
+        border-top: 1px solid var(--line);
+        text-align: center;
+        font-size: 12px; color: var(--text-mute);
+        line-height: 1.9;
+      }
+      footer a {
+        color: var(--text-soft); margin: 0 8px;
+      }
+      footer a:hover { color: var(--gold-light); }
+      footer .copyright {
+        margin-top: 14px; letter-spacing: 0.04em;
+      }
+
+      @media (max-width: 720px) {
+        .nav { padding: 14px 20px; }
+        main { padding: 50px 20px 70px; }
+        h2 { font-size: 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">SJ</span>
+          <span class="logo-text">DETECTIVE OFFICE</span>
+        </a>
+        <a href="index.html" class="back-link">← 메인으로</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="doc-eyebrow">TERMS OF SERVICE</div>
+      <h1>이용약관</h1>
+      <p class="doc-meta">
+        <strong>(SJ)에스제이탐정사무소</strong> · 시행일 2026년 6월 2일
+      </p>
+
+      <p class="doc-intro">
+        본 약관은 (SJ)에스제이탐정사무소(이하 "사무소")가 제공하는 탐정 및 조사
+        서비스(이하 "서비스")의 이용 조건 및 절차, 의뢰인과 사무소 간의
+        권리·의무 및 책임사항 등을 규정함을 목적으로 합니다. 의뢰인은 서비스를
+        이용함으로써 본 약관에 동의한 것으로 간주됩니다.
+      </p>
+
+      <h2 data-num="제1조">목적</h2>
+      <p>
+        본 약관은 사무소가 제공하는 탐정 및 조사 서비스의 이용 조건, 절차,
+        의뢰인과 사무소 간의 권리·의무·책임에 관한 사항을 규정함을 목적으로
+        합니다.
+      </p>
+
+      <h2 data-num="제2조">정의</h2>
+      <ol>
+        <li>
+          <strong>"의뢰인"</strong> — 사무소에 서비스를 의뢰한 자연인 또는
+          법인을 말합니다.
+        </li>
+        <li>
+          <strong>"서비스"</strong> — 사무소가 제공하는 외도조사, 사람찾기,
+          사기피해 추적, 기업·거래처 신용조사, 자녀·청소년 안전 조사, 디지털
+          포렌식 및 평판조사 등 일체의 탐정 및 조사 활동을 의미합니다.
+        </li>
+        <li>
+          <strong>"조사 대상자"</strong> — 의뢰인의 요청에 따라 조사가 진행되는
+          제3자를 의미합니다.
+        </li>
+        <li>
+          <strong>"결과물"</strong> — 조사 종료 후 의뢰인에게 인계되는 보고서,
+          사진, 영상, 동선기록 등 일체의 자료를 말합니다.
+        </li>
+      </ol>
+
+      <h2 data-num="제3조">약관의 효력 및 변경</h2>
+      <ol>
+        <li>본 약관은 사이트(sj-kpi.com)에 게시함으로써 효력이 발생합니다.</li>
+        <li>
+          사무소는 관계 법령에 위배되지 않는 범위에서 본 약관을 개정할 수
+          있으며, 개정 시 최소 7일 전 사이트에 공지합니다.
+        </li>
+        <li>
+          의뢰인은 변경된 약관에 동의하지 않을 권리가 있으며, 동의하지 않는 경우
+          서비스 이용을 중단할 수 있습니다.
+        </li>
+      </ol>
+
+      <h2 data-num="제4조">서비스의 종류</h2>
+      <p>
+        사무소가 제공하는 서비스의 구체적인 내용은 사이트에 명시된 바에
+        따릅니다. 사무소는 <strong>탐정업법, 개인정보보호법, 통신비밀보호법 등
+        관련 법령이 허용하는 범위 내</strong>에서만 서비스를 제공합니다.
+      </p>
+
+      <h2 data-num="제5조">의뢰 절차</h2>
+      <ol>
+        <li>1차 상담 (무료, 비공개)</li>
+        <li>조사 설계 및 견적 안내</li>
+        <li>서면 계약 체결</li>
+        <li>조사 진행 및 진행 상황 통지</li>
+        <li>결과 보고서 인계</li>
+      </ol>
+
+      <h2 data-num="제6조">의뢰 거절 사유</h2>
+      <p>사무소는 다음에 해당하는 의뢰는 거절할 수 있습니다.</p>
+      <ol>
+        <li>
+          의뢰 목적이 명백히 범죄, 보복, 협박, 스토킹 등 위법 행위에 해당하는
+          경우
+        </li>
+        <li>의뢰인이 허위의 정보를 제공한 경우</li>
+        <li>조사 대상자의 인권을 명백히 침해할 우려가 있는 경우</li>
+        <li>
+          탐정업법, 개인정보보호법, 통신비밀보호법 등 관련 법령에 위배되는 경우
+        </li>
+        <li>기타 사회 통념상 허용되지 않는다고 사무소가 판단하는 경우</li>
+      </ol>
+      <div class="warn-box">
+        <strong>※ 사무소는 어떠한 경우에도</strong> 불법적인 정보 수집(해킹,
+        도청, 무단 위치추적 등) 의뢰는 일절 수행하지 않습니다.
+      </div>
+
+      <h2 data-num="제7조">비용 및 결제</h2>
+      <ol>
+        <li>
+          서비스 비용은 사안의 난이도, 기간, 투입 인력 등을 고려하여 산정되며,
+          <strong>서면 계약서에 명시</strong>됩니다.
+        </li>
+        <li>
+          계약서에 명시되지 않은 추가 비용은 의뢰인과의
+          <strong>사전 합의 없이 청구하지 않습니다.</strong>
+        </li>
+        <li>
+          현장 조사 시 부득이하게 발생하는 추가 사항(이동비, 장기 잠복 등)은
+          의뢰인과 협의 후 진행합니다.
+        </li>
+        <li>결제 방법은 계좌이체, 카드결제 등 의뢰인과 합의된 방식으로 진행합니다.</li>
+        <li>요청 시 정식 세금계산서를 발행합니다.</li>
+      </ol>
+
+      <h2 data-num="제8조">환불 정책</h2>
+      <ol>
+        <li>
+          계약 체결 후 조사가 개시되기 전 의뢰인의 요청으로 해지하는 경우, 착수
+          준비 비용을 제외한 잔여 금액을 환불합니다.
+        </li>
+        <li>조사 개시 후 해지 시, 진행된 작업 비율에 따라 정산합니다.</li>
+        <li>
+          사무소의 귀책사유로 인해 조사가 불가능해진 경우
+          <strong>100% 환불</strong>합니다.
+        </li>
+        <li>
+          의뢰인의 허위 정보 제공 또는 불법 의뢰 사실이 확인된 경우 환불은
+          제공되지 않습니다.
+        </li>
+      </ol>
+
+      <h2 data-num="제9조">의뢰인의 의무</h2>
+      <ol>
+        <li>의뢰인은 의뢰 시 정확하고 진실한 정보를 제공해야 합니다.</li>
+        <li>
+          의뢰인은 사무소가 합법적인 범위 내에서 조사를 수행할 수 있도록
+          협조합니다.
+        </li>
+        <li>
+          의뢰인은 결과물을 <strong>위법한 목적(협박, 스토킹, 보복 등)으로
+          사용하지 않습니다.</strong>
+        </li>
+        <li>
+          결과물을 위법한 목적으로 사용함으로 인한
+          <strong>일체의 법적 책임은 의뢰인 본인에게 귀속</strong>됩니다.
+        </li>
+      </ol>
+
+      <h2 data-num="제10조">사무소의 의무</h2>
+      <ol>
+        <li>
+          사무소는 탐정업법, 개인정보보호법, 통신비밀보호법 등 관련 법령을
+          준수하여 <strong>합법적인 방법으로만</strong> 조사를 수행합니다.
+        </li>
+        <li>
+          사무소는 의뢰인의 신원과 의뢰 내용에 대한 비밀을 철저히 유지합니다.
+        </li>
+        <li>사무소는 계약된 조사 범위 내에서 최선을 다해 조사를 수행합니다.</li>
+        <li>
+          사무소는 모든 의뢰 기록을 사건번호로 관리하며, 의뢰인의 신상은 담당
+          조사관 외 누구에게도 공개되지 않습니다.
+        </li>
+        <li>
+          사무소는 정식 사업자등록(702-22-02085)을 유지하며, 모든 조사관은 탐정사
+          1급 정식 자격을 보유합니다.
+        </li>
+      </ol>
+
+      <h2 data-num="제11조">비밀유지</h2>
+      <ol>
+        <li>
+          사무소는 의뢰인의 신원, 의뢰 내용, 조사 결과 등 일체의 정보에 대해
+          비밀유지 의무를 부담합니다.
+        </li>
+        <li>
+          의뢰인 또한 사무소가 제공한 조사 방법, 보고서 양식, 노하우 등에 대해
+          비밀유지 의무를 부담합니다.
+        </li>
+        <li>비밀유지 의무는 계약 종료 후에도 지속됩니다.</li>
+      </ol>
+
+      <h2 data-num="제12조">결과물의 활용 범위</h2>
+      <ol>
+        <li>결과물의 소유권은 의뢰인에게 귀속됩니다.</li>
+        <li>
+          의뢰인은 결과물을 <strong>합법적인 목적(이혼소송, 손해배상청구,
+          형사고소 등)으로만 활용</strong>해야 합니다.
+        </li>
+        <li>
+          결과물을 SNS·인터넷 등에 무단 공개하거나, 조사 대상자에 대한 직접
+          위협·협박 수단으로 사용하는 행위는 금지됩니다.
+        </li>
+        <li>
+          결과물의 위법한 활용으로 인한 모든 법적 책임은 전적으로 의뢰인에게
+          귀속됩니다.
+        </li>
+      </ol>
+
+      <h2 data-num="제13조">면책 조항</h2>
+      <ol>
+        <li>
+          사무소는 의뢰인의 허위 정보 제공으로 인한 조사 실패에 대해 책임지지
+          않습니다.
+        </li>
+        <li>
+          사무소는 천재지변, 전쟁, 정부 정책 변경 등 불가항력적 사유로 인한
+          서비스 중단에 대해 책임지지 않습니다.
+        </li>
+        <li>
+          사무소는 결과물의 의뢰인 임의 활용으로 인한 분쟁에 대해 책임지지
+          않습니다.
+        </li>
+        <li>
+          사무소는 조사 대상자의 행동 변화(예: 의뢰 후 행적이 갑자기 끊기는 등)로
+          인한 조사 결과의 한계에 대해 책임지지 않습니다.
+        </li>
+      </ol>
+
+      <h2 data-num="제14조">분쟁 해결 및 관할법원</h2>
+      <ol>
+        <li>본 약관에 명시되지 않은 사항은 관련 법령 및 일반 상관습에 따릅니다.</li>
+        <li>
+          본 약관과 관련하여 분쟁이 발생한 경우, 양 당사자는 신의성실의 원칙에
+          따라 우선 협의로 해결합니다.
+        </li>
+        <li>
+          협의가 이루어지지 않을 경우 사무소 소재지(경기 고양시 일산서구)를
+          관할하는 법원(<strong>의정부지방법원 고양지원</strong>)을 제1심
+          관할법원으로 합니다.
+        </li>
+      </ol>
+
+      <div class="doc-foot">
+        <p>
+          <strong>부칙</strong> · 본 이용약관은 2026년 6월 2일부터 시행됩니다.
+        </p>
+        <div class="doc-foot-links">
+          <a href="index.html">← 메인으로</a>
+          <a href="privacy.html">개인정보처리방침 →</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div>
+        <a href="index.html">메인</a> ·
+        <a href="privacy.html">개인정보처리방침</a> ·
+        <a href="terms.html">이용약관</a>
+      </div>
+      <div class="copyright">
+        © 2026 (SJ)에스제이탐정사무소 · 사업자등록번호 702-22-02085 · 대표
+        김혁진
+      </div>
+    </footer>
+  </body>
+</html>

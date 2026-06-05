@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>개인정보처리방침 — (SJ)에스제이탐정사무소</title>
+    <meta
+      name="description"
+      content="(SJ)에스제이탐정사무소 개인정보처리방침 — 의뢰인의 개인정보 보호를 위한 정책"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Serif+KR:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='14' fill='%23050507'/><text x='50' y='68' font-family='Georgia,serif' font-size='52' font-weight='700' fill='%23b89968' text-anchor='middle' letter-spacing='-2'>SJ</text></svg>"
+    />
+    <style>
+      :root {
+        --bg: #050507;
+        --bg-card: #15151a;
+        --line: rgba(255, 255, 255, 0.08);
+        --text: rgba(255, 255, 255, 0.82);
+        --text-soft: rgba(255, 255, 255, 0.6);
+        --text-mute: rgba(255, 255, 255, 0.4);
+        --gold: #b89968;
+        --gold-light: #d4b888;
+        --gold-deep: #8c6f43;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.85;
+        -webkit-font-smoothing: antialiased;
+        font-size: 15px;
+      }
+      a {
+        color: var(--gold-light);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      /* === HEADER === */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(5, 5, 7, 0.95);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 18px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        color: #fff;
+        text-decoration: none;
+      }
+      .logo:hover {
+        text-decoration: none;
+      }
+      .logo-mark {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--gold-light);
+        letter-spacing: 0.06em;
+      }
+      .logo-text {
+        font-size: 12px;
+        letter-spacing: 0.25em;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .back-link {
+        font-size: 13px;
+        color: var(--text-soft);
+        letter-spacing: 0.05em;
+      }
+      .back-link:hover {
+        color: var(--gold-light);
+      }
+
+      /* === MAIN === */
+      main {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 80px 32px 100px;
+      }
+      .doc-eyebrow {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 13px;
+        letter-spacing: 0.35em;
+        color: var(--gold-deep);
+        margin-bottom: 18px;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: clamp(28px, 4vw, 40px);
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.025em;
+        line-height: 1.35;
+        margin-bottom: 18px;
+      }
+      .doc-meta {
+        font-size: 13px;
+        color: var(--text-mute);
+        letter-spacing: 0.04em;
+        padding-bottom: 28px;
+        margin-bottom: 48px;
+        border-bottom: 1px solid var(--line);
+      }
+      .doc-meta strong {
+        color: var(--gold-light);
+        font-weight: 500;
+      }
+      .doc-intro {
+        font-size: 15px;
+        color: var(--text-soft);
+        line-height: 1.95;
+        margin-bottom: 56px;
+        padding: 24px 26px;
+        background: var(--bg-card);
+        border-left: 3px solid var(--gold);
+      }
+
+      h2 {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.015em;
+        line-height: 1.4;
+        margin: 48px 0 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--line);
+        scroll-margin-top: 100px;
+      }
+      h2::before {
+        content: attr(data-num);
+        font-family: 'Cormorant Garamond', serif;
+        color: var(--gold-deep);
+        font-size: 15px;
+        letter-spacing: 0.1em;
+        margin-right: 12px;
+      }
+      h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--gold-light);
+        margin: 24px 0 10px;
+      }
+      p {
+        margin-bottom: 14px;
+        color: var(--text);
+      }
+      p strong {
+        color: #fff;
+        font-weight: 600;
+      }
+      ol,
+      ul {
+        margin: 12px 0 18px 24px;
+        color: var(--text);
+      }
+      ol li,
+      ul li {
+        margin-bottom: 8px;
+        padding-left: 6px;
+      }
+      ul.dash {
+        list-style: none;
+        margin-left: 0;
+      }
+      ul.dash li::before {
+        content: '·';
+        color: var(--gold);
+        margin-right: 10px;
+        font-weight: 700;
+      }
+      .info-box {
+        margin: 18px 0;
+        padding: 18px 22px;
+        background: var(--bg-card);
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--gold);
+      }
+      .info-box dl {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 10px 16px;
+        font-size: 14px;
+      }
+      .info-box dt {
+        color: var(--text-mute);
+        letter-spacing: 0.04em;
+      }
+      .info-box dd {
+        color: #fff;
+        font-weight: 500;
+      }
+
+      .doc-foot {
+        margin-top: 80px;
+        padding-top: 32px;
+        border-top: 1px solid var(--line);
+        font-size: 13px;
+        color: var(--text-mute);
+        line-height: 1.9;
+      }
+      .doc-foot strong {
+        color: var(--gold-light);
+      }
+      .doc-foot-links {
+        margin-top: 24px;
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .doc-foot-links a {
+        font-size: 13px;
+        letter-spacing: 0.05em;
+      }
+
+      /* === FOOTER === */
+      footer {
+        background: #030305;
+        padding: 36px 32px 28px;
+        border-top: 1px solid var(--line);
+        text-align: center;
+        font-size: 12px;
+        color: var(--text-mute);
+        line-height: 1.9;
+      }
+      footer a {
+        color: var(--text-soft);
+        margin: 0 8px;
+      }
+      footer a:hover {
+        color: var(--gold-light);
+      }
+      footer .copyright {
+        margin-top: 14px;
+        letter-spacing: 0.04em;
+      }
+
+      @media (max-width: 720px) {
+        .nav {
+          padding: 14px 20px;
+        }
+        main {
+          padding: 50px 20px 70px;
+        }
+        .info-box dl {
+          grid-template-columns: 1fr;
+          gap: 4px 0;
+        }
+        .info-box dt {
+          font-size: 11px;
+          padding-top: 8px;
+        }
+        h2 {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">SJ</span>
+          <span class="logo-text">DETECTIVE OFFICE</span>
+        </a>
+        <a href="index.html" class="back-link">← 메인으로</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="doc-eyebrow">PRIVACY POLICY</div>
+      <h1>개인정보처리방침</h1>
+      <p class="doc-meta">
+        <strong>(SJ)에스제이탐정사무소</strong> · 시행일 2026년 6월 2일
+      </p>
+
+      <p class="doc-intro">
+        (SJ)에스제이탐정사무소(이하 "사무소")는 「개인정보보호법」 등 관련
+        법령에 따라 의뢰인의 개인정보를 보호하고, 이와 관련된 의뢰인의 권익을
+        보호하기 위해 다음과 같이 개인정보처리방침을 수립·공개합니다.
+      </p>
+
+      <h2 data-num="제1조">개인정보의 처리 목적</h2>
+      <p>
+        사무소는 다음의 목적을 위하여 개인정보를 처리합니다. 처리된 개인정보는
+        다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경될 시에는
+        사전에 의뢰인의 동의를 구합니다.
+      </p>
+      <ol>
+        <li>상담 접수 및 답변</li>
+        <li>의뢰 계약 체결 및 이행</li>
+        <li>조사 진행 및 결과 보고서 작성·인계</li>
+        <li>비용 정산 및 세금계산서 발행</li>
+        <li>분쟁 해결 및 민원 처리</li>
+      </ol>
+
+      <h2 data-num="제2조">수집하는 개인정보 항목 및 수집 방법</h2>
+      <h3>1. 상담 단계 (사이트 / 전화 / 카카오톡 / 텔레그램)</h3>
+      <ul class="dash">
+        <li>성명, 연락처 (전화번호 또는 메신저 ID)</li>
+        <li>상담 내용 (의뢰 사안의 개요)</li>
+      </ul>
+      <h3>2. 계약 단계 (서면 계약 시)</h3>
+      <ul class="dash">
+        <li>실명, 생년월일 또는 사업자등록번호</li>
+        <li>주소 (결과물 인계용)</li>
+        <li>계좌정보 (환불 발생 시에 한함)</li>
+      </ul>
+      <h3>3. 자동 수집 항목</h3>
+      <p>
+        당 사이트는 쿠키, 접속 로그, IP 등 <strong>자동 수집 항목을 운영하지
+        않습니다.</strong> 정적 사이트로 운영되며, 의뢰인이 직접 입력하거나
+        연락한 정보 외에는 어떠한 정보도 자동으로 수집되지 않습니다.
+      </p>
+
+      <h2 data-num="제3조">개인정보의 처리 및 보유 기간</h2>
+      <ol>
+        <li>
+          사무소는 의뢰인의 개인정보를 의뢰 종료일로부터 <strong>최대 3년</strong>
+          이내 파기합니다.
+        </li>
+        <li>
+          의뢰인이 보유 기간 이전에 파기를 요청하는 경우, 관련 법령이 허용하는
+          범위 내에서 즉시 파기합니다.
+        </li>
+        <li>
+          관련 법령에 따라 일정 기간 보존이 필요한 경우(세금계산서·계약서 등)는
+          해당 기간 동안 별도 보관합니다. (예: 「국세기본법」에 따른 거래기록 5년)
+        </li>
+      </ol>
+
+      <h2 data-num="제4조">개인정보의 제3자 제공</h2>
+      <p>
+        사무소는 의뢰인의 개인정보를 <strong>제3자에게 제공하지 않습니다.</strong>
+        다만 다음의 경우는 예외로 합니다.
+      </p>
+      <ol>
+        <li>의뢰인의 사전 명시적 동의를 받은 경우</li>
+        <li>법령에 의해 요구되는 경우 (수사기관·법원의 적법한 요청 등)</li>
+      </ol>
+
+      <h2 data-num="제5조">개인정보 처리의 위탁</h2>
+      <p>
+        사무소는 의뢰인의 개인정보 처리 업무를 외부에 위탁하지 않습니다.
+        <strong>모든 조사 및 보고서 작성은 사무소 소속 탐정사 1급 정식 자격
+        보유 조사관에 의해 직접 수행됩니다.</strong>
+      </p>
+
+      <h2 data-num="제6조">정보주체의 권리·의무 및 행사 방법</h2>
+      <p>의뢰인은 사무소에 대해 언제든지 다음의 권리를 행사할 수 있습니다.</p>
+      <ol>
+        <li>개인정보 처리 현황 통지 요구</li>
+        <li>개인정보 열람 요구</li>
+        <li>개인정보 정정·삭제 요구</li>
+        <li>개인정보 처리 정지 요구</li>
+      </ol>
+      <p>
+        권리 행사는 사무소에 서면, 전화(1644-1488), 카카오톡(@SJDT2),
+        텔레그램(@sjagency2), 이메일 등으로 요청하시면 지체 없이 조치하겠습니다.
+      </p>
+
+      <h2 data-num="제7조">개인정보의 안전성 확보 조치</h2>
+      <p>
+        사무소는 의뢰인의 개인정보 안전성 확보를 위해 다음과 같은 조치를 취하고
+        있습니다.
+      </p>
+      <ol>
+        <li>
+          <strong>사건번호 관리 체계</strong> — 모든 의뢰 기록은 사건번호로만
+          관리되며, 담당 조사관 외 누구도 의뢰인의 실명을 알 수 없습니다.
+        </li>
+        <li>
+          <strong>암호화 보관</strong> — 모든 개인정보는 암호화하여 저장됩니다.
+        </li>
+        <li>
+          <strong>봉인 인계</strong> — 최종 보고서는 봉인 인계되며, 의뢰인 입회
+          하에 사무소 보관본을 폐기합니다.
+        </li>
+        <li>
+          <strong>접근 권한 통제</strong> — 의뢰인 정보에 접근할 수 있는 인원을
+          담당 조사관으로 최소화합니다.
+        </li>
+      </ol>
+
+      <h2 data-num="제8조">조사 대상자(제3자)의 개인정보 처리</h2>
+      <p>
+        사무소는 합법적인 조사 과정에서 부득이하게 조사 대상자(제3자)의
+        개인정보를 처리할 수 있습니다. 이 경우 다음과 같이 처리합니다.
+      </p>
+      <ol>
+        <li>
+          탐정업법 및 개인정보보호법, 통신비밀보호법이 허용하는 범위 내에서만
+          수집·이용합니다.
+        </li>
+        <li>조사 목적 달성 후 즉시 파기합니다.</li>
+        <li>의뢰인 외 어떠한 제3자에게도 제공하지 않습니다.</li>
+        <li>
+          불법적인 정보 수집(해킹, 도청, 위치추적 등)은
+          <strong>절대 수행하지 않습니다.</strong>
+        </li>
+      </ol>
+
+      <h2 data-num="제9조">개인정보 보호책임자</h2>
+      <p>
+        사무소는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와
+        관련한 의뢰인의 불만 처리 및 피해 구제를 위하여 아래와 같이 개인정보
+        보호책임자를 지정하고 있습니다.
+      </p>
+      <div class="info-box">
+        <dl>
+          <dt>개인정보 보호책임자</dt>
+          <dd>대표 김혁진</dd>
+          <dt>대표전화</dt>
+          <dd>1644-1488</dd>
+          <dt>직통</dt>
+          <dd>010-8182-6634</dd>
+          <dt>카카오톡</dt>
+          <dd>@SJDT2</dd>
+          <dt>텔레그램</dt>
+          <dd>@sjagency2</dd>
+        </dl>
+      </div>
+
+      <h2 data-num="제10조">개인정보처리방침의 변경</h2>
+      <p>
+        본 개인정보처리방침은 시행일로부터 적용되며, 법령 및 방침에 따른 변경
+        내용의 추가·삭제 및 정정이 있는 경우에는 변경사항의 시행 7일 전부터
+        사이트 공지를 통하여 고지합니다.
+      </p>
+
+      <h2 data-num="제11조">권익침해 구제 방법</h2>
+      <p>
+        의뢰인은 개인정보 침해로 인한 구제를 받기 위하여 아래 기관에 분쟁 해결이나
+        상담 등을 신청할 수 있습니다.
+      </p>
+      <ul class="dash">
+        <li>
+          개인정보분쟁조정위원회 · 1833-6972 ·
+          <a href="https://www.kopico.go.kr" target="_blank" rel="noopener"
+            >www.kopico.go.kr</a
+          >
+        </li>
+        <li>
+          개인정보침해신고센터 · (국번없이) 118 ·
+          <a href="https://privacy.kisa.or.kr" target="_blank" rel="noopener"
+            >privacy.kisa.or.kr</a
+          >
+        </li>
+        <li>대검찰청 사이버범죄수사단 · 02-3480-3573</li>
+        <li>경찰청 사이버수사국 · (국번없이) 182</li>
+      </ul>
+
+      <div class="doc-foot">
+        <p>
+          <strong>부칙</strong> · 본 개인정보처리방침은 2026년 6월 2일부터
+          시행됩니다.
+        </p>
+        <div class="doc-foot-links">
+          <a href="index.html">← 메인으로</a>
+          <a href="terms.html">이용약관 →</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div>
+        <a href="index.html">메인</a> ·
+        <a href="privacy.html">개인정보처리방침</a> ·
+        <a href="terms.html">이용약관</a>
+      </div>
+      <div class="copyright">
+        © 2026 (SJ)에스제이탐정사무소 · 사업자등록번호 702-22-02085 · 대표
+        김혁진
+      </div>
+    </footer>
+  </body>
+</html>
