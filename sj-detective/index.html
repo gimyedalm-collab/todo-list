@@ -2502,6 +2502,86 @@
         .office-img-wide { aspect-ratio: 4/3; }
       }
 
+      /* === OFFICE GRID 2-COL (회의실 + 비밀 상담실 두 카드) === */
+      .office-grid-2 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        max-width: 880px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 60px;
+      }
+
+      /* === CASE IMAGE (큰 숫자 → 사진 placeholder) === */
+      .case-thumb {
+        position: relative;
+        overflow: hidden;
+      }
+      .case-thumb img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        z-index: 1;
+      }
+      .case-img-fallback {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        background: linear-gradient(135deg, #1a1a1c, #0e0e10);
+        font-family: 'Noto Serif KR', serif;
+      }
+      .case-fb-mark {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--gold-light);
+        letter-spacing: 0.15em;
+      }
+      .case-img-fallback small {
+        font-family: 'Pretendard', sans-serif;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.04em;
+      }
+      .case-thumb.case-img-missing img {
+        display: none;
+      }
+      .case-thumb .case-tag {
+        z-index: 2;
+      }
+
+      /* === 사업자 강조 라인 === */
+      .cred-biz-strong {
+        margin: 18px 0 10px;
+        padding: 10px 14px;
+        background: linear-gradient(
+          135deg,
+          rgba(184, 153, 104, 0.18),
+          rgba(184, 153, 104, 0.06)
+        );
+        border-left: 3px solid var(--gold);
+        color: var(--gold-light);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      /* OFFICE 섹션의 사업자등록증 위 간격 */
+      .office .cred-business {
+        margin-top: 20px;
+      }
+
+      @media (max-width: 540px) {
+        .office-grid-2 { grid-template-columns: 1fr !important; }
+        .cred-biz-strong { font-size: 13px; padding: 8px 12px; }
+      }
+
       /* ============================================
          === DARK MODE UNIFICATION (전체 다크 톤) ===
          ============================================ */
@@ -3298,7 +3378,6 @@
             <li><a href="#why">신뢰의 약속</a></li>
             <li><a href="#team">팀</a></li>
             <li><a href="#office">사무소</a></li>
-            <li><a href="#credentials">자격증</a></li>
             <li><a href="#cases">해결사례</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
@@ -3729,7 +3808,6 @@
             온라인이 아닌, <span class="gold">실제 사무공간</span>
           </h2>
           <p class="section-sub">
-            경기 고양 일산서구 자유프라자 8층 806호 ―<br />
             의뢰인이 직접 방문하실 수 있는 정식 사무소에서 모든 상담이
             진행됩니다.
           </p>
@@ -3753,21 +3831,21 @@
           </figcaption>
         </figure>
 
-        <div class="office-grid">
+        <div class="office-grid office-grid-2">
           <figure class="office-card">
             <div class="office-img-wrap">
               <img
                 src="images/office-investigation.jpg"
-                alt="SJ 탐정사무소 조사실"
+                alt="SJ 탐정사무소 회의실"
                 onerror="this.parentElement.classList.add('office-img-missing')"
               />
               <div class="office-img-fallback">
-                <span class="office-fb-mark">조사실</span>
+                <span class="office-fb-mark">회의실</span>
                 <span class="office-fb-sub">images/office-investigation.jpg</span>
               </div>
             </div>
             <figcaption>
-              <strong>01 · 조사실</strong>
+              <strong>01 · 회의실</strong>
               <span>증거 정리 · 디지털 포렌식 · 촬영 장비 운영</span>
             </figcaption>
           </figure>
@@ -3775,115 +3853,23 @@
           <figure class="office-card">
             <div class="office-img-wrap">
               <img
-                src="images/office-meeting.jpg"
-                alt="SJ 탐정사무소 회의실"
-                onerror="this.parentElement.classList.add('office-img-missing')"
-              />
-              <div class="office-img-fallback">
-                <span class="office-fb-mark">회의실</span>
-                <span class="office-fb-sub">images/office-meeting.jpg</span>
-              </div>
-            </div>
-            <figcaption>
-              <strong>02 · 회의실</strong>
-              <span>의뢰인 브리핑 · 사건 검토 · 결과 보고</span>
-            </figcaption>
-          </figure>
-
-          <figure class="office-card">
-            <div class="office-img-wrap">
-              <img
                 src="images/office-consult.jpg"
-                alt="SJ 탐정사무소 상담실"
+                alt="SJ 탐정사무소 비밀 상담실"
                 onerror="this.parentElement.classList.add('office-img-missing')"
               />
               <div class="office-img-fallback">
-                <span class="office-fb-mark">상담실</span>
+                <span class="office-fb-mark">비밀 상담실</span>
                 <span class="office-fb-sub">images/office-consult.jpg</span>
               </div>
             </div>
             <figcaption>
-              <strong>03 · 비밀 상담실</strong>
-              <span>완전 차폐 · 1:1 비공개 상담 전용 공간</span>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== CREDENTIALS ==================== -->
-    <section class="block credentials" id="credentials">
-      <div class="container">
-        <div class="cred-grid">
-          <figure class="cred-card cred-card-paper">
-            <div class="cred-img-wrap">
-              <img
-                src="images/cert-paper-kim.jpg"
-                alt="탐정사 1급 자격증 - 대표 김혁진"
-                onerror="this.parentElement.classList.add('cred-img-missing')"
-              />
-              <div class="cred-img-fallback">
-                <span class="cred-fallback-mark">자격증</span>
-                <span class="cred-fallback-sub">탐정사 1급</span>
-              </div>
-            </div>
-            <figcaption>
-              <strong>탐정사 1급 자격증</strong>
-            </figcaption>
-          </figure>
-
-          <figure class="cred-card cred-card-paper">
-            <div class="cred-img-wrap">
-              <img
-                src="images/cert-paper-shin.png"
-                alt="탐정사 1급 자격증 - 총괄팀장 신대현"
-                onerror="this.parentElement.classList.add('cred-img-missing')"
-              />
-              <div class="cred-img-fallback">
-                <span class="cred-fallback-mark">자격증</span>
-                <span class="cred-fallback-sub">탐정사 1급</span>
-              </div>
-            </div>
-            <figcaption>
-              <strong>탐정사 1급 자격증</strong>
-            </figcaption>
-          </figure>
-
-          <figure class="cred-card cred-card-id">
-            <div class="cred-img-wrap">
-              <img
-                src="images/cert-card-kim.png"
-                alt="탐정사 1급 자격카드 - 대표 김혁진"
-                onerror="this.parentElement.classList.add('cred-img-missing')"
-              />
-              <div class="cred-img-fallback">
-                <span class="cred-fallback-mark">ID 카드</span>
-                <span class="cred-fallback-sub">탐정사 1급</span>
-              </div>
-            </div>
-            <figcaption>
-              <strong>자격 ID 카드</strong>
-            </figcaption>
-          </figure>
-
-          <figure class="cred-card cred-card-id">
-            <div class="cred-img-wrap">
-              <img
-                src="images/cert-card-shin.png"
-                alt="탐정사 1급 자격카드 - 총괄팀장 신대현"
-                onerror="this.parentElement.classList.add('cred-img-missing')"
-              />
-              <div class="cred-img-fallback">
-                <span class="cred-fallback-mark">ID 카드</span>
-                <span class="cred-fallback-sub">탐정사 1급</span>
-              </div>
-            </div>
-            <figcaption>
-              <strong>자격 ID 카드</strong>
+              <strong>02 · 비밀 상담실</strong>
+              <span>완전 차폐 · 의뢰인 브리핑 · 사건 검토 · 결과 보고</span>
             </figcaption>
           </figure>
         </div>
 
+        <!-- 사업자등록증 (이전 CREDENTIALS에서 통합 이동) -->
         <div class="cred-business">
           <figure class="cred-biz-card">
             <div class="cred-img-wrap">
@@ -3914,10 +3900,12 @@
                 >
               </li>
             </ul>
+            <div class="cred-biz-strong">
+              세금계산서 및 현금영수증 발행 가능
+            </div>
             <p class="cred-biz-note">
-              ※ 국세청에 정식 등록된 탐정 및 조사 서비스업 사업자입니다.
-              세금계산서 발행 가능, 모든 거래는 합법적 회계 처리 하에
-              진행됩니다.
+              ※ 국세청에 정식 등록된 탐정 및 조사 서비스업 사업자입니다. 모든
+              거래는 합법적 회계 처리 하에 진행됩니다.
             </p>
           </div>
         </div>
@@ -3941,8 +3929,16 @@
         <div class="case-grid">
           <div class="case-card">
             <div class="case-thumb">
+              <img
+                src="images/case-1.jpg"
+                alt="외도조사 사례 이미지"
+                onerror="this.parentElement.classList.add('case-img-missing')"
+              />
+              <div class="case-img-fallback">
+                <span class="case-fb-mark">사례 이미지</span>
+                <small>images/case-1.jpg</small>
+              </div>
               <span class="case-tag">외도조사</span>
-              <span class="case-num">01</span>
             </div>
             <div class="case-body">
               <div class="case-meta">
@@ -3963,48 +3959,64 @@
 
           <div class="case-card">
             <div class="case-thumb">
-              <span class="case-tag">사기추적</span>
-              <span class="case-num">02</span>
+              <img
+                src="images/case-2.jpg"
+                alt="결혼 전 검증 사례 이미지"
+                onerror="this.parentElement.classList.add('case-img-missing')"
+              />
+              <div class="case-img-fallback">
+                <span class="case-fb-mark">사례 이미지</span>
+                <small>images/case-2.jpg</small>
+              </div>
+              <span class="case-tag">결혼 전 검증</span>
             </div>
             <div class="case-body">
               <div class="case-meta">
-                <span>30대 남성 의뢰인</span><span>조사 14일</span>
+                <span>30대 여성 의뢰인</span><span>조사 14일</span>
               </div>
               <h3 class="case-title">
-                "2.8억 가상자산 사기, 도주범 실거주지 확보"
+                "초고가 외제차·중견기업 부장으로 둔갑한 예비 배우자"
               </h3>
               <p class="case-excerpt">
-                경찰 신고만으로는 진척이 없던 케이스. 가상자산 지갑 흐름과 SNS
-                디지털 흔적을 교차 분석해 도주 중인 가해자의 실명과 거주지를
-                특정했습니다.
+                결혼을 앞두고 예비 배우자가 보여준 화려한 직장·재산 정보가
+                사실인지 확인하고 싶었던 의뢰인. 다각도 교차 검증으로 14일 만에
+                실체를 확인했습니다.
               </p>
               <div class="case-result">
-                <strong>RESULT —</strong> 경찰 수사 자료 제공, 피의자 검거 후
-                일부 변제
+                <strong>RESULT —</strong> 과도한 채무 및 무직 게임중독자 사실
+                확인, 의뢰인 파혼 결정
               </div>
             </div>
           </div>
 
           <div class="case-card">
             <div class="case-thumb">
-              <span class="case-tag">사람찾기</span>
-              <span class="case-num">03</span>
+              <img
+                src="images/case-3.jpg"
+                alt="현장조사 사례 이미지"
+                onerror="this.parentElement.classList.add('case-img-missing')"
+              />
+              <div class="case-img-fallback">
+                <span class="case-fb-mark">사례 이미지</span>
+                <small>images/case-3.jpg</small>
+              </div>
+              <span class="case-tag">현장조사</span>
             </div>
             <div class="case-body">
               <div class="case-meta">
-                <span>60대 남성 의뢰인</span><span>조사 21일</span>
+                <span>30대 여성 의뢰인</span><span>조사 12일</span>
               </div>
               <h3 class="case-title">
-                "30년 전 헤어진 친누나, 다시 마주한 자리"
+                "끊이지 않는 거짓말, 의심의 순간을 확신으로"
               </h3>
               <p class="case-excerpt">
-                과거 거주지와 단편적 기억만으로 시작한 조사. 합법적 공공기록
-                열람과 지역 탐문을 거쳐 누나의 현재 거주지와 안부를
-                확인했습니다.
+                지속적이고 의미 없는 거짓말들. 의심의 순간이 끊기지 않던
+                상황에서 이루어진 현장조사 케이스. 직접 동행 조사로 의뢰인이
+                의심을 확신으로 바꾸는 데 12일이 걸렸습니다.
               </p>
               <div class="case-result">
-                <strong>RESULT —</strong> 의뢰인 동의 하 상봉 주선, 30년 만의
-                재회 성사
+                <strong>RESULT —</strong> 합법적 증거 확보, 의뢰인 의사결정
+                지원
               </div>
             </div>
           </div>
