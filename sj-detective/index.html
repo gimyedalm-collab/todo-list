@@ -1703,8 +1703,30 @@
       .team-grid,
       .svc-grid,
       .office-grid {
-        grid-auto-rows: 1fr;
-        align-items: stretch;
+        grid-auto-rows: 1fr !important;
+        align-items: stretch !important;
+      }
+
+      /* Cases RESULT 라인: 한 줄로 들어가게 폰트·자간 줄이고 padding 키움 */
+      .case-result {
+        font-size: 12px !important;
+        letter-spacing: -0.01em !important;
+        padding-top: 22px !important;
+        line-height: 1.7 !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .case-result strong {
+        font-size: 11px !important;
+        margin-right: 4px;
+      }
+      @media (max-width: 960px) {
+        .case-result {
+          white-space: normal;
+          font-size: 13px !important;
+        }
+        .case-result strong { font-size: 12px !important; }
       }
 
       /* Cases: RESULT 라인이 모든 카드 같은 높이에 떨어지도록 */
