@@ -466,30 +466,73 @@
         makeShelfBoard(y, false);
       });
 
-      // ─── 헤더 백드롭 (큰 광고 배너 — 사진 무드) ───
-      const bannerTex = new THREE.TextureLoader().load('images/tam-banner.jpg');
-      bannerTex.colorSpace = THREE.SRGBColorSpace;
-      bannerTex.anisotropy = MAX_ANISO;
-      bannerTex.minFilter = THREE.LinearMipmapLinearFilter;
-      bannerTex.magFilter = THREE.LinearFilter;
-
-      // 헤더 보드 (3D 박스 형태 — 두께감)
+      // ─── 헤더 백드롭 (캔버스로 광고 배너를 정확한 비율로 합성) ───
       const headerY = ST_H - HEADER_H / 2 - 0.04;
       const headerBoardMat = new THREE.MeshStandardMaterial({
         color: 0xf5a0b5,
         roughness: 0.5,
       });
+
+      // 헤더 합성 캔버스 (헤더 비율 1.89:1 → 광고 배너 비율 3.81:1)
+      const headerCV = document.createElement('canvas');
+      headerCV.width = 2400;
+      headerCV.height = 1270;
+      const hctx = headerCV.getContext('2d');
+      // 핑크 그라데이션 배경 (광고 배너 위/아래 채움)
+      const headerGrad = hctx.createLinearGradient(0, 0, 0, 1270);
+      headerGrad.addColorStop(0, '#f5a0b5');
+      headerGrad.addColorStop(1, '#e88aa5');
+      hctx.fillStyle = headerGrad;
+      hctx.fillRect(0, 0, 2400, 1270);
+
+      const headerTex = new THREE.CanvasTexture(headerCV);
+      headerTex.colorSpace = THREE.SRGBColorSpace;
+      headerTex.anisotropy = MAX_ANISO;
+      headerTex.minFilter = THREE.LinearMipmapLinearFilter;
+
+      // 광고 배너 이미지 비동기 로드 후 가운데에 정확한 비율로 합성
+      const bannerImg = new Image();
+      bannerImg.onload = () => {
+        const bH = 2400 / 3.81; // 광고 배너 비율 그대로 = 630
+        const bY = (1270 - bH) / 2; // 세로 가운데
+        hctx.drawImage(bannerImg, 0, bY, 2400, bH);
+        // 상단 띠: LOTTE × POP-UP
+        hctx.fillStyle = 'rgba(0,0,0,0.55)';
+        hctx.fillRect(0, 0, 2400, bY);
+        hctx.fillStyle = '#fff';
+        hctx.font =
+          '900 110px Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
+        hctx.textAlign = 'center';
+        hctx.textBaseline = 'middle';
+        hctx.letterSpacing = '20px';
+        hctx.fillText('LOTTE × TAM BEAUTY · POP-UP STORE', 1200, bY / 2);
+        // 하단 띠: THE CLOUD × THE JELLY
+        const bottomBandY = bY + bH;
+        hctx.fillStyle = 'rgba(157,54,83,0.85)';
+        hctx.fillRect(0, bottomBandY, 2400, 1270 - bottomBandY);
+        hctx.fillStyle = '#fff';
+        hctx.font =
+          '900 95px Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
+        hctx.fillText(
+          'THE CLOUD ✦ THE JELLY  ·  전제품 시즌 라인업',
+          1200,
+          bottomBandY + (1270 - bottomBandY) / 2,
+        );
+        headerTex.needsUpdate = true;
+      };
+      bannerImg.src = 'images/tam-banner.jpg';
+
       const headerFrontMat = new THREE.MeshStandardMaterial({
-        map: bannerTex,
+        map: headerTex,
         roughness: 0.5,
       });
-      // 헤더 본체 (배너 텍스처는 앞면, 나머지는 핑크)
+
       const headerFaces = [
         headerBoardMat,
         headerBoardMat,
         headerBoardMat,
         headerBoardMat,
-        headerFrontMat, // +Z 앞면
+        headerFrontMat, // +Z 앞면 (합성된 배너)
         headerBoardMat, // -Z 뒷면
       ];
       const header = new THREE.Mesh(
