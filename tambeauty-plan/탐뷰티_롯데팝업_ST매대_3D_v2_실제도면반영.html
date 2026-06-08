@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>탐뷰티 × 롯데 — ST 매대 3D v2 (실제 도면 반영)</title>
+    <title>
+      탐뷰티 × 롯데 — ST 매대 3D v2 (도면 반영 · 2단 셸프 · 깔끔 진열)
+    </title>
     <style>
       :root {
         --pale: #ffebf1;
@@ -94,7 +96,7 @@
       .legend {
         font-size: 11px;
         line-height: 1.55;
-        min-width: 230px;
+        min-width: 220px;
       }
       .legend strong {
         display: block;
@@ -121,20 +123,18 @@
         border: 1px solid rgba(0, 0, 0, 0.08);
         flex-shrink: 0;
       }
-      .legend .dot.cloud {
-        background: linear-gradient(135deg, #f5a0b5, #c44b6e);
-      }
-      .legend .dot.jelly {
-        background: linear-gradient(135deg, #f8c9a8, #d68a4e);
-      }
       .legend .dot.steel {
         background: linear-gradient(135deg, #d4d8dc, #a0a4a8);
       }
-      .legend .dot.wobbler {
-        background: #ffeb3b;
+      .legend .dot.pink {
+        background: linear-gradient(135deg, #f5a0b5, #c44b6e);
       }
-      .legend .dot.tag {
-        background: #ffd54f;
+      .legend .dot.banner {
+        background: linear-gradient(135deg, #f5a0b5, #e2d4ee);
+      }
+      .legend .dot.mirror {
+        background: linear-gradient(135deg, #e0e6e8, #c0c8cc);
+        border-color: #999;
       }
       .legend .div {
         height: 1px;
@@ -242,9 +242,14 @@
 
       <div class="hud hud-top">
         <div class="title-card">
-          <span class="tag">ST 매대 · 3D v2 · 실제 도면 반영</span>
-          <h1>탐뷰티 ST 매대 — 실제 사이즈 + 도면 구조</h1>
-          <p>W2455 × H2700mm · 3섹션(805×3) · 5단 셸프 · 헤더/드로어 포함</p>
+          <span class="tag"
+            >ST 매대 · 3D v2 · 깔끔 진열 (가격/와블러/POP 없음)</span
+          >
+          <h1>탐뷰티 ST 매대 3D — 사진 무드 그대로</h1>
+          <p>
+            큰 헤더 백드롭 · 양옆 "탐"+"뷰" · 2단 셸프에 핑크 박스 균일 진열 ·
+            미러만 추가
+          </p>
         </div>
         <div class="legend">
           <strong>구성 범례</strong>
@@ -252,21 +257,18 @@
             <span class="dot steel"></span><b>스틸 메탈 골격</b>
           </div>
           <div class="row">
-            <span class="dot cloud"></span><b>CLOUD 박스 7종</b>
+            <span class="dot banner"></span><b>광고 배너 백드롭</b>
           </div>
           <div class="row">
-            <span class="dot jelly"></span><b>JELLY 박스 6종</b>
+            <span class="dot pink"></span><b>핑크 박스</b> · 균일 진열
           </div>
           <div class="row">
-            <span class="dot wobbler"></span><b>와블러</b> · 흔들이
-          </div>
-          <div class="row">
-            <span class="dot tag"></span><b>가격 라벨 띠</b> · 셸프 앞
+            <span class="dot mirror"></span><b>거울</b> · 체험용
           </div>
           <div class="div"></div>
           <div class="spec">실측 · <b>W2,455 × H2,700mm</b></div>
           <div class="spec">3섹션 · <b>805 + 805 + 805</b></div>
-          <div class="spec">5단 · <b>300 × 4 + 400 × 1</b></div>
+          <div class="spec">셸프 · <b>2단</b> (사진 그대로)</div>
         </div>
       </div>
 
@@ -276,11 +278,11 @@
         <div class="ctrl">
           <button data-view="hero" class="active">전체뷰</button>
           <button data-view="front">정면</button>
-          <button data-view="left">좌측</button>
+          <button data-view="left">좌측 (탐)</button>
+          <button data-view="right">우측 (뷰)</button>
           <button data-view="back">뒷면</button>
           <button data-view="shelf">셸프 클로즈업</button>
-          <button data-view="wobbler">와블러 강조</button>
-          <button data-view="header">헤더/POP</button>
+          <button data-view="header">헤더 클로즈업</button>
         </div>
       </div>
     </div>
@@ -325,7 +327,7 @@
         0.1,
         100,
       );
-      camera.position.set(4.5, 2.2, 5);
+      camera.position.set(4.5, 2.0, 5);
 
       const controls = new OrbitControls(camera, canvas);
       controls.enableDamping = true;
@@ -336,8 +338,8 @@
       controls.target.set(0, 1.35, 0);
 
       // ─── 조명 ───
-      scene.add(new THREE.AmbientLight(0xfff0f4, 0.55));
-      const key = new THREE.DirectionalLight(0xffeede, 1.1);
+      scene.add(new THREE.AmbientLight(0xfff0f4, 0.6));
+      const key = new THREE.DirectionalLight(0xffeede, 1.05);
       key.position.set(5, 8, 5);
       key.castShadow = true;
       key.shadow.mapSize.set(2048, 2048);
@@ -346,23 +348,12 @@
       key.shadow.camera.top = 6;
       key.shadow.camera.bottom = -6;
       scene.add(key);
-      scene.add(
-        new THREE.DirectionalLight(0xffc8d4, 0.4).translateOnAxis(
-          new THREE.Vector3(-3, 3, -2).normalize(),
-          1,
-        ),
-      );
-      const rim = new THREE.PointLight(0xff9bb5, 0.5, 8);
+      const fill = new THREE.DirectionalLight(0xffc8d4, 0.4);
+      fill.position.set(-3, 3, -2);
+      scene.add(fill);
+      const rim = new THREE.PointLight(0xff9bb5, 0.45, 8);
       rim.position.set(0, 2.5, -2);
       scene.add(rim);
-      // 셸프 안쪽 따뜻한 조명 (천장 다운라이트)
-      [-0.8, 0, 0.8].forEach((sx) => {
-        const l = new THREE.SpotLight(0xfff0d0, 0.4, 3, Math.PI / 3, 0.6);
-        l.position.set(sx, 2.55, 0.2);
-        l.target.position.set(sx, 1.2, 0.2);
-        scene.add(l);
-        scene.add(l.target);
-      });
 
       // ─── 바닥 ───
       const floor = new THREE.Mesh(
@@ -378,25 +369,19 @@
       scene.add(floor);
 
       // ============================================================
-      // 실제 도면 사이즈 (1unit = 1m)
-      // W 2.455m, H 2.7m, D 0.6m
-      // 3섹션 × 0.805m (SECTION A/B/C)
-      // 셸프 5단 : 300×4 + 400 (mm) — 즉 0.3×4 + 0.4 = 1.6m 셸프 영역
-      // 드로어   : 200mm  (0.2m)
-      // 헤더     : 900mm  (0.9m)  ← 백드롭 영역
+      // 도면 사이즈 + 사진 비율 반영
+      // W2.455 × H2.7 × D0.6, 3섹션
+      // 사진 비율: 큰 헤더(약 50%) + 2단 셸프(약 35%) + 드로어(약 15%)
       // ============================================================
       const ST_W = 2.455;
       const ST_H = 2.7;
       const ST_D = 0.6;
       const SECTION_W = 0.805;
-      const DRAWER_H = 0.2;
-      const HEADER_H = 0.9;
-      const SHELF_AREA_H = 1.6;
-      // 셸프 Y 좌표 (바닥부터)
-      // 드로어(0~0.2) -> 셸프5(0.2~0.6) -> 셸프4(0.6~0.9) -> 셸프3(0.9~1.2)
-      // -> 셸프2(1.2~1.5) -> 셸프1(1.5~1.8) -> 헤더(1.8~2.7)
-      const SHELF_Y = [1.8, 1.5, 1.2, 0.9, 0.6]; // 상단부터 셸프1~5의 상판 높이
-      const SHELF_SPACE = [0.3, 0.3, 0.3, 0.3, 0.4]; // 각 셸프의 진열 높이
+      const DRAWER_H = 0.32;
+      const HEADER_H = 1.35; // 큰 헤더 (사진 비율)
+      // 셸프 2단 (드로어 위 → 헤더 아래 = 2.7 - 1.35 - 0.32 = 1.03m)
+      // 두 셸프를 0.32, 0.85 위치에 (각 셸프 사이 공간 0.5m)
+      const SHELF_Y = [1.05, 0.55]; // 상단 / 하단 (셸프 상판 높이)
 
       // ─── 스틸 머티리얼 ───
       const steelMat = new THREE.MeshStandardMaterial({
@@ -415,70 +400,65 @@
         metalness: 0.7,
       });
 
-      // ─── 4 코너 수직 포스트 (메탈 봉) ───
-      const postR = 0.018;
-      const postH = ST_H;
-      const corners = [
+      // ─── 4 코너 + 중간 2 = 수직 메탈 봉 8개 ───
+      const postR = 0.02;
+      [
         [-ST_W / 2, -ST_D / 2],
         [ST_W / 2, -ST_D / 2],
         [-ST_W / 2, ST_D / 2],
         [ST_W / 2, ST_D / 2],
-      ];
-      // 중간 포스트 2개 (3섹션 구분, 앞/뒤 양면)
-      const midX = [-SECTION_W / 2, SECTION_W / 2];
-      midX.forEach((mx) => {
-        corners.push([mx, -ST_D / 2]);
-        corners.push([mx, ST_D / 2]);
-      });
-      corners.forEach(([x, z]) => {
+        [-SECTION_W / 2, -ST_D / 2],
+        [SECTION_W / 2, -ST_D / 2],
+        [-SECTION_W / 2, ST_D / 2],
+        [SECTION_W / 2, ST_D / 2],
+      ].forEach(([x, z]) => {
         const post = new THREE.Mesh(
-          new THREE.CylinderGeometry(postR, postR, postH, 16),
+          new THREE.CylinderGeometry(postR, postR, ST_H, 16),
           steelMat,
         );
-        post.position.set(x, postH / 2, z);
+        post.position.set(x, ST_H / 2, z);
         post.castShadow = true;
         scene.add(post);
       });
 
-      // ─── 상단 가로 빔 (4개) ───
+      // ─── 상단 가로 빔 4개 ───
       [
-        { len: ST_W + 0.04, axis: 'x', x: 0, y: ST_H - 0.01, z: -ST_D / 2 },
-        { len: ST_W + 0.04, axis: 'x', x: 0, y: ST_H - 0.01, z: ST_D / 2 },
-        { len: ST_D + 0.04, axis: 'z', x: -ST_W / 2, y: ST_H - 0.01, z: 0 },
-        { len: ST_D + 0.04, axis: 'z', x: ST_W / 2, y: ST_H - 0.01, z: 0 },
+        { len: ST_W + 0.04, axis: 'x', x: 0, z: -ST_D / 2 },
+        { len: ST_W + 0.04, axis: 'x', x: 0, z: ST_D / 2 },
+        { len: ST_D + 0.04, axis: 'z', x: -ST_W / 2, z: 0 },
+        { len: ST_D + 0.04, axis: 'z', x: ST_W / 2, z: 0 },
       ].forEach((b) => {
         const beam = new THREE.Mesh(
           new THREE.BoxGeometry(
-            b.axis === 'x' ? b.len : 0.03,
-            0.03,
-            b.axis === 'z' ? b.len : 0.03,
+            b.axis === 'x' ? b.len : 0.035,
+            0.035,
+            b.axis === 'z' ? b.len : 0.035,
           ),
           steelDarkMat,
         );
-        beam.position.set(b.x, b.y, b.z);
+        beam.position.set(b.x, ST_H - 0.018, b.z);
         beam.castShadow = true;
         scene.add(beam);
       });
 
-      // ─── 5단 셸프 (앞/뒤 양면 진열) ───
-      // 각 셸프는 가로 ST_W, 깊이 ST_D/2 (앞면용 + 뒷면용 별도)
+      // ─── 2단 셸프 (앞/뒤 양면) ───
       function makeShelfBoard(y, isFront) {
         const board = new THREE.Mesh(
-          new THREE.BoxGeometry(ST_W - 0.06, 0.022, ST_D / 2 - 0.04),
+          new THREE.BoxGeometry(ST_W - 0.06, 0.025, ST_D / 2 - 0.04),
           shelfBoardMat,
         );
-        const z = isFront ? ST_D / 4 : -ST_D / 4;
-        board.position.set(0, y + 0.011, z);
+        const z = isFront ? ST_D / 4 + 0.005 : -(ST_D / 4 + 0.005);
+        board.position.set(0, y + 0.012, z);
         board.castShadow = true;
         board.receiveShadow = true;
         scene.add(board);
-        // 앞 엣지 (스틸 라인)
+        // 앞 엣지 (스틸)
         const edge = new THREE.Mesh(
-          new THREE.BoxGeometry(ST_W - 0.06, 0.028, 0.012),
+          new THREE.BoxGeometry(ST_W - 0.06, 0.032, 0.012),
           steelDarkMat,
         );
-        const ez = isFront ? ST_D / 2 - 0.02 : -(ST_D / 2 - 0.02);
-        edge.position.set(0, y + 0.014, ez);
+        const ez = isFront ? ST_D / 2 - 0.018 : -(ST_D / 2 - 0.018);
+        edge.position.set(0, y + 0.016, ez);
         scene.add(edge);
       }
       SHELF_Y.forEach((y) => {
@@ -486,124 +466,58 @@
         makeShelfBoard(y, false);
       });
 
-      // ─── 노란 가격 라벨 띠 (각 셸프 앞면) ───
-      function makePriceTagStrip(y, isFront, lineLabel, priceLabel) {
-        // 띠 배경
-        const stripCanvas = document.createElement('canvas');
-        stripCanvas.width = 2400;
-        stripCanvas.height = 200;
-        const sctx = stripCanvas.getContext('2d');
-        // 노란 띠
-        const grad = sctx.createLinearGradient(0, 0, 2400, 0);
-        grad.addColorStop(0, '#ffd54f');
-        grad.addColorStop(0.5, '#ffe082');
-        grad.addColorStop(1, '#ffd54f');
-        sctx.fillStyle = grad;
-        sctx.fillRect(0, 0, 2400, 200);
-        // 검은 텍스트
-        sctx.fillStyle = '#1a1a1a';
-        sctx.font =
-          '900 80px Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
-        sctx.textAlign = 'left';
-        sctx.textBaseline = 'middle';
-        sctx.fillText(lineLabel, 60, 100);
-        sctx.textAlign = 'right';
-        sctx.fillStyle = '#c44b6e';
-        sctx.fillText(priceLabel, 2340, 100);
-        // 중앙 ★
-        sctx.textAlign = 'center';
-        sctx.fillStyle = '#1a1a1a';
-        sctx.font = '900 60px sans-serif';
-        sctx.fillText('★ ★ ★', 1200, 100);
-        const tex = new THREE.CanvasTexture(stripCanvas);
-        tex.colorSpace = THREE.SRGBColorSpace;
-        tex.anisotropy = MAX_ANISO;
-        const strip = new THREE.Mesh(
-          new THREE.PlaneGeometry(ST_W - 0.08, 0.085),
-          new THREE.MeshBasicMaterial({ map: tex }),
-        );
-        const z = isFront ? ST_D / 2 - 0.014 : -(ST_D / 2 - 0.014);
-        strip.position.set(0, y - 0.04, z);
-        if (!isFront) strip.rotation.y = Math.PI;
-        scene.add(strip);
-      }
-      // CLOUD 셸프 (1~3단, 앞면)
-      makePriceTagStrip(
-        SHELF_Y[0],
-        true,
-        'CLOUD · 블러 립 / 크림 블러셔',
-        '₩ 14,400',
-      );
-      makePriceTagStrip(
-        SHELF_Y[1],
-        true,
-        'CLOUD · 베이스 (파우더밤 · 컨실러)',
-        '₩ 14,400~16,200',
-      );
-      makePriceTagStrip(
-        SHELF_Y[2],
-        true,
-        'CLOUD · 라이너 · 펜슬 · 쉐이딩',
-        '₩ 12,600~18,000',
-      );
-      // JELLY 셸프 (4~5단, 앞면)
-      makePriceTagStrip(
-        SHELF_Y[3],
-        true,
-        'JELLY · 하이라이터 · 블러셔 · 쿠션',
-        '₩ 17,000~29,800',
-      );
-      makePriceTagStrip(
-        SHELF_Y[4],
-        true,
-        'JELLY · 플럼핑 립 시리즈',
-        '₩ 14,400~17,000',
-      );
-      // 뒷면도 같은 띠 (브랜드 2개 앞뒤 분할 사용 — 도면 명시)
-      [
-        'Brand B · 신상 라인업',
-        'Brand B · 베이스',
-        'Brand B · 컬러',
-        'Brand B · 아이',
-        'Brand B · 립',
-      ].forEach((lbl, i) => makePriceTagStrip(SHELF_Y[i], false, lbl, '₩ —,—'));
-
-      // ─── 헤더 백드롭 (광고 배너) ───
-      // Y 1.8 ~ 2.7 (높이 0.9m)
+      // ─── 헤더 백드롭 (큰 광고 배너 — 사진 무드) ───
       const bannerTex = new THREE.TextureLoader().load('images/tam-banner.jpg');
       bannerTex.colorSpace = THREE.SRGBColorSpace;
       bannerTex.anisotropy = MAX_ANISO;
       bannerTex.minFilter = THREE.LinearMipmapLinearFilter;
       bannerTex.magFilter = THREE.LinearFilter;
-      const headerMat = new THREE.MeshStandardMaterial({
-        map: bannerTex,
-        roughness: 0.55,
+
+      // 헤더 보드 (3D 박스 형태 — 두께감)
+      const headerY = ST_H - HEADER_H / 2 - 0.04;
+      const headerBoardMat = new THREE.MeshStandardMaterial({
+        color: 0xf5a0b5,
+        roughness: 0.5,
       });
-      const headerFront = new THREE.Mesh(
-        new THREE.PlaneGeometry(ST_W - 0.06, HEADER_H - 0.04),
-        headerMat,
+      const headerFrontMat = new THREE.MeshStandardMaterial({
+        map: bannerTex,
+        roughness: 0.5,
+      });
+      // 헤더 본체 (배너 텍스처는 앞면, 나머지는 핑크)
+      const headerFaces = [
+        headerBoardMat,
+        headerBoardMat,
+        headerBoardMat,
+        headerBoardMat,
+        headerFrontMat, // +Z 앞면
+        headerBoardMat, // -Z 뒷면
+      ];
+      const header = new THREE.Mesh(
+        new THREE.BoxGeometry(ST_W - 0.06, HEADER_H - 0.08, 0.05),
+        headerFaces,
       );
-      headerFront.position.set(0, ST_H - HEADER_H / 2 - 0.02, ST_D / 2 - 0.005);
-      scene.add(headerFront);
-      // 뒷면 헤더 (단색 또는 다른 컷)
+      header.position.set(0, headerY, ST_D / 2 - 0.005);
+      header.castShadow = true;
+      scene.add(header);
+
+      // 뒷면 헤더 (단색 핑크 — Brand B 영역)
       const headerBack = new THREE.Mesh(
-        new THREE.PlaneGeometry(ST_W - 0.06, HEADER_H - 0.04),
+        new THREE.BoxGeometry(ST_W - 0.06, HEADER_H - 0.08, 0.05),
         new THREE.MeshStandardMaterial({
           color: 0xe88aa5,
           roughness: 0.55,
         }),
       );
-      headerBack.position.set(0, ST_H - HEADER_H / 2 - 0.02, -ST_D / 2 + 0.005);
-      headerBack.rotation.y = Math.PI;
+      headerBack.position.set(0, headerY, -ST_D / 2 + 0.005);
+      headerBack.castShadow = true;
       scene.add(headerBack);
 
       // ─── 사이드 임팩트 한글 패널 ("탐" / "뷰") ───
-      // 사진의 "덕"/"빵"처럼 양옆에 큰 한글 1글자
       function makeSidePanel(text, xPos) {
         const g = new THREE.Group();
         // 본체 (핑크 패널)
         const body = new THREE.Mesh(
-          new THREE.BoxGeometry(0.05, ST_H, ST_D + 0.04),
+          new THREE.BoxGeometry(0.06, ST_H, ST_D + 0.04),
           new THREE.MeshStandardMaterial({
             color: 0xf5a0b5,
             roughness: 0.5,
@@ -611,7 +525,7 @@
         );
         body.castShadow = true;
         g.add(body);
-        // 한글 1글자 (양면 텍스처)
+        // 한글 1글자 (양면)
         const cv = document.createElement('canvas');
         cv.width = 1024;
         cv.height = 2048;
@@ -627,25 +541,22 @@
         const tex = new THREE.CanvasTexture(cv);
         tex.colorSpace = THREE.SRGBColorSpace;
         tex.anisotropy = MAX_ANISO;
-        const sideW = ST_D + 0.04;
         const plane = new THREE.Mesh(
-          new THREE.PlaneGeometry(sideW, ST_H - 0.2),
+          new THREE.PlaneGeometry(ST_D + 0.04, ST_H - 0.2),
           new THREE.MeshBasicMaterial({ map: tex, transparent: true }),
         );
         plane.rotation.y = xPos > 0 ? Math.PI / 2 : -Math.PI / 2;
-        plane.position.x = xPos > 0 ? 0.026 : -0.026;
-        plane.position.y = 0;
+        plane.position.x = xPos > 0 ? 0.031 : -0.031;
         g.add(plane);
         g.position.set(xPos, ST_H / 2, 0);
         return g;
       }
-      scene.add(makeSidePanel('탐', -ST_W / 2 - 0.08));
-      scene.add(makeSidePanel('뷰', +ST_W / 2 + 0.08));
+      scene.add(makeSidePanel('탐', -ST_W / 2 - 0.09));
+      scene.add(makeSidePanel('뷰', +ST_W / 2 + 0.09));
 
-      // ─── 하단 드로어 (5칸으로 보이게) ───
+      // ─── 하단 드로어 ───
       function makeDrawer() {
         const g = new THREE.Group();
-        // 본체
         const body = new THREE.Mesh(
           new THREE.BoxGeometry(ST_W - 0.06, DRAWER_H, ST_D - 0.04),
           new THREE.MeshStandardMaterial({
@@ -658,25 +569,7 @@
         body.castShadow = true;
         body.receiveShadow = true;
         g.add(body);
-        // 앞면 X-bracing (도면처럼)
-        [-1, 1].forEach((side) => {
-          [-1, 1].forEach((z) => {
-            const len = Math.sqrt(SECTION_W * SECTION_W + DRAWER_H * DRAWER_H);
-            const brace = new THREE.Mesh(
-              new THREE.BoxGeometry(len * 0.9, 0.012, 0.012),
-              steelDarkMat,
-            );
-            const angle = Math.atan2(DRAWER_H, SECTION_W) * side;
-            brace.rotation.z = angle;
-            brace.position.set(
-              -SECTION_W + (side > 0 ? 0 : 0),
-              DRAWER_H / 2,
-              z * (ST_D / 2 - 0.025),
-            );
-            g.add(brace);
-          });
-        });
-        // 3 섹션 칸막이 (앞면)
+        // 앞면 3섹션 칸막이
         [-SECTION_W / 2, SECTION_W / 2].forEach((x) => {
           [-1, 1].forEach((s) => {
             const div = new THREE.Mesh(
@@ -687,344 +580,151 @@
             g.add(div);
           });
         });
+        // 손잡이 (각 섹션 가로 바)
+        [0, -SECTION_W, SECTION_W].forEach((cx) => {
+          [-1, 1].forEach((s) => {
+            const handle = new THREE.Mesh(
+              new THREE.CylinderGeometry(0.008, 0.008, SECTION_W * 0.5, 12),
+              steelDarkMat,
+            );
+            handle.rotation.z = Math.PI / 2;
+            handle.position.set(cx, DRAWER_H * 0.55, s * (ST_D / 2 - 0.01));
+            g.add(handle);
+          });
+        });
         return g;
       }
       scene.add(makeDrawer());
 
-      // ─── 제품 박스 (CLOUD 7 + JELLY 6) ───
-      function makeProductBox(opts) {
-        const { w, h, d, label, sub, mainColor, capColor, capH = 0.018 } = opts;
+      // ─── 핑크 박스 (사진 그대로 — 균일 큐브 박스) ───
+      function makePinkBox() {
         const g = new THREE.Group();
+        const w = 0.16,
+          h = 0.16,
+          d = 0.13;
+        // 본체
         const body = new THREE.Mesh(
-          new RoundedBoxGeometry(w, h - capH, d, 2, 0.008),
+          new RoundedBoxGeometry(w, h, d, 2, 0.008),
           new THREE.MeshStandardMaterial({
-            color: mainColor,
-            roughness: 0.5,
-            metalness: 0.1,
+            color: 0xf5a0b5,
+            roughness: 0.55,
+            metalness: 0.08,
           }),
         );
-        body.position.y = (h - capH) / 2;
+        body.position.y = h / 2;
         body.castShadow = true;
         g.add(body);
-        const cap = new THREE.Mesh(
-          new RoundedBoxGeometry(w * 0.88, capH, d * 0.88, 2, 0.004),
-          new THREE.MeshStandardMaterial({
-            color: capColor,
-            roughness: 0.35,
-            metalness: 0.3,
-          }),
-        );
-        cap.position.y = h - capH / 2;
-        g.add(cap);
-        // 라벨 (고해상도 캔버스 — 텍스트 깨짐 방지)
-        const labelW = w * 0.88;
-        const labelH = h * 0.4;
-        const cv = document.createElement('canvas');
-        const cvW = 1024;
-        const cvH = Math.round((1024 * labelH) / labelW);
-        cv.width = cvW;
-        cv.height = cvH;
-        const ctx = cv.getContext('2d');
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, cvW, cvH);
-        // 핑크 라인
-        ctx.fillStyle = '#9d3653';
-        ctx.fillRect(0, 0, cvW, 8);
-        ctx.fillRect(0, cvH - 8, cvW, 8);
-        // 번호
-        ctx.fillStyle = '#9d3653';
-        ctx.font =
-          '900 200px Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(label, cvW / 2, cvH * 0.42);
-        // 서브 (제품명)
-        ctx.fillStyle = '#666';
-        ctx.font =
-          '700 95px Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
-        ctx.fillText(sub, cvW / 2, cvH * 0.78);
-        const tex = new THREE.CanvasTexture(cv);
-        tex.colorSpace = THREE.SRGBColorSpace;
-        tex.anisotropy = MAX_ANISO;
-        tex.minFilter = THREE.LinearMipmapLinearFilter;
-        const labelPlane = new THREE.Mesh(
-          new THREE.PlaneGeometry(labelW, labelH),
-          new THREE.MeshBasicMaterial({ map: tex }),
-        );
-        labelPlane.position.set(0, (h - capH) * 0.5, d / 2 + 0.001);
-        g.add(labelPlane);
-        return g;
-      }
-
-      const PSCALE = 0.6; // 제품 통일 스케일
-
-      // 13종 제품을 5단 셸프에 분배 (CLOUD 위 / JELLY 아래)
-      // 셸프1 (1.8m) — CLOUD 신상 히어로
-      // 셸프2 (1.5m) — CLOUD 베이스
-      // 셸프3 (1.2m) — CLOUD 컬러
-      // 셸프4 (0.9m) — JELLY 베이스 + 하이라이터
-      // 셸프5 (0.6m, 400mm) — JELLY 립 시리즈
-      const PRODUCTS = [
-        // CLOUD 7종
-        {
-          shelf: 0,
-          label: '04',
-          sub: '크림 블러셔',
-          main: 0xf5a0b5,
-          cap: 0xc44b6e,
-          w: 0.18,
-          h: 0.09,
-          d: 0.14,
-        },
-        {
-          shelf: 0,
-          label: '05',
-          sub: '블러 립 틴트',
-          main: 0xfae3e8,
-          cap: 0xc44b6e,
-          w: 0.06,
-          h: 0.2,
-          d: 0.06,
-        },
-        {
-          shelf: 1,
-          label: '01',
-          sub: '파우더 밤',
-          main: 0xf5a0b5,
-          cap: 0xc44b6e,
-          w: 0.16,
-          h: 0.2,
-          d: 0.13,
-        },
-        {
-          shelf: 1,
-          label: '02',
-          sub: '컨실러',
-          main: 0xf5a0b5,
-          cap: 0xc44b6e,
-          w: 0.1,
-          h: 0.22,
-          d: 0.08,
-        },
-        {
-          shelf: 2,
-          label: '03',
-          sub: '쉐이딩듀오',
-          main: 0xc44b6e,
-          cap: 0x9d3653,
-          w: 0.22,
-          h: 0.09,
-          d: 0.13,
-        },
-        {
-          shelf: 2,
-          label: '06',
-          sub: '립 라이너',
-          main: 0xfce4ea,
-          cap: 0xc44b6e,
-          w: 0.04,
-          h: 0.2,
-          d: 0.04,
-        },
-        {
-          shelf: 2,
-          label: '07',
-          sub: '브로우 펜슬',
-          main: 0xfce4ea,
-          cap: 0xc44b6e,
-          w: 0.04,
-          h: 0.2,
-          d: 0.04,
-        },
-        // JELLY 6종
-        {
-          shelf: 3,
-          label: '08',
-          sub: '빔 하이라이터',
-          main: 0xf8c9a8,
-          cap: 0xd68a4e,
-          w: 0.16,
-          h: 0.09,
-          d: 0.16,
-        },
-        {
-          shelf: 3,
-          label: '09',
-          sub: '밀키 블러셔',
-          main: 0xf8c9a8,
-          cap: 0xd68a4e,
-          w: 0.18,
-          h: 0.09,
-          d: 0.14,
-        },
-        {
-          shelf: 3,
-          label: '13',
-          sub: '스킨 쿠션',
-          main: 0xd68a4e,
-          cap: 0xb8702e,
-          w: 0.2,
-          h: 0.07,
-          d: 0.16,
-        },
-        {
-          shelf: 4,
-          label: '10',
-          sub: '플럼핑 틴트',
-          main: 0xffe5cf,
-          cap: 0xd68a4e,
-          w: 0.06,
-          h: 0.2,
-          d: 0.06,
-        },
-        {
-          shelf: 4,
-          label: '11',
-          sub: '플럼핑 시리즈',
-          main: 0xffe5cf,
-          cap: 0xd68a4e,
-          w: 0.06,
-          h: 0.2,
-          d: 0.06,
-        },
-        {
-          shelf: 4,
-          label: '12',
-          sub: '립 글로스',
-          main: 0xffe5cf,
-          cap: 0xd68a4e,
-          w: 0.06,
-          h: 0.2,
-          d: 0.06,
-        },
-      ];
-      // 셸프별 제품 그룹
-      const byShelf = {};
-      PRODUCTS.forEach((p) => {
-        if (!byShelf[p.shelf]) byShelf[p.shelf] = [];
-        byShelf[p.shelf].push(p);
-      });
-      Object.entries(byShelf).forEach(([shelfIdx, prods]) => {
-        const sy = SHELF_Y[shelfIdx];
-        const sectionGap = ST_W / (prods.length + 1);
-        prods.forEach((p, i) => {
-          const box = makeProductBox({
-            w: p.w,
-            h: p.h,
-            d: p.d,
-            label: p.label,
-            sub: p.sub,
-            mainColor: p.main,
-            capColor: p.cap,
-          });
-          box.scale.set(PSCALE, PSCALE, PSCALE);
-          const x = -ST_W / 2 + sectionGap * (i + 1);
-          box.position.set(x, sy + 0.025, ST_D / 4);
-          scene.add(box);
-        });
-      });
-
-      // ─── 와블러 (흔들이 POP) — 셸프 앞에서 매달림 ───
-      const wobblers = [];
-      function makeWobbler(text, bgColor, textColor) {
-        const g = new THREE.Group();
-        // 와이어
-        const wire = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.002, 0.002, 0.07, 6),
-          new THREE.MeshStandardMaterial({ color: 0x888888 }),
-        );
-        wire.position.y = -0.035;
-        g.add(wire);
-        // 카드 (별 모양 느낌의 원)
+        // 앞면 작은 tam BEAUTY 라벨 (사진처럼 박스에 미니 일러스트)
         const cv = document.createElement('canvas');
         cv.width = 512;
         cv.height = 512;
         const ctx = cv.getContext('2d');
-        // 별 모양 배경
-        ctx.fillStyle = bgColor;
+        // 핑크 배경
+        ctx.fillStyle = '#f5a0b5';
+        ctx.fillRect(0, 0, 512, 512);
+        // 흰 원 (캐릭터 자리)
+        ctx.fillStyle = '#fff';
         ctx.beginPath();
-        // 8-point starburst
-        const cx = 256,
-          cy = 256,
-          r1 = 230,
-          r2 = 180;
-        for (let i = 0; i < 16; i++) {
-          const a = (i / 16) * Math.PI * 2 - Math.PI / 2;
-          const r = i % 2 === 0 ? r1 : r2;
-          const x = cx + Math.cos(a) * r;
-          const y = cy + Math.sin(a) * r;
-          if (i === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-        ctx.closePath();
+        ctx.arc(256, 220, 110, 0, Math.PI * 2);
         ctx.fill();
-        // 흰 테두리
-        ctx.strokeStyle = '#fff';
+        // 작은 미소 (얼굴 일러스트 약화)
+        ctx.fillStyle = '#9d3653';
+        ctx.beginPath();
+        ctx.arc(220, 200, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(292, 200, 12, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(256, 230, 35, 0.15 * Math.PI, 0.85 * Math.PI);
         ctx.lineWidth = 10;
+        ctx.strokeStyle = '#9d3653';
         ctx.stroke();
-        // 텍스트
-        ctx.fillStyle = textColor;
-        ctx.font =
-          '900 140px Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
+        // tam BEAUTY 텍스트
+        ctx.fillStyle = '#fff';
+        ctx.font = '900 80px Pretendard, "Apple SD Gothic Neo", sans-serif';
         ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(text, cx, cy);
+        ctx.fillText('tam', 256, 420);
+        ctx.font = '700 36px Pretendard, sans-serif';
+        ctx.fillText('BEAUTY', 256, 470);
         const tex = new THREE.CanvasTexture(cv);
         tex.colorSpace = THREE.SRGBColorSpace;
         tex.anisotropy = MAX_ANISO;
-        const card = new THREE.Mesh(
-          new THREE.PlaneGeometry(0.11, 0.11),
-          new THREE.MeshBasicMaterial({
-            map: tex,
-            transparent: true,
-            side: THREE.DoubleSide,
-          }),
+        const labelPlane = new THREE.Mesh(
+          new THREE.PlaneGeometry(w * 0.98, h * 0.98),
+          new THREE.MeshBasicMaterial({ map: tex }),
         );
-        card.position.y = -0.12;
-        g.add(card);
+        labelPlane.position.set(0, h / 2, d / 2 + 0.002);
+        g.add(labelPlane);
         return g;
       }
-      const wobblerData = [
-        { shelf: 0, xRatio: 0.18, text: '신상', bg: '#ffeb3b', tc: '#9d3653' },
-        { shelf: 0, xRatio: 0.78, text: 'NEW', bg: '#ffeb3b', tc: '#9d3653' },
-        { shelf: 1, xRatio: 0.36, text: 'BEST', bg: '#ff5252', tc: '#fff' },
-        { shelf: 2, xRatio: 0.55, text: '★', bg: '#ffeb3b', tc: '#9d3653' },
-        { shelf: 3, xRatio: 0.25, text: 'HOT', bg: '#ff5252', tc: '#fff' },
-        { shelf: 4, xRatio: 0.65, text: '신상', bg: '#ffeb3b', tc: '#9d3653' },
-      ];
-      wobblerData.forEach((d) => {
-        const w = makeWobbler(d.text, d.bg, d.tc);
-        const sy = SHELF_Y[d.shelf];
-        const x = -ST_W / 2 + ST_W * d.xRatio;
-        w.position.set(x, sy + SHELF_SPACE[d.shelf] - 0.04, ST_D / 2 + 0.02);
-        w.userData.swayOffset = Math.random() * Math.PI * 2;
-        wobblers.push(w);
-        scene.add(w);
+
+      // 셸프당 7개 균일 진열 × 2단 × 앞/뒤 = 28개
+      const BOX_PER_SHELF = 7;
+      SHELF_Y.forEach((sy) => {
+        [true, false].forEach((isFront) => {
+          for (let i = 0; i < BOX_PER_SHELF; i++) {
+            const box = makePinkBox();
+            const x = -ST_W / 2 + (ST_W / (BOX_PER_SHELF + 1)) * (i + 1);
+            const z = isFront ? ST_D / 4 + 0.005 : -(ST_D / 4 + 0.005);
+            box.position.set(x, sy + 0.025, z);
+            if (!isFront) box.rotation.y = Math.PI;
+            scene.add(box);
+          }
+        });
       });
 
-      // ─── 셸프 아래 LED 라이트 라인 ───
-      SHELF_Y.forEach((y) => {
-        const led = new THREE.Mesh(
-          new THREE.BoxGeometry(ST_W - 0.1, 0.005, 0.014),
-          new THREE.MeshBasicMaterial({
-            color: 0xfff2dc,
-            transparent: true,
-            opacity: 0.85,
+      // ─── 받침대 위 미러 (체험존 — 2단 하단 셸프 위 좌·우 코너) ───
+      function makeMirror(xPos) {
+        const g = new THREE.Group();
+        // 미러 프레임
+        const frame = new THREE.Mesh(
+          new THREE.BoxGeometry(0.22, 0.32, 0.025),
+          new THREE.MeshStandardMaterial({
+            color: 0xc8c8c8,
+            roughness: 0.45,
+            metalness: 0.6,
           }),
         );
-        led.position.set(0, y - 0.025, ST_D / 2 - 0.025);
-        scene.add(led);
-      });
+        g.add(frame);
+        // 미러 면
+        const mirror = new THREE.Mesh(
+          new THREE.PlaneGeometry(0.18, 0.28),
+          new THREE.MeshPhysicalMaterial({
+            color: 0xdfe6e8,
+            roughness: 0.05,
+            metalness: 1.0,
+            envMapIntensity: 1.0,
+          }),
+        );
+        mirror.position.z = 0.014;
+        g.add(mirror);
+        // 받침대 (스탠드)
+        const stand = new THREE.Mesh(
+          new THREE.BoxGeometry(0.08, 0.04, 0.05),
+          new THREE.MeshStandardMaterial({
+            color: 0xa8a8a8,
+            metalness: 0.7,
+          }),
+        );
+        stand.position.y = -0.17;
+        g.add(stand);
+        g.position.set(xPos, 0.18 + SHELF_Y[1], ST_D / 4 + 0.005);
+        return g;
+      }
+      // 하단 셸프 좌·우 끝에 미러 배치
+      scene.add(makeMirror(-ST_W / 2 + 0.18));
+      scene.add(makeMirror(+ST_W / 2 - 0.18));
 
       // ─── 카메라 뷰 프리셋 ───
       const views = {
-        hero: { pos: [4.5, 2.2, 5], target: [0, 1.35, 0] },
+        hero: { pos: [4.5, 2.0, 5], target: [0, 1.35, 0] },
         front: { pos: [0, 1.5, 4.2], target: [0, 1.35, 0] },
         left: { pos: [-4.8, 1.5, 2.0], target: [0, 1.35, 0] },
+        right: { pos: [4.8, 1.5, 2.0], target: [0, 1.35, 0] },
         back: { pos: [0, 1.5, -4.2], target: [0, 1.35, 0] },
-        shelf: { pos: [0, 1.3, 1.8], target: [0, 1.2, 0.2] },
-        wobbler: { pos: [0.3, 1.55, 1.5], target: [0, 1.55, 0.3] },
-        header: { pos: [0, 2.3, 2.5], target: [0, 2.3, 0] },
+        shelf: { pos: [0, 1.1, 1.8], target: [0, 0.85, 0.2] },
+        header: { pos: [0, 2.2, 2.5], target: [0, 2.0, 0] },
       };
       function setView(name) {
         const v = views[name];
@@ -1055,13 +755,8 @@
         });
       });
 
-      // ─── 애니메이션 (와블러 흔들림) ───
-      const clock = new THREE.Clock();
+      // ─── 렌더 루프 ───
       function animate() {
-        const t = clock.getElapsedTime();
-        wobblers.forEach((w) => {
-          w.rotation.z = Math.sin(t * 1.5 + w.userData.swayOffset) * 0.18;
-        });
         controls.update();
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
