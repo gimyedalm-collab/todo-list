@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>탐뷰티 × 롯데 — ST 매대 3D v1 (와블러·POP 포함)</title>
+    <style>
+      :root {
+        --pale: #ffebf1;
+        --soft: #fcc5d2;
+        --pink: #f5a0b5;
+        --deep: #e47b98;
+        --rose: #c44b6e;
+        --rose-deep: #9d3653;
+        --jelly: #f5a878;
+        --jelly-deep: #d68a4e;
+        --ink: #1a1a1a;
+        --gray: #6b6b6b;
+        --line: #e8d8dd;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+        background: linear-gradient(135deg, #ffebf1, #e2d4ee);
+        font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+        color: var(--ink);
+      }
+      #app {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+      #scene {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hud {
+        position: fixed;
+        z-index: 10;
+        pointer-events: none;
+      }
+      .hud-top {
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .title-card {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 16px 20px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 10px 30px rgba(157, 54, 83, 0.14);
+        pointer-events: auto;
+        max-width: 480px;
+      }
+      .title-card .tag {
+        display: inline-block;
+        background: var(--rose-deep);
+        color: #fff;
+        padding: 3px 10px;
+        border-radius: 100px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        margin-bottom: 6px;
+      }
+      .title-card h1 {
+        font-size: 17px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+        margin-bottom: 4px;
+      }
+      .title-card p {
+        font-size: 11.5px;
+        color: var(--gray);
+        line-height: 1.45;
+      }
+
+      .legend {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 10px 30px rgba(157, 54, 83, 0.14);
+        font-size: 11px;
+        line-height: 1.55;
+        pointer-events: auto;
+        min-width: 220px;
+      }
+      .legend strong {
+        display: block;
+        font-size: 10.5px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        color: var(--rose-deep);
+        margin-bottom: 8px;
+      }
+      .legend .row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 3px;
+      }
+      .legend .row b {
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .legend .row span:last-child {
+        color: var(--gray);
+        flex: 1;
+      }
+      .legend .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        flex-shrink: 0;
+      }
+      .legend .dot.cloud {
+        background: linear-gradient(135deg, #f5a0b5 0%, #c44b6e 100%);
+      }
+      .legend .dot.cloud-light {
+        background: linear-gradient(135deg, #fce4ea 0%, #f5a0b5 100%);
+      }
+      .legend .dot.jelly {
+        background: linear-gradient(135deg, #f8c9a8 0%, #d68a4e 100%);
+      }
+      .legend .dot.jelly-light {
+        background: linear-gradient(135deg, #ffe5cf 0%, #f8c9a8 100%);
+      }
+      .legend .dot.wobbler {
+        background: #ffeb3b;
+      }
+      .legend .dot.pop {
+        background: #fff;
+      }
+      .legend .div {
+        height: 1px;
+        background: var(--line);
+        margin: 8px 0;
+      }
+
+      .hud-bottom {
+        bottom: 18px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      .ctrl {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        padding: 8px;
+        border-radius: 100px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 10px 30px rgba(157, 54, 83, 0.14);
+        display: flex;
+        gap: 4px;
+        pointer-events: auto;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .ctrl button {
+        background: transparent;
+        border: 0;
+        padding: 8px 14px;
+        border-radius: 100px;
+        font-size: 11.5px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: inherit;
+        color: var(--ink);
+        transition: all 0.18s;
+      }
+      .ctrl button:hover {
+        background: var(--pale);
+      }
+      .ctrl button.active {
+        background: var(--rose-deep);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(157, 54, 83, 0.3);
+      }
+
+      .hint {
+        position: fixed;
+        bottom: 78px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(26, 26, 26, 0.7);
+        color: #fff;
+        font-size: 11px;
+        padding: 7px 14px;
+        border-radius: 100px;
+        letter-spacing: 0.04em;
+        z-index: 9;
+        animation: fade 7s ease forwards;
+        pointer-events: none;
+      }
+      @keyframes fade {
+        0%,
+        70% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hud-top {
+          flex-direction: column;
+        }
+        .title-card {
+          max-width: 100%;
+        }
+        .title-card h1 {
+          font-size: 14px;
+        }
+        .legend {
+          font-size: 10.5px;
+        }
+        .ctrl button {
+          padding: 7px 11px;
+          font-size: 10.5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scene"></canvas>
+
+      <div class="hud hud-top">
+        <div class="title-card">
+          <span class="tag">ST 매대 · 3D 시뮬레이션 · 와블러 + POP 포함</span>
+          <h1>탐뷰티 × 롯데 ST 매대 3D</h1>
+          <p>
+            광고 배너 백드롭 · CLOUD 핑크 / JELLY 코랄 박스 구분 · 와블러(흔들이
+            POP) · 가격 POP · 체험존 미러까지
+          </p>
+        </div>
+        <div class="legend">
+          <strong>구성 범례</strong>
+          <div class="row">
+            <span class="dot cloud"></span><b>CLOUD 핑크 박스</b>
+          </div>
+          <div class="row">
+            <span></span
+            ><span style="margin-left: 22px">매트 무드 라인 (7종)</span>
+          </div>
+          <div class="row">
+            <span class="dot cloud-light"></span><b>CLOUD 라이트</b>
+          </div>
+          <div class="row">
+            <span></span
+            ><span style="margin-left: 22px">립 라이너 · 브로우 펜슬</span>
+          </div>
+          <div class="div"></div>
+          <div class="row">
+            <span class="dot jelly"></span><b>JELLY 코랄 박스</b>
+          </div>
+          <div class="row">
+            <span></span
+            ><span style="margin-left: 22px">광 무드 라인 (6종)</span>
+          </div>
+          <div class="row">
+            <span class="dot jelly-light"></span><b>JELLY 라이트</b>
+          </div>
+          <div class="row">
+            <span></span
+            ><span style="margin-left: 22px">립 시리즈 · 글로스</span>
+          </div>
+          <div class="div"></div>
+          <div class="row"><span class="dot wobbler"></span><b>와블러</b></div>
+          <div class="row">
+            <span></span
+            ><span style="margin-left: 22px">신상/베스트 흔들이 POP</span>
+          </div>
+          <div class="row"><span class="dot pop"></span><b>POP 카드</b></div>
+          <div class="row">
+            <span></span
+            ><span style="margin-left: 22px">가격·라인 카피·컬러칩</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint">마우스 드래그로 회전 · 휠로 줌 · 우클릭 이동</div>
+
+      <div class="hud hud-bottom">
+        <div class="ctrl">
+          <button data-view="hero" class="active">전체뷰</button>
+          <button data-view="front">정면</button>
+          <button data-view="left">좌측</button>
+          <button data-view="right">우측</button>
+          <button data-view="shelf">셸프 클로즈업</button>
+          <button data-view="wobbler">와블러 강조</button>
+          <button data-view="pop">POP 강조</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+
+    <script type="module">
+      import * as THREE from 'three';
+      import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+      import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+      const canvas = document.getElementById('scene');
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.05;
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xfdeef2);
+      scene.fog = new THREE.Fog(0xfdeef2, 14, 32);
+
+      const camera = new THREE.PerspectiveCamera(
+        38,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        100,
+      );
+      camera.position.set(4.5, 2.5, 5);
+
+      const controls = new OrbitControls(camera, canvas);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.minDistance = 1.8;
+      controls.maxDistance = 14;
+      controls.maxPolarAngle = Math.PI / 2.05;
+      controls.target.set(0, 1.1, 0);
+
+      // ─── LIGHTING ───
+      scene.add(new THREE.AmbientLight(0xfff0f4, 0.6));
+      const key = new THREE.DirectionalLight(0xffeede, 1.0);
+      key.position.set(4, 7, 4);
+      key.castShadow = true;
+      key.shadow.mapSize.set(2048, 2048);
+      key.shadow.camera.left = -6;
+      key.shadow.camera.right = 6;
+      key.shadow.camera.top = 6;
+      key.shadow.camera.bottom = -6;
+      key.shadow.bias = -0.0003;
+      scene.add(key);
+      const fill = new THREE.DirectionalLight(0xffc8d4, 0.4);
+      fill.position.set(-3, 3, -2);
+      scene.add(fill);
+      const rim = new THREE.PointLight(0xff9bb5, 0.6, 8);
+      rim.position.set(0, 2.5, -2);
+      scene.add(rim);
+
+      // ─── FLOOR ───
+      const floor = new THREE.Mesh(
+        new THREE.CircleGeometry(10, 64),
+        new THREE.MeshStandardMaterial({
+          color: 0xfff4f7,
+          roughness: 0.6,
+          metalness: 0.05,
+        }),
+      );
+      floor.rotation.x = -Math.PI / 2;
+      floor.receiveShadow = true;
+      scene.add(floor);
+
+      // ─── 받침대 박스 (중앙 단칸) ───
+      const counterW = 3.0,
+        counterD = 0.55,
+        counterH = 0.55;
+      const counterMat = new THREE.MeshStandardMaterial({
+        color: 0xeeeeee,
+        roughness: 0.45,
+        metalness: 0.15,
+      });
+      const counterTopMat = new THREE.MeshStandardMaterial({
+        color: 0xe0e0e0,
+        roughness: 0.5,
+      });
+      const counterBody = new THREE.Mesh(
+        new RoundedBoxGeometry(counterW, counterH, counterD, 3, 0.025),
+        counterMat,
+      );
+      counterBody.position.y = counterH / 2;
+      counterBody.castShadow = true;
+      counterBody.receiveShadow = true;
+      scene.add(counterBody);
+      // 받침대 상단 판
+      const counterTop = new THREE.Mesh(
+        new THREE.BoxGeometry(counterW + 0.04, 0.03, counterD + 0.04),
+        counterTopMat,
+      );
+      counterTop.position.y = counterH + 0.015;
+      counterTop.receiveShadow = true;
+      scene.add(counterTop);
+      // 받침대 앞쪽 핑크 트림 (탐뷰티 무드 액센트)
+      const trim = new THREE.Mesh(
+        new THREE.BoxGeometry(counterW, 0.04, 0.03),
+        new THREE.MeshStandardMaterial({
+          color: 0xd9678a,
+          roughness: 0.4,
+          metalness: 0.2,
+        }),
+      );
+      trim.position.set(0, 0.05, counterD / 2 + 0.015);
+      scene.add(trim);
+
+      // ─── 백드롭 패널 (광고 배너 텍스처) ───
+      const bannerTex = new THREE.TextureLoader().load('images/tam-banner.jpg');
+      bannerTex.colorSpace = THREE.SRGBColorSpace;
+      bannerTex.anisotropy = 8;
+      const backdropW = 3.2,
+        backdropH = 0.84;
+      const backdropFrameMat = new THREE.MeshStandardMaterial({
+        color: 0xf2f2f2,
+        roughness: 0.5,
+      });
+      const backdropFront = new THREE.MeshStandardMaterial({
+        map: bannerTex,
+        roughness: 0.55,
+        metalness: 0.02,
+      });
+      const backdropFaces = [
+        backdropFrameMat,
+        backdropFrameMat,
+        backdropFrameMat,
+        backdropFrameMat,
+        backdropFront,
+        backdropFrameMat,
+      ];
+      const backdrop = new THREE.Mesh(
+        new THREE.BoxGeometry(backdropW, backdropH, 0.05),
+        backdropFaces,
+      );
+      backdrop.position.set(
+        0,
+        counterH + backdropH / 2 + 0.05,
+        -counterD / 2 + 0.025,
+      );
+      backdrop.castShadow = true;
+      backdrop.receiveShadow = true;
+      scene.add(backdrop);
+      // 백드롭 프레임 (얇은 골드 테두리)
+      const frame = new THREE.Mesh(
+        new THREE.BoxGeometry(backdropW + 0.02, backdropH + 0.02, 0.052),
+        new THREE.MeshStandardMaterial({
+          color: 0xe8c46a,
+          roughness: 0.35,
+          metalness: 0.7,
+        }),
+      );
+      frame.position.copy(backdrop.position);
+      frame.position.z -= 0.001;
+      scene.add(frame);
+      // LOTTE × POP-UP 우상단 코너 배지
+      const lotteBadge = makeLabelPlane(
+        'LOTTE × POP-UP',
+        {
+          bg: 'rgba(0,0,0,0.7)',
+          color: '#fff',
+          font: '600 56px Pretendard, sans-serif',
+          padX: 30,
+          padY: 12,
+        },
+        0.42,
+        0.1,
+      );
+      lotteBadge.position.set(
+        backdropW / 2 - 0.27,
+        counterH + backdropH - 0.02,
+        backdrop.position.z + 0.029,
+      );
+      scene.add(lotteBadge);
+
+      // ─── 좌/우 사이드 TAM BEAUTY 패널 ───
+      const sideW = 0.45,
+        sideH = backdropH + 0.04,
+        sideD = 0.07;
+      const sideMat = new THREE.MeshStandardMaterial({
+        color: 0x9d3653,
+        roughness: 0.4,
+        metalness: 0.15,
+      });
+      function makeTamSidePanel(xPos) {
+        const g = new THREE.Group();
+        const body = new THREE.Mesh(
+          new THREE.BoxGeometry(sideW, sideH, sideD),
+          sideMat,
+        );
+        body.castShadow = true;
+        body.receiveShadow = true;
+        g.add(body);
+        // TAM BEAUTY 텍스트 (양쪽 면)
+        const label = makeLabelPlane(
+          'TAM\nBEAUTY',
+          {
+            bg: 'rgba(0,0,0,0)',
+            color: '#fff',
+            font: '900 80px Pretendard, sans-serif',
+            align: 'center',
+            lineHeight: 90,
+          },
+          0.38,
+          0.6,
+        );
+        label.position.set(0, 0, sideD / 2 + 0.001);
+        g.add(label);
+        const labelBack = label.clone();
+        labelBack.position.z = -sideD / 2 - 0.001;
+        labelBack.rotation.y = Math.PI;
+        g.add(labelBack);
+        g.position.set(xPos, counterH + sideH / 2 + 0.04, -counterD / 2);
+        return g;
+      }
+      scene.add(makeTamSidePanel(-backdropW / 2 - sideW / 2 - 0.05));
+      scene.add(makeTamSidePanel(+backdropW / 2 + sideW / 2 + 0.05));
+
+      // ─── 셸프 (2단) ───
+      const shelfW = backdropW - 0.4;
+      const shelfD = 0.36;
+      const shelfThickness = 0.025;
+      const shelfMat = new THREE.MeshStandardMaterial({
+        color: 0xfafafa,
+        roughness: 0.45,
+        metalness: 0.1,
+      });
+      const shelfEdgeMat = new THREE.MeshStandardMaterial({
+        color: 0xc8c8c8,
+        roughness: 0.4,
+      });
+      // 셸프 지지대 (좌/우 얇은 메탈)
+      const supportMat = new THREE.MeshStandardMaterial({
+        color: 0xa8a8a8,
+        roughness: 0.35,
+        metalness: 0.7,
+      });
+      const shelf1Y = counterH + 0.05 + 0.05;
+      const shelf2Y = counterH + 0.05 + 0.3;
+      [-shelfW / 2 - 0.02, shelfW / 2 + 0.02].forEach((sx) => {
+        const support = new THREE.Mesh(
+          new THREE.BoxGeometry(0.025, 0.6, 0.025),
+          supportMat,
+        );
+        support.position.set(sx, counterH + 0.05 + 0.3, -counterD / 2 + 0.04);
+        support.castShadow = true;
+        scene.add(support);
+      });
+      function makeShelf(y) {
+        const g = new THREE.Group();
+        const board = new THREE.Mesh(
+          new THREE.BoxGeometry(shelfW, shelfThickness, shelfD),
+          shelfMat,
+        );
+        board.castShadow = true;
+        board.receiveShadow = true;
+        g.add(board);
+        // 앞면 엣지
+        const edge = new THREE.Mesh(
+          new THREE.BoxGeometry(shelfW + 0.005, shelfThickness + 0.005, 0.012),
+          shelfEdgeMat,
+        );
+        edge.position.set(0, 0, shelfD / 2 - 0.006);
+        g.add(edge);
+        g.position.set(0, y, -counterD / 2 + shelfD / 2 + 0.02);
+        return g;
+      }
+      scene.add(makeShelf(shelf2Y)); // 상단 (CLOUD)
+      scene.add(makeShelf(shelf1Y)); // 하단 (JELLY)
+
+      // ─── 제품 박스 ───
+      // CLOUD LINE (7종) — 상단 셸프 (핑크 톤)
+      // JELLY LINE (6종) — 하단 셸프 (코랄 톤)
+      function makeProductBox(opts) {
+        const { w, h, d, label, sub, mainColor, capColor, capH = 0.04 } = opts;
+        const g = new THREE.Group();
+        // 박스 본체
+        const body = new THREE.Mesh(
+          new RoundedBoxGeometry(w, h - capH, d, 2, 0.012),
+          new THREE.MeshStandardMaterial({
+            color: mainColor,
+            roughness: 0.5,
+            metalness: 0.1,
+          }),
+        );
+        body.position.y = (h - capH) / 2;
+        body.castShadow = true;
+        body.receiveShadow = true;
+        g.add(body);
+        // 캡 (윗면 액센트)
+        const cap = new THREE.Mesh(
+          new RoundedBoxGeometry(w * 0.85, capH, d * 0.85, 2, 0.006),
+          new THREE.MeshStandardMaterial({
+            color: capColor,
+            roughness: 0.35,
+            metalness: 0.25,
+          }),
+        );
+        cap.position.y = h - capH / 2;
+        g.add(cap);
+        // 라벨 (앞면)
+        const labelPlane = makeLabelPlane(
+          label,
+          {
+            bg: 'rgba(255,255,255,0.92)',
+            color: '#9d3653',
+            font: `800 ${sub ? 38 : 48}px Pretendard, sans-serif`,
+            align: 'center',
+            sub: sub,
+            subColor: '#666',
+            subFont: '600 24px Pretendard, sans-serif',
+          },
+          w * 0.85,
+          h * 0.32,
+        );
+        labelPlane.position.set(0, (h - capH) * 0.45, d / 2 + 0.002);
+        g.add(labelPlane);
+        return g;
+      }
+
+      // CLOUD 7 — 상단 셸프
+      const cloudProducts = [
+        {
+          label: '01',
+          sub: '파우더밤',
+          main: 0xf5a0b5,
+          cap: 0xc44b6e,
+          w: 0.18,
+          h: 0.22,
+          d: 0.14,
+        },
+        {
+          label: '02',
+          sub: '컨실러',
+          main: 0xf5a0b5,
+          cap: 0xc44b6e,
+          w: 0.14,
+          h: 0.26,
+          d: 0.1,
+        },
+        {
+          label: '03',
+          sub: '쉐이딩듀오',
+          main: 0xc44b6e,
+          cap: 0x9d3653,
+          w: 0.22,
+          h: 0.1,
+          d: 0.14,
+        },
+        {
+          label: '04',
+          sub: '크림 블러셔',
+          main: 0xf5a0b5,
+          cap: 0xc44b6e,
+          w: 0.18,
+          h: 0.1,
+          d: 0.18,
+        },
+        {
+          label: '05',
+          sub: '블러 립틴트',
+          main: 0xfae3e8,
+          cap: 0xc44b6e,
+          w: 0.06,
+          h: 0.22,
+          d: 0.06,
+        },
+        {
+          label: '06',
+          sub: '립라이너',
+          main: 0xfce4ea,
+          cap: 0xc44b6e,
+          w: 0.04,
+          h: 0.2,
+          d: 0.04,
+        },
+        {
+          label: '07',
+          sub: '브로우펜슬',
+          main: 0xfce4ea,
+          cap: 0xc44b6e,
+          w: 0.04,
+          h: 0.2,
+          d: 0.04,
+        },
+      ];
+      const cloudShelfTop = shelf2Y + shelfThickness / 2;
+      const cloudSpacing = shelfW / cloudProducts.length;
+      cloudProducts.forEach((p, i) => {
+        const box = makeProductBox({
+          w: p.w,
+          h: p.h,
+          d: p.d,
+          label: p.label,
+          sub: p.sub,
+          mainColor: p.main,
+          capColor: p.cap,
+        });
+        const x = -shelfW / 2 + cloudSpacing * (i + 0.5);
+        box.position.set(x, cloudShelfTop, -counterD / 2 + shelfD / 2 + 0.02);
+        scene.add(box);
+      });
+
+      // JELLY 6 — 하단 셸프
+      const jellyProducts = [
+        {
+          label: '08',
+          sub: '빔 하이라이터',
+          main: 0xf8c9a8,
+          cap: 0xd68a4e,
+          w: 0.16,
+          h: 0.1,
+          d: 0.16,
+        },
+        {
+          label: '09',
+          sub: '밀키 블러셔',
+          main: 0xf8c9a8,
+          cap: 0xd68a4e,
+          w: 0.18,
+          h: 0.1,
+          d: 0.14,
+        },
+        {
+          label: '10',
+          sub: '플럼핑 틴트',
+          main: 0xffe5cf,
+          cap: 0xd68a4e,
+          w: 0.06,
+          h: 0.22,
+          d: 0.06,
+        },
+        {
+          label: '11',
+          sub: '플럼핑 시리즈',
+          main: 0xffe5cf,
+          cap: 0xd68a4e,
+          w: 0.06,
+          h: 0.22,
+          d: 0.06,
+        },
+        {
+          label: '12',
+          sub: '립 글로스',
+          main: 0xffe5cf,
+          cap: 0xd68a4e,
+          w: 0.06,
+          h: 0.22,
+          d: 0.06,
+        },
+        {
+          label: '13',
+          sub: '스킨 쿠션',
+          main: 0xd68a4e,
+          cap: 0xb8702e,
+          w: 0.2,
+          h: 0.07,
+          d: 0.16,
+        },
+      ];
+      const jellyShelfTop = shelf1Y + shelfThickness / 2;
+      const jellySpacing = shelfW / jellyProducts.length;
+      jellyProducts.forEach((p, i) => {
+        const box = makeProductBox({
+          w: p.w,
+          h: p.h,
+          d: p.d,
+          label: p.label,
+          sub: p.sub,
+          mainColor: p.main,
+          capColor: p.cap,
+        });
+        const x = -shelfW / 2 + jellySpacing * (i + 0.5);
+        box.position.set(x, jellyShelfTop, -counterD / 2 + shelfD / 2 + 0.02);
+        scene.add(box);
+      });
+
+      // ─── 와블러 (Wobbler — 흔들이 POP) ───
+      // 셸프 아래 앞쪽 가장자리에서 매달려 흔들리는 작은 PVC 카드
+      const wobblers = [];
+      function makeWobbler(text, color) {
+        const g = new THREE.Group();
+        // 와이어/실 (얇은 막대)
+        const wire = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.002, 0.002, 0.06, 6),
+          new THREE.MeshStandardMaterial({ color: 0x888888, roughness: 0.4 }),
+        );
+        wire.position.y = -0.03;
+        g.add(wire);
+        // 카드 본체 (별 모양 느낌의 원형 카드)
+        const cardGeo = new THREE.CircleGeometry(0.045, 12);
+        const cardMat = new THREE.MeshStandardMaterial({
+          color: color,
+          roughness: 0.4,
+          side: THREE.DoubleSide,
+        });
+        const cardFront = new THREE.Mesh(cardGeo, cardMat);
+        cardFront.position.y = -0.105;
+        cardFront.position.z = 0.001;
+        g.add(cardFront);
+        // 텍스트
+        const textPlane = makeLabelPlane(
+          text,
+          {
+            bg: 'rgba(0,0,0,0)',
+            color: '#fff',
+            font: '900 60px Pretendard, sans-serif',
+            align: 'center',
+          },
+          0.08,
+          0.04,
+        );
+        textPlane.position.set(0, -0.105, 0.005);
+        g.add(textPlane);
+        return g;
+      }
+      // 셸프 앞 와블러 배치 (선택된 박스 앞에 매달림)
+      const wobblerData = [
+        {
+          x: -shelfW / 2 + cloudSpacing * 0.5,
+          y: shelf2Y + 0.21,
+          text: 'NEW',
+          color: 0xffeb3b,
+        },
+        {
+          x: -shelfW / 2 + cloudSpacing * 3.5,
+          y: shelf2Y + 0.21,
+          text: 'BEST',
+          color: 0xffeb3b,
+        },
+        {
+          x: -shelfW / 2 + cloudSpacing * 4.5,
+          y: shelf2Y + 0.21,
+          text: '★',
+          color: 0xffeb3b,
+        },
+        {
+          x: -shelfW / 2 + jellySpacing * 0.5,
+          y: shelf1Y + 0.21,
+          text: 'NEW',
+          color: 0xffeb3b,
+        },
+        {
+          x: -shelfW / 2 + jellySpacing * 2.5,
+          y: shelf1Y + 0.21,
+          text: 'HOT',
+          color: 0xffeb3b,
+        },
+        {
+          x: -shelfW / 2 + jellySpacing * 5.5,
+          y: shelf1Y + 0.21,
+          text: '★',
+          color: 0xffeb3b,
+        },
+      ];
+      wobblerData.forEach((d) => {
+        const w = makeWobbler(d.text, d.color);
+        w.position.set(d.x, d.y, -counterD / 2 + shelfD - 0.01);
+        w.userData.baseRotation = (Math.random() - 0.5) * 0.1;
+        w.userData.swayOffset = Math.random() * Math.PI * 2;
+        wobblers.push(w);
+        scene.add(w);
+      });
+
+      // ─── POP 카드 ──
+      // 1) 받침대 앞 띠 형태 (가격·시즌 카피)
+      const popStripGeo = new THREE.BoxGeometry(counterW - 0.4, 0.1, 0.005);
+      const popStripCanvas = document.createElement('canvas');
+      popStripCanvas.width = 2048;
+      popStripCanvas.height = 200;
+      {
+        const ctx = popStripCanvas.getContext('2d');
+        const grad = ctx.createLinearGradient(0, 0, 2048, 0);
+        grad.addColorStop(0, '#fce4ea');
+        grad.addColorStop(0.5, '#f5a0b5');
+        grad.addColorStop(1, '#fce4ea');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 2048, 200);
+        ctx.font = '900 110px Pretendard, sans-serif';
+        ctx.fillStyle = '#9d3653';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('TAM BEAUTY POP-UP · 전제품 13종 시즌 라인업', 1024, 100);
+        // 별 데코
+        ctx.font = '900 70px sans-serif';
+        ctx.fillText('★', 180, 100);
+        ctx.fillText('★', 1860, 100);
+        ctx.fillText('☁', 320, 100);
+        ctx.fillText('☁', 1720, 100);
+      }
+      const popStripTex = new THREE.CanvasTexture(popStripCanvas);
+      popStripTex.colorSpace = THREE.SRGBColorSpace;
+      const popStrip = new THREE.Mesh(
+        popStripGeo,
+        new THREE.MeshStandardMaterial({ map: popStripTex, roughness: 0.5 }),
+      );
+      popStrip.position.set(0, 0.18, counterD / 2 + 0.005);
+      scene.add(popStrip);
+
+      // 2) 받침대 위 컬러칩 카드 (작은 세움형 POP)
+      function makeColorChipCard() {
+        const g = new THREE.Group();
+        const card = new THREE.Mesh(
+          new THREE.BoxGeometry(0.34, 0.22, 0.005),
+          new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.4 }),
+        );
+        card.castShadow = true;
+        g.add(card);
+        // 컬러칩 텍스처
+        const cv = document.createElement('canvas');
+        cv.width = 680;
+        cv.height = 440;
+        const ctx = cv.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, 680, 440);
+        // 헤더
+        ctx.fillStyle = '#9d3653';
+        ctx.font = '900 50px Pretendard, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('HIGHLIGHTER', 340, 60);
+        ctx.font = '700 28px Pretendard, sans-serif';
+        ctx.fillStyle = '#666';
+        ctx.fillText('THE JELLY · 3 COLORS', 340, 100);
+        // 컬러 3개
+        const colors = [
+          { c: '#e8d8e0', name: 'Moonstone' },
+          { c: '#f5b0c8', name: 'Gummy Pink' },
+          { c: '#e0c08a', name: 'Teddy Gold' },
+        ];
+        colors.forEach((col, i) => {
+          const cx = 130 + i * 200;
+          ctx.beginPath();
+          ctx.arc(cx, 220, 50, 0, Math.PI * 2);
+          ctx.fillStyle = col.c;
+          ctx.fill();
+          ctx.strokeStyle = '#ccc';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          ctx.fillStyle = '#333';
+          ctx.font = '700 22px Pretendard, sans-serif';
+          ctx.fillText(col.name, cx, 320);
+        });
+        // 가격
+        ctx.fillStyle = '#9d3653';
+        ctx.font = '900 38px Pretendard, sans-serif';
+        ctx.fillText('₩ 21,250', 340, 410);
+        const tex = new THREE.CanvasTexture(cv);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        const front = new THREE.Mesh(
+          new THREE.PlaneGeometry(0.34, 0.22),
+          new THREE.MeshBasicMaterial({ map: tex }),
+        );
+        front.position.z = 0.0028;
+        g.add(front);
+        // 받침대 (스탠드)
+        const stand = new THREE.Mesh(
+          new THREE.BoxGeometry(0.06, 0.04, 0.04),
+          new THREE.MeshStandardMaterial({ color: 0xa8a8a8, metalness: 0.6 }),
+        );
+        stand.position.y = -0.11;
+        g.add(stand);
+        return g;
+      }
+      const chip = makeColorChipCard();
+      chip.position.set(-0.85, counterH + 0.12, counterD / 2 - 0.13);
+      chip.rotation.y = 0.18;
+      scene.add(chip);
+
+      // 3) 가격 POP (작은 가격표 카드) — 박스 옆에 세움
+      function makePricePop(price, label) {
+        const g = new THREE.Group();
+        const cv = document.createElement('canvas');
+        cv.width = 220;
+        cv.height = 140;
+        const ctx = cv.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, 220, 140);
+        ctx.strokeStyle = '#c44b6e';
+        ctx.lineWidth = 6;
+        ctx.strokeRect(3, 3, 214, 134);
+        ctx.fillStyle = '#9d3653';
+        ctx.font = '900 36px Pretendard, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(price, 110, 65);
+        ctx.font = '700 18px Pretendard, sans-serif';
+        ctx.fillStyle = '#666';
+        ctx.fillText(label, 110, 100);
+        const tex = new THREE.CanvasTexture(cv);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        const card = new THREE.Mesh(
+          new THREE.PlaneGeometry(0.11, 0.07),
+          new THREE.MeshBasicMaterial({ map: tex, side: THREE.DoubleSide }),
+        );
+        g.add(card);
+        return g;
+      }
+      // CLOUD 라인 대표 가격
+      const cloudPrice = makePricePop('₩ 14,400', 'THE CLOUD');
+      cloudPrice.position.set(
+        shelfW / 2 - 0.05,
+        shelf2Y - 0.04,
+        -counterD / 2 + shelfD / 2 + 0.05,
+      );
+      cloudPrice.rotation.y = -0.3;
+      scene.add(cloudPrice);
+      // JELLY 라인 대표 가격
+      const jellyPrice = makePricePop('₩ 17,000', 'THE JELLY');
+      jellyPrice.position.set(
+        shelfW / 2 - 0.05,
+        shelf1Y - 0.04,
+        -counterD / 2 + shelfD / 2 + 0.05,
+      );
+      jellyPrice.rotation.y = -0.3;
+      scene.add(jellyPrice);
+
+      // ─── 체험존: 미러 + 테스터 ───
+      // 미러
+      const mirror = new THREE.Mesh(
+        new THREE.CircleGeometry(0.07, 32),
+        new THREE.MeshPhysicalMaterial({
+          color: 0xdfe6e8,
+          roughness: 0.05,
+          metalness: 1.0,
+        }),
+      );
+      mirror.position.set(0.8, counterH + 0.08, counterD / 2 - 0.12);
+      mirror.rotation.x = -Math.PI / 8;
+      mirror.rotation.y = 0.1;
+      scene.add(mirror);
+      // 미러 스탠드
+      const mirrorStand = new THREE.Mesh(
+        new THREE.BoxGeometry(0.015, 0.08, 0.02),
+        new THREE.MeshStandardMaterial({ color: 0xa0a0a0, metalness: 0.7 }),
+      );
+      mirrorStand.position.set(0.8, counterH + 0.04, counterD / 2 - 0.1);
+      scene.add(mirrorStand);
+      // 테스터 (작은 튜브 2개)
+      [-0.05, 0.05].forEach((dx) => {
+        const t = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.018, 0.022, 0.07, 16),
+          new THREE.MeshPhysicalMaterial({
+            color: 0xfae3e8,
+            roughness: 0.25,
+            clearcoat: 0.5,
+          }),
+        );
+        t.position.set(0.8 + dx, counterH + 0.04, counterD / 2 - 0.18);
+        t.castShadow = true;
+        scene.add(t);
+        const cap = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.022, 0.022, 0.012, 16),
+          new THREE.MeshStandardMaterial({ color: 0xc44b6e }),
+        );
+        cap.position.set(0.8 + dx, counterH + 0.08, counterD / 2 - 0.18);
+        scene.add(cap);
+      });
+
+      // ─── 헬퍼: 텍스트 라벨 평면 생성 ───
+      function makeLabelPlane(text, opts, w, h) {
+        const {
+          bg = 'rgba(255,255,255,0.9)',
+          color = '#9d3653',
+          font = '700 48px Pretendard, sans-serif',
+          align = 'center',
+          padX = 24,
+          padY = 16,
+          lineHeight = 56,
+          sub = null,
+          subColor = '#666',
+          subFont = '600 24px Pretendard, sans-serif',
+        } = opts;
+        const cv = document.createElement('canvas');
+        cv.width = 1024;
+        cv.height = Math.round((1024 * h) / w);
+        const ctx = cv.getContext('2d');
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, cv.width, cv.height);
+        ctx.fillStyle = color;
+        ctx.font = font;
+        ctx.textAlign = align;
+        ctx.textBaseline = 'middle';
+        const lines = text.split('\n');
+        const startY =
+          cv.height / 2 -
+          ((lines.length - 1) * lineHeight) / 2 -
+          (sub ? 30 : 0);
+        const cx = align === 'center' ? cv.width / 2 : padX;
+        lines.forEach((line, i) => {
+          ctx.fillText(line, cx, startY + i * lineHeight);
+        });
+        if (sub) {
+          ctx.fillStyle = subColor;
+          ctx.font = subFont;
+          ctx.fillText(sub, cx, startY + lines.length * lineHeight + 30);
+        }
+        const tex = new THREE.CanvasTexture(cv);
+        tex.colorSpace = THREE.SRGBColorSpace;
+        const mat = new THREE.MeshBasicMaterial({
+          map: tex,
+          transparent: bg === 'rgba(0,0,0,0)',
+          side: THREE.DoubleSide,
+        });
+        const plane = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat);
+        return plane;
+      }
+
+      // ─── 카메라 뷰 프리셋 ───
+      const views = {
+        hero: { pos: [4.5, 2.5, 5], target: [0, 1.1, 0] },
+        front: { pos: [0, 1.5, 4.2], target: [0, 1.1, 0] },
+        left: { pos: [-4.5, 1.5, 2.5], target: [0, 1.1, 0] },
+        right: { pos: [4.5, 1.5, 2.5], target: [0, 1.1, 0] },
+        shelf: { pos: [0, 1.4, 2.2], target: [0, 1.0, -0.2] },
+        wobbler: { pos: [0.8, 1.3, 2.0], target: [0.6, 1.15, -0.1] },
+        pop: { pos: [-0.6, 0.8, 2.5], target: [-0.6, 0.5, 0] },
+      };
+      function setView(name) {
+        const v = views[name];
+        if (!v) return;
+        const sp = camera.position.clone(),
+          st = controls.target.clone();
+        const ep = new THREE.Vector3(...v.pos),
+          et = new THREE.Vector3(...v.target);
+        const t0 = performance.now();
+        const dur = 700;
+        function tween() {
+          const t = Math.min(1, (performance.now() - t0) / dur);
+          const e = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+          camera.position.lerpVectors(sp, ep, e);
+          controls.target.lerpVectors(st, et, e);
+          controls.update();
+          if (t < 1) requestAnimationFrame(tween);
+        }
+        tween();
+      }
+      document.querySelectorAll('.ctrl button').forEach((b) => {
+        b.addEventListener('click', () => {
+          document
+            .querySelectorAll('.ctrl button')
+            .forEach((x) => x.classList.remove('active'));
+          b.classList.add('active');
+          setView(b.dataset.view);
+        });
+      });
+
+      // ─── 애니메이션 (와블러 흔들림) ───
+      const clock = new THREE.Clock();
+      function animate() {
+        const t = clock.getElapsedTime();
+        wobblers.forEach((w, i) => {
+          w.rotation.z =
+            w.userData.baseRotation +
+            Math.sin(t * 1.5 + w.userData.swayOffset) * 0.18;
+        });
+        controls.update();
+        renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      // ─── 리사이즈 ───
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>
