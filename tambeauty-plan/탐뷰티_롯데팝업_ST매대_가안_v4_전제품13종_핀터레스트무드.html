@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>탐뷰티 × 롯데 — ST 매대 가안 v4 (전제품 13종 + 핀터레스트 무드 + 다샤타란)</title>
+    <title>
+      탐뷰티 × 롯데 — ST 매대 가안 v4 (전제품 13종 + 핀터레스트 무드 + 다샤타란)
+    </title>
     <style>
       :root {
         --pale: #ffebf1;
@@ -26,19 +28,33 @@
         --metal-dark: #8c8a87;
         --jelly: #f8c9a8;
       }
-      * { box-sizing: border-box; margin: 0; padding: 0; }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
       body {
         background: var(--bg-cream);
         color: var(--ink);
-        font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
         line-height: 1.6;
         -webkit-font-smoothing: antialiased;
       }
-      .page { max-width: 1180px; margin: 0 auto; padding: 48px 40px 120px; }
+      .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 48px 40px 120px;
+      }
 
       /* COVER */
       .cover {
-        background: linear-gradient(135deg, #ffebf1 0%, #e2d4ee 50%, #c5e0f0 100%);
+        background: linear-gradient(
+          135deg,
+          #ffebf1 0%,
+          #e2d4ee 50%,
+          #c5e0f0 100%
+        );
         padding: 52px 44px;
         border-radius: 28px;
         margin-bottom: 36px;
@@ -47,121 +63,229 @@
         overflow: hidden;
       }
       .cover::before {
-        content: '☁'; position: absolute; top: 18px; right: 32px;
-        font-size: 80px; color: rgba(255,255,255,0.45); pointer-events: none;
+        content: '☁';
+        position: absolute;
+        top: 18px;
+        right: 32px;
+        font-size: 80px;
+        color: rgba(255, 255, 255, 0.45);
+        pointer-events: none;
       }
       .cover::after {
-        content: '✦'; position: absolute; bottom: 18px; right: 100px;
-        font-size: 38px; color: rgba(157,54,83,0.22); pointer-events: none;
+        content: '✦';
+        position: absolute;
+        bottom: 18px;
+        right: 100px;
+        font-size: 38px;
+        color: rgba(157, 54, 83, 0.22);
+        pointer-events: none;
       }
       .cover .tag {
-        display: inline-block; background: var(--rose-deep); color: #fff;
-        padding: 5px 14px; border-radius: 100px; font-size: 11px;
-        font-weight: 700; letter-spacing: 0.12em; margin-bottom: 16px;
+        display: inline-block;
+        background: var(--rose-deep);
+        color: #fff;
+        padding: 5px 14px;
+        border-radius: 100px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        margin-bottom: 16px;
       }
       .cover h1 {
-        font-size: 36px; font-weight: 800; letter-spacing: -0.025em;
-        line-height: 1.15; margin-bottom: 12px;
+        font-size: 36px;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.15;
+        margin-bottom: 12px;
       }
       .cover .sub {
-        font-size: 15px; color: var(--ink-soft); line-height: 1.65; max-width: 760px;
+        font-size: 15px;
+        color: var(--ink-soft);
+        line-height: 1.65;
+        max-width: 760px;
       }
       .cover .resolve {
-        margin-top: 24px; padding-top: 18px;
-        border-top: 1px solid rgba(0,0,0,0.08);
-        font-size: 13px; color: var(--rose-deep); font-weight: 600;
+        margin-top: 24px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        font-size: 13px;
+        color: var(--rose-deep);
+        font-weight: 600;
       }
-      .cover .resolve b { color: var(--ink); font-weight: 700; }
+      .cover .resolve b {
+        color: var(--ink);
+        font-weight: 700;
+      }
 
       /* 섹션 공통 */
       section {
-        background: #fff; border-radius: 22px;
-        padding: 36px 36px; margin-bottom: 28px;
+        background: #fff;
+        border-radius: 22px;
+        padding: 36px 36px;
+        margin-bottom: 28px;
         border: 1px solid var(--line);
       }
       section h2 {
-        font-size: 20px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 6px;
       }
       section h2 .num {
-        display: inline-block; background: var(--rose-deep); color: #fff;
-        width: 24px; height: 24px; line-height: 24px; text-align: center;
-        border-radius: 50%; font-size: 12px; font-weight: 800;
-        margin-right: 10px; vertical-align: 2px;
+        display: inline-block;
+        background: var(--rose-deep);
+        color: #fff;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 800;
+        margin-right: 10px;
+        vertical-align: 2px;
       }
-      section h2 + .sub { font-size: 13.5px; color: var(--gray); margin-bottom: 24px; }
+      section h2 + .sub {
+        font-size: 13.5px;
+        color: var(--gray);
+        margin-bottom: 24px;
+      }
 
       /* ─── 핀터레스트 무드 레퍼런스 ─── */
       .mood-ref {
-        display: grid; grid-template-columns: 1fr 1.1fr;
-        gap: 24px; align-items: start;
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 24px;
+        align-items: start;
       }
       .mood-ref .pin-img {
-        position: relative; border-radius: 14px; overflow: hidden;
-        background: var(--bg-cream); border: 1px solid var(--line);
-        aspect-ratio: 1; box-shadow: 0 6px 20px rgba(157,54,83,0.08);
+        position: relative;
+        border-radius: 14px;
+        overflow: hidden;
+        background: var(--bg-cream);
+        border: 1px solid var(--line);
+        aspect-ratio: 1;
+        box-shadow: 0 6px 20px rgba(157, 54, 83, 0.08);
       }
-      .pin-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .pin-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
       .pin-img .pin-tag {
-        position: absolute; top: 12px; left: 12px;
-        background: rgba(255,255,255,0.95); color: var(--rose-deep);
-        padding: 5px 11px; border-radius: 100px;
-        font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--rose-deep);
+        padding: 5px 11px;
+        border-radius: 100px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
       }
       .pin-img .pin-credit {
-        position: absolute; bottom: 12px; right: 12px;
-        background: rgba(0,0,0,0.55); color: #fff;
-        padding: 4px 10px; border-radius: 100px;
-        font-size: 9.5px; font-weight: 700; letter-spacing: 0.05em;
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 100px;
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
       }
 
       .mood-text h3 {
-        font-size: 14px; color: var(--rose-deep);
-        font-weight: 800; letter-spacing: 0.05em;
+        font-size: 14px;
+        color: var(--rose-deep);
+        font-weight: 800;
+        letter-spacing: 0.05em;
         margin-bottom: 12px;
       }
-      .mood-text h3:not(:first-child) { margin-top: 22px; }
-      .palette-row { display: flex; gap: 6px; margin-bottom: 14px; }
+      .mood-text h3:not(:first-child) {
+        margin-top: 22px;
+      }
+      .palette-row {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
       .palette-row .chip {
-        width: 40px; height: 40px; border-radius: 8px;
-        position: relative; border: 1px solid rgba(0,0,0,0.06);
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.06);
       }
       .palette-row .chip::after {
-        content: attr(data-hex); position: absolute;
-        bottom: -20px; left: 0; right: 0;
-        font-size: 8.5px; color: var(--gray);
-        text-align: center; letter-spacing: 0.04em;
+        content: attr(data-hex);
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        right: 0;
+        font-size: 8.5px;
+        color: var(--gray);
+        text-align: center;
+        letter-spacing: 0.04em;
       }
       .keyword-wrap {
-        display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
       }
       .keyword {
-        background: #fff; border: 1px solid var(--soft); color: var(--rose-deep);
-        padding: 4px 11px; border-radius: 100px;
-        font-size: 11px; font-weight: 700; letter-spacing: -0.01em;
+        background: #fff;
+        border: 1px solid var(--soft);
+        color: var(--rose-deep);
+        padding: 4px 11px;
+        border-radius: 100px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
       }
       .pin-links {
-        display: flex; flex-direction: column; gap: 6px; margin-top: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 8px;
       }
       .pin-link {
-        display: inline-flex; align-items: center; gap: 8px;
-        background: var(--bg-cream); border: 1px dashed var(--soft);
-        padding: 8px 12px; border-radius: 8px;
-        font-size: 11.5px; color: var(--rose-deep);
-        text-decoration: none; font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--bg-cream);
+        border: 1px dashed var(--soft);
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 11.5px;
+        color: var(--rose-deep);
+        text-decoration: none;
+        font-weight: 600;
         transition: background 0.2s;
       }
-      .pin-link:hover { background: var(--pale); }
+      .pin-link:hover {
+        background: var(--pale);
+      }
       .pin-link::before {
-        content: '🔗'; font-size: 12px;
+        content: '🔗';
+        font-size: 12px;
       }
 
       /* ─── 전제품 13종 라인업 ─── */
       .lineup-section {
-        display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
       }
       .line-block {
-        background: var(--bg-cream); border: 1px solid var(--line);
-        border-radius: 14px; padding: 22px 22px;
+        background: var(--bg-cream);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 22px 22px;
       }
       .line-block.cloud {
         background: linear-gradient(180deg, #ffebf1 0%, #fdf5f7 100%);
@@ -172,73 +296,125 @@
         border-color: #f0d4b8;
       }
       .line-block .line-head {
-        display: flex; justify-content: space-between; align-items: center;
-        margin-bottom: 14px; padding-bottom: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+        padding-bottom: 12px;
         border-bottom: 1px dashed var(--line);
       }
       .line-block .line-name {
-        font-size: 15px; font-weight: 800; letter-spacing: -0.01em;
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
       }
       .line-block .line-name small {
-        display: block; font-size: 10.5px; color: var(--gray);
-        letter-spacing: 0.04em; font-weight: 600; margin-top: 2px;
+        display: block;
+        font-size: 10.5px;
+        color: var(--gray);
+        letter-spacing: 0.04em;
+        font-weight: 600;
+        margin-top: 2px;
       }
       .line-block .line-count {
-        background: var(--rose-deep); color: #fff;
-        padding: 3px 10px; border-radius: 100px;
-        font-size: 10.5px; font-weight: 800;
+        background: var(--rose-deep);
+        color: #fff;
+        padding: 3px 10px;
+        border-radius: 100px;
+        font-size: 10.5px;
+        font-weight: 800;
       }
-      .line-block.jelly .line-count { background: #d68a4e; }
+      .line-block.jelly .line-count {
+        background: #d68a4e;
+      }
       .sku-row {
-        display: flex; gap: 10px; padding: 9px 0;
+        display: flex;
+        gap: 10px;
+        padding: 9px 0;
         border-bottom: 1px dashed var(--line);
         align-items: flex-start;
       }
-      .sku-row:last-child { border-bottom: 0; padding-bottom: 0; }
+      .sku-row:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
       .sku-row .sku-no {
-        background: #fff; border: 1.5px solid var(--rose-deep);
-        color: var(--rose-deep); min-width: 24px; height: 24px;
-        line-height: 20px; text-align: center; border-radius: 50%;
-        font-size: 10.5px; font-weight: 800; flex-shrink: 0;
+        background: #fff;
+        border: 1.5px solid var(--rose-deep);
+        color: var(--rose-deep);
+        min-width: 24px;
+        height: 24px;
+        line-height: 20px;
+        text-align: center;
+        border-radius: 50%;
+        font-size: 10.5px;
+        font-weight: 800;
+        flex-shrink: 0;
       }
       .line-block.jelly .sku-row .sku-no {
-        border-color: #d68a4e; color: #d68a4e;
+        border-color: #d68a4e;
+        color: #d68a4e;
       }
-      .sku-row .sku-body { flex: 1; }
+      .sku-row .sku-body {
+        flex: 1;
+      }
       .sku-row .sku-name {
-        display: block; font-size: 12.5px; font-weight: 700;
-        color: var(--ink); margin-bottom: 1px;
+        display: block;
+        font-size: 12.5px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 1px;
       }
       .sku-row .sku-cat {
-        font-size: 10.5px; color: var(--gray);
-        letter-spacing: 0.04em; font-weight: 600;
+        font-size: 10.5px;
+        color: var(--gray);
+        letter-spacing: 0.04em;
+        font-weight: 600;
       }
       .sku-row .sku-price {
-        font-size: 11px; color: var(--rose-deep);
-        font-weight: 700; white-space: nowrap;
+        font-size: 11px;
+        color: var(--rose-deep);
+        font-weight: 700;
+        white-space: nowrap;
         align-self: center;
       }
 
       /* ─── 풀사이즈 매대 시뮬레이션 ─── */
       .stage-full-wrap {
         background: linear-gradient(180deg, #f5e9ec 0%, #e8dde9 100%);
-        border-radius: 16px; padding: 28px 24px;
-        position: relative; overflow: hidden;
+        border-radius: 16px;
+        padding: 28px 24px;
+        position: relative;
+        overflow: hidden;
       }
       .stage-full {
-        display: grid; grid-template-columns: 90px 1fr 90px;
-        gap: 14px; align-items: end;
+        display: grid;
+        grid-template-columns: 90px 1fr 90px;
+        gap: 14px;
+        align-items: end;
       }
       .side-tam {
-        background: var(--rose-deep); color: #fff;
-        height: 620px; border-radius: 10px;
-        display: flex; align-items: center; justify-content: center;
-        font-weight: 900; font-size: 30px; letter-spacing: 0.04em;
-        line-height: 1; text-align: center;
-        box-shadow: 0 8px 24px rgba(157,54,83,0.18);
-        writing-mode: vertical-rl; transform: rotate(180deg);
+        background: var(--rose-deep);
+        color: #fff;
+        height: 620px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 30px;
+        letter-spacing: 0.04em;
+        line-height: 1;
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(157, 54, 83, 0.18);
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
       }
-      .stage-center { display: flex; flex-direction: column; gap: 0; }
+      .stage-center {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
 
       /* 풀사이즈 백드롭 */
       .backdrop-full {
@@ -246,145 +422,260 @@
         height: 410px;
         border-radius: 12px 12px 0 0;
         overflow: hidden;
-        background: linear-gradient(135deg, #f5a0b5 0%, #e2d4ee 60%, #c5e0f0 100%);
+        background: linear-gradient(
+          135deg,
+          #f5a0b5 0%,
+          #e2d4ee 60%,
+          #c5e0f0 100%
+        );
       }
       .backdrop-full .bg-img {
-        position: absolute; inset: 0;
-        width: 100%; height: 100%;
-        object-fit: cover; object-position: center;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
       }
       .backdrop-full::after {
-        content: ''; position: absolute; inset: 0;
-        background: linear-gradient(90deg,
-          rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.02) 25%,
-          rgba(157,54,83,0.22) 65%, rgba(157,54,83,0.5) 100%);
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(157, 54, 83, 0.5) 0%,
+          rgba(157, 54, 83, 0.22) 35%,
+          rgba(0, 0, 0, 0.02) 65%,
+          rgba(0, 0, 0, 0.05) 100%
+        );
         pointer-events: none;
       }
 
       /* POP 오버레이 — KITSCH 스타일 (추천) */
       .pop-overlay {
-        position: absolute; inset: 0;
+        position: absolute;
+        inset: 0;
         padding: 22px 26px;
-        display: flex; flex-direction: column;
-        z-index: 2; pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        z-index: 2;
+        pointer-events: none;
       }
       .pop-overlay .top-row {
-        display: flex; justify-content: space-between; align-items: flex-start;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
       }
       .pop-overlay .brand-mark {
-        background: rgba(255,255,255,0.95); color: var(--rose-deep);
-        padding: 6px 12px; border-radius: 100px;
-        font-size: 10.5px; font-weight: 800; letter-spacing: 0.15em;
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--rose-deep);
+        padding: 6px 12px;
+        border-radius: 100px;
+        font-size: 10.5px;
+        font-weight: 800;
+        letter-spacing: 0.15em;
       }
       .pop-overlay .lotte-mark {
-        background: rgba(0,0,0,0.55); color: #fff;
-        padding: 6px 12px; border-radius: 100px;
-        font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 100px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
       }
-      /* 우측 POP 블록 — AI 임의 텍스트 가림 */
+      /* 좌측 POP 블록 — 모델이 중앙-우측 배치라 좌측 여백에 POP */
       .pop-block {
         position: absolute;
-        right: 22px; top: 50%; transform: translateY(-50%);
-        width: 360px;
-        background: linear-gradient(135deg,
-          rgba(157,54,83,0.82),
-          rgba(228,123,152,0.7));
+        left: 22px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 320px;
+        background: linear-gradient(
+          135deg,
+          rgba(157, 54, 83, 0.82),
+          rgba(228, 123, 152, 0.7)
+        );
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        border: 1px solid rgba(255,255,255,0.28);
+        border: 1px solid rgba(255, 255, 255, 0.28);
         border-radius: 14px;
         padding: 22px 24px;
         color: #fff;
         text-align: center;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
       }
       .pop-block .deco {
-        position: absolute; pointer-events: none;
+        position: absolute;
+        pointer-events: none;
       }
-      .pop-block .deco.s1 { top: -8px; left: 12px; font-size: 22px; color: #fff; }
-      .pop-block .deco.s2 { bottom: -10px; right: 14px; font-size: 26px; color: #ffd6e1; }
-      .pop-block .deco.s3 { top: 16px; right: -6px; font-size: 16px; color: #fff; }
+      .pop-block .deco.s1 {
+        top: -8px;
+        left: 12px;
+        font-size: 22px;
+        color: #fff;
+      }
+      .pop-block .deco.s2 {
+        bottom: -10px;
+        right: 14px;
+        font-size: 26px;
+        color: #ffd6e1;
+      }
+      .pop-block .deco.s3 {
+        top: 16px;
+        right: -6px;
+        font-size: 16px;
+        color: #fff;
+      }
       .pop-block .pre {
-        font-size: 11px; letter-spacing: 0.2em; font-weight: 700;
-        opacity: 0.94; margin-bottom: 8px;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        font-weight: 700;
+        opacity: 0.94;
+        margin-bottom: 8px;
       }
       .pop-block .big {
-        font-size: 42px; font-weight: 900; letter-spacing: -0.04em;
-        line-height: 0.95; margin-bottom: 6px;
-        text-shadow: 0 3px 16px rgba(0,0,0,0.2);
+        font-size: 42px;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+        margin-bottom: 6px;
+        text-shadow: 0 3px 16px rgba(0, 0, 0, 0.2);
       }
       .pop-block .sub {
-        font-size: 12.5px; letter-spacing: 0.04em; font-weight: 600;
-        opacity: 0.95; margin-bottom: 12px;
+        font-size: 12.5px;
+        letter-spacing: 0.04em;
+        font-weight: 600;
+        opacity: 0.95;
+        margin-bottom: 12px;
       }
       .pop-block .lineup-pill {
         display: inline-block;
-        background: #fff; color: var(--rose-deep);
-        padding: 6px 14px; border-radius: 100px;
-        font-size: 11px; font-weight: 800; letter-spacing: 0.04em;
+        background: #fff;
+        color: var(--rose-deep);
+        padding: 6px 14px;
+        border-radius: 100px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
       }
       .pop-block .lineup-pill .num {
-        background: var(--rose-deep); color: #fff;
-        padding: 1px 6px; border-radius: 100px;
-        font-size: 10px; margin-right: 4px;
+        background: var(--rose-deep);
+        color: #fff;
+        padding: 1px 6px;
+        border-radius: 100px;
+        font-size: 10px;
+        margin-right: 4px;
       }
 
       .pop-overlay .bottom-row {
-        position: absolute; left: 22px; bottom: 22px; right: 22px;
-        display: flex; justify-content: space-between; align-items: flex-end;
+        position: absolute;
+        left: 22px;
+        bottom: 22px;
+        right: 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
       }
       .pop-overlay .tagline {
-        background: rgba(255,255,255,0.95); color: var(--rose-deep);
-        padding: 8px 14px; border-radius: 100px;
-        font-size: 11.5px; font-weight: 700;
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--rose-deep);
+        padding: 8px 14px;
+        border-radius: 100px;
+        font-size: 11.5px;
+        font-weight: 700;
       }
       .pop-overlay .swatch-strip {
-        background: rgba(255,255,255,0.92);
-        border-radius: 8px; padding: 6px 8px;
-        display: flex; gap: 5px;
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 8px;
+        padding: 6px 8px;
+        display: flex;
+        gap: 5px;
       }
       .pop-overlay .swatch-strip span {
-        padding: 4px 10px; border-radius: 4px;
-        font-size: 9.5px; font-weight: 700; color: var(--ink-soft);
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 9.5px;
+        font-weight: 700;
+        color: var(--ink-soft);
       }
 
       /* 데코 */
       .stage-deco {
-        position: absolute; pointer-events: none;
+        position: absolute;
+        pointer-events: none;
         font-weight: 700;
       }
-      .stage-deco.s1 { top: 50px; left: 35%; color: rgba(255,255,255,0.55); font-size: 22px; }
-      .stage-deco.s2 { top: 200px; left: 28%; color: rgba(255,255,255,0.5); font-size: 32px; }
-      .stage-deco.s3 { top: 110px; left: 42%; color: rgba(255,255,255,0.55); font-size: 18px; }
+      .stage-deco.s1 {
+        top: 50px;
+        left: 35%;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 22px;
+      }
+      .stage-deco.s2 {
+        top: 200px;
+        left: 28%;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 32px;
+      }
+      .stage-deco.s3 {
+        top: 110px;
+        left: 42%;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 18px;
+      }
 
       /* COUNTER */
       .counter-full {
-        background: linear-gradient(180deg, var(--metal) 0%, var(--metal-dark) 100%);
+        background: linear-gradient(
+          180deg,
+          var(--metal) 0%,
+          var(--metal-dark) 100%
+        );
         border-radius: 0 0 12px 12px;
-        padding: 14px 18px 16px; border-top: 2px solid #b9b6b3;
+        padding: 14px 18px 16px;
+        border-top: 2px solid #b9b6b3;
       }
       .shelf {
-        background: rgba(255,255,255,0.92); border-radius: 6px;
-        padding: 8px; margin-bottom: 8px;
-        display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px;
-        border: 1px solid rgba(0,0,0,0.06);
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 6px;
+        padding: 8px;
+        margin-bottom: 8px;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
       }
-      .shelf:last-child { margin-bottom: 0; }
+      .shelf:last-child {
+        margin-bottom: 0;
+      }
       .shelf-label {
-        grid-column: 1 / -1; font-size: 9.5px; font-weight: 700;
-        color: var(--rose-deep); letter-spacing: 0.08em;
-        padding-bottom: 4px; margin-bottom: 2px;
+        grid-column: 1 / -1;
+        font-size: 9.5px;
+        font-weight: 700;
+        color: var(--rose-deep);
+        letter-spacing: 0.08em;
+        padding-bottom: 4px;
+        margin-bottom: 2px;
         border-bottom: 1px dashed var(--soft);
       }
       .box {
         background: linear-gradient(135deg, #fae3e8 0%, #f5a0b5 100%);
-        height: 36px; border-radius: 4px;
-        border: 1px solid #e88aa5; position: relative;
+        height: 36px;
+        border-radius: 4px;
+        border: 1px solid #e88aa5;
+        position: relative;
       }
       .box::after {
-        content: ''; position: absolute; top: 50%; left: 4px; right: 4px;
-        height: 6px; background: rgba(255,255,255,0.5);
-        transform: translateY(-50%); border-radius: 1px;
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 4px;
+        right: 4px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.5);
+        transform: translateY(-50%);
+        border-radius: 1px;
       }
       .box.cloud-hero {
         background: linear-gradient(135deg, #f5a0b5 0%, #c44b6e 100%);
@@ -400,89 +691,182 @@
       }
 
       .stage-caption {
-        text-align: center; margin-top: 22px; font-size: 12px;
-        color: var(--gray); letter-spacing: 0.04em;
+        text-align: center;
+        margin-top: 22px;
+        font-size: 12px;
+        color: var(--gray);
+        letter-spacing: 0.04em;
       }
-      .stage-caption b { color: var(--rose-deep); font-weight: 700; }
+      .stage-caption b {
+        color: var(--rose-deep);
+        font-weight: 700;
+      }
       .stage-caption .ai-tag {
-        display: inline-block; background: var(--rose-deep);
-        color: #fff; padding: 2px 8px; border-radius: 100px;
-        font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
+        display: inline-block;
+        background: var(--rose-deep);
+        color: #fff;
+        padding: 2px 8px;
+        border-radius: 100px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
         margin-left: 8px;
       }
 
       /* ─── 진열 매트릭스 ─── */
       .display-grid {
-        display: grid; grid-template-columns: 140px 1.4fr 1fr;
-        border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+        display: grid;
+        grid-template-columns: 140px 1.4fr 1fr;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
       }
-      .display-row { display: contents; }
+      .display-row {
+        display: contents;
+      }
       .display-row > div {
-        padding: 13px 16px; border-bottom: 1px solid var(--line);
-        font-size: 12.5px; background: #fff;
+        padding: 13px 16px;
+        border-bottom: 1px solid var(--line);
+        font-size: 12.5px;
+        background: #fff;
       }
       .display-row.head > div {
-        background: var(--pale); font-weight: 800; font-size: 11.5px;
-        letter-spacing: 0.08em; color: var(--rose-deep);
+        background: var(--pale);
+        font-weight: 800;
+        font-size: 11.5px;
+        letter-spacing: 0.08em;
+        color: var(--rose-deep);
       }
-      .display-row:last-child > div { border-bottom: 0; }
+      .display-row:last-child > div {
+        border-bottom: 0;
+      }
       .display-row .zone {
-        font-weight: 700; color: var(--ink);
-        background: var(--bg-cream); border-right: 1px solid var(--line);
-      }
-      .display-row .sku-text {
-        color: var(--ink-soft); font-weight: 600;
+        font-weight: 700;
+        color: var(--ink);
+        background: var(--bg-cream);
         border-right: 1px solid var(--line);
       }
-      .display-row .why { color: var(--gray); }
+      .display-row .sku-text {
+        color: var(--ink-soft);
+        font-weight: 600;
+        border-right: 1px solid var(--line);
+      }
+      .display-row .why {
+        color: var(--gray);
+      }
 
       /* ─── 액션 ─── */
-      .actions-list { list-style: none; padding: 0; }
+      .actions-list {
+        list-style: none;
+        padding: 0;
+      }
       .actions-list li {
-        display: flex; align-items: flex-start; gap: 14px;
-        padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 13.5px;
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 13.5px;
       }
-      .actions-list li:last-child { border-bottom: 0; }
+      .actions-list li:last-child {
+        border-bottom: 0;
+      }
       .actions-list .check {
-        width: 18px; height: 18px; border: 2px solid var(--gray-soft);
-        border-radius: 5px; flex-shrink: 0; margin-top: 2px;
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--gray-soft);
+        border-radius: 5px;
+        flex-shrink: 0;
+        margin-top: 2px;
       }
-      .actions-list .body { flex: 1; }
-      .actions-list b { font-weight: 700; color: var(--ink); }
+      .actions-list .body {
+        flex: 1;
+      }
+      .actions-list b {
+        font-weight: 700;
+        color: var(--ink);
+      }
       .actions-list .meta {
-        font-size: 11.5px; color: var(--gray); margin-top: 3px;
+        font-size: 11.5px;
+        color: var(--gray);
+        margin-top: 3px;
       }
       .actions-list .owner {
-        background: var(--pale); color: var(--rose-deep);
-        padding: 3px 9px; border-radius: 100px;
-        font-size: 10.5px; font-weight: 700; letter-spacing: 0.04em;
-        white-space: nowrap; align-self: center;
+        background: var(--pale);
+        color: var(--rose-deep);
+        padding: 3px 9px;
+        border-radius: 100px;
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+        align-self: center;
       }
 
       .foot {
-        text-align: center; font-size: 11.5px;
-        color: var(--gray-soft); margin-top: 36px; letter-spacing: 0.05em;
+        text-align: center;
+        font-size: 11.5px;
+        color: var(--gray-soft);
+        margin-top: 36px;
+        letter-spacing: 0.05em;
       }
 
       /* 반응형 */
       @media (max-width: 760px) {
-        .page { padding: 32px 18px 80px; }
-        section { padding: 26px 20px; }
-        .cover { padding: 36px 24px; }
-        .cover h1 { font-size: 24px; }
-        .mood-ref { grid-template-columns: 1fr; }
-        .lineup-section { grid-template-columns: 1fr; }
-        .stage-full { grid-template-columns: 46px 1fr 46px; gap: 6px; }
-        .side-tam { height: 460px; font-size: 18px; }
-        .backdrop-full { height: 290px; }
-        .pop-block { width: 220px; padding: 14px 16px; }
-        .pop-block .big { font-size: 28px; }
-        .pop-block .pre { font-size: 9.5px; }
-        .pop-block .sub { font-size: 10.5px; }
-        .shelf { grid-template-columns: repeat(6, 1fr); }
-        .display-grid { grid-template-columns: 1fr; }
-        .display-row > div { border-right: 0 !important; }
-        .display-row.head > div:not(:first-child) { display: none; }
+        .page {
+          padding: 32px 18px 80px;
+        }
+        section {
+          padding: 26px 20px;
+        }
+        .cover {
+          padding: 36px 24px;
+        }
+        .cover h1 {
+          font-size: 24px;
+        }
+        .mood-ref {
+          grid-template-columns: 1fr;
+        }
+        .lineup-section {
+          grid-template-columns: 1fr;
+        }
+        .stage-full {
+          grid-template-columns: 46px 1fr 46px;
+          gap: 6px;
+        }
+        .side-tam {
+          height: 460px;
+          font-size: 18px;
+        }
+        .backdrop-full {
+          height: 290px;
+        }
+        .pop-block {
+          width: 220px;
+          padding: 14px 16px;
+        }
+        .pop-block .big {
+          font-size: 28px;
+        }
+        .pop-block .pre {
+          font-size: 9.5px;
+        }
+        .pop-block .sub {
+          font-size: 10.5px;
+        }
+        .shelf {
+          grid-template-columns: repeat(6, 1fr);
+        }
+        .display-grid {
+          grid-template-columns: 1fr;
+        }
+        .display-row > div {
+          border-right: 0 !important;
+        }
+        .display-row.head > div:not(:first-child) {
+          display: none;
+        }
       }
     </style>
   </head>
@@ -490,9 +874,13 @@
     <div class="page">
       <!-- COVER -->
       <div class="cover">
-        <span class="tag">ST 매대 가안 · v4 · 전제품 13종 + 핀터레스트 무드</span>
-        <h1>탐뷰티 × 롯데 팝업<br />
-          THE CLOUD + THE JELLY 전제품 13종 ST 매대</h1>
+        <span class="tag"
+          >ST 매대 가안 · v4 · 전제품 13종 + 핀터레스트 무드</span
+        >
+        <h1>
+          탐뷰티 × 롯데 팝업<br />
+          THE CLOUD + THE JELLY 전제품 13종 ST 매대
+        </h1>
         <p class="sub">
           공식 홈페이지(tambeauty.kr) 기반 전제품 13종 (CLOUD 7 + JELLY 6) ·
           다샤타란 무드 풀사이즈 백드롭 · 핀터레스트 Y2K 키치 무드 레퍼런스 옆
@@ -500,8 +888,8 @@
         </p>
         <div class="resolve">
           최종 정리 ·
-          <b>전제품 13종 진열 + AI 모델 컷 + 핀터레스트 무드</b> = 디자이너 미팅
-          1장 준비 완료
+          <b>전제품 13종 진열 + 다샤타란 공식 광고 컷 + 핀터레스트 무드</b> =
+          디자이너 미팅 1장 준비 완료
         </div>
       </div>
 
@@ -524,12 +912,36 @@
           <div class="mood-text">
             <h3>컬러 팔레트</h3>
             <div class="palette-row">
-              <span class="chip" style="background:#ffd1dc" data-hex="#FFD1DC"></span>
-              <span class="chip" style="background:#f5a0b5" data-hex="#F5A0B5"></span>
-              <span class="chip" style="background:#e2d4ee" data-hex="#E2D4EE"></span>
-              <span class="chip" style="background:#c5e0f0" data-hex="#C5E0F0"></span>
-              <span class="chip" style="background:#fff5e6" data-hex="#FFF5E6"></span>
-              <span class="chip" style="background:#9d3653" data-hex="#9D3653"></span>
+              <span
+                class="chip"
+                style="background: #ffd1dc"
+                data-hex="#FFD1DC"
+              ></span>
+              <span
+                class="chip"
+                style="background: #f5a0b5"
+                data-hex="#F5A0B5"
+              ></span>
+              <span
+                class="chip"
+                style="background: #e2d4ee"
+                data-hex="#E2D4EE"
+              ></span>
+              <span
+                class="chip"
+                style="background: #c5e0f0"
+                data-hex="#C5E0F0"
+              ></span>
+              <span
+                class="chip"
+                style="background: #fff5e6"
+                data-hex="#FFF5E6"
+              ></span>
+              <span
+                class="chip"
+                style="background: #9d3653"
+                data-hex="#9D3653"
+              ></span>
             </div>
             <h3>핵심 무드 키워드</h3>
             <div class="keyword-wrap">
@@ -545,19 +957,37 @@
               <span class="keyword">젤리 광</span>
             </div>
             <h3>그래픽 요소</h3>
-            <p style="font-size:12.5px; color:var(--ink-soft); line-height:1.6">
-              스파클 스타 ✦ · 하트 ♡ · 리본 🎀 · 솜털 구름 ☁ · 펄 텍스처 · 글리터
-              · 캐릭터 스티커 (Kawaii) · 손글씨 폰트
+            <p
+              style="
+                font-size: 12.5px;
+                color: var(--ink-soft);
+                line-height: 1.6;
+              "
+            >
+              스파클 스타 ✦ · 하트 ♡ · 리본 🎀 · 솜털 구름 ☁ · 펄 텍스처 ·
+              글리터 · 캐릭터 스티커 (Kawaii) · 손글씨 폰트
             </p>
             <h3>실제 핀터레스트 검색 키</h3>
             <div class="pin-links">
-              <a class="pin-link" target="_blank" href="https://www.pinterest.com/search/pins/?q=Y2K%20kitsch%20K-beauty%20popup">
+              <a
+                class="pin-link"
+                target="_blank"
+                href="https://www.pinterest.com/search/pins/?q=Y2K%20kitsch%20K-beauty%20popup"
+              >
                 Y2K kitsch K-beauty popup
               </a>
-              <a class="pin-link" target="_blank" href="https://www.pinterest.com/search/pins/?q=korean%20beauty%20cloud%20aesthetic%20moodboard">
+              <a
+                class="pin-link"
+                target="_blank"
+                href="https://www.pinterest.com/search/pins/?q=korean%20beauty%20cloud%20aesthetic%20moodboard"
+              >
                 Korean beauty cloud aesthetic moodboard
               </a>
-              <a class="pin-link" target="_blank" href="https://www.pinterest.com/ideas/cosmetic-moodboard/">
+              <a
+                class="pin-link"
+                target="_blank"
+                href="https://www.pinterest.com/ideas/cosmetic-moodboard/"
+              >
                 Cosmetic moodboard (Pinterest 컬렉션)
               </a>
             </div>
@@ -569,7 +999,8 @@
       <section>
         <h2><span class="num">2</span>탐뷰티 전제품 13종 라인업</h2>
         <p class="sub">
-          공식 홈페이지 tambeauty.kr 기반 · THE CLOUD LINE 7종 + THE JELLY LINE 6종
+          공식 홈페이지 tambeauty.kr 기반 · THE CLOUD LINE 7종 + THE JELLY LINE
+          6종
         </p>
         <div class="lineup-section">
           <!-- CLOUD LINE -->
@@ -652,7 +1083,9 @@
               <span class="sku-no">08</span>
               <div class="sku-body">
                 <span class="sku-name">더 젤리 빔 하이라이터</span>
-                <span class="sku-cat">HIGHLIGHTER · Moonstone/Gummy Pink/Teddy Gold</span>
+                <span class="sku-cat"
+                  >HIGHLIGHTER · Moonstone/Gummy Pink/Teddy Gold</span
+                >
               </div>
               <span class="sku-price">21,250</span>
             </div>
@@ -684,7 +1117,9 @@
               <span class="sku-no">12</span>
               <div class="sku-body">
                 <span class="sku-name">더 젤리 플럼핑 립 글로스</span>
-                <span class="sku-cat">LIP · 빅 팁 광 + 플럼핑 (다샤타란 컷)</span>
+                <span class="sku-cat"
+                  >LIP · 빅 팁 광 + 플럼핑 (다샤타란 컷)</span
+                >
               </div>
               <span class="sku-price">17,000</span>
             </div>
@@ -704,18 +1139,20 @@
       <section>
         <h2><span class="num">3</span>풀사이즈 매대 정면 가안</h2>
         <p class="sub">
-          다샤타란 무드 AI 모델 컷 풀브리드 + KITSCH POP 오버레이 + 13종 진열
-          (CLOUD 핑크 / JELLY 코랄 구분)
+          탐뷰티 다샤타란 공식 광고 컷 풀브리드 + KITSCH POP 오버레이 + 13종
+          진열 (CLOUD 핑크 / JELLY 코랄 구분)
         </p>
         <div class="stage-full-wrap">
           <div class="stage-full">
-            <div class="side-tam"><span>TAM<br />BEAUTY</span></div>
+            <div class="side-tam">
+              <span>TAM<br />BEAUTY</span>
+            </div>
             <div class="stage-center">
               <div class="backdrop-full">
                 <img
-                  src="images/ai-model-dasha-mood-v2.png"
+                  src="images/dasha-real-cropped.jpg"
                   class="bg-img"
-                  alt="다샤타란 무드 AI 모델 컷"
+                  alt="탐뷰티 다샤타란 공식 광고 컷 (멤버쉽 캠페인 상단 컷)"
                 />
                 <span class="stage-deco s1">✦</span>
                 <span class="stage-deco s2">☁</span>
@@ -739,9 +1176,9 @@
                   <div class="bottom-row">
                     <span class="tagline">매일 더 탐나는 메이크업</span>
                     <div class="swatch-strip">
-                      <span style="background:#e8d8e0">Moonstone</span>
-                      <span style="background:#f5b0c8">Gummy Pink</span>
-                      <span style="background:#e0c08a">Teddy Gold</span>
+                      <span style="background: #e8d8e0">Moonstone</span>
+                      <span style="background: #f5b0c8">Gummy Pink</span>
+                      <span style="background: #e0c08a">Teddy Gold</span>
                     </div>
                   </div>
                 </div>
@@ -761,7 +1198,8 @@
                 </div>
                 <div class="shelf">
                   <div class="shelf-label">
-                    SHELF 2 · THE JELLY LINE (베이스·블러셔·립·하이라이터 6종 · 코랄 박스)
+                    SHELF 2 · THE JELLY LINE (베이스·블러셔·립·하이라이터 6종 ·
+                    코랄 박스)
                   </div>
                   <div class="box jelly-hero" title="젤리 스킨 쿠션"></div>
                   <div class="box jelly-hero" title="젤리 빔 하이라이터"></div>
@@ -773,12 +1211,14 @@
                 </div>
               </div>
             </div>
-            <div class="side-tam"><span>TAM<br />BEAUTY</span></div>
+            <div class="side-tam">
+              <span>TAM<br />BEAUTY</span>
+            </div>
           </div>
           <div class="stage-caption">
-            * 모델 컷 = Higgsfield AI 다샤타란 무드 가안
-            <span class="ai-tag">AI v2</span> · 실제 시안은 다샤타란 협찬 컷 또는 보유
-            캠페인 컷으로 교체 · AI가 임의로 넣은 텍스트는 POP 오버레이로 가림
+            * 모델 컷 = <b>탐뷰티 보유 다샤타란 공식 광고 컷</b> (멤버쉽 캠페인
+            상단부) · 디자이너 발주 시 같은 모델 가로형 컷으로 재촬영 또는 크롭
+            작업 가능
           </div>
         </div>
       </section>
@@ -797,8 +1237,8 @@
             <div class="zone">SHELF 1 (상단)</div>
             <div class="sku-text">
               <b>THE CLOUD LINE 7종</b><br />
-              필터 파우더 밤 · 스킨 컨실러 · 하트 쉐이딩 듀오 · 블러 크림 블러셔 ·
-              블러 립 틴트 · 플럼핑 립 라이너 · 이지 브로우 펜슬
+              필터 파우더 밤 · 스킨 컨실러 · 하트 쉐이딩 듀오 · 블러 크림 블러셔
+              · 블러 립 틴트 · 플럼핑 립 라이너 · 이지 브로우 펜슬
             </div>
             <div class="why">매트 무드 라인 묶음 · 베이스→포인트 순서 진열</div>
           </div>
@@ -806,8 +1246,8 @@
             <div class="zone">SHELF 2 (하단)</div>
             <div class="sku-text">
               <b>THE JELLY LINE 6종</b><br />
-              젤리 스킨 쿠션 · 젤리 빔 하이라이터 · 젤리 밀키 치크 블러셔 ·
-              젤리 플럼핑 립 틴트/시리즈/글로스
+              젤리 스킨 쿠션 · 젤리 빔 하이라이터 · 젤리 밀키 치크 블러셔 · 젤리
+              플럼핑 립 틴트/시리즈/글로스
             </div>
             <div class="why">광 무드 라인 묶음 · 다샤타란 광고 라인 강조</div>
           </div>
@@ -848,8 +1288,8 @@
             <div class="body">
               <b>① 모델 컷 확정</b>
               <div class="meta">
-                다샤타란 공식 협찬 컷 활용 (인스타 @tambeautyme × @taaarannn 컷
-                자산) / 보유 캠페인 컷 / AI 가안 3가지 중 픽
+                보유 다샤타란 공식 광고 컷 (멤버쉽 캠페인 등) 中 ST 매대용
+                가로형 컷 셀렉트 또는 신규 촬영 발주
               </div>
             </div>
             <span class="owner">PM</span>
@@ -892,8 +1332,8 @@
             <div class="body">
               <b>⑤ 시공 + 체험존 비품</b>
               <div class="meta">
-                백드롭 출력 + 사이드 패널 + 인스톨 + 대형 미러 + 면봉/티슈/리무버
-                · 롯데 팝업 일정 역산
+                백드롭 출력 + 사이드 패널 + 인스톨 + 대형 미러 +
+                면봉/티슈/리무버 · 롯데 팝업 일정 역산
               </div>
             </div>
             <span class="owner">운영</span>
