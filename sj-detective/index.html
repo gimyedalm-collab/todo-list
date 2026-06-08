@@ -23,7 +23,7 @@
     <meta property="og:url" content="https://sj-kpi.com/" />
     <meta
       property="og:image"
-      content="https://gimyedalm-collab.github.io/todo-list/sj-detective/images/office-front.jpg"
+      content="https://sj-kpi.com/images/office-front.jpg"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="600" />
@@ -45,7 +45,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://gimyedalm-collab.github.io/todo-list/sj-detective/images/office-front.jpg"
+      content="https://sj-kpi.com/images/office-front.jpg"
     />
 
     <!-- Favicon (SJ 골드 모노그램 SVG) -->
@@ -1105,7 +1105,9 @@
         color: rgba(255, 255, 255, 0.75);
         transition: color 0.2s;
       }
-      .footer-policy a:hover { color: var(--gold-light); }
+      .footer-policy a:hover {
+        color: var(--gold-light);
+      }
       .footer-policy a strong {
         color: var(--gold-light);
         font-weight: 600;
@@ -1726,7 +1728,9 @@
           white-space: normal;
           font-size: 13px !important;
         }
-        .case-result strong { font-size: 12px !important; }
+        .case-result strong {
+          font-size: 12px !important;
+        }
       }
 
       /* Cases: RESULT 라인이 모든 카드 같은 높이에 떨어지도록 */
@@ -1762,8 +1766,12 @@
         margin-top: 22px !important;
       }
       @media (max-width: 960px) {
-        .warn-desc { min-height: 0; }
-        .warn-sj { margin-top: 16px !important; }
+        .warn-desc {
+          min-height: 0;
+        }
+        .warn-sj {
+          margin-top: 16px !important;
+        }
       }
 
       /* Why: 카드 내부 정렬 통일 (extra-tag·desc 하단 정렬) */
@@ -1827,14 +1835,21 @@
         line-height: 1.8;
       }
       @media (max-width: 540px) {
-        .about-lead { padding: 14px 16px; font-size: 14px !important; }
+        .about-lead {
+          padding: 14px 16px;
+          font-size: 14px !important;
+        }
       }
 
       /* === WHY EXTRA TAG (정식 사업자 등록업체) === */
       .why-extra-tag {
         margin-top: 22px;
         padding: 12px 18px;
-        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+        background: linear-gradient(
+          135deg,
+          var(--gold) 0%,
+          var(--gold-deep) 100%
+        );
         color: #fff;
         font-family: 'Noto Serif KR', serif;
         font-size: 14px;
@@ -1871,8 +1886,12 @@
         gap: 8px;
         background: linear-gradient(135deg, #f1ede5, #e8e2d4);
       }
-      .team-group-wrap.team-group-missing img { display: none; }
-      .team-group-wrap.team-group-missing .team-group-fallback { display: flex; }
+      .team-group-wrap.team-group-missing img {
+        display: none;
+      }
+      .team-group-wrap.team-group-missing .team-group-fallback {
+        display: flex;
+      }
       .team-group-fb-mark {
         font-family: 'Noto Serif KR', serif;
         font-size: 22px;
@@ -1893,15 +1912,24 @@
       }
 
       @media (max-width: 540px) {
-        .team-group { max-width: 100%; margin: 24px auto 44px; }
-        .team-group-note { font-size: 11px; }
+        .team-group {
+          max-width: 100%;
+          margin: 24px auto 44px;
+        }
+        .team-group-note {
+          font-size: 11px;
+        }
       }
 
       /* === BOTTOM BAR (하단 고정 상담 바) === */
-      body { padding-bottom: 84px; }
+      body {
+        padding-bottom: 84px;
+      }
       .bottom-bar {
         position: fixed;
-        left: 0; right: 0; bottom: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         z-index: 95;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -1926,12 +1954,21 @@
         transition: background 0.2s ease;
         min-height: 64px;
       }
-      .bbar-item:last-child { border-right: none; }
-      .bbar-item:hover { background: rgba(184, 153, 104, 0.08); }
-      .bbar-item:active { background: rgba(184, 153, 104, 0.15); }
+      .bbar-item:last-child {
+        border-right: none;
+      }
+      .bbar-item:hover {
+        background: rgba(184, 153, 104, 0.08);
+      }
+      .bbar-item:active {
+        background: rgba(184, 153, 104, 0.15);
+      }
       .bbar-ico {
-        width: 36px; height: 36px;
-        display: flex; align-items: center; justify-content: center;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 50%;
         font-size: 18px;
         font-weight: 700;
@@ -1970,23 +2007,44 @@
       }
 
       /* toast 위치를 하단 바 위로 */
-      .toast { bottom: 104px !important; }
+      .toast {
+        bottom: 104px !important;
+      }
 
       @media (max-width: 540px) {
-        body { padding-bottom: 68px; }
-        .bottom-bar { grid-template-columns: 1fr 1fr 1fr; }
+        body {
+          padding-bottom: 68px;
+        }
+        .bottom-bar {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
         .bbar-item {
           flex-direction: column;
           gap: 4px;
           padding: 10px 6px;
           min-height: 60px;
         }
-        .bbar-ico { width: 28px; height: 28px; font-size: 14px; }
-        .bbar-telegram .bbar-ico { font-size: 16px; }
-        .bbar-label { align-items: center; text-align: center; }
-        .bbar-label strong { font-size: 11px; }
-        .bbar-label small { display: none; }
-        .toast { bottom: 84px !important; }
+        .bbar-ico {
+          width: 28px;
+          height: 28px;
+          font-size: 14px;
+        }
+        .bbar-telegram .bbar-ico {
+          font-size: 16px;
+        }
+        .bbar-label {
+          align-items: center;
+          text-align: center;
+        }
+        .bbar-label strong {
+          font-size: 11px;
+        }
+        .bbar-label small {
+          display: none;
+        }
+        .toast {
+          bottom: 84px !important;
+        }
       }
 
       /* === ABOUT CERT PORTRAIT (인물 사진 모드) === */
@@ -2252,8 +2310,12 @@
         line-height: 1;
         pointer-events: none;
       }
-      .warning .section-title { color: #fff; }
-      .warning .section-sub { color: rgba(255, 255, 255, 0.65); }
+      .warning .section-title {
+        color: #fff;
+      }
+      .warning .section-sub {
+        color: rgba(255, 255, 255, 0.65);
+      }
       .warning-eyebrow {
         color: var(--red) !important;
       }
@@ -2269,7 +2331,9 @@
       .warn-red::after {
         content: '';
         position: absolute;
-        left: 0; right: 0; bottom: 4px;
+        left: 0;
+        right: 0;
+        bottom: 4px;
         height: 10px;
         background: rgba(184, 50, 42, 0.25);
         z-index: -1;
@@ -2341,7 +2405,11 @@
       .warn-sj {
         margin-top: auto;
         padding: 18px 18px 20px;
-        background: linear-gradient(135deg, rgba(184, 153, 104, 0.12), rgba(184, 153, 104, 0.04));
+        background: linear-gradient(
+          135deg,
+          rgba(184, 153, 104, 0.12),
+          rgba(184, 153, 104, 0.04)
+        );
         border-left: 3px solid var(--gold);
       }
       .warn-sj-tag {
@@ -2359,13 +2427,19 @@
         line-height: 1.8;
         margin: 0;
       }
-      .warn-sj p strong { color: var(--gold-light); }
+      .warn-sj p strong {
+        color: var(--gold-light);
+      }
 
       .warn-bottom {
         margin-top: 60px;
         text-align: center;
         padding: 36px 24px;
-        background: linear-gradient(180deg, rgba(184, 153, 104, 0.06), transparent);
+        background: linear-gradient(
+          180deg,
+          rgba(184, 153, 104, 0.06),
+          transparent
+        );
         border-top: 1px solid rgba(184, 153, 104, 0.2);
       }
       .warn-bottom p {
@@ -2400,31 +2474,70 @@
       }
 
       @media (max-width: 960px) {
-        .warn-grid { grid-template-columns: 1fr; gap: 20px; }
-        .warning::before { font-size: 180px; top: 30px; }
-        .warn-card { padding: 32px 26px; }
-        .warn-title { font-size: 19px; }
-        .warn-desc { font-size: 13px; }
-        .warn-sj p { font-size: 12px; }
-        .warn-bottom { margin-top: 40px; padding: 28px 20px; }
-        .warn-bottom p { font-size: 14px; }
-        .warn-bottom p strong { font-size: 16px; }
+        .warn-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .warning::before {
+          font-size: 180px;
+          top: 30px;
+        }
+        .warn-card {
+          padding: 32px 26px;
+        }
+        .warn-title {
+          font-size: 19px;
+        }
+        .warn-desc {
+          font-size: 13px;
+        }
+        .warn-sj p {
+          font-size: 12px;
+        }
+        .warn-bottom {
+          margin-top: 40px;
+          padding: 28px 20px;
+        }
+        .warn-bottom p {
+          font-size: 14px;
+        }
+        .warn-bottom p strong {
+          font-size: 16px;
+        }
       }
 
       /* ============================================
          === LAYOUT REFINEMENT (PC + Mobile 정합) ===
          ============================================ */
       /* 그리드 gap 통일 (svc는 1px 보더라인 의도, cred만 4컬럼이라 24px 유지) */
-      .why-grid { gap: 30px !important; }
+      .why-grid {
+        gap: 30px !important;
+      }
 
       /* 카드 figcaption 텍스트 길이 달라도 정렬 균등 */
-      .office-card figcaption { min-height: 58px; }
-      .cred-card figcaption { min-height: 52px; }
+      .office-card figcaption {
+        min-height: 58px;
+      }
+      .cred-card figcaption {
+        min-height: 52px;
+      }
 
       /* 컨테이너 패딩 단계별 균등화 */
-      @media (max-width: 1280px) { .container { padding: 0 32px; } }
-      @media (max-width: 960px) { .container { padding: 0 24px; } }
-      @media (max-width: 480px) { .container { padding: 0 18px; } }
+      @media (max-width: 1280px) {
+        .container {
+          padding: 0 32px;
+        }
+      }
+      @media (max-width: 960px) {
+        .container {
+          padding: 0 24px;
+        }
+      }
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 18px;
+        }
+      }
 
       /* 헤더 GPU 가속 — 모바일 스크롤 시 깜빡임 방지 */
       header {
@@ -2434,22 +2547,35 @@
       }
 
       /* 모바일 nav 펼침 안정 */
-      body.nav-open { overflow: hidden; }
-      header nav { z-index: 99; }
+      body.nav-open {
+        overflow: hidden;
+      }
+      header nav {
+        z-index: 99;
+      }
 
       /* 하단 바와 footer 사이 안전 마진 */
-      footer { padding-bottom: 30px; }
+      footer {
+        padding-bottom: 30px;
+      }
 
       /* 와이드 모니터 (1600+)에서 컨텐츠 중앙 정렬 유지 */
       @media (min-width: 1600px) {
-        .hero h1 { font-size: 48px; }
+        .hero h1 {
+          font-size: 48px;
+        }
       }
 
       /* 이미지 로딩 중 레이아웃 시프트 방지 */
-      img { background-color: rgba(255, 255, 255, 0.02); }
+      img {
+        background-color: rgba(255, 255, 255, 0.02);
+      }
 
       /* 가로 스크롤 완전 차단 */
-      html, body { overflow-x: clip; }
+      html,
+      body {
+        overflow-x: clip;
+      }
 
       /* === TEAM MEMBERS (단체사진 영역) === */
       .team-members {
@@ -2510,8 +2636,12 @@
         gap: 6px;
         font-family: 'Noto Serif KR', serif;
       }
-      .team-member-img.team-member-missing img { display: none; }
-      .team-member-img.team-member-missing .team-member-fb { display: flex; }
+      .team-member-img.team-member-missing img {
+        display: none;
+      }
+      .team-member-img.team-member-missing .team-member-fb {
+        display: flex;
+      }
       .team-member-fb-mark {
         font-size: 20px;
         font-weight: 700;
@@ -2533,13 +2663,24 @@
       }
 
       @media (max-width: 720px) {
-        .team-members-grid { grid-template-columns: 1fr; gap: 16px; }
-        .team-members-title { font-size: 18px; gap: 10px; }
-        .team-members-tag { font-size: 10px; padding: 4px 10px; }
+        .team-members-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .team-members-title {
+          font-size: 18px;
+          gap: 10px;
+        }
+        .team-members-tag {
+          font-size: 10px;
+          padding: 4px 10px;
+        }
       }
 
       /* === OUR OFFICE === */
-      .office { background: #0e0e10; }
+      .office {
+        background: #0e0e10;
+      }
       .office-hero {
         margin: 0 0 50px;
         position: relative;
@@ -2550,24 +2691,34 @@
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.08);
       }
-      .office-img-wide { aspect-ratio: 21/10; }
+      .office-img-wide {
+        aspect-ratio: 21/10;
+      }
       .office-img-wrap img {
-        width: 100%; height: 100%;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
         display: block;
       }
       .office-img-fallback {
         display: none;
-        position: absolute; inset: 0;
+        position: absolute;
+        inset: 0;
         flex-direction: column;
-        align-items: center; justify-content: center;
+        align-items: center;
+        justify-content: center;
         gap: 8px;
         font-family: 'Noto Serif KR', serif;
       }
-      .office-img-wrap.office-img-missing img { display: none; }
-      .office-img-wrap.office-img-missing .office-img-fallback { display: flex; }
+      .office-img-wrap.office-img-missing img {
+        display: none;
+      }
+      .office-img-wrap.office-img-missing .office-img-fallback {
+        display: flex;
+      }
       .office-fb-mark {
-        font-size: 22px; font-weight: 700;
+        font-size: 22px;
+        font-weight: 700;
         color: var(--gold-light);
         letter-spacing: 0.12em;
       }
@@ -2579,14 +2730,17 @@
       }
       .office-hero-cap {
         margin-top: 16px;
-        display: flex; align-items: center; gap: 14px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
         font-size: 14px;
         color: rgba(255, 255, 255, 0.65);
         letter-spacing: 0.02em;
       }
       .office-cap-tag {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 12px; font-weight: 700;
+        font-size: 12px;
+        font-weight: 700;
         letter-spacing: 0.3em;
         padding: 5px 12px;
         background: var(--gold);
@@ -2601,8 +2755,12 @@
         margin: 0;
         transition: transform 0.3s;
       }
-      .office-card:hover { transform: translateY(-4px); }
-      .office-card .office-img-wrap { aspect-ratio: 4/3; }
+      .office-card:hover {
+        transform: translateY(-4px);
+      }
+      .office-card .office-img-wrap {
+        aspect-ratio: 4/3;
+      }
       .office-card:hover .office-img-wrap {
         border-color: var(--gold);
         box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
@@ -2614,7 +2772,8 @@
       .office-card figcaption strong {
         display: block;
         font-family: 'Noto Serif KR', serif;
-        font-size: 16px; font-weight: 700;
+        font-size: 16px;
+        font-weight: 700;
         color: #fff;
         letter-spacing: -0.01em;
         margin-bottom: 4px;
@@ -2626,16 +2785,35 @@
       }
 
       @media (max-width: 960px) {
-        .office-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
-        .office-img-wide { aspect-ratio: 16/10; }
-        .office-hero-cap { font-size: 12px; gap: 10px; }
-        .office-cap-tag { font-size: 10px; padding: 4px 10px; }
-        .office-card figcaption strong { font-size: 14px; }
-        .office-card figcaption span { font-size: 11px; }
+        .office-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 18px;
+        }
+        .office-img-wide {
+          aspect-ratio: 16/10;
+        }
+        .office-hero-cap {
+          font-size: 12px;
+          gap: 10px;
+        }
+        .office-cap-tag {
+          font-size: 10px;
+          padding: 4px 10px;
+        }
+        .office-card figcaption strong {
+          font-size: 14px;
+        }
+        .office-card figcaption span {
+          font-size: 11px;
+        }
       }
       @media (max-width: 540px) {
-        .office-grid { grid-template-columns: 1fr; }
-        .office-img-wide { aspect-ratio: 4/3; }
+        .office-grid {
+          grid-template-columns: 1fr;
+        }
+        .office-img-wide {
+          aspect-ratio: 4/3;
+        }
       }
 
       /* === OFFICE GRID 2-COL (회의실 + 비밀 상담실 두 카드) === */
@@ -2714,45 +2892,103 @@
       }
 
       @media (max-width: 540px) {
-        .office-grid-2 { grid-template-columns: 1fr !important; }
-        .cred-biz-strong { font-size: 13px; padding: 8px 12px; }
+        .office-grid-2 {
+          grid-template-columns: 1fr !important;
+        }
+        .cred-biz-strong {
+          font-size: 13px;
+          padding: 8px 12px;
+        }
       }
 
       /* ============================================
          === DARK MODE UNIFICATION (전체 다크 톤) ===
          ============================================ */
-      .about, .why, .credentials, .faq { background: #050507; }
-      .services, .team, .cases { background: #0e0e10; }
+      .about,
+      .why,
+      .credentials,
+      .faq {
+        background: #050507;
+      }
+      .services,
+      .team,
+      .cases {
+        background: #0e0e10;
+      }
 
       /* 섹션 헤딩/부제 */
-      .about .section-title, .services .section-title, .why .section-title,
-      .team .section-title, .office .section-title, .credentials .section-title,
-      .cases .section-title, .warning .section-title, .faq .section-title { color: #fff; }
-      .about .section-sub, .services .section-sub, .why .section-sub,
-      .team .section-sub, .office .section-sub, .credentials .section-sub,
-      .cases .section-sub, .warning .section-sub, .faq .section-sub { color: rgba(255, 255, 255, 0.65); }
-      .section-title .gold { color: var(--gold-light) !important; }
+      .about .section-title,
+      .services .section-title,
+      .why .section-title,
+      .team .section-title,
+      .office .section-title,
+      .credentials .section-title,
+      .cases .section-title,
+      .warning .section-title,
+      .faq .section-title {
+        color: #fff;
+      }
+      .about .section-sub,
+      .services .section-sub,
+      .why .section-sub,
+      .team .section-sub,
+      .office .section-sub,
+      .credentials .section-sub,
+      .cases .section-sub,
+      .warning .section-sub,
+      .faq .section-sub {
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .section-title .gold {
+        color: var(--gold-light) !important;
+      }
 
       /* About */
-      .about-text .label { color: var(--gold-light); }
-      .about-text h2 { color: #fff; }
-      .about-text h2 span { color: var(--gold-light) !important; }
-      .about-text p { color: rgba(255, 255, 255, 0.78); }
-      .about-text p strong { color: #fff; }
-      .about-text .sign { border-top-color: rgba(255, 255, 255, 0.1); }
-      .about-text .sign-name { color: #fff; }
-      .about-text .sign-name small { color: rgba(255, 255, 255, 0.45); }
-      .about-visual.about-visual-cert { background: transparent !important; }
+      .about-text .label {
+        color: var(--gold-light);
+      }
+      .about-text h2 {
+        color: #fff;
+      }
+      .about-text h2 span {
+        color: var(--gold-light) !important;
+      }
+      .about-text p {
+        color: rgba(255, 255, 255, 0.78);
+      }
+      .about-text p strong {
+        color: #fff;
+      }
+      .about-text .sign {
+        border-top-color: rgba(255, 255, 255, 0.1);
+      }
+      .about-text .sign-name {
+        color: #fff;
+      }
+      .about-text .sign-name small {
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .about-visual.about-visual-cert {
+        background: transparent !important;
+      }
 
       /* cert-strip → dark */
       .cert-strip {
         background: #15151a !important;
         border-color: rgba(184, 153, 104, 0.5) !important;
       }
-      .cert-strip-title { color: #fff !important; }
-      .cert-list li { color: rgba(255, 255, 255, 0.82) !important; }
-      .cert-list-people li strong { color: #fff !important; }
-      .cert-list-people li span { color: rgba(255, 255, 255, 0.5) !important; }
+      .cert-strip-title {
+        color: #fff !important;
+      }
+      .cert-list li {
+        color: rgba(255, 255, 255, 0.82) !important;
+      }
+      .cert-list-people li strong {
+        color: #fff !important;
+      }
+      .cert-list-people li span {
+        color: rgba(255, 255, 255, 0.5) !important;
+      }
       .cert-note {
         border-top-color: rgba(255, 255, 255, 0.1) !important;
         color: rgba(255, 255, 255, 0.5) !important;
@@ -2772,11 +3008,21 @@
         box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
       }
       .svc-card:hover .svc-num,
-      .svc-card:hover .svc-arrow { color: var(--gold-light); }
-      .svc-num { color: var(--gold-light) !important; }
-      .svc-title { color: #fff !important; }
-      .svc-desc { color: rgba(255, 255, 255, 0.7) !important; }
-      .svc-arrow { color: rgba(255, 255, 255, 0.4) !important; }
+      .svc-card:hover .svc-arrow {
+        color: var(--gold-light);
+      }
+      .svc-num {
+        color: var(--gold-light) !important;
+      }
+      .svc-title {
+        color: #fff !important;
+      }
+      .svc-desc {
+        color: rgba(255, 255, 255, 0.7) !important;
+      }
+      .svc-arrow {
+        color: rgba(255, 255, 255, 0.4) !important;
+      }
       .svc-tags span {
         border-color: rgba(255, 255, 255, 0.15) !important;
         color: rgba(255, 255, 255, 0.55) !important;
@@ -2799,9 +3045,15 @@
         background: linear-gradient(180deg, #1d1a13, #15131a) !important;
         border-color: var(--gold) !important;
       }
-      .why-title { color: #fff !important; }
-      .why-desc { color: rgba(255, 255, 255, 0.72) !important; }
-      .why-desc strong { color: var(--gold-light); }
+      .why-title {
+        color: #fff !important;
+      }
+      .why-desc {
+        color: rgba(255, 255, 255, 0.72) !important;
+      }
+      .why-desc strong {
+        color: var(--gold-light);
+      }
       .why-ico {
         border-color: var(--gold) !important;
         color: var(--gold-light) !important;
@@ -2820,14 +3072,22 @@
         color: #fff !important;
         border-bottom-color: rgba(255, 255, 255, 0.08) !important;
       }
-      .team-name small { color: rgba(255, 255, 255, 0.5) !important; }
-      .team-desc { color: rgba(255, 255, 255, 0.72) !important; }
+      .team-name small {
+        color: rgba(255, 255, 255, 0.5) !important;
+      }
+      .team-desc {
+        color: rgba(255, 255, 255, 0.72) !important;
+      }
       .team-pledge {
         background: #15151a !important;
         border-left-color: var(--gold) !important;
       }
-      .team-pledge p { color: rgba(255, 255, 255, 0.88) !important; }
-      .team-pledge p strong { color: var(--gold-light); }
+      .team-pledge p {
+        color: rgba(255, 255, 255, 0.88) !important;
+      }
+      .team-pledge p strong {
+        color: var(--gold-light);
+      }
 
       /* Credentials */
       .cred-card {
@@ -2838,7 +3098,9 @@
         border-color: var(--gold) !important;
         box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
       }
-      .cred-card figcaption strong { color: #fff !important; }
+      .cred-card figcaption strong {
+        color: #fff !important;
+      }
       .cred-img-wrap {
         background: linear-gradient(135deg, #1f1c16, #15131a) !important;
       }
@@ -2847,12 +3109,18 @@
         border-color: rgba(255, 255, 255, 0.08) !important;
         border-left-color: var(--gold) !important;
       }
-      .cred-biz-text h3 { color: #fff !important; }
+      .cred-biz-text h3 {
+        color: #fff !important;
+      }
       .cred-biz-list li {
         border-bottom-color: rgba(255, 255, 255, 0.08) !important;
       }
-      .cred-biz-list li strong { color: #fff !important; }
-      .cred-biz-list li span { color: rgba(255, 255, 255, 0.5) !important; }
+      .cred-biz-list li strong {
+        color: #fff !important;
+      }
+      .cred-biz-list li span {
+        color: rgba(255, 255, 255, 0.5) !important;
+      }
       .cred-biz-note {
         border-top-color: rgba(255, 255, 255, 0.08) !important;
         color: rgba(255, 255, 255, 0.45) !important;
@@ -2867,23 +3135,37 @@
         border-color: var(--gold) !important;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
       }
-      .case-meta { color: rgba(255, 255, 255, 0.42) !important; }
-      .case-title { color: #fff !important; }
-      .case-excerpt { color: rgba(255, 255, 255, 0.72) !important; }
+      .case-meta {
+        color: rgba(255, 255, 255, 0.42) !important;
+      }
+      .case-title {
+        color: #fff !important;
+      }
+      .case-excerpt {
+        color: rgba(255, 255, 255, 0.72) !important;
+      }
       .case-result {
         border-top-color: rgba(255, 255, 255, 0.1) !important;
         color: rgba(255, 255, 255, 0.82);
       }
 
       /* FAQ */
-      .faq-item { border-bottom-color: rgba(255, 255, 255, 0.08) !important; }
-      .faq-q { color: #fff; }
-      .faq-q:hover { color: var(--gold-light); }
+      .faq-item {
+        border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      .faq-q {
+        color: #fff;
+      }
+      .faq-q:hover {
+        color: var(--gold-light);
+      }
       .faq-q .q-toggle {
         border-color: rgba(255, 255, 255, 0.18) !important;
         color: rgba(255, 255, 255, 0.6);
       }
-      .faq-a { color: rgba(255, 255, 255, 0.72) !important; }
+      .faq-a {
+        color: rgba(255, 255, 255, 0.72) !important;
+      }
 
       /* ============================================
          === MOBILE OPTIMIZATION (종합) ===
@@ -3552,8 +3834,8 @@
         </h1>
         <p class="hero-sub">
           말하지 못한 진실, 묻혀버린 흔적, 사라진 사람 ―<br />
-          의뢰인이 처한 상황에 맞는 <strong>전문 조사관</strong>이 어떠한
-          사건도 완벽하게 수행합니다.<br />
+          의뢰인이 처한 상황에 맞는 <strong>전문 조사관</strong>이 어떠한 사건도
+          완벽하게 수행합니다.<br />
           모든 상담은 <strong>완전한 비밀보장</strong> 아래 진행되며, 결과로
           증명합니다.
         </p>
@@ -3756,9 +4038,7 @@
             단순한 절차,
             <span style="color: var(--gold-light)">철저한 보안.</span>
           </h2>
-          <p class="section-sub">
-            모든 단계는 의뢰인 동의 아래 진행됩니다.
-          </p>
+          <p class="section-sub">모든 단계는 의뢰인 동의 아래 진행됩니다.</p>
         </div>
 
         <div class="proc-grid">
@@ -3810,9 +4090,7 @@
           <h2 class="section-title">
             왜 의뢰인은 <span class="gold">SJ만 다시 찾을까요?</span>
           </h2>
-          <p class="section-sub">
-            왜 의뢰인은 SJ 탐정사무소를 신뢰할까요?
-          </p>
+          <p class="section-sub">왜 의뢰인은 SJ 탐정사무소를 신뢰할까요?</p>
         </div>
 
         <div class="why-grid">
@@ -3871,7 +4149,6 @@
           </div>
         </div>
 
-
         <div class="team-grid">
           <div class="team-card">
             <div class="team-card-num">01</div>
@@ -3911,7 +4188,9 @@
                 <img
                   src="images/team-group-1.jpg"
                   alt="SJ 탐정사무소 구성원 단체사진 1"
-                  onerror="this.parentElement.classList.add('team-member-missing')"
+                  onerror="
+                    this.parentElement.classList.add('team-member-missing')
+                  "
                 />
                 <div class="team-member-fb">
                   <span class="team-member-fb-mark">단체사진 1</span>
@@ -3924,7 +4203,9 @@
                 <img
                   src="images/team-group-2.jpg"
                   alt="SJ 탐정사무소 구성원 단체사진 2"
-                  onerror="this.parentElement.classList.add('team-member-missing')"
+                  onerror="
+                    this.parentElement.classList.add('team-member-missing')
+                  "
                 />
                 <div class="team-member-fb">
                   <span class="team-member-fb-mark">단체사진 2</span>
@@ -3982,7 +4263,9 @@
               />
               <div class="office-img-fallback">
                 <span class="office-fb-mark">회의실</span>
-                <span class="office-fb-sub">images/office-investigation.jpg</span>
+                <span class="office-fb-sub"
+                  >images/office-investigation.jpg</span
+                >
               </div>
             </div>
             <figcaption>
@@ -4173,7 +4456,8 @@
             의뢰 전에 <span class="warn-red">반드시</span> 확인하세요.
           </h2>
           <p class="section-sub">
-            매년 수많은 의뢰인이 무자격·미등록 업체에 속아 두 번 상처받습니다.<br />
+            매년 수많은 의뢰인이 무자격·미등록 업체에 속아 두 번
+            상처받습니다.<br />
             아래 3가지만 확인해도 사기의 90%는 피할 수 있습니다.
           </p>
         </div>
@@ -4193,9 +4477,9 @@
             <div class="warn-sj">
               <span class="warn-sj-tag">SJ는 다릅니다</span>
               <p>
-                국세청 정식 사업자등록(<strong>702-22-02085</strong>) ·
-                경기 고양 일산서구 자유프라자 8층 806호에 실제 사무공간을
-                직접 운영합니다. 의뢰인이 직접 방문하실 수 있습니다.
+                국세청 정식 사업자등록(<strong>702-22-02085</strong>) · 경기
+                고양 일산서구 자유프라자 8층 806호에 실제 사무공간을 직접
+                운영합니다. 의뢰인이 직접 방문하실 수 있습니다.
               </p>
             </div>
           </article>
@@ -4208,15 +4492,15 @@
             <h3 class="warn-title">전형적인 사기 업체</h3>
             <p class="warn-desc">
               의뢰 비용만 수취한 뒤
-              <strong>조사 중 실시간 보고가 이루어지지 않거나, 연락이
-              두절</strong>되는 등의 실제 사례가 가장 많이 신고됩니다.
+              <strong
+                >조사 중 실시간 보고가 이루어지지 않거나, 연락이 두절</strong
+              >되는 등의 실제 사례가 가장 많이 신고됩니다.
             </p>
             <div class="warn-sj">
               <span class="warn-sj-tag">SJ는 다릅니다</span>
               <p>
-                <strong>최소 2인 이상의 팀 단위</strong>로 현장조사를
-                진행하며, 실시간으로 조사 진행 상황이
-                <strong>반드시 보고</strong>됩니다.
+                <strong>최소 2인 이상의 팀 단위</strong>로 현장조사를 진행하며,
+                실시간으로 조사 진행 상황이 <strong>반드시 보고</strong>됩니다.
               </p>
             </div>
           </article>
@@ -4229,9 +4513,11 @@
             <h3 class="warn-title">불투명한 비용·결과물 사기</h3>
             <p class="warn-desc">
               "성공보수 후불제"로 끌어들인 뒤
-              <strong>되려 조사 대상자를 협박의 수단으로 삼아 부당한
-              추가비용을 요구</strong>하거나, 조작된 사진·영상을 결과물로
-              넘기고 잠적하는 사례가 가장 많이 신고됩니다.
+              <strong
+                >되려 조사 대상자를 협박의 수단으로 삼아 부당한 추가비용을
+                요구</strong
+              >하거나, 조작된 사진·영상을 결과물로 넘기고 잠적하는 사례가 가장
+              많이 신고됩니다.
             </p>
             <div class="warn-sj">
               <span class="warn-sj-tag">SJ는 다릅니다</span>
@@ -4265,8 +4551,8 @@
               ><span class="q-toggle">+</span>
             </button>
             <div class="faq-a">
-              아니요. 모든 상담은 100% 무료이며, 어떠한 조건도 없습니다.
-              상담만 받고 의뢰하지 않으셔도 되니 안심하세요.
+              아니요. 모든 상담은 100% 무료이며, 어떠한 조건도 없습니다. 상담만
+              받고 의뢰하지 않으셔도 되니 안심하세요.
             </div>
           </div>
           <div class="faq-item">
@@ -4290,8 +4576,8 @@
             </button>
             <div class="faq-a">
               SJ의 모든 조사는 합법적 방식으로만 이루어집니다. 결과 보고서는
-              변호사 자문을 거쳐 법정 제출 가능한 형식으로 정리되며, 실제
-              다수의 민형사 소송에서 증거로 활용 가능합니다.
+              변호사 자문을 거쳐 법정 제출 가능한 형식으로 정리되며, 실제 다수의
+              민형사 소송에서 증거로 활용 가능합니다.
             </div>
           </div>
           <div class="faq-item">
@@ -4301,9 +4587,9 @@
               ><span class="q-toggle">+</span>
             </button>
             <div class="faq-a">
-              죄송합니다. 의뢰 비용은 각 사건 및 업무의 난이도, 조사 기간,
-              투입 인원에 따라 다르기 때문에 정찰제로 운영되기 불가능하며,
-              정확한 견적은 상담 후 산정됩니다.
+              죄송합니다. 의뢰 비용은 각 사건 및 업무의 난이도, 조사 기간, 투입
+              인원에 따라 다르기 때문에 정찰제로 운영되기 불가능하며, 정확한
+              견적은 상담 후 산정됩니다.
               <strong>합의 없는 추가 청구는 일절 없습니다.</strong>
             </div>
           </div>
