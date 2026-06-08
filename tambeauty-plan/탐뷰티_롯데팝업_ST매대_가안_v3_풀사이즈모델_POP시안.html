@@ -1,0 +1,1211 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      탐뷰티 × 롯데 — ST 매대 가안 v3 (풀사이즈 모델 + POP 시안 4종)
+    </title>
+    <style>
+      :root {
+        --pale: #ffebf1;
+        --soft: #fcc5d2;
+        --pink: #f5a0b5;
+        --deep: #e47b98;
+        --rose: #c44b6e;
+        --rose-deep: #9d3653;
+        --lilac: #e2d4ee;
+        --sky: #c5e0f0;
+        --cream: #fff5e6;
+        --bg-cream: #fdf5f7;
+        --ink: #1a1a1a;
+        --ink-soft: #3a3a3a;
+        --gray: #6b6b6b;
+        --gray-soft: #999;
+        --line: #e8d8dd;
+        --metal: #d4d2d0;
+        --metal-dark: #8c8a87;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg-cream);
+        color: var(--ink);
+        font-family:
+          'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 48px 40px 120px;
+      }
+
+      /* COVER */
+      .cover {
+        background: linear-gradient(
+          135deg,
+          #ffebf1 0%,
+          #e2d4ee 50%,
+          #c5e0f0 100%
+        );
+        padding: 52px 44px;
+        border-radius: 28px;
+        margin-bottom: 36px;
+        border: 1px solid var(--line);
+        position: relative;
+        overflow: hidden;
+      }
+      .cover::before {
+        content: '☁';
+        position: absolute;
+        top: 18px;
+        right: 32px;
+        font-size: 80px;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .cover::after {
+        content: '★';
+        position: absolute;
+        bottom: 16px;
+        right: 110px;
+        font-size: 36px;
+        color: rgba(157, 54, 83, 0.18);
+      }
+      .cover .tag {
+        display: inline-block;
+        background: var(--rose-deep);
+        color: #fff;
+        padding: 5px 14px;
+        border-radius: 100px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        margin-bottom: 16px;
+      }
+      .cover h1 {
+        font-size: 36px;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 1.15;
+        margin-bottom: 12px;
+      }
+      .cover .sub {
+        font-size: 15px;
+        color: var(--ink-soft);
+        line-height: 1.65;
+        max-width: 760px;
+      }
+      .cover .resolve {
+        margin-top: 24px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        font-size: 13px;
+        color: var(--rose-deep);
+        font-weight: 600;
+      }
+      .cover .resolve b {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      /* 섹션 공통 */
+      section {
+        background: #fff;
+        border-radius: 22px;
+        padding: 36px 36px;
+        margin-bottom: 28px;
+        border: 1px solid var(--line);
+      }
+      section h2 {
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 6px;
+      }
+      section h2 .num {
+        display: inline-block;
+        background: var(--rose-deep);
+        color: #fff;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 800;
+        margin-right: 10px;
+        vertical-align: 2px;
+      }
+      section h2 + .sub {
+        font-size: 13.5px;
+        color: var(--gray);
+        margin-bottom: 24px;
+      }
+
+      /* ─────────────── 풀사이즈 매대 시뮬레이션 ─────────────── */
+      .stage-full-wrap {
+        background: linear-gradient(180deg, #f5e9ec 0%, #e8dde9 100%);
+        border-radius: 16px;
+        padding: 28px 24px;
+        position: relative;
+        overflow: hidden;
+      }
+      .stage-full {
+        position: relative;
+        display: grid;
+        grid-template-columns: 90px 1fr 90px;
+        gap: 14px;
+        align-items: end;
+      }
+      .side-tam {
+        background: var(--rose-deep);
+        color: #fff;
+        height: 600px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 30px;
+        letter-spacing: 0.04em;
+        line-height: 1;
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(157, 54, 83, 0.18);
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+      }
+      .side-tam span {
+        display: block;
+      }
+
+      .stage-full-center {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      /* 풀사이즈 백드롭 — 모델 이미지 100% 채움 + 오버레이 */
+      .backdrop-full {
+        position: relative;
+        height: 400px;
+        border-radius: 12px 12px 0 0;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          #f5a0b5 0%,
+          #e2d4ee 60%,
+          #c5e0f0 100%
+        );
+      }
+      .backdrop-full .bg-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .backdrop-full .placeholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-align: center;
+        background: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 20px,
+          rgba(255, 255, 255, 0.06) 20px,
+          rgba(255, 255, 255, 0.06) 40px
+        );
+      }
+      /* 오버레이 그라데이션 (가독성 확보) */
+      .backdrop-full::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.15) 0%,
+          rgba(0, 0, 0, 0.05) 30%,
+          rgba(157, 54, 83, 0.18) 70%,
+          rgba(157, 54, 83, 0.42) 100%
+        );
+        pointer-events: none;
+      }
+      /* POP 오버레이 — 모델 위에 직접 */
+      .pop-overlay {
+        position: absolute;
+        inset: 0;
+        padding: 24px 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .pop-overlay .top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .pop-overlay .brand-mark {
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--rose-deep);
+        padding: 6px 12px;
+        border-radius: 100px;
+        font-size: 10.5px;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+      }
+      .pop-overlay .lotte-mark {
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 100px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+      }
+      .pop-overlay .mid-row {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: auto;
+        margin-top: 14px;
+      }
+      .pop-overlay .pop-headline {
+        color: #fff;
+        text-align: right;
+        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+        background: linear-gradient(
+          135deg,
+          rgba(157, 54, 83, 0.78),
+          rgba(228, 123, 152, 0.62)
+        );
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        padding: 20px 24px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        max-width: 320px;
+      }
+      .pop-overlay .pop-headline .pre {
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        font-weight: 700;
+        opacity: 0.92;
+        margin-bottom: 6px;
+      }
+      .pop-overlay .pop-headline .big {
+        font-size: 64px;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        line-height: 0.92;
+      }
+      .pop-overlay .pop-headline .sub {
+        font-size: 13.5px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        margin-top: 10px;
+        opacity: 0.95;
+      }
+      .pop-overlay .bottom-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .pop-overlay .tagline {
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--rose-deep);
+        padding: 8px 14px;
+        border-radius: 100px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .pop-overlay .swatch-strip {
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 8px;
+        padding: 6px 8px;
+        display: flex;
+        gap: 5px;
+      }
+      .pop-overlay .swatch-strip span {
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 9.5px;
+        font-weight: 700;
+        color: var(--ink-soft);
+      }
+
+      /* 데코 (별/구름) */
+      .deco {
+        position: absolute;
+        pointer-events: none;
+        font-weight: 700;
+      }
+      .deco.star1 {
+        top: 18%;
+        left: 38%;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 24px;
+      }
+      .deco.cloud1 {
+        top: 55%;
+        left: 22%;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 36px;
+      }
+      .deco.heart1 {
+        top: 30%;
+        right: 38%;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 18px;
+      }
+
+      /* COUNTER (받침대) */
+      .counter-full {
+        background: linear-gradient(
+          180deg,
+          var(--metal) 0%,
+          var(--metal-dark) 100%
+        );
+        border-radius: 0 0 12px 12px;
+        padding: 14px 18px 16px;
+        border-top: 2px solid #b9b6b3;
+      }
+      .shelf {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 6px;
+        padding: 8px;
+        margin-bottom: 8px;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 6px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .shelf:last-child {
+        margin-bottom: 0;
+      }
+      .shelf-label {
+        grid-column: 1 / -1;
+        font-size: 9.5px;
+        font-weight: 700;
+        color: var(--rose-deep);
+        letter-spacing: 0.08em;
+        padding-bottom: 4px;
+        margin-bottom: 2px;
+        border-bottom: 1px dashed var(--soft);
+      }
+      .box {
+        background: linear-gradient(135deg, #fae3e8 0%, #f5a0b5 100%);
+        height: 36px;
+        border-radius: 4px;
+        border: 1px solid #e88aa5;
+        position: relative;
+      }
+      .box::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 4px;
+        right: 4px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.45);
+        transform: translateY(-50%);
+        border-radius: 1px;
+      }
+      .box.hero {
+        background: linear-gradient(135deg, #f5a0b5 0%, #c44b6e 100%);
+        border-color: var(--rose-deep);
+      }
+      .box.lilac {
+        background: linear-gradient(135deg, #f0e1f5 0%, #c8a8de 100%);
+        border-color: #a585c2;
+      }
+      .stage-caption {
+        text-align: center;
+        margin-top: 22px;
+        font-size: 12px;
+        color: var(--gray);
+        letter-spacing: 0.04em;
+      }
+      .stage-caption b {
+        color: var(--rose-deep);
+        font-weight: 700;
+      }
+      .stage-caption .ai-tag {
+        display: inline-block;
+        background: var(--rose-deep);
+        color: #fff;
+        padding: 2px 8px;
+        border-radius: 100px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        margin-left: 8px;
+      }
+
+      /* ─────────────── POP 시안 4종 ─────────────── */
+      .pop-samples {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+      .pop-sample {
+        background: var(--bg-cream);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px 18px;
+      }
+      .pop-sample h4 {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--rose-deep);
+        margin-bottom: 4px;
+        letter-spacing: 0.06em;
+      }
+      .pop-sample p.desc {
+        font-size: 11.5px;
+        color: var(--gray);
+        margin-bottom: 12px;
+        line-height: 1.5;
+      }
+      .pop-mock {
+        height: 180px;
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(245, 160, 181, 0.45),
+            rgba(197, 224, 240, 0.35)
+          ),
+          url('images/ai-model-dasha-mood.png') center/cover no-repeat;
+      }
+      .pop-mock::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.1) 0%,
+          rgba(157, 54, 83, 0.3) 100%
+        );
+      }
+
+      /* POP 시안 A - MINIMAL */
+      .mock-a {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 16px;
+      }
+      .mock-a .text {
+        position: relative;
+        z-index: 1;
+        color: #fff;
+        text-align: right;
+      }
+      .mock-a .text small {
+        font-size: 9.5px;
+        letter-spacing: 0.15em;
+        font-weight: 700;
+        opacity: 0.9;
+      }
+      .mock-a .text big {
+        display: block;
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        line-height: 0.95;
+        margin-top: 4px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+      }
+
+      /* POP 시안 B - BIG TYPO */
+      .mock-b {
+        position: relative;
+      }
+      .mock-b .big-tam {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+      }
+      .mock-b .big-tam .text {
+        font-size: 72px;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.92);
+        letter-spacing: -0.04em;
+        line-height: 0.85;
+        text-align: center;
+        text-shadow: 0 4px 16px rgba(157, 54, 83, 0.4);
+      }
+      .mock-b .big-tam .text .line2 {
+        display: block;
+        font-size: 36px;
+      }
+      .mock-b .corner-pop {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: rgba(255, 255, 255, 0.95);
+        color: var(--rose-deep);
+        padding: 4px 9px;
+        border-radius: 100px;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        z-index: 2;
+      }
+
+      /* POP 시안 C - KITSCH */
+      .mock-c {
+        position: relative;
+      }
+      .mock-c .kitsch-deco span {
+        position: absolute;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.85);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+      .mock-c .kitsch-deco .s1 {
+        top: 14px;
+        left: 18px;
+        font-size: 22px;
+      }
+      .mock-c .kitsch-deco .s2 {
+        top: 30px;
+        right: 28px;
+        font-size: 28px;
+      }
+      .mock-c .kitsch-deco .s3 {
+        bottom: 50px;
+        left: 30%;
+        font-size: 20px;
+      }
+      .mock-c .kitsch-deco .s4 {
+        bottom: 80px;
+        right: 18px;
+        font-size: 18px;
+      }
+      .mock-c .kitsch-text {
+        position: absolute;
+        bottom: 14px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 2;
+      }
+      .mock-c .kitsch-text .top {
+        font-family: 'Brush Script MT', cursive;
+        color: #fff;
+        font-size: 30px;
+        text-shadow: 0 2px 12px rgba(157, 54, 83, 0.5);
+        line-height: 0.9;
+      }
+      .mock-c .kitsch-text .bot {
+        font-size: 12px;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: 0.18em;
+        margin-top: 4px;
+      }
+
+      /* POP 시안 D - EDITORIAL */
+      .mock-d {
+        position: relative;
+      }
+      .mock-d .head-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 8px 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 2;
+      }
+      .mock-d .head-bar .left {
+        font-size: 10px;
+        font-weight: 800;
+        color: var(--rose-deep);
+        letter-spacing: 0.15em;
+      }
+      .mock-d .head-bar .right {
+        font-size: 9.5px;
+        font-weight: 700;
+        color: var(--gray);
+        letter-spacing: 0.1em;
+      }
+      .mock-d .center-text {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        color: #fff;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+      }
+      .mock-d .center-text .big {
+        font-size: 44px;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        line-height: 0.9;
+      }
+      .mock-d .center-text .sub {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        margin-top: 8px;
+        font-weight: 700;
+      }
+      .mock-d .foot-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.45);
+        color: #fff;
+        padding: 8px 14px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-align: center;
+        z-index: 2;
+      }
+
+      .pop-sample .specs {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px dashed var(--line);
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 6px 10px;
+        font-size: 11px;
+      }
+      .pop-sample .specs dt {
+        color: var(--rose-deep);
+        font-weight: 700;
+      }
+      .pop-sample .specs dd {
+        color: var(--ink-soft);
+      }
+
+      /* IMAGE BRIEF */
+      .image-brief {
+        background: var(--bg-cream);
+        border-radius: 14px;
+        padding: 22px 24px;
+        border: 1px dashed var(--soft);
+        margin-top: 14px;
+      }
+      .image-brief h3 {
+        font-size: 13px;
+        color: var(--rose-deep);
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        margin-bottom: 10px;
+      }
+      .image-brief .row {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 10px;
+        padding: 7px 0;
+        border-bottom: 1px dashed var(--line);
+        font-size: 12px;
+      }
+      .image-brief .row:last-child {
+        border-bottom: 0;
+      }
+      .image-brief .row dt {
+        font-weight: 700;
+        color: var(--gray);
+        letter-spacing: 0.04em;
+      }
+      .image-brief .row dd {
+        color: var(--ink-soft);
+      }
+
+      .foot {
+        text-align: center;
+        font-size: 11.5px;
+        color: var(--gray-soft);
+        margin-top: 36px;
+        letter-spacing: 0.05em;
+      }
+
+      /* 반응형 */
+      @media (max-width: 760px) {
+        .page {
+          padding: 32px 18px 80px;
+        }
+        section {
+          padding: 26px 20px;
+        }
+        .cover {
+          padding: 36px 24px;
+        }
+        .cover h1 {
+          font-size: 24px;
+        }
+        .stage-full {
+          grid-template-columns: 46px 1fr 46px;
+          gap: 6px;
+        }
+        .side-tam {
+          height: 460px;
+          font-size: 18px;
+        }
+        .backdrop-full {
+          height: 280px;
+        }
+        .pop-overlay .pop-headline .big {
+          font-size: 40px;
+        }
+        .pop-samples {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- COVER -->
+      <div class="cover">
+        <span class="tag"
+          >ST 매대 가안 · v3 · 풀사이즈 모델 + POP 오버레이</span
+        >
+        <h1>탐뷰티 × 롯데 팝업<br />다샤타란 무드 풀사이즈 백드롭 + POP 4종</h1>
+        <p class="sub">
+          모델 컷이 백드롭 전체를 꽉 채우고, 그 위에 POP 카피·시그니처·컬러칩이
+          오버레이로 얹히는 정통 캠페인 무드. POP 디자인 시안 4종 비교 가능.
+          Higgsfield AI로 다샤타란 무드 가상 컷도 함께 생성.
+        </p>
+        <div class="resolve">
+          답답함 완전 해소 ·
+          <b>풀사이즈 시각화 + POP 4안 비교</b> · 디자이너 발주 직전 단계
+        </div>
+      </div>
+
+      <!-- 1. 풀사이즈 매대 시뮬레이션 -->
+      <section>
+        <h2><span class="num">1</span>풀사이즈 매대 정면 가안</h2>
+        <p class="sub">
+          백드롭 전체 = 모델 컷 1장 풀브리드 / POP 카피·컬러칩·롯데 마크는
+          오버레이
+        </p>
+        <div class="stage-full-wrap">
+          <div class="stage-full">
+            <div class="side-tam">
+              <span>TAM<br />BEAUTY</span>
+            </div>
+            <div class="stage-full-center">
+              <div class="backdrop-full" id="backdrop-main">
+                <img
+                  src="images/ai-model-dasha-mood.png"
+                  class="bg-img"
+                  alt="Higgsfield AI 생성 다샤타란 무드 K-뷰티 모델 컷"
+                />
+                <span class="deco star1">★</span>
+                <span class="deco cloud1">☁</span>
+                <span class="deco heart1">♡</span>
+                <div class="pop-overlay">
+                  <div class="top-row">
+                    <span class="brand-mark">TAM BEAUTY</span>
+                    <span class="lotte-mark">LOTTE × POP-UP</span>
+                  </div>
+                  <div class="mid-row">
+                    <div class="pop-headline">
+                      <div class="pre">SUMMER COLOR COLLECTION</div>
+                      <div class="big">POP<br />-UP</div>
+                      <div class="sub">전제품 시즌 라인업 8종</div>
+                    </div>
+                  </div>
+                  <div class="bottom-row">
+                    <span class="tagline">The Neutral × More</span>
+                    <div class="swatch-strip">
+                      <span style="background: #e8d8e0">Moonstone</span>
+                      <span style="background: #f5b0c8">Gummy Pink</span>
+                      <span style="background: #e0c08a">Teddy Gold</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="counter-full">
+                <div class="shelf">
+                  <div class="shelf-label">SHELF 1 · BASE + CHEEK</div>
+                  <div class="box" title="필터 파우더밤"></div>
+                  <div class="box" title="하트 쉐이딩 듀오"></div>
+                  <div class="box lilac" title="하이라이터"></div>
+                  <div class="box hero" title="크림 블러셔"></div>
+                  <div class="box hero" title="크림 블러셔"></div>
+                  <div class="box hero" title="크림 블러셔"></div>
+                </div>
+                <div class="shelf">
+                  <div class="shelf-label">SHELF 2 · LIP + EYE</div>
+                  <div class="box" title="클라우드 블러 립 틴트"></div>
+                  <div class="box hero" title="젤리 플럼핑 립 오일"></div>
+                  <div class="box hero" title="젤리 플럼핑 립 오일"></div>
+                  <div class="box" title="립라이너"></div>
+                  <div class="box" title="립라이너"></div>
+                  <div class="box lilac" title="이지브로우마스카라"></div>
+                </div>
+              </div>
+            </div>
+            <div class="side-tam">
+              <span>TAM<br />BEAUTY</span>
+            </div>
+          </div>
+          <div class="stage-caption">
+            * 모델 컷 = Higgsfield AI 생성 다샤타란 무드 가안
+            <span class="ai-tag">AI</span> · 실제 시안은 모델 협찬 또는 캠페인
+            컷 확정 후 교체
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. POP 디자인 시안 4종 -->
+      <section>
+        <h2><span class="num">2</span>백드롭 POP 디자인 시안 4종</h2>
+        <p class="sub">
+          같은 모델 풀브리드 위에 POP만 다른 4가지 안 — 디자이너에게 방향 픽
+          요청용
+        </p>
+        <div class="pop-samples">
+          <!-- A. MINIMAL -->
+          <div class="pop-sample">
+            <h4>A · MINIMAL — 우측 정렬 단정형</h4>
+            <p class="desc">
+              모델 컷이 메인. 우측 하단에 작은 헤드라인만.
+              <b>고급스러움 + 백화점 무드.</b>
+            </p>
+            <div class="pop-mock mock-a">
+              <div class="text">
+                <small>SUMMER COLLECTION</small>
+                <big>TAM<br />BEAUTY</big>
+              </div>
+            </div>
+            <dl class="specs">
+              <dt>강점</dt>
+              <dd>모델 컷의 임팩트가 최대 · 잡지 광고 무드</dd>
+              <dt>약점</dt>
+              <dd>POP-UP 행사 텐션이 약함 · 멀리서 시인성 ↓</dd>
+              <dt>추천</dt>
+              <dd>모델 비주얼이 매우 강할 때 · 백화점 본점 무드</dd>
+            </dl>
+          </div>
+
+          <!-- B. BIG TYPO -->
+          <div class="pop-sample">
+            <h4>B · BIG TYPO — 정면 임팩트형</h4>
+            <p class="desc">
+              가운데 거대 타이포 "TAM BEAUTY" + 좌상단 작은 POP-UP 배지.
+              <b>멀리서도 강력한 시인성.</b>
+            </p>
+            <div class="pop-mock mock-b">
+              <span class="corner-pop">POP-UP · LOTTE</span>
+              <div class="big-tam">
+                <div class="text">
+                  TAM
+                  <span class="line2">BEAUTY</span>
+                </div>
+              </div>
+            </div>
+            <dl class="specs">
+              <dt>강점</dt>
+              <dd>브랜드 인지도 강조 · 동선 멀리서 한눈에 인식</dd>
+              <dt>약점</dt>
+              <dd>모델 컷이 일부 가려짐 · 디테일 묘사 부족</dd>
+              <dt>추천</dt>
+              <dd>탐뷰티 인지도 확장 시즌 · 신규 고객 유입 핵심 매장</dd>
+            </dl>
+          </div>
+
+          <!-- C. KITSCH -->
+          <div class="pop-sample">
+            <h4>C · KITSCH — Y2K 키치 그래픽형 (추천)</h4>
+            <p class="desc">
+              상세페이지 무드 그대로 — ☁ ★ ♡ 데코 + 손글씨 폰트 + 하단 시리즈
+              네이밍. <b>탐뷰티 톤 100% 일치.</b>
+            </p>
+            <div class="pop-mock mock-c">
+              <div class="kitsch-deco">
+                <span class="s1">☁</span>
+                <span class="s2">★</span>
+                <span class="s3">♡</span>
+                <span class="s4">✦</span>
+              </div>
+              <div class="kitsch-text">
+                <div class="top">The Neutral</div>
+                <div class="bot">TAM BEAUTY POP-UP · 전제품 8종</div>
+              </div>
+            </div>
+            <dl class="specs">
+              <dt>강점</dt>
+              <dd>
+                상세페이지·캠페인 무드와 100% 일치 · 인스타 노출 강함 · 컬렉션
+                네이밍 살아남
+              </dd>
+              <dt>약점</dt>
+              <dd>전체적으로 부드러워서 멀리서 임팩트는 보통</dd>
+              <dt>추천</dt>
+              <dd><b>★ 1순위 추천</b> — 브랜드 정체성 가장 강함</dd>
+            </dl>
+          </div>
+
+          <!-- D. EDITORIAL -->
+          <div class="pop-sample">
+            <h4>D · EDITORIAL — 매거진 잡지형</h4>
+            <p class="desc">
+              상단 매스트헤드 바 + 중앙 큰 카피 + 하단 푸터바.
+              <b>큐레이션 매장 무드.</b>
+            </p>
+            <div class="pop-mock mock-d">
+              <div class="head-bar">
+                <span class="left">TAM BEAUTY · ISSUE 02</span>
+                <span class="right">2026 · SUMMER</span>
+              </div>
+              <div class="center-text">
+                <div class="big">SUMMER<br />NEUTRAL</div>
+                <div class="sub">8 NEW LINEUP</div>
+              </div>
+              <div class="foot-bar">LOTTE × TAM BEAUTY POP-UP STORE</div>
+            </div>
+            <dl class="specs">
+              <dt>강점</dt>
+              <dd>고급스러움 + 정보 전달력 동시에</dd>
+              <dt>약점</dt>
+              <dd>탐뷰티 키치 무드와 약간 다른 톤 (모던 매거진)</dd>
+              <dt>추천</dt>
+              <dd>편집숍/큐레이션 매장 입점 시</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Higgsfield 이미지 브리프 -->
+      <section>
+        <h2><span class="num">3</span>Higgsfield AI 모델 컷 생성 브리프</h2>
+        <p class="sub">
+          위 풀사이즈 백드롭에 들어간 모델 컷은 AI로 생성한 가안 — 실제 모델
+          확보 전 무드 시뮬레이션용
+        </p>
+        <div class="image-brief">
+          <h3>생성 파라미터</h3>
+          <div class="row">
+            <dt>모델</dt>
+            <dd>Higgsfield Soul v2 (인물·캠페인 특화)</dd>
+          </div>
+          <div class="row">
+            <dt>비율</dt>
+            <dd>16:9 (백드롭 W2500 × H1200 ≈ 2.08:1 근사)</dd>
+          </div>
+          <div class="row">
+            <dt>퀄리티</dt>
+            <dd>2K 기본</dd>
+          </div>
+          <div class="row">
+            <dt>크레딧</dt>
+            <dd>1 크레딧 / 약 0.12 fractional</dd>
+          </div>
+          <div class="row">
+            <dt>핵심 키워드</dt>
+            <dd>
+              Eastern European K-beauty model · soft pale skin · large doe eyes
+              · pink nude makeup · peachy blush · glossy lip tint · dewy
+              highlight · pastel cloud gradient · Y2K kitsch accents · 좌측 배치
+              우측 여백
+            </dd>
+          </div>
+          <div class="row">
+            <dt>레이아웃</dt>
+            <dd>
+              모델이 프레임 좌측 1/3에 배치되어 우측에 POP 카피·타이포·컬러칩이
+              들어갈 여백 확보
+            </dd>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 다음 액션 -->
+      <section>
+        <h2><span class="num">4</span>다음 액션</h2>
+        <p class="sub">POP 시안 1개 픽 → 모델 컷 확정 → 디자이너 발주</p>
+        <ul class="actions-list" style="list-style: none; padding: 0">
+          <li
+            style="
+              padding: 14px 0;
+              border-bottom: 1px solid var(--line);
+              display: flex;
+              gap: 12px;
+            "
+          >
+            <span
+              style="
+                width: 18px;
+                height: 18px;
+                border: 2px solid var(--gray-soft);
+                border-radius: 5px;
+                flex-shrink: 0;
+                margin-top: 2px;
+              "
+            ></span>
+            <div style="flex: 1">
+              <b>① POP 시안 픽</b>
+              <div
+                style="font-size: 11.5px; color: var(--gray); margin-top: 3px"
+              >
+                A/B/C/D 중 1안 또는 2안 혼합 결정 · 추천 = C (KITSCH)
+              </div>
+            </div>
+            <span
+              style="
+                background: var(--pale);
+                color: var(--rose-deep);
+                padding: 3px 9px;
+                border-radius: 100px;
+                font-size: 10.5px;
+                font-weight: 700;
+                align-self: center;
+              "
+              >PM + 마케팅</span
+            >
+          </li>
+          <li
+            style="
+              padding: 14px 0;
+              border-bottom: 1px solid var(--line);
+              display: flex;
+              gap: 12px;
+            "
+          >
+            <span
+              style="
+                width: 18px;
+                height: 18px;
+                border: 2px solid var(--gray-soft);
+                border-radius: 5px;
+                flex-shrink: 0;
+                margin-top: 2px;
+              "
+            ></span>
+            <div style="flex: 1">
+              <b>② 모델 컷 확정</b>
+              <div
+                style="font-size: 11.5px; color: var(--gray); margin-top: 3px"
+              >
+                다샤타란 협찬 가능 여부 확인 / 보유 캠페인 컷 활용 / AI 가안
+                활용 결정
+              </div>
+            </div>
+            <span
+              style="
+                background: var(--pale);
+                color: var(--rose-deep);
+                padding: 3px 9px;
+                border-radius: 100px;
+                font-size: 10.5px;
+                font-weight: 700;
+                align-self: center;
+              "
+              >PM</span
+            >
+          </li>
+          <li
+            style="
+              padding: 14px 0;
+              border-bottom: 1px solid var(--line);
+              display: flex;
+              gap: 12px;
+            "
+          >
+            <span
+              style="
+                width: 18px;
+                height: 18px;
+                border: 2px solid var(--gray-soft);
+                border-radius: 5px;
+                flex-shrink: 0;
+                margin-top: 2px;
+              "
+            ></span>
+            <div style="flex: 1">
+              <b>③ 백드롭 + 사이드 패널 발주</b>
+              <div
+                style="font-size: 11.5px; color: var(--gray); margin-top: 3px"
+              >
+                W2500 × H1200 백드롭 + W400 × H2000 사이드 2EA · 픽한 POP 시안
+                기반 시안 3안
+              </div>
+            </div>
+            <span
+              style="
+                background: var(--pale);
+                color: var(--rose-deep);
+                padding: 3px 9px;
+                border-radius: 100px;
+                font-size: 10.5px;
+                font-weight: 700;
+                align-self: center;
+              "
+              >디자이너</span
+            >
+          </li>
+          <li style="padding: 14px 0; display: flex; gap: 12px">
+            <span
+              style="
+                width: 18px;
+                height: 18px;
+                border: 2px solid var(--gray-soft);
+                border-radius: 5px;
+                flex-shrink: 0;
+                margin-top: 2px;
+              "
+            ></span>
+            <div style="flex: 1">
+              <b>④ 진열 박스 + 시공</b>
+              <div
+                style="font-size: 11.5px; color: var(--gray); margin-top: 3px"
+              >
+                전제품 8종 디스플레이 박스 확정 + 시공 일정 + 체험존 비품
+              </div>
+            </div>
+            <span
+              style="
+                background: var(--pale);
+                color: var(--rose-deep);
+                padding: 3px 9px;
+                border-radius: 100px;
+                font-size: 10.5px;
+                font-weight: 700;
+                align-self: center;
+              "
+              >SCM + 운영</span
+            >
+          </li>
+        </ul>
+      </section>
+
+      <div class="foot">
+        탐뷰티 × 롯데 팝업 · ST 매대 가안 v3 · 풀사이즈 + POP 4안 · 2026.06
+      </div>
+    </div>
+  </body>
+</html>
