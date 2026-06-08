@@ -416,12 +416,15 @@
         gap: 0;
       }
 
-      /* 풀사이즈 백드롭 */
+      /* 풀사이즈 백드롭 — 가로형 광고 배너 그대로 */
       .backdrop-full {
         position: relative;
-        height: 410px;
+        aspect-ratio: 3.81 / 1; /* 배너 비율 그대로 */
         border-radius: 12px 12px 0 0;
         overflow: hidden;
+        background: #ec9bb1; /* 배너 핑크 톤 */
+      }
+      .backdrop-full.legacy {
         background: linear-gradient(
           135deg,
           #f5a0b5 0%,
@@ -437,18 +440,23 @@
         object-fit: cover;
         object-position: center;
       }
-      .backdrop-full::after {
-        content: '';
+      /* 배너 이미지 그대로 보이도록 ::after 그라데이션 제거 */
+
+      /* 우상단 LOTTE 코너 배지 (광고 배너 위에 살짝 얹는 정도) */
+      .lotte-corner {
         position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          90deg,
-          rgba(157, 54, 83, 0.5) 0%,
-          rgba(157, 54, 83, 0.22) 35%,
-          rgba(0, 0, 0, 0.02) 65%,
-          rgba(0, 0, 0, 0.05) 100%
-        );
-        pointer-events: none;
+        top: 12px;
+        right: 12px;
+        z-index: 3;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 100px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
       }
 
       /* POP 오버레이 — KITSCH 스타일 (추천) */
@@ -1139,8 +1147,8 @@
       <section>
         <h2><span class="num">3</span>풀사이즈 매대 정면 가안</h2>
         <p class="sub">
-          탐뷰티 다샤타란 공식 광고 컷 풀브리드 + KITSCH POP 오버레이 + 13종
-          진열 (CLOUD 핑크 / JELLY 코랄 구분)
+          탐뷰티 공식 광고 배너 그대로 풀브리드 (오버레이 없음, 우상단 LOTTE
+          배지만) + 받침대 위 전제품 13종 진열 (CLOUD 핑크 / JELLY 코랄 구분)
         </p>
         <div class="stage-full-wrap">
           <div class="stage-full">
@@ -1150,38 +1158,11 @@
             <div class="stage-center">
               <div class="backdrop-full">
                 <img
-                  src="images/dasha-real-cropped.jpg"
+                  src="images/tam-banner.jpg"
                   class="bg-img"
-                  alt="탐뷰티 다샤타란 공식 광고 컷 (멤버쉽 캠페인 상단 컷)"
+                  alt="탐뷰티 공식 광고 배너 — EASY, PLAYFUL, ALWAYS ME (다샤타란)"
                 />
-                <span class="stage-deco s1">✦</span>
-                <span class="stage-deco s2">☁</span>
-                <span class="stage-deco s3">♡</span>
-                <div class="pop-overlay">
-                  <div class="top-row">
-                    <span class="brand-mark">TAM BEAUTY</span>
-                    <span class="lotte-mark">LOTTE × POP-UP</span>
-                  </div>
-                  <div class="pop-block">
-                    <span class="deco s1">★</span>
-                    <span class="deco s2">☁</span>
-                    <span class="deco s3">✦</span>
-                    <div class="pre">SUMMER POP-UP</div>
-                    <div class="big">TAM<br />BEAUTY</div>
-                    <div class="sub">THE CLOUD × THE JELLY</div>
-                    <span class="lineup-pill">
-                      <span class="num">13</span>전제품 시즌 라인업
-                    </span>
-                  </div>
-                  <div class="bottom-row">
-                    <span class="tagline">매일 더 탐나는 메이크업</span>
-                    <div class="swatch-strip">
-                      <span style="background: #e8d8e0">Moonstone</span>
-                      <span style="background: #f5b0c8">Gummy Pink</span>
-                      <span style="background: #e0c08a">Teddy Gold</span>
-                    </div>
-                  </div>
-                </div>
+                <span class="lotte-corner">LOTTE × POP-UP</span>
               </div>
               <div class="counter-full">
                 <div class="shelf">
@@ -1216,9 +1197,9 @@
             </div>
           </div>
           <div class="stage-caption">
-            * 모델 컷 = <b>탐뷰티 보유 다샤타란 공식 광고 컷</b> (멤버쉽 캠페인
-            상단부) · 디자이너 발주 시 같은 모델 가로형 컷으로 재촬영 또는 크롭
-            작업 가능
+            * 백드롭 = <b>탐뷰티 공식 광고 배너 그대로</b> (다샤타란 + 립 틴트 +
+            EASY, PLAYFUL, ALWAYS ME 슬로건) · 우상단에 LOTTE × POP-UP 코너
+            배지만 추가
           </div>
         </div>
       </section>
