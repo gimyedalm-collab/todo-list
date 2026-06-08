@@ -404,14 +404,17 @@
       const counterW = 3.0,
         counterD = 0.55,
         counterH = 0.55;
+      // 받침대 = 실 ST 집기 스틸 메탈 톤 (브러시드 스테인리스)
       const counterMat = new THREE.MeshStandardMaterial({
-        color: 0xeeeeee,
-        roughness: 0.45,
-        metalness: 0.15,
+        color: 0xb8bcc0,
+        roughness: 0.38,
+        metalness: 0.85,
+        envMapIntensity: 0.8,
       });
       const counterTopMat = new THREE.MeshStandardMaterial({
-        color: 0xe0e0e0,
-        roughness: 0.5,
+        color: 0xa8acb0,
+        roughness: 0.35,
+        metalness: 0.9,
       });
       const counterBody = new THREE.Mesh(
         new RoundedBoxGeometry(counterW, counterH, counterD, 3, 0.025),
@@ -444,7 +447,10 @@
       // ─── 백드롭 패널 (광고 배너 텍스처) ───
       const bannerTex = new THREE.TextureLoader().load('images/tam-banner.jpg');
       bannerTex.colorSpace = THREE.SRGBColorSpace;
-      bannerTex.anisotropy = 8;
+      bannerTex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      bannerTex.minFilter = THREE.LinearMipmapLinearFilter;
+      bannerTex.magFilter = THREE.LinearFilter;
+      bannerTex.generateMipmaps = true;
       const backdropW = 3.2,
         backdropH = 0.84;
       const backdropFrameMat = new THREE.MeshStandardMaterial({
@@ -555,31 +561,47 @@
       const shelfW = backdropW - 0.4;
       const shelfD = 0.36;
       const shelfThickness = 0.025;
+      // 셸프 = 스틸 보드 (살짝 더 밝은 톤으로 백드롭과 구분)
       const shelfMat = new THREE.MeshStandardMaterial({
-        color: 0xfafafa,
-        roughness: 0.45,
-        metalness: 0.1,
+        color: 0xc8ccd0,
+        roughness: 0.32,
+        metalness: 0.85,
       });
       const shelfEdgeMat = new THREE.MeshStandardMaterial({
-        color: 0xc8c8c8,
-        roughness: 0.4,
+        color: 0x8c8f93,
+        roughness: 0.3,
+        metalness: 0.9,
       });
-      // 셸프 지지대 (좌/우 얇은 메탈)
+      // 셸프 지지대 = 크롬 메탈 봉
       const supportMat = new THREE.MeshStandardMaterial({
-        color: 0xa8a8a8,
-        roughness: 0.35,
-        metalness: 0.7,
+        color: 0xb0b4b8,
+        roughness: 0.22,
+        metalness: 0.95,
       });
       const shelf1Y = counterH + 0.05 + 0.05;
       const shelf2Y = counterH + 0.05 + 0.3;
+      // 좌/우 메탈 봉 지지대 (4개 — 앞/뒤 × 좌/우, 크롬 원기둥)
       [-shelfW / 2 - 0.02, shelfW / 2 + 0.02].forEach((sx) => {
-        const support = new THREE.Mesh(
-          new THREE.BoxGeometry(0.025, 0.6, 0.025),
+        [-counterD / 2 + 0.04, -counterD / 2 + 0.32].forEach((sz) => {
+          const support = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.013, 0.013, 0.6, 16),
+            supportMat,
+          );
+          support.position.set(sx, counterH + 0.05 + 0.3, sz);
+          support.castShadow = true;
+          scene.add(support);
+        });
+      });
+      // 상단 크로스바 (좌·우 봉 사이 연결)
+      [-counterD / 2 + 0.04, -counterD / 2 + 0.32].forEach((cz) => {
+        const cross = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.01, 0.01, shelfW + 0.05, 12),
           supportMat,
         );
-        support.position.set(sx, counterH + 0.05 + 0.3, -counterD / 2 + 0.04);
-        support.castShadow = true;
-        scene.add(support);
+        cross.rotation.z = Math.PI / 2;
+        cross.position.set(0, counterH + 0.05 + 0.59, cz);
+        cross.castShadow = true;
+        scene.add(cross);
       });
       function makeShelf(y) {
         const g = new THREE.Group();
@@ -719,6 +741,8 @@
           d: 0.04,
         },
       ];
+      // 사용자 요청: 화장품 사이즈 축소 (0.65배) — 실제 매장 비율감
+      const PRODUCT_SCALE = 0.65;
       const cloudShelfTop = shelf2Y + shelfThickness / 2;
       const cloudSpacing = shelfW / cloudProducts.length;
       cloudProducts.forEach((p, i) => {
@@ -731,8 +755,9 @@
           mainColor: p.main,
           capColor: p.cap,
         });
+        box.scale.set(PRODUCT_SCALE, PRODUCT_SCALE, PRODUCT_SCALE);
         const x = -shelfW / 2 + cloudSpacing * (i + 0.5);
-        box.position.set(x, cloudShelfTop, -counterD / 2 + shelfD / 2 + 0.02);
+        box.position.set(x, cloudShelfTop, -counterD / 2 + shelfD / 2 + 0.04);
         scene.add(box);
       });
 
@@ -805,8 +830,9 @@
           mainColor: p.main,
           capColor: p.cap,
         });
+        box.scale.set(PRODUCT_SCALE, PRODUCT_SCALE, PRODUCT_SCALE);
         const x = -shelfW / 2 + jellySpacing * (i + 0.5);
-        box.position.set(x, jellyShelfTop, -counterD / 2 + shelfD / 2 + 0.02);
+        box.position.set(x, jellyShelfTop, -counterD / 2 + shelfD / 2 + 0.04);
         scene.add(box);
       });
 
