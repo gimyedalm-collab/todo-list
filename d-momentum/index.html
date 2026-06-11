@@ -224,17 +224,12 @@
         font-weight: 600 !important;
       }
       /* Keep italic ONLY for: single-letter signature marks + small unit characters */
-      .dm-logo .d,
-      .dm-footer-mark em,
       .sns-card .followers em,
       .award .big em,
       .tab-btn .idx {
         font-style: italic !important;
         font-family: var(--font-serif) !important;
         font-weight: 400 !important;
-      }
-      .dm-footer-mark em {
-        color: inherit !important;
       }
       .sns-card .followers em {
         color: var(--mute) !important;
@@ -319,25 +314,18 @@
       }
       .dm-logo {
         display: inline-flex;
-        align-items: baseline;
-        gap: 1px;
-        font-family: var(--font-display);
-        font-weight: 500;
-        font-size: 22px;
-        letter-spacing: -0.02em;
-        line-height: 1;
+        align-items: center;
+        height: 100%;
       }
-      .dm-logo .d {
-        font-family: var(--font-serif);
-        font-style: italic;
-        font-weight: 400;
-        font-size: 28px;
-        line-height: 1;
-        margin-right: 4px;
-        transform: translateY(2px);
+      .dm-logo img {
+        height: 22px;
+        width: auto;
+        display: block;
+        filter: invert(1); /* black wordmark → white for dark theme */
+        transition: opacity 0.2s ease;
       }
-      .dm-logo .dot {
-        color: var(--hairline);
+      .dm-logo:hover img {
+        opacity: 0.7;
       }
       .dm-nav {
         display: flex;
@@ -1805,22 +1793,14 @@
         border-top: 1px solid var(--line);
       }
       .dm-footer-mark {
-        font-family: var(--font-display);
-        font-weight: 500;
-        font-size: clamp(60px, 11vw, 180px);
-        line-height: 0.92;
-        letter-spacing: -0.04em;
         margin-bottom: 56px;
-        word-break: keep-all;
-        overflow-wrap: break-word;
       }
-      .dm-footer-mark em {
-        font-family: var(--font-serif);
-        font-style: italic;
-        font-weight: 400;
-      }
-      .dm-footer-mark .dot {
-        color: var(--hairline);
+      .dm-footer-mark img {
+        width: 100%;
+        max-width: 1400px;
+        height: auto;
+        display: block;
+        filter: invert(1); /* black wordmark → white for dark theme */
       }
       .dm-footer-cols {
         display: grid;
@@ -2041,9 +2021,14 @@
   <body id="top">
     <!-- HEADER -->
     <header class="dm-header">
-      <a href="#" class="dm-logo"
-        ><span class="d">D</span>m<span class="dot">.</span></a
+      <a
+        href="#home"
+        data-page-link="home"
+        class="dm-logo"
+        aria-label="D MOMENTUM"
       >
+        <img src="logo-wordmark.svg" alt="D MOMENTUM" />
+      </a>
       <nav class="dm-nav">
         <a href="#home" data-page-link="home" class="is-active">MAIN</a>
         <a href="#about" data-page-link="about">ABOUT</a>
@@ -3540,7 +3525,7 @@
     <!-- FOOTER -->
     <footer class="dm-footer">
       <div class="dm-footer-mark">
-        <em>D</em>momentum<span class="dot">.</span>
+        <img src="logo-wordmark.svg" alt="D MOMENTUM" />
       </div>
       <div class="dm-footer-cols">
         <div class="dm-footer-col">
