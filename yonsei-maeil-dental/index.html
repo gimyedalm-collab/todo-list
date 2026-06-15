@@ -4,16 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      연세매일치과의원 | 안산 고잔동 임플란트·미세현미경 정밀진료 (야간·주말
-      진료)
+      안산365매일치과 | 고잔동 임플란트·전 분야 진료 (평일 야간·토·일 진료)
     </title>
     <meta
       name="description"
-      content="하버드 임플란트 과정을 수료한 대표원장 김하슬람. 안산 고잔동 연세매일치과의원 — 미세현미경 정밀진료, 평일 야간 21시·토·일 진료. 임플란트·교정·소아 전 분야 협진."
+      content="하버드 임플란트 과정을 수료한 대표원장 김하슬람. 안산 고잔동 안산365매일치과 — 임플란트 식립 2,000건, 2018년 개원 한자리에서 365 진료. 평일 20시·토·일 진료, 임플란트·교정·소아 전 분야 협진."
     />
     <meta
       name="keywords"
-      content="안산치과, 고잔동치과, 안산임플란트, 안산교정, 안산소아치과, 미세현미경치과, 안산야간진료치과, 연세매일치과, 김하슬람"
+      content="안산치과, 고잔동치과, 안산임플란트, 안산교정, 안산소아치과, 안산365매일치과, 안산야간진료치과, 일요일진료치과, 김하슬람"
     />
     <meta name="theme-color" content="#0c2440" />
     <link
@@ -22,19 +21,18 @@
     />
     <meta
       property="og:title"
-      content="연세매일치과의원 | 안산 임플란트·미세현미경 정밀진료"
+      content="안산365매일치과 | 임플란트 2,000건·전 분야 진료"
     />
     <meta
       property="og:description"
-      content="하버드 임플란트 수료 대표원장의 정밀 진료. 안산 고잔동, 평일 야간·주말 진료."
+      content="하버드 임플란트 수료 대표원장. 2018년 개원 한자리에서 365 진료. 안산 고잔동, 평일 야간·토·일 진료."
     />
     <meta property="og:image" content="images/precision.jpg" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ko_KR" />
-    <!-- favicon: 골드 링 + 매일 -->
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c2440'/%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%23c8a766' stroke-width='2.5'/%3E%3Ctext x='32' y='40' font-size='20' font-family='serif' font-weight='700' fill='%23fff' text-anchor='middle'%3E매일%3C/text%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c2440'/%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%23c8a766' stroke-width='2.5'/%3E%3Ctext x='32' y='40' font-size='19' font-family='serif' font-weight='700' fill='%23fff' text-anchor='middle'%3E365%3C/text%3E%3C/svg%3E"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -48,12 +46,11 @@
       href="images/precision.jpg"
       fetchpriority="high"
     />
-    <!-- 구조화 데이터 (SEO) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Dentist",
-        "name": "연세매일치과의원",
+        "name": "안산365매일치과",
         "image": "https://gimyedalm-collab.github.io/todo-list/yonsei-maeil-dental/images/precision.jpg",
         "url": "https://gimyedalm-collab.github.io/todo-list/yonsei-maeil-dental/",
         "telephone": "+82-31-411-2475",
@@ -67,6 +64,7 @@
           "addressCountry": "KR"
         },
         "founder": { "@type": "Person", "name": "김하슬람" },
+        "foundingDate": "2018",
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
@@ -78,7 +76,13 @@
               "Friday"
             ],
             "opens": "10:00",
-            "closes": "21:00"
+            "closes": "20:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday"],
+            "opens": "10:00",
+            "closes": "16:30"
           }
         ],
         "sameAs": ["https://blog.naver.com/maeil0508"]
@@ -156,7 +160,6 @@
         outline: 2px solid var(--gold);
         outline-offset: 3px;
       }
-      /* scroll progress */
       #progress {
         position: fixed;
         top: 0;
@@ -311,12 +314,12 @@
         font-size: 0.6rem;
         font-weight: 500;
         color: var(--gold);
-        letter-spacing: 0.34em;
+        letter-spacing: 0.3em;
         margin-top: 3px;
       }
       .menu {
         display: flex;
-        gap: 38px;
+        gap: 36px;
         list-style: none;
         font-weight: 500;
         font-size: 0.98rem;
@@ -528,7 +531,7 @@
         font-size: 1.18rem;
         font-weight: 300;
         line-height: 1.9;
-        max-width: 620px;
+        max-width: 640px;
         margin-bottom: 42px;
       }
       .hero .lead b {
@@ -546,11 +549,11 @@
         flex-wrap: wrap;
         border-top: 1px solid rgba(255, 255, 255, 0.16);
         padding-top: 30px;
-        max-width: 700px;
+        max-width: 720px;
       }
       .hero-meta .m {
-        padding-right: 40px;
-        margin-right: 40px;
+        padding-right: 38px;
+        margin-right: 38px;
         border-right: 1px solid rgba(255, 255, 255, 0.16);
       }
       .hero-meta .m:last-child {
@@ -569,7 +572,7 @@
         color: #fff;
         font-family: 'Noto Serif KR', serif;
         font-weight: 600;
-        font-size: 1.12rem;
+        font-size: 1.1rem;
       }
       @media (max-width: 860px) {
         .hero h1 {
@@ -724,95 +727,70 @@
         }
       }
 
-      /* Signature */
-      .sig {
+      /* Stats (실적) */
+      .stats {
         background: #fff;
       }
-      .sig .wrap {
+      .stats .head {
+        max-width: 760px;
+        margin: 0 auto 60px;
+        text-align: center;
+      }
+      .stats .grid {
         display: grid;
-        grid-template-columns: 1.05fr 0.95fr;
-        gap: 64px;
-        align-items: center;
+        grid-template-columns: repeat(3, 1fr);
+        border: 1px solid var(--line);
       }
-      .sig .imgbox {
-        height: 560px;
-        box-shadow: var(--shadow);
+      .stat {
+        padding: 54px 30px;
+        text-align: center;
+        border-right: 1px solid var(--line);
+        transition: 0.35s var(--ease);
       }
-      .sig .imgbox .badge {
-        position: absolute;
-        left: 24px;
-        bottom: 24px;
-        background: rgba(12, 36, 64, 0.9);
-        color: #fff;
-        padding: 14px 20px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        backdrop-filter: blur(4px);
+      .stat:last-child {
+        border-right: none;
       }
-      .sig .imgbox .badge .icon {
-        width: 26px;
-        height: 26px;
-        color: var(--gold-l);
+      .stat:hover {
+        background: var(--paper);
       }
-      .sig .imgbox .badge b {
+      .stat .big {
         font-family: 'Noto Serif KR', serif;
-        font-size: 1rem;
-      }
-      .sig .imgbox .badge small {
-        display: block;
-        color: #9fb0c6;
-        font-size: 0.74rem;
-      }
-      .sig h2 {
-        font-family: 'Noto Serif KR', serif;
-        font-size: 2.3rem;
+        font-size: 3.4rem;
         font-weight: 700;
         color: var(--navy);
-        line-height: 1.42;
-        margin-bottom: 24px;
+        line-height: 1;
+        letter-spacing: -0.02em;
       }
-      .sig h2 em {
+      .stat .big em {
         font-style: normal;
         color: var(--gold);
+        font-size: 2rem;
       }
-      .sig p.t {
-        color: var(--gray-d);
-        font-size: 1.05rem;
-        font-weight: 300;
-        line-height: 2;
-        margin-bottom: 22px;
-      }
-      .sig ul {
-        list-style: none;
-        display: grid;
-        gap: 16px;
-        margin-top: 30px;
-      }
-      .sig li {
-        display: flex;
-        gap: 14px;
-        align-items: flex-start;
+      .stat .lab {
+        margin-top: 16px;
+        font-weight: 500;
         color: var(--ink);
-        font-size: 1rem;
+        font-size: 1.05rem;
       }
-      .sig li .icon {
-        width: 20px;
-        height: 20px;
-        color: var(--gold);
-        margin-top: 3px;
+      .stat .dsc {
+        margin-top: 6px;
+        color: var(--gray);
+        font-size: 0.9rem;
+        font-weight: 300;
       }
-      .sig li b {
-        font-weight: 700;
-        color: var(--navy);
-      }
-      @media (max-width: 920px) {
-        .sig .wrap {
+      @media (max-width: 780px) {
+        .stats .grid {
           grid-template-columns: 1fr;
-          gap: 36px;
         }
-        .sig .imgbox {
-          height: 360px;
+        .stat {
+          border-right: none;
+          border-bottom: 1px solid var(--line);
+        }
+        .stat:last-child {
+          border-bottom: none;
+        }
+        .stat .big {
+          font-size: 2.9rem;
         }
       }
 
@@ -1312,7 +1290,7 @@
         margin-bottom: 16px;
       }
       footer .top p {
-        max-width: 430px;
+        max-width: 440px;
         line-height: 1.9;
         font-weight: 300;
       }
@@ -1515,10 +1493,6 @@
         <circle cx="12" cy="8" r="6" />
         <path d="M9 13.5L7.5 22 12 19l4.5 3L15 13.5" />
       </symbol>
-      <symbol id="i-scope" viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="7" />
-        <path d="M21 21l-4.3-4.3" />
-      </symbol>
       <symbol id="i-net" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="9" />
         <path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z" />
@@ -1536,11 +1510,6 @@
         <path
           d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 21.5l8.8-8.8a5 5 0 0 0 0-7.1z"
         />
-      </symbol>
-      <symbol id="i-users" viewBox="0 0 24 24">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11" />
       </symbol>
       <symbol id="i-search" viewBox="0 0 24 24">
         <circle cx="11" cy="11" r="8" />
@@ -1563,7 +1532,7 @@
           경기 안산시 단원구 원포공원1로 46 · 이마트 고잔점 5층
         </div>
         <div class="right">
-          <span>평일 야간 <b>21시</b>까지 · 토·일 진료</span>
+          <span>평일 <b>20시</b>까지 · 토·일 진료</span>
           <a href="tel:031-411-2475"
             ><svg class="icon"><use href="#i-phone" /></svg> 031-411-2475</a
           >
@@ -1575,15 +1544,15 @@
     <header id="hdr">
       <div class="wrap">
         <nav>
-          <a href="#home" class="logo" aria-label="연세매일치과의원 홈">
-            <span class="mark">매일</span>
+          <a href="#home" class="logo" aria-label="안산365매일치과 홈">
+            <span class="mark">365</span>
             <span class="lt"
-              >연세매일치과의원<small>YONSEI MAEIL DENTAL CLINIC</small></span
+              >안산365매일치과<small>ANSAN 365 MAEIL DENTAL</small></span
             >
           </a>
           <ul class="menu" id="menu">
             <li><a href="#phil">병원소개</a></li>
-            <li><a href="#sig">정밀진료</a></li>
+            <li><a href="#sig">진료실적</a></li>
             <li><a href="#doc">대표원장</a></li>
             <li><a href="#serv">진료안내</a></li>
             <li><a href="#rev">치료후기</a></li>
@@ -1607,19 +1576,20 @@
       <div class="bg">
         <img
           src="images/precision.jpg"
-          alt="연세매일치과 대표원장의 정밀 진료 장면"
+          alt="안산365매일치과 대표원장의 정밀 진료 장면"
           fetchpriority="high"
         />
       </div>
       <div class="wrap">
         <div class="eyebrow">
-          HARVARD-TRAINED IMPLANT &nbsp;·&nbsp; 미세현미경 정밀진료
+          HARVARD-TRAINED IMPLANT &nbsp;·&nbsp; 임플란트 식립 2,000건
         </div>
         <h1>치아 하나에도,<br /><em>평생</em>을 생각합니다</h1>
         <p class="lead">
-          보이지 않는 <b>0.1mm의 차이</b>가 치아의 평생을 좌우합니다.<br />
+          진료의 차이는 결국 <b>경험</b>에서 나옵니다.<br />
           하버드 임플란트 과정을 수료한 대표원장이<br />
-          미세현미경으로 <b>한 치아도 놓치지 않는 정밀 진료</b>를 합니다.
+          <b>2,000건 이상의 임상</b>으로 한 치아도 놓치지 않고 정밀하게
+          진료합니다.
         </p>
         <div class="hero-actions">
           <a href="tel:031-411-2475" class="btn btn-gold"
@@ -1632,8 +1602,8 @@
           <div class="m">
             <small>LOCATION</small><b>안산 고잔동 · 이마트 5층</b>
           </div>
-          <div class="m"><small>WEEKDAY</small><b>평일 10:00 – 21:00</b></div>
-          <div class="m"><small>WEEKEND</small><b>토 · 일 진료</b></div>
+          <div class="m"><small>WEEKDAY</small><b>평일 10:00 – 20:00</b></div>
+          <div class="m"><small>WEEKEND</small><b>토·일 10:00 – 16:30</b></div>
         </div>
       </div>
     </section>
@@ -1650,24 +1620,24 @@
         </div>
         <div class="item">
           <div class="icwrap">
-            <svg class="icon"><use href="#i-scope" /></svg>
+            <svg class="icon"><use href="#i-tooth" /></svg>
           </div>
-          <div class="t">미세현미경 진료</div>
-          <div class="d">0.1mm까지 정밀하게</div>
+          <div class="t">임플란트 2,000건+</div>
+          <div class="d">풍부한 식립 임상 경험</div>
         </div>
         <div class="item">
           <div class="icwrap">
-            <svg class="icon"><use href="#i-net" /></svg>
+            <svg class="icon"><use href="#i-shield" /></svg>
           </div>
-          <div class="t">전 분야 협진</div>
-          <div class="d">한 곳에서 통합 진료</div>
+          <div class="t">2018년 개원</div>
+          <div class="d">한자리에서 변함없이</div>
         </div>
         <div class="item">
           <div class="icwrap">
             <svg class="icon"><use href="#i-clock" /></svg>
           </div>
-          <div class="t">야간 · 주말 진료</div>
-          <div class="d">평일 21시 · 토 · 일</div>
+          <div class="t">365 진료</div>
+          <div class="d">평일 20시 · 토·일까지</div>
         </div>
       </div>
     </div>
@@ -1683,7 +1653,7 @@
           <p class="intro reveal">
             유행을 좇기보다 기본에 충실합니다. 당장의 치료보다 환자분이 10년,
             20년 후에도 건강하게 씹을 수 있는 치아를 남기는 것 — 그것이
-            연세매일치과가 지켜온 진료의 원칙입니다.
+            안산365매일치과가 지켜온 진료의 원칙입니다.
           </p>
         </div>
         <div class="vals">
@@ -1694,9 +1664,8 @@
             <span class="no">01</span>
             <h3>정밀 진단 위에<br />치료가 시작됩니다</h3>
             <p>
-              미세현미경과 디지털 진단 장비로 육안으로 보이지 않는 부분까지
-              확인합니다. 정확한 진단이 과하지 않은, 꼭 필요한 치료로
-              이어집니다.
+              정밀한 디지털 진단으로 보이지 않는 부분까지 꼼꼼히 확인합니다.
+              정확한 진단이 과하지 않은, 꼭 필요한 치료로 이어집니다.
             </p>
           </div>
           <div class="val reveal">
@@ -1751,7 +1720,7 @@
             <span class="no">06</span>
             <h3>바쁜 일상에<br />가까운 치과</h3>
             <p>
-              퇴근 후에도 부담 없도록 평일 밤 9시까지, 주말에도 진료합니다.
+              퇴근 후에도 부담 없도록 평일 밤 8시까지, 주말에도 진료합니다.
               이마트 고잔점 5층, 넓은 주차장으로 접근도 편리합니다.
             </p>
           </div>
@@ -1759,62 +1728,36 @@
       </div>
     </section>
 
-    <!-- Signature -->
-    <section class="sig" id="sig">
+    <!-- Stats (진료실적) -->
+    <section class="stats" id="sig">
       <div class="wrap">
-        <div class="imgbox reveal">
-          <img
-            src="images/microscope.jpg"
-            alt="미세현미경을 이용한 정밀 진료 모습"
-            loading="lazy"
-          />
-          <div class="badge">
-            <svg class="icon"><use href="#i-scope" /></svg>
-            <div>
-              <b>고배율 미세현미경</b><small>실시간 모니터링 진료</small>
-            </div>
-          </div>
-        </div>
-        <div class="reveal">
-          <div class="eyebrow">SIGNATURE CARE</div>
-          <h2 class="serif">
-            0.1mm의 차이를 보는<br /><em>미세현미경 정밀진료</em>
+        <div class="head">
+          <div class="eyebrow line reveal">EXPERIENCE &amp; TRUST</div>
+          <h2 class="sec serif reveal">
+            한자리에서 쌓아온<br /><em>시간과 경험</em>
           </h2>
-          <p class="t">
-            맨눈으로는 보이지 않던 미세한 충치, 신경관, 균열까지. 고배율
-            미세현미경으로 직접 확인하며 진료하기 때문에 불필요하게 치아를
-            깎거나 빼지 않고, 살릴 수 있는 치아를 더 오래 보존합니다.
+          <p class="sub reveal">
+            2018년 개원 이후 자리를 옮기지 않고 한곳에서, 변함없이 환자분들을
+            진료해 왔습니다. 화려한 마케팅보다 한 분 한 분의 치아에 집중한
+            시간이 곧 저희의 실력입니다.
           </p>
-          <ul>
-            <li>
-              <svg class="icon"><use href="#i-check" /></svg
-              ><span
-                ><b>정밀 신경치료</b> — 미세한 신경관까지 확인해 재발률을
-                낮춥니다</span
-              >
-            </li>
-            <li>
-              <svg class="icon"><use href="#i-check" /></svg
-              ><span
-                ><b>정확한 임플란트</b> — 식립 위치와 잇몸 상태를 정밀하게
-                진단합니다</span
-              >
-            </li>
-            <li>
-              <svg class="icon"><use href="#i-check" /></svg
-              ><span
-                ><b>최소 침습 보존</b> — 건강한 치아 조직을 최대한
-                남깁니다</span
-              >
-            </li>
-            <li>
-              <svg class="icon"><use href="#i-check" /></svg
-              ><span
-                ><b>실시간 환자 공유</b> — 모니터로 내 치아 상태를 직접
-                확인합니다</span
-              >
-            </li>
-          </ul>
+        </div>
+        <div class="grid reveal">
+          <div class="stat">
+            <div class="big">2,000<em>건+</em></div>
+            <div class="lab">누적 임플란트 식립</div>
+            <div class="dsc">풍부한 임상 경험</div>
+          </div>
+          <div class="stat">
+            <div class="big">2018<em>년</em></div>
+            <div class="lab">개원 이후 한자리에서</div>
+            <div class="dsc">변함없이 그 자리를 지킵니다</div>
+          </div>
+          <div class="stat">
+            <div class="big">365<em>일</em></div>
+            <div class="lab">평일 야간 · 토·일 진료</div>
+            <div class="dsc">필요할 때 언제든 가까이</div>
+          </div>
         </div>
       </div>
     </section>
@@ -1848,11 +1791,11 @@
           <div class="eyebrow">DIRECTOR</div>
           <h2 class="serif">환자의 <em>10년 후</em>까지<br />책임지는 진료</h2>
           <p class="name">
-            <b>김하슬람</b>연세매일치과의원 대표원장 / Kim Haseulram
+            <b>김하슬람</b>안산365매일치과 대표원장 / Kim Haseulram
           </p>
           <p class="quote">
             “좋은 치료는 화려한 장비가 아니라, 한 치아도 소홀히 하지 않는
-            정밀함에서 나온다고 믿습니다.”
+            정밀함과 경험에서 나온다고 믿습니다.”
           </p>
           <ul>
             <li>
@@ -1864,15 +1807,17 @@
             </li>
             <li>
               <svg class="icon"><use href="#i-check" /></svg
-              ><span>미세현미경 정밀진료 · 임플란트 식립 다수 임상</span>
+              ><span>누적 <b>임플란트 식립 2,000건</b> 이상의 임상 경험</span>
             </li>
             <li>
               <svg class="icon"><use href="#i-check" /></svg
-              ><span>대한치과의사협회 정회원</span>
+              ><span><b>2018년 개원</b> — 한자리에서 변함없이 진료</span>
             </li>
             <li>
               <svg class="icon"><use href="#i-check" /></svg
-              ><span>임플란트 · 보철 · 보존 통합 진료</span>
+              ><span
+                >대한치과의사협회 정회원 · 임플란트·보철·보존 통합 진료</span
+              >
             </li>
           </ul>
           <p
@@ -1909,8 +1854,8 @@
               </div>
             </div>
             <p>
-              정밀 진단 기반의 안전한 식립. 뼈이식·무절개 등 환자 상태에 맞춘
-              맞춤 임플란트를 진행합니다.
+              2,000건 임상 경험을 바탕으로 한 안전한 식립. 뼈이식·무절개 등 환자
+              상태에 맞춘 맞춤 임플란트를 진행합니다.
             </p>
             <div class="ft">
               <span>IMPLANT</span
@@ -1985,7 +1930,7 @@
           <div class="scard reveal">
             <div class="top">
               <div class="sic">
-                <svg class="icon"><use href="#i-scope" /></svg>
+                <svg class="icon"><use href="#i-search" /></svg>
               </div>
               <div>
                 <span class="no">05</span>
@@ -1993,7 +1938,7 @@
               </div>
             </div>
             <p>
-              미세현미경으로 치아를 최대한 살리는 보존 치료. 정밀한 신경치료로
+              정밀 진단으로 치아를 최대한 살리는 보존 치료. 꼼꼼한 신경치료로
               자연치아를 오래 지킵니다.
             </p>
             <div class="ft">
@@ -2034,33 +1979,33 @@
         <div class="eyebrow line reveal">HOURS &amp; DIRECTIONS</div>
         <h2 class="sec serif reveal">진료시간 · <em>오시는 길</em></h2>
         <p class="sub reveal">
-          바쁜 직장인과 가족을 위해 늦은 시간과 주말에도 진료합니다.
+          바쁜 직장인과 가족을 위해 평일 야간과 주말에도 진료합니다.
         </p>
         <div class="grid reveal">
           <div class="hcol l" style="text-align: left">
             <h3>
               <svg class="icon"><use href="#i-clock" /></svg>진료시간
             </h3>
-            <div class="tag">평일 야간 · 토 · 일 진료</div>
+            <div class="tag">평일 야간 · 토·일 진료</div>
             <div class="hrow hl">
               <span class="day">평일 (월–금)</span
-              ><span class="time">10:00 – 21:00</span>
+              ><span class="time">10:00 – 20:00</span>
             </div>
             <div class="hrow hl">
               <span class="day">토요일</span
-              ><span class="time">진료 (시간 문의)</span>
+              ><span class="time">10:00 – 16:30</span>
             </div>
             <div class="hrow hl">
-              <span class="day">일요일 · 공휴일</span
-              ><span class="time">야간 진료 (예약)</span>
+              <span class="day">일요일</span
+              ><span class="time">10:00 – 16:30</span>
             </div>
             <div class="hrow">
               <span class="day">점심시간</span
               ><span class="time">12:30 – 14:00</span>
             </div>
             <p class="lunch">
-              정확한 요일별 진료시간은 <b>031-411-2475</b>로 확인 후 방문해
-              주세요.
+              진료는 예약제로 운영됩니다. 방문 전 <b>031-411-2475</b>로 문의해
+              주시면 더욱 편리합니다.
             </p>
           </div>
           <div class="hcol" style="text-align: left">
@@ -2081,14 +2026,14 @@
             </div>
             <div class="mapwrap">
               <iframe
-                title="연세매일치과의원 위치 지도"
+                title="안산365매일치과 위치 지도"
                 src="https://www.google.com/maps?q=경기 안산시 단원구 원포공원1로 46&z=17&output=embed"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
             <a
-              href="https://map.naver.com/v5/search/연세매일치과의원"
+              href="https://map.naver.com/v5/search/안산365매일치과"
               target="_blank"
               rel="noopener"
               class="btn btn-outline-d"
@@ -2119,8 +2064,8 @@
               ><svg class="icon"><use href="#i-star" /></svg>
             </div>
             <p>
-              퇴근하고 갈 수 있는 치과를 찾다 알게 됐어요. 야간인데도 현미경으로
-              꼼꼼히 봐주시고, 과잉진료 없이 필요한 것만 설명해주셔서 믿음이
+              임플란트 상담을 여러 곳 받아봤는데, 경험이 많으셔서 그런지 설명이
+              제일 명확했어요. 과잉진료 없이 필요한 것만 짚어주셔서 믿음이
               갑니다.
             </p>
             <div class="who">
@@ -2137,8 +2082,8 @@
               ><svg class="icon"><use href="#i-star" /></svg>
             </div>
             <p>
-              아이 둘 데리고 다니는데 소아 진료까지 한 곳에서 돼서 편해요.
-              무서워하던 아이를 잘 달래주셔서 이제는 치과를 안 무서워합니다.
+              주말에도 진료해서 아이 둘 데리고 다니기 편해요. 무서워하던 아이를
+              잘 달래주셔서 이제는 치과를 안 무서워합니다.
             </p>
             <div class="who">
               <div class="av">李</div>
@@ -2154,12 +2099,13 @@
               ><svg class="icon"><use href="#i-star" /></svg>
             </div>
             <p>
-              다른 곳에선 신경치료하고 빼자고 했는데, 여기선 현미경으로 보시더니
-              살릴 수 있다고 하셨어요. 덕분에 자연치아를 지켰습니다.
+              다른 곳에선 빼자고 했는데, 여기선 정밀하게 보시더니 살릴 수 있다고
+              하셨어요. 덕분에 자연치아를 지켰습니다. 개원 때부터 다녔는데
+              한결같으세요.
             </p>
             <div class="who">
               <div class="av">朴</div>
-              <div><b>박○○ 님</b><small>미세현미경 신경치료</small></div>
+              <div><b>박○○ 님</b><small>신경치료</small></div>
             </div>
           </div>
         </div>
@@ -2170,11 +2116,10 @@
     <section class="final">
       <div class="wrap">
         <div class="eyebrow">RESERVATION</div>
-        <h2 class="serif">정밀한 진료의 차이를<br />직접 경험해 보세요</h2>
-        <p>
-          야간·주말 진료, 미세현미경 정밀진료. 궁금한 점은 전화 한 통이면
-          충분합니다.
-        </p>
+        <h2 class="serif">
+          경험에서 나오는 진료의 차이를<br />직접 경험해 보세요
+        </h2>
+        <p>평일 야간·주말 진료. 궁금한 점은 전화 한 통이면 충분합니다.</p>
         <div class="tel">
           <svg class="icon"><use href="#i-phone" /></svg
           ><a href="tel:031-411-2475">031-411-2475</a>
@@ -2184,7 +2129,7 @@
             ><svg class="icon"><use href="#i-phone" /></svg>전화 예약하기</a
           >
           <a
-            href="https://map.naver.com/v5/search/연세매일치과의원"
+            href="https://map.naver.com/v5/search/안산365매일치과"
             target="_blank"
             rel="noopener"
             class="btn btn-out"
@@ -2206,17 +2151,17 @@
       <div class="wrap">
         <div class="top">
           <div>
-            <div class="logo-f">연세매일치과의원</div>
+            <div class="logo-f">안산365매일치과</div>
             <p>
               안산 고잔동, 매일 같은 마음으로 정밀하게.<br />
-              하버드 임플란트 수료 대표원장의 미세현미경 정밀진료와 전 분야
-              협진으로 가까이에서 건강한 미소를 지킵니다.
+              하버드 임플란트 수료 대표원장의 2,000건 임상 경험과 전 분야
+              협진으로, 2018년 개원 이후 한자리에서 건강한 미소를 지킵니다.
             </p>
           </div>
           <div class="fcol">
             <h4>TREATMENT</h4>
             <a href="#serv">임플란트</a><a href="#serv">치아교정</a
-            ><a href="#serv">소아치과</a><a href="#serv">미세현미경 신경치료</a>
+            ><a href="#serv">소아치과</a><a href="#serv">충치·신경치료</a>
           </div>
           <div class="fcol">
             <h4>CLINIC</h4>
@@ -2231,16 +2176,16 @@
           </div>
           <div class="fcol">
             <h4>HOURS</h4>
-            <a>평일 10:00 – 21:00</a><a>토 · 일 진료</a><a>점심 12:30 – 14:00</a
-            ><a style="color: #fff">T. 031-411-2475</a>
+            <a>평일 10:00 – 20:00</a><a>토·일 10:00 – 16:30</a
+            ><a>점심 12:30 – 14:00</a><a style="color: #fff">T. 031-411-2475</a>
           </div>
         </div>
         <div class="bottom">
           <div>
             경기 안산시 단원구 원포공원1로 46 이마트 고잔점 5층 ·
-            연세매일치과의원 · 대표원장 김하슬람
+            안산365매일치과 · 대표원장 김하슬람
           </div>
-          <div>© 2026 YONSEI MAEIL DENTAL CLINIC.</div>
+          <div>© 2026 ANSAN 365 MAEIL DENTAL CLINIC.</div>
         </div>
       </div>
     </footer>
@@ -2251,7 +2196,7 @@
         ><svg class="icon"><use href="#i-phone" /></svg>전화상담</a
       >
       <a
-        href="https://map.naver.com/v5/search/연세매일치과의원"
+        href="https://map.naver.com/v5/search/안산365매일치과"
         target="_blank"
         rel="noopener"
         class="m-map"
@@ -2272,7 +2217,7 @@
         ><svg class="icon"><use href="#i-phone" /></svg><span>전화</span></a
       >
       <a
-        href="https://map.naver.com/v5/search/연세매일치과의원"
+        href="https://map.naver.com/v5/search/안산365매일치과"
         target="_blank"
         rel="noopener"
         class="f-map"
@@ -2306,7 +2251,6 @@
         }),
       );
 
-      // reveal
       const io = new IntersectionObserver(
         (es) =>
           es.forEach((e) => {
@@ -2319,7 +2263,6 @@
       );
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-      // scroll: progress bar + header shadow + back-to-top + active nav
       const hdr = document.getElementById('hdr'),
         prog = document.getElementById('progress'),
         ftop = document.getElementById('ftop');
