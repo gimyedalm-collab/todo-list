@@ -1249,12 +1249,16 @@
 
       /* === CERT STRIP (ABOUT) === */
       .cert-strip {
-        margin-top: 32px;
+        margin-top: 0;
+        margin-bottom: 32px;
         padding: 24px 26px;
         background: #fff;
         border: 1px solid var(--gold);
         border-left: 4px solid var(--gold);
         position: relative;
+      }
+      @media (max-width: 540px) {
+        .cert-strip { margin-bottom: 24px; }
       }
       .cert-strip-title {
         font-family: 'Noto Serif KR', serif;
