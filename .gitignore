@@ -5,3 +5,6 @@ dist
 .env
 .DS_Store
 Thumbs.db
+namecard/node_modules/
+namecard/package.json
+namecard/package-lock.json
