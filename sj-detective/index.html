@@ -1257,8 +1257,47 @@
         border-left: 4px solid var(--gold);
         position: relative;
       }
+      .cert-strip.cert-strip-sign {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 28px 30px;
+      }
+      .cert-strip-sign .sign-name {
+        font-family: 'Noto Serif KR', serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.01em;
+      }
+      .cert-strip-sign .sign-name small {
+        display: block;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--gold-light);
+        letter-spacing: 0.2em;
+        margin-top: 4px;
+      }
+      .cert-strip-sign .sign-en {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 36px;
+        font-weight: 600;
+        color: var(--gold);
+        font-style: italic;
+        line-height: 1;
+      }
       @media (max-width: 540px) {
-        .cert-strip { margin-bottom: 24px; }
+        .cert-strip.cert-strip-sign { padding: 22px 24px; gap: 16px; }
+        .cert-strip-sign .sign-name { font-size: 18px; }
+        .cert-strip-sign .sign-name small { font-size: 11px; }
+        .cert-strip-sign .sign-en { font-size: 28px; }
+      }
+      @media (max-width: 540px) {
+        .cert-strip {
+          margin-bottom: 24px;
+        }
       }
       .cert-strip-title {
         font-family: 'Noto Serif KR', serif;
@@ -3887,19 +3926,11 @@
           />
         </div>
         <div class="about-text">
-          <div class="cert-strip">
-            <div class="cert-strip-title">
-              <span class="cert-strip-mark">CERTIFIED</span>
-              탐정사 1급 자격증 정식 보유
+          <div class="cert-strip cert-strip-sign">
+            <div class="sign-name">
+              대표 김혁진<small>CHIEF · KIM HYUKJIN</small>
             </div>
-            <ul class="cert-list cert-list-people">
-              <li>
-                <strong>대표 김혁진</strong>
-              </li>
-              <li>
-                <strong>총괄팀장 신대현</strong>
-              </li>
-            </ul>
+            <div class="sign-en">SJ.</div>
           </div>
           <div class="label">ABOUT SJ</div>
           <h2>
@@ -3923,12 +3954,6 @@
             모든 의뢰 접수와 보고서 인계까지 단 한 사람의 외부 노출도 허용하지
             않는 <strong>1:1 비밀 전담</strong> 체계로 진행됩니다.
           </p>
-          <div class="sign">
-            <div class="sign-name">
-              대표 김혁진<small>CHIEF · KIM HYUKJIN</small>
-            </div>
-            <div class="sign-en">SJ.</div>
-          </div>
         </div>
       </div>
     </section>
