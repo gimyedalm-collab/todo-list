@@ -1726,6 +1726,158 @@
         }
       }
 
+      /* ─── NEWS / JOURNAL — date-ordered timeline ─── */
+      .news-head {
+        max-width: 720px;
+        margin-bottom: clamp(48px, 6vw, 80px);
+      }
+      .news-eyebrow {
+        font-size: 13px;
+        color: var(--mute);
+        margin-bottom: 20px;
+        letter-spacing: 0.04em;
+      }
+      .news-title {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(34px, 4.5vw, 64px);
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        margin-bottom: 20px;
+        word-break: keep-all;
+      }
+      .news-lead {
+        color: var(--mute);
+        font-size: 16px;
+        line-height: 1.7;
+      }
+      .news-list {
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid var(--line);
+      }
+      .news-entry {
+        display: grid;
+        grid-template-columns: 120px 1fr auto;
+        gap: 32px;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--line);
+        align-items: start;
+      }
+      .news-entry.has-image {
+        grid-template-columns: 120px 1fr 200px auto;
+      }
+      .news-date {
+        font-size: 13px;
+        color: var(--mute);
+        letter-spacing: 0.02em;
+        padding-top: 4px;
+      }
+      .news-body {
+        max-width: 580px;
+      }
+      .news-headline {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1.4;
+        color: var(--ink);
+        margin-bottom: 6px;
+        letter-spacing: -0.01em;
+      }
+      .news-body p {
+        font-size: 14px;
+        line-height: 1.7;
+        color: var(--ink-2);
+      }
+      .news-thumb {
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        background: var(--bg-2);
+        display: block;
+        position: relative;
+      }
+      .news-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1s ease;
+      }
+      .news-thumb:hover img {
+        transform: scale(1.04);
+      }
+      .news-tag {
+        font-size: 11px;
+        color: var(--mute);
+        letter-spacing: 0.04em;
+        padding-top: 6px;
+        white-space: nowrap;
+      }
+      @media (max-width: 760px) {
+        .news-entry,
+        .news-entry.has-image {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .news-thumb {
+          order: -1;
+        }
+        .news-tag {
+          order: -2;
+        }
+      }
+
+      /* ─── FOUNDER'S NOTE — intentionally unsymmetric, hand-written feel ─── */
+      .founder-note {
+        background: var(--bg);
+        padding-top: clamp(60px, 8vw, 100px);
+        padding-bottom: clamp(60px, 8vw, 100px);
+      }
+      .founder-eyebrow {
+        font-size: 13px;
+        color: var(--mute);
+        margin-bottom: 40px;
+        letter-spacing: 0.04em;
+      }
+      .founder-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 56px;
+        max-width: 720px;
+        /* intentionally off-center — slightly left of grid center */
+        margin-left: clamp(0px, 4vw, 80px);
+      }
+      .founder-body {
+        font-family: var(--font-sans);
+        font-size: clamp(17px, 1.6vw, 22px);
+        line-height: 1.85;
+        color: var(--ink-2);
+        letter-spacing: -0.005em;
+      }
+      .founder-sign {
+        padding-top: 32px;
+        border-top: 1px solid var(--line);
+        max-width: 320px;
+      }
+      .founder-sign-line {
+        font-size: 28px;
+        font-weight: 500;
+        color: var(--ink);
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+      .founder-sign-title {
+        font-size: 14px;
+        color: var(--mute);
+        margin-bottom: 12px;
+      }
+      .founder-sign-date {
+        font-size: 12px;
+        color: var(--mute);
+        letter-spacing: 0.02em;
+      }
+
       /* ─── CONTACT ─── */
       .contact-grid {
         display: grid;
@@ -1969,7 +2121,7 @@
         <a href="#home" data-page-link="home" class="is-active">MAIN</a>
         <a href="#about" data-page-link="about">ABOUT</a>
         <a href="#artist" data-page-link="artist">ARTIST</a>
-        <a href="#event" data-page-link="event">EVENT</a>
+        <a href="#news" data-page-link="news">NEWS</a>
         <a href="#contact" data-page-link="contact">CONTACT</a>
       </nav>
       <div class="dm-tools">
@@ -2099,13 +2251,6 @@
     <section class="home-welcome active" data-page="home">
       <div class="home-welcome-inner">
         <div>
-          <div class="section-num">
-            N° 00 —
-            <b
-              ><span class="kr">D Momentum</span
-              ><span class="en">D Momentum</span></b
-            >
-          </div>
           <h2 class="home-welcome-title">
             <span class="kr"
               >광고, 콘텐츠, 라이선스 —<br />한 명의 아티스트가 가진 모든
@@ -2175,10 +2320,6 @@
     <!-- ============ N° 01 ROSTER ============ -->
     <section id="roster" class="section" data-page="artist">
       <div class="section-head">
-        <div class="section-num">
-          N° 01 —
-          <b><span class="kr">로스터</span><span class="en">Roster</span></b>
-        </div>
         <h2 class="section-title">
           <span class="kr"
             >단 한 명의 <em>페이스</em>,&#10;모든 시장의 <em>모멘트</em>.</span
@@ -2705,140 +2846,157 @@
       </div>
     </section>
 
-    <!-- ============ N° 02 CAMPAIGNS → EVENT page ============ -->
-    <section
-      id="campaigns"
-      class="section"
-      style="background: var(--bg-2)"
-      data-page="event"
-    >
-      <div class="section-head">
-        <div class="section-num">
-          N° 02 —
-          <b><span class="kr">캠페인</span><span class="en">Campaigns</span></b>
+    <!-- ============ NEWS / JOURNAL — date-ordered timeline of agency happenings ============ -->
+    <section id="news-journal" class="section" data-page="news">
+      <div class="news-head">
+        <div class="news-eyebrow">
+          <span class="kr">소식</span><span class="en">Journal</span>
         </div>
-        <h2 class="section-title">
-          <span class="kr">글로벌 브랜드와&#10;<em>함께한 작업들</em>.</span>
-          <span class="en">Work with the&#10;<em>world's brands</em>.</span>
+        <h2 class="news-title">
+          <span class="kr">D MOMENTUM의 시간들.</span>
+          <span class="en">A timeline of D MOMENTUM.</span>
         </h2>
+        <p class="news-lead">
+          <span class="kr"
+            >법인 설립부터 진행 중인 캠페인까지, 일어나는 일들을
+            기록합니다.</span
+          >
+          <span class="en"
+            >From the day we registered to the work that's in motion now.</span
+          >
+        </p>
       </div>
-      <div class="campaigns-grid">
-        <div class="campaign" data-cursor="Case →" data-cursor-style="accent">
-          <img
-            src="images/campaign-1.png"
-            alt="TAM BEAUTY SS26"
-            onerror="this.parentElement.classList.add('placeholder')"
-          />
-          <div class="campaign-caption">
-            <div class="num">N° 001 · Beauty · Global</div>
-            <div class="name">TAM BEAUTY <em>SS26</em></div>
-            <div class="credit">Dasha Taran · Main Visual · 2025—2026</div>
-            <ul class="campaign-facts">
-              <li>
-                <span>Role</span
-                ><b
-                  ><span class="kr">글로벌 전속 모델</span
-                  ><span class="en">Exclusive Global Model</span></b
-                >
-              </li>
-              <li>
-                <span>Scope</span
-                ><b
-                  ><span class="kr">런칭 캠페인 → SS26 메인 → Holiday</span
-                  ><span class="en">Launch → SS26 Main → Holiday</span></b
-                >
-              </li>
-              <li><span>Markets</span><b>KR · CIS · SEA</b></li>
-            </ul>
+
+      <div class="news-list">
+        <article class="news-entry">
+          <div class="news-date">2026.06.18</div>
+          <div class="news-body">
+            <h3 class="news-headline">
+              <span class="kr">법인 등록 완료</span
+              ><span class="en">Registered as a corporation</span>
+            </h3>
+            <p>
+              <span class="kr"
+                >성동세무서로부터 사업자등록증 수령. 488-87-03848.</span
+              ><span class="en"
+                >Issued by Seongdong Tax Office. Biz. Reg. 488-87-03848.</span
+              >
+            </p>
           </div>
-        </div>
-        <div class="campaign" data-cursor="Case →" data-cursor-style="accent">
-          <img
-            src="images/campaign-2.png"
-            alt="Sudden Attack"
-            onerror="this.parentElement.classList.add('placeholder')"
-          />
-          <div class="campaign-caption">
-            <div class="num">N° 002 · Gaming · Licensing</div>
-            <div class="name">SUDDEN ATTACK <em>× Dasha</em></div>
-            <div class="credit">Nexon Games · Character License · 2025.09</div>
-            <ul class="campaign-facts">
-              <li>
-                <span>Type</span
-                ><b
-                  ><span class="kr">캐릭터 라이선싱 (글로벌)</span
-                  ><span class="en">Character Licensing — Global</span></b
-                >
-              </li>
-              <li>
-                <span>Assets</span
-                ><b
-                  ><span class="kr">전용 스킨 · 보이스팩</span
-                  ><span class="en">Exclusive Skin · Voice Pack</span></b
-                >
-              </li>
-              <li>
-                <span>Reach</span
-                ><b
-                  ><span class="kr">전 서버 동시 출시</span
-                  ><span class="en">All servers · simultaneous</span></b
-                >
-              </li>
-            </ul>
+          <div class="news-tag">Company</div>
+        </article>
+
+        <article class="news-entry">
+          <div class="news-date">2026.06.10</div>
+          <div class="news-body">
+            <h3 class="news-headline">
+              <span class="kr">D MOMENTUM 영업 시작</span
+              ><span class="en">D MOMENTUM begins</span>
+            </h3>
+            <p>
+              <span class="kr"
+                >서울 성수동 통일타워 8층에서 정식 운영 개시. 다샤 타란
+                전속.</span
+              ><span class="en"
+                >Started operations at Tongil Tower, Seongsu, Seoul. Exclusive
+                representation of Dasha Taran.</span
+              >
+            </p>
           </div>
-        </div>
-        <div class="campaign" data-cursor="Case →" data-cursor-style="accent">
-          <img
-            src="images/campaign-3.jpg"
-            alt="Asterasys Lifterra"
-            onerror="this.parentElement.classList.add('placeholder')"
-          />
-          <div class="campaign-caption">
-            <div class="num">N° 003 · Medical · Global</div>
-            <div class="name">Asterasys <em>Lifterra II</em></div>
-            <div class="credit">Brand Model · 2025.05—</div>
-            <ul class="campaign-facts">
-              <li>
-                <span>Category</span
-                ><b
-                  ><span class="kr">메디컬 디바이스</span
-                  ><span class="en">Medical Device</span></b
-                >
-              </li>
-              <li><span>Markets</span><b>KR · JP · SEA</b></li>
-              <li>
-                <span>Format</span
-                ><b
-                  ><span class="kr">광고 · 임상 비주얼 · 행사</span
-                  ><span class="en">Campaign · Clinical · Events</span></b
-                >
-              </li>
-            </ul>
+          <div class="news-tag">Company</div>
+        </article>
+
+        <article class="news-entry has-image">
+          <div class="news-date">2025.10</div>
+          <div class="news-body">
+            <h3 class="news-headline">
+              <span class="kr">TAM BEAUTY 글로벌 모델 계약</span
+              ><span class="en">TAM BEAUTY · Global Model</span>
+            </h3>
+            <p>
+              <span class="kr"
+                >런칭 캠페인부터 26SS 메인 비주얼, Holiday Edition까지 — 글로벌
+                동시 출시.</span
+              ><span class="en"
+                >From launch campaign through 26SS main visual to Holiday
+                Edition — released worldwide.</span
+              >
+            </p>
           </div>
-        </div>
-        <div class="campaign" data-cursor="Case →" data-cursor-style="accent">
-          <img
-            src="images/campaign-4.jpg"
-            alt="Minish Dental"
-            onerror="this.parentElement.classList.add('placeholder')"
-          />
-          <div class="campaign-caption">
-            <div class="num">N° 004 · Healthcare · Exclusive</div>
-            <div class="name">Minish <em>Dental</em></div>
-            <div class="credit">Exclusive Face · 2023—2025 (3rd Year)</div>
-            <ul class="campaign-facts">
-              <li>
-                <span>Status</span
-                ><b
-                  ><span class="kr">3년 연속 전속</span
-                  ><span class="en">3rd Consecutive Year</span></b
-                >
-              </li>
-              <li><span>Markets</span><b>KR · CIS</b></li>
-              <li><span>Renewal</span><b>100%</b></li>
-            </ul>
+          <a class="news-thumb" data-cursor="Case →" data-cursor-style="accent">
+            <img
+              src="images/campaign-1.png"
+              alt="TAM BEAUTY SS26"
+              onerror="this.parentElement.classList.add('placeholder')"
+            />
+          </a>
+          <div class="news-tag">Campaign</div>
+        </article>
+
+        <article class="news-entry has-image">
+          <div class="news-date">2025.09.12</div>
+          <div class="news-body">
+            <h3 class="news-headline">
+              <span class="kr">서든어택 × DASHA 글로벌 출시</span
+              ><span class="en">SUDDEN ATTACK × Dasha · Global Release</span>
+            </h3>
+            <p>
+              <span class="kr"
+                >Nexon Games와 협업. 다샤타란 캐릭터 글로벌 서버 동시 출시. 전용
+                스킨·보이스팩 포함.</span
+              ><span class="en"
+                >Collaboration with Nexon Games. Character released globally
+                with exclusive skin and voice pack.</span
+              >
+            </p>
           </div>
-        </div>
+          <a class="news-thumb" data-cursor="Case →" data-cursor-style="accent">
+            <img
+              src="images/campaign-2.png"
+              alt="Sudden Attack × Dasha"
+              onerror="this.parentElement.classList.add('placeholder')"
+            />
+          </a>
+          <div class="news-tag">Licensing</div>
+        </article>
+
+        <article class="news-entry">
+          <div class="news-date">2025.05</div>
+          <div class="news-body">
+            <h3 class="news-headline">
+              <span class="kr">아스테라시스 리프테라2 모델</span
+              ><span class="en">Asterasys Lifterra II · Model</span>
+            </h3>
+            <p>
+              <span class="kr"
+                >메디컬 디바이스 글로벌 마케팅. KR · JP · SEA 시장 활성화.</span
+              ><span class="en"
+                >Medical device global marketing across KR · JP · SEA
+                markets.</span
+              >
+            </p>
+          </div>
+          <div class="news-tag">Campaign</div>
+        </article>
+
+        <article class="news-entry">
+          <div class="news-date">2023 —</div>
+          <div class="news-body">
+            <h3 class="news-headline">
+              <span class="kr">미니쉬 치과 전속 모델 (3년 연속)</span
+              ><span class="en">Minish Dental · Exclusive (3rd Year)</span>
+            </h3>
+            <p>
+              <span class="kr"
+                >2023년부터 3년 연속 브랜드 페이스. 재계약율 100%.</span
+              ><span class="en"
+                >Brand face for three consecutive years since 2023. 100%
+                renewal.</span
+              >
+            </p>
+          </div>
+          <div class="news-tag">Exclusive</div>
+        </article>
       </div>
     </section>
 
@@ -2853,13 +3011,6 @@
           class="section-head"
           style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
         >
-          <div class="section-num">
-            N° 03 —
-            <b
-              ><span class="kr">숫자로</span
-              ><span class="en">In Numbers</span></b
-            >
-          </div>
           <h2 class="section-title">
             <span class="kr">데이터로 <em>증명되는</em>&#10;도달력.</span>
             <span class="en">Reach <em>proven</em>&#10;in numbers.</span>
@@ -2919,12 +3070,6 @@
           class="section-head"
           style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
         >
-          <div class="section-num">
-            N° 04 —
-            <b
-              ><span class="kr">서비스</span><span class="en">Services</span></b
-            >
-          </div>
           <h2 class="section-title">
             <span class="kr">광고. 콘텐츠.&#10;라이선스. <em>글로벌</em>.</span>
             <span class="en"
@@ -3022,12 +3167,6 @@
           class="section-head"
           style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
         >
-          <div class="section-num">
-            N° 05 —
-            <b
-              ><span class="kr">파트너</span><span class="en">Partners</span></b
-            >
-          </div>
           <h2 class="section-title">
             <span class="kr">함께한 <em>브랜드</em>.</span>
             <span class="en">Brands we've <em>worked with.</em></span>
@@ -3121,13 +3260,6 @@
           class="section-head"
           style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
         >
-          <div class="section-num">
-            N° 06 —
-            <b
-              ><span class="kr">미디어</span
-              ><span class="en">As Seen In</span></b
-            >
-          </div>
           <h2 class="section-title">
             <span class="kr">실린 <em>매체</em>.</span>
             <span class="en">Featured <em>editorial</em>.</span>
@@ -3195,13 +3327,6 @@
           class="section-head"
           style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
         >
-          <div class="section-num">
-            N° 07 —
-            <b
-              ><span class="kr">시작하기</span
-              ><span class="en">Get Started</span></b
-            >
-          </div>
           <h2 class="section-title">
             <span class="kr"
               >다음 <em>모멘트</em>는&#10;여기서 시작됩니다.</span
@@ -3251,10 +3376,6 @@
       data-page="about"
     >
       <div class="section-head">
-        <div class="section-num">
-          N° 08 —
-          <b><span class="kr">소개</span><span class="en">About</span></b>
-        </div>
         <h2 class="section-title">
           <span class="kr"
             >캘린더가 아닌&#10;<em>모멘텀</em>을 관리합니다.</span
@@ -3317,13 +3438,52 @@
       </div>
     </section>
 
+    <!-- ============ FOUNDER'S NOTE (about page) ============ -->
+    <section class="founder-note section" data-page="about">
+      <div class="founder-eyebrow">
+        <span class="kr">대표 인사말</span
+        ><span class="en">A note from the founder</span>
+      </div>
+      <div class="founder-grid">
+        <p class="founder-body">
+          <span class="kr">
+            2026년 6월 10일, 성수동 통일타워에서 작게 시작했습니다.<br /><br />
+            다샤를 만난 건 그 전 해의 봄이었어요. 처음엔 단순한 미팅이었는데,
+            이야기를 나눌수록 한 명의 아티스트가 가진 가능성이 얼마나 깊은지 —
+            그 결을 함께 만들어보고 싶다는 생각이 들었습니다.<br /><br />
+            그래서 D MOMENTUM은 다샤 한 명에게 집중하기 위해 만들었습니다. 광고,
+            콘텐츠, 라이선스, 그리고 아직 만들지 않은 가능성까지 — 가장 정확한
+            방향으로 함께 가속하는 게 우리가 할 일입니다.<br /><br />
+            앞으로 잘 부탁드립니다.
+          </span>
+          <span class="en">
+            On June 10, 2026, we quietly began in Seongsu-dong, Seoul.<br /><br />
+            I first met Dasha in the spring of the year before. What started as
+            a simple meeting turned into something else — the more we talked,
+            the more I understood how deep one artist's possibilities can go.
+            And I wanted to shape that path together.<br /><br />
+            So D MOMENTUM exists for one artist. Advertising, content,
+            licensing, and the possibilities we haven't built yet — accelerating
+            in the most precise direction is what we're here for.<br /><br />
+            We look forward to working with you.
+          </span>
+        </p>
+        <div class="founder-sign">
+          <div class="founder-sign-line">
+            <span class="kr">이호성</span><span class="en">Lee Ho-sung</span>
+          </div>
+          <div class="founder-sign-title">
+            <span class="kr">D MOMENTUM 대표</span
+            ><span class="en">Founder &amp; CEO</span>
+          </div>
+          <div class="founder-sign-date">2026.06.10 · Seongsu, Seoul</div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ N° 09 CONTACT ============ -->
     <section id="contact" class="section" data-page="contact">
       <div class="section-head">
-        <div class="section-num">
-          N° 09 —
-          <b><span class="kr">문의</span><span class="en">Contact</span></b>
-        </div>
         <h2 class="section-title">
           <span class="kr"><em>함께</em> 만들고 싶은&#10;모멘트가 있다면.</span>
           <span class="en"
@@ -3448,8 +3608,8 @@
           <a href="#artist"
             ><span class="kr">아티스트</span><span class="en">Artist</span></a
           >
-          <a href="#event"
-            ><span class="kr">이벤트</span><span class="en">Event</span></a
+          <a href="#news"
+            ><span class="kr">소식</span><span class="en">News</span></a
           >
           <a href="#contact"
             ><span class="kr">문의</span><span class="en">Contact</span></a
@@ -3492,12 +3652,13 @@
         };
       });
       // ─── SPA PAGE SYSTEM — click a nav tab, only that page shows ───
-      const PAGES = ['home', 'about', 'artist', 'event', 'contact'];
+      const PAGES = ['home', 'about', 'artist', 'news', 'contact'];
       // Map for internal links that should navigate to a specific page
       const PAGE_ALIAS = {
         roster: 'artist',
         'artist-dasha': 'artist',
-        campaigns: 'event',
+        event: 'news',
+        campaigns: 'news',
         services: 'about',
         partners: 'about',
         'get-cast': 'contact',
