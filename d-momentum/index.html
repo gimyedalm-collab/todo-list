@@ -434,34 +434,34 @@
       }
 
       /* ─── HERO ─── */
-      /* Full-viewport hero — image fills entire screen, title overlay */
+      /* Side-by-side hero — image left, text right, natural for portrait photos */
       .hero {
+        min-height: calc(100vh - var(--header-h));
         position: relative;
-        height: 100vh;
-        min-height: 600px;
-        padding: 0;
-        overflow: hidden;
+        padding: var(--header-h) 0 0;
+        display: grid;
+        grid-template-columns: 1fr 1.05fr;
+        gap: 0;
+        align-items: stretch;
       }
       .hero-stage {
-        position: absolute;
-        inset: 0;
+        position: relative;
         overflow: hidden;
+        margin: 16px 0 16px var(--pad-x);
+        aspect-ratio: 4/5;
+        max-height: calc(100vh - var(--header-h) - 32px);
         background: var(--bg-2);
+        /* Image entrance: clip-path reveal from bottom up */
+        animation: heroStageReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s
+          backwards;
       }
-      /* Bottom gradient overlay for text readability */
-      .hero-stage::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          180deg,
-          rgba(14, 14, 14, 0.35) 0%,
-          rgba(14, 14, 14, 0) 25%,
-          rgba(14, 14, 14, 0) 50%,
-          rgba(14, 14, 14, 0.85) 100%
-        );
-        pointer-events: none;
-        z-index: 1;
+      @keyframes heroStageReveal {
+        from {
+          clip-path: inset(100% 0 0 0);
+        }
+        to {
+          clip-path: inset(0 0 0 0);
+        }
       }
       .hero-stage img {
         width: 100%;
@@ -478,16 +478,16 @@
           transform: scale(1.08) translate(-1%, -1%);
         }
       }
-      /* Hero caption moved to top — bottom-left is reserved for the big title */
+      /* Hero caption — bottom of the image stage */
       .hero-caption {
         position: absolute;
-        left: var(--pad-x);
-        right: var(--pad-x);
-        top: calc(var(--header-h) + 24px);
+        left: 24px;
+        right: 24px;
+        bottom: 22px;
         z-index: 2;
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: flex-end;
         gap: 24px;
         color: #fff;
         font-family: var(--font-mono);
@@ -495,6 +495,8 @@
         letter-spacing: 0.06em;
         text-transform: uppercase;
         text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1s forwards;
       }
       .hero-caption em {
         font-style: normal;
@@ -502,29 +504,25 @@
         padding-bottom: 1px;
       }
 
-      /* Hero bar overlays the bottom of the image */
+      /* Hero bar — right column with title (no overlay) */
       .hero-bar {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 2;
         display: flex;
         flex-direction: column;
-        gap: 24px;
-        padding: 0 var(--pad-x) clamp(48px, 6vw, 80px);
+        justify-content: flex-end;
+        gap: 32px;
+        padding: 48px var(--pad-x) 48px clamp(28px, 4vw, 64px);
+        border-bottom: 1px solid var(--line);
+        align-self: stretch;
       }
       .hero-title {
         font-family: var(--font-display);
         font-weight: 500;
-        font-size: clamp(40px, 6.5vw, 104px);
+        font-size: clamp(36px, 5.5vw, 88px);
         line-height: 0.98;
         letter-spacing: -0.03em;
-        color: #ffffff;
+        color: var(--ink);
         word-break: keep-all;
         overflow-wrap: break-word;
-        text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
-        max-width: 900px;
       }
       .hero-title em {
         font-family: var(--font-serif);
@@ -532,36 +530,58 @@
         font-weight: 400;
         letter-spacing: -0.02em;
       }
-      .hero-meta {
-        display: flex;
-        gap: 36px;
-        font-family: var(--font-mono);
-        font-size: 11px;
-        color: var(--mute);
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        white-space: nowrap;
+      /* Word-by-word entrance: slide-up + fade, stronger */
+      .hero-title .word {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(40px);
+        animation: heroWordUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       }
-      .hero-meta div {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+      .hero-title .word:nth-child(1) {
+        animation-delay: 0.4s;
       }
-      .hero-meta b {
-        color: var(--ink);
-        font-weight: 500;
+      .hero-title .word:nth-child(2) {
+        animation-delay: 0.6s;
+      }
+      .hero-title .word:nth-child(3) {
+        animation-delay: 0.8s;
+      }
+      .hero-title .word:nth-child(4) {
+        animation-delay: 1s;
+      }
+      @keyframes heroWordUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
       @media (max-width: 760px) {
         .hero {
-          height: 100vh;
-          min-height: 540px;
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+        .hero-stage {
+          aspect-ratio: 4/5;
+          max-height: 70vh;
+          margin: 12px 16px 0;
         }
         .hero-bar {
-          gap: 14px;
-          padding: 0 20px 40px;
-        }
-        .hero-title {
-          font-size: clamp(36px, 9vw, 56px);
+          gap: 16px;
+          padding: 24px 16px 32px;
         }
       }
 
@@ -3697,14 +3717,6 @@
           el.classList.add('reveal');
           io.observe(el);
         });
-
-      // ─── SIGNATURE: HERO TITLE STAGGER REVEAL ───
-      const heroWords = document.querySelectorAll('#heroTitle .word');
-      window.addEventListener('load', () => {
-        heroWords.forEach((w, i) => {
-          setTimeout(() => w.classList.add('in'), 200 + i * 140);
-        });
-      });
 
       // ─── SIGNATURE: CUSTOM CURSOR ───
       const cursor = document.createElement('div');
