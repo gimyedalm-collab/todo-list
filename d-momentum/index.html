@@ -521,11 +521,129 @@
       .hero-bar {
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
-        gap: 32px;
+        justify-content: space-between;
+        gap: 24px;
         padding: 48px var(--pad-x) 48px clamp(28px, 4vw, 64px);
         border-bottom: 1px solid var(--line);
         align-self: stretch;
+      }
+      .hero-top {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--mute);
+        opacity: 0;
+        animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+      }
+      .hero-top-rule {
+        width: 32px;
+        height: 1px;
+        background: var(--hairline);
+      }
+      .hero-top strong {
+        color: var(--ink);
+        font-weight: 500;
+        letter-spacing: 0.08em;
+      }
+      .hero-center {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .hero-lede {
+        font-family: var(--font-display);
+        font-size: clamp(15px, 1.15vw, 17px);
+        line-height: 1.55;
+        color: var(--ink-2);
+        max-width: 440px;
+        opacity: 0;
+        animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+      }
+      .hero-bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        opacity: 0;
+        animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.4s forwards;
+      }
+      .hero-meta {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--mute);
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+      }
+      .hero-meta-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .hero-meta-cell strong {
+        color: var(--ink);
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        text-transform: none;
+      }
+      .hero-meta-cell em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+        color: var(--hairline);
+      }
+      .hero-ctas {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 22px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.25s ease;
+      }
+      .hero-cta.primary {
+        background: var(--ink);
+        color: var(--bg);
+      }
+      .hero-cta.primary:hover {
+        background: var(--hairline);
+        color: #fff;
+        gap: 16px;
+      }
+      .hero-cta.ghost {
+        color: var(--ink);
+        border: 1px solid var(--line);
+      }
+      .hero-cta.ghost:hover {
+        border-color: var(--ink);
+        gap: 16px;
+      }
+      @media (max-width: 760px) {
+        .hero-meta {
+          gap: 18px;
+          flex-wrap: wrap;
+        }
+        .hero-meta-cell strong {
+          font-size: 16px;
+        }
       }
       .hero-title {
         font-family: var(--font-display);
@@ -2252,19 +2370,77 @@
         </div>
       </div>
       <div class="hero-bar">
-        <h1 class="hero-title" id="heroTitle">
-          <span class="kr"
-            ><span class="word">한 명의 아티스트.</span>
-            <span class="word"><em>무한한 모멘트</em>.</span></span
+        <div class="hero-top">
+          <span class="hero-top-rule"></span>
+          <span
+            ><span class="kr">소속 아티스트</span
+            ><span class="en">Now Representing</span
+            ><span class="zh">合作艺人</span></span
           >
-          <span class="en"
-            ><span class="word">One artist.</span>
-            <span class="word"><em>Infinite moments</em>.</span></span
-          ><span class="zh"
-            ><span class="word">一位艺人。</span
-            ><span class="word"><em>无限的瞬间</em>。</span></span
-          >
-        </h1>
+          ·
+          <strong>Dasha Taran</strong>
+        </div>
+        <div class="hero-center">
+          <h1 class="hero-title" id="heroTitle">
+            <span class="kr"
+              ><span class="word">한 명의 아티스트.</span>
+              <span class="word"><em>무한한 모멘트</em>.</span></span
+            >
+            <span class="en"
+              ><span class="word">One artist.</span>
+              <span class="word"><em>Infinite moments</em>.</span></span
+            ><span class="zh"
+              ><span class="word">一位艺人。</span
+              ><span class="word"><em>无限的瞬间</em>。</span></span
+            >
+          </h1>
+          <p class="hero-lede">
+            <span class="kr"
+              >러시아 출신, 서울 베이스. 광고·콘텐츠·라이선스 전 영역에서 한
+              명의 아티스트가 만들어내는 글로벌 모멘텀.</span
+            ><span class="en"
+              >Russian-born, Seoul-based. The global momentum one artist creates
+              across advertising, content, and licensing.</span
+            ><span class="zh"
+              >出生于俄罗斯,以首尔为基地。一位艺人在广告、内容、授权领域创造的全球势能。</span
+            >
+          </p>
+        </div>
+        <div class="hero-bottom">
+          <div class="hero-ctas">
+            <a class="hero-cta primary" data-page-link="artist" href="#artist">
+              <span class="kr">아티스트 보기</span
+              ><span class="en">View Artist</span
+              ><span class="zh">查看艺人</span>
+              <svg fill="none" height="10" viewbox="0 0 14 10" width="14">
+                <path
+                  d="M0 5h12M8 1l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                ></path>
+              </svg>
+            </a>
+            <a class="hero-cta ghost" data-page-link="contact" href="#contact">
+              <span class="kr">문의하기</span
+              ><span class="en">Get in Touch</span
+              ><span class="zh">联系我们</span>
+            </a>
+          </div>
+          <div class="hero-meta">
+            <div class="hero-meta-cell">
+              <strong>22<em>m</em>+</strong>
+              <span>Total Reach</span>
+            </div>
+            <div class="hero-meta-cell">
+              <strong>4+</strong>
+              <span>Brand Partners</span>
+            </div>
+            <div class="hero-meta-cell">
+              <strong>12+</strong>
+              <span>Active Campaigns</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <!-- TICKER -->
