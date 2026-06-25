@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — D MOMENTUM</title>
+    <meta
+      name="description"
+      content="The page you're looking for doesn't exist."
+    />
+    <meta name="theme-color" content="#0e0e0e" />
+    <link rel="icon" type="image/svg+xml" href="logo.svg" />
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        background: #0e0e0e;
+        color: #ffffff;
+        font-family:
+          'Pretendard Variable',
+          'Pretendard',
+          -apple-system,
+          sans-serif;
+        height: 100%;
+        overflow: hidden;
+      }
+      .wrap {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: clamp(24px, 4vw, 56px);
+      }
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .mark img {
+        height: 24px;
+        display: block;
+      }
+      .meta {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .meta::before {
+        content: '';
+        width: 24px;
+        height: 1px;
+        background: #d12d2d;
+      }
+      .center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        gap: clamp(20px, 3vw, 40px);
+        padding: clamp(40px, 6vw, 80px) 0;
+      }
+      .big {
+        font-size: clamp(120px, 20vw, 280px);
+        font-weight: 500;
+        line-height: 0.9;
+        letter-spacing: -0.05em;
+        color: #fff;
+      }
+      .big em {
+        font-family: 'Times New Roman', serif;
+        font-style: italic;
+        color: #d12d2d;
+        font-weight: 400;
+      }
+      .msg {
+        font-size: clamp(18px, 2vw, 24px);
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.85);
+        max-width: 520px;
+      }
+      .msg .alt {
+        display: block;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.45);
+        margin-top: 12px;
+      }
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 28px;
+        background: #fff;
+        color: #0e0e0e;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        transition: all 0.25s ease;
+        align-self: flex-start;
+      }
+      .cta:hover {
+        background: #d12d2d;
+        color: #fff;
+        gap: 18px;
+      }
+      .bottom {
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.4);
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top">
+        <a class="mark" href="/" aria-label="D MOMENTUM home">
+          <img src="logo-wordmark.svg" alt="D MOMENTUM" />
+        </a>
+        <div class="meta">404 · NOT FOUND</div>
+      </div>
+
+      <div class="center">
+        <div class="big">4<em>0</em>4</div>
+        <div class="msg">
+          찾으시는 페이지가 존재하지 않습니다.
+          <span class="alt"
+            >The page you're looking for doesn't exist ·
+            您查找的页面不存在</span
+          >
+        </div>
+        <a href="/" class="cta">
+          메인으로 돌아가기 / Back to home
+          <svg width="14" height="10" viewBox="0 0 14 10">
+            <path
+              d="M0 5h12M8 1l4 4-4 4"
+              stroke="currentColor"
+              stroke-width="1.4"
+              fill="none"
+            />
+          </svg>
+        </a>
+      </div>
+
+      <div class="bottom">D MOMENTUM Co., Ltd. · d-momentum.com</div>
+    </div>
+  </body>
+</html>

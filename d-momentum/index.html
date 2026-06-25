@@ -1,62 +1,59 @@
 <!doctype html>
-<html lang="ko" data-lang="kr">
+
+<html data-lang="kr" lang="ko">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>D MOMENTUM — Global Talent Management · Seoul</title>
     <meta
-      name="description"
       content="D MOMENTUM is a boutique global talent management agency. Representing Dasha Taran and the next chapter of model and digital influence — from Seoul to the world."
+      name="description"
     />
-    <meta name="theme-color" content="#0e0e0e" />
-    <meta name="author" content="D MOMENTUM ENT." />
+    <meta content="#0e0e0e" name="theme-color" />
+    <meta content="D MOMENTUM ENT." name="author" />
     <meta
-      name="keywords"
       content="D Momentum, talent agency, Dasha Taran, model management, Seoul, K-influencer, global talent"
+      name="keywords"
     />
-
     <!-- Open Graph (Facebook, Kakao, LinkedIn, Slack) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="D MOMENTUM" />
-    <meta property="og:title" content="D MOMENTUM — Global Talent Management" />
+    <meta content="website" property="og:type" />
+    <meta content="D MOMENTUM" property="og:site_name" />
+    <meta content="D MOMENTUM — Global Talent Management" property="og:title" />
     <meta
+      content="Talent is momentum. A boutique global agency representing Dasha Taran and the next chapter of model &amp; digital influence."
       property="og:description"
-      content="Talent is momentum. A boutique global agency representing Dasha Taran and the next chapter of model & digital influence."
     />
     <meta
+      content="https://gimyedalm-collab.github.io/todo-list/d-momentum/og.jpg"
       property="og:image"
-      content="https://gimyedalm-collab.github.io/todo-list/d-momentum/og.jpg"
     />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="D MOMENTUM — Talent is momentum." />
+    <meta content="1200" property="og:image:width" />
+    <meta content="630" property="og:image:height" />
+    <meta content="D MOMENTUM — Talent is momentum." property="og:image:alt" />
     <meta
-      property="og:url"
       content="https://gimyedalm-collab.github.io/todo-list/d-momentum/"
+      property="og:url"
     />
-    <meta property="og:locale" content="ko_KR" />
-    <meta property="og:locale:alternate" content="en_US" />
-
+    <meta content="ko_KR" property="og:locale" />
+    <meta content="en_US" property="og:locale:alternate" />
     <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta content="summary_large_image" name="twitter:card" />
     <meta
-      name="twitter:title"
       content="D MOMENTUM — Global Talent Management"
+      name="twitter:title"
     />
     <meta
-      name="twitter:description"
       content="Talent is momentum. From Seoul to the world."
+      name="twitter:description"
     />
     <meta
-      name="twitter:image"
       content="https://gimyedalm-collab.github.io/todo-list/d-momentum/og.jpg"
+      name="twitter:image"
     />
-
     <!-- Icons -->
-    <link rel="icon" type="image/svg+xml" href="logo.svg" />
-    <link rel="apple-touch-icon" href="logo.svg" />
-    <link rel="mask-icon" href="logo.svg" color="#d12d2d" />
-
+    <link href="logo.svg" rel="icon" type="image/svg+xml" />
+    <link href="logo.svg" rel="apple-touch-icon" />
+    <link color="#d12d2d" href="logo.svg" rel="mask-icon" />
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
       {
@@ -115,8 +112,8 @@
         ]
       }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
       rel="stylesheet"
@@ -262,11 +259,27 @@
         max-width: 100%;
       }
 
-      [data-lang='kr'] .en {
+      [data-lang='kr'] .en,
+      [data-lang='kr'] .zh {
         display: none !important;
       }
-      [data-lang='en'] .kr {
+      [data-lang='en'] .kr,
+      [data-lang='en'] .zh {
         display: none !important;
+      }
+      [data-lang='zh'] .kr,
+      [data-lang='zh'] .en {
+        display: none !important;
+      }
+      .zh {
+        font-family:
+          'Pretendard Variable',
+          'Pretendard',
+          -apple-system,
+          'Noto Sans SC',
+          'PingFang SC',
+          'Microsoft YaHei',
+          sans-serif;
       }
 
       /* ─── PAGE SYSTEM (SPA-style: each nav click swaps visible content) ─── */
@@ -2130,89 +2143,90 @@
     <!-- HEADER -->
     <header class="dm-header">
       <a
-        href="#home"
-        data-page-link="home"
-        class="dm-logo"
         aria-label="D MOMENTUM"
+        class="dm-logo"
+        data-page-link="home"
+        href="#home"
       >
-        <img src="logo-wordmark.svg" alt="D MOMENTUM" />
+        <img alt="D MOMENTUM" src="logo-wordmark.svg" />
       </a>
       <nav class="dm-nav">
-        <a href="#home" data-page-link="home" class="is-active">MAIN</a>
-        <a href="#about" data-page-link="about">ABOUT</a>
-        <a href="#artist" data-page-link="artist">ARTIST</a>
-        <a href="#news" data-page-link="news">NEWS</a>
-        <a href="#contact" data-page-link="contact">CONTACT</a>
+        <a class="is-active" data-page-link="home" href="#home">MAIN</a>
+        <a data-page-link="about" href="#about">ABOUT</a>
+        <a data-page-link="artist" href="#artist">ARTIST</a>
+        <a data-page-link="news" href="#news">NEWS</a>
+        <a data-page-link="contact" href="#contact">CONTACT</a>
       </nav>
       <div class="dm-tools">
         <div class="dm-lang">
-          <button data-set-lang="kr" class="active">KR</button>
+          <button class="active" data-set-lang="kr">KR</button>
           <button data-set-lang="en">EN</button>
+          <button data-set-lang="zh">中</button>
         </div>
         <div class="dm-socials">
           <a
-            href="https://www.instagram.com/taaarannn"
-            target="_blank"
-            rel="noopener noreferrer"
             aria-label="Instagram"
+            href="https://www.instagram.com/taaarannn"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
               fill="none"
+              height="14"
               stroke="currentColor"
               stroke-width="1.6"
+              viewbox="0 0 24 24"
+              width="14"
             >
-              <rect x="3" y="3" width="18" height="18" rx="5" />
-              <circle cx="12" cy="12" r="4" />
+              <rect height="18" rx="5" width="18" x="3" y="3"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
               <circle
                 cx="17.5"
                 cy="6.5"
-                r="1"
                 fill="currentColor"
+                r="1"
                 stroke="none"
-              />
+              ></circle>
             </svg>
           </a>
           <a
-            href="https://www.tiktok.com/@tarankaaa"
-            target="_blank"
-            rel="noopener noreferrer"
             aria-label="TikTok"
+            href="https://www.tiktok.com/@tarankaaa"
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <svg fill="currentColor" height="14" viewbox="0 0 24 24" width="14">
               <path
                 d="M19.6 6.3a5 5 0 0 1-3.4-1.8 5 5 0 0 1-1.2-3H11v13.2a2.7 2.7 0 1 1-2-2.6V8.5a5.7 5.7 0 1 0 4.8 5.6V9.2a8 8 0 0 0 5.8 2.3V8.2a5 5 0 0 1 0-1.9z"
-              />
+              ></path>
             </svg>
           </a>
           <a
-            href="https://www.youtube.com/@DashaTaranbaby"
-            target="_blank"
-            rel="noopener noreferrer"
             aria-label="YouTube"
+            href="https://www.youtube.com/@DashaTaranbaby"
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <svg fill="currentColor" height="14" viewbox="0 0 24 24" width="14">
               <path
                 d="M21.6 7.2a2.5 2.5 0 0 0-1.7-1.8C18.3 5 12 5 12 5s-6.3 0-7.9.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.7 1.8c1.6.4 7.9.4 7.9.4s6.3 0 7.9-.4a2.5 2.5 0 0 0 1.7-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"
-              />
+              ></path>
             </svg>
           </a>
         </div>
-        <a href="#get-cast" class="dm-cta magnetic">
-          <span class="kr">캐스팅</span><span class="en">Cast Talent</span>
-          <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
+        <a class="dm-cta magnetic" href="#get-cast">
+          <span class="kr">캐스팅</span><span class="en">Cast Talent</span
+          ><span class="zh">邀约洽询</span>
+          <svg fill="none" height="10" viewbox="0 0 14 14" width="10">
             <path
               d="M1 7h12M8 2l5 5-5 5"
               stroke="currentColor"
               stroke-width="1.6"
-            />
+            ></path>
           </svg>
         </a>
       </div>
     </header>
-
     <!-- HERO -->
     <section class="hero active" data-page="home">
       <div
@@ -2221,16 +2235,20 @@
         data-cursor-style="accent"
       >
         <img
-          src="images/hero-1.jpg"
           alt="Featured campaign"
           onerror="this.parentElement.classList.add('placeholder')"
+          src="images/hero-1.jpg"
         />
         <div class="hero-caption">
           <div>
             <em>D Momentum</em> · <span class="kr">2026 시즌 캐스팅 진행</span
-            ><span class="en">2026 Season · Now Casting</span>
+            ><span class="en">2026 Season · Now Casting</span
+            ><span class="zh">2026 季节 · 邀约进行中</span>
           </div>
-          <div><span class="kr">서울</span><span class="en">Seoul</span></div>
+          <div>
+            <span class="kr">서울</span><span class="en">Seoul</span
+            ><span class="zh">首尔</span>
+          </div>
         </div>
       </div>
       <div class="hero-bar">
@@ -2242,11 +2260,13 @@
           <span class="en"
             ><span class="word">One artist.</span>
             <span class="word"><em>Infinite moments</em>.</span></span
+          ><span class="zh"
+            ><span class="word">一位艺人。</span
+            ><span class="word"><em>无限的瞬间</em>。</span></span
           >
         </h1>
       </div>
     </section>
-
     <!-- TICKER -->
     <div class="ticker active" data-page="home">
       <div class="ticker-track">
@@ -2266,7 +2286,6 @@
         <span>22M Total Reach</span>
       </div>
     </div>
-
     <!-- ============ HOME WELCOME STATEMENT (home page only) ============ -->
     <section class="home-welcome active" data-page="home">
       <div class="home-welcome-inner">
@@ -2279,6 +2298,8 @@
             <span class="en"
               >Advertising, content, licensing —<br />every
               <em>possibility</em> one artist can carry.</span
+            ><span class="zh"
+              >广告、内容、授权 —<br />一位艺人所拥有的所有<em>可能性</em>。</span
             >
           </h2>
         </div>
@@ -2293,59 +2314,66 @@
               >D Momentum is a boutique global talent management agency founded
               in Seoul, 2026. We accelerate select artists' influence in the
               most precise direction.</span
+            ><span class="zh"
+              >D Momentum 是 2026
+              年于首尔成立的精品全球艺人经纪公司。我们以最精准的方向加速精选艺人的影响力。</span
             >
           </p>
           <div class="home-welcome-links">
             <a href="#artist">
               <span class="kr">아티스트 보기</span
-              ><span class="en">View artist</span>
-              <svg width="14" height="10" viewBox="0 0 14 10">
+              ><span class="en">View artist</span
+              ><span class="zh">查看艺人</span>
+              <svg height="10" viewbox="0 0 14 10" width="14">
                 <path
                   d="M0 5h12M8 1l4 4-4 4"
+                  fill="none"
                   stroke="currentColor"
                   stroke-width="1.4"
-                  fill="none"
-                />
+                ></path>
               </svg>
             </a>
             <a href="#campaigns">
               <span class="kr">최근 캠페인</span
-              ><span class="en">Recent work</span>
-              <svg width="14" height="10" viewBox="0 0 14 10">
+              ><span class="en">Recent work</span
+              ><span class="zh">近期作品</span>
+              <svg height="10" viewbox="0 0 14 10" width="14">
                 <path
                   d="M0 5h12M8 1l4 4-4 4"
+                  fill="none"
                   stroke="currentColor"
                   stroke-width="1.4"
-                  fill="none"
-                />
+                ></path>
               </svg>
             </a>
             <a href="#contact">
               <span class="kr">문의하기</span
-              ><span class="en">Get in touch</span>
-              <svg width="14" height="10" viewBox="0 0 14 10">
+              ><span class="en">Get in touch</span
+              ><span class="zh">联系我们</span>
+              <svg height="10" viewbox="0 0 14 10" width="14">
                 <path
                   d="M0 5h12M8 1l4 4-4 4"
+                  fill="none"
                   stroke="currentColor"
                   stroke-width="1.4"
-                  fill="none"
-                />
+                ></path>
               </svg>
             </a>
           </div>
         </div>
       </div>
     </section>
-
     <!-- ============ N° 01 ROSTER ============ -->
-    <section id="roster" class="section" data-page="artist">
+    <section class="section" data-page="artist" id="roster">
       <div class="section-head">
         <h2 class="section-title">
           <span class="kr"
-            >단 한 명의 <em>페이스</em>,&#10;모든 시장의 <em>모멘트</em>.</span
+            >단 한 명의 <em>페이스</em>, 모든 시장의 <em>모멘트</em>.</span
           >
           <span class="en"
-            >One <em>face</em>,&#10;every market's <em>moment</em>.</span
+            >One <em>face</em>, every market's <em>moment</em>.</span
+          ><span class="zh"
+            >唯一一位<em>面孔</em>,每个市场的<em>瞬间</em>。</span
           >
         </h2>
       </div>
@@ -2353,16 +2381,17 @@
         <div class="roster-card" data-cursor="Profile →">
           <div class="roster-image">
             <img
-              src="images/artist-main.jpg"
               alt="Dasha Taran"
               onerror="this.parentElement.classList.add('placeholder')"
+              src="images/artist-main.jpg"
             />
           </div>
           <div class="roster-info">
             <div class="roster-num">D MOMENTUM ARTIST · 001</div>
             <h3 class="roster-name">
               <span class="kr">다샤 <em>타란</em></span>
-              <span class="en">Dasha <em>Taran</em></span>
+              <span class="en">Dasha <em>Taran</em></span
+              ><span class="zh">达莎·<em>塔兰</em></span>
             </h3>
             <div class="roster-tags">
               <span>Model</span><span>Host</span><span>Brand Face</span
@@ -2376,39 +2405,42 @@
               <span class="en"
                 >Russian-born, Seoul-based. An influencer bridging K-beauty,
                 K-fashion, and the global stage.</span
+              ><span class="zh"
+                >出生于俄罗斯,以首尔为基地。连接 K-Beauty、K-Fashion
+                与全球市场的影响力人物。</span
               >
             </p>
-            <a href="#artist-dasha" class="roster-cta">
+            <a class="roster-cta" href="#artist-dasha">
               <span class="kr">아티스트 상세 보기</span
-              ><span class="en">View full profile</span>
-              <svg width="14" height="10" viewBox="0 0 14 10">
+              ><span class="en">View full profile</span
+              ><span class="zh">查看完整介绍</span>
+              <svg height="10" viewbox="0 0 14 10" width="14">
                 <path
                   d="M0 5h12M8 1l4 4-4 4"
+                  fill="none"
                   stroke="currentColor"
                   stroke-width="1.4"
-                  fill="none"
-                />
+                ></path>
               </svg>
             </a>
           </div>
         </div>
       </div>
     </section>
-
     <!-- ARTIST DETAIL (Dasha) -->
     <section
-      id="artist-dasha"
       class="artist-section section"
-      style="padding-top: 0"
       data-page="artist"
+      id="artist-dasha"
+      style="padding-top: 0"
     >
       <div class="artist-id-strip">
         <div><b>DASHA TARAN</b> · D MOMENTUM ARTIST 001</div>
         <div class="live">
-          <span class="kr">현재 활동 중</span><span class="en">Active Now</span>
+          <span class="kr">현재 활동 중</span><span class="en">Active Now</span
+          ><span class="zh">活动中</span>
         </div>
       </div>
-
       <div class="tabs" role="tablist">
         <button class="tab-btn active" data-tab="profile">
           <span class="idx">01</span>Profile
@@ -2426,7 +2458,6 @@
           <span class="idx">05</span>Schedule
         </button>
       </div>
-
       <div class="tab-pane active" data-tab="profile">
         <div class="profile-grid">
           <div>
@@ -2437,6 +2468,8 @@
               <span class="en"
                 >"The world a single artist can create is wider than we
                 imagine."</span
+              ><span class="zh"
+                >「一位艺人所创造的世界,远比想象的更宽广。」</span
               >
             </p>
             <dl class="profile-info">
@@ -2447,17 +2480,20 @@
               <dt>Languages</dt>
               <dd>Korean · English · Russian</dd>
               <dt>
-                <span class="kr">분야</span><span class="en">Specialty</span>
+                <span class="kr">분야</span><span class="en">Specialty</span
+                ><span class="zh">领域</span>
               </dt>
               <dd>
                 <span class="kr">광고 · 방송 · 디지털</span
-                ><span class="en">Advertising · Broadcast · Digital</span>
+                ><span class="en">Advertising · Broadcast · Digital</span
+                ><span class="zh">广告 · 综艺 · 数字</span>
               </dd>
               <dt>Agency</dt>
               <dd>D MOMENTUM Co., Ltd.</dd>
               <dt>
                 <span class="kr">대표 수상</span
-                ><span class="en">Recognition</span>
+                ><span class="en">Recognition</span
+                ><span class="zh">主要荣誉</span>
               </dt>
               <dd>TC Candler <em>"100 Most Beautiful Faces"</em> 선정</dd>
             </dl>
@@ -2483,68 +2519,72 @@
                 content, and licensing — TAM BEAUTY global model, Nexon's Sudden
                 Attack licensed character, and main host for KBS Joy's Review IT
                 2.</span
+              ><span class="zh"
+                >Instagram 600 万、TikTok 1400 万、YouTube 200 万 — 总触达 2200
+                万的全球影响力人物。担任 TAM BEAUTY 全球模特、Nexon 突袭(Sudden
+                Attack)授权角色、KBS Joy《Review IT
+                2》主持人,活跃于广告、内容、授权等所有领域。</span
               >
             </p>
             <div class="sns-row">
               <a
                 class="sns-card"
                 href="https://www.instagram.com/taaarannn"
-                target="_blank"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 <div class="platform">Instagram</div>
                 <div class="followers">6<em>m</em></div>
                 <div class="handle">@taaarannn</div>
-                <svg class="arrow" width="18" height="18" viewBox="0 0 22 22">
+                <svg class="arrow" height="18" viewbox="0 0 22 22" width="18">
                   <path
                     d="M5 17L17 5M17 5H7M17 5V15"
+                    fill="none"
                     stroke="currentColor"
                     stroke-width="1.4"
-                    fill="none"
-                  />
+                  ></path>
                 </svg>
               </a>
               <a
                 class="sns-card"
                 href="https://www.tiktok.com/@tarankaaa"
-                target="_blank"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 <div class="platform">TikTok</div>
                 <div class="followers">14<em>m</em></div>
                 <div class="handle">@tarankaaa</div>
-                <svg class="arrow" width="18" height="18" viewBox="0 0 22 22">
+                <svg class="arrow" height="18" viewbox="0 0 22 22" width="18">
                   <path
                     d="M5 17L17 5M17 5H7M17 5V15"
+                    fill="none"
                     stroke="currentColor"
                     stroke-width="1.4"
-                    fill="none"
-                  />
+                  ></path>
                 </svg>
               </a>
               <a
                 class="sns-card"
                 href="https://www.youtube.com/@DashaTaranbaby"
-                target="_blank"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 <div class="platform">YouTube</div>
                 <div class="followers">2<em>m</em></div>
                 <div class="handle">@DashaTaranbaby</div>
-                <svg class="arrow" width="18" height="18" viewBox="0 0 22 22">
+                <svg class="arrow" height="18" viewbox="0 0 22 22" width="18">
                   <path
                     d="M5 17L17 5M17 5H7M17 5V15"
+                    fill="none"
                     stroke="currentColor"
                     stroke-width="1.4"
-                    fill="none"
-                  />
+                  ></path>
                 </svg>
               </a>
             </div>
           </div>
         </div>
       </div>
-
       <div class="tab-pane" data-tab="filmography">
         <div class="timeline">
           <div class="tl-item">
@@ -2552,13 +2592,14 @@
             <div>
               <div class="tl-title">
                 <span class="kr">KBS Joy '리뷰it 2' — 메인 MC</span
-                ><span class="en">KBS Joy 'Review IT 2' — Main Host</span>
+                ><span class="en">KBS Joy 'Review IT 2' — Main Host</span
+                ><span class="zh">KBS Joy《Review IT 2》— 主持人</span>
               </div>
               <div class="tl-desc">
                 <span class="kr">1~3화 메인 MC · 매주 화요일 밤 10시 방송</span
                 ><span class="en"
                   >Main host for ep. 1–3 · Every Tue 10 PM KST</span
-                >
+                ><span class="zh">第 1~3 集主持 · 每周二晚 10 点播出</span>
               </div>
             </div>
             <div class="tl-tag">MC · Host</div>
@@ -2568,11 +2609,13 @@
             <div>
               <div class="tl-title">
                 <span class="kr">SBS '신발벗고 돌싱포맨' — 배드민턴 게스트</span
-                ><span class="en">SBS 'Dolsing 4men' — Badminton Episode</span>
+                ><span class="en">SBS 'Dolsing 4men' — Badminton Episode</span
+                ><span class="zh">SBS《脱鞋的离婚四男》— 羽毛球嘉宾</span>
               </div>
               <div class="tl-desc">
                 <span class="kr">2025. 05. 04 방송 편 게스트</span
-                ><span class="en">Aired May 4, 2025</span>
+                ><span class="en">Aired May 4, 2025</span
+                ><span class="zh">2025 年 5 月 4 日嘉宾</span>
               </div>
             </div>
             <div class="tl-tag">Guest</div>
@@ -2582,11 +2625,13 @@
             <div>
               <div class="tl-title">
                 <span class="kr">'노빠꾸 탁재훈' 173화 게스트</span
-                ><span class="en">'No-Bbaku Tak Jae-hoon' Ep. 173 Guest</span>
+                ><span class="en">'No-Bbaku Tak Jae-hoon' Ep. 173 Guest</span
+                ><span class="zh">《No-Bbaku Tak Jae-hoon》第 173 集嘉宾</span>
               </div>
               <div class="tl-desc">
                 <span class="kr">2024.10.30 편</span
-                ><span class="en">Aired Oct 30, 2024</span>
+                ><span class="en">Aired Oct 30, 2024</span
+                ><span class="zh">2024 年 10 月 30 日</span>
               </div>
             </div>
             <div class="tl-tag">Guest</div>
@@ -2596,11 +2641,13 @@
             <div>
               <div class="tl-title">
                 <span class="kr">JTBC '아는외고' 게스트</span
-                ><span class="en">JTBC 'Aneun-oego' — Guest</span>
+                ><span class="en">JTBC 'Aneun-oego' — Guest</span
+                ><span class="zh">JTBC《Aneun-oego》嘉宾</span>
               </div>
               <div class="tl-desc">
                 <span class="kr">2024.02.05 편</span
-                ><span class="en">Guest, Feb 5 2024</span>
+                ><span class="en">Guest, Feb 5 2024</span
+                ><span class="zh">2024 年 2 月 5 日</span>
               </div>
             </div>
             <div class="tl-tag">Guest</div>
@@ -2610,7 +2657,8 @@
             <div>
               <div class="tl-title">
                 <span class="kr">KBS '무엇이든 물어보살'</span
-                ><span class="en">KBS 'Ask Us Anything Bosal'</span>
+                ><span class="en">KBS 'Ask Us Anything Bosal'</span
+                ><span class="zh">KBS《Ask Us Anything Bosal》</span>
               </div>
               <div class="tl-desc">
                 <span class="kr"
@@ -2618,6 +2666,8 @@
                 ><span class="en"
                   >'Lee Joo-seung's Wishlist' / 'The Romantic Foreign
                   Worker'</span
+                ><span class="zh"
+                  >出演《Lee Joo-seung's Wishlist》/《浪漫的外籍劳工》</span
                 >
               </div>
             </div>
@@ -2628,18 +2678,19 @@
             <div>
               <div class="tl-title">
                 <span class="kr">MBN '괜찮아U'</span
-                ><span class="en">MBN 'Gwenchana-U'</span>
+                ><span class="en">MBN 'Gwenchana-U'</span
+                ><span class="zh">MBN《Gwenchana-U》</span>
               </div>
               <div class="tl-desc">
                 <span class="kr">고정 출연</span
-                ><span class="en">Recurring cast</span>
+                ><span class="en">Recurring cast</span
+                ><span class="zh">常驻嘉宾</span>
               </div>
             </div>
             <div class="tl-tag">Cast</div>
           </div>
         </div>
       </div>
-
       <div class="tab-pane" data-tab="campaigns">
         <div class="timeline">
           <div class="tl-item">
@@ -2650,7 +2701,7 @@
                   >TAM BEAUTY — 브랜드 런칭 &amp; 글로벌 모델</span
                 ><span class="en"
                   >TAM BEAUTY — Brand Launch &amp; Global Model</span
-                >
+                ><span class="zh">TAM BEAUTY — 品牌发布 &amp; 全球模特</span>
               </div>
               <div class="tl-desc">
                 <span class="kr"
@@ -2659,6 +2710,8 @@
                 ><span class="en"
                   >From launch campaign to SS26 main visual · Holiday Edition
                   released worldwide</span
+                ><span class="zh"
+                  >从发布活动到 26SS 主视觉 · Holiday Edition 全球同步发售</span
                 >
               </div>
             </div>
@@ -2672,7 +2725,7 @@
                   >SUDDEN ATTACK × DASHA — 글로벌 캐릭터 출시</span
                 ><span class="en"
                   >SUDDEN ATTACK × DASHA — Global Character Release</span
-                >
+                ><span class="zh">SUDDEN ATTACK × DASHA — 全球角色发布</span>
               </div>
               <div class="tl-desc">
                 <span class="kr"
@@ -2681,6 +2734,8 @@
                 ><span class="en"
                   >Nexon Games · Character launched on global servers with
                   exclusive skin &amp; voice pack</span
+                ><span class="zh"
+                  >Nexon Games · 达莎角色全球服同步发布 · 专属皮肤·语音包</span
                 >
               </div>
             </div>
@@ -2691,13 +2746,13 @@
             <div>
               <div class="tl-title">
                 <span class="kr">아스테라시스 '리프테라2' 모델</span
-                ><span class="en">Asterasys — 'Lifterra II' Model</span>
+                ><span class="en">Asterasys — 'Lifterra II' Model</span
+                ><span class="zh">Asterasys《Lifterra II》模特</span>
               </div>
               <div class="tl-desc">
                 <span class="kr">메디컬 디바이스 글로벌 마케팅 캠페인</span
-                ><span class="en"
-                  >Medical device global marketing campaign</span
-                >
+                ><span class="en">Medical device global marketing campaign</span
+                ><span class="zh">医疗器械全球营销活动</span>
               </div>
             </div>
             <div class="tl-tag">Medical</div>
@@ -2709,18 +2764,18 @@
                 <span class="kr">미니쉬 치과 — 전속 모델 (3년 연속)</span
                 ><span class="en"
                   >Minish Dental — Exclusive Model (3rd Year)</span
-                >
+                ><span class="zh">Minish Dental — 专属模特(3 年连续)</span>
               </div>
               <div class="tl-desc">
                 <span class="kr">3년 연속 브랜드 페이스</span
-                ><span class="en">Brand face for three consecutive years</span>
+                ><span class="en">Brand face for three consecutive years</span
+                ><span class="zh">3 年连续担任品牌代言</span>
               </div>
             </div>
             <div class="tl-tag">Exclusive</div>
           </div>
         </div>
       </div>
-
       <div class="tab-pane" data-tab="press">
         <div class="awards" style="margin-bottom: 48px">
           <div class="award">
@@ -2732,7 +2787,7 @@
                 >TC Candler '세계에서 가장 아름다운 얼굴 100인' 선정</span
               ><span class="en"
                 >Featured on TC Candler's "100 Most Beautiful Faces"</span
-              >
+              ><span class="zh">入选 TC Candler《世界最美面孔 100 人》</span>
             </div>
           </div>
           <div class="award">
@@ -2741,9 +2796,8 @@
             <div class="award-title">VOGUE KOREA — November</div>
             <div class="award-desc">
               <span class="kr">9페이지 단독 인터뷰 &amp; 화보</span
-              ><span class="en"
-                >9-page exclusive editorial &amp; interview</span
-              >
+              ><span class="en">9-page exclusive editorial &amp; interview</span
+              ><span class="zh">9 页独家专访 &amp; 写真</span>
             </div>
           </div>
           <div class="award">
@@ -2752,7 +2806,8 @@
             <div class="award-title">Total Global Reach</div>
             <div class="award-desc">
               <span class="kr">Instagram 6M · TikTok 14M · YouTube 2M</span
-              ><span class="en">Instagram 6M · TikTok 14M · YouTube 2M</span>
+              ><span class="en">Instagram 6M · TikTok 14M · YouTube 2M</span
+              ><span class="zh">Instagram 6M · TikTok 14M · YouTube 2M</span>
             </div>
           </div>
         </div>
@@ -2762,13 +2817,14 @@
             <div>
               <div class="tl-title">
                 <span class="kr">VOGUE KOREA 11월호 단독 화보</span
-                ><span class="en">VOGUE KOREA — November Solo Editorial</span>
+                ><span class="en">VOGUE KOREA — November Solo Editorial</span
+                ><span class="zh">VOGUE KOREA 11 月号独家写真</span>
               </div>
               <div class="tl-desc">
                 <span class="kr">9페이지 단독 인터뷰 &amp; 화보</span
                 ><span class="en"
                   >9-page exclusive interview &amp; editorial</span
-                >
+                ><span class="zh">9 页独家专访 &amp; 写真</span>
               </div>
             </div>
             <div class="tl-tag">Editorial</div>
@@ -2778,36 +2834,34 @@
             <div>
               <div class="tl-title">
                 <span class="kr">VOGUE × D MOMENTUM — 2025 가을 인터뷰</span
-                ><span class="en">VOGUE × D MOMENTUM — Fall 2025 Feature</span>
+                ><span class="en">VOGUE × D MOMENTUM — Fall 2025 Feature</span
+                ><span class="zh">VOGUE × D MOMENTUM — 2025 秋季专访</span>
               </div>
               <div class="tl-desc">
                 <span class="kr">D MOMENTUM 합류 후 첫 단독 인터뷰</span
                 ><span class="en"
                   >First solo interview since joining D MOMENTUM</span
-                >
+                ><span class="zh">加盟 D MOMENTUM 后首次独家专访</span>
               </div>
             </div>
             <div class="tl-tag">Interview</div>
           </div>
         </div>
       </div>
-
       <div class="tab-pane" data-tab="schedule">
         <div class="events">
           <article class="event-card">
             <div class="event-img">
               <span class="tag">Live</span>
               <img
-                src="images/event-1.jpg"
                 alt="Fan Meeting"
                 onerror="this.parentElement.classList.add('placeholder')"
+                src="images/event-1.jpg"
               />
             </div>
             <div class="event-body">
               <div class="event-date">DEC 10, 2025</div>
-              <h3 class="event-title">
-                Dasha Taran&#10;1st Fan Meeting&#10;in Seoul
-              </h3>
+              <h3 class="event-title">Dasha Taran 1st Fan Meeting in Seoul</h3>
               <p class="event-desc">
                 <span class="kr"
                   >D Momentum 데뷔 후 첫 글로벌 단독 팬미팅. 티켓 오픈 12월
@@ -2815,6 +2869,9 @@
                 ><span class="en"
                   >Her first global solo fan meeting since debut. Tickets open
                   Dec 1.</span
+                ><span class="zh"
+                  >D Momentum 出道后首场全球独家粉丝见面会。门票 12 月 1
+                  日开售。</span
                 >
               </p>
             </div>
@@ -2823,18 +2880,20 @@
             <div class="event-img">
               <span class="tag">Holiday</span>
               <img
-                src="images/event-2.jpg"
                 alt="TAM BEAUTY"
                 onerror="this.parentElement.classList.add('placeholder')"
+                src="images/event-2.jpg"
               />
             </div>
             <div class="event-body">
               <div class="event-date">2025 HOLIDAY</div>
-              <h3 class="event-title">TAM BEAUTY&#10;Holiday Edition</h3>
+              <h3 class="event-title">TAM BEAUTY Holiday Edition</h3>
               <p class="event-desc">
                 <span class="kr">탐뷰티 홀리데이 캡슐 — 글로벌 동시 출시</span
                 ><span class="en"
                   >Tam Beauty holiday capsule — released worldwide.</span
+                ><span class="zh"
+                  >TAM BEAUTY Holiday Edition — 全球同步发售。</span
                 >
               </p>
             </div>
@@ -2843,36 +2902,37 @@
             <div class="event-img">
               <span class="tag">Global</span>
               <img
-                src="images/event-3.jpg"
                 alt="Sudden Attack"
                 onerror="this.parentElement.classList.add('placeholder')"
+                src="images/event-3.jpg"
               />
             </div>
             <div class="event-body">
               <div class="event-date">2025.09.12</div>
-              <h3 class="event-title">Sudden Attack&#10;Dasha Character</h3>
+              <h3 class="event-title">Sudden Attack Dasha Character</h3>
               <p class="event-desc">
                 <span class="kr"
                   >Nexon Games — 첫 글로벌 캐릭터 라이선스 케이스</span
                 ><span class="en"
                   >Nexon Games — first global character license case.</span
-                >
+                ><span class="zh">Nexon Games — 首个全球角色授权案例。</span>
               </p>
             </div>
           </article>
         </div>
       </div>
     </section>
-
     <!-- ============ NEWS / JOURNAL — date-ordered timeline of agency happenings ============ -->
-    <section id="news-journal" class="section" data-page="news">
+    <section class="section" data-page="news" id="news-journal">
       <div class="news-head">
         <div class="news-eyebrow">
-          <span class="kr">소식</span><span class="en">Journal</span>
+          <span class="kr">소식</span><span class="en">Journal</span
+          ><span class="zh">动态</span>
         </div>
         <h2 class="news-title">
           <span class="kr">D MOMENTUM의 시간들.</span>
-          <span class="en">A timeline of D MOMENTUM.</span>
+          <span class="en">A timeline of D MOMENTUM.</span
+          ><span class="zh">D MOMENTUM 的时间线。</span>
         </h2>
         <p class="news-lead">
           <span class="kr"
@@ -2881,35 +2941,37 @@
           >
           <span class="en"
             >From the day we registered to the work that's in motion now.</span
+          ><span class="zh"
+            >从公司成立到正在进行的项目,记录每一个发生的瞬间。</span
           >
         </p>
       </div>
-
       <div class="news-list">
         <article class="news-entry">
           <div class="news-date">2026.06.18</div>
           <div class="news-body">
             <h3 class="news-headline">
               <span class="kr">법인 등록 완료</span
-              ><span class="en">Registered as a corporation</span>
+              ><span class="en">Registered as a corporation</span
+              ><span class="zh">公司注册完成</span>
             </h3>
             <p>
               <span class="kr"
                 >성동세무서로부터 사업자등록증 수령. 488-87-03848.</span
               ><span class="en"
                 >Issued by Seongdong Tax Office. Biz. Reg. 488-87-03848.</span
-              >
+              ><span class="zh">城东税务局核发营业执照。488-87-03848。</span>
             </p>
           </div>
           <div class="news-tag">Company</div>
         </article>
-
         <article class="news-entry">
           <div class="news-date">2026.06.10</div>
           <div class="news-body">
             <h3 class="news-headline">
               <span class="kr">D MOMENTUM 영업 시작</span
-              ><span class="en">D MOMENTUM begins</span>
+              ><span class="en">D MOMENTUM begins</span
+              ><span class="zh">D MOMENTUM 正式开业</span>
             </h3>
             <p>
               <span class="kr"
@@ -2918,18 +2980,20 @@
               ><span class="en"
                 >Started operations at Tongil Tower, Seongsu, Seoul. Exclusive
                 representation of Dasha Taran.</span
+              ><span class="zh"
+                >于首尔圣水洞统一塔 8 层正式开业。达莎·塔兰专属经纪。</span
               >
             </p>
           </div>
           <div class="news-tag">Company</div>
         </article>
-
         <article class="news-entry has-image">
           <div class="news-date">2025.10</div>
           <div class="news-body">
             <h3 class="news-headline">
               <span class="kr">TAM BEAUTY 글로벌 모델 계약</span
-              ><span class="en">TAM BEAUTY · Global Model</span>
+              ><span class="en">TAM BEAUTY · Global Model</span
+              ><span class="zh">TAM BEAUTY 全球模特签约</span>
             </h3>
             <p>
               <span class="kr"
@@ -2938,25 +3002,28 @@
               ><span class="en"
                 >From launch campaign through 26SS main visual to Holiday
                 Edition — released worldwide.</span
+              ><span class="zh"
+                >从发布活动到 26SS 主视觉、Holiday Edition —
+                全球同步发售。</span
               >
             </p>
           </div>
           <a class="news-thumb" data-cursor="Case →" data-cursor-style="accent">
             <img
-              src="images/campaign-1.jpg"
               alt="TAM BEAUTY SS26"
               onerror="this.parentElement.classList.add('placeholder')"
+              src="images/campaign-1.jpg"
             />
           </a>
           <div class="news-tag">Campaign</div>
         </article>
-
         <article class="news-entry has-image">
           <div class="news-date">2025.09.12</div>
           <div class="news-body">
             <h3 class="news-headline">
               <span class="kr">서든어택 × DASHA 글로벌 출시</span
-              ><span class="en">SUDDEN ATTACK × Dasha · Global Release</span>
+              ><span class="en">SUDDEN ATTACK × Dasha · Global Release</span
+              ><span class="zh">突袭 × DASHA 全球发布</span>
             </h3>
             <p>
               <span class="kr"
@@ -2965,25 +3032,28 @@
               ><span class="en"
                 >Collaboration with Nexon Games. Character released globally
                 with exclusive skin and voice pack.</span
+              ><span class="zh"
+                >与 Nexon Games
+                合作。达莎角色全球服同步发布,包含专属皮肤·语音包。</span
               >
             </p>
           </div>
           <a class="news-thumb" data-cursor="Case →" data-cursor-style="accent">
             <img
-              src="images/campaign-2.png"
               alt="Sudden Attack × Dasha"
               onerror="this.parentElement.classList.add('placeholder')"
+              src="images/campaign-2.png"
             />
           </a>
           <div class="news-tag">Licensing</div>
         </article>
-
         <article class="news-entry">
           <div class="news-date">2025.05</div>
           <div class="news-body">
             <h3 class="news-headline">
               <span class="kr">아스테라시스 리프테라2 모델</span
-              ><span class="en">Asterasys Lifterra II · Model</span>
+              ><span class="en">Asterasys Lifterra II · Model</span
+              ><span class="zh">Asterasys Lifterra II 模特</span>
             </h3>
             <p>
               <span class="kr"
@@ -2991,18 +3061,20 @@
               ><span class="en"
                 >Medical device global marketing across KR · JP · SEA
                 markets.</span
+              ><span class="zh"
+                >医疗器械全球营销。KR · JP · SEA 市场启动。</span
               >
             </p>
           </div>
           <div class="news-tag">Campaign</div>
         </article>
-
         <article class="news-entry">
           <div class="news-date">2023 —</div>
           <div class="news-body">
             <h3 class="news-headline">
               <span class="kr">미니쉬 치과 전속 모델 (3년 연속)</span
-              ><span class="en">Minish Dental · Exclusive (3rd Year)</span>
+              ><span class="en">Minish Dental · Exclusive (3rd Year)</span
+              ><span class="zh">Minish Dental 专属模特(3 年连续)</span>
             </h3>
             <p>
               <span class="kr"
@@ -3010,6 +3082,8 @@
               ><span class="en"
                 >Brand face for three consecutive years since 2023. 100%
                 renewal.</span
+              ><span class="zh"
+                >自 2023 年起连续 3 年担任品牌代言。续约率 100%。</span
               >
             </p>
           </div>
@@ -3017,12 +3091,11 @@
         </article>
       </div>
     </section>
-
     <!-- ============ N° 03 IN NUMBERS → ABOUT page ============ -->
     <section
       class="numbers section"
-      style="padding-left: 0; padding-right: 0"
       data-page="about"
+      style="padding-left: 0; padding-right: 0"
     >
       <div style="padding: 0 var(--pad-x) 56px">
         <div
@@ -3030,15 +3103,17 @@
           style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
         >
           <h2 class="section-title">
-            <span class="kr">데이터로 <em>증명되는</em>&#10;도달력.</span>
-            <span class="en">Reach <em>proven</em>&#10;in numbers.</span>
+            <span class="kr">데이터로 <em>증명되는</em> 도달력.</span>
+            <span class="en">Reach <em>proven</em> in numbers.</span
+            ><span class="zh">数据<em>印证的</em> 触达力。</span>
           </h2>
         </div>
       </div>
       <div class="numbers-grid">
         <div class="num-cell">
           <div class="label">
-            <span class="kr">총 도달</span><span class="en">Total Reach</span>
+            <span class="kr">총 도달</span><span class="en">Total Reach</span
+            ><span class="zh">总触达</span>
           </div>
           <div class="big">22<em>m</em>+</div>
           <div class="note">IG · TikTok · YouTube</div>
@@ -3046,7 +3121,8 @@
         <div class="num-cell">
           <div class="label">
             <span class="kr">협업 브랜드</span
-            ><span class="en">Brand Partners</span>
+            ><span class="en">Brand Partners</span
+            ><span class="zh">合作品牌</span>
           </div>
           <div class="big">4+</div>
           <div class="note">TAM BEAUTY · NEXON · Asterasys · Minish</div>
@@ -3054,34 +3130,37 @@
         <div class="num-cell">
           <div class="label">
             <span class="kr">진행 캠페인</span
-            ><span class="en">Active Campaigns</span>
+            ><span class="en">Active Campaigns</span
+            ><span class="zh">进行中的项目</span>
           </div>
           <div class="big">12+</div>
           <div class="note">
             <span class="kr">광고 · 라이선스 · 콘텐츠</span
-            ><span class="en">Advertising · Licensing · Content</span>
+            ><span class="en">Advertising · Licensing · Content</span
+            ><span class="zh">广告 · 授权 · 内容</span>
           </div>
         </div>
         <div class="num-cell">
           <div class="label">
             <span class="kr">브랜드 재계약</span
-            ><span class="en">Brand Renewal</span>
+            ><span class="en">Brand Renewal</span
+            ><span class="zh">品牌续约</span>
           </div>
           <div class="big">100<em>%</em></div>
           <div class="note">
             <span class="kr">전속 모델 기준</span
-            ><span class="en">Exclusive contracts</span>
+            ><span class="en">Exclusive contracts</span
+            ><span class="zh">专属模特基准</span>
           </div>
         </div>
       </div>
     </section>
-
     <!-- ============ N° 04 SERVICES → ABOUT page ============ -->
     <section
-      id="services"
       class="section"
-      style="padding-left: 0; padding-right: 0"
       data-page="about"
+      id="services"
+      style="padding-left: 0; padding-right: 0"
     >
       <div style="padding: 0 var(--pad-x) 56px">
         <div
@@ -3089,10 +3168,10 @@
           style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
         >
           <h2 class="section-title">
-            <span class="kr">광고. 콘텐츠.&#10;라이선스. <em>글로벌</em>.</span>
+            <span class="kr">광고. 콘텐츠. 라이선스. <em>글로벌</em>.</span>
             <span class="en"
-              >Advertising. Content.&#10;Licensing. <em>Global</em>.</span
-            >
+              >Advertising. Content. Licensing. <em>Global</em>.</span
+            ><span class="zh">广告。内容。授权。<em>全球</em>。</span>
           </h2>
         </div>
       </div>
@@ -3107,6 +3186,9 @@
             ><span class="en"
               >Exclusive management and global market strategy — building one
               artist into a face the world watches.</span
+            ><span class="zh"
+              >从专属经纪到全球市场进入战略 —
+              将一位艺人打造为全球瞩目的面孔。</span
             >
           </div>
           <ul class="p-list">
@@ -3117,7 +3199,7 @@
         </div>
         <div class="pillar">
           <div class="p-num">02 — Brand</div>
-          <div class="p-title"><em>Partnership</em> & Licensing</div>
+          <div class="p-title"><em>Partnership</em> &amp; Licensing</div>
           <div class="p-body">
             <span class="kr"
               >광고 캠페인, 브랜드 콜라보, 캐릭터 라이선스 — 단발 협업이 아닌
@@ -3125,6 +3207,9 @@
             ><span class="en"
               >Advertising, brand collaboration, character licensing —
               partnerships built as long-term assets, not one-off deals.</span
+            ><span class="zh"
+              >广告活动、品牌合作、角色授权 —
+              设计的是长期资产型合作,而非一次性合作。</span
             >
           </div>
           <ul class="p-list">
@@ -3135,7 +3220,7 @@
         </div>
         <div class="pillar">
           <div class="p-num">03 — Content</div>
-          <div class="p-title"><em>Production</em> & Direction</div>
+          <div class="p-title"><em>Production</em> &amp; Direction</div>
           <div class="p-body">
             <span class="kr"
               >에디토리얼 화보, 영상 광고, SNS 콘텐츠 — 아티스트의 결과 시장의
@@ -3144,6 +3229,9 @@
               >Editorial, video commercials, social content — directing visuals
               where the artist's identity and the market's tone come alive
               together.</span
+            ><span class="zh"
+              >编辑写真、视频广告、社交内容 —
+              直接执导让艺人特质与市场基调同时呈现的视觉作品。</span
             >
           </div>
           <ul class="p-list">
@@ -3162,23 +3250,25 @@
             ><span class="en"
               >Korea, CIS, Asia, North America — market-optimized GTM strategies
               so one artist builds momentum across regions in parallel.</span
+            ><span class="zh"
+              >韩国·CIS·亚洲·北美 — 通过针对各市场优化的 GTM
+              战略,让一位艺人在多个市场同时创造势能。</span
             >
           </div>
           <ul class="p-list">
             <li>· Multi-Market Activation</li>
             <li>· Localization Strategy</li>
-            <li>· Tour & Event Operations</li>
+            <li>· Tour &amp; Event Operations</li>
           </ul>
         </div>
       </div>
     </section>
-
     <!-- ============ N° 05 PARTNERS → ABOUT page ============ -->
     <section
-      id="partners"
       class="section"
-      style="padding-left: 0; padding-right: 0; background: var(--bg-2)"
       data-page="about"
+      id="partners"
+      style="padding-left: 0; padding-right: 0; background: var(--bg-2)"
     >
       <div style="padding: 0 var(--pad-x) 56px">
         <div
@@ -3187,91 +3277,91 @@
         >
           <h2 class="section-title">
             <span class="kr">함께한 <em>브랜드</em>.</span>
-            <span class="en">Brands we've <em>worked with.</em></span>
+            <span class="en">Brands we've <em>worked with.</em></span
+            ><span class="zh">携手的<em>品牌</em>。</span>
           </h2>
         </div>
       </div>
       <div class="partners-grid">
         <a
-          href="https://tambeauty.kr/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="partner"
+          href="https://tambeauty.kr/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">TAM BEAUTY</div>
           <div class="cat">Beauty · Global</div>
         </a>
         <a
-          href="https://www.nexon.com/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="partner"
+          href="https://www.nexon.com/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">NEXON</div>
           <div class="cat">Gaming · Licensing</div>
         </a>
         <a
-          href="https://asterasys.com/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="partner"
+          href="https://asterasys.com/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">ASTERASYS</div>
           <div class="cat">Medical · Device</div>
         </a>
         <a
-          href="https://www.minish.co.kr/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="partner"
+          href="https://www.minish.co.kr/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">MINISH</div>
           <div class="cat">Dental · Exclusive</div>
         </a>
         <a
-          href="https://kbsjoy.kbs.co.kr/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="partner"
+          href="https://kbsjoy.kbs.co.kr/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">KBS Joy</div>
           <div class="cat">Broadcast</div>
         </a>
         <a
-          href="https://www.sbs.co.kr/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="partner"
+          href="https://www.sbs.co.kr/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">SBS</div>
           <div class="cat">Broadcast</div>
         </a>
         <a
-          href="https://jtbc.co.kr/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="partner"
+          href="https://jtbc.co.kr/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">JTBC</div>
           <div class="cat">Broadcast</div>
         </a>
         <a
-          href="https://mbn.co.kr/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="partner"
+          href="https://mbn.co.kr/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">MBN</div>
           <div class="cat">Broadcast</div>
         </a>
       </div>
     </section>
-
     <!-- ============ N° 06 AS SEEN IN → ABOUT page ============ -->
     <section
       class="section"
-      style="padding-left: 0; padding-right: 0"
       data-page="about"
+      style="padding-left: 0; padding-right: 0"
     >
       <div style="padding: 0 var(--pad-x) 56px">
         <div
@@ -3280,65 +3370,65 @@
         >
           <h2 class="section-title">
             <span class="kr">실린 <em>매체</em>.</span>
-            <span class="en">Featured <em>editorial</em>.</span>
+            <span class="en">Featured <em>editorial</em>.</span
+            ><span class="zh">刊登的<em>媒体</em>。</span>
           </h2>
         </div>
       </div>
       <div class="press-strip">
         <a
-          href="https://www.vogue.co.kr/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="press-item"
+          href="https://www.vogue.co.kr/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">VOGUE</div>
           <div class="issue">Korea</div>
         </a>
         <a
-          href="https://www.tccandler.com/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="press-item"
+          href="https://www.tccandler.com/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">TC Candler</div>
           <div class="issue">100 Faces</div>
         </a>
         <a
-          href="https://www.koreatimes.co.kr/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="press-item"
+          href="https://www.koreatimes.co.kr/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">Korea Times</div>
           <div class="issue">Korea</div>
         </a>
         <a
-          href="https://www.graziakorea.co.kr/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="press-item"
+          href="https://www.graziakorea.co.kr/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">Grazia</div>
           <div class="issue">Korea</div>
         </a>
         <a
-          href="https://www.gq.com.tw/"
-          target="_blank"
-          rel="noopener noreferrer"
           class="press-item"
+          href="https://www.gq.com.tw/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <div class="name">GQ</div>
           <div class="issue">Taiwan</div>
         </a>
       </div>
     </section>
-
     <!-- ============ N° 07 GET CAST (dual CTA) ============ -->
     <section
-      id="get-cast"
       class="section"
-      style="padding-left: 0; padding-right: 0"
       data-page="contact"
+      id="get-cast"
+      style="padding-left: 0; padding-right: 0"
     >
       <div style="padding: 0 var(--pad-x) 56px">
         <div
@@ -3346,10 +3436,9 @@
           style="margin-bottom: 0; border-bottom: 0; padding-bottom: 0"
         >
           <h2 class="section-title">
-            <span class="kr"
-              >다음 <em>모멘트</em>는&#10;여기서 시작됩니다.</span
-            >
-            <span class="en">The next <em>moment</em>&#10;starts here.</span>
+            <span class="kr">다음 <em>모멘트</em>는 여기서 시작됩니다.</span>
+            <span class="en">The next <em>moment</em> starts here.</span
+            ><span class="zh">下一个<em>瞬间</em> 从此开始。</span>
           </h2>
         </div>
       </div>
@@ -3367,52 +3456,50 @@
               부킹.</span
             >
             <span class="en"
-              >Campaign & casting inquiries. Booking for Dasha Taran and D
+              >Campaign &amp; casting inquiries. Booking for Dasha Taran and D
               Momentum exclusive roster.</span
+            ><span class="zh"
+              >项目·邀约咨询。达莎·塔兰及 D Momentum 旗下专属艺人预约。</span
             >
           </p>
-          <a href="mailto:contact@d-momentum.com" class="cta-link">
+          <a class="cta-link" href="mailto:contact@d-momentum.com">
             contact@d-momentum.com
-            <svg width="14" height="10" viewBox="0 0 14 10">
+            <svg height="10" viewbox="0 0 14 10" width="14">
               <path
                 d="M0 5h12M8 1l4 4-4 4"
+                fill="none"
                 stroke="currentColor"
                 stroke-width="1.4"
-                fill="none"
-              />
+              ></path>
             </svg>
           </a>
         </div>
       </div>
     </section>
-
     <!-- ============ N° 08 ABOUT ============ -->
     <section
-      id="about"
       class="section"
-      style="background: var(--bg-2)"
       data-page="about"
+      id="about"
+      style="background: var(--bg-2)"
     >
       <div class="section-head">
         <h2 class="section-title">
-          <span class="kr"
-            >캘린더가 아닌&#10;<em>모멘텀</em>을 관리합니다.</span
-          >
-          <span class="en"
-            >We manage <em>momentum</em>,&#10;not calendars.</span
-          >
+          <span class="kr">캘린더가 아닌 <em>모멘텀</em>을 관리합니다.</span>
+          <span class="en">We manage <em>momentum</em>, not calendars.</span
+          ><span class="zh">我们管理的是<em>势能</em>,而非日程。</span>
         </h2>
       </div>
       <div class="about-grid">
         <div class="about-text">
           <p class="manifesto">
             <span class="kr"
-              >"우리는 캘린더를 관리하지 않습니다.&#10;아티스트의 영향력을
+              >"우리는 캘린더를 관리하지 않습니다. 아티스트의 영향력을
               가속화합니다."</span
             >
             <span class="en"
-              >"We don't manage calendars.&#10;We accelerate influence."</span
-            >
+              >"We don't manage calendars. We accelerate influence."</span
+            ><span class="zh">「我们不管理日程,我们加速艺人的影响力。」</span>
           </p>
         </div>
         <div>
@@ -3436,6 +3523,9 @@
               broadcast, digital, licensing, and overseas business — providing
               select artists with an integrated strategy toward the global
               stage.</span
+            ><span class="zh"
+              >D Momentum 是 2026
+              年于首尔成立的全球艺人经纪公司。作为横跨广告·综艺·数字内容·授权·海外业务的精品经纪公司,为少数精选艺人提供面向全球舞台的整合战略。</span
             >
           </p>
           <div class="about-stats">
@@ -3455,12 +3545,12 @@
         </div>
       </div>
     </section>
-
     <!-- ============ FOUNDER'S NOTE (about page) ============ -->
     <section class="founder-note section" data-page="about">
       <div class="founder-eyebrow">
         <span class="kr">대표 인사말</span
-        ><span class="en">A note from the founder</span>
+        ><span class="en">A note from the founder</span
+        ><span class="zh">代表致辞</span>
       </div>
       <div class="founder-grid">
         <p class="founder-body">
@@ -3481,30 +3571,38 @@
             So D MOMENTUM exists for one artist. Advertising, content,
             licensing, and the possibilities we haven't built yet — accelerating
             in the most precise direction is what we're here for.<br /><br />
-            We look forward to working with you.
-          </span>
+            We look forward to working with you. </span
+          ><span class="zh"
+            >与达莎初次相见是很久之前。原本只是一次普通的会面,但越聊越发现一位艺人所拥有的可能性有多深
+            — 想要一起塑造那条路径的念头油然而生。<br /><br />
+            因此 D MOMENTUM
+            是为了专注于达莎一人而成立的。广告、内容、授权,以及尚未创造的可能性
+            — 以最精准的方向共同加速,是我们的使命。<br /><br />
+            今后请多多关照。</span
+          >
         </p>
         <div class="founder-sign">
           <div class="founder-sign-line">
-            <span class="kr">이호성</span><span class="en">Lee Ho-seong</span>
+            <span class="kr">이호성</span><span class="en">Lee Ho-seong</span
+            ><span class="zh">李虎成</span>
           </div>
           <div class="founder-sign-title">
             <span class="kr">D MOMENTUM 대표</span
-            ><span class="en">Founder &amp; CEO</span>
+            ><span class="en">Founder &amp; CEO</span
+            ><span class="zh">D MOMENTUM 代表</span>
           </div>
           <div class="founder-sign-date">2026.06.10 · Seongsu, Seoul</div>
         </div>
       </div>
     </section>
-
     <!-- ============ N° 09 CONTACT ============ -->
-    <section id="contact" class="section" data-page="contact">
+    <section class="section" data-page="contact" id="contact">
       <div class="section-head">
         <h2 class="section-title">
-          <span class="kr"><em>함께</em> 만들고 싶은&#10;모멘트가 있다면.</span>
+          <span class="kr"><em>함께</em> 만들고 싶은 모멘트가 있다면.</span>
           <span class="en"
-            >If there's a moment&#10;you'd <em>build</em> with us.</span
-          >
+            >If there's a moment you'd <em>build</em> with us.</span
+          ><span class="zh">想<em>携手</em>打造的瞬间。</span>
         </h2>
       </div>
       <div class="contact-grid">
@@ -3521,6 +3619,9 @@
                 통일타워)</span
               ><span class="en"
                 >4-1 Yeonmujang 13-gil, 8F #10,<br />Seongdong-gu, Seoul</span
+              ><span class="zh"
+                >首尔特别市城东区演武场 13 街 4-1,<br />8 层 10 号(圣水洞 2
+                街,统一塔)</span
               >
             </div>
           </div>
@@ -3534,27 +3635,31 @@
             <span class="en"
               >For casting, advertising, licensing, and media inquiries, please
               use the channels above. We respond within 48 business hours.</span
+            ><span class="zh"
+              >选角、广告合作、授权、媒体咨询请通过上述渠道发送。我们将在 48
+              个工作小时内回复。</span
             >
           </p>
         </div>
       </div>
     </section>
-
     <!-- FOOTER -->
     <footer class="dm-footer">
       <div class="dm-footer-mark">
-        <img src="logo-wordmark.svg" alt="D MOMENTUM" />
+        <img alt="D MOMENTUM" src="logo-wordmark.svg" />
       </div>
       <div class="dm-footer-cols">
         <div class="dm-footer-col">
           <h4>Company</h4>
           <p>
             <span class="kr">(주)디모멘텀</span
-            ><span class="en">D MOMENTUM Co., Ltd.</span>
+            ><span class="en">D MOMENTUM Co., Ltd.</span
+            ><span class="zh">D MOMENTUM 株式会社</span>
           </p>
           <p>
             <span class="kr">대표 이호성</span
-            ><span class="en">CEO · Lee Ho-seong</span>
+            ><span class="en">CEO · Lee Ho-seong</span
+            ><span class="zh">代表 李虎成</span>
           </p>
           <p>
             <span class="kr"
@@ -3563,15 +3668,20 @@
             ><span class="en"
               >4-1 Yeonmujang 13-gil, 8F #10,<br />Seongdong-gu, Seoul,
               Korea</span
+            ><span class="zh"
+              >首尔特别市城东区演武场 13 街 4-1,<br />8 层 10 号(圣水洞 2
+              街,统一塔)</span
             >
           </p>
           <p>
             <span class="kr">사업자등록번호 488-87-03848</span
-            ><span class="en">Biz. Reg. 488-87-03848</span>
+            ><span class="en">Biz. Reg. 488-87-03848</span
+            ><span class="zh">营业执照编号 488-87-03848</span>
           </p>
           <p>
             <span class="kr">법인등록번호 110111-0961435</span
-            ><span class="en">Corp. Reg. 110111-0961435</span>
+            ><span class="en">Corp. Reg. 110111-0961435</span
+            ><span class="zh">公司注册编号 110111-0961435</span>
           </p>
         </div>
         <div class="dm-footer-col">
@@ -3582,39 +3692,44 @@
           <h4>Roster</h4>
           <a
             href="https://www.instagram.com/taaarannn"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
             >Dasha Taran · Instagram</a
           >
           <a
             href="https://www.tiktok.com/@tarankaaa"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
             >Dasha Taran · TikTok</a
           >
           <a
             href="https://www.youtube.com/@DashaTaranbaby"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
             >Dasha Taran · YouTube</a
           >
         </div>
         <div class="dm-footer-col">
           <h4>Site</h4>
           <a href="#home"
-            ><span class="kr">메인</span><span class="en">Main</span></a
+            ><span class="kr">메인</span><span class="en">Main</span
+            ><span class="zh">主页</span></a
           >
           <a href="#about"
-            ><span class="kr">소개</span><span class="en">About</span></a
+            ><span class="kr">소개</span><span class="en">About</span
+            ><span class="zh">关于</span></a
           >
           <a href="#artist"
-            ><span class="kr">아티스트</span><span class="en">Artist</span></a
+            ><span class="kr">아티스트</span><span class="en">Artist</span
+            ><span class="zh">艺人</span></a
           >
           <a href="#news"
-            ><span class="kr">소식</span><span class="en">News</span></a
+            ><span class="kr">소식</span><span class="en">News</span
+            ><span class="zh">动态</span></a
           >
           <a href="#contact"
-            ><span class="kr">문의</span><span class="en">Contact</span></a
+            ><span class="kr">문의</span><span class="en">Contact</span
+            ><span class="zh">联系</span></a
           >
         </div>
       </div>
@@ -3625,7 +3740,6 @@
         <div>Talent is momentum.</div>
       </div>
     </footer>
-
     <script>
       // LANG
       document.querySelectorAll('[data-set-lang]').forEach((btn) => {
@@ -3634,7 +3748,7 @@
           document.documentElement.setAttribute('data-lang', lang);
           document.documentElement.setAttribute(
             'lang',
-            lang === 'kr' ? 'ko' : 'en',
+            lang === 'kr' ? 'ko' : lang === 'zh' ? 'zh-CN' : 'en',
           );
           document
             .querySelectorAll('[data-set-lang]')
