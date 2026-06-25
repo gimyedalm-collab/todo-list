@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Naver
+User-agent: Yeti
+Allow: /
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: bingbot
+Allow: /
+
+Sitemap: https://d-momentum.com/sitemap.xml
