@@ -620,6 +620,12 @@
           transform: translateX(-50%);
         }
       }
+      /* Mobile: faster ticker — same pixel speed feels slow on small screens */
+      @media (max-width: 760px) {
+        .ticker-track {
+          animation-duration: 30s;
+        }
+      }
 
       /* ─── HOME WELCOME STATEMENT ─── */
       .home-welcome {
