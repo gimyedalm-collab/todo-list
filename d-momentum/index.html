@@ -877,6 +877,21 @@
           gap: 16px;
         }
       }
+      /* Ghosted wordmark — right-aligned in section-head's empty column */
+      .section-mark {
+        justify-self: end;
+        align-self: end;
+        width: clamp(220px, 28vw, 420px);
+        opacity: 0.16;
+        margin-bottom: 6px;
+        pointer-events: none;
+        user-select: none;
+      }
+      @media (max-width: 760px) {
+        .section-mark {
+          display: none;
+        }
+      }
 
       /* ─── ROSTER ─── */
       .roster-grid {
@@ -3281,6 +3296,12 @@
             <span class="en">Reach <em>proven</em> in numbers.</span
             ><span class="zh">数据<em>印证的</em> 触达力。</span>
           </h2>
+          <img
+            class="section-mark"
+            src="logo-wordmark.svg"
+            alt=""
+            aria-hidden="true"
+          />
         </div>
       </div>
       <div class="numbers-grid">
@@ -3663,6 +3684,12 @@
           <span class="en">We manage <em>momentum</em>, not calendars.</span
           ><span class="zh">我们管理的是<em>势能</em>,而非日程。</span>
         </h2>
+        <img
+          class="section-mark"
+          src="logo-wordmark.svg"
+          alt=""
+          aria-hidden="true"
+        />
       </div>
       <div class="about-grid">
         <div class="about-text">
