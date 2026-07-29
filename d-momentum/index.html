@@ -469,8 +469,7 @@
         background: var(--bg-2);
         /* Image entrance: clip-path reveal from bottom up */
         animation: heroStageReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1)
-          calc(0.1s + var(--intro-d))
-          backwards;
+          calc(0.1s + var(--intro-d)) backwards;
       }
       @keyframes heroStageReveal {
         from {
@@ -2305,9 +2304,15 @@
       }
       #dm-intro img {
         /* 헤더와 동일한 워드마크를 크게 */
-        width: min(64vw, 620px);
+        width: min(72vw, 720px);
         height: auto;
         animation: introFade 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s backwards;
+      }
+      #dm-intro em {
+        font-size: clamp(12px, 2.2vw, 15px);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        animation: introFade 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.55s backwards;
       }
       @keyframes introFade {
         from {
@@ -2349,6 +2354,7 @@
     <!-- INTRO SPLASH -->
     <div aria-hidden="true" id="dm-intro">
       <img alt="D MOMENTUM" src="logo-wordmark.svg" />
+      <em>One artist. Infinite moments.</em>
     </div>
     <!-- HEADER -->
     <header class="dm-header">
