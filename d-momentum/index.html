@@ -468,7 +468,8 @@
         max-height: calc(100vh - var(--header-h) - 32px);
         background: var(--bg-2);
         /* Image entrance: clip-path reveal from bottom up */
-        animation: heroStageReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s
+        animation: heroStageReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1)
+          calc(0.1s + var(--intro-d))
           backwards;
       }
       @keyframes heroStageReveal {
@@ -512,7 +513,8 @@
         text-transform: uppercase;
         text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
         opacity: 0;
-        animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1s forwards;
+        animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1)
+          calc(1s + var(--intro-d)) forwards;
       }
       .hero-caption em {
         font-style: normal;
@@ -540,7 +542,8 @@
         text-transform: uppercase;
         color: var(--mute);
         opacity: 0;
-        animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+        animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1)
+          calc(0.2s + var(--intro-d)) forwards;
       }
       .hero-top-rule {
         width: 32px;
@@ -564,14 +567,16 @@
         color: var(--ink-2);
         max-width: 440px;
         opacity: 0;
-        animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+        animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1)
+          calc(1.2s + var(--intro-d)) forwards;
       }
       .hero-bottom {
         display: flex;
         flex-direction: column;
         gap: 22px;
         opacity: 0;
-        animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.4s forwards;
+        animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1)
+          calc(1.4s + var(--intro-d)) forwards;
       }
       .hero-meta {
         display: flex;
@@ -672,16 +677,16 @@
         animation: heroWordUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       }
       .hero-title .word:nth-child(1) {
-        animation-delay: 0.4s;
+        animation-delay: calc(0.4s + var(--intro-d));
       }
       .hero-title .word:nth-child(2) {
-        animation-delay: 0.6s;
+        animation-delay: calc(0.6s + var(--intro-d));
       }
       .hero-title .word:nth-child(3) {
-        animation-delay: 0.8s;
+        animation-delay: calc(0.8s + var(--intro-d));
       }
       .hero-title .word:nth-child(4) {
-        animation-delay: 1s;
+        animation-delay: calc(1s + var(--intro-d));
       }
       @keyframes heroWordUp {
         from {
@@ -2273,9 +2278,94 @@
         opacity: 1;
         transform: translateY(0);
       }
+
+      /* ─── INTRO SPLASH — 로고 인트로 (세션당 1회) ─── */
+      :root {
+        --intro-d: 1.5s;
+      }
+      html.no-intro {
+        --intro-d: 0s;
+      }
+      #dm-intro {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        text-align: center;
+        padding: 0 24px;
+        animation: introLift 0.8s cubic-bezier(0.76, 0, 0.24, 1) 1.5s forwards;
+      }
+      html.no-intro #dm-intro {
+        display: none;
+      }
+      #dm-intro img {
+        width: clamp(56px, 10vw, 84px);
+        height: auto;
+        animation: introFade 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s backwards;
+      }
+      #dm-intro strong {
+        font-family: var(--font-display);
+        font-size: clamp(20px, 4.5vw, 34px);
+        font-weight: 500;
+        letter-spacing: 0.32em;
+        text-indent: 0.32em;
+        color: var(--ink);
+        animation: introFade 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s backwards;
+      }
+      #dm-intro em {
+        /* 색·굵기는 전역 em 규칙(브랜드 레드)을 그대로 따름 */
+        font-size: clamp(13px, 2.8vw, 16px);
+        letter-spacing: 0.04em;
+        animation: introFade 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.6s backwards;
+      }
+      @keyframes introFade {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes introLift {
+        to {
+          transform: translateY(-101%);
+          visibility: hidden;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        :root {
+          --intro-d: 0s;
+        }
+        #dm-intro {
+          display: none;
+        }
+      }
     </style>
+    <script>
+      /* 인트로: 같은 브라우저 세션에선 첫 진입 때만 재생 */
+      try {
+        if (sessionStorage.getItem('dm-intro-seen')) {
+          document.documentElement.classList.add('no-intro');
+        } else {
+          sessionStorage.setItem('dm-intro-seen', '1');
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body id="top">
+    <!-- INTRO SPLASH -->
+    <div aria-hidden="true" id="dm-intro">
+      <img alt="" src="logo.svg" />
+      <strong>D&nbsp;MOMENTUM</strong>
+      <em>One artist. Infinite moments.</em>
+    </div>
     <!-- HEADER -->
     <header class="dm-header">
       <a
@@ -2896,8 +2986,7 @@
                 ><span class="zh">TAM BEAUTY — 品牌发布 &amp; 全球模特</span>
               </div>
               <div class="tl-desc">
-                <span class="kr"
-                  >런칭 캠페인부터 26SS 메인 비주얼까지</span
+                <span class="kr">런칭 캠페인부터 26SS 메인 비주얼까지</span
                 ><span class="en"
                   >From launch campaign to the SS26 main visual</span
                 ><span class="zh">从发布活动到 26SS 主视觉</span>
@@ -3029,14 +3118,10 @@
           ><span class="zh">D MOMENTUM 的时间线。</span>
         </h2>
         <p class="news-lead">
-          <span class="kr"
-            >진행 중인 캠페인과 일어나는 일들을 기록합니다.</span
-          >
+          <span class="kr">진행 중인 캠페인과 일어나는 일들을 기록합니다.</span>
           <span class="en"
             >A record of the campaigns and moments in motion.</span
-          ><span class="zh"
-            >记录正在进行的项目与每一个发生的瞬间。</span
-          >
+          ><span class="zh">记录正在进行的项目与每一个发生的瞬间。</span>
         </p>
       </div>
       <div class="news-list">
@@ -3049,8 +3134,7 @@
               ><span class="zh">TAM BEAUTY 全球模特签约</span>
             </h3>
             <p>
-              <span class="kr"
-                >런칭 캠페인부터 26SS 메인 비주얼까지.</span
+              <span class="kr">런칭 캠페인부터 26SS 메인 비주얼까지.</span
               ><span class="en"
                 >From launch campaign to the SS26 main visual.</span
               ><span class="zh">从发布活动到 26SS 主视觉。</span>
